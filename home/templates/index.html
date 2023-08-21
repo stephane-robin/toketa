@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<section class="py-5" style="background-image: linear-gradient(160deg, #f0ad4e 0%, white 50%);opacity:.8;">
+    <div class="container">
+        <h1 class="text-center mt-5 pt-5" style="color:black">ToKeTa</h1> 
+        <p class="text-center">Construis rapidement des connaissances fiables en programmation.</p>
+        <p class="text-center">Apprends à coder efficacement.</p>
+        <img src="{% static 'home/images/general/python.jpg' %}" width="100px" class="center">
+        <a href=""><button class="bouton center my-5">Créer un compte ...</button></a> 
+        <p class="text-center py-5">"Everybody in this country should learn how to program a computer because it teaches you how to think." <em>Steve Jobs</em></p>
+    </div>
+</section>
+
+
+
+
+<!-- INTRODUCTION -->
+
+<section class="px-5 pb-5 my-1 bg-white">
+    <div class="container">
+        <p>Ne restez pas bloqué devant une difficulté. Des conseils, 
+        des astuces, ce site s'adresse à tous ceux qui veulent progresser en programmation
+        et optimiser leur travail en maîtrisant le langage Python.</p>
+        
+        <p>Vous trouverez des résumés de cours, des points clés à retenir, des fiches mémo, des 
+        travaux pratiques, mais également des quiz où vous pourrez mesurer facilement votre niveau de compréhension.</p>
+        
+        <p>Vous pourrez aussi apprendre les bases d'autres langages de programmation, en vous entraînant sur des 
+            projets concrets, renforcer vos capacités de mémoire, de concentration en pratiquant des 
+            jeux simples, ou encore améliorer vos connaissances mathématiques de base.</p> 
+    </div>
+</section>
+
+
+
+<!-- IMAGES PRESENTATION -->
+
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <div class="row gx-0 gy-2 gy-md-0">
+            <div class="col-12 col-md-6 stage">
+                <div class="actor">
+                    <img src="{% static 'home/images/general/index10.jpg' %}" width=100%>  
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2>Pratique les quiz</h2>
+                <h2>Regarde les vidéos</h2>
+                <h2>Essaie les travaux pratiques</h2>
+            </div>
+        </div>
+        <div class="row gx-0 gy-2 gy-md-0">
+            <div class="col-12 col-md-6 my-auto">
+                <!-- LOGO CREATIVE IDEAS -->
+                <div style="border:7px var(--couleur_nav);border-style:solid none;padding:13px;border-radius:50%;width:120px;text-align:center;margin-top:10%;margin:auto;">
+                    <p style="rotate:30deg;color:black;font-size:2em;">creative<br/>ideas</p>
+                </div>             
+            </div>
+            <div class="col-12 col-md-6 stage">
+                <div class="actor">
+                    <img src="{% static 'home/images/general/index9.jpg' %}" width=100%>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- TRAVAUX PRATIQUES -->
+
+<section class="px-5 py-5 my-1" style="background-color:lightgray;">
+    <div class="container">
+        <div class="row gy-3 gx-md-4 mb-3">
+            <p style="font-size:2em;">Ma sélection de travaux pratiques</p>
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Geogebra</p> 
+                <p>L'application <em>Geogebra</em> permet de dessiner des courbes mathématiques en utilisant une interface graphique très intuitive. Il est également possible de factoriser, développer une 
+                expression mathématique ou encore de dessiner des figures géométriques très facilement. <em>Geogebra</em> s'apparente donc à une calculatrice graphique très puissante. Il s'agit donc d'un 
+                outil performant pour s'aider dans ses travaux mathématiques. Il n'est pas nécessaire de télécharger l'application qui s'utilise facilement en ligne.</p> 
+                <a href="{% url 'afficherPage' niveau='maths' chapitre='calcul_litteral' id=1 %}"><button class='bouton'>Commencer ...</button></a>     
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Loi des grands nombres</p> 
+                <p>Il est perturbant de constater que les chances d'obtenir un nombre voulu lorsqu'on 
+                lance un dé plusieurs fois ne semble pas équilibrées. C'est en fait la loi des grands nombres qui détermine 
+                les règles de probabilité. Pour obtenir un grand nombre de tirages, une seule possibilité, le recours à un 
+                langage de programmation. Nous avons choisi Python et nous allons créer un code qui exécute un million de tirages pour
+                afficher les chances d'obtenir chacun des nombres entre 1 et 6.</p> 
+                <a href="{% url 'afficherPage' niveau='maths' chapitre='statistiques' id=6 %}"><button class='bouton'>Commencer ...</button></a>
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Les maths et Word</p> 
+                <p>Microsoft Word est un logiciel commercial de traitement de texte, très répandu, 
+                particulièrement efficace, et qui permet notamment d'écrire des formules mathématiques. Plusieurs options 
+                s'offrent à l'usager, l'utilisation des différentes icônes proposées par l'interface ou l'utilisation du 
+                langage LaTeX dont les bibliothèques sont spécialisées dans l'écriture mathématique..</p> 
+                <a href="{% url 'afficherPage' niveau='maths' chapitre='calcul_litteral' id=10 %}"><button class='bouton'>Commencer ...</button></a>
+            </div>
+        </div>
+        <div class="row gy-3 gx-md-4">
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Routage IP</p> 
+                <p>En utilisant les lignes de commandes de l'ordinateur, il est possible de trouver l'adresse IP utilisée, puis
+                    d'envoyer un simple <em>ping</em> afin de suivre le chemin utilisé par les paquets pour transmettre une message.
+                    Ce travail pratique simple permet de visualiser concrètement ce qu'on apprend dans le cours au sujet des adresses IP.</p> 
+                <a href="{% url 'afficherPage' niveau='nsi' chapitre='internet' id=2 %}"><button class='bouton'>Commencer ...</button></a>
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Linux</p> 
+                <p>Le système d'exploitation Linux est utilisé dans la plupart des serveurs. 
+                Particulièrement performant et sûr, il est une alternative libre et gratuite aux systèmes d'exploitation commerciaux. 
+                Vous apprendrez à utiliser les principales lignes de commande pour effectuer des opérations simples mais utiles.</p> 
+                <a href="{% url 'afficherPage' niveau='nsi' chapitre='architecture' id=3 %}"><button class='bouton'>Commencer ...</button></a>
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="p3_index">Bibliothèque Turtle</p> 
+                <p>La bibliothèque <em>turtle</em> permet de dessiner en utilisant le langage Python. Pour ceux qui sont familiers avec le langage <em>Scratch</em>, les méthodes utilisées sont assez semblables. Il faut avec <em>turtle</em> écrire du code au lieu de déplacer des blocs Scratch.</p> 
+                <a href="{% url 'afficherPage' niveau='python' chapitre='debuter' id=7 %}"><button class='bouton'>Commencer ...</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- QUIZ ----->
+
+<section class="px-5 py-5 my-1">
+    <div class="container">
+        <p class="p2_index">Ma sélection de Quiz</p>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz1">&#10061; Python - l'environnement de développement</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz2">&#10061; Python - les variables</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz3">&#10061; Python - saisie clavier</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz4">&#10061; Python - les conditions</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz6">&#10061; Python - la boucle while</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz7">&#10061; Python - les chaînes de caractères</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz9">&#10061; Python - les fonctions</a>
+                <a href="./sources/general/modeleQuizz.php?niveau=python&chapitre=debuter&page=quizz10">&#10061; Python - questionnaire</a>
+                    </div>
+            </div>
+            <div class="col-12 col-md-6 center my-auto">
+                <img src="{% static 'home/images/general/interrogation.png' %}" alt="ideas">
+            </div>
+        </div>
+    </div>
+</section>
+    
+<section class="px-5 py-2 bg-white">
+    <div class="container">
+        <p class="separateur"></p>
+    </div>
+</section>
+
+
+<!-- VIDEOS -->
+
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <div class="row">
+            <p class="p2_index">Ma sélection de vidéos</p>
+            
+            <div class="col-12 col-md-8 my-5">
+                <iframe src="https://www.youtube.com/embed/mXFMNbk-TJg"
+                        title="Apprendre à manipuler les racines carrées, Toketa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                        gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <figcaption>Apprendre à manipuler les racines carrées</figcaption>
+            </div>
+          </div>
+          <div class="row">  
+            <a href="https://youtu.be/ImndwJtu4AE" target="_blank">&#10061; Statistiques - Les notions de base en statistiques</a>
+            <a href="https://youtu.be/AA7-Sq3GFtc" target="_blank">&#10061; Statistiques - Trouver la médiane et les quartiles c'est facile</a>
+            <a href="https://youtu.be/c2eOXieaWUU" target="_blank">&#10061; Calcul littéral - Eviter les pièges de la factorisation</a>
+            <a href="https://youtu.be/2hJgUhH3AG8" target="_blank">&#10061; Calcul littéral - Factoriser avec Geogebra</a>
+            <a href="https://youtu.be/4b3rSGZrTcc" target="_blank">&#10061; Excel - Modifier une cellule Excel avec une condition</a>
+            <a href="https://youtu.be/eb8AcBYo2yQ" target="_blank">&#10061; Word - Le correcteur d'orthographe sous Word</a>
+            <a href="https://youtu.be/nWYezXg-eok" target="_blank">&#10061; Word - Utilisation du dictaphone et du traducteur sous Word</a>
+            <a href="https://youtu.be/ITi4LrB_YMQ" target="_blank">&#10061; Word - Utiliser la fonctionnalité dessin sur Word</a>
+            <a href="https://youtu.be/YcdOxQf16bs" target="_blank">&#10061; Python - Palindrome en Python</a>
+            <a href="https://youtu.be/ZMjF4JcR7Go" target="_blank">&#10061; Python - boucles imbriquées en Python</a>
+            <a href="https://youtu.be/FNbX5NOBtic" target="_blank">&#10061; Scratch - Faire danser le sprite avec Scratch</a>
+            <a href="https://youtu.be/dIDSz-bpLGo" target="_blank">&#10061; Scratch - Tracer une courbe avec Scratch</a>
+            <a href="https://youtu.be/DvLj-jlKwbY" target="_blank">&#10061; Scratch - Mouvement d'un sprite avec Scratch</a>
+            
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+            <a class="my-2" href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank'>
+                <img src="{% static 'home/images/general/youtubetoketa.png' %}" alt='youtube' width=65% style='border-radius:5px;'>
+            </a>
+        </div></div>
+    </div>
+</section>
+
+
+<!------------------------->        
+<!-- MEMOIRE -->
+<!------------------------->
+
+<!--
+<div style="background-color:white;width:100%;">
+<h3 style="color:black;">J'essaie les jeux de mémoire</h3>
+<p style="color:black;">En construction ...</p>
+</div>
+-->
+
+<section class="px-5 py-2 bg-white">
+    <div class="container">
+        <p class="separateur"></p>
+    </div>
+</section>
+
+
+<!-- ACTUALITES -->
+
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <p class="p2_index">Actualités</p>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index15.jpg' %}">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-12 col-md-5 my-auto">
+                    <p>Python 3.11 est la première version à bénéficier du projet Faster CPython financé par Microsoft permettant 
+                        d'augmenter la vitesse d'exécution de 10% à 60% par rapport à la version précédente.</p>
+                    <p>La version alpha 3.12 de Python a été publiée le 7 mai 2023.</p> 
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Animations de la page index -->
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    .mySlides {
+        display: none;
+    }
+    
+    img {
+        vertical-align: middle;
+    }
+    
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+    
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 2s;
+    }
+    
+    @keyframes fade {
+      from {opacity: .2;} 
+      to {opacity: 1;}
+    }
+    
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .text {
+        font-size: 11px;
+    }
+    }
+    </style>
+
+<section class="px-5 py-2 bg-white">
+    <div class="container">
+        <p class="separateur"></p>
+    </div>
+</section>
+
+
+<!-- FORMULAIRE -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <p class="p2_index">Ils en parlent le mieux</p>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index11.jpg' %}">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-12 col-md-5 my-auto">
+                    <p style="font-size:1.5em;">&#9733;&#9733;&#9733;&#11242;&#9734; 3,5</p>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <p>"J'aime bien les exercices corrigés de Python. Ils aident à comprendre comment coder." <em>May</em></p>
+
+            <p>"Site sympa, mais le contenu n'est pas du tout complet. Il faut quand même aller voir son cours 
+                ou utiliser d'autres sites pour bien s'entraîner." <em>Aymeric</em></p>
+            
+            <p>"Les Quiz sont cool. Ca va, et ça permet de s'entraîner gentiment." <em>Lucien</em></p>
+    
+            <p>"J'ai vraiment pu progresser en calcul littéral. Les exemples sont simples et faciles à comprendre." <em>Sabrina</em></p>
+        </div>
+    </div>
+</section>
+
+
+<!-- formulaire
+<form action="" style="margin-top:5%;">
+    <p>Merci de laissez vos commentaires ci-dessous. Nous tiendrons compte de vos remarques autant que possible.</p>
+    <div class="bloc_ligne">
+        <label for="pseudo"><p style="font-size:1.1em;">Prénom : </p></label>
+        <input type="text" id="pseudo" name="pseudo" style="margin:2%;">
+    </div><br/>
+    <textarea rows='5' cols='60' name='comment' form='usrform' style="margin-bottom:2%;">Mes commentaires ... </textarea><br/>
+    <input type="submit" class="bouton" value="Valider">
+</form>-->
+
+{% endblock principal %}

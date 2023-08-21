@@ -1,0 +1,137 @@
+{% extends '../../modelePresentation.html' %}
+{% load static %}
+
+{% block titre %} Programmation Python {% endblock titre %}
+
+<!-- BIEN DEBUTER EN PYTHON --> 
+
+{% block img1 %}                     
+<img src="{% static 'home/images/general/index6.jpg' %}" class="card-img-top" alt="debuter en python" style="border-top-left-radius:5%;border-top-right-radius:5%;">
+{% endblock img1 %}
+
+{% block titre_partie1 %} Bien débuter en Python {% endblock titre_partie1 %}
+
+{% block partie1 %} 
+Nous découvrirons les bases de Python à l'aide d'exemples progressifs qui vous apprendront 
+à manipuler les chaînes de caractères, les conditions, les boucles, les fonctions, ... 
+{% endblock partie1 %}
+
+{% block intro1 %}
+Python est un langage de programmation interprété dont la philosophie repose sur la simplicité 
+du code, la liberté du programmeur et l'implémentation de bonnes pratiques. Rien n'est fait 
+pour empêcher le programmeur de mener une action, même si celle-ci semble inappropriée.
+{% endblock intro1 %}
+
+{% block commencer1 %}
+<a href="{% url 'afficherPage' niveau='python' chapitre='debuter' id=0 %}"><button class="bouton">Commencer...</button></a> 
+{% endblock commencer1 %}
+
+{% block activites1 %}
+    {% for elt in debuter %}
+        <a href="{% url 'afficherPage' niveau='python' chapitre='debuter' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    {% endfor %}
+{% endblock activites1 %}
+
+{% block exercices1 %}
+<a href="{% static 'home/documents/ficheMemoPython.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Python</button></a>
+<a href="{% static 'home/documents/SNT_exercice.pdf' %}" download><button class="bouton2 bi bi-download"> SNT 2ème - Exercices</button></a>
+{% endblock exercices1 %}
+
+{% block evaluations1 %}
+<a href="{% static 'home/documents/evaluationPython.pdf' %}" download><button class="bouton2 bi bi-download"> SNT 2ème - Evaluation 1</button></a>
+{% endblock evaluations1 %}
+
+
+<!-- PROGRESSER EN PYTHON --> 
+
+{% block img2 %}
+<img src="{% static 'home/images/general/index3.jpg' %}" class="card-img-top" alt="debuter en python" style="border-top-left-radius:5%;border-top-right-radius:5%;">
+{% endblock img2 %}
+
+{% block titre_partie2 %} Progresser en Python {% endblock titre_partie2 %}
+
+{% block partie2 %} 
+Nous apprendrons à manipuler des listes, des dictionnaires et à construire des codes plus complexes. Nous 
+découvrirons comment tester nos codes et gérer nos erreurs. Nous apprendrons à utiliser nos premières 
+bases de données.
+{% endblock partie2 %}
+
+{% block intro2 %}
+Progresser en programmation nécessite de bien comprendre les bases de la structure de code mais 
+également comment manipuler les données générées par ce code. Le meilleur moyen d'y parvenir 
+reste encore de s'entraîner en codant toujours plus.
+{% endblock intro2 %}
+
+{% block commencer2 %}
+<a href="{% url 'afficherPage' niveau='python' chapitre='progresser' id=0 %}"><button class="bouton">Commencer...</button></a> 
+{% endblock commencer2 %}
+
+{% block activites2 %}
+    {% for elt in progresser %}
+    <a href="{% url 'afficherPage' niveau='python' chapitre='progresser' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    {% endfor %}
+{% endblock activites2 %}
+
+{% block exercices2 %}
+<a href="{% static 'home/documents/01Prem.pdf' %}" download><button  class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 1</button></a>
+<a href="{% static 'home/documents/03Prem.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 2</button></a>
+<a href="{% static 'home/documents/04Prem.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 3</button></a>
+<a href="{% static 'home/documents/18Prem.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 4</button></a>
+{% endblock exercices2 %}
+
+{% block evaluations2 %}
+<a href="{% static 'home/documents/DST_nsi_1ere.pdf' %}" download><button class="bouton2 bi bi-download"> NSI 1ère - Evaluation 1</button></a>
+<a href="{% static 'home/documents/EC_nsi_1ere.pdf' %}" download><button class="bouton2 bi bi-download"> NSI 1ère - Evaluation 2</button></a>
+{% endblock evaluations2 %}
+
+
+<!-- PYTHON AVANCE --> 
+
+{% block img3 %} 
+<img src="{% static 'home/images/general/index8.jpg' %}" class="card-img-top" alt="debuter en python" style="border-top-left-radius:5%;border-top-right-radius:5%;">
+{% endblock img3 %}
+
+{% block titre_partie3 %} Python avancé {% endblock titre_partie3 %}
+
+{% block partie3 %} 
+Nous apprendrons à programmer en orienté objet, nous utiliserons également la récursivité
+pour effectuer des calculs complexes, nous découvrirons les bases de la cryptographie.
+{% endblock partie3 %}
+
+{% block intro3 %}
+Il est important de choisir le paradigme de programmation le plus adapté au travail que nous voulons fournir.
+La programmation objet est une manière de programmer qui utilise un modèle proche de la réalité où 
+on représente chaque élément en tant qu'objet au sein d'une classe. Chaque objet a des caractéristiques propres 
+qu'on peut modifier.
+{% endblock intro3 %}
+
+{% block commencer3 %}
+<a href="{% url 'afficherPage' niveau='python' chapitre='avance' id=0 %}"><button class="bouton">Commencer...</button></a> 
+{% endblock commencer3 %}
+
+{% block activites3 %}
+    {% for elt in avance %}
+    <a href="{% url 'afficherPage' niveau='python' chapitre='avance' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    {% endfor %}
+{% endblock activites3 %}
+
+{% block exercices3 %}
+<a href="{% static 'home/documents/02Term.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 5</button></a>
+<a href="{% static 'home/documents/05Term.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 6</button></a>
+<a href="{% static 'home/documents/07Term.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 7</button></a>
+<a href="{% static 'home/documents/16Term.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 8</button></a>
+<a href="{% static 'home/documents/37Term.pdf' %}" download><button class="bouton2 bi bi-download"> NSI - Epreuve pratique Bac 9</button></a>
+{% endblock exercices3 %}
+
+{% block evaluations3 %} {% endblock evaluations3 %}
+
+
+<!-- le 1er div permet de scinder la ball du reste de la page
+et donc evite que toute la page bouge -->
+<div class="container_ball">
+    <div class="ball">
+        <p class="text_ball">ToKeTa</p>
+    </div>
+</div>
+
+

@@ -1,0 +1,404 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+    <li>pratique de la construction de code</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Vérification des critères du mot de passe</h3>
+
+<h4>Etape 1 - Ecriture des conditions</h4>
+
+<p>Vous êtes développeur chez JMLinfo. Votre client vous demande de faire un script Python qui vérifie
+le mot de passe entré par l’utilisateur sur un site et affiche le cas échéant la raison pour laquelle 
+le mot de passe n'est pas conforme. Vous devrez demander à l'utilisateur de saisir un mot de passe de plus 
+de 8 lettres sans espace vide, contenant au moins une majuscule, un chiffre, un caractère spécial et ne 
+contenant pas les caractères interdits &lt, >, \.</p>
+
+<p>Pour commencer, vous allez :</p>
+<p>- demander à l’utilisateur de saisir un mot de passe avec les conditions souhaitées par le client (voir 
+    ci-dessus). Il faut ensuite tester si le mot de passe saisi contient un espace, auquel cas une 
+variable booléenne appelée <code>resultat</code> prendra la valeur <code>False</code>, et une variable 
+appelée <code>commentaire</code> prendra la valeur "Le mot de passe ne doit pas contenir d'espace.".</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
+
+<div id="solution2" style="display:none;">
+<pre><code class="language-python"># On demande a l'utilisateur de saisir un mot de passe
+pw = input("Veuillez entrer un mot de passe (8 caractères minimum contenant au moins une majuscule, un chiffre, un caractère spécial, et sans espace).")
+
+resultat = True
+    
+# on teste si le mot de passe contient un espace
+if " " in pw:
+    resultat = False
+    commentaire = "Le mot de passe ne doit pas contenir d'espace."</code></pre>
+
+</div>
+
+<p>- vérifier que le mot de passe saisi contient plus que 8 caractères, et mettre à 
+    jour les variables <code>resultat</code> et <code>commentaire</code> si nécessaire.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe contient moins de huit caractères
+if len(pw) &lt 8:
+    resultat = False
+    commentaire = "Le mot de passe doit contenir plus de huit caractères."</code></pre>
+
+</div>
+
+<p>- vérifier que le mot de passe saisi contient au moins une majuscule, et mettre à 
+    jour les variables <code>resultat</code> et <code>commentaire</code> si nécessaire.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+</div>
+
+<div id="solution5" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe ne contient pas de majuscule
+if pw == pw.lower():
+    resultat = False
+    commentaire = "Le mot de passe doit contenir au moins une majuscule."</code></pre>
+
+</div>
+
+<p>- vérifier que le mot de passe saisi contient au moins un chiffre, et mettre à 
+    jour les variables <code>resultat</code> et <code>commentaire</code> si nécessaire.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+</div>
+
+<div id="solution6" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe ne contient pas de chiffre
+test_numerique = False
+
+for elt in pw:
+    if elt.isnumeric() == True:
+        test_numerique = True
+
+if test_numerique == False:
+    resultat = False
+    commentaire = "Le mot de passe doit contenir au moins un chiffre."</code></pre>
+</div>
+
+<p>- vérifier que le mot de passe saisi contient au moins un caractère spécial (., -, _, !, ?, :, virgule, &, +, ", ', (, ), [, ], {,})
+    , et mettre à jour les variables <code>resultat</code> et <code>commentaire</code> si nécessaire.
+</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+</div>
+
+<div id="solution7" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe ne contient pas de caractère spécial
+liste_char_speciaux = ['.', '-', '_', '!', '?', ':', ',', '&', '+', '"', '\'', '(', ')', '[', ']', '{', '}']
+    
+test_char = False
+
+for elt in pw:
+
+    if elt in liste_char_speciaux:
+        test_char = True
+
+if test_char == False:
+    resultat = False
+    commentaire = "Le mot de passe doit contenir au moins un caractère spécial."</code></pre>
+
+</div>
+
+<p>- vérifier que le mot de passe saisi ne contient pas les caractères interdits (&lt, >, /), et mettre à 
+    jour les variables <code>resultat</code> et <code>commentaire</code> si nécessaire.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+</div>
+
+<div id="solution3" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe contient un caractère interdit
+interdits = ['&lt', '>', '\']
+for elt in pw:
+    if elt in interdits:
+        resultat = False
+        commentaire = "Le mot de passe ne doit pas contenir de caractère interdit (&lt, >, /)"</code></pre>
+</div>
+
+<p>- vérifier que le mot de passe est différent des mots de passe déjà utilisés, qui sont "toTo.8888", "taTa.8888"
+et "tiTi.8888". Ces mots de passe sont stockés dans une liste appelée liste_pw.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+<pre><code class="language-python"># on teste si le mot de passe est déjà utilisé
+liste_pw = ['toTo.8888', 'taTa.8888', 'tiTi.8888']
+
+if pw in liste_pw:
+    resultat = False
+    commentaire = "le mot de passe est déjà utilisé"</code></pre>
+
+</div>
+
+
+
+<h4>Etape 2 - Utilisation d'une fonction</h4>
+
+<p>Un tuple est un ensemble très simple de variables. C'est un peu comme une liste, mais avec un nombre 
+    d'éléments défini au départ et qui ne change pas. Il est très utile par exemple lorsqu'on veut renvoyer plusieurs résultats pour
+     une même fonction. Par rapport à une liste, il offre l'avantage d'occuper moins d'espace mémoire.</p>
+
+<p>Considérons la fonction conjuguer(verbe), qui renvoie séparément la conjugaison du verbe au futur à la 1ère
+ et à la 2ème personne du singulier, pour les verbes du 1er groupe. Cette fonction pourrait s'écrire simplement :</p>
+
+<pre><code class="language-python">def conjuguer(verbe):
+    premiere = "je " + verbe + "ai"
+    deuxieme = "tu " + verbe + "as"
+
+    return (premiere, deuxieme)</code></pre>
+
+<p>Maintenant l'instruction</p> <pre><code class="language-python">print(conjuguer("manger"))</code></pre> <p>va afficher le double résultat <code>(je mangerai, tu mangeras)</code>.</p>
+
+<p>A noter que pour obtenir le 1er élément du résultat de <code>conjuguer("manger")</code>, il faut écrire <code>conjuguer("manger")[0]</code>, 
+et pour obtenir la 2ème valeur il faut écrire <code>conjuguer("manger")[1]</code></p>
+
+<p>Il est important de se familiariser avec les tuples, car c'est une structure de données simple et utile. Les autres langage que Python 
+    ont tendance à utiliser la notion de tableau à la place.</p>
+
+
+<p>L'ensemble du code que vous avez créé pour le mot de passe doit maintenant être regroupé dans une fonction appelée 
+    <code>verification(motpasse)</code>, qui prend comme argument le mot de passe proposé par l'utilisateur, 
+     et renvoie un tuple composé du <code>resultat</code> (True ou False) et du <code>commentaire</code> (qui 
+     explique la raison pour laquelle le mot de passe n'est pas conforme ou accepte ce dernier).</p>
+
+<p>On peut maintenant facilement rajouter une boucle while pour demander à l'utilisateur un mot de passe, 
+     tant que ce dernier n'est pas correct. le mot de passe doit donc être conforme à tous les critères évoqués à 
+     l'étape 1. Le regroupement du code précédent dans une fonction permet de 
+     fournir un code assez compact.</p>
+
+<p>En cas d'échec, le programme affiche "mot de passe non conforme" suivi de la raison pour laquelle
+     il n'est pas accepté. Si le mot de passe convient, le programme affiche "mot de passe conforme" et celui-ci est 
+     rajouté à liste_pw.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+</div>
+    
+<div id="solution9" style="display:none;">
+    <pre><code class="language-python">pw = input("Veuillez entrer un mot de passe de plus de huit lettres contenant
+        au moins une majuscule, un chiffre, un caractère spécial, ne contenant pas 
+        de caractère interdit.")
+
+def verification(motpasse):
+    resultat = True
+            
+    # on teste si le mot de passe contient un espace
+    if " " in motpasse:
+        resultat = False
+        commentaire = "le mot de passe ne doit pas contenir d'espace"
+            
+    # on teste si le mot de passe contient un caractère interdit
+    if "&lt" in motpasse or ">" in motpasse or "/" in motpasse:
+        resultat = False
+        commentaire = "le mot de passe ne doit pas contenir de caractère interdit (&lt, >, /)"
+            
+    # on teste si le mot de passe contient moins de huit caractères
+    if len(motpasse) &lt 8:
+        resultat = False
+        commentaire = "le mot de passe doit contenir plus de huit caractères"
+            
+    # on teste si le mot de passe ne contient pas de majuscule
+    if motpasse == motpasse.lower():
+        resultat = False
+        commentaire = "le mot de passe doit contenir au moins une majuscule"
+            
+    # on teste si le mot de passe ne contient pas de chiffre
+    test_numerique = False
+    for i in range(len(motpasse)):
+        if motpasse[i].isnumeric() == True:
+            test_numerique = True
+    if test_numerique == False:
+        resultat = False
+        commentaire = "le mot de passe doit contenir au moins un chiffre"
+            
+    # on teste si le mot de passe ne contient pas de caractère spécial
+    liste_char_speciaux = ['.', '-', '_', '!', '?']
+            
+    test_char = False
+    for i in range(len(motpasse)):
+        if motpasse[i] in liste_char_speciaux:
+            test_char = True
+    if test_char == False:
+        resultat = False
+        commentaire = "le mot de passe doit contenir au moins un caractère spécial"
+
+    # on teste si le mot de passe est déjà utilisé
+    liste_pw = ['toTo.8888', 'taTa.8888', 'tiTi.8888']
+        
+    if motpasse in liste_pw:
+        resultat = False
+        commentaire = "le mot de passe est déjà utilisé"
+            
+    return (resultat, commentaire)
+            
+while verification(pw)[0] == False:
+    print(f"mot de passe non conforme, {verification(pw)[1]}")
+    pw = input("Veuillez entrer un mot de passe de plus de huit lettres contenant
+        au moins une majuscule, un chiffre, un caractère spécial, ne contenant pas 
+        de caractère interdit.")
+
+print("mot de passe conforme")</code></pre>
+</div>
+
+
+
+
+
+<!-- CONTROLE D'ACCES -->
+<h3>Contrôle d'accès</h3>
+
+<p>Vous devez maintenant créer un script Python qui demande à l'utilisateur son identifiant ainsi que son mot de passe. 
+    Le programme vérifie que l'identifiant et le mot de passe saisi par l'utilisateur sont respectivement 
+ "herve158" et "CapHerve1.jR". Tant que le mot de passe ou l'identifiant sont incorrects, le programme affiche "mot 
+ de passe ou identifiant incorrect". Mais le programme n'autorise que 3 tentatives. Après 3 échecs, le programme affiche "accès refusé". 
+ Si le mot de passe saisi et l'identifiant sont corrects, le 
+ programme affiche "bienvenue sur le site" suivi de l'identifiant de l'utilisateur.</p>
+
+
+ <div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+</div>
+    
+<div id="solution10" style="display:none;">
+    <pre><code class="language-python">pseudo_correct = "herve158"
+pw_correct = "CapHerve1.jR"
+        
+compteur_erreur = 0
+pseudo = input("Quel est votre identifiant ? ")
+pw = input("Quel est votre mot de passe ? ")
+        
+while (pseudo != pseudo_correct or pw != pw_correct) and compteur_erreur &lt 3:
+        
+    print("Mot de passe ou identifiant incorrect.")
+    compteur_erreur += 1
+        
+    # après 3 erreurs on ne veut pas redemander l'identifiant et mot de passe
+    if compteur_erreur &lt 3:
+        pseudo = input("Quel est votre identifiant ? ")
+        pw = input("Quel est votre mot de passe ? ")
+        
+# après 3 erreurs l'accès est refusé
+if compteur_erreur > 2:
+    print("Accès refusé")
+else:
+    print(f"Bienvenue sur le site {pseudo}.")</code></pre>
+
+    <p>A noter qu'on pourrait également utiliser l'instruction <strong>break</strong> 
+    pour sortir de la boucle <strong>while</strong>.</p>
+</div>
+
+<h3>Une proposition de solution globale pour le travail pratique</h3>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution11');"> Voir la proposition de solution du travail pratique </button></p>
+</div>
+    
+<div id="solution11" style="display:none;">
+
+<p>Une solution possible de cette 1ère partie est présentée ci-dessous :</p>
+
+<pre><code class="language-python">pw = input("Veuillez entrer un mot de passe respectant les consignes données dans l'énoncé.")
+
+resultat = True
+
+# on teste si le mot de passe contient un espace
+if " " in pw:
+    resultat = False
+
+# on teste si le mot de passe contient un
+# caractère interdit
+if "&lt" in pw or "&gt" in pw or "/" in pw:
+    resultat = False
+
+# on teste si le mot de passe contient moins de
+# huit caractères
+if len(pw) &lt 8:
+    resultat = False
+
+# on teste si le mot de passe contient une majuscule
+if pw == pw.lower():
+    resultat = False
+
+# on teste si le mot de passe contient un chiffre
+test_numerique = False
+for i in range(len(pw)):
+    if pw[i].isnumeric() == True:
+        test_numerique = True
+if test_numerique == False:
+    resultat = False
+
+# on teste si le mot de passe est un mot interdit
+if pw == "toTo888" or pw == "taTa888" or pw == "tiTi888":
+    resultat = False
+
+print(resultat)</code></pre>
+
+<p>On peut maintenant facilement rajouter une boucle while pour demander à l'utilisateur un mot de passe, tant que ce dernier n'est pas correct. Le regroupement
+    du code précédent dans une fonction permet de fournir un code assez compact, comme présenté ci-dessous :</p>
+
+<pre><code class="language-python">pw = input("Entrez un mot de passe valide : ")
+
+def test_mot_passe(pw):
+    resultat = True
+    
+    # on teste si le mot de passe contient un espace
+    if " " in pw:
+        resultat = False
+    
+    # on teste si le mot de passe contient un
+    # caractère interdit
+    if "&lt" in pw or "&gt" in pw or "/" in pw:
+        resultat = False
+    
+    # on teste si le mot de passe contient moins de
+    # huit caractères
+    if len(pw) &lt 8:
+        resultat = False
+    
+    # on teste si le mot de passe contient une majuscule
+    if pw == pw.lower():
+        resultat = False
+    
+    # on teste si le mot de passe contient un chiffre
+    test_numerique = False
+    for i in range(len(pw)):
+        if pw[i].isnumeric() == True:
+            test_numerique = True
+    if test_numerique == False:
+        resultat = False
+    
+    # on teste si le mot de passe est un mot interdit
+    if pw == "toTo888" or pw == "taTa888" or pw == "tiTi888":
+        resultat = False
+    
+    return resultat
+    
+while test_mot_passe(pw) == False:
+    pw = input("Entrez un mot de passe valide : ")</code></pre>
+</div>
+
+{% endblock cours %}

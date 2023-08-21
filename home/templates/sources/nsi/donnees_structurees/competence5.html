@@ -1,0 +1,26 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>savoir gérer une base de données SQL</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>L'objectif de cette séance est de mettre en pratique les connaissances vues dans le chapitre sur le langage SQL en utilisant le Système de Gestion de Bases de Données SQLite et le langage Python.</p>
+
+<p>Vous pourrez trouver de l'aide sur le site <a href="https://www.sqlitetutorial.net/sqlite-python/" target="_blank">SQLite tutorial</a>.</p>
+
+<p>Vous allez créer un programme Python grâce auquel :
+	<ul>
+		<li>vous devrez établir la connexion entre votre programme Python et le SGDB SQLite</li>
+		<li>créer une base de données appelée <em>skis</em></li>
+		<li>créer les tables <em>fournisseurs</em> et <em>competitions</em> utilisées dans le chapitre <em>Langage SQL</em></li>
+		<li>tester tous les codes SQL proposés dans le chapitre <em>Langage SQL</em> pour constater le bon fonctionnement du programme, qui devra à partir du langage Python passer des commandes SQL à la base de données <em>skis</em></li>
+	</ul>
+</p>
+
+{% endblock cours %}
+

@@ -1,0 +1,194 @@
+<form style="margin-left:3%; margin-top:1%; margin-bottom:1%;" action="" method="post">
+
+    <!-- QUESTION 1 -->
+    <h4>Question 1 :</h4>
+    <p>dans le code ci-dessous, le mot "bonjour" va se répéter :</p>
+    <pre><code class="language-python">compteur = 10
+
+while compteur > 0:
+    print("bonjour")
+    compteur = compteur - 1        
+    </code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q1r1" name="q1" value=False>
+    <label style="margin-left:1%;">9 fois</label><br/>
+    
+    <input type="radio" id="q1r2" name="q1" value=True>
+    <label style="margin-left:1%;">10 fois</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q1r3" name="q1" value=False>
+    <label style="margin-left:1%;" for="q1r3">11 fois</label><br/>
+    
+    
+    <!-- QUESTION 2 -->
+    <h4>Question 2 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">compteur = 1
+
+    while compteur < 11:
+        
+        if compteur != 6:
+            print(compteur, end=" ")
+        
+        compteur = compteur + 1</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q2r1" name="q2" value=False>
+    <label style="margin-left:1%;">ne va pas afficher 5</label><br/>
+    
+    <input type="radio" id="q2r2" name="q2" value=True>
+    <label style="margin-left:1%;">ne va pas afficher 6</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q2r3" name="q2" value=False>
+    <label style="margin-left:1%;">va afficher 6 mais sur la même ligne que les autres nombres</label><br/>
+    
+    
+    <!-- QUESTION 3 -->
+    <h4>Question 3 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">compteur = 10
+
+while compteur >= 0:
+    print("bonjour")</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q3r1" name="q3" value=False>
+    <label style="margin-left:1%;">va se répéter 10 fois</label><br/>
+    
+    <input type="radio" id="q3r2" name="q3" value=False>
+    <label style="margin-left:1%;">va se répéter 11 fois</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q3r3" name="q3" value=True>
+    <label style="margin-left:1%;">va se répéter indéfiniment</label><br/>
+    
+    
+    <!-- QUESTION 4 -->
+    <h4>Question 4 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">age = ""
+    while age.isnumeric() == False:
+        age = input("Quel est votre âge ?")</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q4r1" name="q4" value=True>
+    <label style="margin-left:1%;">demande "Quel est votre âge ?" tant que l'utilisateur ne saisit pas un nombre entier</label><br/>
+    
+    <input type="radio" id="q4r2" name="q4" value=False>
+    <label style="margin-left:1%;">demande "Quel est votre âge ?" tant que l'utilisateur ne saisit pas un nombre réel</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q4r3" name="q4" value=False>
+    <label style="margin-left:1%;">demande "Quel est votre âge ?" tant que l'utilisateur saisit un nombre entier</label><br/>
+    
+    
+    <!-- QUESTION 5 -->
+    <h4>Question 5 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">compteur = 0
+
+    while compteur &lt 11:
+        
+        if compteur == 6:
+            continue
+        
+        print(compteur, end=" ")
+        compteur = compteur + 1</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q5r1" name="q5" value=False>
+    <label style="margin-left:1%;">affiche tous les nombres de 0 à 10</label><br/>
+    
+    <input type="radio" id="q5r2" name="q5" value=False>
+    <label style="margin-left:1%;">affiche tous les nombres de 0 à 10 sauf 6</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q5r3" name="q5" value=True>
+    <label style="margin-left:1%;">est une boucle infinie</label><br/>
+    
+    
+    <!-- QUESTION 6 -->
+    <h4>Question 6 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">compteur = 1
+
+    while compteur &lt 11:
+        
+        if compteur == 6:
+            break
+        
+        print(compteur, end=" ")
+        compteur = compteur + 1</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q6r1" name="q6" value=True>
+    <label style="margin-left:1%;">affiche 1 2 3 4 5</label><br/>
+    
+    <input type="radio" id="q6r2" name="q6" value=False>
+    <label style="margin-left:1%;">affiche 1 2 3 4 5 6</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q6r3" name="q6" value=False>
+    <label style="margin-left:1%;">affiche 1 2 3 4 5 6 7</label><br/>
+    
+    
+    <!-- QUESTION 7 -->
+    <h4>Question 7 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">compteur = 0
+
+    while compteur &lt 11:
+        
+        if compteur == 6:
+            compteur = compteur + 1
+            continue
+        
+        print(compteur, end=" ")
+        compteur = compteur + 2</code></pre>
+    
+    <input style="margin-top:2%;" type="radio" id="q7r1" name="q7" value=False>
+    <label style="margin-left:1%;">affiche 0 2 4 6</label><br/>
+    
+    <input type="radio" id="q7r2" name="q7" value=False>
+    <label style="margin-left:1%;">affiche 0 2 4 8 10</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q7r3" name="q7" value=True>
+    <label style="margin-left:1%;">affiche 0 2 4 7 9</label><br/>
+    
+    
+    <!-- QUESTION 8 -->
+    <h4>Question 8 :</h4>
+    <p>la boucle while :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q8r1" name="q8" value=False>
+    <label style="margin-left:1%;">ne peut pas être utilisée lorsqu'on connaît le nombre d'itérations</label><br/>
+    
+    <input type="radio" id="q8r2" name="q8" value=True>
+    <label style="margin-left:1%;">sert à répéter une action sans connaître à l'avance le nombre de réitérations nécessaires</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q8r3" name="q8" value=False>
+    <label style="margin-left:1%;">ne nécessite pas de remplir une condition pour entrer dans la boucle</label><br/>
+    
+    
+    <!-- QUESTION 9 -->
+    <h4>Question 9 :</h4>
+    <p>pour répéter une action tant qu'une condition est vérifiée, il est préférable :</p>
+    
+    <input style="margin-top:2%;" type="radio" id="q9r1" name="q9" value=True>
+    <label style="margin-left:1%;">d'utiliser une boucle while</label><br/>
+    
+    <input type="radio" id="q9r2" name="q9" value=False>
+    <label style="margin-left:1%;">d'utiliser une boucle for</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q9r3" name="q9" value=False>
+    <label style="margin-left:1%;">d'utiliser une condition if</label><br/>
+    
+    
+    <!-- QUESTION 10 -->
+    <h4>Question 10 :</h4>
+    <p>dans une boucle while, un compteur se comporte un peu comme :</p>
+    
+    <input style="margin-top:2%;" type="radio" id="q10r1" name="q10" value=True>
+    <label style="margin-left:1%;">un indice dans une boucle for</label><br/>
+    
+    <input type="radio" id="q10r2" name="q10" value=False>
+    <label style="margin-left:1%;">une condition dans une instruction if</label><br/>
+    
+    <input style="margin-bottom:4%;" type="radio" id="q10r3" name="q10" value=False>
+    <label style="margin-left:1%;">une constante</label><br/>
+    
+    <button class='bouton' name="validerQuizz" style="margin-left:1%; margin-top:4%;" type='submit'>Valider</button>
+    
+    </form>
+    

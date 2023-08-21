@@ -1,0 +1,110 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li><a href="#idremarquble">découvrir les identités remarquables</a></li>
+	<li><a href="#factoriser">factoriser en utilisant une identité remarquable</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- DECOUVRIR LES IDENTITES REMARQUABLES -->
+<p class="my-5 invisible" id="idremarquable">ancre</p>
+
+<h3>Découvrir les identités remarquables</h3>
+
+<p>Les identités remarquables sont des formules qui permettent par exemple de factoriser une expression afin de la simplifier, de développer une expression afin de la simplifier, 
+	de résoudre une équation en utilisant la règle du produit nul.</p>
+
+<p>Les identités remarquables sont donc un outil puissant qu'il faut absolument maîtriser.</p>
+
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>\((a+b)^2 = a^2+2ab+b^2\)</p>
+<p>\((a-b)^2 = a^2-2ab+b^2\)</p>
+<p>\((a-b)(a+b) = a^2-b^2\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>démontrer la 1ère identité remarquable à l'aide d'un calcul de surface en utilisant le dessin ci-dessous</p>
+	<img src="../../images/maths/idRemarquable.png" alt="identités remarquables" width=10%%>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>connaissez-vous le problème à Dudu sur le calcul mental ? Essayez de comprendre la méthode qu'il utilise pour trouver les solutions, en regardant cette vidéo YouTube :
+	<a href="https://www.youtube.com/watch?time_continue=1&v=IBJX_SIUOiM&feature=emb_logo" target="_blank">problème à Dudu</a></p>
+</div>
+
+
+
+
+<!-- FACTORISER EN UTILISANT UNE IDENTITE REMARQUABLE -->
+<p class="my-5 invisible" id="factoriser">ancre</p>
+
+<h3>Factoriser en utilisant une identité remarquable</h3>
+
+	<p>Factoriser c'est transformer une somme en un produit donc pour la 1ère identité remarquable, factoriser c'est suivre le chemin suivant \(a^2+2ab+b^2 \rightarrow (a+b)^2\)</p>
+
+	<p>Factoriser c'est aussi transformer une différence en un produit donc pour la 2ème identité remarquable, factoriser c'est suivre le chemin suivant \(a^2-2ab+b^2 \rightarrow (a-b)^2\)</p>
+	
+	<p>Factoriser c'est aussi transformer une différence en un produit donc pour la 3ème identité remarquable, factoriser c'est suivre le chemin suivant \(a^2-b^2 \rightarrow (a-b)(a+b)\)</p>
+
+	<p>La méthode consiste à chercher une identité remarquable cachée de la forme \(a^2+2ab+b^2\) ou \(a^2-2ab+b^2\) ou \(a^2-b^2\). Il faut donc connaître les formules relatives 
+		aux identités remarquables, sinon il ne sera pas possible de les trouver dans des expressions mathématiques.</p>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>\(a^2+2ab+b^2=(a+b)^2\)</p>
+<p>\(a^2-2ab+b^2=(a-b)^2\)</p>
+<p>\(a^2-b^2=(a-b)(a+b)\)</p>
+</div>
+
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(x^2+2x+1\)</p>
+	<p>On voit que \(x^2+2x+1\) peut s'écrire \(x^2+2x+1^2\), et dans ce cas cela correspond à la 1ère identité remarquable avec \(a=x\), \(b=1\), et \(2ab=2\times x\times 1\). Il faut donc d'abord chercher à trouver les valeurs de \(a^2\) et \(b^2\), puis vérifier ensuite \(2ab\).</p>
+	<p>On obtient ainsi sans difficulté \(x^2+2x+1=(x+1)^2\)</p>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factoriser \(x^2+6x+9\)</p>
+</div>
+
+<p>La technique est identique pour la 2ème identité remarquable. Voyons ce qu'il se passe avec la 3ème identité remarquable</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(4x^2-9\)</p>
+	<p>On voit que \(4x^2-9\) peut s'écrire \((2x)^2-3^2\), et dans ce cas cela correspond à la 3ème identité remarquable avec \(a=2x\), \(b=3\). Il faut donc chercher à tranformer l'énoncé en faisant ressortir les carrés parfaits. Bon du coup, il faut avoir en tête une liste des plus petits carrés parfaits.</p>
+	<p>On obtient ainsi sans difficulté \(4x^2-9=(2x-3)(2x+3)\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factoriser \(9x^2-36\)</p>
+</div>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>Stratégie de factorisation</p>
+<ol>
+	<li>on cherche à factoriser à l'aide d'un facteur commun</li>
+	<li>s'il n'existe pas de facteur commun, on cherche à factoriser avec une identité remarquable</li>
+	</ol>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>ENTRAINEMENT : </strong></p>
+	<p>Factoriser les expressions suivantes :</p>
+	<p>\(16x^2-25\)</p>
+	<p>\(4x^2+12x+9\)</p>
+	<p>\(36-49x^2\)</p>
+	<p>\(25x^2+30x+9\)</p>
+	<p>\(x^2-10x+25\)</p>
+</div>
+
+{% endblock cours %}

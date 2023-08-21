@@ -1,0 +1,44 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>représeter un ensemble</li>
+    <li>intersection d'intervalles</li>
+    <li>réunion d'intervalles</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Représenter un ensemble</h3>
+
+<p>On peut représenter un ensemble de points de \(\mathbb{R}\), on peut utiliser 3 notations :</p>
+<ul>
+    <li>un intervalle : \(x \in [a; b[\)</li>
+    <li>un encadrement : \(a \leq x &lt b\)</li>
+    <li>une représentation graphique : </li>
+</ul>
+    <img src='../../images/maths/intervalle.png' alt='intervalle' width="30%">
+
+
+<p>On remarque que le crochet de la notation se referme sur \(a\) lorsque \(x\) est supérieur ou égal à \(a\).</p>
+
+<h3>Intersection d'intervalles</h3>
+
+<p>On appelle intersection de \(I\) et de \(J\), noté \(I \cap J\) l'ensemble des points qui sont à la fois dans \(I\) et dans \(J\).</p>
+
+<p>Pour déterminer l'intersection de deux intervalles, il est prudent de les représenter graphiquement afin de bien visualiser le résultat.</p>
+
+<h3>Réunion d'intervalles</h3>
+
+<p>On appelle réunion de \(I\) et de \(J\), noté \(I \cup J\) l'ensemble des points qui sont dans \(I\) ou dans \(J\).</p>
+
+<p>Pour déterminer la réunion de deux intervalles, il est prudent de les représenter graphiquement afin de bien visualiser le résultat.</p>
+
+<img src='../../images/maths/intersection.png' alt='intersection' width=40%> 
+
+<p>intersection : \([-3; 2[ \cap [1; +\infty[=[1; 2[\)</p> 
+<p>réunion : \([-3; 2[ \cup [1; \infty[=[-3; +\infty[\)</p>
+
+{% endblock cours %}

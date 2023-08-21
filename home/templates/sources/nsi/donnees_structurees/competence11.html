@@ -1,0 +1,85 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comprendre la structure de graphe</li>
+	<li>comprendre la structure de graphe pondéré</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- COMPRENDRE LA STRUCTURE DE GRAPHE -->
+
+<h3>Les graphes</h3>
+
+<p>Un graphe est une structure de données relationnelle, constituée de sommets et de relations. Alors qu'il n'existe qu'un unique sommet dans le cas d'un arbre, il en existe plusieurs dans le cas d'un graphe. Les sommets correspondent donc en quelque sorte aux noeuds des arbres.</p> 
+
+<p>La structure d'un graphe diffère de celle d'un arbre en ce sens qu'un arbre part de la racine et se propage des parents vers les enfants, alors qu'un graphe peut évoluer dans tous les sens.</p>
+
+<p>Les graphes sont une forme très utilisée de modélisation d'une situation concrète. On les retrouve par exemple dans les réseaux, la bioinformatique ou les bases de données relationnelles (diagramme UML).</p>
+
+
+
+<h4>Les graphes non-orientés</h4>
+
+<p>Dans un graphe non-orienté les relations sont appelées des arêtes.</p>
+
+<div class=fieldsetDefinition>
+<h4>A RETENIR ...</h4> 
+<p>Deux arêtes sont adjacentes si elles ont au moins un sommet commun.<br/>
+Deux sommets sont adjacents si ils sont reliés par une arête.<br/>
+Le degré d'un sommet est le nombre d'arêtes qui le joignent.<br/>
+Une chaîne est une suite de sommets adjacents.</br/>
+Une chaîne est élémentaire si elle ne comporte qu'une seule fois un même sommet.<br/>
+Un cycle est une chaîne dont le sommet de départ est le même que le sommet d'arrivée.<br/>
+Un graphe est connexe, si pour tout couple de sommets on peut trouver une chaîne les reliant. Les graphes connexes sont donc construits d'un seul morceau. Les graphes non connexes sont construits en composantes connexes, c'est à dire en sous-graphes connexes.
+Un graphe est complet si chacun de ses sommets est directement reliés à tous les autres sommets.</p>
+</div>
+
+<img src="../../images/nsi/graphe.png" alt="graphe" width=30%>
+
+<p>Par exemple, dans le graphe représenté ci-dessus :
+<ul>
+<li>les arêtes C-B et B-A sont adjacentes</li>
+<li>les sommets B et C sont adjacents</li>
+<li>ABCEF est une chaîne élémentaire</li>
+<li>BCEDB est un cycle</li>
+<li>le graphe est connexe car on peut toujours trouver une chaîne reliant deux sommets quelconques</li>
+</ul>
+</p>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>montrer (par récurrence) que la somme des degrés d'un graphe est égale à 2 fois le nombre d'arêtes. Indication : on peut imaginer pour commencer un graphe simple, puis lui rajouter un sommet. Ensuite on peut imaginer un graphe comprenant m sommets et n arêtes, auquel on ajoute un sommet de degré p. La somme des degrés au départ valait 2n, il faut maintenant trouver la somme des degrés après rajout du sommet.</p>
+</div>
+
+<h4>Les graphes orientés</h4>
+
+<p>Dans un graphe orienté les relations sont appelées des arcs.</p>
+
+<div class=fieldsetDefinition>
+<h4>A RETENIR ...</h4> 
+<p>Deux arcs sont adjacents si ils ont au moins un sommet commun.<br/>
+Deux sommets sont adjacents si ils sont reliés par un arc.<br/>
+Le degré d'un sommet est le nombre d'arcs dont il est l'extrêmité.<br/>
+Un chemin est une suite de sommets adjacents.</br/>
+Un chemin est élémentaire si il ne comporte qu'une seule fois un même sommet.<br/>
+Un circuit est un chemin dont le sommet de départ est le même que le sommet d'arrivée.<br/>
+Un graphe est fortement connexe, si pour tout couple de sommets on peut trouver un chemin allant de l'un vers l'autre et un chemin inverse. Les graphes non fortement connexes sont construits en composantes fortement connexes, c'est à dire en sous-graphes fortement connexes.
+Un graphe est complet si chacun de ses sommets est directement reliés à tous les autres sommets.</p>
+</div>
+
+
+<!-- GRAPHES PONDERES -->
+
+<h3>Graphes pondérés</h3>
+
+<p>Un graphe étiqueté est tel que chaque relation est affectée d'un symbole. Un graphe pondéré est un cas particulier de graphe étiqueté dans lequel les symboles sont des nombres positifs appelés poids.</p>
+
+<p>Les graphes pondérés peuvent être utilisés pour les calculs de trajets entre des villes. Dans ce cas, les différents poids peuvent représenter les distances en km ou les temps de parcours en min.</p>
+
+{% endblock cours %}
+
+

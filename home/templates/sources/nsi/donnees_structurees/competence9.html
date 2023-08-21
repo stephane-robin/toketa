@@ -1,0 +1,121 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comprendre la structure de liste</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Il existe des types de données primitives comme les str, int et float, mais également des types de données complexes en fonction des langages de programmation. Afin de pouvoir définir le comportement des données complexes et donc de les utiliser, il est nécessaire de les structurer.</p>
+
+<p>Nous allons étudier le fonctionnement des listes, piles et files qui constituent des structures séquentielles de données.</p>
+
+<p>La modification des structures de données se construit autour de 4 routines élémentaires CRUD (Create, Read, Update, Delete).</p>
+
+<h3>Les listes</h3>
+
+<div class="fieldsetDefinition">
+    <h4>DEFINITION ...</h4>
+<p>Une liste est une structure de données composée d'une suite ordonnée d'éléments repérés par un index. Cet index démarre à 0 et la taille d'une liste peut varier.</p>
+</div>
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>En Python, on connait les fonctions insert(), append(), pop() et remove() pour insérer ou supprimer un élément d'une liste. Quelle différence existe-t-il entre ces 4 méthodes. Donner des exemples simples pour en expliquer la structure. Aide : la Doc Python.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+<pre><code class="language-python">maListe = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+
+maListe.insert(5, 'samedi')
+# on insére 'samedi' à la position 5 de la liste
+# maListe devient ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+
+maListe.append('dimanche')
+# on insère 'dimanche' à la fin de la liste
+# maListe devient ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+
+maListe.remove('mardi')
+# on enlève 'mardi' de la liste
+# maListe devient ['lundi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+
+maListe.pop(2)
+# on enlève l'élément à la position 2 de la liste
+# maListe devient ['lundi', 'mercredi', 'vendredi', 'samedi', 'dimanche']</code></pre>
+</div>
+</div>
+
+<p>Afin de comprendre le fonctionnement d'une liste, nous allons maintenant la construire de façon abstraite en considérant qu'une liste est en fait un tableau temporaire L représentant une vraie liste maListe. Comme on raisonne de façon abstraite, nous ne pouvons pas utiliser une fonction d'un langage de programmation donnant la taille de L. Il faut donc qu'un élément de L en contienne la taille. Ainsi, L[0] contient la taille de L et tous les autres indices permettent d'enregistrer les éléments de la liste. Attention, dans ce système abstrait l'élément maListe[0] se trouve en fait dans le tableau temporaire L[1]. C'est un peu déconcertant mais cela permet de connaître en permanence la taille de L sans recourir à une fonction prédéfinie.</p>
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire étape par étape L à partir du pseudo-code suivant :
+<ul>
+<li>L = CREER_LISTE_VIDE()</li>
+<li>INSERER(L, 'n', 1)</li>
+<li>INSERER(L, 'i', 1)</li>
+<li>INSERER(L, 'o', 2)</li>
+<li>INSERER(L, 'f', 2)</li>
+</ul></p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+<p>Solution :</p>
+<table>
+<tr><td>index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td>L</td><td>0</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>L</td><td>1</td><td>n</td><td></td><td></td><td></td></tr>
+<tr><td>L</td><td>2</td><td>i</td><td>n</td><td></td><td></td></tr>
+<tr><td>L</td><td>3</td><td>i</td><td>o</td><td>n</td><td></td></tr>
+<tr><td>L</td><td>4</td><td>i</td><td>o</td><td>n</td><td>f</td></tr>
+</table>
+</div>
+</div>
+
+
+<p>Les listes sont couramment utilisées en programmation pour enregistrer des éléments d'une manière ordonnée.</p>
+
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>nous allons reconstruire la fonction insérer() à partir de la liste abstraite L ci-dessus, qui correspond à la fonction Python insert(). Des espaces mémoire vides seront volontairement alloués en fin de liste pour permettre le décalage des éléments. Nous ne gérons pas les exceptions de type error index out of range.</p>
+
+<pre><code class="language-python">def inserer(liste, element, i):
+    for k in range(liste[0] + 1, i, -1): # décalage des éléments à partir de i
+        liste[k] = liste[k - 1]
+    liste[i] = element # insertion de element à l'index i
+    liste[0] += 1 # mise à jour de la taille de liste
+
+L = [0, None, None, None, None, None, None, None, None, None, None]
+inserer(L, 'n', 1)
+inserer(L, 'i', 1)
+inserer(L, 'o', 2)
+inserer(L, 'f', 2)
+print(L)
+
+>>> [4, 'i', 'o', 'n', 'f', None, None, None, None, None, None]
+</code></pre>
+
+<p>On remarque que la boucle range part de la fin de la liste pour éviter que le décalage ne reproduise toujours la même valeur.</p> 
+
+<p>Le résultat obtenu à l'affichage correspond bien au travail qu'aurait effectué la fonction Python insert() :</p>
+<pre><code class="language-python">L = []
+L.insert(0, 'n')
+L.insert(0, 'i')
+L.insert(2, 'o')
+L.insert(2, 'f')
+print(L)
+
+>>> ['i', 'o', 'n', 'f']</code></pre>
+</div>
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire la fonction supprimer() à partir de la liste abstraite L ci-dessus, qui correspond à la fonction Python pop().</div>
+
+<pre><code class="language-python">def supprimer(L, i):
+    for k in range(i, L[0], 1):
+        L[k] = L[k + 1]
+        L[0] -= 1</code></pre>
+
+{% endblock cours %}

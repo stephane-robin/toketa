@@ -1,0 +1,193 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>
+
+<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube détaille la représentation des réseaux sociaux : <br/>
+    <a href="https://www.youtube.com/watch?v=nn1mIqW9oYQ&feature=emb_logo" target="_blank">&#127911; vidéo Fun Mooc réseaux sociaux - YouTube</a></p>
+
+<h3>Modéliser les réseaux sociaux avec un graphe</h3>
+
+<p>Si on cherche à modéliser les réseaux sociaux, on s'aperçoit tout naturellement qu'ils sont composés de sommets ou noeuds représentés par des individus mis en relation par le biais d'un média. L'ensemble forme une structure qu'on appelle un graphe. Chaque personne du réseau dans les <em>Contacts</em> des autres personnes. Dans le langage des réseaux sociaux, on parle de <em>friends</em>.</p>
+
+<p>La page suivante publiée par <em>Numworks</em> explique comment modéliser simplement un réseau social :<br/>
+<a href="https://www.numworks.com/fr/ressources/snt/modelisation-reseau-social/" target="_blank">&#128211; lecture modéliser les réseaux sociaux - Numworks</a></p>
+
+
+
+<div class=fieldsetDefinition>
+<h4>VOCABULAIRE ...</h4> 
+<p>La <strong>distance entre 2 sommets</strong> est définie par la longueur d'un plus court chemin entre ces 2 sommets.<p>
+<p>Le <strong>diamètre d'un graphe</strong> est la plus grande distance possible qui puisse exister entre 2 quelconques de ses sommets.</p>
+<p>Le <strong>centre d'un graphe</strong> est le ou les sommets dont la distance aux autres sommets est minimale.</p>
+<p>Le <strong>rayon d'un graphe</strong> est la distance entre le ou les centres du graphe et le sommet le plus éloigné.</p>  
+</div>
+
+
+
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>Trouve le diamètre, le centre et le rayon d’un graphe correspondant au réseau suivant :
+<ul>
+<li>Anatole est ami avec Ethan, Daniel et Gérard</li>
+<li>Barnabé est ami avec François et Kevin</li>
+<li>Kevin est ami avec Barnabé, Charlie, Daniel et Ethan</li>
+<li>François est ami avec Barnabé et Gérard</li>
+</ul></p>
+
+<p>Solution :</p>
+<p>Il faut commencer par tracer le graphe correspondant à l'énoncé.</p>
+
+<img src="../../images/nsi/graphe.png" alt="graphes" width=40%>
+
+<p>Il faut ensuite construire un tableau dans lequel apparaissent les distances minimales entre chacun des sommets, et la plus grande de ces distances pour chacun des somments :</p>
+
+<table>
+    <tr><th></th><th>A.</th><th>G.</th><th>D.</th><th>K.</th><th>B.</th><th>F.</th><th>E.</th><th>C.</th><th>max</th></tr>
+    <tr><td><strong>A.</strong></td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>2</td><td>1</td><td>3</td><td>3</td><tr>
+    <tr><td><strong>G.</strong></td><td>1</td><td>0</td><td>2</td><td>3</td><td>2</td><td>1</td><td>2</td><td>4</td><td>4</td><tr>
+    <tr><td><strong>D.</strong></td><td>1</td><td>2</td><td>0</td><td>1</td><td>2</td><td>3</td><td>2</td><td>2</td><td>3</td><tr>
+    <tr><td><strong>K.</strong></td><td>2</td><td>3</td><td>1</td><td>0</td><td>1</td><td>2</td><td>1</td><td>1</td><td>3</td><tr>
+    <tr><td><strong>B.</strong></td><td>3</td><td>2</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td><td>2</td><td>3</td><tr>
+    <tr><td><strong>F.</strong></td><td>2</td><td>1</td><td>3</td><td>2</td><td>1</td><td>0</td><td>3</td><td>3</td><td>3</td><tr>
+    <tr><td><strong>E.</strong></td><td>1</td><td>2</td><td>2</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>3</td><tr>
+    <tr><td><strong>C.</strong></td><td>3</td><td>4</td><td>2</td><td>1</td><td>2</td><td>3</td><td>2</td><td>0</td><td>4</td><tr>
+</table>
+
+<p>Dans la dernière colonne, la plus grande distance relevée vaut 4 entre Gérard et Charlie. Elle correspond au diamètre. La plus petite distance relevée vaut 3. Elle correspond au rayon. Attention, dans un graphe le rayon n'est pas défini comme la moitié du diamètre. Tous les sommets pour lesquels cette distance vaut 3 sont les centres du graphe. Ainsi, Anatole, Daniel, Kevin, Barnabé, François et Ethan sont des centres du graphe. Il n'existe donc pas un unique centre, mais plusieurs centres qui correspondent aux sommets dont la distance aux autres sommets est minimale.</p>
+
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer :</strong> trouver le diamètre, le rayon et le ou les centres du graphe représentant les relations suivantes:
+        <ul>
+            <li>Antoine est en relation avec Bénédicte et Corinne</li>
+            <li>Bénédicte est en relation avec Antoine et Daniel</li>
+            <li>Corinne est en relation avec Antoine, Daniel et Franck</li>
+            <li>Franck est en relation avec Emin, Corinne et Henri</li>
+        </ul>
+    </p>
+</div>
+
+
+<h3>Modéliser les réseaux sociaux en Python</h3>
+
+<p>A partir du graphe présenté dans l'exemple ci-dessus, on peut relier les différents amis du réseaux en 
+    utilisant une structure de listes ou une structure de dictionnaires Python.</p>
+
+<p>Par exemple, en utilisant une liste de listes (appelée matrice), on peut écrire :</p>
+
+<pre><code class="language-python">reseau = [
+    ['Gérard', 'Daniel', 'Ethan'],
+    ['François', 'Kevin'],
+    ['Kevin'],
+    ['Anatole', 'Kevin'],
+    ['Anatole', 'Kevin'],
+    ['Barnabé', 'Gérard'],
+    ['Anatole', 'François'],
+    ['Ethan', 'Barnabé', 'Daniel', 'Charlie']
+]</code></pre>
+
+<p>où la 1ère liste représente les liens d'Anatole, la 2ème liste représente les liens de Barnabé, 
+    la 3ème liste les liens de Charlie, la 4ème liste les liens de Daniel, la 5ème liste les liens 
+    de Ethan, la 6ème liste les liens de François, la 7ème liste des liens de Gérard, la 8ème liste 
+    les liens de Kevin.</p>
+
+<p>En utilisant un dictionnaire de listes, on peut écrire :</p>
+
+<pre><code class="language-python">reseau = {
+    'Anatole': ['Gérard', 'Daniel', 'Ethan'],
+    'Barnabé': ['François', 'Kevin'],
+    'Charlie': ['Kevin'],
+    'Daniel': ['Anatole', 'Kevin'],
+    'Ethan': ['Anatole', 'Kevin'],
+    'François': ['Barnabé', 'Gérard'],
+    'Gérard': ['Anatole', 'François'],
+    'Kevin': ['Ethan', 'Barnabé', 'Daniel', 'Charlie']
+}</code></pre>
+
+
+<h3>Matrice d'adjacence</h3>
+
+<p>Il est également possible de représenter un réseau social à travers une sorte de tableau à double entrée 
+    appelé matrice d'adjacence. Le principe est simple, si il existe un lien entre les personnes A et B alors 
+on inscrit le chiffre 1 dans la matrice dans la zone faisant correspondre A et B. Dans le cas contraire on 
+inscrit 0 dans la matrice.</p>
+
+<p>Cette notion de matrice d'adjacence existe également dans un cadre plus général que celui des réseaux sociaux, comme
+    par exemple dans un réseau informatique ou un réseau routier. On peut alors inscrire à la place du chiffre 1 une valeur
+     plus précise représentant les kilomètres, le temps de parcours ou le débit binaire.</p>
+
+<p>Reprenons l'exemple ci-dessus. La matrice d'adjacence est :</p>
+
+<p>0 0 0 1 1 0 1 0<br/>
+   0 0 0 0 0 1 0 1<br/>
+   0 0 0 0 0 0 0 1<br/>
+   1 0 0 0 0 0 0 1<br/>
+   1 0 0 0 0 0 0 1<br/>
+   0 1 0 0 0 0 1 0<br/>
+   1 0 0 0 0 1 0 0<br/>
+   0 1 1 1 1 0 0 0</p>
+
+<p>On peut traduire cette matrice d'adjacence en Python à l'aide d'une liste de listes, mais cette fois 
+    il n'est pas nécessaire d'utiliser les prénoms des membres du réseau Anatole, Barnabé, Charlie, ... .
+    La 1ère ligne représente Anatole, la 2ème ligne représente Barnabé, la 3ème ligne représente Charlie, ..., 
+    la 1ère colonne représente Anatole, la 2ème colonne représente Barnabé, la 3ème colonne représente 
+    Charlie, ... . On obtient ainsi :</p>
+
+<pre><code class="language-python">reseau = [
+    [0, 0, 0, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [0, 1, 0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 1, 0, 0, 0]
+]</code></pre>
+
+<p>ou encore, en ne tenant compte que des indices des membres du réseau qui sont en relation :</p>
+
+<pre><code class="language-python">reseau = [
+    [3, 4, 6],
+    [5, 7],
+    [7],
+    [0, 7],
+    [0, 7],
+    [1, 6],
+    [0, 5],
+    [1, 2, 3, 4]
+]</code></pre>
+
+
+     <div class="exerciceApplication">
+        <p><strong>A vous de jouer :</strong> Soient sept personnes, André, Béatrice, Clyde, Dona, Emin, 
+            Françoise et Gérard. On connaît les liens suivants entre elles :</p>
+            <ul>
+                <li>André est ami avec Françoise et Dona.</li>
+                <li>Béatrice est amie avec Clyde et Dona.</li>
+                <li>Clyde est ami avec Gérard.</li>
+                <li>Dona est amie avec Emin.</li>
+                <li>Emin est ami avec Gérard.</li>
+                <li>Françoise est amie avec Béatrice.</li>
+            </ul>
+            <p>a) Dessinez le réseau de ces sept personnes.<br/>
+            b) Représentez la matrice d’adjacence de ce réseau.<br/>   
+            c) Quel est le diamètre de ce réseau ?<br/>   
+            d) Quel serait le diamètre de ce réseau si Gérard et Béatrice devenaient amis ?<br/>   
+            e) Quel serait le diamètre de ce réseau si Françoise et Emin étaient amis ?</p>
+    </div>
+
+<h3>Fiche mémo</h3>
+
+<iframe src="{% static 'home/documents/memo_reseaux_sociaux.pdf' %}" height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

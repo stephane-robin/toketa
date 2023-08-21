@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<script src="{% static pageQuiz %}"></script>
+
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <h2 id="titreQuiz"></h2>
+
+    </div>
+</section>
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+
+    <div class="quiz-container">
+        
+        <div class="question-container">
+            <p id="nmr_question" class="p3_index" style="color:var(--couleur_titre);"></p>
+            <p id="question"></p>
+            <form id="options-form">
+                <ul>
+                    <li id="options"></li>
+                </ul>
+            </form>
+            <p class="py-2" id="commentaire"></p>
+        </div>
+        <button class="bouton my-5" id="submit-btn">Soumettre</button>
+        <button class="bouton my-5" id="next-btn" disabled>Question suivante</button>
+        
+    </div>
+    <script src="{% static 'home/quiz/quiz.js' %}"></script>
+
+</div>
+</section>
+
+{% endblock principal %}
+

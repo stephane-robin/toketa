@@ -1,0 +1,167 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<p>Nous allons apprendre à l'aide d'un travail pratique de recherche personnelle à utiliser le module mathématique de Word pour 
+	rédiger un cours contenant des fractions et des racines carrées</p>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- POUR BIEN DEMARRER -->
+<h3>Pour bien démarrer</h3>
+
+<p>Dès que vous avez ouvert un nouveau document dans <em>Word</em>, sauvegardez-le au format <em>Nom-word.docx</em> : dans le menu <em>Fichier</em>, choisir <em>Enregistrer</em>. Pendant que vous travaillez, pensez à sauvegarder régulièrement votre travail (raccourci clavier <em>Cmd + s</em>).</p> 
+
+<p>Pour un rappel sur les principaux raccourcis clavier, visitez :</p>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/9aH-GpuC2gM"
+            title="Raccourcis clavier - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Les raccourcis clavier</figcaption>
+</div>
+
+
+
+<!-- SUJET DE L'ACTIVITE -->
+<h3>Sujet de l'activité</h3>
+
+
+<p>Le but de cette séance est d'apprendre à rédiger un document mathématique à l'aide du traitement de texte <em>Microsoft Word</em> et de l'outil <em>Editeur de formules</em>.</p>
+
+<p><em>Microsoft Word</em> propose un éditeur de formules mathématiques qui permet de mettre en forme les fractions, les racines carrées, les systèmes, etc.</p>
+
+<p>Pour insérer une formule mathématique, cliquer sur le menu <em>Insertion</em> puis choisir <em>Equation</em>. Un choix de différents types de formules se propose à vous.</p>
+
+<img src="{% static 'home/images/maths/inserer_math1.png' %}" alt="Word formules">
+
+
+<p>Il est également possible de choisir l'option <em>Insérer une nouvelle équation</em> pour taper directement la formule que l'on souhaite. Dans ce cas, un nouveau menu s'ouvre offrant un panel important de possibilités.</p>
+
+<img src="{% static 'home/images/maths/inserer_math2.png' %}" alt="Word formules">
+
+<p>Par exemple, pour écrire une fraction, on choisit le type <em>Fraction</em> (ref. 1 sur la figure ci-dessous) et on sélectionne un modèle (ref. 2 sur la figure ci-dessous). Il suffit alors de remplir chacun des champs avec le numérateur et le dénominateur souhaités. On peut choisir par exemple 1 sur 2 comme dans l'image ci-dessous.</p>
+
+
+<img src="{% static 'home/images/maths/inserer_math3.png' %}" alt="Word formules" width=50%>
+
+
+
+<p>Remarque : pour sortir du mode <em>Equation</em> et revenir au document, il suffit de cliquer une fois sur l'onglet <em>Accueil</em> dans la barre de menu du document. Pour modifier une formule existante, double-cliquer dessus et la fenêtre de l'éditeur de formule s'ouvre.
+</p>
+
+<p>Vous trouverez ci-dessous le contenu du document à recopier.</p>
+
+<p style="font-style:italic; color:var(--couleur_titre);">début du document<br/>--------------------------------------------------------------------------------------------------------------</p>
+
+</div>
+</section>
+<section class="px-5 py-5 bg-gris">
+	<div class="container">
+
+<p>
+<strong>Définition</strong></p>
+
+<p>La racine carrée du nombre positif \(a\) est le nombre <em>positif</em> \(x\) tel que \(x^2=a\).</p>
+
+<p>On note \(x=\sqrt{a}\)</p>
+
+<p>Donc, pour tout nombre \(a\geq 0\) : 
+
+\[
+x=\sqrt{a} \iff 
+\left \{
+\begin{array}{c}
+x \geq 0 \\
+x^2 = a \\
+\end{array}
+\right.
+\]</p>
+
+
+
+
+
+
+<p><strong>Propriétés</strong></p>
+
+<p>
+a) Pour tous  nombres \(a\) et \(b\) positifs, \(\sqrt{a \times b}=\sqrt{a} \times \sqrt{b}\)</p>
+
+<p>Exemple : \(\sqrt{27}\times\sqrt{3}=\sqrt{81}=9\)</p>
+
+<p>b) Pour tous nombres \(a\) et \(b\) positifs, avec \(b > 0\), \(\sqrt{\frac{a}{b}}=\frac{\sqrt{a}}{\sqrt{b}}\).</p>
+
+<p>Exemple : \(\frac{\sqrt{27}}{\sqrt{3}}=\sqrt{\frac{27}{3}}=\sqrt{9}=3\).</p>
+
+<p>c) Pour tous nombres \(a\), \(\sqrt{a^2}=a\) ou \(\sqrt{a^2}=-a\).</p>
+
+<p>Plus précisément,</p> 
+
+<p>
+\[ 
+\left \{
+\begin{array}{c}
+si \hspace{0.3cm} a\geq 0, \hspace{0.8cm} \sqrt{a^2}=a \\
+si \hspace{0.3cm} a\leq 0, \hspace{0.8cm} \sqrt{a^2} = -a \\
+\end{array}
+\right.
+\]</p>
+
+<p>\(\sqrt{a^2}\) doit toujours être positif ou nul.</p>
+
+<p>Exemple : \(\sqrt{12^2}=12\) car \(12 > 0\) et \(\sqrt{(-12)^2}=-(-12)=12\) car \(-12 < 0\).</p>
+
+<p><strong>Applications</strong></p>
+
+<p>a) Equation \(x^2=a\)</p>
+
+<p>\(x^2=a \iff x=\sqrt{a}\) ou \(x=-\sqrt{a}\)</p>
+
+<p>Exemple :</p>
+
+<p>\((x-3)^2=5\)</p>
+
+<p>\(\iff x-3 = \sqrt{5}\) ou \(x-3=-\sqrt{5}\)</p>
+
+<p>\(\iff x=3+\sqrt{5}\) ou \(x=3-\sqrt{5}\)</p>
+
+<p>b) Simplification de radicaux</p>
+
+<p>Exemple : Simplifier l'écriture des nombres \(A=\sqrt{18}\), \(B=5\sqrt{12}+2\sqrt{75}-4\sqrt{27}\) et \(C=(1-\sqrt{5})(1+\sqrt{5})\).</p>
+
+<p>\(A=\sqrt{9\times 2}=\sqrt{9}\times\sqrt{2}=3\sqrt{2}\)</p>
+
+<p>\(B=5\sqrt{4\times 3}+2\sqrt{25\times 3}-4\sqrt{9\times3}\)</p>
+
+<p>\(B=5\sqrt{4}\times\sqrt{3}+2\sqrt{25}\times\sqrt{3}-4\sqrt{9}\times\sqrt{3}\)</p>
+
+<p>\(B=5\times 2\times\sqrt{3}+2\times5\times\sqrt{3}-4\times3\times\sqrt{3}=10\sqrt{3}+10\sqrt{3}-12\sqrt{3}=8\sqrt{3}\)</p>
+
+
+</div>
+</section>
+<section class="px-5 bg-white">
+	<div class="container">
+
+<p style="font-style:italic; color:var(--couleur_titre);">--------------------------------------------------------------------------------------------------------------<br/>fin du document</p>
+
+
+<p>Une fois la mise en forme terminée, vous exporterez votre fichier au format docx (le fichier doit être nommé à partir de votre nom : Nom-Word.docx, puis vous le rendrez sur <em>Teams</em> à l'endroit indiqué par votre enseignant.</p>
+
+
+
+
+<h3>Pour aller plus loin</h3>
+
+
+<p>Une fois l'activité terminée, vous pourrez :
+<ul>
+	<li>intégrer à votre document le graphe de la fonction \(f\) définie par \(f(x)=x^2\), que vous aurez préalablement construit avec l'application <em>Geogebra</em>.</li>
+	<li>insérer un en-tête qui contient votre prénom, votre nom et la date du jour ;</li>
+	<li>insérer un pied de page qui contient le numéro de la page et le nombre total de pages en utilisant les champs automatiques (par ex. "Page 1/3") ;</li>
+</ul>
+</p>
+
+{% endblock cours %}

@@ -1,0 +1,101 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Résolution d'équation comportant une valeur absolue</h3>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>\(|x|=8\) est équivalent à \(x=8\) ou \(x=-8\)</p>
+</div>
+
+<p>Ainsi, résoudre \(|3x-5| = 2\) est équivalent à résoudre \(3x-5=2\) ou \(3x-5=-2\). On remarque qu'il existe 
+	donc <em>deux</em> solutions possibles.</p>
+
+<p>En fait, pour résoudre ce type d'équation avec valeur absolue, il existe principalement deux méthodes 
+	présentées ci-dessous :</p>
+
+<h4>Méthode graphique</h4>
+
+
+	<p>Cherchons à résoudre l'équation \(|x-5|=2\)</p>
+	<p>Résoudre \(|x-5|=2\) revient à trouver les valeurs de \(x\) pour lesquelles la distance de \(x\) à 5 vaut 2.</p>
+	<img src="../../images/maths/equation_valeurAbs.png" alt="résolution équation avec valeur absolue" width=25%>
+	<p>Ainsi, \(x\) peut prendre la valeur 3 ou la valeur 7.</p>
+
+	<p>On se rappellera que résoudre une équation de degré 1 comportant des valeurs absolues revient à trouver deux solutions 
+		et non plus une unique solution, à cause de la valeur absolue qui crée deux possibilités.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer :</strong> résoudre l'équation \(|x-3|=4\)</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+
+    <div id="solution1" style="display:none;">
+		<p>Les solutions se trouvent à une distance de 4 du point d'abscisse 3. Il s'agit donc de 
+			\(x = 7\) ou \(x=-1\).</p>
+	</div>
+</div>
+
+<h4>Méthode algébrique</h4>
+
+
+	<p>Cherchons à résoudre l'équation \(|x-5|=2\)</p>
+	<p>Partant du principe que \(|X|=2\) est équivalent à \(X=2\) ou \(X=-2\), il suffit de remplacer \(X\) par \(x-5\) pour en déduire que \(|x-5|=2\) est équivalent à \(x-5=2\) ou \(x-5=-2\)</p>
+	<p>d'où les solutions possibles \(x=7\) ou \(x=3\).</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer :</strong> résoudre l'équation \(|x-9|=14\)</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+    <div id="solution2" style="display:none;">
+		<p>Il faut résoudre les équations \(x-9=14\) et \(x-9=-14\).</p>
+		<p>La première équation conduit à \(x=25\), la deuxième équation conduit à \(x=-5\).</p>
+	</div>
+</div>
+
+
+
+
+<!-- INEQUATIONS AVEC VALEUR ABSOLUE -->
+<h3>Résolution d'inéquation comportant une valeur absolue</h3>
+
+<p>Dans la cas des inéquations, il est préférable d'utiliser la méthode avec graphique pour trouver la solution, car elle engendre potentiellement moins d'erreur.</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type :</strong> résoudre l'inéquation \(|x-5|&lt2\)</p>
+	<p>Résoudre \(|x-5|&lt2\) revient à trouver les valeurs de \(x\) pour lesquelles la distance de \(x\) à 5 est strictement inférieure à 2.</p>
+	<img src="../../images/maths/equation_valeurAbs.png" alt="résolution équation avec valeur absolue" width=25%>
+	<p>Ainsi, \(x\) peut prendre toutes les valeurs entre 3 et 7.</p>
+	<p>\(S=]3; 7[\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer :</strong> résoudre l'inéquation \(|x-5|&lt4\)</p>
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type :</strong> résoudre l'inéquation \(|x-5|\geq2\)</p>
+	<p>Résoudre \(|x-5|\geq2\) revient à trouver les valeurs de \(x\) pour lesquelles la distance de \(x\) à 5 est supérieure ou égale à 2.</p>
+	<img src="../../images/maths/equation_valeurAbs.png" alt="résolution équation avec valeur absolue" width=25%>
+	<p>Ainsi, \(x\) peut prendre toutes les valeurs inférieures ou égales à 3 et toutes les valeurs supérieures ou égales à 7.</p>
+	<p>\(S=]-\infty; 3]\cup[7; +\infty[\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer :</strong> résoudre l'inéquation \(|x-7|\geq 5\)</p>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>ENTRAINEMENT :</strong></p>
+	<p>Résoudre l'inéquation \(|3x|&lt-7\)</p>
+</div>
+
+{% endblock cours %}

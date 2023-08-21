@@ -1,0 +1,161 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li><a href="#developper">développer une expression en distribuant</a></li>
+	<li><a href="#idremarquable">développer en utilisant une identité remarquable</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- DEVELOPPER UNE EXPRESSION -->
+<p class="my-5 invisible" id="developper">ancre</p>
+
+<h3>Développer une expression en distribuant</h3>
+
+<p>Vous avez appris à factoriser une expression mathématique. Vous avez fait le plus difficile. Bravo...</p>
+
+<p>Développer une expression mathématique, c'est faire l'opération inverse. Mais quel est l'intérêt d'obtenir une expression plus longue alors qu'on la connaît déjà sous forme de produit compact ? Il est parfois utile de développer tous les termes lorsqu'on peut les combiner avec une autre expression, pour les éliminer. C'est donc un outil important qu'il faut connaître pour manipuler les calculs.</p>
+
+<h4>Première situation</h4>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développez \(3(x+5)\)</p>
+	<p>Le chiffre 3 doit multiplier chacun des deux éléments</p>
+	<img src="{% static 'home/images/maths/developper1.png' %}" alt="développer" width=25%>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développez <ul>
+		<li>\(7(x+5)=...\)</li>
+		<li>\(7(x-5)=...\)</li>
+		<li>\(5(2x+3)=...\)</li>
+	</ul></p>
+</div>
+
+
+
+<h4>Deuxième situation</h4>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développez \((x+2)(x+5)\)</p>
+	<p>Le chiffre 3 doit multiplier chacun des deux éléments</p>
+	<img src="{% static 'home/images/maths/developper2.png' %}" alt="développer" width=30%>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développez 
+	<ul>
+		<li>\((x+5)(x+3)=...\)</li>
+		<li>\((2x+5)(3x+1)=...\)</li>
+	</ul></p>
+</div>
+
+<p>On complique un peu en introduisant des signes -. Il suffit de respecter la règle des signes : </p>
+<p>\((+\times +) \rightarrow +\)</p>
+<p>\((+\times -) \rightarrow -\)</p>
+<p>\((-\times +) \rightarrow -\)</p>
+<p>\((-\times -) \rightarrow +\)</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développez \((x+2)(x-5)\)</p>
+	<p>Le chiffre 3 doit multiplier chacun des deux éléments</p>
+	<img src="{% static 'home/images/maths/developper3.png' %}" alt="développer" width=30%>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développez 
+	<ul>
+		<li>\((x+7)(x-5)=...\)</li>
+		<li>\(5(2x+3)(x-3)=...\)</li>
+	</ul></p>
+</div>
+
+
+
+
+
+<!-- DEVELOPPER EN UTILISANT UNE IDENTITE REMARQUABLE -->
+<p class="my-5 invisible" id="idremarquable">ancre</p>
+
+<h3>Développer en utilisant une identité remarquable</h3>
+
+
+<p>Lorsqu'on reconnaît une identité remarquable, il est plus rapide d'utiliser la formule apprise que de développer terme à terme, même si cela reste juste.</p>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>\((a+b)^2 = a^2+2ab+b^2\)</p>
+<p>\((a-b)^2 = a^2-2ab+b^2\)</p>
+<p>\((a-b)(a+b) = a^2-b^2\)</p>
+</div>
+
+<h4>1ère identité remarquable</h4>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développer \((x+5)^2\)</p>
+	<p>On reconnaît la 1ère identité remarquable avec \(a=x\) et \(b=5\). On obtient donc \((x+5)^2=x^2+10x+25\).</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développer 
+		<ul>
+			<li>\((x+7)^2=...\)</li>
+			<li>\((3x+4)^2=...\)</li>
+		</ul>
+	</p>
+</div>
+
+<h4>2ème identité remarquable</h4>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développer \((x-4)^2\)</p>
+	<p>On reconnaît la 2ème identité remarquable avec \(a=x\) et \(b=4\). On obtient donc \((x-4)^2=x^2-8x+16\). Attention, il n'y a QU'UN SEUL signe - dans la formule...</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développer 
+		<ul>
+			<li>\((x-9)^2=...\)</li>
+			<li>\((2x-7)^2=...\)</li>
+		</ul>
+	</p>
+</div>
+
+<h4>3ème identité remarquable</h4>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>développer \((5x-3)(5x+3)\)</p>
+	<p>On reconnaît la 3ème identité remarquable avec \(a=5x\) et \(b=3\). On obtient donc \((5x-3)(5x+3)=(5x)^2-9=25x^2-9\). Attention à bien mettre le 5 et le x au carré.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>développer 
+		<ul>
+			<li>\((4x-2)(4x+2)=...\)</li>
+			<li>\((3x+7)(3x-7)=...\)</li>
+		</ul>
+	</p>
+</div>
+
+<h3>Entrainement</h3>
+<div class="exerciceApplication">
+	<p><strong>Exercice : </strong>développez 
+	<ul>
+		<li>\((2x-5)(x+3)=...\)</li>
+		<li>\((x-7)(x-5)=...\)</li>
+		<li>\((21(3x-x^2))=...\)</li>
+		<li>\(5(2x-3)(3-x)=...\)</li>
+		<li>\((2x-5)(2x+5)=...\)</li>
+		<li>\((2x-7)(2x+3)=...\)</li>
+		<li>\((2x-5)(2x-5)=...\)</li>
+		<li>\(5(2x+3)^2=...\)</li>
+	</ul></p>
+</div>
+
+{% endblock cours %}

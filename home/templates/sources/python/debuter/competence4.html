@@ -1,0 +1,1029 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li><a href="#decouvrir">découvrir la boucle while</a></li>
+    <li><a href="#pseudo">les pseudo-codes et diagrammes pour représenter la boucle while</a></li>
+    <li><a href="#structure">comprendre la structure d'une boucle while</a></li>
+    <li><a href="#repeter">répéter une action avec une boucle while</a></li>
+    <li><a href="#parcourir">parcourir une chaîne de caractères avec une boucle while</a></li>
+    <li><a href="#replace">travail pratique avec la méthode replace()</a></li>
+    <li><a href="#palindrome">le problème du palindrome</a></li>
+    <li><a href="#glissante">le problème de la phrase glissante</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}  
+
+<p>La boucle while permet de répéter un bloc d'instructions tant qu'une condition est remplie. On utilise donc 
+    la boucle <strong>while</strong> lorsqu'on ne connaît pas le nombre de répétitions à effectuer et que 
+    celui-ci dépend de l'évolution de la situation (par exemple on continue de jouer tant que le nombre de vies 
+    d'un joueur n'est pas nul). Dans le cas où l'on connaît à l'avance le nombre de répétitions  à effectuer, 
+on utilise préférentiellement une boucle <strong>for</strong>, qui sera étudiée plus tard.</p>
+
+
+<!-- DECOUVRIR LA BOUCLE WHILE -->
+<p class="my-5 invisible" id="decouvrir">ancre</p>
+
+<h3>Découvrir la boucle while</h3>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/dp4DcBHl6Dc"
+            title="Structure de la boucle while en Python - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Structure de la boucle while en Python</figcaption>
+</div>
+
+
+<p>On peut répéter <em>Continuez de jouer</em> tant que la variable <strong>nbreVies</strong> est positive</p>
+
+<pre><code class="language-python">nbreVies = 3
+while nbreVies > 0:
+    print("Continuez de jouer")
+    nbreVies = nbreVies - 1
+print("Fin du jeu")</code></pre>
+
+<p>Si on détaille ce que fait le programme, on obtient ceci :</p>
+
+<pre><code class="language-svg">nbreVies prend la valeur 3
+3 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 2
+    }
+2 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 1
+}
+1 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 0
+}
+0 n'est pas strictement positif, donc on n'exécute plus ce qui se trouve dans la boucle while 
+on continue l'exécution du reste du programme, donc on affiche "Fin du jeu"</code></pre>
+
+<p>Si vous avez déjà programmé en Scratch, le script ci-dessus correspond au code Scratch suivant :</p>
+
+<img src="{% static 'home/images/python/codeScratchWhile.png' %}" width="250px">
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+<div class="quiz-container">
+        
+    <div class="question-container">
+        <p id="question-1"></p>
+        <form id="options_form-1">
+            <ul>
+                <li id="options"></li>
+            </ul>
+        </form>
+        <p class="py-2" id="commentaire-1"></p>
+    </div>
+    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
+    
+</div>
+
+<script>
+var questionsData = 
+    {
+        question: " ...",
+        options:["", "", ""],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(1);
+</script>
+
+
+<!-- PSEUDO CODE ET DIAGRAMME -->
+<p class="my-5 invisible" id="pseudo">ancre</p>
+
+<h3>Pseudo-code et diagramme</h3>
+
+<p>On rappelle que le pseudo-code consiste à écrire en langage <em>humain</em> les actions que réalise le code. 
+    L'exemple de code Python ci-dessus correspond au pseudo-code suivant :</p>
+
+<pre><code class="language-svg">nbreVies prend la valeur 3
+tant que nbreVies est supérieur à 0 
+{
+afficher "continuer de jouer"
+nbreVies perd 1 point
+}
+fin tant que
+afficher "Fin du jeu"</code></pre>
+
+<p>Le diagramme correspondant au code Python ci-dessus est :</p>
+
+<img src="{% static 'home/images/python/diagramme2.png' %}" alt="diagramme" width="40%">
+
+
+
+<!-- STRUCTURE D'UNE BOUCLE WHILE -->
+<p class="my-5 invisible" id="structure">ancre</p>
+
+<h3>Structure d'une boucle while</h3>
+
+<p>Une boucle while se construit avec :
+<ul><li>une condition qui renvoie <strong>True</strong> ou <strong>False</strong>,</li>
+<li>une indentation pour indiquer le bloc de code à répéter,</li> 
+<li>une variable dont la valeur change pour modifier la condition au tour suivant.</li>
+</ul></p> 
+<p>Dans l'exemple ci-dessus, la condition <strong>nbreVies &gt 0</strong> renvoie d'abord <strong>True</strong> puisque <strong>nbreVies</strong> vaut 3,
+    puis cette condition est testée à chaque tour jusqu'à ce que <strong>nbreVies</strong> soit égal à 0. Dans ce cas la condition <strong>nbreVies &gt 0</strong> renvoie <strong>False</strong>,
+    le programme n'effectue pas de tour supplémentaire et exécute le code placé après la boucle <strong>while</strong> (après l'indentation).</p>
+    
+<p>On renarque que c'est la variable <strong>nbreVies</strong> qui varie pour modifier la condition à tester.</p>
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+<div class="quiz-container">
+        
+    <div class="question-container">
+        <p id="question-2"></p>
+        <form id="options_form-2">
+            <ul>
+                <li id="options"></li>
+            </ul>
+        </form>
+        <p class="py-2" id="commentaire-2"></p>
+    </div>
+    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
+    
+</div>
+
+<script>
+var questionsData = 
+    {
+        question: " ...",
+        options:["", "", ""],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(2);
+</script>
+
+
+<!-- REPETER UNE ACTION AVEC UNE BOUCLE WHILE -->
+<p class="my-5 invisible" id="repeter">ancre</p>
+
+<h3>Répéter une action avec une boucle while</h3>
+
+<p>Il est possible de répéter une action avec une boucle while, même si on préfère en général utiliser une boucle for 
+    dans ce cas, ce que nous étudierons plus tard. Pour cela, il faut créer un compteur qu'on fait varier,
+     et il faut comparer ce compteur à une certaine valeur pour savoir quand s'arrêter.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>testez le code suivant qui permet de compter jusqu'à 10 :</p>
+
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+    print(compteur)
+    compteur = compteur + 1</code></pre>
+
+</div>
+
+<p>On sait maintenant compter jusqu'à 10 en utilisant une boucle <strong>while</strong>. Mais
+    comment faire pour sauter un chiffre, par exemple pour ne pas afficher le chiffre 6 ?</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>essayez maintenant d'écrire un code utilisant un boucle <strong>while</strong>,
+        qui compte jusqu'à 10 en affichant ces nombres sur une même ligne, et sans afficher 6.</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+
+    <div id="solution6" style="display:none;">
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+
+    if compteur != 6:
+        print(compteur)
+
+    compteur = compteur + 1</code></pre>
+
+
+<p>Notons qu'on peut également utiliser l'instruction <strong>continue</strong>, qui
+permet de sauter un tour de boucle.</p>
+
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+
+    if compteur == 6:
+        compteur = compteur + 1
+        continue
+
+    print(compteur, end=" ")
+    compteur = compteur + 1</code></pre>
+
+</div>
+
+</div>
+
+
+<p>Le risque avec une boucle while est que la condition d'arrêt ne soit jamais remplie, ce qui ne permet pas à la boucle de se terminer. On crée ainsi une boucle infinie qui bloque le programme. Par exemple </p>
+
+<pre><code class="language-python">compteur = 10
+while compteur >= 0:
+    print("le compteur est positif")</code></pre>
+
+<p>N'exécutez pas le code ci-dessus car la variable <strong>compteur</strong> sera toujours
+supérieure à 0 (elle vaut 10) et le programme ne se terminera jamais. Certains langages comme PHP
+ne permettent pas de dépasser un certain nombre de tours, mais ce n'est pas le cas de Python
+qui continue à travailler tant qu'on ne l'arrête pas. Il faut dans ce cas appuyer sur la touche
+<em>Stop</em> de l'environnement de travail ou <em>Ctrl+C</em> au terminal pour arrêter manuellement
+l'exécution du programme.</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher 3 fois Bonjour les uns en dessous des autres en utilisant une boucle 
+    while. Il est important dans ce cas d'utiliser une boucle while plutôt que d'écrire 3 fois print("Bonjour"). 
+    En effet, comment pourrions-nous gérer l'affichage de 1000 Bonjour si c'était demandé ?</p>
+
+    <pre><code class="language-python">compteur = 0
+while ???
+# completer le code ...</code></pre>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher <em>quel est votre nom ?</em> tant que l'utilisateur ne saisit pas un nom au clavier,
+        puis stocker la valeur saisie dans une variable <strong>nom</strong>.</p>
+
+<pre><code class="language-python">nom = ""
+while ???
+# completer le code en utilisant input ...</code></pre>
+
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+
+    <div id="solution1" style="display:none;">
+
+<pre><code class="language-python">nom = ""
+while len(nom) == 0:
+    nom = input("Quel est votre nom ?")</code></pre>
+
+<p>Python ne connaît pas de méthode <strong>isEmpty()</strong> comme d'autres langages. Il faut donc tester la longueur de la chaîne de caractères <strong>nom</strong> à la place.</p>
+</div>
+</div>
+
+    <p>On sait maintenant demander à l'utilisateur de saisir son nom, mais comment éviter qu'il se
+        contente de saisir un espace vide ?</p>
+
+<p>la fonction <strong>strip()</strong> supprime les espaces devant et derrière les caractères. Ainsi le code suivant
+    permet de mieux visualiser si des espaces se cachent autour d'un nom, ou si un nom est composé d'espaces :</p>
+
+<pre><code class="language-python">nom = " Antoine"
+print(len(nom))  # affiche 8
+print(len(nom.strip()))  # affiche 7
+
+nom = ""
+print(len(nom))  # affiche 0
+
+nom = " "
+print(len(nom))  # affiche 1
+print(len(nom.strip()))  # affiche 0</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un code qui affiche <em>quel est votre nom ?</em>
+    tant que l'utilisateur ne saisit pas un nom au clavier, et qui n'accepte pas une réponse
+    vide ou un simple espace. La valeur saisie sera stockée dans une variable <strong>nom</strong>.</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+    <div id="solution2" style="display:none;">
+
+        <p>Il suffit de reprendre le code de la question précédente en
+        modifiant la condition de la boucle <strong>while</strong> comme suit :</p>
+
+        <pre><code class="language-python">nom = ""
+while len(nom.strip()) == 0:
+    nom = input("Quel est votre nom ?")</code></pre>
+    </div>
+</div>
+
+<p>Il est parfois utile de demander à l'utilisateur de saisir un nombre entier au clavier.
+On a déjà vu que, par défaut, ce nombre est stocké en mémoire sous forme de chaîne de caractères.
+Toutefois, afin d'effectuer des calculs avec ce nombre, il est essentiel de pouvoir le
+transformer en entier. La fonction <strong>isnumeric()</strong> assure la compatibilité de
+cette conversion. On peut donc être amené à écrire une boucle <strong>while</strong> qui demande à
+l'utilisateur de saisir un nombre entier et recommence tant que celui-ci saisit autre chose.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher <em>quel est votre âge ?</em> tant que l'utilisateur ne saisit pas un nombre entier au clavier.
+     <em>Indication : </em>utiliser la méthode age.isnumeric()</p>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+
+    <div id="solution3" style="display:none;">
+        <pre><code class="language-python">age = ""
+while age.isnumeric() == False:
+    age = input("Quel est votre âge ?")</code></pre>
+
+        <p>Notons que <strong>isnumeric()</strong> s'applique à une chaîne de caractères.
+        C'est pour cette raison que la variable <strong>age</strong> est définie au départ
+        comme étant "" et non pas <strong>None</strong>.</p>
+
+    </div>
+
+</div>
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+<div class="quiz-container">
+        
+    <div class="question-container">
+        <p id="question-3"></p>
+        <form id="options_form-3">
+            <ul>
+                <li id="options"></li>
+            </ul>
+        </form>
+        <p class="py-2" id="commentaire-3"></p>
+    </div>
+    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
+    
+</div>
+
+<script>
+var questionsData = 
+    {
+        question: " ...",
+        options:["", "", ""],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(3);
+</script>
+
+
+<!-- PARCOURIR UNE CHAINE -->
+
+<p class="my-5 invisible" id="parcourir">ancre</p>
+
+<h3>Parcourir une chaîne de caractères avec une boucle while</h3>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un code qui affiche séparément chaque caractère d'une
+    chaîne les uns en dessous des autres.</p>
+
+    <pre><code class="language-python">mot = "bonjour"
+compteur = 0
+
+while ???
+# completer le code ...</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+    <pre><code class="language-python">mot = "bonjour"
+compteur = 0
+
+while compteur &lt 7:
+    print(mot[compteur])
+    compteur = compteur + 1</code></pre>
+
+
+    <p>Dans le code ci-dessus on a compté le nombre de caractères de <strong>maChaine</strong>
+    pour obtenir 7. Le programme parcourt donc la chaine de caractères en partant de l'indice 0, jusqu'à l'indice 
+    6 inclus, qui correspond à l'indice du dernier caractère. En fait, il faut laisser faire ce travail à l'ordinateur en utilisant
+    l'instruction <strong>len(maChaine)</strong> qui renvoie la longueur de cette chaîne. 
+    Par ailleurs, on a tendance à appeler indice le compteur des lettres un indice et de ce 
+    fait utiliser i pour le compteur. Ainsi le code précédent peut être améliorer de la façon suivante :</p>
+
+    <pre><code class="language-python">mot = "bonjour"
+i = 0
+
+while i &lt len(mot):
+    print(mot[i])
+    i = i + 1</code></pre>
+</div>
+
+</div>
+
+<p>On sait maintenant récupérer tous les caractères d'une chaîne pour les afficher.</p>
+<p>Mais comment faire si on ne veut pas se contenter d'afficher un nouveau mot, mais si on veut
+    plutôt créer un nouveau mot à partir d'un ancien mot ?</p>
+    <p>On va maintenant chercher à écrire un nouveau mot 
+    à partir d'un mot en plaçant des - entre chaque lettre.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>demandez à l'utilisateur de saisir un mot puis affichez
+    ce mot avec des - entre chaque caractère.</p>
+
+<pre><code class="language-python">mot = input("veuillez saisir un mot : ")
+i = 0
+new_mot = ""
+
+while ???
+# completer le code ...
+
+print(new_mot)</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution5" style="display:none;">
+
+        <pre><code class="language-python">mot = input("veuillez saisir un mot : ")
+i = 0
+new_mot = ""
+
+while i &lt len(mot):
+    if i == 0:
+        new_mot = mot[0] 
+    else:
+        new_mot = new_mot + "-" + mot[i]
+    i = i + 1
+
+print(new_mot)</code></pre>
+    </div>
+
+</div>
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+<div class="quiz-container">
+        
+    <div class="question-container">
+        <p id="question-4"></p>
+        <form id="options_form-4">
+            <ul>
+                <li id="options"></li>
+            </ul>
+        </form>
+        <p class="py-2" id="commentaire-4"></p>
+    </div>
+    <button class="bouton my-1" id="submit_btn-4">Soumettre</button>
+    
+</div>
+
+<script>
+var questionsData = 
+    {
+        question: " ...",
+        options:["", "", ""],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(4);
+</script>
+
+
+<!-- TP AVEC LA METHODE REPLACE -->
+
+<p class="my-5 invisible" id="replace">ancre</p>
+
+<h3>Travail pratique avec la méthode replace()</h3>
+
+<p>Essayons autre chose de plus compliqué. Par exemple imaginons qu'on veuille changer les "o" en "a" dans un texte. On ne va pas le faire
+manuellement car cela pourrait être très long et fastidieux avec un texte de 1000 lignes &#128531; 
+Il faut donc créer un programme qui soit capable de le faire pour nous.</p>
+
+<p>Nous savons déjà que pour changer une lettre en une autre lettre à l'intérieur d'un mot, il existe
+ la méthode <strong>mot.replace("o", "a")</strong></p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécutez le code ci-dessus et affichez la valeur
+        de <strong>nouveau_mot</strong>, puis comparez le résultat obtenu
+    en exécutant le code suivant :</p>
+    <pre><code class="language-python">mot = "bonjour"
+nouveau_mot = mot.replace("o", "a")
+print(mot)
+print(nouveau_mot)</code></pre>
+<p>Notez que la méthode <strong>replace()</strong> ne modifie pas la variable initiale <strong>mot</strong>,
+    mais elle crée, à partir de cette variable <strong>mot</strong>, une valeur qui sera stockée dans une 
+    autre variable <strong>nouveau_mot</strong>.</p></div>
+
+
+<p>Commençons notre travail petit à petit avec un seul mot plutôt qu'un long texte. Pour cela, définissons la variable <strong>mot = "bonjour"</strong>.
+    Les chaînes de caractères n'acceptent pas le
+    changement facilement. Il faut soit changer tout le texte en une seule fois,
+    soit reconstruire le nouveau mot étape par étape, c'est à dire
+    caractère par caractère. On pourrait écrire <strong>mot = "banjaur"</strong>, mais dans ce cas, c'est nous qui ferions tout le travail
+    et non pas le programme.</p>
+<p>Puisque dans le mot "bonjour", les "o" ont pour indice 1 et 4 (car l'indice du 1er caractère
+vaut 0), on sait que <strong>mot[1]</strong> et <strong>mot[4]</strong> valent "o".
+En théorie, il suffirait donc d'écrire <strong>mot[1] = "a"</strong> et <strong>mot[4] = "a"</strong>
+pour obtenir satisfaction. Et naturellement on a envie d'écrire le code suivant :</p>
+
+<pre><code class="language-python">mot = "bonjour"
+mot[1] = "a" # erreur
+mot[4] = "a" # erreur
+print(mot)</code></pre>
+
+<p>Malheureusement, ce n'est pas possible car <strong>mot[1]</strong> et <strong>mot[4]</strong> ne sont
+    pas des variables autonomes. Le code ci-dessus déclenche donc une erreur.</p>
+    <p>Il faut en fait reconstruire tout 
+    le mot en rajoutant chaque caractère un à un. On utilise ce qu'on appelle la concaténation pour placer un "a" 
+    lorsque le caractère testé est un "o" et ne rien changer pour les autres lettres.</p>
+        
+        <pre><code class="language-python">mot = "bonjour"
+nouveau_mot = ""
+i = 0
+
+while i &lt len(mot):
+    if mot[i] == "o":
+        nouveau_mot = nouveau_mot + "a"
+    else:
+        nouveau_mot = nouveau_mot + mot[i]
+    i = i + 1
+    
+print(nouveau_mot)</code></pre>
+        
+        <p>Que fait notre code ci-dessus ?</p>
+        <p>On crée tout d'abord une chaîne de caractères vide qui s'appelle <strong>nouveau_mot</strong>,
+            et qui va contenir notre mot modifié. Retenons que pour créer une chaîne de caractères vide, il faut
+        utiliser l'instruction <code class="language-python">nouveau_mot = ""</code>.</p>
+        
+        <p>On parcourt ensuite notre mot caractère par caractère avec une boucle <strong>while</strong>, puis à l'aide 
+        d'une condition <strong>if</strong>, on rajoute "a" lorsque le caractère lu est "o", on rajoute la lettre 
+        normalement prévue sinon.</p>
+        
+        <p>Retenez donc cette stratégie, qui est utile chaque fois qu'on cherche à modifier
+        la valeur d'un mot.</p>
+        
+
+        <div class='exerciceApplication'>
+            <p><strong>A vous de jouer : </strong>écrire un script, qui teste si le caractere 'e' appartient à une chaîne 
+            de caractères <code>chaine</code>, puis affiche le nombre de fois qu'apparaît 'e'
+            dans la chaîne et -1 si il n'apparaît pas. En fait, il vous faut reconstruire la méthode 
+        <code>chaine.count('e')</code> qui existe nativement dans le langage.</p>
+        
+        <div>
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+        </div>
+        
+        <div id="solution9" style="display:none;">
+<pre><code class='language-python'>chaine = 'comment allez-vous ?'
+compteur = 0
+i = 0
+
+# on parcourt la chaine et on compare chaque element avec 'e'
+# on rajoute un point a compteur lorsqu'on trouve 'e'
+while i &lt (len(chaine)):
+    if chaine[i] == 'e':
+        compteur = compteur + 1
+    i = i + 1
+
+# si 'e' n'apparait pas dans chaine on affiche -1
+if compteur == 0:
+    print(-1)
+else:
+    print(compteur)</code></pre>
+        </div>
+        </div>
+        
+        <div class="exerciceApplication">
+            <p><strong>A vous de jouer : </strong>écrire un script qui inverse les lettres d'un mot contenu dans une variable et les stocke dans une autre variable.</p>
+        
+            <div>
+                <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+            </div>
+        
+            <div id="solution7" style="display:none;">
+<pre><code class="language-python">mot = "bonjour"
+motInverse =""
+i = len(mot) - 1
+
+while i &gt -1:
+    motInverse = motInverse + mot[i]
+    i = i - 1</code></pre>
+
+        <p>A noter qu'il existe cette possibilité surprenante :</p>
+
+        <pre><code class="language-python">motInverse = mot[::-1]</code></pre>
+
+        <p>On peut maintenant inverser tout un texte. Essayez le code suivant pour vous en
+            convaincre :</p>
+
+        <pre><code class="language-python">texte = "Les sanglots longs des violons de l'automne blessent mon coeur d'une langueur monotone"
+print(texte.[::-1])</code></pre>
+        
+            </div>
+        </div>
+
+
+<!-- LE PROBLEME DU PALINDROME -->
+
+<p class="my-5 invisible" id="palindrome">ancre</p>
+
+<h3>Le problème du palindrome</h3>
+
+        <p>Nous pouvons maintenant compliquer un petit peu les choses. Un palindrome est un mot
+            qui se lit de la même façon à l'endroit qu'à l'envers. Ainsi par exemple <em>kayak</em> est un
+            palindrome alors que <em>bonjour</em> n'en est pas un.</p>
+        
+            <p>Nous avons vu comment inverser un mot saisi par l'utilisateur. Pour tester si un mot est un palindrome, il
+                suffit de comparer le mot inversé avec le mot de départ pour répondre à
+                la question. On peut ne pas utiliser la question précédente et faire varier un
+                booléen qui représente si le mot est un palindrome, comme dans la vidéo suivante :</p>
+        
+
+                <div class="col-12 col-md-8 my-5">
+                    <iframe src="https://www.youtube.com/embed/YcdOxQf16bs"
+                            title="Palindrome en Python - TokeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                            gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <figcaption>Palindrome en Python</figcaption>
+                </div>
+                
+        
+        <div class="exerciceApplication">
+            <p><strong>A vous de jouer : </strong>écrire un code différent de celui propoés dans la vidéo, qui détermine si 
+                un mot est un palindrome ou non.</p>
+        </div>
+        
+
+<!-- PHRASE GLISSANTE -->
+
+<p class="my-5 invisible" id="glissante">ancre</p>
+
+<h3>Le problème de la phrase glissante</h3>
+        
+        <p>Il est possible de compliquer encore un peu les choses. On veut que l'utilisateur saisisse une phrase 
+            au clavier, puis le programme va afficher cette phrase, et à la ligne suivante il va retirer la 1ère lettre 
+            de la phrase saisie pour l'afficher à la fin de la phrase, et ainsi de suite ligne après ligne jusqu'à 
+            afficher de nouveau la phrase initiale. Par exemple si l'utilisateur saisit 'il fait beau aujourd'hui', 
+            le programme va afficher</p>
+        
+<pre><code class='language-svg'>il fait beau aujourd'hui
+l fait beau aujourd'huii
+fait beau aujourd'huiil
+fait beau aujourd'huiil 
+ait beau aujourd'huiil f
+it beau aujourd'huiil fa
+t beau aujourd'huiil fai
+beau aujourd'huiil fait
+beau aujourd'huiil fait 
+eau aujourd'huiil fait b
+au aujourd'huiil fait be
+u aujourd'huiil fait bea
+aujourd'huiil fait beau
+aujourd'huiil fait beau 
+ujourd'huiil fait beau a
+jourd'huiil fait beau au
+ourd'huiil fait beau auj
+urd'huiil fait beau aujo
+rd'huiil fait beau aujou
+d'huiil fait beau aujour
+'huiil fait beau aujourd
+huiil fait beau aujourd'
+uiil fait beau aujourd'h
+iil fait beau aujourd'hu
+il fait beau aujourd'hui</code></pre>
+        
+        <div class='exerciceApplication'>
+            <p><strong>A vous de jouer : </strong>construisez un programme qui effectue le travail ci-dessus.</p>
+            <div>
+                <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+            </div>
+        
+            <div id="solution8" style="display:none;">
+<pre><code class='language-python'>chaine = input("choisissez une phrase : ")
+i = 0
+
+while i &lt len(chaine):
+    print(chaine[i:] + chaine[:i])
+    i = i + 1</code></pre>
+            </div>
+        
+        </div>
+        
+
+<!-- ENTRAINEMENT -->
+
+<h3>Entraînement</h3>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?</p>
+    <pre><code class="language-python">compteur = 2
+while compteur > 0:
+    print(compteur)
+    compteur = compteur - 1</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 2 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?</p>
+    <pre><code class="language-python">compteur = 0
+while compteur &lt 10:
+    print(compteur + 1)
+    compteur = compteur + 2</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>qu'affiche le code suivant (travail sans ordinateur) ? 
+    Expliquez étape par étape ce que produit le code.</p>
+    <pre><code class="language-python">l = 0
+while l &lt 4:
+    c = 0
+    while c &lt 3:
+        if c == 1 and l == 2:
+            print("X")
+        else:
+            print("O")
+        c = c + 1
+    print("O")
+    l = l + 1</code></pre>
+<p>Pour visualiser le travail effectué par le programme, on pourra utiliser la console du site 
+    <a href="https://pythontutor.com" target="_blank">pythontutor.com</a></p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?
+     Expliquez étape par étape ce qui produit le code.</p>
+    <pre><code class="language-python">n = 0
+while n &lt 12:
+    n = n + 1
+    if n % 4 == 0:
+        continue
+    elif n % 7 == 0:
+        break
+    print(n)</code></pre>
+<p>Pour visualiser le travail effectué par le programme, on pourra utiliser la console du site 
+    <a href="https://pythontutor.com" target="_blank">pythontutor.com</a></p>
+<p>Indications : n % 4 calcule le reste de division par 4, 'continue' permet de sauter un tour de boucle, 
+    'break' permet de sortir de la boucle while.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>quelle est la valeur affichée par le programme suivant ? (travail sans ordinateur)</p>
+    <pre><code class="language-python">a = 22
+b = 9
+
+while a &gt b:
+    a = a - b 
+
+print(a)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>que fait le code suivant ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">citation = "Les sanglots longs des violons de l'automne blessent mon coeur"
+mot = 0
+
+while mot &lt len(citation):
+    print(mot)
+    mot = mot + 1</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 : </strong>corrigez le programme suivant pour qu'il affiche tous les caractères d'une chaine.</p>
+
+    <pre><code class="language-python">chaine = "La neige fond en été
+i = 0
+
+while i &lt len(chaine) + 1:
+    print(chaine(i))</code></pre>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>écrire un programme qui calcule la somme 1 + 2 + ... + 99 + 100</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 9 : </strong>un placement bancaire rapporte 3 % par an. Sachant que Pierre a placé 2200 € 
+        en banque. Combien aura-t-il sur son compte au bout de 10 ans s'il ne retire pas son argent avant. 
+        Ecrire un programme Python qui calcule le résultat. On rappelle qu'au bout d'un an, le montant en 
+    banque sera de \(2200 \times 1,03\).</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>un placement bancaire rapporte 3 % par an. Sachant que Pierre a placé 2200 € 
+        en banque. Au bout de combien d'années aura-t-il 2500 € sur son compte s'il ne retire pas son argent avant ? 
+        Ecrire un programme Python qui calcule le résultat</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 11 : </strong>écrire un programme qui demande à l'utilisateur de saisir des notes au clavier tant
+        qu'il ne tape pas #. Lorsque l'utilisateur saisit #, le programme calcule la moyenne des notes rentrées et affiche 
+        le résultat. Il n'est pas demandé de gérer l'erreur occasionnée lorsque l'utilisateur saisit autre chose qu'un nombre.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 12 : </strong>écrire un programme qui cherche la fraction la plus proche de \(\pi\) en testant 
+    tous les numérateurs et dénominateurs possibles dont les valeurs sont comprises entre 1 et 99. Indication, la valeur 
+de \(\pi\) en Python est donnée par l'instruction math.pi après avoir importé la bibliothèque math.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 13 : </strong>écrire un programme qui affiche toutes les années bissextiles de 1 jusqu'à 2024, 
+    les unes sous les autres.</p>
+    <p>Une année est bissextile si elle est divisible par 4 et pas divisible par 100 ou si elle est divisible par 400.</p>
+    <p>Par exemple, 800 est divisible par 400 donc c'est une année bissextile. 888 est divisble par 4 et pas par 100 donc 
+        c'est une année bissextile.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 14 : </strong>écrire un programme qui affiche tous les diviseurs positifs d'un nombre 
+    entier, les uns sous les autres.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 15 : </strong>écrire un programme qui teste si un nombre est premier ou non puis affiche le 
+    résultat.</p>
+
+    <p>On rappelle qu'un nombre premier n'est divisible que par lui-même et par 1.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 16 : </strong>écrire un programme qui affiche tous les cas possibles permettant d'obtenir une 
+        valeur entre 2 et 12 lorsqu'on lance deux dés à six faces. Le programme demande d'abord à l'utilisateur de 
+        saisir une valeur entre 2 et 12, puis affiche toutes les possibilités. Pour simplifier le travail, 
+        on ne tient pas compte du cas où l'utilisateur saisit autre chose qu'une valeur entre 2 et 12.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 17 : </strong>écrire un programme qui affiche toutes les voyelles d'un mot donné, les unes 
+    en dessous des autres, et n'affiche pas les consommes.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 18 : </strong>écrire un programme qui échange le premier et le dernier caractère d'un 
+        mot donné et affiche le résultat.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 19 : </strong>écrire un programme qui demande à l'utilisateur de saisir un texte et affiche 
+    tous les mots de ce texte commençant par la lettre "p".</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 20 : </strong>écrire un programme qui demande à l'utilisateur de saisir un texte et affiche 
+    le nombre de caractères minuscules et le nombre de caractères majuscules de ce texte.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 21 : </strong>écrire un programme qui demande à l'utilisateur de saisir un mot et  
+    affiche le mot en remplaçant tous les caractères d'indice impair par "!" .</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 22 : </strong>une balle tombe d'une hauteur de 2 mètres et perd 10% de sa hauteur à chaque 
+    rebond. Le programme ci-dessous calcule le nombre de rebonds pour que la balle ne remonte plus au dessus de 1,5 mètre 
+de hauteur. Corrigez ce programme pour qu'il fournisse le résultat demandé :</p>
+
+    <pre><code class="language-python">hauteur = 2
+nbreRebonds = 0
+seuil = 1,5
+
+while Hauteur &gt seuil:
+nbreRebonds = nbreRebonds + 1
+hauteur = hauteur * 0.9
+        print(nbreRebonds)
+    </code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 23 : </strong>proposer un programme qui demande à l'utilisateur de saisir un nombre positif, 
+    et redemande à l'utilisateur tant que celui-ci ne fournit pas un nombre positif ou saisit une lettre. Finalement, 
+le programme affichera "merci" lorsque l'utilisateur saisit une donnée conforme aux attentes.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 24 : </strong>proposer un programme qui demande à l'utilisateur de saisir un code pin valide. Si 
+    l'utilisateur se trompe il dispose de 3 tentatives. Au bout de 3 échecs le programme affiche "Code pin non valide". 
+Si au contraire l'utilisateur fournit le bon code pin avant la fin de ses tentatives, le programme affiche "Bienvenue sur votre smartphone". 
+Le code pin valide est 1283.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 25 : </strong>écrire un programme Python qui trouve le plus petit entier n tel que 
+        \(n^3>10000\). Indication : le programme boucle en testant toutes les valeurs de n du plus petit au plus grand 
+    tant que \(n^3\) est inférieur ou égal à 10000. On sort ensuite de la boucle while lorsque \(n^3\) est supérieur  
+à 10000.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 26 : </strong>écrire un programme permettant de réviser les tables de multiplication en posant 
+    15 questions au joueur. Le programme choisit au hasard deux chiffres entre 2 et 9, les multiplie et demande au joueur 
+la réponse. Si celui-ci fait juste il marque 2 points, s'il se trompe, il perd 1 point. Le nombre de points total est 
+affiché à la fin de la partie avec un message d'encouragement.</p>
+
+<p>Pour tirer un nombre au hasard entre 2 et 9, et placer ce nombre dans la variable appelée <strong>hasard</strong>, 
+il faut écrire le code suivant :</p>
+<pre><code class="language-python">from random import *
+hasard = randint(2, 9)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 27 : </strong>créez un code qui demande à l'utilisateur son mot de
+    passe et tant que celui-ci n'est pas le bon, le programme affiche
+    "accès refusé". Le bon mot de passe est "qweryxc12". Lorsque le mot de passe est correct,
+    le programme affiche "Bienvenue sur votre compte".</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+
+    <div id="solution10" style="display:none;">
+<pre><code class="language-python">pw = "qweryxc12"
+
+saisie = ""
+
+while saisie != pw:
+    saisie = input('choisissez un mot de passe : ')
+
+    if saisie == pw:
+        print("Bienvenue sur votre compte")
+    else:
+        print("accès refusé")</code></pre>
+    </div>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 28 : </strong>programmer en Python un jeu où l'ordinateur choisit un entier entre 1 et 10 et vous devez
+    le deviner. L'ordinateur affichera le nombre de tentatives pour trouver cet entier. Indication : on pourra utiliser 
+la bibliothèque random pour générer des entiers aléatoires en mettant en 1ère ligne de code :</p>
+<pre><code class="language-python">from random import *</code></pre>
+<p>Détail des blocs de code nécessaires :</p>
+<ul>
+    <li>choix d'un entier au hasard par l'ordinateur</li>
+    <li>saisie d'un entier par le joueur</li>
+    <li>boucle while tant que l'entier cherché n'a pas été trouvé</li>
+    <li>compteur de tentatives qui sera affiché à la fin du jeu</li>
+</ul>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 29 : </strong>programmer en Python un jeu où l'ordinateur choisit un entier entre 1 et 10 et vous devez
+    le deviner. L'ordinateur affichera à chaque tentative 'trop grand', 'trop petit' ou 'gagné'. On pourra utiliser 
+    comme structure la structure du code de l'exercice précédent.</p>
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=4 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

@@ -1,0 +1,326 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Les graphes en Python</h3>
+
+<h4>Courbe 2d</h4>
+
+  <p>Une courbe en dimension 2 peut se réaliser en utilisant le code suivant :</p>
+  <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from math import *
+
+# valeurs de x, y
+x = np.linspace(-3, 2,50)
+y = x**2 + 3*x + 1
+# construction du graphe
+plt.title("Ma première courbe")
+plt.xlabel("abscisses")
+plt.ylabel("ordonnées")
+fig = plt.figure()
+graphe = fig.gca()
+graphe.plot(x, y, linewidth=1, color="r", label="fonction quadratique")
+graphe.legend()
+plt.show()</code></pre>
+
+<img src="../../images/maths/courbe2d.png" alt="courbe 2d" width=50% style="margin-top:2%;">
+
+  <p>Il est possible de modifier la largeur avec le mot-clé linewidth, la couleur avec le mot-clé color parmi les possibilités
+  suivantes :</p>
+
+  <table>
+      <tr><th>couleur</th><th>code</th></tr>
+      <tr><td>blue</td><td>b</td></tr>
+      <tr><td>green</td><td>g</td></tr>
+      <tr><td>red</td><td>r</td></tr>
+      <tr><td>cyan</td><td>c</td></tr>
+      <tr><td>black</td><td>k</td></tr>
+      <tr><td>white</td><td>w</td></tr>
+      <tr><td>yellow</td><td>y</td></tr>
+      <tr><td>magenta</td><td>m</td></tr>
+  </table>
+
+<p>La couleur peut également prendre en paramètre une valeur hexadécimale comme cplor="#0f0f0f" par exemple</p>
+
+  <p>Le style de tracé peut se modifier en rajoutant un paramètre dans le code suivant :</p>
+
+  <pre><code class="language-python">plot(x, y, "--", linewidth=1, color="r")</code></pre>
+
+  <p>les styles suivants sont les plus classiques :</p>
+
+  <table>
+      <tr><th>style</th><th>code</th></tr>
+      <tr><td>pointillés</td><td>--</td></tr>
+      <tr><td>points</td><td>:</td></tr>
+      <tr><td>points et ronds</td><td>o:</td></tr>
+      <tr><td>ligne continue et ronds</td><td>o-</td></tr>
+      <tr><td>croix</td><td>x</td></tr>
+      <tr><td>ronds</td><td>o</td></tr>
+      <tr><td>points et flèches</td><td>&lt:</td></tr>
+  </table>
+
+<h4>Les points</h4>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+x = [4.51, 4.87, 5.89, 3.45, 4.89]
+y = [56.4, 57.5, 64.2, 57.1, 61.2]
+plt.pyplot(x, y, "ob") # o pour rond et b pour blue
+plt.xlabel("abscisses")
+plt.ylabel("ordonnées")
+pt.show()</code></pre>
+
+<img src="../../images/maths/points.png" alt="points" width=50% style="margin-top:2%;">
+
+  <h4>Les nuages de points</h4>
+
+  <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+nbre_points = 200
+r = 2 * np.random.rand(nbre_points)
+theta = 2 * np.pi * np.random.rand(nbre_points)
+area = 200 * r**2 * np.random.rand(nbre_points)
+c12 = plt.scatter(theta, r, c=theta, s=area, cmap=plt.cm.winter)
+plt.show()</code></pre>
+
+  <img src="../../images/maths/nuagePoints.png" alt="nuage de points" width=50% style="margin-top:2%;">
+
+  <p>La couleur winter peut être modifiée parmi les couleurs de la gamme cmap (Colormap) :</p>
+<ul>
+  <li>'viridis', 'plasma', 'inferno', 'magma', 'cividis'</li>
+  <li>'Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds',
+    'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu',
+    'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn'</li>
+  <li>'binary', 'gist_yarg', 'gist_gray', 'gray', 'bone', 'pink',
+    'spring', 'summer', 'autumn', 'winter', 'cool', 'Wistia',
+    'hot', 'afmhot', 'gist_heat', 'copper'</li>
+  <li>'PiYG', 'PRGn', 'BrBG', 'PuOr', 'RdGy', 'RdBu',
+    'RdYlBu', 'RdYlGn', 'Spectral', 'coolwarm', 'bwr', 'seismic'</li>
+  <li>'twilight', 'twilight_shifted', 'hsv'</li>
+  <li>'Pastel1', 'Pastel2', 'Paired', 'Accent',
+    'Dark2', 'Set1', 'Set2', 'Set3',
+    'tab10', 'tab20', 'tab20b', 'tab20c'</li>
+  <li>'flag', 'prism', 'ocean', 'gist_earth', 'terrain', 'gist_stern',
+    'gnuplot', 'gnuplot2', 'CMRmap', 'cubehelix', 'brg',
+    'gist_rainbow', 'rainbow', 'jet', 'nipy_spectral', 'gist_ncar'</li>
+  <li></li>
+</ul>
+
+<h4>Courbe 3d</h4>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+import matplotlib as mpl
+from math import *
+from mpl_toolkits.mplot3d import Axes3D
+
+# valeur du pas
+step = 600
+# valeur du paramètre
+theta = np.linspace(-16 * np.pi, 16 * np.pi, step)
+# valeurs de x, y, z
+z = np.linspace(-2, 2, step)
+r = z**2 + 1
+x = r * np.sin(theta)
+y = r * np.cos(theta)
+# construction du graphe
+fig = plt.figure()
+graphe = fig.gca(projection='3d')
+graphe.plot(x, y, z, label='parametric curve')
+graphe.legend()
+
+plt.show()</code></pre>
+
+<img src="../../images/maths/courbe3d.png" alt="courbe 3d" width=50% style="margin-top:2%;">
+
+<h4>Surface 3d</h4>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+from math import *
+
+fig = plt.figure()
+
+# construction des axes
+graphe = fig.gca(projection='3d')
+
+# construction de la surface 3D
+x = np.arange(-7, 0, 0.25)
+y = np.arange(-5, 5, 0.25)
+x, y = np.meshgrid(0.3*x, 0.4*y)
+z = 2*np.exp(-(x**2 + y**2))
+surf = graphe.plot_surface(x, y, z, rstride=1, cstride=1, cmap=cm.cividis, linewidth=1, antialiased=True)
+graphe.set_zlim(-0.5, 1.5)
+
+fig.colorbar(surf, shrink=0.5, aspect=10)
+plt.show()</code></pre>
+
+<img src="../../images/maths/surface3d.png" alt="surface 3d" width=50% style="margin-top:2%;">
+
+  <h4>Contour plot</h4>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+plt.style.use('seaborn-white')
+
+def f(x,y):
+  return np.sin(x)**3 + np.cos(10-y*x) * np.cos(x)**2
+
+x = np.linspace(1.7, 4.6, 500)
+y = np.linspace(0.2, 4.7, 500)
+X, Y = np.meshgrid(x,y)
+Z = f(X, Y)
+
+plt.contourf(X, Y, Z,35, cmap='BrBG')
+plt.show()</code></pre>
+
+  <img src="../../images/maths/contour.png" alt="contour plot" width=50% style="margin-top:2%;">
+
+</div>
+</section>
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+
+<!-- RAPPELS -->
+
+<h2>Rappels</h2>
+
+<h3>Comment tracer la courbe représentative d'une fonction ?</h3>
+
+
+<p>&#128077; On sait placer un point M(x; y) dans un plan à l'aide d'un repère orthonormé. L'abscisse x se place horizontalement, l'ordonnée y se place verticalement. </p>
+
+<div class="exemple">
+	<p><em>Exemple :</em> Le point A(3; 2) se place dans un plan en avançant de 3 unités horizontalement et de 2 unités verticalement, comme ci-dessous</p>
+	<img src="../../images/maths/placerPoint.png" alt="points dans un repere">
+</div>
+
+<div class="fieldsetDefinition">
+<h4>DEFINITION - Courbe</h4>
+
+<p>On appelle courbe représentative de la fonction \(f\) l'ensemble des points de coordonnées \((x; f(x))\) où \(x\) appartient à l'ensemble de définition.</p>
+</div>
+
+<p>Lorsqu'on dessine la courbe d'une fonction, on ne place pas des points au hasard, mais des points tels que les abscisses et les ordonnées sont en relation à travers la fonction \(f\). On représente donc la fonction \(f\) et dans ce cas les abscisses sont des antécédents de \(f\) et les ordonnées sont les images correspondantes.</p>
+
+<div class="exemple">
+	<p><em>Exemple : </em>dans le graphe ci-dessous le point A(3; 2) n'appartient pas à la courbe de la fonction \(f\) dessinée en vert, mais le point B(2; 4) appartient à cette courbe. Ainsi 4 est l'image de 2 par la fonction \(f\). On écrit \(f(2)=4\).</p>
+	<img src="../../images/maths/pointCourbe.png" alt="points dans un repere">
+	</div>
+
+<h4></h4>
+<h4>Méthode : comment tracer une courbe</h4>
+
+<p>Pout tracer la courbe représentative d'une fonction \(f\), il faut commencer par déterminer l'ensemble de définition de \(f\), puis choisir un ensemble de valeurs dans cet ensemble et calculer leurs images. Il faut ensuite tracer les points trouvés et les relier au stylo.</p> 
+
+<div class="exemple">
+	<p><em>Exemple : </em>pour tracer la courbe de la fonction \(f\) telle que \(f(x)=x^2\), on choisit par exemple les valeurs -3, -2, -1, 0, 1, 2, 3 dont on calcule les images qu'on inscrit dans un tableau comme ci-dessous</p>
+		<table>
+			<tr><td>\(x\)</td><td>-3</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+			<tr><td>\(f(x)\)</td><td>9</td><td>4</td><td>1</td><td>0</td><td>1</td><td>4</td><td>9</td></tr>
+		</table>
+	<p>On va donc maintenant placer les points (-3; 9), (-2; 4), (-1; 1), (0; 0), (1; 1), (2; 4), (3; 9) dans un plan puis les relier pour dessiner la courbe représentative de \(f\).</p> 
+	<img src="../../images/maths/fonctionCarre.png" alt="fonction carre">
+
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type :<br/>
+	Tracer la courbe représentative de la fonction \(f\) définie par \(f(x)=x^3\)</strong></p>
+	<p>Solution :<br/>
+	L'ensemble de définition de cette fonction est \(\mathbb{R}\). On crée le tableau suivant à partir des valeurs -1.5, -1, -0.5, 0, 0.5, 1, 1.5</p>
+<table>
+			<tr><td>\(x\)</td><td>-1.5</td><td>-1</td><td>-0.5</td><td>0</td><td>0.5</td><td>1</td><td>1.5</td></tr>
+			<tr><td>\(f(x)\)</td><td>-3.375</td><td>-1</td><td>-0.125</td><td>0</td><td>0.125</td><td>1</td><td>3.375</td></tr>
+		</table>
+		<p>On va donc maintenant relier les points (-1.5; -3.375), (-1; -1), (-0.5; -0.125), (0; 0), (0.5; 0.125), (1; 1), (1.5; 3.375) dans un plan pour obtenir la courbe représentative de \(f\).</p> 
+		<img src="../../images/maths/fonctionCube.png" alt="fonction cube">
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong><br/>
+	1. Tracer la courbe représentative de la fonction \(f\) définie par \(f(x) = \sqrt{x}\)<br/>
+	2. Tracer la courbe représentative de la fonction \(f\) définie par \(f(x) = \frac{1}{x}\)</p>
+</div>
+
+	<h3>Lecture de courbe</h3>
+
+
+	<h4>Méthode : comment trouver l'image</h4>
+	
+	
+	
+	
+	
+	<div class="exemple">
+		<p><em>Exemple : </em> Trouver l'image de 2 par la fonction \(f\) représentée ci-dessous.</p>
+			<img src="../../images/maths/courbeImageFonction.png" alt="recherche image">
+			<p>On se place au niveau de la valeur 2 en abscisses. On cherche le point correspondant sur la courbe, puis la valeur correspondante sur l'axe des ordonnées. </p>
+			<img src="../../images/maths/courbeImageFonctionCorrection.png" alt="recherche image">
+			<p>L'image de 2 par la fonction \(f\) est donc 1.</p>
+		</div>
+	
+	<p>&#128077; L'image se lit sur l'axe des ordonnées.</p>
+	
+	<p>Pour connaître l'image de 2 par une fonction \(f\) représentée par une courbe, on se place donc sur l'axe des abscisses à la valeur 2, puis on observe sur la courbe de \(f\) le point correspondant. Il suffit ensuite de lire la valeur correspondante sur l'axe des ordonnées.</p>
+	
+	<div class="exerciceType">
+		<p><strong>Exercice type :<br/>
+		Trouver l'image de 2 par la fonction représentée ci-dessous</strong></p>
+		<img src="../../images/maths/exerciceImageAntecedent.png" alt="exercice images antécédents">
+		<p>On lit sur le graphe que l'image de 2 est 2.</p>
+		</div>
+	
+		<div class="exerciceApplication">
+		<p><strong>A vous de jouer :</strong><br/>
+	à partir du graphe ci-dessus, trouver les images de -3, -2, 0, 5.</p></div>
+	
+	
+	
+	<h4>Méthode : comment trouver les antécédents</h4>
+	
+	
+	<div class="exemple">
+		<p><em>Exemple : </em> Trouver les antécédents de 1 par la fonction \(f\) représentée ci-dessous.</p>
+			<img src="../../images/maths/courbeImageFonction.png" alt="recherche image">
+			<p>On se place au niveau de la valeur 1 en ordonnées. On cherche le point correspondant sur la courbe, puis la valeur correspondante sur l'axe des abscisses. </p>
+			<img src="../../images/maths/courbeAntecedentFonctionCorrection.png" alt="recherche image">
+			<p>Les antécédents de 1 par la fonction \(f\) sont donc -1 et 2.</p>
+		</div>
+	
+	<p>&#128077; Les antécédents se lisent sur l'axe des abscisses.</p>
+	
+	<p>Pour connaître les antécédents de 1 par une fonction \(f\) représentée par une courbe, on se place donc sur l'axe des ordonnées à la valeur 1, puis on observe sur la courbe de \(f\) le ou les points correspondants. Il suffit ensuite de lire la ou les valeurs correspondantes sur l'axe des abscisses.</p>
+	
+	<div class="exerciceType">
+		<p><strong>Exercice type :<br/>
+		Trouver le ou les antécédents de -3 par la fonction représentée ci-dessous</strong></p>
+		<img src="../../images/maths/exerciceImageAntecedent.png" alt="exercice images antécédents">
+		<p>On lit sur le graphe que l'antécédent de -3 est -5.</p>
+		</div>
+	
+		<div class="exerciceApplication">
+		<p><strong>A vous de jouer :</strong> 
+	à partir du graphe ci-dessus, trouver le ou les antécédents de 0, 1, 3, 4.</p></div>
+
+</div>
+</section>
+<!-- la fermeture du bloc se fait dans le gabarit -->
+<section class="px-5 py-5 bg-white">
+<div class="container">
+
+{% endblock cours %}

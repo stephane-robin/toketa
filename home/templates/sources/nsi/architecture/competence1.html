@@ -1,0 +1,518 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+  <li><a href="">le rôle d'un système d'exploitation</a></li>
+  <li><a href="">l'architecture Linux</a></li>
+  <li><a href="">les principales lignes de commande</a></li>
+  <li><a href="">l'affichage d'un fichier au terminal</a></li>
+  <li><a href="">la documentation</a></li>
+  <li><a href="">les droits d'utilisateur</a></li>
+  <li><a href="">l'installation d'un programme, la décompression d'une archive</a></li>
+  <li><a href="">la sécurité sur Linux</a></li>
+  <li><a href="">la mise à niveau système</a></li>
+  <li><a href="">la création d'une clé bootable et l'installation de Linux</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- ROLE D'UN SYSTEME D'EXPLOITATION -->
+
+<h3>Rôle d'un système d'exploitation</h3>
+
+<p>Les systèmes d'exploitation les plus répandus sont les suivants : Windows, Android, iOS, Mac OS, Linux et Unix.</p>
+<p>On peut les classer en deux catégories : les systèmes posix et le système Windows.</p>
+
+<p>Windows est issu de MS-DOS alors que les systèmes posix sont tous issus de Unix. Android, iOS, Mac OS 
+  et Linux sont des systèmes posix.</p>
+
+<p>Le rôle d'un système d'exploitation est le suivant :
+	<ul>
+		<li>communication avec les périphériques (processeur, mémoire, carte graphique, carte réseau, clavier, écran, ...)</li>
+		<li>exécution des programmes</li>
+		<li>gestion des tâches</li>
+		<li>gestion d'accès aux ressources</li>
+	</ul>
+</p>
+
+<p>Tout système d'exploitation est construit autour de son noyau, qui communique directement avec les différents périphériques par l'intermédiaire d'un logiciel appelé pilote, ou qui utilise pour accéder aux ressources des intermédiaires appelés gestionnaires de ressources.</p>
+
+<p>Une ressource peut être par exemple un processeur, une variable stockée en mémoire, une imprimante, ...</p>
+
+
+<!-- ARCHITECTURE LINUX -->
+<h3>Architecture Linux</h3>
+
+	
+<h4>Arborescence</h4>
+
+  <p>La racine est symbolisée par / en Linux.</p>
+
+  <ul>
+    <li>bin contient les fichiers exécutables de la machine,</li>
+    <li>dev contient les périphériques,</li>
+    <li>etc contient les fichiers de configuration,</li>
+    <li>home contient les répertoires personnels de chaque utilisateur (d'où le nom de dossier home/stephane),</li>
+    <li>lib contient les bibliothèques partagées par les programmes,</li>
+    <li>media est un répertoire de montage pour les périphériques amovibles,</li>
+    <li>opt est utilisé pour les extensions de programmes,</li>
+    <li>root est le dossier dédié au superutilisateur,</li>
+    <li>sbin contient les programmes système importants,</li>
+    <li>tmp est utilisé par les programmes pour stocker des fichiers,</li>
+    <li>proc contient les informations du système,</li>
+    <li>usr est le dossier dans lequel seront stockés les programmes installés par l'utilisateur</li>
+    <li>site-packages est le dossier dans lequel seront stockés les packages</li>
+    <li>var contient les logs</li>
+  </ul>
+
+<p>Un point "." devant le nom d'un fichier ou d'un dossier indique qu'il est caché lors de l'affichage. Il n'est pas pour autant introuvable,
+Linux a souhaité le cacher pour ne pas encombrer l'affichage. En revanche un point "." devant une adresse représente le dossier courant,
+alors qu'un point double point ".." devant une adresse représente le dossier parent. Le signe ~ symbolise le dossier personnel /home/stephane.</p>
+
+
+
+  <p>L'installation d'applications sous Linux ne nécessite pas de programme d'installation comme sous Windows, mais des paquets au format .deb qui
+  contiennent à la fois les instructions d'installation et l'application elle-même. Les fichiers .deb se trouvent dans des dépôts
+  et la gestion des dépendances est automatisée. Les fichiers .deb sont des versions compilées de programmes, donc sous forme binaire. Ils se basent sur les codes sources
+  des programmes qui sont écrits dans le langage dans lequel ils ont été créés (Python, C, Java, ...).</p>
+
+
+
+
+
+
+
+
+
+  <h4 id="inviteComamnde">L'invite de commande</h4>
+
+  <p>Par défaut, l'invite de commande s'ouvre dans le dossier /home/[nomUtilisateur] où [nomUtilisateur] est 
+	le nom de l'utilisateur du système tel qu'il a été défini dans la machine. On peut également trouver l'invite de 
+  commande sous le nom de Terminal. Une fois l'invite de commande ouverte, le signe $ symbolise l'utilisateur alors que le signe # symbolise le superutilisateur qui travaille donc
+  en mode root. </p>
+
+  <p>L'autocomplétion se réalise avec la touche de tabulation, la navigation dans le terminal se fait à l'aide des flèches haut et bas.</p>
+
+  <p>Une double tabulation permet d'afficher toutes commandes dont le nom commence par les lettres écrites
+  dans la console. Par exemple lorsqu'on tape da puis deux fois la touche tabulation, on obtient les choix
+  dash et date.</p>
+
+  <p><em>clear</em> ou Ctrl+l permet d'effacer le contenu de la console.</p>
+
+  <p><em>exit</em> ou Ctrl+d permet de fermer la console</p>
+
+
+  <p>Le .bashrc est un fichier de configuration du Terminal. Il se situe dans le répertoire personnel /home/stephane/</p>
+
+  <p>nano est un éditeur de texte léger présent par défaut dans les systèmes Linux. On peut le lancer en tapant simplement nano dans l'invite de commande.
+    Pour ouvrir monFichier à partir de nano il faut taper nano monFichier dans l'invite de commande lorsqu'on se situe dans le répertoire parent.
+    L'enregistrement d'un fichier à partir de nano se fait directement dans le dossier personnel /home/[nomUtilisateur]. Pour sortir de 
+  nano il suffit de taper Ctrl+X</p>
+
+
+
+  <!-- LIGNES DE COMMANDE -->
+
+  <h3 id="commande">Les principales lignes de commande</h3>
+
+  <h4>Se déplacer, connaître l'emplacement</h4>
+
+  <table>
+    <tr> <th> Objectif</th> <th> Instruction</th> </tr>
+    <tr> <td> afficher le dossier courant (print working directory)</td><td><pre><code class="language-svg">pwd</code></pre></td></tr>
+    <tr> <td> connaître l'emplacement d'un programme (par exemple Python)</td> <td><pre><code class="language-svg">which python3</code></pre></td></tr>
+    <tr> <td> se rendre dans le dossier <em>Documents</em> </td> <td> <pre><code class="language-svg">cd Documents</code></pre> </td> </tr>
+    <tr> <td> revenir au dossier parent </td> <td> <pre><code class="language-svg">cd ..</code></pre></td> </tr>
+    <tr> <td> revenir à /home/stephane </td> <td> <pre><code class="language-svg">cd</code></pre></td> </tr>
+    <tr> <td> afficher la date </td> <td> <pre><code class="language-svg">date</code></pre></td></tr>
+  </table>
+
+
+  <h4>Lister, afficher</h4>
+
+  <table>
+    <tr> <th> Objectif</th> <th> Instruction</th> </tr>
+    <tr> <td> afficher la liste des éléments du dossier courant </td> <td> <pre><code class="language-svg">ls</pre></td> </tr>
+    <tr> <td> afficher la liste détaillée des éléments du dossier courant </td> <td> <pre><code class="language-svg">ls -l</code></pre></td> </tr>
+    <tr> <td> afficher la liste détaillée des éléments du dossier courant avec une taille facilement lisible pour
+      l'homme</td> <td><pre><code class="language-svg">ls -lh</code></pre></td></tr>
+    <tr> <td> afficher la liste des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -a</code></pre></td> </tr>
+    <tr> <td> afficher la liste détaillée des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -la</code></pre></td> </tr>
+    <tr> <td> afficher la liste détaillée des éléments du dossier courant en triant par date de dernière modification au lieu de trier par ordre alphabétique</td> <td><pre><code class="language-svg">ls -lt</code></pre></td></tr>
+    <tr> <td> afficher la liste des éléments de MonDossier</td> <td><pre><code class="language-svg">ls ~/Documents/MonDossier</code></pre></td></tr>
+    <tr> <td> afficher la liste des éléments actifs du dossier local </td> <td> <pre><code class="language-svg">ps</code></pre></td> </tr>
+    <tr> <td> afficher le contenu de <em>monFichier</em> (voir détails plus bas)</td> <td> <pre><code class="language-svg">cat monFichier</code></pre></td> </tr>
+  </table>
+
+  <h4>Créer, copier, déplacer, supprimer</h4>
+
+  <p>Attention, il n'y a pas de possibilité de récupération d'un dossier ou fichier supprimé à l'aide de la commande rm. Il n'y a
+  donc pas d'équivalent d'une corbeille lorsqu'on utilise les lignes de commande. Il n'y a pas non plus de demande de confirmation, le dossier ou fichier
+  est simplement supprimé au moment oû l'utilisateur presse la touche Entrée, à moins d'utiliser l'option -i. La commande rm est donc à utiliser avec précaution,
+    et il semble important d'utiliser systématiquement l'option -i.</p>
+
+  <table>
+    <tr> <th> Objectif</th> <th> Instruction</th> </tr>
+    <tr> <td> créer le fichier <em>monFichier</em> </td> <td> <pre>touch monFichier</pre></td> </tr>
+    <tr> <td> créer le dossier <em>monDossier</em> </td> <td> <pre>mkdir monDossier</pre></td> </tr>
+    <tr> <td> creer le dossier <em>monDossier</em> contenant le sous-dossier <em>monSousDossier</em></td> <td><pre>mkdir -p monDossier/monSousDossier</pre></td></tr>
+    <tr> <td> supprimer <em>monFichier</em> </td> <td><pre>sudo rm monFichier</pre></td></tr>
+    <tr> <td> supprimer <em>monFichier</em> en demandant confirmation (-i) et en demandant l'état de ce qui a été fait (-v)</td> <td><pre>sudo rm -vi monFichier</pre></td></tr>
+    <tr> <td> supprimer <em>monDossier</em> et tout ce qu'il contient</td> <td><pre>sudo rm -r monDossier</pre></td></tr>
+    <tr> <td> déplacer <em>monFichier</em></td> <td><pre>mv chemin_monFichier  chemin_nouvelEmplacement</pre></td></tr>
+    <tr> <td>copier monFichier dans le répertoire courant</td> <td><pre>cp monFichier monFichierCopie</pre></td></tr>
+    <tr> <td>copier monFichier dans Documents</td> <td><pre>cp monFichier ~/Documents/monFichierCopie</pre></td></tr>
+    <tr> <td>copier monFichier dans Documents sous le même nom</td> <td><pre>cp monFichier ~/Documents/</pre></td></tr>
+    <tr> <td> copier tous les fichiers au format .py dans monDossier</td> <td><pre>cp *.py monDossier/</pre></td></tr>
+    <tr> <td> copier monDossier et tout ce qu'il contient</td> <td><pre>cp -R monDossier monDossierCopie</pre></td></tr>
+    <tr> <td> déplacer monFichier dans monDossier</td> <td><pre>mv monFichier monDossier/</pre></td></tr>
+    <tr> <td> déplacer monDossier et tout ce qu'il contient dans monAutreDossier</td> <td><pre>mv monDossier/ monAutreDossier/</pre></td></tr>
+    <tr> <td> déplacer tous les fichiers au format .py dans monDossier</td> <td><pre>mv *.py monDossier/</pre></td></tr>
+    <tr> <td> renommer monFichier en nouveauNomFichier</td> <td><pre>mv monFichier nouveauNomFichier</pre></td></tr>
+    <tr> <td> déplacer monFichier dans monDossier et le renommer nouveauNomFichier</td> <td><pre>mv monFichier monDossier/nouveauNomFichier</pre></td></tr>
+  </table>
+
+  <h4>Commandes générales</h4>
+
+  <table>
+    <tr> <th> Objectif</th> <th> Instruction</th> </tr>
+    <tr> <td> stopper l'exécution d'un code ou d'un serveur </td><td><code class="language-svg">Ctrl+c</code></td></tr>
+    <tr> <td> quitter une interface exécutée à partir du terminal </td> <td><code class="language-svg">q</code></td></tr>
+    <tr> <td> vider le terminal</td> <td><code class="language-svg">clear</code></td> </tr>
+    <tr> <td> lancer l'interpréteur Python </td> <td><code class="language-svg">python3</code></td></tr>
+    <tr> <td> exécuter monFichier.py </td> <td><code class="language-svg">python3 monFichier.py</code></td></tr>
+    <tr> <td> quitter l'interpréteur Python </td> <td><code class="language-svg">exit()</code></td></tr>
+    <tr> <td> installer un package Python </td> <td><code class="language-svg">pip install monPackage</code></td></tr>
+    <tr> <td> désinstaller un package Python </td> <td><code class="language-svg">pip uninstall monPackage</code></td></tr>
+    <tr> <td> exécuter monPackage en Python </td> <td><code class="language-svg">python -m monPackage</code></td></tr>
+    <tr> <td> connaître la taille du dossier courant (uniquement) en utilisant une lecture facile pour l'homme</td> <td><code class="language-svg">du -sh</code></td></tr>
+    <tr> <td> connaître la version du système Linux</td> <td><code class="language-svg">lsb_release -a</code></td></tr>
+    <tr> <td> ouvrier monFichier avec nano</td> <td><code class="language-svg">nano monFichier</code></td></tr>
+  </table>
+
+
+
+
+
+<h3 id="affichageConsole">Affichage d'un fichier au Terminal</h3>
+
+  <p>Pour afficher un fichier tout entier dans la console, on se place dans le dossier parent du fichier à lire puis on utilise l'instruction</p>
+  <pre><code class="language-svg">cat nomFichier</code></pre>
+
+  <p>Si l'on souhaite afficher également le numéro de chaque ligne du fichier il faut rajouter</p>
+  <pre><code class="language-svg">cat nomFichier -n</code></pre>
+
+  <p>Si l'on souhaite afficher le fichier page par page, on utilise l'instruction</p>
+  <pre><code class="language-svg">less nomFichier</code></pre>
+
+  <p>Dans ce cas, la console ne fonctionne plus qu'en mode affichage.</p>
+  <ul>
+    <li>pour revenir en mode normal, il faut taper 'q'</li>
+    <li>pour descendre d'une ligne, on peut utiliser la flèche du bas</li>
+    <li>pour monter d'une ligne, on peut utiliser la flèche du haut</li>
+    <li>pour descendre en bas de l'ếcran, on peut utiliser la touche Entrée ou la touche Page Down</li>
+    <li>pour monter en haut de l'écran, on peut utiliser la touche Page Up</li>
+    <li>pour rechercher unMot dans le fichier lu dans la console, on peut utiliser /unMot directement</li>
+  </ul>
+
+  <p>Pour afficher les 5 premières lignes de monFichier</p>
+  <pre><code class="language-svg">head -n 5 monFichier</code></pre>
+
+
+
+
+  <h3>RTFM</h3>
+
+  <p> Pour afficher la documentation relative à la commande mkdir dans la console, on utilise </p>
+  <pre><code class="language-svg">man mkdir</code></pre>
+
+  <p>La documentation contient les éléments suivants :</p>
+  <ul>
+    <li>NAME : le nom de la commande</li>
+    <li>SYNOPSIS : les différentes formes d'utilisation de la commande</li>
+    <li>DESCRIPTION : détail des différentes options possibles et explications des fonctionnalités</li>
+    <li>AUTHOR : auteurs de la documentation et de la commande</li>
+    <li>REPORTING BUGS : adresses pour reporter un bug</li>
+    <li>COPYRIGHT : licence d'utilisation</li>
+    <li>SEE ALSO : autres commandes pouvant être utiles</li>
+  </ul>
+
+
+
+
+  <!-- DROITS UTILISATEUR -->
+
+  <h3>Les droits d'utilisateur</h3>
+
+  <p>La commande <em>sudo</em> permet de passer temporairement en mode root et d'acquérir les droits du super-utilisateur. Elle signifie
+    Substitute User DO. Une fois en mode root, l'invite de commande se termine par le symbole # .</p>
+  <p>Contrairement à Windows, le système Linux n'est pas connecté par défaut en mode root, ce qui limite les risques potentiels.</p>
+
+
+
+  <h4>Changement de mot de passe</h4>
+
+  <p>Pour changer le mot de passe du compte [nomUtilisateur] :</p>
+
+  <pre><code class="language-svg">sudo passwd [nomUtilisateur]</code></pre>
+
+  <p>Pour changer le mot de passe du compte sur lequel on est connecté, c'est à dire du super-utilisateur et de la connexion à la machine.</p>
+
+  <pre><code class="language-svg">sudo passwd</code></pre>
+
+
+  <h4>Modification des droits d'accès</h4>
+
+  <p>Chaque dossier et chaque fichier possède une liste de droits symbolisés par une lettre :</p>
+  <ul>
+    <li>d pour directory : indique si l'élément est un dossier</li>
+    <li>l pour link : indique si l'élément est un lien ou un raccourci vers un fichier ou dossier</li>
+    <li>r pour read : indique si on peut lire l'élément</li>
+    <li>w pour write : indique si on peut modifier l'élément et donc le supprimer</li>
+    <li>x pour execute : indique si on peut exécuter cet élément lorsque c'est un fichier, indique si on
+      peut voir les sous-dosssiers qu'il contient lorsqu'on a le droit de lecture dessus</li>
+  </ul>
+
+  <p>On peut consulter ces droits avec la commande ls -l. Lorsqu'ils existent les droits sont symbolisés par une lettre,
+    lorsqu'ils n'existent pas les droits sont remplacés par un tiret. Par ailleurs, les droits sont regroupés de la façon suivante et
+    sans espace : (dossier) (utilisateur proprétaire) (groupe) (autres utilisateurs)</p>
+    <p>Par exemple on peut trouver les information suivantes lorsqu'on utilise la commande ls -l</p>
+
+  <pre><code class="language-svg">drwxr-xr-x 1 [nomUtilisateur] [nomUtilisateur] 4096 2020-11-03 21:37 Desktop</code></pre>
+
+  <p>Lorsqu'un dossier autorise tous les droits, on obtient donc l'information suivante drwxrwxrwx</p>
+
+<p>La commande chmod permet de modifier les droits d'accès d'un fichier ou d'un dossier. Attention de ne pas la confondre
+  avec la commande chown qui permet de gérer quel utilisateur et quel groupe est propriétaire d'un fichier</p>
+
+  <p>Il n'est pas nécessaire d'être super-utilisateur pour modifier un dossier ou fichier. En revanche, il faut être propriétaire de ce dossier ou fichier.</p>
+
+  <p>Pour utiliser la commande chmod, il faut savoir qu'à chaque lettre correspond un chiffre. Ainsi, r correspond à 4,
+  w correspond à 2 et x correspond à 1. On combine maintenant les droits en additionnant les chiffres précédents.</p>
+  <p>Ainsi le tableau suivant récapitule les différents droits sous forme de chiffres :</p>
+
+  <table>
+    <tr><th>droits</th><th>chiffres correspondants</th></tr>
+    <tr><td>---</td><td>0</td></tr>
+    <tr><td>r--</td><td>4</td></tr>
+    <tr><td>-w-</td><td>2</td></tr>
+    <tr><td>--x</td><td>1</td></tr>
+    <tr><td>rw-</td><td>6</td></tr>
+    <tr><td>wx-</td><td>3</td></tr>
+    <tr><td>r-x</td><td>5</td></tr>
+    <tr><td>rwx</td><td>7</td></tr>
+  </table>
+
+<p>Par exemple 640 représente les droits du propriétaire (6 donc lecture, écriture), les droits du groupe (4 donc lecture),
+et les droits des autres utilisateurs (0 donc aucun droit).</p>
+
+  <p>Finalement, pour changer les droits sur le monFichier et être le seul autorisé à le lire et le modifier, il faut exécuter la commande suivante</p>
+  <pre><code class="language-svg">chmod 600 monFichier</code></pre>
+  <p>Cette commande est la même pour un dossier. Il faut penser à se placer dans le répertoire parent ou préciser une adresse absolue.</p>
+
+  <p>Maintenant la commande ls -l fournit le résultat suivant</p>
+  <pre><code class="language-svg">-rw------- 1 [nomUtilisateur] [nomUtilisateur] 0 2019-09-15 21:12 monFichier</code></pre>
+
+  <p>Pour affecter des droits sur un dossier de manière récursive, c'est à dire en affectant tous les fichiers et sous-dossiers qu'il contient,
+  il faut utiliser la commande</p>
+  <pre><code class="language-svg">chmod -R 600 monFichier</code></pre>
+  <p>Cette commande est la même pour un dossier. Il faut penser à se placer dans le répertoire parent ou préciser une adresse absolue.</p>
+
+
+
+  <h3>Installation d'un programme, décompression d'une archive</h3>
+
+
+  <h4>Installation d'un programme avec apt-get</h4>
+  
+  <p>Il faut généralement mettre à jour le cache des paquets (i.e. télécharger la nouvelle liste des paquets proposés par le dépôt) avant de procéder à l'installation :</p>
+  <pre><code class="language-svg">sudo apt-get update
+  sudo apt-get install monPaquet</code></pre>
+  
+  <p>Pour obtenir la description d'un paquet :</p>
+  <pre><code class="language-svg">sudo apt-cache show nomPaquet</code></pre>
+  
+ 
+  <p>Pour mettre à jour tous les paquets, il faut d'abord récupérer la liste des nouveaux paquets afin de pouvoir comparer leurs versions
+    à celles présentes dans le système. Cette opération doit être faite régulièrement pour assurer la sécurité du système.</p>
+    <pre><code class="language-svg">sudo apt-get update
+sudo apt-get upgrade</code></pre>
+ 
+  
+  
+  
+  
+  <!-- zipper un dossier zip -->
+  
+  <h4 id="zip">Commandes pour zipper/dézipper un dossier .zip</h4>
+  
+  <p>Pour zipper le dossier mon_dossier en l'appelant mon_archive.zip :</p>
+  <pre><code class="language-svg">zip -r mon_archive.zip mon_dossier</code></pre>
+  
+  <p>Pour dézipper l'archive mon_archive.zip en l'appelant mon_dossier :</p>
+  <pre><code class="language-svg">unzip mon_archive.zip -d mon_dossier</code></pre>
+  
+  
+  
+  <!-- dézipper un dossier .gz-->
+  
+  <h4 id="gz">Commande pour dézipper un dossier .gz</h4>
+  
+  <p>Il faut se placer dans le dossier contenant mondossier.gz et l'instruction
+	suivante va le décompresser à ce même emplacement :</p>
+  <pre><code class="language-svg">gunzip mondossier.gz</code></pre>
+  
+  
+  <!-- installation d'un logiciel avec sh -->
+  
+  <h4 id="bash">Installation d'un logiciel à partir de .sh</h4>
+  
+  <p>Un fichier au format .sh est un fichier d'installation qui s'ouvre avec une commande bash. Pour cela, dans le répertoire courant, il faut d'abord
+	vérifier l'intégrité de l'installer en utilisant :</p>
+  
+  <pre><code class="language-svg">sha256sum nomInstaller.sh</code></pre>
+  
+  <p>puis lancer l'installation à l'aide de :</p>
+  
+  <pre><code class="language-svg">bash nomInstaller.sh</code></pre>
+  
+  <!-- installation d'un logiciel avec.tar.gz -->
+  
+  <h4 id="targz">Installation d'un logiciel à partir de .tar.gz</h4>
+  
+  <p>Un fichier .tar est une archive non compressée. En revanche, un fichier .gz est une compression de fichier.</p>
+  <p>Il faut d'abord déplacer le fichier .tar.gz vers /usr/local. Pour cela :</p>
+  <pre><code class="language-svg">sudo mv /home/stephane/Téléchargements/nom_fichier.tar.gz /usr/local</code></pre>
+  <p>Il faut ensuite se placer dans le répertoire /usr/local</p>
+  <pre><code class="language-svg">cd /usr/local</code></pre>
+  <p>Puis il faut décompresser le fichier .gz :</p>
+  <pre><code class="language-svg">sudo tar xvzf nom_fichier.tar.gz</code></pre>
+  
+  <p>Finalement, il faut suivre les instructions d'installation dans le ficier README.txt ou le INSTALL</p>
+  
+  
+  
+  <!-- installation d'un logiciel avec tar.bz2 -->
+  
+  <h4 id="tarbz2">Installation d'un logiciel à partir de .tar.bz2</h4>
+  
+  <p>Il faut d'abord déplacer le fichier .tar.bz2 vers /usr/local. Pour cela :</p>
+  <pre><code class="language-svg">sudo mv /home/stephane/Téléchargements/nom_fichier.tar.bz2 /usr/local</code></pre>
+  <p>Il faut ensuite se placer dans le répertoire /usr/local</p>
+  <pre><code class="language-svg">cd /usr/local</code></pre>
+  <p>Puis il faut décompresser le fichier .bz2 :</p>
+  <pre><code class="language-svg">sudo tar xfvj nom_fichier.tar.bz2</code></pre>
+  
+  <p>Finalement, il faut suivre les instructions d'installation dans le ficier README.txt ou le INSTALL</p>
+  
+  
+  
+  <!-- installation d'un logiciel à partir de .deb -->
+  
+  <h4 id="deb">Installation d'un logiciel à partir de .deb</h4>
+  
+  <p>Un fichier .deb est un package permettant d'installer une application sous les systèmes Linux Debian.</p>
+  
+  <p>Il faut d'abord déplacer le fichier .tar.bz2 vers /usr/local. Pour cela :</p>
+  <pre><code class="language-svg">sudo mv /home/stephane/Téléchargements/nom_fichier.tar.bz2 /usr/local</code></pre>
+  <p>Il faut ensuite se placer dans le répertoire /usr/local</p>
+  <pre><code class="language-svg">cd /usr/local</code></pre>
+  
+  <p>Puis il faut exécuter le fichier .deb</p>
+  <pre><code class="language-svg">sudo dpkg -i nom_fichier.deb</code></pre>
+  
+
+<h4>Désinstallation d'un logiciel</h4>
+
+<p>Pour désinstaller un paquet, on peut utiliser l'instruction suivante :</p>
+
+<pre><code class="language-svg">sudo apt-get remove monPaquet</code></pre>
+
+<p>Pour désinstaller un paquet et ses dépendances devenues inutiles, on utilise</p>
+
+<pre><code class="language-svg">sudo apt-get autoremove monPaquet</code></pre>
+
+
+
+
+
+
+<h3>Sécurité sur Linux</h3>
+
+<h4>Nettoyage</h4>
+
+<p>Il est utile d'effectuer un nettoyage régulier de la mémoire et des dépendances à l'aide des instructions 
+  suivantes :</p>
+
+<pre><code class="language-svg">sudo apt-get autoclean
+sudo apt-get clean
+sudo apt-get autoremove</code></pre>
+
+
+
+
+
+  <!-- ANTIVIRUS -->
+  <h4>Antivirus</h4>
+
+  <p>L'antivirus ClamAv est compatible avec Linux et fonctionne en ligne de commande.</p>
+
+  <p>L'installation est détaillée sur la page <a href="https://www.inmotionhosting.com/support/security/install-clamav-on-ubuntu/"> inmotion.hosting</a></p>
+
+  <p>L'installation en ligne de commande s'effectue de la façon suivante :</p>
+  <pre><code class="language-svg">sudo apt-get update
+sudo apt-get install clamav clamav-daemon -y
+sudo systemctl stop clamav-freshclam
+sudo freshclam
+sudo systemctl start clamav-freshclam</code></pre>
+
+<p>Il est donc nécessaire de stopper le processus de ClamAv avant de mettre à jour la base de données de ClamAv pour ensuite relancer le processus de ClamAv. Cet antivirus s'active en ligne de commande et ne possède pas d'interface graphique. L'icône de ClamAv n'apparaît donc pas dans la liste des applications installées.</p>
+
+  <p>Pour lancer le scan, utiliser les instructions suivantes</p>
+<pre><code class="language-svg">clamscan -r /</code></pre>
+
+<p>Le processus de scan est assez long mais peut s'exécuter en toile de fond.</p>
+
+
+
+
+
+
+  <!-- mise à niveau système -->
+
+  <h3 id="upgrade">Mise à niveau système</h3>
+
+  <pre><code class="language-svg">sudo apt-get update
+sudo apt-get upgrade
+sudo apt dist-upgrade
+sudo apt-get install update-manager-core
+sudo do-release-upgrade
+sudo apt-get update</code></pre>
+
+
+
+
+
+
+  <!-- CREATION CLE BOOTABLE -->
+
+  <h3 id="bootable">Création d'une clé bootable et installation de Linux</h3>
+
+<p>La création d'une clé bootable ne nécessite pas nécessairement l'utilisation d'un ordinateur tiers. Toutefois, pour La création d'une clé bootable en ligne de commande il est nécessaire de disposer d'un poste tiers Linux. se fait en 3 étapes :</p>
+<ul>
+<li>télécharger l'image .iso de la version souhaitée de Linux à partir du <a href="https://releases.ubuntu.com/">site de Ubuntu releases</a> (pour la version Ubuntu) à l'aide d'un ordinateur tiers. Il est important de ne connecter qu'une seule clé à l'ordinateur tiers.</li>
+<li>partitionner une clé pour qu'elle devienne bootable à l'aide d'un ordinateur tiers, puis placer l'image .iso dans cette clé. Celle-ci devra posséder une capacité de stockage supérieure à 3 Go. Attention, il ne sera plus possible de l'utiliser comme clé de stockage par la suite.</li>
+<li>brancher la clé bootable sur l'ordinateur cible qu'on allume en ouvrant le menu boot (souvent F1 ou F2). Il faut ensuite configurer le démarrage sur clé USB, et finalement installer Linux en suivant les instructions.</li>
+</ul>
+
+  <p>Le détail de l'étape 2 (création d'une clé bootable en ligne de commande) se trouve ci-dessous :</p>
+  <ul>
+  	<li>introduire la clé dans l'ordinateur tiers puis identifier le nom de cette clé avec l'instruction <pre><code class="language-svg">lsblk</code></pre> . On doit obtenir un résultat du type sdb ... puis le détail sdb1 ...</li>
+  	<li>démonter les partitions de cette clé avec l'instruction <pre><code class="language-svg">sudo umount /dev/sdb1</code></pre> où sdb1 représente la référence de la clé.</li>
+  	<li>copier l'image .iso vers la clé USB avec l'instruction <pre><code class="language-svg">sudo dd if=Téléchargements/monImage.iso of=/dev/sdb bs=4M status=progress && sync</code></pre>, où dd permet de copier un disque, sdb est la nouvelle référence de la clé USB, 4M représente la taille, progress permet de voir en temps réel le progrès de la création de la clé et sync force les buffers à se vider sur la clé.</li>
+  	<li>il faut ensuite déconnecter puis connecter la clé sur l'ordinateur tiers</li>
+  </ul>
+
+{% endblock %}

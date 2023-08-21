@@ -1,0 +1,71 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>la différence entre Internet et le Web</li>
+    <li>le système clients-serveurs</li>
+    <li>une fiche mémo sur le Web</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>  
+
+<p>Cette vidéo publiée par <em>Fun Mooc</em> sur YouTube explique le fonctionnement du Web : <a href="https://www.youtube.com/watch?time_continue=6&v=GqD6AiaRo3U&feature=emb_logo" target="_blank">&#127911; vidéo Fun Mooc Le Web - YouTube</a>.</p>
+
+
+<h3>Différence entre Internet et le Web</h3>
+   
+   <p>Internet est un réseau informatique mondial distribué, composé de millions de sous-réseaux publics ou privés. De ce fait, il n'existe pas de terminal qui centralise les informations. Internet utilise des applications de messagerie instantanée, de courrier électronique, de partage peer-to-peer, ainsi que le Web.</p>
+
+    <p>Le World Wide Web, symbolisé par www, est un service particulier d'Internet. Il s'agit d'un système qui permet de naviguer de pages en pages en cliquant sur des liens. On utilise un navigateur ou <em>browser</em> (Chrome, Firefox, Edge, Opera, Safari,...) pour y accéder et pouvoir lire les différentes pages. Le navigateur est une application qui fait office de traducteur de code HTML, CSS et JavaScript sous forme de page lisible par l'utilisateur.</p>
+
+    <p>En résumé, Internet est un réseau, une infrastructure, alors que le Web est un service sur ce réseau.</p>
+
+    
+
+
+    <!-- Clients-serveurs-->
+
+    <h3>Clients-serveurs</h3>
+
+    <div class="exerciceApplication">
+        <p><strong>A vous de jouer : </strong>Quelle différence faites-vous entre client et serveur ? Quel lien peut-on trouver 
+            avec la notion de client et de serveur dans le commerce ?</p>
+    </div>
+
+<div class=fieldsetDefinition>
+<h4>VOCABULAIRE ...</h4> 
+<p>Les <strong>clients</strong> sont les ordinateurs qui servent à consulter les sites Web.</p>
+<p>Les <strong>serveurs</strong> sont des ordinateurs qui offrent des services. Ils peuvent par exemple stocker des sites Web et des bases de données.
+    Le fonctionnement du Web est basé sur une structure client-serveur.</p>
+<p>Une <strong>requête</strong> est une demande émise par un ordinateur client à destination d’un serveur qui contient l’information recherchée.</p>
+</div>
+
+<p>Voyons ensemble comment s'effectue une requête lorsque vous consultez un site.</p>
+
+<p>Tout d'abord, vous écrivez dans votre navigateur l'adresse URL du site que vous souhaitez consulter, par exemple :<br/>http://www.meteocentrale.ch/fr/europe/suisse/temps-geneve.</p> 
+<p>Cette adresse URL est composée des éléments suivants :</p>
+<img src="../../images/snt/url.png" width=60%>
+
+<p>Le protocole HTTP HyperText Transfert Protocol permet l'accès au Web et la communication entre un client et un serveur, en récupérant des données telles que les contenus HTML ou CSS.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Quelle est la version sécurisée du protocole HTTP ? Dans quels cas l'utilise-t-on ?</p>
+</div>
+
+<p>Toutefois, le Web n'est pas capable d'interpréter cette adresse URL qui est conçue pour faciliter la navigation de l'utilisateur. Nous savons déjà qu'Internet utilise des adresses IP. C'est le rôle du serveur DNS de traduire un nom de domaine en adresse IP. Le serveur DNS agit donc comme un annuaire téléphonique en fournissant la correspondance entre un nom de domaine et son adresse IP. 
+    Vous pouvez maintenant accéder au Web et les données échangées circulent en utilisant le protocole Internet TCP/IP que nous connaissons déjà.</p>
+
+<p>On peut résumer à l'aide du schéma ci-dessous comment s'effectue votre requête : </p>
+
+<h3>Fiche mémo</h3>
+
+
+<iframe src="{% static 'home/documents/memo_web.pdf' %}" height='1200px' type='application/pdf'></iframe>
+
+<iframe src="{% static 'home/documents/memo_web2.pdf' %}" height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

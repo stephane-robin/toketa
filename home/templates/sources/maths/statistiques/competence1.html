@@ -1,0 +1,86 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li><a href="#statistiques">les différences entre statistiques et probabilités</a></li>
+    <li><a href="#piege">les pièges à éviter</a></li>
+    <li><a href="#indicateurs">les principaux indicateurs en statistiques descriptives</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- DIFFERENCE ENTRE STATISTIQUES ET PROBABILITES -->
+<p class="my-5 invisible" id="statistiques">ancre</p>
+
+<h3>Différence entre statistiques et probabilités</h3>
+
+<p>Les statistiques consistent à décrire et analyser des données recueillies, afin de pouvoir exploiter les résultats obtenus (marketing, business, recherche scientifique,...). Les probabilités consistent à prédire
+    de futurs résultats en se basant sur des lois de probabilités ou des constatations statistiques. Pour résumer, l'un est tourné vers le passé, quand l'autre est tourné vers l'avenir, 
+    mais les deux notions sont utiles et interagissent.</p>
+
+
+<!-- LES PIEGES A EVITER -->
+<p class="my-5 invisible" id="piege">ancre</p>
+
+<h3>Les pièges à éviter</h3>
+
+<h4>Le piège des statistiques</h4>
+
+<p>Il est difficile de faire confiance aux statistiques publiées. Il faut tout d'abord connaître l'échantillon de la population qui a été sondé, puis il faut connaître les indicateurs qui ont été utilisés.</p>
+<p>Par exemple, à la suite d'une élection, un homme politique qui a obtenu 11,5% des suffrages se félicite d'une augmentation des votes en sa faveur de 33% par rapport à la précédente élection. En effet, au tour précédent, il était crédité de 8,65%, soit une augmentation de 33% en sa faveur.
+    Cette augmentation de 33% cache pourtant son résultat à 11,5% qui le place en 4ème position dans cette élection. L'homme politique continue son discours en expliquant que dans 5 des 10 départements composant le pays, il a obtenu un score supérieur à 40%. Certes, mais il omet de dire que ces 4 départements 
+    la densité de population est très faible et donc ces 5 départements sont peu représentatifs du résultat national. Moralité, il faut toujours chercher à connaître l'élément mesuré par les statistiques ainsi que 
+    l'échantillon de la population qui a été sondé.</p>
+
+<p>Autre exemple, imaginons une classe qui obtient une moyenne de 10 / 20 à une évaluation. Ce résultat peu paraître satisfaisant, mais si on choisit de prendre la médiane comme indicateur on se rend compte que la moitié de la classe a 
+    obtenu une note inférieure à 8 / 20. Les notes obtenues sont les suivantes 9, 9, 6,	8, 9, 9, 7,	6, 8, 7, 7,	6, 8, 7, 8,	20,	8, 19, 20, 19. Moralité, en utilisant un indicateur différent, le résultat semble différent alors qu'il est inchangé.
+</p>
+
+
+
+
+<h4>Le piège des probabilités</h4>
+
+<p>Si on tire dix fois au sort un chiffre à l'aide d'un dé à 6 faces, il se peut qu'on n'obtienne jamais le chiffre 5. Cela ne signifie pas que la probabilité d'obtenir 5 soit nulle, mais 
+    que la fréquence d'apparition du chiffre 5 est nulle. Une probabilité est une valeur théorique conforme à une loi alors qu'une fréquence 
+    d'apparition est une mesure qu'on relève. Dans le cas de notre exemple avec un dé, pour obtenir un résultat conforme à la loi de probabilité de \(\frac{1}{6}\), il faut effectuer un grand nombre de tirages.</p>
+
+<p>Voici une vidéo publiée par Veritasium sur YouTube qui met en garde contre certaines idées reçues concernant les statistiques et les probabilités : <a href="https://youtu.be/1tSqSMOyNFE" target="_blank">How we're fooled by statistics</a></p>
+
+
+
+<!-- LES PRINCIPAUX INDICATEURS EN STATISTIQUES DESCRIPTIVES -->
+<p class="my-5 invisible" id="indicateurs">ancre</p>
+
+<h3>Les principaux indicateurs en statistique descriptive</h3>
+
+<p>Voici une vidéo publiée sur YouTube par ToKeTa, qui reprend les principales notions de statistiques : </p>
+
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/ImndwJtu4AE"
+            title="Les notions de base en statistiques - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Les notions de base en statistiques</figcaption>
+</div>
+
+
+
+<h4>Les indicateurs de position</h4>
+
+
+<h4>Le mode</h4>
+
+<p>Le mode est la valeur qui a le plus grand effectif. Lorsque les valeurs sont regroupées en classes, on parle plutôt de classe modale que de mode.</p>
+
+<p>Par exemple, dans la série statistique suivante 2; 5; 5; 7; 3; 2; 8; 5; 6 le mode est 5 car c'est la valeur qui apparaît le plus souvent.</p>
+
+<p>Le mode apporte donc une information intéressante, celle de connaître la valeur la plus fréquente. Une moyenne de classe peut par exemple être à 11 / 20
+    alors que la plupart des élèves ont eu 10 / 20.</p>
+
+
+<p>en construction ...</p>
+
+{% endblock cours %}

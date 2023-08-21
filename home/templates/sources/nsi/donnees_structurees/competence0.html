@@ -1,0 +1,188 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>savoir ouvrir un fichier distant</li>
+    <li>savoir écrire dans un fichier distant</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+  <p>Pour modifier un fichier <strong>.txt</strong> à l'aide d'un script Python, il faut appeler un objet à l'aide de l'instruction <code>open()</code>, qu'on ferme ensuite avec l'instruction <code>close()</code>. On peut employer <code>with open()</code> au lieu de <code>open()</code> afin de fermer automatiquement cet objet à la fin de son utilisation. On évite ainsi d'utiliser l'instruction <code>close()</code>.</p>
+
+  <p>Avec ce type de code, il est souvent nécessaire de gérer des exceptions du type OSError.</p>
+
+
+<!-- ECRITURE D'UN FICHIER -->
+
+<h3>Lecture d'un fichier distant</h3>
+
+<p>Pour comprendre le fonctionnement de l'instruction <code>with open()</code>, il faut commencer par créer un fichier appelé <strong>page.txt</strong> qui contient le texte suivant :</p>
+  <pre><code class="language-svg">voici ma 1ère ligne
+voici ma 2ème ligne</code></pre>
+
+<p>Il faut ensuite créer un script Python dans un fichier appelé <strong>main.py</strong>, qui contient le code suivant :</p>
+
+ <pre><code class="language-python">with open('page.txt', 'r') as f:
+    chaine = f.read()
+    print(chaine)</code></pre> 
+
+    <p>Pour exécuter ce script, il faut ensuite ouvrir le Terminal, se rendre dans le dossier contenant nos 2 fichiers, et exécuter l'instruction :</p>
+
+ <pre><code class="language-svg">python3 main.py</code></pre> 
+
+<p>On voit bien apparaître le contenu du fichier <strong>page.txt</strong> sans avoir ouvert directement ce fichier.</p>
+
+<pre><code class="language-svg">voici ma 1ère ligne
+voici ma 2ème ligne</code></pre>
+
+<p>On vient donc d'utiliser du code Python pour ouvrir un fichier au lieu de l'ouvrir manuellement.</p>
+
+<p>On remarque l'utilisation du mode 'r' pour read qui permet donc la lecture du fichier. A noter que <code>f.read(11)</code> ne va lire que les 11 premiers bytes à partir de l'emplacement du pointeur.</p>
+
+<p>Si à la place de l'instruction <code>read()</code>, on utilise l'instruction <code>readline()</code>, alors le script renvoie un string ne contenant que la ligne où se trouve le pointeur au moment de la lecture.</p>
+
+  <pre><code class="language-python">with open('page.txt', 'r') as f:
+    chaine = f.readline()
+    print(chaine)</code></pre>
+
+<p>Dans l'exemple ci-dessus, uniquement la 1ère ligne s'affichera sur le Terminal :</p>
+
+<pre><code class="language-svg">voici ma 1ère ligne</code></pre>
+
+  <p>Si à la place de l'instruction <code>readline()</code>, on utilise <code>readlines()</code>, alors le code renvoie une liste et affiche tout le texte dans cette liste en utilisant des <code>\n</code> à la place de chaque saut de ligne :</p>
+  <pre><code class="language-python">with open('page.txt', 'r') as f:
+    ma_liste = f.readlines()
+    print(ma_liste)</code></pre>
+
+    <p>qui renvoie donc :</p>
+
+   <pre><code class="language-svg">['voici ma 1ère ligne', 'voici ma 2ème ligne']</code></pre> 
+
+   <p>On peut également récupérer le nom du fichier que l'on vient d'ouvrir en utilisant l'instruction :</p>
+    <pre><code class="language-python">with open('page.txt', 'r') as f:
+    print(f.name)</code></pre>
+
+    <p>qui renvoie donc </p>
+
+    <pre><code class="language-svg">page.txt</code></pre>
+
+
+<!-- ECRITURE DANS UN FICHIER -->
+
+<h3>Ecriture dans un fichier distant</h3>
+
+  <p>Nous allons chercher maintenant à modifier ce fichier <strong>page.txt</strong> sans l'ouvrir, uniquement à l'aide d'un script Python.</p>
+
+  <p>Essayons maintenant le mode 'w'. Il considère toujours que le fichier ouvert est nouveau et EFFACE AUTOMATIQUEMENT SON CONTENU A L'OUVERTURE. Pour s'en convaincre, il suffit d'essayer le code suivant : </p>
+<pre><code class="language-python">with open('page.txt', 'w') as f:
+    f.write('voici ma 3ème ligne')</code></pre>
+
+    <p>On remarque que les 2 lignes de texte ont été effacées et remplacées par </p>
+
+<pre><code class="language-svg">voici ma 3ème ligne</code></pre> 
+
+    <p>Ca n'est pas grave. Pour revenir à l'état initial, il suffit maintenant d'écrire dans notre script Python :</p>
+
+    <pre><code class="language-python">with open('page.txt', 'w') as f:
+    f.write('voici ma ligne 1\nvoici ma ligne 2')</code></pre>
+
+    <p>On remarque que pour sauter la ligne, un simple saut de ligne ne suffit pas. Il faut utiliser le caractère réservé <code>\n</code></p>
+
+<p>Mais alors, comment faire pour rajouter des caractères à la fin de notre document ?</p>
+  
+  <p>Le mode 'a' permet de rajouter un élément en fin de fichier :</p>
+  <pre><code class="language-python">with open('page.txt', 'a') as f:
+    f.write('voici ma 3ème ligne')</code></pre>
+
+<p>Par ailleurs, le mode 'a+'' permet de rajouter un élément au fichier et de lire
+  son contenu. Toutefois, le code ci-dessous n'affiche aucun résultat car après avoir rajouté du texte au fichier, le pointeur se situe en fin de fichier et
+  affiche donc la fin du fichier, c'est à dire rien :</p>
+
+  <pre><code class="language-python">with open('page.txt', 'a+') as f:
+    f.write('voici ma 3ème ligne')
+    liste = f.read()
+    print(liste)</code></pre>
+
+<p>ce qu'on peut corriger en forçant le pointeur à se placer en début de document avec l'instruction <code>seek()</code> :</p>
+
+  <pre><code class="language-python">with open('page.txt', 'a+') as f:
+    f.write('voici ma 3ème ligne')
+    f.seek(0)
+    liste = f.read()
+    print(liste)</code></pre>
+
+<p>On obtient bien maintenant le contenu du fichier auquel s'est rajouté notre 3ème ligne :</p>
+
+<pre><code class="language-svg">voici ma 1ère ligne
+voici ma 2ème ligne
+voici ma 3ème ligne</code></pre>
+
+  <p><em>Attention</em>, pour écrire un terme qui n'est pas un string dans un fichier texte, il est nécessaire de le caster en string auparavant. De même,
+    tout élément lu d'un fichier texte est de type string même si il s'agit
+    d'un nombre. En d'autres termes, <code>write()</code> prend un string comme paramètre et <code>read()</code> renvoie un string.</p>
+
+
+<h3>En résumé</h3>
+
+<p>Le mode d'ouverture d'un fichier peut prendre les paramètres suivants :</p>
+
+  <table>
+    <tr><th>objectif</th><th>code</th></tr>
+    <tr><td>lecture (read)</td><td>r</td></tr>
+    <tr><td>écriture (write)</td><td>w</td></tr>
+    <tr><td>lecture/écriture</td><td>r+</td></tr>
+    <tr><td>écriture/lecture</td><td>w+</td></tr>
+    <tr><td>ajout en fin de fichier (append)</td><td>a</td></tr>
+    <tr><td>ajout en fin de fichier et lecture</td><td>a+</td></tr>
+    <tr><td>lecture au format binaire</td><td>rb</td></tr>
+    <tr><td>lecture/écriture au format binaire</td><td>rb+</td></tr>
+    <tr><td>écriture au format binaire </td><td>wb</td></tr>
+    <tr><td>écriture/lecture au format binaire </td><td>wb+</td></tr>
+    <tr><td>ajout en fin de fichier au format binaire</td><td>ab</td></tr>
+    <tr><td>ajout en fin de fichier et lecture en binaire</td><td>ab+
+    </td></tr>
+  </table>
+
+<p><em>Attention</em>, chaque mode d'ouverture possède ses particularités : </p>
+  <ul>
+    <li>w EFFACE SYSTEMATIQUEMENT LE CONTENU DU FICHIER AU
+      MOMENT DU CHARGEMENT DU FICHIER. w est donc réservé à l'ouverture d'un
+    fichier vide ou à la remise à zéro d'un fichier.</li>
+    <li>r+ et w+ fournissent les mêmes fonctionnalités mais w+ commence par effacer
+      le contenu du fichier alors que r+ conserve le contenu du fichier. w+ est
+      donc réservé à l'ouverture d'un fichier vide ou à la remise à zéro d'un
+      fichier. Dans le mode r+, le pointeur se place au début du fichier au
+      démarrage et l'écriture écrasera donc le début du fichier si un emplacement
+      spécifique n'est pas précisé pour le pointeur.</li>
+    <li>a et a+ ne permettent pas de rajouter un élément dans un fichier JSON car
+    l'ajout en dernière ligne ne tient pas compte de la structure du document.
+    Il faut donc dans ce cas procéder autrement en intégrant l'ajout à l'ensemble
+    des données.</li>
+  </ul>
+
+  <p>A l'ouverture du fichier le pointeur se trouve au début du fichier.
+    Une fois les instructions effectuées, il se trouve à la fin du fichier.
+    Toute instruction supplémentaire partira au niveau courant du pointeur,
+    donc ici la fin du fichier. Ainsi, si on demande l'affichage du fichier à
+    ce moment-là, cet affichage sera vide alors qu'il ne l'est pas forcément.
+  </p>
+
+  <p>Pour lire le contenu d'un fichier ou écrire à un emplacement qui ne
+    correspond pas à celui du pointeur, il faut repositionner ce pointeur grâce à
+    l'instruction <code>seek(position, from)</code>. Le paramètre position compte le nombre de bytes en partant du paramètre from. Le paramètre from vaut
+    0 si on part du début, 1 si on part de la position courante et 2 si on
+    part de la fin du texte. Attention, il est possible de placer le pointeur
+    devant l'emplacement précis d'un byte, mais il n'est pas possible de le
+    placer devant l'emplacement précis d'un caractère car celui-ci peut être
+    représenté par plusieurs bytes. Le code suivant place le pointeur à la fin du
+    7ème  byte (caractère d'indice 7 dans le cas d'un texte) après le point de
+    départ, puis remplace la valeur à cet emplacement par 'x' :</p>
+
+  <pre><code class="language-python">with open('page.txt', 'r+) as f:
+    f.seek(7)
+    f.write('x')</code></pre>
+
+{% endblock cours %}

@@ -1,0 +1,97 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>comprendre la géolocalisation</li>
+    <li>comprendre le fonctionnement du GPS</li>
+    <li>découvrir les cartes numériques</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- INTRODUCTION -->
+
+<h3>Introduction</h3>
+
+<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube explique le fonctionnement de la triangulation :
+    <a href="https://www.youtube.com/watch?time_continue=1&v=iTfNhcC2vBA&feature=emb_logo" target="_blank">&#127911; VIDEO | triangulation - Fun Mooc YouTube</a></p>
+
+<h3>Coordonnées géographiques</h3>
+
+<p>Pour localiser un point à la surface de la Terre, on utilise des coordonnées géographiques composées d'une 
+    longitude (par rapport au méridien de Greenwich) et d'une latitude (par rapport à l'équateur). Dans les zones 
+    montagneuses on utilise souvent l'altitude pour se repérer (par rapport à l'altitude 0 définie à Marseille). 
+    Le système géodésique WGS84 utilise ces coordonnées géographiques couplées avec le centre de la Terre comme 
+    référence mondiale de localisation par GPS.</p>
+
+<p>Si on coupe en deux le globe terrestre, on se retrouve avec une demi-sphère étalée sur 360°. Chaque méridien correspond en fait 
+    à un fuseau horaire. Comme il existe 24 fuseaux horaires sur Terre, cela signifie qu'on trouve un angle de 
+    \(360°\div 24 = 15°\) pour chaque fuseau horaire, et donc entre chaque méridien.</p>
+
+<p>L'unité de mesure des coordonnées géographiques est la notation sexagésimale des angles : degrés (°), 
+    minutes ('), secondes (''), par exemple 34°23'54''Nord 21°46'27''Est. Il est également possible d'utiliser la notation décimale, 
+par exemple 34,3983°Nord 21,7742°Est.</p>
+
+<p>Pour passer d'une notation à une autre il faut utiliser la règle suivante : 1° = 60', 1' = 60''. Par exemple 48°51'23'' = 48,8564°</p>
+
+<div class=fieldsetDefinition>
+	<h4>A RETENIR ...</h4> 
+	<p>Les latitudes représentent les lignes horizontales sur le globe (on retrouve les parallèles).</p>
+    <p>Les longitudes représentent les lignes verticales sur le globe (on retrouve les méridiens).</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong></p>
+    <p>1) Convertissez 24°51'59'' en valeur décimale. Essayez ensuite 
+        dans le sens inverse de retrouver 24°51'59'' en valeur sexagésimale.</p>
+    <p>2) Voici les coordonnées de Paris 48,8566°N 2,3522°E. Convertissez ces coordonnées en coordonnées 
+        sexagésimales.</p>
+</div>
+
+
+<!-- GEOLOCALISATION -->
+
+<h3>Géolocalisation</h3>
+
+<p>Il existe plusieurs technologies permettant la géolocalisation :</p>
+<ul>
+    <li>par bornage WiFi, appelé WPS</li>
+    <li>par GSM en utilisant les antennes relais </li>
+    <li>par satellite, appelé GPS</li>
+</ul>
+
+<p>Ces technologies sont baées sur le principe de triangulation pour trouver un appareil récepteur.</p>
+
+<p>La triangulation permet de localiser un appareil récepteur à l'aide d'au moins 3 appareils émetteurs. Pour chaque signal reçu, le récepteur compare l'heure d'arrivée avec l'heure d'émission qui est incluse dans le signal. La différence correspond au temps de parcours du signal entre l'émetteur et le récepteur. Si le signal est lumineux, sa vitesse de propagation est de 300 000 km/s. Si le signal est sonore, sa vitesse de propagation est de 340 m/s. Cela nous indique alors la distance entre un émetteur et le récepteur. Il suffit maintenant de tracer un cercle de centre l'émeteur et de rayon cette distance pour obtenir les emplacements possibles du récepteur. Avec au moins 3 appareils émetteurs, on obtient une intersection plus ou moins précise permettant de géolocaliser l'appareil récepteur.</p>
+
+<img src="../../images/snt/triangulation.png" alt="triangulation" width=45%>
+
+
+<!-- LE GPS -->
+
+<h3>Le GPS</h3>
+
+<p>Le GPS Global Positionning System utilise un réseau de satellites pour parvenir à positionner un appareil. Chaque satellite envoie un signal comprenant sa position et son heure d'émission à l'aide d'une horloge atomique. L'appareil récepteur compare ensuite l'heure de réception avec l'heure d'émission du signal de chaque satellite avec lequel il communique. </p>
+
+<p>L'Europe a également mis un point un système équivalent au GPS pour tenter de rester indépendant dans le domaine de la géolocalisation. Il s'agit du projet Galileo, qui est fonctionnel mais reste encore en retrait commercialement face au GPS implanté dans le secteur depuis longtemps.</p>
+
+<p>La vidéo suivante publiée par le <em>CNES</em> sur YouTube explique le fonctionnement de Galileo :
+<a href="https://www.youtube.com/watch?time_continue=1&v=e79tSIpLiDk&feature=emb_logo" target="_blank">&#127911; VIDEO | Galileo - CNES YouTube</a></p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>quelles différences faites-vous entre le système GPS et le système Galileo ?</p>
+</div>
+
+
+<!-- LES CARTES NUMERIQUES -->
+
+<h3>Les cartes numériques</h3>
+
+<p>Les cartes numériques sont des images vectorielles composées de données de type raster. Les rasters sont des couches matricielles qui représentent la position que doit occuper l'image. Ainsi, chaque image est divisée en pixels qui deviennent visibles si l'on zoom suffisamment.</p>
+
+<img src="../../images/snt/raster.png" alt="raster" width=20%>
+
+{% endblock cours %}
+ 

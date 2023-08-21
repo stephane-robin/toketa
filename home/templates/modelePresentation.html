@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<section class="px-5 ty-5 bg-white">
+    <div class="container">
+        <h2 id="hautPage">{% block titre %} {{titre}} {% endblock titre %}</h2>
+    </div>
+</section>
+
+<!-- PARTIE 1 --> 
+
+<section class="px-5 py-5 my-5 bg-white">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-12 col-md-5">
+                <div class="card border-success image_index">
+                    {% block img1 %} {% endblock img1 %}
+                    <div class="card-body text-center">
+                        <h2 class="card-title m-0"> {% block titre_partie1 %} {% endblock titre_partie1 %}</h2>
+                        <p class="card-text"> {% block partie1 %} {% endblock partie1 %}</p>
+                        {% block commencer1 %} {% endblock commencer1 %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 px-5 pt-3 pt-md-0">
+                <div class="row">
+                    <h4 class="h_black">Activités</h4>
+                    {% block activites1 %} {% endblock activites1 %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <p>{% block intro1 %} {% endblock intro1 %}</p>
+            </div>
+        </div>
+        <div class="row gy-2">
+            <div class="col-12 col-md-4">
+                <h4 class="h_black">Fiches d'exercices</h4>
+                {% block exercices1 %} {% endblock exercices1 %}
+                <h4 class="h_black">Evaluations</h4>
+                {% block evaluations1 %} {% endblock evaluations1 %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-5 bg-white">
+    <div class="container">
+        <p class="separateur"></p>
+    </div>
+</section>
+
+
+<!-- PARTIE 2 --> 
+
+<section class="px-5 py-5 my-5 bg-white">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-12 col-md-5">
+                <div class="card border-success image_index">
+                    {% block img2 %} {% endblock img2 %}
+                    <div class="card-body text-center">
+                        <h2 class="card-title m-0"> {% block titre_partie2 %} {% endblock titre_partie2 %}</h2>
+                        <p class="card-text"> {% block partie2 %} {% endblock partie2 %}</p>
+                        {% block commencer2 %} {% endblock commencer2 %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 px-5 pt-3 pt-md-0">
+                <div class="row">
+                    <h4 class="h_black">Activités</h4>
+                    {% block activites2 %} {% endblock activites2 %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <p>{% block intro2 %} {% endblock intro2 %}</p>
+            </div>
+        </div>
+        <div class="row gy-2">
+            <div class="col-12 col-md-4">
+                <h4 class="h_black">Fiches d'exercices</h4>
+                {% block exercices2 %} {% endblock exercices2 %}
+                <h4 class="h_black">Evaluations</h4>
+                {% block evaluations2 %} {% endblock evaluations2 %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-5 bg-white">
+    <div class="container">
+        <p class="separateur"></p>
+    </div>
+</section>
+
+
+<!-- PARTIE 3 --> 
+
+<section class="px-5 py-5 my-5 bg-white">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-12 col-md-5">
+                <div class="card border-success image_index">
+                    {% block img3 %} {% endblock img3 %}
+                    <div class="card-body text-center">
+                        <h2 class="card-title m-0"> {% block titre_partie3 %} {% endblock titre_partie3 %}</h2>
+                        <p class="card-text"> {% block partie3 %} {% endblock partie3 %}</p>
+                        {% block commencer3 %} {% endblock commencer3 %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 px-5 pt-3 pt-md-0">
+                <div class="row">
+                    <h4 class="h_black">Activités</h4>
+                    {% block activites3 %} {% endblock activites3 %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <p>{% block intro3 %} {% endblock intro3 %}</p>
+            </div>
+        </div>
+        <div class="row gy-2">
+            <div class="col-12 col-md-4">
+                <h4 class="h_black">Fiches d'exercices</h4>
+                {% block exercices3 %} {% endblock exercices3 %}
+                <h4 class="h_black">Evaluations</h4>
+                {% block evaluations3 %} {% endblock evaluations3 %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- le 1er div permet de scinder la ball du reste de la page
+et donc evite que toute la page bouge -->
+<div class="container_ball">
+    <div class="ball">
+        <p class="text_ball">ToKeTa</p>
+    </div>
+</div>
+
+{% endblock principal %}
+

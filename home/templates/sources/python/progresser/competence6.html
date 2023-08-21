@@ -1,0 +1,52 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>L'objectif de ce travail pratique est d'écrire 4 fonctions Python permettant de mettre à jour nos connaissances. 
+    <ul>
+        <li>une fonction decimalToBinaire() qui transforme l'écriture décimale d'un nombre en écriture binaire,</li>
+        <li>une fonction binaireToDecimal() qui transforme l'écriture binaire d'un nombre en écriture décimale,</li>
+        <li>une fonction binaireToSexagesimal() qui transforme l'écriture binaire d'un nombre en écriture sexagésimale,</li>        
+        <li>une fonction sexagesimalToBinaire() qui transforme l'écriture sexagésimale d'un nombre en écriture binaire.</li>
+    </ul>
+</p>
+
+<p>Une fois écrites, ces fonctions seront conservées pour être utilisées dans le cours sur les réseaux.</p>
+
+<h3>Proposition de correction pour decimalToBinaire()</h3>
+
+<p>Le code suivant permet de convertir un nombre en base 10 dans son écriture binaire. Il ne s'agit pas du code le plus court ou le plus performant, 
+    mais il permet de comprendre comment procéder pour obtenir le résultat.</p>
+
+<pre><code class="language-python">def decimalToBinaire(decimal):
+    binaire = ''
+
+    while decimal > 0:
+        # decimal%2 doit etre transformé en string avant d'être concaténé
+        binaire = str(decimal % 2) + binaire
+        decimal = decimal // 2
+
+    return binaire</code></pre>
+
+<p>Le code ci-dessus fournit le résultat 110100 lorsqu'on exécute</p>
+
+<pre><code class="language-python">print(decimalToBinaire(52))</code></pre>
+
+<p>A noter l'existence de la fonction bin() qui fournit le même résultat : </p>
+
+<pre><code class="language-python">def decimalToBinaire2(n):
+    return bin(n).replace("0b", "")</code></pre>
+
+<p>A noter dans ce cas que le résultat de la fonction bin() est perçu comme un nombre binaire par l'interpréteur Python, et qu'il 
+    faut donc remplacer le "0b" au début de ce nombre par un caractère vide.</p>
+
+{% endblock cours %}

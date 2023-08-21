@@ -1,0 +1,105 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Généralité sur les fonctions</h3>
+
+<div class="exemple">
+<p>Dans une usine de fabrication de boîtes de maïs, on prend une boîte de conserve, on verse le maïs dans cette boîte, on ferme ensuite la boîte pour lui ajouter un emballage et la commercialiser. L'élément de départ est la boîte vide, l'élément d'arrivée est la boîte de conserve à distribuer, les étapes de production pour passer de l'une à l'autre correspondent à une fonction.</p>
+    <img src="../../images/maths/boiteConserve2.png" alt="fonction boite de conserve" width=50%>
+</div>
+
+    <p>En mathématiques, on modélise des situations similaires en utilisant une fonction qu'on pourra appeler 
+        \(f\) par exemple, permettant de passer d'un nombre de départ \(x\) à un nombre d'arrivée noté \(f(x)\).
+    On peut donc voir une fonction mathématique comme un procédé permettant de transformer un nombre en un autre.</p>
+
+<div class="fieldsetDefinition">
+<h4>DEFINITION ...</h4>
+
+<p>Une fonction est un procédé associant à un élément de départ un <em>UNIQUE</em> élément d'arrivée.</p>
+</div>
+
+<p>Par exemple, si on multiplie un nombre par 2 puis on ajoute 3 au résultat, la fonction associée pourrait s'écrire \(f\) telle que \(f(x)=2x+3\). L'ordre des calculs est important et doit respecter la priorité des opérations.</p>
+    <img src="../../images/maths/definitionFonction.png" alt="exemple fonction" width=45%>
+
+
+<div class="fieldsetDefinition">
+<h4>DEFINITION ...</h4>
+
+<p>L'ensemble de définition est l'ensemble des valeurs de départ pour lesquelles la fonction est calculable.</p>
+</div>
+
+<p>L'ensemble de définition correspond donc à notre environnement de travail, raison pour laquelle il est important de toujours commencer par trouver l'ensemble de définition.</p>
+
+
+<p>Par exemple, l'ensemble de définition de la fonction \(f\) telle que \( f(x)=3x+7 \) est \( \mathbb{R} \), car on peut trouver une valeur à \(f(x)\) pour toutes les valeurs \(x\) de \( \mathbb{R} \).</p>
+
+
+<div class="exerciceType">
+<p><em>Exercice type :</em> quel est l'ensemble de définition de la fonction \(f\) telle que \( f(x)=\frac{1}{x} \) ? </p>
+    <p><em>Solution : </em>l'ensemble de définition de \(f\) est \(\mathbb{R}-\{0\}\), car on ne peut pas diviser par 0. On travaillera donc avec toutes les valeurs réelles sauf 0.</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer :</strong><br/>
+    	1. Quel est l'ensemble de définition de la fonction \(f\) définie par \( f(x)=7x^2 \) ?<br/>
+    	2. Quel est l'ensemble de définition de la fonction \(f\) définie par \( f(x)=\sqrt{x} \) ?
+</p>
+</div>
+
+
+<h3>Images et antécédents</h3>
+
+<p>Il est important de bien différencier images et antécédents.</p>
+<p>&#128077; L'antécédent est une valeur de départ, l'image est le résultat obtenu après calcul.</p>
+
+<h4>Calcul de l'image</h4>
+
+
+
+<div class="exemple">
+<p><em>Exemple:</em> pour la fonction \(f\) définie par \(f(x)=2x+3\), si on choisit \(5\) comme antécédent, alors \(2\times 5+3=13\) est son image représentée par le symbole \(f(5)\).</p> 
+</div>
+
+<div class="exerciceType">
+<p><strong>Exercice type :<br/>Calculer l'image de 3 par la fonction \(f\) définie par \(f(x)=2x^2-1\).</strong></p>
+
+<p><em>Solution :</em><br/>L'image de 3 est notée \(f(3)\) et vaut \(2\times 3^2-1=2\times9-1=17\).</p>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer : </strong><br/>1. Calculer l'image de 7 par la fonction \(f\) telle que \(f(x)=\frac{x+3}{20}\)<br/>2. Calculer l'image de 3 par la fonction \(f\) telle que \(f(x)=\sqrt{x}+\sqrt{3}\)</p>
+</div>
+
+<p>&#9889;<em> Attention :</em> il est possible que plusieurs antécédents conduisent à la même image. On obtient alors le même résultat à la fin du calcul. En revanche, on ne peut pas obtenir plusieurs images à partir d'un antécédent. Le calcul de l'image ne conduit pas à plusieurs résultats.</p>
+
+<div class="exemple">
+	<p><em>Exemple :</em> pour la fonction \(f\) telle que \(f(x)=x^2\), l'antécédent -3 conduit à l'image \(f(-3)=(-3)^2=9\) et l'antécédent 3 conduit également à l'image \(f(3)=3^2=9\)</p>
+</div>
+
+<h4>Calcul des antécédents</h4>
+
+<div class="exemple">
+<p><em>Exemple :</em> pour trouver l'antécédent de 13 par la fonction \(f\) telle que \(f(x)=2x+3\), il faut chercher les valeurs possibles de \(x\) au départ qui conduiraient au résultat 13 après calcul. Il faut pour cela résoudre l'équation \(2x+3=13\), ce qui conduit à \(2x=10\) donc \(x=5\). L'antécédent de 13 par \(f\) est donc 5.</p>
+</div>
+
+<p>&#128064; Astuce : pour trouver l'antécédent, il faut résoudre une équation.</p>
+
+<div class="exerciceType">
+<p><strong>Exercice type :<br/>Trouver les antécédents de 31 par la fonction \(f\) définie par \(f(x)=2x^2-1\).</strong></p>
+
+<p><em>Solution :</em><br/>Cherchons \(x\) tel que \(f(x)=31\), c'est à dire \(2x^2-1=31\), on obtient \(2x^2=32\), donc \(x^2=16\), donc \(x = 4\) ou \(x = -4\). Les antécédents de 31 par \(f\) sont donc -4 et 4.</p>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong><br/>1. Trouver l'antécédent de 7 par la fonction \(f\) telle que \(f(x)=\frac{x+3}{2}\)<br/>2. Trouver l'antécédent de 3 par la fonction \(f\) telle que \(f(x)=\frac{1}{x}\)</p>
+</div>
+
+{% endblock cours %}

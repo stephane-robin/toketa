@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<!-- SCRIPT POUR LES QUESTIONNAIRES UNIQUES DE PARAGRAPHES 
+doit etre lu en haut de page -->
+
+<script src="{% static 'home/quiz/questionnaireUnique.js' %}"></script>
+
+<!-- fin script -->
+
+
+<!-- TITRE -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <h2 id="hautPage">{% block titre %} {{titre}} {% endblock titre %}</h2>
+    </div>
+</section>
+
+
+<!-- COMPETENCES -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <p>Compétences abordées :</p>
+        {% block contenu %} {% endblock contenu %}
+        <a href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank'>
+        <img src="{% static 'cours/images/general/youtubetoketa.png' %}" alt='youtube' width='15%' style='margin-top:1%;border-radius:5px;'></a></h2>       
+    </div>
+</section>
+
+
+<!-- COURS -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        {% block cours %} {% endblock cours %}
+    </div>
+</section>
+
+
+<!-- PAGES PRECEDENTE SUIVANTE -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <div class="row">
+            {% if id != 0 %}
+            <div class="col-12 col-md-4">
+                <a href="{% url 'afficherPage' niveau=niveau chapitre=chapitre id=i_moins %}" class="bi bi-arrow-left-square-fill"> page précédente</a> 
+            </div>
+            {% endif %}
+            <div class="col-12 col-md-4">
+                <a href="#hautPage" class="bi bi-arrow-up-square-fill"> haut de page</a> 
+            </div>
+            {% if id < i_max %}
+            <div class="col-12 col-md-4">
+                <a href="{% url 'afficherPage' niveau=niveau chapitre=chapitre id=i_plus %}" class="bi bi-arrow-right-square-fill"> page suivante</a> 
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock principal %}

@@ -1,0 +1,147 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+    <li>utilisation de dictionnaires</li>
+    <li>lecture de fichier distant</li>
+    <li>pratique de la construction de code</li>
+</ul>  
+{% endblock contenu %}
+
+{% block cours %}
+
+<pre><code class="language-python">def saisir_data():
+    """
+    saisit les données du réseau étudié avec l'utilisateur
+    :return: (dict) dico_sites dont les clés sont des noms de sites, les valeurs
+    sont des listes (indice 0 une liste contenant les sites successeurs, indice
+    1 une liste contenant les sites prédécesseurs, indice 2 le poids des liens du
+    site, indice 3 le poids du site clé)
+    """
+    dico_sites = {}
+    liste_sites = []
+    site = ""
+
+    # on saisit les noms des sites du réseau
+    while site != "#":
+        site = input("entrez le nom de chaque site. \nLa valeur '#' va arrêter la saisie : ")
+        liste_sites.append(site)
+
+    # on enlève le # qui a été saisi en dernier de la liste des sites
+    liste_sites.pop()
+
+    # on saisit les noms des successeurs de chaque site
+    for site in liste_sites:
+
+        nom_successeur = ""
+        liste_successeurs = []
+
+        while nom_successeur != "#":
+                nom_successeur = input(f"quel est le site dont le lien est présent sur {site} ?"
+                                   f"\nLa valeur '#' va arrêter la saisie pour {site} : ")
+                liste_successeurs.append(nom_successeur)
+
+        # on enlève le # qui a été saisi en dernier de le liste des successeurs
+        liste_successeurs.pop()
+        # on initialise la liste des prédecesseurs vide, le poids des liens du
+        # site nul, le poids du site à 1
+        dico_sites[site] = [liste_successeurs, [], 0, 1]
+
+    return dico_sites
+
+
+def calculer_poids_liens(dico):
+    """
+    calcule le poids de chacun des sites de dico en comptant le nombre d'éléments
+    de l'élément d'indice 0, puis place le résultat dans l'élément d'indice 2
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 2 de dico
+    """
+    for cle in dico:
+        dico[cle][2] = 1 / len(dico[cle][0])
+
+
+def construire_liste_predecesseurs(dico):
+    """
+    construit la liste des prédécesseurs dans dico, en utilisant la liste des
+    successeurs (élément d'indice 0 de dico), en rajoutant dans l'élément
+    d'indice 1 la clé correspondante
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 1 de dico
+    """
+    for cle in dico:
+        for elmt in dico[cle][0]:
+            dico[elmt][1].append(cle)
+
+
+def calculer_poids_sites(dico):
+    """
+    calcule le poids de chaque cle de dico en tenant compte de la liste des sites
+    prédecesseurs et du poids de ces sites prdécesseurs. Pour chaque site, on récupère
+     le poids des liens des sites prédécesseurs (élément d'indice 2 du site prdécesseur)
+     qu'on ajoute au poids du site (élément d'indice 3)
+    :param dico: (dict) dictionnaire qyant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 3 de dico
+    """
+    for cle in dico:
+        for elmt in dico[cle][1]:
+            dico[cle][3] += dico[elmt][2]
+
+
+def not_empty(dico):
+    """
+    teste si dico n'est pas vide
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: (bool) True si dico n'est pas vide, False si dico est vide
+    """
+    if len(dico) > 0:
+        return True
+    else:
+        return False
+
+
+def to_string(dico):
+    """
+    affiche le résultat sous forme de string, tant que le dictionnaire n'est pas vide,
+    on cherche la valeur maximale du poids du site, on sort le site de dico, on
+    l'insère dans liste_resultat qui contient donc les sites classés suivant le
+    poids décroissant. On se sert de liste_resultat pour afficher la solution sous
+    forme de string dans resultat
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: (str) classement des sites suivant leur référencement naturel du plus
+    élevé au moins élevé
+    """
+    liste_resultat = []
+
+    while not_empty(dico):
+        max = 1
+        site = ""
+
+        for elmt in dico:
+            if dico[elmt][3] > max:
+                max = dico[elmt][3]
+                site = elmt
+
+        liste_resultat.append(site)
+        dico.pop(site)
+
+    resultat = "Le référencement naturel des sites est le suivant :\n"
+
+    for i in range(len(liste_resultat)):
+        resultat += str(i + 1) + " - " + liste_resultat[i] +"\n"
+
+    return resultat
+
+
+if __name__ == '__main__':
+    dico_sites = saisir_data()
+    calculer_poids_liens(dico_sites)
+    construire_liste_predecesseurs(dico_sites)
+    calculer_poids_sites(dico_sites)
+    print(to_string(dico_sites))</code></pre>
+
+{% endblock cours %}

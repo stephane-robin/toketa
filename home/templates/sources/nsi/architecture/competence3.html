@@ -1,0 +1,155 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li><a href="">les processus</a></li>
+    <li><a href="">l'ordonnanceur</a></li>
+    <li><a href="">la modélisation d'un tourniquet en Python</a></li>
+    <li><a href="">l'utilisation des threads en Python</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- LES PROCESSUS -->
+<h3>Les processus</h3>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>Lorsqu'un programme s'exécute, il génère plusieurs processus. Un processus est donc une partie de programme en cours d'exécution. Chaque processus possède ses données d'entrée, ses données renvoyées et utilise des ressources.</p>
+</div>
+
+<p>L'accès d'un processus à une ressource peut être exclusif lorsque l'utilisation de cette ressource entraîne l'attente de tout autre processus pour accéder à cette ressource. C'est par exemple le cas lors de la modification de la valeur d'une variable stockée en mémoire, alors que ce n'est pas le cas pour uniquement consulter la valeur de cette variable.</p>
+
+<p>Les processus peuvent être dans l'un des 3 états suivants :</p>
+
+<ul>
+	<li>état élu - le processus est en exécution et obtient l'accès à la ressource</li>
+	<li>état prêt - le processus attend de pouvoir accéder à la ressource</li>
+	<li>étst bloqué - le processus attend qu'un autre processus libère l'accès d'une ressource pour pouvoir l'utiliser</li>
+</ul>
+
+<p>Notons qu'un processus ne pourra se terminer que dans l'état élu.</p>
+
+<h3>L'ordonnanceur</h3>
+
+<p>Lorsque deux processus appellent la même ressource, celle-ci n'est pas partagée, c'est son temps d'utilisation qui est partagé par le noyau. La partie du noyau dont le rôle est d'optimiser l'allocation de cette ressource est appelée l'ordonnanceur, qui joue un rôle non négligeable dans l'amélioration des performances d'un ordinateur.</p>
+
+<p>Pour effectuer sa tâche, l'ordonnanceur peut recourir à plusieurs algorithmes : 
+	<ul>
+		<li>le tourniquet, la ressource est allouée à chaque processus à tour de rôle. Cette technique est simple et robuste</li>
+		<li>un système de priorité, la ressource est allouée suivant un ordre de priorité des tâches à accomplir. Cette technique optimise le travail à faire.</li>
+		<li>une système de file (FIFO First In First Out), la ressource est allouée au 1er processus qui la demande, puis ce processus sort de la file d'attente.</li>
+		<li>l'algorithme du plus court d'abord, la ressource est allouée d'abord au processus dont le temps d'exécution est le plus court. Cette technique peut être assez équitable, mais il est difficile de déterminer quels sont les processus les plus courts avant de les exécuter.</li>
+	</ul>
+</p>
+
+<p>Lorsque 2 processus appellent la même ressource, on  dit qu'ils sont concurrents. L'ordonnanceur va alors décider de l'ordre de passage des processus. On parle d'interblocage uniquement lorsque 2 processus s'empêchent mutuellement d'accéder à une même ressource.</p>
+
+<p>Par exemple, si un processus P1 ne peut modifier une variable <strong>niveau</strong> que si elle atteint une certaine valeur, et que ce calcul nécessite l'utilisation d'un processus P2 en attente </p>
+
+<h3>Modélisation d'un tourniquet en Python</h3>
+
+<p>On peut modéliser un ensemble de processus en Python à l'aide d'une matrice 
+    (c'est à dire une liste de listes). Par exemple si on souhaite exécuter trois
+processus qui comprennent respectivement 7 instructions, 3 instructions et 5 
+instructions, on pourra écrire :</p>
+
+<pre><code class="language-python">liste_processus = [
+    # process 1
+    ["P1_instr1", "P1_instr2", "P1_instr3", "P1_instr4", "P1_instr5", "P1_instr6", "P1_instr7"],
+    # process 2
+    ["P2_instr1", "P2_instr2", "P2_instr3"],
+    # process 3
+    ["P3_instr1", "P3_instr2", "P3_instr3", "P3_instr4", "P3_instr5"]
+]</code></pre>
+
+<p>Pour rappel un tourniquet va d'abord exécuter P1_instr1, puis P2_instr1, 
+    puis P3_instr1, puis P1_instr2, ...</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>construire un programme Python qui affiche
+    les différentes instructions tour à tour suivant le principe d'un tourniquet.</p>
+
+	<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+
+    <p>On peut proposer un premier exemple où la taille de la liste de processus
+        décroît au fur et à mesure qu'une instruction est exécutée :</p>
+
+    <pre><code class="language-python"># First method decreasing the size of liste_processus 
+
+# The program creates a copy by values of liste_processus 
+# which size will decrease when an instruction is executed.
+# liste_processus stays intact.
+liste_processus_B = []
+for element in liste_processus:
+    liste_processus_B.append([])
+    for elt in element:
+        element.append(elt)
+
+def is_empty(liste_processus):
+    """
+    Tests if a matrix 2 times 2 is empty.
+    param:
+        liste_processus (list): list of processes composed of a list of instructions.
+    return:
+        (bool): True if liste_processus is empty, False if liste_processus is
+        not empty.
+    """
+    for elt in liste_processus:
+        if len(elt) != 0:
+            return False 
+    return True
+
+# The program enters a loop while there exists an instruction to execute
+while is_empty(liste_processus_B) == False:    
+    # The program browses the different processes
+    for elt in liste_processus_B:
+        # if a process is not empty, the program executes the first instruction
+        if len(elt) > 0:
+            print(elt[0])
+            elt.pop(0)</code></pre>
+
+<p>Puis un second exemple où l'on calcule la taille maximale des différents 
+    processus sans modifier la liste de processus.</p>
+
+<pre><code class="language-python"># The program finds the maximum size of the different processes
+taille_max = len(liste_processus[0])
+for i in range(1, len(liste_processus)):
+    taille_max_processus = len(liste_processus[i])
+    if taille_max_processus > taille_max:
+        taille_max = taille_max_processus
+
+def tester_indice(taille_max, indice_instruction):
+    """
+    Tests if indice_instruction equals taille_max.
+    taille_max is selected rather that indice_max to avoid
+    skipping the last instruction.
+    param:
+        taille_max (int): maximum size of the different processes.
+        indice_instruction (int): index of the current instruction
+    return:
+        (bool): True if taille_max equals indice_instruction, False otherwise.
+    """
+    return taille_max == indice_instruction
+
+# The program enters a loop while indice_instruction is different from taille_max
+while not tester_indice(taille_max, indice_instruction): 
+    # The program browses the different processes
+    for elt in liste_processus:
+        # if the instruction index doesn't exceed the size of the process
+        # the program executes the current instruction
+        if indice_instruction &lt; len(elt):
+            print(elt[indice_instruction])    
+    indice_instruction += 1</code></pre>
+</div>
+</div>
+
+<h3>Utilisation des threads en Python</h3>
+
+{% endblock cours %}

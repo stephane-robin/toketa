@@ -1,0 +1,92 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comprendre le modèle entité/association</li>
+	<li>découvrir le modèle relationnel</li>
+	<li>savoir créer une base de données SQL</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Il est souvent nécessaire de construire des diagrammes pour bien comprendre les relations existantes entre les différentes tables. On utilise pour cela le modèle entité/association et le modèle relationnel.</p>
+
+
+<!-- LE MODELE ENTITE ASSOCIATION -->
+
+<h3>Le modèle entité/association</h3>
+
+<p>Une entité est un élément distint possédant un identifiant et des attributs. Par exemple on peut modéliser des étudiants dans une université par l'entité <em>etudiants</em> de la façon suivante :</p>
+
+<img src="../../images/nsi/etudiants.png" alt="diagramme entité association" width=15%>
+
+
+<p>Les liens existantes entre chaque entité de la base de données sont des associations caractérisées par un nom et 2 cardinalités. Ces dernières traduisent avec des nombres les règles de gestion des associations.</p>
+
+<p>Par exemple, si notre base de données est composée des entités <em>etudiants</em> et <em>livres</em>, chaque étudiant est propriétaire d'aucun livre ou de plusieurs livres (ce qu'on traduit par <em>0, n</em>  de <em>etudiants</em> vers <em>livres</em>), et chaque livre n'appartient qu'à un seul étudiant (ce qu'on traduit par <em>1, 1</em> de <em>livres</em> vers <em>etudiants</em>). Il ne s'agit que d'un modèle, qui ne tient pas compte dans ce cas des livres de la bibliothèque universitaire.</p>
+
+<img src="../../images/nsi/relations.png" alt="diagramme entité association" width=50%>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>représenter par un modèle entité/association le lien existant entre les Elfes et les armes qu'ils fabriquenet dans Le Seigneur des Anneaux, sachant qu'un Elf a au moins fabriqué une arme dans sa vie et qu'une arme a pu être fabriquée par un ou plusieurs Elfes.</p>
+</div>
+
+
+<!-- LE MODELE RELATIONNEL -->
+
+<h3>Le modèle relationnel</h3>
+
+<p>Dans le modèle relationnel, chaque table représente à la fois une entité et une association, de sorte que les différentes tables de la base de données soient bien en relation. On peut représenter le modèle entité/association <em>etudiants-livres</em> ci-dessus avec un modèle relationnel de la façon suivante :</p>
+
+<img src="../../images/nsi/diagramme_relationnel.png" alt="diagramme relationnel" width=50%>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>reprenez le modèle entité/association entre les Elfes et les armes pour le transformer en modèle relationnel.</p>
+	<p><em>Solution : </em>dans le cas présent, les armes ayant plusieurs fabriquants possibles et les Elfes ayant construits plusieurs armes, le modèle est constitué de 2 clés étrangères, et ce couple de clés étrangères forme la clé primaire.</p>
+
+	<img src="../../images/nsi/diagramme_relationnel2.png" alt="diagramme relationnel" width=50%>
+
+</div>
+
+
+<!-- CREATION D'UNE BASE DE DONNEES -->
+
+<h3>Création d'une base de données</h3>
+
+<p>Pour créer une base de données appelée <em>skis</em> en language SQL, il faut écrire</p>
+
+<pre><code class="language-svg">CREATE DATABASE skis CHARACTER SET 'utf8'</code></pre>
+
+<p>Pour créer une table appelée <em>fournisseurs</em> et comprenant les champs <em>nom</em>, <em>fabriquant</em>, <em>reference</em>, <em>prix_HT</em>, il faut écrire</p>
+
+<pre><code class="language-svg">CREATE TABLE fournisseurs(
+nom VARCHAR(255),
+fabriquant VARCHAR(255),
+reference VARCHAR(255),
+prix_HT INTEGER, 
+PRIMARY KEY(ID)
+)</code></pre>
+
+<p>En SQL les descripteurs d'une table sont considérés comme des variables. Lors de leur enregistrement, 
+	les principaux types de ces variables sont les suivants :</p>
+
+	<ul>
+		<li>VARCHAR : chaîne de caractères dont la longueur maximale est fixée à la création de la table, 
+			limitée dans tous les cas à 255 caractères</li>
+		<li>TEXT : chaîne de caractères longue</li>
+		<li>INTEGER : entier</li>
+		<li>REAL : réel à virgule flottante</li>
+		<li>DATE : date du calendrier (privilégier le format AAAA-MM-JJ pour facilier les tris)</li>
+		<li>les booléens ne sont en général pas reconnus en SQL. On utilisera préférentiellement les 
+			entiers 0  et 1</li>
+	</ul>
+
+<p>Le type relatif à chaque champ est impératif lors de la création d'une table.</p>
+
+<p>Notons qu'il existe de nombreux frameworks offrant une interface graphique pour la création de bases 
+	de données, de tables et de relations entre celles-ci. Citons par exemple PHPmyAdmin présent dans 
+	la suite Xamp/Mamp/Wamp (serveurs PHP-Apache-SQL).</p>
+
+{% endblock cours %}

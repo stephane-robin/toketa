@@ -1,0 +1,203 @@
+<form style="margin-left:3%; margin-top:1%; margin-bottom:1%;" action="" method="post">
+
+    <!-- QUESTION 1 -->
+    <h4>Question 1 :</h4>
+    <p>pour définir une fonction, j'utilise le mot-clé :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q1r1" name="q1" value=False>
+    <label style="margin-left:1%;">function</label><br/>
+
+    <input type="radio" id="q1r2" name="q1" value=False>
+    <label style="margin-left:1%;">fonct</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q1r3" name="q1" value=True>
+    <label style="margin-left:1%;" for="q1r3">def</label><br/>
+
+
+    <!-- QUESTION 2 -->
+    <h4>Question 2 :</h4>
+    <p>considérons la fonction \(f\) définie par </p>
+    <pre><code class="language-python">def f(x):
+    return 7 * x - 3</code></pre>
+<p>Pour calculer la valeur de \(f(5)\), je dois écrire le code </p>
+
+    <input style="margin-top:2%;" type="radio" id="q2r1" name="q2" value=False>
+    <label style="margin-left:1%;"><code class="language-python">f()</code></label><br/>
+
+    <input type="radio" id="q2r2" name="q2" value=True>
+    <label style="margin-left:1%;"><code class="language-python">f(5)</code></label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q2r3" name="q2" value=False>
+    <label style="margin-left:1%;"><code class="language-python">input = f(5)</code></label><br/>
+
+
+    <!-- QUESTION 3 -->
+    <h4>Question 3 :</h4>
+    <p>la fonction suivante </p>
+    <pre><code class="language-python">def verification(passe):
+    if passe.capitalize() == passe:
+        return "mot de passe conforme"
+    else:
+        return "mot de passe non conforme"</code></pre>
+    <p>renvoie : </p>
+
+    <input style="margin-top:2%;" type="radio" id="q3r1" name="q3" value=False>
+    <label style="margin-left:1%;">"mot de passe conforme" lorsqu'on exécute <code class="language-python">verification("fr56zui")</code></label><br/>
+
+    <input type="radio" id="q3r2" name="q3" value=True>
+    <label style="margin-left:1%;">"mot de passe conforme" lorsqu'on exécute <code class="language-python">verification("12retcherd")</code></label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q3r3" name="q3" value=False>
+    <label style="margin-left:1%;">"mot de passe non conforme" lorsqu'on exécute <code class="language-python">verification("RUOJUOR")</code></label><br/>
+
+
+    <!-- QUESTION 4 -->
+    <h4>Question 4 :</h4>
+    <p>la portée d'une variable concerne :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q4r1" name="q4" value=True>
+    <label style="margin-left:1%;">le champ d'action d'une variable</label><br/>
+
+    <input type="radio" id="q4r2" name="q4" value=False>
+    <label style="margin-left:1%;">l'espace mémoire occupé par une variable</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q4r3" name="q4" value=False>
+    <label style="margin-left:1%;">le type d'une variable (int, float, str, bool, ...)</label><br/>
+
+
+    <!-- QUESTION 5 -->
+    <h4>Question 5 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">nom = "Paul"
+
+def changerNom():
+    nom = "Oscar"
+
+changerNom()
+print(nom)</code></pre>
+    <p>va afficher :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q5r1" name="q5" value=False>
+    <label style="margin-left:1%;">False</label><br/>
+
+    <input type="radio" id="q5r2" name="q5" value=False>
+    <label style="margin-left:1%;">Oscar</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q5r3" name="q5" value=True>
+    <label style="margin-left:1%;">Paul</label><br/>
+
+
+    <!-- QUESTION 6 -->
+    <h4>Question 6 :</h4>
+    <p>le code suivant </p>
+    <pre><code class="language-python">nom = "Hervé"
+
+def changerNom():
+    global nom
+    nom = "Lucie"
+
+changerNom()
+print(nom)</code></pre>
+    <p>va afficher :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q6r1" name="q6" value=True>
+    <label style="margin-left:1%;">Lucie</label><br/>
+
+    <input type="radio" id="q6r2" name="q6" value=False>
+    <label style="margin-left:1%;">True</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q6r3" name="q6" value=False>
+    <label style="margin-left:1%;">Hervé</label><br/>
+
+
+    <!-- QUESTION 7 -->
+    <h4>Question 7 :</h4>
+    <p>le code suivant</p>
+    <pre><code class="language-python">nom = "Ilan"
+
+def changerNom():
+    nom = "Paul"
+    return nom
+
+nom = changerNom()
+print(nom)</code></pre>
+    <p>va afficher :</p>
+
+    <input style="margin-top:2%;" type="radio" id="q7r1" name="q7" value=False>
+    <label style="margin-left:1%;">True</label><br/>
+
+    <input type="radio" id="q7r2" name="q7" value=False>
+    <label style="margin-left:1%;">Ilan</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q7r3" name="q7" value=True>
+    <label style="margin-left:1%;">Paul</label><br/>
+
+
+    <!-- QUESTION 8 -->
+    <h4>Question 8 :</h4>
+    <p>quelle valeur s'affiche lors de l'exécution du code :</p>
+    <pre><code class="language-python">a = 12
+b = a + 7
+
+def f(x):
+    c = a + b - x
+    return b - c
+
+print(c)</code></pre>
+    <input style="margin-top:2%;" type="radio" id="q8r1" name="q8" value=True>
+    <label style="margin-left:1%;">-9</label><br/>
+
+    <input type="radio" id="q8r2" name="q8" value=False>
+    <label style="margin-left:1%;">7</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q8r3" name="q8" value=False>
+    <label style="margin-left:1%;">31</label><br/>
+
+
+    <!-- QUESTION 9 -->
+    <h4>Question 9 :</h4>
+    <p>quelle valeur s'affiche lors de l'exécution du code :</p>
+    <pre><code class="language-python">a = 12
+b = a + 7
+
+def f(x):
+    c = a + b - x
+    return b - c
+
+print(c)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q9r1" name="q9" value=False>
+    <label style="margin-left:1%;">28</label><br/>
+
+    <input type="radio" id="q9r2" name="q9" value=False>
+    <label style="margin-left:1%;">31</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q9r3" name="q9" value=True>
+    <label style="margin-left:1%;">NameError: name 'c' is not defined</label><br/>
+
+
+    <!-- QUESTION 10 -->
+    <h4>Question 10 :</h4>
+    <p>dans le code suivant :</p>
+    <pre><code class="language-python">a = 12
+b = a + 7
+
+def f(x):
+    c = a + b - x
+    return b - c
+
+print(c)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q10r1" name="q10" value=False>
+    <label style="margin-left:1%;">la variable <strong>a</strong> n'est pas reconnue dans la fonction f</label><br/>
+
+    <input type="radio" id="q10r2" name="q10" value=False>
+    <label style="margin-left:1%;">la variable <strong>x</strong> change la valeur du résultat affiché</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q10r3" name="q10" value=True>
+    <label style="margin-left:1%;">la variable <strong>c</strong> n'est pas reconnue à la dernière ligne car <strong>c</strong>
+    est une variable locale.</label><br/>
+
+    <button class='bouton' name="validerQuizz" style="margin-left:1%; margin-top:4%;" type='submit'>Valider</button>
+
+</form>

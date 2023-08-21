@@ -1,0 +1,93 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>ce que représente une valeur absolue</li>
+	<li>les propriétés des valeurs absolues</li>
+	<li>la distance entre 2 points sur une droite graduée</li>
+	<li>la distance entre 2 points du plan</li>
+	<li>une fiche mémo sur les valeurs absolues</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Comprendre ce que représente une valeur absolue</h3>
+
+<p>Un nombre réel est composé d'un signe et d'une valeur sans signe. Cette valeur sans signe est appelée valeur absolue.</p>
+<p>\(|-7|=7\)</p>
+<p>\(|+7|=7\)</p>
+<p>Géométriquement, la valeur absolue correspond à la distance d'un point à l'origine. 
+	Si on cherche la valeur absolue de \(x\), notée \(|x|\), on note alors M le point d'abscisse \(x\).<br/> 
+	\(|{x}|\) correspond à la distance du point M à l'origine O.</p>
+
+<img src="{% static 'home/images/quatrieme/valeurAbsolue.png' %}" width=35%>
+
+
+<h3>Propriétés des valeurs absolues</h3>
+
+<h4>Attention aux signes</h4>
+<p>\(|{a}|\geq0\)</p>
+	<p>\(|{-a}|=|a|\), on en déduit que \(|{x-y}|=|{y-x}|\)</p>
+
+	<h4>Multiplication</h4>
+	<p>\(|a\times b|=|a|\times|b|\), on en déduit que \(|x^2|=|x|^2\)</p>
+
+	<h4>Addition</h4>
+	<p>\(|{x+y}|\leq|x|+|y|\)</p>
+	<p>Il est facile de se convaincre de cette dernière propriété sur un exemple :</p>
+	<p>\(|7+(-2)|&lt|7|+|-2|\) car \(5&lt9\).</p>
+
+<h4>Astuce dans le cas général</h4>
+
+<p>On constate que \(|{+3}| = 3\) et également que \(|{-3}| = -(-3)=3\), on peut en fait en 
+	déduire une règle plus générale :</p>
+	<p>Si \(x&gt0\) alors \(|{x}| = x\)</p>
+	<p>Si \(x&lt0\) alors \(|{x}| = -x\)</p>
+
+
+<h3>Distance entre 2 points sur une droite graduée</h3>
+
+<p>Sur la droite graduée, considérons les points A et B d'abscisses respectives \(x_A\) et \(x_B\).</p>
+
+<p>La distance entre les points \(A(x_A)\) et \(B(x_B)\) est définie à l'aide de valeurs absolues. Elle vaut \(d(A, B)=|x_A-x_B|\). D'après les propriétés des valeurs absolues, on peut aussi écrire \(d(A, B)=|x_B-x_A|\).</p>
+
+<p>Ainsi la distance entre les points \(A(3)\) et \(B(7)\) vaut \(d(A, B)=|3-7|=4\)</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer la distance entre les points \(A(-2)\) et \(B(3)\).</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+
+	<div id="solution1" style="display:none;">
+		<p>\(d(A, B)=|-2-3|=5\)</p>
+	</div>
+</div>
+
+<p>On retrouve ainsi la distance d'un point M d'abscisse \(x\) à l'origine qui vaut \(d(M, O)=|x-O|=|x|\).</p>
+
+<h3>Distance entre 2 points du plan</h3>
+
+<p>Il ne faut pas confondre la distance entre deux points de la droite graduée (l'axe horizontal des abscisses), et la distance
+	 entre deux points qui se trouvent dans le plan. Dans ce dernier cas, chaque point possède des coordonnées.</p>
+
+<p>La distance entre les points \(A(x_A, y_A)\) et \(B(x_B, y_B)\) est définie à l'aide de racines carrées.</p>
+
+<p>\(d(A, B)=\sqrt{(x_A-x_B)^2+(y_A-y_B)^2}\)</p>
+
+<p>On retrouve en fait dans cette formule le théorème de Pythagore exprimé sous forme de coordonnées.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer la distance entre les points \(A(-2, 4)\) et \(B(3, 5)\).</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+	<div id="solution2" style="display:none;">
+		<p>\(d(A, B)=\sqrt{(-2-3)^2+(4-5)^2}=\sqrt{(-5)^2+(-1)^2}=\sqrt{25+1}=5,1\)</p>
+	</div>
+</div>
+
+<h3>Fiche mémo</h3>
+
+<iframe src='../../documents/valeurAbsolue.pdf' height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

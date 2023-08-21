@@ -1,0 +1,78 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+   <li><a href="#judo">une compétition de judo</a></li>
+   <li><a href="#papier">une usine de rouleaux de papiers</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Le but de cette activité est de comprendre comment les statistiques descriptives permettent 
+    d'analyser une situation et de prendre des décisions.</p>
+
+
+
+<!-- UNE COMPETITION DE JUDO -->
+<p class="my-5 invisible" id="judo">ancre</p>
+
+<h3>Une compétition de judo</h3>
+
+<p><em>D'après une idée de Mathieu Tisset.</em></p>
+
+<p>Hajime</p>
+<p>Cette activité est l'occasion de travailler en binôme pour obtenir des solutions constructives.</p>
+
+<p>Vous organisez une compétition de judo, mais par manque de participants, vous ne pouvez pas répartir les compétiteurs dans leurs catégories de poids habituelles
+    (moins de 60 kg, moins de 66 kg, moins de 73 kg, moins de 81 kg, moins de 90 kg, moins de 100 kg, plus de 100 kg).</p>
+
+<p>Afin de pouvoir organiser la compétition, vous décidez de répartir les combattants en seulement deux catégories contenant à peu près le même nombre de combattants, une catégorie "léger" et une catégorie "lourd".</p>
+
+<p>A l'issue de la pesée, vous avez relevé le poids des judokas en kg : </p>
+
+<p>62 – 98 – 78 – 95 – 68 – 59 – 74 – 81 – 102 – 71 – 80 – 61 – 65 – 72 – 62 - 65</p>
+
+<ol>
+<li>calculer la moyenne de cette série de nombre</li>
+<li>la moyenne de cette série peut-elle vous aider à répartir les combattants dans les deux catégories ?</li>
+<li>comment choisissez-vous de répartir les participants dans chacune des catégories ?</li>
+<li>comment procéder maintenant si nous souhaitons répartir les combattants dans quatre catégories ?</li>
+</ol>
+
+
+
+
+<!-- UNE USINE DE ROULEAUX DE PAPIERS -->
+<p class="my-5 invisible" id="papier">ancre</p>
+
+<h3>Une usine de rouleaux de papiers</h3>
+
+<p><em>D'après une idée de Jason Chatelain.</em></p>
+
+<p>Cette activité est l'occasion de travailler en binôme pour obtenir des solutions constructives.</p>
+
+<p>Vous êtes responsable qualité dans une entreprise de production de papier vendus en ramettes. Vous devez contrôler la production de ramettes dont l'emballage indique 
+    "200 feuilles par paquet". Vous sélectionnez au hasard un premier échantillon de 10 paquets produits à 8 h, puis un 2ème 
+    échantillon de 10 paquets produits à 8 h 30, un 3ème échantillon de 10 paquets produits à 9 h, un 4ème échantillon de
+    10 paquets produits à 9 h 30 et un dernier échantillon de 10 paquets produits à 10 h.</p>
+    
+<p>Vous comptez à chaque fois le nombre de feuilles dans chaque paquet à l'aide d'une machine, et vous relevez les résultats suivants :</p>
+
+<ul>
+    <li>échantillon 1 : 200 - 200 - 199 - 200 - 199 - 201 - 202 - 200 - 200 - 201</li>
+    <li>échantillon 2 : 400 - 100 - 101 - 200 - 120 - 240 - 200 - 240 - 200 - 199</li>
+    <li>échantillon 3 : 199 - 199 - 199 - 199 - 199 - 199 - 199 - 199 - 199 - 199</li>
+    <li>échantillon 4 : 190 - 205 - 192 - 190 - 202 - 200 - 212 - 202 - 201 - 199</li>
+    <li>échantillon 5 : 200 - 200 - 200 - 200 - 200 - 200 - 200 - 200 - 200 - 100</li>
+</ul>
+
+<ol>
+    <li>discutez avec votre binôme pour déterminer les échantillons qui semblent à vue d'oeil ne pas correspondre à l'affichage des paquets.</li>
+    <li>nous allons chercher maintenant à trouver un critère mathématique permettant d'identifier les mauvais échantillons de votre production. Calculer la moyenne de chacun des échantillons ci-dessus. La moyenne constitue-t-elle une manière efficace de sélectionner les mauvais échantillons ?</li>
+    <li>Proposez un critère précis permettant de déterminer si un paquet correspond bien à l'étiquette ou non.</li>
+    <li>le calcul de la médiane de chaque échantillon peut-il nous aider dans notre travail ?</li>
+</ol>
+
+{% endblock cours %}

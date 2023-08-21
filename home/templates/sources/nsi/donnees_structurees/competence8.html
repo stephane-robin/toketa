@@ -1,0 +1,74 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comprendre le fonctionnement d'une file</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Les files</h3>
+
+<div class="fieldsetDefinition">
+    <h4>DEFINITION ...</h4>
+<p>Une file est une structure de données donnant accès en priorité au 1er élément ajouté. On peut donc consulter tout ce que contient une file, mais il faut pour cela la vider par le bas, étape par étape (la défiler).</p>
+</div>
+
+<p>Afin de comprendre le comportement d'une file, nous allons maintenant la construire de façon abstraite en considérant qu'une file est en fait un tableau temporaire F. Le 1er élément de la file F[0] contient l'index de la tête de file, F[1] contient l'index de la queue de file, F[2] contient la taille de la file. Tous les autres indices permettent d'enregistrer les éléments de la file. La tête de file est L'emplacement du 1er élément, ce qui se trouve donc en bas (ou au début), la queue de file est le 1er emplacement libre pour un prochain élément, ce qui se trouve donc au sommet (au à la fin).</p>
+
+<p>Pour enfiler un élément, on le rajoute à la suite de la file, donc on augmente la taille de 1 et on augmente l'indice de queue de 1. Pour défiler un élément, on l'enlève du début de la file sans bouger les autres, donc on diminue la taille de 1, on augment l'indice de tête de 1.</p>
+
+<div class="exerciceType"><p><strong>Exercice type : </strong>construire étape par étape F à partir du pseudo-code suivant :
+<ul>
+<li>F = CREER_FILE_VIDE()</li>
+<li>ENFILER(F, 'i')</li>
+<li>ENFILER(F, 'a')</li>
+<li>DEFILER(F)</li>
+<li>DEFILER(F)</li>
+<li>ENFILER(F, 'i')</li>
+<li>ENFILER(F, 'n')</li>
+<li>ENFILER(F, 'f')</li>
+<li>ENFILER(F, 'o')</li>
+</ul></p>
+<p>Solution :</p>
+<table>
+<tr><td>index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+<tr><td>F</td><td>3</td><td>3</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>F</td><td>3</td><td>4</td><td>1</td><td>i</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>F</td><td>3</td><td>5</td><td>2</td><td>i</td><td>a</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>F</td><td>4</td><td>5</td><td>1</td><td></td><td>a</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>F</td><td>5</td><td>5</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>F</td><td>5</td><td>6</td><td>1</td><td></td><td></td><td>i</td><td></td><td></td><td></td></tr>
+<tr><td>P</td><td>5</td><td>7</td><td>2</td><td></td><td></td><td>i</td><td>n</td><td></td><td></td></tr>	
+<tr><td>P</td><td>5</td><td>8</td><td>3</td><td></td><td></td><td>i</td><td>n</td><td>f</td><td></td></tr>
+<tr><td>P</td><td>5</td><td>9</td><td>4</td><td></td><td></td><td>i</td><td>n</td><td>f</td><td>o</td></tr>	
+</table>
+</div>
+
+<p>On rencontre un processus sous forme de file dans les files d'attente d'impression par exemple. Lorsqu'on souhaite imprimer plusieurs documents, celui qui a été lancé en premier sera imprimé en premier.</p>
+
+<div class="exerciceType"><p><strong>Exercice type : </strong>nous allons reconstruire la fonction enfiler() en Python pour reproduire la file abstraite F ci-dessus. Des espaces mémoire vides seront volontairement alloués en fin de pile pour permettre d'empiler les éléments. Nous ne gérons pas les exceptions de type error index out of range.</p>
+
+<pre><code class="language-python">def enfiler(file, element):
+    queue = file[1]
+    file[queue] = element # insertion de element à l'index queue
+    file[1] += 1 # mise à jour de l'index de queue
+    file[2] += 1 # mise à jour de la taille de file
+
+F = [3, 3, 0, None, None, None, None, None, None, None, None]
+enfiler(F, 'i')
+enfiler(F, 'a')
+print(F)</code></pre>
+ 
+
+<p>Le résultat obtenu à l'affichage correspond bien à ce qui était recherché :</p>
+<pre><code class="language-python">[3, 5, 2, 'i', 'a', None, None, None, None, None, None]</code></pre>
+</div>
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire la fonction defiler() à partir de la file abstraite F ci-dessus, qui retire de la pile l'élément au début, sans décaler les autres éléments.</p></div>
+
+{% endblock cours %}
+
+    

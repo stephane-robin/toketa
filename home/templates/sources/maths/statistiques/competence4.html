@@ -1,0 +1,140 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li><a href="#pourcentage">calcul de proportion et pourcentage</a></li>
+    <li><a href="#evolution">calcul de taux d'évolution</a></li>
+    <li><a href="#arrivee">calcul de la valeur d'arrivée</a></li>
+    <li><a href="#global">déterminer le taux global d'évolution</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- CALCUL DE PROPORTION ET POURCENTAGE -->
+<p class="my-5 invisible" id="pourcentage">ancre</p>
+
+<h3>Calcul de proportion et pourcentage</h3>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>Une proportion ou fréquence d'apparition d'un événement E est le rapport entre le nombre d'individus concernés par cet événement et la population totale étudiée</p>
+<p>\(p(E)=\frac{n_{E}}{n_{Total}}\)</p>
+</div>
+<p>Exemple : aux jeux Olympiques de Tokyo la France a engagé 378 sportifs sur les 11091 sportifs engagés dans le monde entier, soit une proportion de \(p=378\div 11091=0,034\). Cela correspond à un pourcentage de 3,4 %.</p>
+
+<p>Un pourcentage est une proportion ramenée à 100.</p>
+<p>\(pourcentage(E)=\frac{n_{E}}{n_{Total}}\times 100\)</p>
+
+<h4>Proportion de proportion</h4>
+
+<p>On calcule une proportion de proportion en multipliant les proportions.</p>
+<p>De même, on calcule un pourcentage de pourcentage en multiplicant les pourcentages.</p>
+
+<p>Par exemple, durant une compétition de judo, 20% des participants ont marqué suffisamment de points pour obtenir la ceinture noire. Parmi les nouveaux promus, 35% sont des femmes.
+    Ainsi \(20%\times35%=7%\) des participants sont des femmes qui ont marqué suffisamment de points pour obtenir la ceinture noire.
+</p>
+
+<p>Voyons maintenant en détail pourquoi il faut multiplier les proportions :</p>
+
+<p>Notons \(p(E_1/T)\) la proportion d'individus concernés par un événement \(E_1\) dans une population T et \(p(E_2/E_1)\) la proportion d'individus concernés
+    par un événement \(E_2\) au sein de la population concernée par \(E_1\). Ainsi \(p(E_1/T)=\frac{n_{E_1}}{n_{Total}}\) et \(p(E_2/E_1)=\frac{n_{E_2}}{n_{E_1}}\).
+</p>
+
+<p>Si on cherche la proportion d'individus concernés par l'événement \(E_2\) au sein de la population totale, on sait que cela correspond à \(p(E_2/T)=\frac{n_{E_2}}{n_{T}}\)</p>
+
+<p>D'après les formules précédentes, on voit que \(\frac{n_{E_2}}{n_{T}}=\frac{n_{E_2}}{n_{E_1}}\times\frac{n_{E_1}}{n_{T}}\) <br/>donc \(p(E_2/T)=p(E_2/E_1)\times p(E_1/T)\) </p>
+
+
+
+<!-- CALCUL TAUX EVOLUTION -->
+<p class="my-5 invisible" id="evolution">ancre</p>
+
+<h3>Calcul du taux d'évolution</h3>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>Notons \(x_D\) la valeur de départ d'un article et \(x_A\) sa valeur d'arrivée après changement de prix.</p>
+
+<p>Le taux d'évolution (augmentation ou diminution) est donné par \(t=\frac{x_A-x_D}{x_D}\)</p>
+</div>
+
+<p>Il correspond à un pourcentage d'évolution de \(\frac{x_A-x_D}{x_D}\times 100 \%\)</p>
+
+<p>Exemple : <br/>pour \(x_A=112\) CHF et \(x_D=153\) CHF, le taux d'évolution est de \(\frac{153-112}{112}=0,366\). Il correspond à un pourcentage d'évolution de 36,6 %.</p>
+
+
+<!-- CALCUL DE LA VALEUR D'ARRIVEE -->
+<p class="my-5 invisible" id="arrivee">ancre</p>
+
+<h3>Calcul de la valeur d'arrivée</h3>
+
+<p>Notons \(t\) le taux d'évolution d'une valeur de départ \(x_D\).</p>
+
+<p>La valeur d'arrivée est donnée par \(x_A=x_D+t.x_D\)</p>
+
+<p>La formule ci-dessus est logique et se retrouve directement à partir de la définition du taux d'augmentation \(t=\frac{x_A-x_D}{x_D}\)</p>
+
+<p>Exemple, un sweat-shirt coûte 85 CHF en janvier, puis subit une augmentation de 25%. Son taux d'augmentation est donc 0,25 et son nouveau prix est \(85 +0,25\times 85=106,25\) CHF.</p>
+
+<p>On peut simplifier le calcul de la valeur d'arrivée en écrivant \(x_A=(1+t)x_D\)</p>
+
+
+<p>\(CM=1+t\) est appelé coefficient multiplicateur. Il est parfois plus simple de travailler avec le coefficient mutiplicateur qu'avec les taux d'évolution.</p>
+
+<p>On peut encore simplifier le calcul de la valeur d'arrivée en écrivant \(x_A=CM.x_D\)</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>Notons \(x_D\) la valeur de départ d'un article et t le taux d'évolution du prix.</p>
+
+<p>La valeur d'arrivée est donnée par \(x_A=(1+t)x_D\)</p>
+<p>ou encore \(x_A=CM.x_D\) avec \(CM=1+t\) est le coefficient multiplicateur.</p>
+</div>
+
+<h4>Cas d'une diminution du prix</h4>
+
+<p>Dans le cas d'une diminution du prix, on peut conserver les formules précédentes en notant que le taux d'évolution deviendra négatif.</p>
+
+<p>Attention, on trouve parfois une formule modifiée dans le cas d'une diminution de prix : \(x_A=(1-t)x_D\) et \(CM=1-t\). Il s'agit en fait du même calcul, mais cette fois t représente un taux de diminution positif. Il faut donc le soustraire pour retrouver la formule initiale.</p>
+
+
+
+
+<!-- DETERMINER UN TAUX GLOBAL D'EVOLUTION -->
+<p class="my-5 invisible" id="global">ancre</p>
+
+<h3>Déterminer un taux global d'évolution</h3>
+
+
+<h4>Variations successives</h4>
+
+<p>Lorsqu'un produit subit une première variation avec un taux d'évolution de \(t_1\) puis une seconde variation avec un taux d'évolution de \(t_2\), la variation 
+    globale n'est pas donnée par \(t_1+t_2\). En effet, dans certains cas cela pourrait dépasser 100 %. Ce n'est donc pas possible.
+</p>
+
+<p>En réalité, la valeur d'arrivée est donnée par \(x_A=(1+t_1)(1+t_2)x_D=CM_1.CM_2.x_D\)</p>
+
+<p>Le coefficient multiplicateur global est donc \(CM_g=CM_1.CM_2\)</p>
+<p>Le taux d'évolution global est donné par \(t_g=CM_g-1\), puisque \(CM_g=1+t_g\)</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>Dans le cas de 2 variations successives, avec \(x_D\) la valeur de départ,</p>
+<p>Le coefficient multiplicateur global est \(CM_g=CM_1.CM_2\)</p>
+<p>Le taux d'évolution global est donné par \(t_g=CM_g-1\)</p>
+<p>La valeur d'arrivée est donnée par \(x_A=CM_g.x_D\)</p>
+</div>
+
+<h4>Calcul de la valeur de départ</h4>
+
+<p>La valeur de départ est donnée par \(x_D=\frac{x_A}{CM}\)</p>
+
+<p>Ainsi le coefficient multiplicateur réciproque est \(CM_{rec}=\frac{1}{CM}\)</p>
+
+<p>Il correspond au coefficient multiplicateur permettant d'obtenir \(x_D\) à partir de \(x_A\) avec la formule \(x_D=CM_{rec}.x_A\)</p>
+
+<p>Le taux d'évolution réciproque est naturellement donné par la formule \(t_{rec}=CM_{rec}-1\)</p>
+
+{% endblock cours %}

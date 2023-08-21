@@ -1,0 +1,96 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Utiliser Geogebra pour résoudre une équation</h3>
+
+<p>Geogebra est un logiciel permettant de dessiner des formes géométriques avec précision et représente une aide précieuse à tout élève qui souhaite s'investir dans la géométrie. Mais savez-vous qu'il est égalememnt possible de factoriser à l'aide de Geogebra ? Nous allons découvrir ensemble comment procéder.</p>
+
+<p>Geogebra permet de dessiner les courbes représentatives des fonctions, mais également de retrouver graphiquement la solution d'une équation.</p>
+
+<h4>1ère partie - calcul manuel</h4>
+
+<h4>Représentation graphique</h4>
+
+<p>Vous allez dessiner sur votre cahier les représentations graphiques des fonctions suivantes :</p>
+
+<ul>
+<li>\(f(x)=3x+1\)</li>
+<li>\(g(x)=x^2-4\)</li>
+</ul>
+
+<h4>Résolution d'équations</h4>
+
+<p>Résoudre sur votre cahier les équations suivantes :</p>
+
+<ul>
+<li>\(f(x)=0\)</li>
+<li>\(g(x)=0\)</li>
+</ul>
+
+
+
+
+
+<h4>2ème partie - calcul avec Geogebra</h4>
+
+<p>Cela n'est pas si facile d'obtenir un résultat juste rapidement en procédant à la main. Voyons comment vérifier ces résultats quasi-instantanément.</p>
+
+<p>Tout d'abord, il faut vous rendre sur le site <a href="https://www.geogebra.org/" target="_blank">www.geogebra.org</a> ou télécharger l'application directement sur votre ordinateur. Nous utiliserons ensemble la version en ligne.</p>
+
+<p>Puis il est préférable d'utiliser le module Geogebra classique et de définir les fonctions dans le champ en haut à gauche de la page.</p>
+
+<p>Nous verrons ensemble comment tracer des courbes et résoudre une équation en lisant la valeur de x pour laquelle la courbe représentative touche l'axe des abscisses.</p>
+
+
+
+<h3>Utiliser Python pour résoudre une équation</h3>
+
+<p>Vous avez appris à résoudre des équations. C'est parfois difficile, mais c'est nécessaire d'en connaître la méthode. Le langage Python permet également de trouver la solution de certaines équations, et cela à moindre effort. Une fois que vous saurez utiliser Python correctement, cet outil performant vous permettra par exemple de vérifier le résultat de vos calculs.</p>
+
+
+<h4>Partie 1 - calcul manuel</h4>
+
+
+<p>Dans un premier temps, soyez courageux et effectuez les calculs suivants à la main, afin de comparer plus tard vos résultats et ceux de l'ordinateur.</p>
+
+
+<p>\(2x-3 = 6x+7\)</p>
+
+<p>\(23-56x = 12x-4\)</p>
+
+<p>\(6x+45 = 7x+8\)</p>
+
+
+
+<h4>Partie 2 - Python</h4>
+
+
+<p>Nous allons maintenant retrouver les résultats précédents en utilisant des codes simples du langage Python.</p>
+
+<p>En Python la résolution d'équations nécessite l'importation d'un module appelé <em>sympy</em>. Pour cela, commencez votre code par</p>
+
+<pre><code class="language-python">from sympy import *</code></pre>
+
+<p>On déclare ensuite la variable \(x\) en écrivant</p>
+
+<pre><code class="language-python">x = symbols('x')</code></pre>
+
+<p>Pour résoudre l'équation \(x-3=0\) en Python, il faut exécuter le code suivant :</p>
+
+<pre><code class="language-python">print(solveset(x-3, x))</code></pre>
+
+<p>Pour résoudre l'équation \(2x+1=3x-5\) en Python il faut exécuter le code suivant :</p>
+
+<pre><code class="language-python">print(solveset(2*x+1-(3*x-5), x))</code></pre>
+
+<p>Essayez maintenant d'obtenir à l'aide de Python les résultats des calculs que vous venez de faire manuellement. Pour rappel, la multiplication utilise le symbole * et la division le symbole / en Python.</p>
+
+{% endblock cours %}

@@ -1,0 +1,232 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li href="#portee">comprendre la portée des variables</li>
+    <li href="#transformer">savoir transformer un script en fonction</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- PORTEE DES VARIABLES -->
+
+<p class="my-5 invisible" id="portee">ancre</p>
+
+<h3>Portée des variables</h3>
+
+<p>Une variable définie dans une fonction n'existe que dans cette fonction. Si on l'appelle à l'extérieur de la fonction, l'interpréteur renvoie une erreur car il ne la connaît pas.</p>
+
+<p>En revanche, une variable définie dans la partie principale du programme est globale au programme et peut donc s'utiliser de partout. Il existe toutefois une restriction. Si dans une fonction il existe une autre variable portant le même nom, alors l'interpréteur fera la différence entre ces deux variables qui ont été définies à deux emplacements différents.</p>
+
+<p>On parle de portée d'une variable pour exprimer son champ d'action relativement à l'emplacement où elle a été définie.</p>
+
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer : </strong>testez le code ci-dessous pour mieux comprendre. Il affiche <em>Virginia</em> et n'a pas tenu compte du changement. En effet, la variable <strong>nom</strong> qui est appelée à la fin est la variable globale <strong>nom</strong> définie au début. La variable <strong>nom</strong> définie à l'intérieur de la fonction est bien initialisée avec la valeur <em>Paul</em>, mais elle n'est jamais utilisée.</p>
+
+<pre><code class="language-python">nom = "Virginia"
+
+def changerNom():
+    nom = "Paul"
+
+changerNom()
+print(nom)  # affiche Virginia et ne modifie pas nom</code></pre>
+</div>
+
+<p>Dans l'exemple ci-dessus, lorsque le programme lit la définition de la fonction changerNom(), il 
+    crée une nouvelle variable appelée nom à un emplacement mémoire différent de celui de la variable 
+    nom du programme principal. Il ne fait pas le lien entre les deux variables, même si celles-ci 
+    portent le même nom. Au moment de l'exécution de la fonction changerNom(), le programme affecte 
+la valeur 'Paul' à la variable nom de la fonction et ne le lie pas à la variable nom du programme 
+principal. De ce fait, la variable nom du programme principal conserve sa valeur 'Virginia'.</p>
+
+<p>Pour que la variable <strong>nom</strong> locale à la fonction corresponde à la variable globale <strong>nom</strong> du programme, il faut préciser dans la fonction que c'est bien la variable globale qui est utilisée
+    avec le mot clé <strong>global</strong>. </p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>testez le code modifié ci-dessous pour bien comprendre :</p>
+<pre><code class="language-python">nom = "Virginia"
+
+def changerNom():
+    global nom
+    nom = "Paul"
+
+changerNom()
+print(nom)  # affiche Paul et modifie nom</code></pre>
+</div>
+
+<p>On peut également utiliser la variable locale <strong>nom</strong> puis enregistrer la valeur renvoyée dans le variable globale <strong>nom</strong>. Cela fournit le même résultat,
+    comme dans le code ci-dessous.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>testez le code pour vous en convaincre :</p>
+<pre><code class="language-python">nom = "Virginia"
+
+def changerNom():
+    nom = "Paul"
+    return nom
+
+nom = changerNom()
+print(nom)</code></pre>
+</div>
+
+<p>Il est essentiel de tester plusieurs fois les 3 scripts ci-dessus pour bien comprendre la notion fondamentale de portée des variables. En effet, lorsqu'on définit une variable ou qu'on la modifie, on souhaite que le changement s'opère.</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>définir une variable <strong>age</strong> qui prend la valeur 17,
+        puis définir une fonction <strong>anniversaire()</strong> qui rajoute un an à <strong>age</strong> et
+        affiche <em>vous êtes majeur</em> si la personne a plus de 18 ans.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution5" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">age = 17
+def anniversaire():
+    global age
+    age += 1
+
+    if age > 17:
+        print("vous êtes majeur")</code></pre>
+
+    </div>
+</div>
+
+
+<!-- TRANSFORMATION DU CODE PRINCIPAL EN FONCTIONS -->
+
+<p class="my-5 invisible" id="transformer">ancre</p>
+
+<h3>Transformer un script en fonction</h3>
+
+<p>Il est parfois utile de commencer un code en l'exécutant directement sans recourir à une fonction, puis de devoir ensuite l'intégrer à une fonction. Il suffit dans ce cas de définir la fonction avec le mot-clé <strong>def</strong>, puis de renvoyer la valeur calculée par le script d'origine.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>dans le chapitre sur les chaînes de caractères, nous avons déjà écrit un script qui inverse les lettres d'un mot et stocke le résultat dans une variable. Pour rappel le code était le suivant :</p>
+
+        <pre><code class="language-python">mot = "bonjour"
+motInverse =""
+
+for i in range(len(mot) -1 , -1, -1):
+    motInverse = motInverse + mot[i]</code></pre>
+
+    <p>Vous allez intégrer ce code dans une fonction <strong>inverser()</strong> qui prend en argument le mot à inverser et renvoie la réponse. Vous testerez ensuite la fonction en affichant le résultat obtenu lorsque le mot est "escalade".</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution9" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">def inverser(mot):
+    motInverse =""
+
+    for i in range(len(mot) -1 , -1, -1):
+        motInverse = motInverse + mot[i]
+
+    return motInverse
+
+print(inverser("escalade"))</code></pre>
+
+    </div>
+</div>
+
+<p>Dans le chapitre sur les conditions, nous avons également créé un script permettant de déterminer si un client est elligible à une assurance auto, et lorsque c'est le cas, le programme affiche le montant de sa cotisation. Comme on souhaite pouvoir réutiliser ce calcul pour tous les clients qui se présentent à l'agence de l'assureur, il nous faut intégrer ce script dans une fonction.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>pour rappel le code source était le suivant :</p>
+
+        <pre><code class="language-python">age = int(input("quel est votre âge ? "))
+nbre_accidents = int(input("combien avez-vous eu d'accidents en 5 ans ? "))
+
+prime_assurance = 0
+
+# on rajoute la prime de base
+PRIME_DE_BASE = 500
+prime_assurance = prime_assurance + PRIME_DE_BASE
+
+# on s'assure que le client peut être assuré
+if nbre_accidents > 5:
+    print("Pas d'assurance")
+else:
+    # on compare l'age du client avec 25
+    if age < 25:
+        prime_assurance = prime_assurance + 100
+
+    # on rajoute la surprime en fonction de son nombre d'accidents
+    if nbre_accidents == 1:
+        prime_assurance = prime_assurance + 50
+    elif nbre_accidents == 2:
+        prime_assurance = prime_assurance + 125
+    elif nbre_accidents == 3:
+        prime_assurance = prime_assurance + 225
+    elif nbre_accidents == 4:
+        prime_assurance = prime_assurance + 375
+    elif nbre_accidents == 5:
+        prime_assurance = prime_assurance + 575
+
+    # on affiche le montant à payer
+    print(prime_assurance)</code></pre>
+
+    <p>Vous allez intégrer ce code dans une fonction <strong>assurer()</strong> qui prend en argument l'âge du client et le nombre d'accident qu'il a déjà eu. Cette fonction renvoie le montant de la prime d'assurance ou "pas d'assurance" si il n'est pas possible de l'assurer.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution10" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">age = int(input("quel est votre âge ? "))
+nbre_accidents = int(input("combien avez-vous eu d'accidents en 5 ans ? "))
+
+def assurer(age, nbre_accidents):
+    prime_assurance = 0
+
+    # on rajoute la prime de base
+    PRIME_DE_BASE = 500
+    prime_assurance = prime_assurance + PRIME_DE_BASE
+
+    # on s'assure que le client peut être assuré
+    if nbre_accidents > 5:
+        return "Pas d'assurance"
+    else:
+        # on compare l'age du client avec 25
+        if age < 25:
+            prime_assurance = prime_assurance + 100
+
+        # on rajoute la surprime en fonction de son nombre d'accidents
+        if nbre_accidents == 1:
+            prime_assurance = prime_assurance + 50
+        elif nbre_accidents == 2:
+            prime_assurance = prime_assurance + 125
+        elif nbre_accidents == 3:
+            prime_assurance = prime_assurance + 225
+        elif nbre_accidents == 4:
+            prime_assurance = prime_assurance + 375
+        elif nbre_accidents == 5:
+            prime_assurance = prime_assurance + 575
+
+        # on affiche le montant à payer
+        return prime_assurance</code></pre>
+
+    </div>
+    <p>Vous testerez ensuite la fonction en affichant le résultat obtenu lorsque l'âge du client est 26 et son nombre d'accidents est 2.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution11');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution11" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">print(assurer(26, 2))</code></pre>
+
+    </div>
+
+</div>
+
+{% endblock cours %}

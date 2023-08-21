@@ -1,0 +1,354 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li>ce qu'est la factorisation</li>
+	<li>à quoi sert de factoriser</li>
+	<li>comment trouver le facteur commun</li>
+	<li>comment apprendre à factoriser</li>
+	<li>comment utiliser Geogebra pour factoriser</li>
+	<li>comment utiliser Python pour factoriser</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- UTILISER GEOGEBRA POUR FACTORISER -->
+<h3>Utiliser Geogebra pour factoriser</h3>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/2hJgUhH3AG8"
+            title="Factoriser avec Geogebra - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Factoriser avec Geogebra</figcaption>
+</div>
+
+
+
+<p>Geogebra est un logiciel permettant de dessiner des formes géométriques avec précision et représente une aide précieuse à tout élève qui souhaite s'investir dans la géométrie. Mais savez-vous qu'il est égalememnt possible de factoriser à l'aide de Geogebra ? Nous allons découvrir ensemble comment procéder.</p>
+
+
+
+<h4>1ère partie - calcul manuel</h4>
+
+<p>Vous allez factoriser les expressions suivantes sur votre cahier :</p>
+
+<p>\(9x^2-42x+49=...\)</p>
+
+<p>\(9-121x^2=...\)</p>
+
+<p>\((x-1)(x+7)-(x-1)(4x-3)\)=...</p>
+
+<p>\((x+1)(x+27)+(x+1)(2x-3)=...\)</p>
+
+<p>Maintenant, passons à l'opération inverse. Vous allez développer les expressions suivantes sur votre cahier : </p>
+
+<p>\((x-1)(5x+3)=...\)</p>
+
+<p>\((2x-9)^2=...\)</p>
+
+<h4>2ème partie - calcul avec Geogebra</h4>
+
+<p>Cela n'est pas si facile d'obtenir un résultat juste rapidement en procédant à la main. Voyons comment vérifier ces résultats quasi-instantanément.</p>
+
+<p>Tout d'abord, il faut vous rendre sur le site <a href="https://www.geogebra.org/" target="_blank">www.geogebra.org</a> ou télécharger l'application directement sur votre ordinateur. Nous utiliserons ensemble la version en ligne.</p>
+
+<p>Puis il faut utiliser le module calcul formel dans Geogebra Classique. Vous trouverez le reste facilement en testant le logiciel.</p>
+
+
+
+<!-- UTILISER PYTHON POUR FACTORISER -->
+<h3>Utiliser Python pour factoriser</h3>
+
+<p>Vous avez appris à factoriser et développer des expressions mathématiques. C'est parfois difficile mais cela vous permet de résoudre certains problèmes dont vous ne pouviez trouver la solution autrement. Le langage Python permet d'obtenir un résultat similaire à moindre effort si on sait l'utiliser correctement. Nous avons vu ensemble comment utiliser GeoGebra dans ce but, voyons maintenant comment utiliser Python.</p>
+
+
+
+<h4>Partie 1 - calcul manuel</h4>
+
+
+<p>Dans un premier temps, soyez courageux et effectuez les calculs suivants à la main, afin de comparer plus tard vos résultats et ceux de l'ordinateur.</p>
+
+
+<p>Factoriser  \(A = (x-1)(2x+7)+3(1-x)(5-x)\)</p>
+
+<p>Développer  \(B=5(2x-7)(3-x+x^2)\)</p>
+
+<p>Simplifier  \(C=\frac{144x^2+84}{8}\)</p>
+
+<p>Résoudre l'équation  \((9-x^2)(3x-1)=4(x-3)(2x+5)\)</p>
+
+
+<h4>Partie 2 - Python</h4>
+
+
+<p>Pour exécuter les codes ci-dessous, vous pouvez appuyer sur le bouton <em>Run</em> de l'interpréteur Python.</p>
+
+<p>Nous allons maintenant retrouver les résultats précédents en utilisant des codes simples du langage Python.</p>
+
+<p>En Python, le calcul littéral nécessite l'importation d'un module appelé <em>sympy</em>, puis l'affectation de symboles formels <em>x, y, z, ...</em> aux différentes variables <strong>x, y, z, ...</strong>.</p>
+
+<p>Pour cela, commencez votre code par</p>
+
+<pre><code class="language-python">from sympy import *
+x, y, z = symbols('x, y, z')</code></pre>
+
+
+
+<h4>Factorisation</h4>
+
+<p>Pour factoriser une expression mathématique E, <em>sympy</em> utilise l'instruction <strong>factor(E)</strong>.</p>
+
+<p>Par exemple, on sait que \((x-1)(x+2)+(x-1)(x+3)=(x-1)(2x+5)\). Essayez donc d'exécuter le code Python suivant pour retrouver ce résultat :</p>
+
+<pre><code class="language-python">print(factor((x - 1) * (x + 2) + (x - 1) * (x + 3)))</code></pre>
+
+<p>Vous remarquerez qu'en Python, les produits s'expriment avec <strong>*</strong></p>
+
+<p>Essayez maintenant d'obtenir à l'aide de Python le résultat que vous aviez trouvé manuellement pour factoriser A.</p>
+
+
+
+<h4>Développement</h4>
+
+<p>Pour développer une expression mathématique E, <em>sympy</em> utilise l'instruction <strong>expand(E)</strong>.</p>
+
+<p>Par exemple, on sait que \((x-1)(x-2)=x^2-3x+2\). Essayez donc d'exécuter le code Python suivant pour retrouver ce résultat :</p>
+
+<pre><code class="language-python">print(expand((x - 1) * (x - 2)))</code></pre>
+
+
+<p>Essayez maintenant d'obtenir à l'aide de Python le résultat que vous aviez trouvé manuellement pour développer B.</p>
+
+
+
+<h4>Simplification</h4>
+
+<p>Pour simplifier une expression mathématique E, <em>sympy</em> utilise l'instruction <strong>simplify(E)</strong>.</p>
+
+<p>Par exemple, on sait que pour \(x\ne0\), on peut écrire \(\frac{2x^2+6x}{2x}=x+3\). Essayez donc d'exécuter le code Python suivant pour retrouver ce résultat :</p>
+
+<pre><code class="language-python">print(simplify(2 * x**2 + 6 * x) / (2 * x))</code></pre>
+
+
+<p>Vous remarquez qu'en Python, les puissances peuvent s'exprimer avec <strong>**</strong></p> 
+
+<p>Essayez maintenant d'obtenir à l'aide de Python le résultat que vous aviez trouvé manuellement pour simplifier C.</p>
+
+
+
+<h4>Résolution d'équations</h4>
+
+<p>Pour résoudre une équation E, <em>sympy</em> utilise <strong>solve(E, x)</strong>.</p>
+
+<p>Par exemple, on sait que la solution de l'équation \(3x+2=0\) est \(-\frac{2}{3}\). Essayez donc d'exécuter le code Python suivant pour retrouver ce résultat :</p>
+
+<pre><code class="language-python">print(solve(3 * x + 2, x))</code></pre>
+
+
+
+<p>Essayez maintenant d'obtenir à l'aide de Python le résultat que vous saviez trouvé manuellement pour résoudre l'équation \((9-x^2)(3x-1)=4(x-3)(2x+5)\).</p>
+
+
+
+<p>Une fois les vérifications terminées, vous enregistrerez votre fichier au format PY (le fichier doit être nommé à partir de votre nom : <strong>Nom-factorisation.py</strong>, puis vous le rendrez sur <em>Teams</em> à l'endroit indiqué par votre enseignant.</p>
+
+</div>
+</section>
+<section class="px-5 pb-5 pt-2 bg-gris">
+	<div class="container">
+
+
+
+<h2>Rappels</h2>
+
+<!-- QU'EST CE QUE LA FACTORISATION -->
+<h3>Qu'est-ce que la factorisation ?</h3>
+
+<p>Factoriser est souvent perçu par les élèves comme un exercice difficile. Or, il s'agit la plupart du temps d'appliquer la même technique. Voyons ensemble de quoi il s'agit.</p>
+
+<p>Dans la phrase <em>"<span class="important">Margaux va manger</span> du pain <span class="important" style="color: #6767e4;">et</span> <span class="important">Margaux va manger</span> du fromage"</em>, 
+	on remarque que <em>Margaux va manger</em> se répète car elle effectue plusieurs actions. On peut alors abréger cette phrase sans en changer le sens en écrivant :
+	<br/><em>"<span class="important">Margaux va manger</span> du pain <span class="important" style="color: #6767e4;">et</span> du fromage"</em>.</p> 
+
+<p>On vient en fait de factoriser cette phrase en n'écrivant qu'une seule fois ce qui est commun <em>Margaux va manger</em>, et en regroupant ensuite le reste.</p>
+
+<p>En résumé, factoriser c'est effectuer cette transformation :</p>
+
+<p><em>(<span class="important">Margaux va manger</span> du pain) <span class="important" style="color: #6767e4;">+</span>
+	 (<span class="important">Margaux va manger</span> du fromage)</em> &#10145; &#10145; &#10145;
+	 <em><span class="important">Margaux va manger</span> (du pain <span class="important" style="color: #6767e4;">+</span> du fromage)</em>.</p>
+
+<p>On peut maintenant effectuer le même travail avec des expressions mathématiques :</p>
+
+<img src="../../images/quatrieme/factorisation1.png" alt="factorisation" width=20%>
+
+<p>Dans ce cas, le facteur commun est <span class="important">5</span>.</p>
+
+<p>L'opération principale, lorsqu'on effectue un calcul, est celle que l'on fait en dernier, une fois que toutes 
+	les opérations prioritaires ont été effectuées. On remarque qu'en mathématiques, factoriser c'est passer 
+	d'une addition comme opération principale à une multiplication comme opération principale. C'est tout l'intérêt 
+de la factorisation, qui permet de réorganiser une expression mathématique suivant une forme plus avantageuse.</p>
+
+<p>&#9889; <em>Attention</em>, il ne faut surtout pas oublier le signe <span class="important" style="color: #6767e4;">+</span>.</p>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>Factoriser c'est transformer une somme ou une différence en un produit.</p>
+</div>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/PP_IN7zfrd8"
+            title="Exemple simple de factorisation - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Exemple simple de factorisation</figcaption>
+</div>
+
+
+
+	<h3>A quoi cela sert-il de factoriser ?</h3>
+
+	<p>Factoriser sert à simplifier l'écriture d'un expression, lorsqu'il est plus simple de calculer un produit plutôt qu'une somme. Factoriser sert également à résoudre une équation de degré 2 (ou plus) grâce à la règle du produit nul. Factoriser est donc une manipulation essentielle qu'il faut absolument maîtriser.</p>
+
+	
+
+
+<h3>Trouver le facteur commun</h3>
+
+<p>En utilisant le même raisonnement que nous venons de voir, nous trouvons facilement que <span class="important">\((x-1)\)</span> est le facteur commun de l'expression \({\color{red}{(x-1)}}(x+2)+{\color{red}{(x-1)}}(5x+3)\).</p>
+
+<p>Nous pouvons donc facilement factoriser en écrivant :</p>
+
+<img src="../../images/quatrieme/factorisation2.png" alt="factorisation" width=45%>
+
+<p>Il reste seulement à simplifier le reste<br/> \((x+2)+(5x+3)=(x+5x+2+3)=(6x+5)\)</p>
+
+<p>Donc le résultat de notre factorisation est :</p>
+
+<p>\((x-1)(x+2)+(x-1)(5x+3)=(x-1)(6x+5)\)</p>
+
+<p>Maintenant que notre expression est factorisée, elle est plus courte et plus simple à utiliser.</p>
+
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/c2eOXieaWUU"
+            title="Eviter les pièges de la factorisation - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Eviter les pièges de la factorisation</figcaption>
+</div>
+
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Quel est le facteur commun dans les expression suivantes :<br/>
+		1. \((x+3)(2x+3)-(x+3)(4x-1)\) <br/>
+		2. \((x+2)(2x-1)-(x+3)(x+2)\)<br/></p> 
+</div>
+
+
+
+
+
+
+<h3>Apprendre à factoriser</h3>
+
+<p>Nous allons apprendre à factoriser en allant du plus facile au plus complexe.</p>
+
+<h4>Niveau &#11088;</h4>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/CN1WgkTjMi8"
+            title="Factorisation vs développement - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Factorisation vs développement</figcaption>
+</div>
+	
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(A=(x+1)(x+2)+3(x+1)\)</p>
+	<p>Le facteur commun est \((x+1)\). Il reste à regrouper les termes restants sans oublier le signe +, <br/>
+donc \(A=(x+1)((x+2)+3)=(x+1)(x+2+3)=(x+1)(x+5)\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \(B=(x-3)(4x+1)+8(4x+1)\)</p>
+</div>
+
+<div>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
+
+<div id="solution1" style="display:none;">
+	<p>\(B=(4x+1)(x+5)\)</p>
+</div>
+
+<h4>Niveau &#11088;&#11088;</h4>
+
+<p>On peut maintenant compliquer un tout petit peu l'exercice :</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(C=(x+1)(x+2)+(x+1)(x-5)\)</p>
+	<p>Le facteur commun est \((x+1)\). Il reste à regrouper les termes restants sans oublier le signe +, <br/>
+donc \(C=(x+1)((x+2)+(x-5))=(x+1)(x+2+x-5)=(x+1)(2x-3)\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \((x-3)(4x+1)+(2x-1)(4x+1)\)</p>
+</div>
+
+<div>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
+
+<div id="solution2" style="display:none;">
+	<p>\(B=(4x+1)(3x-4)\)</p>
+</div>
+
+<h4>Niveau &#11088;&#11088;&#11088;</h4>
+
+<p>On peut compliquer encore l'exercice avec le signe -. La technique est identique mais il ne faut pas l'oublier sous peine d'erreur :</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(C=(x+4)(x-2)-(x+4)(2x-3)\)</p>
+	<p>Le facteur commun est \((x+4)\). Il reste à regrouper les termes restants sans oublier le signe -, <br/>
+donc \(C=(x+4)((x-2)-(2x-3))=(x+4)(x-2-2x+3)=(x+4)(-x+1)\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \((x+5)(4x+1)-(2x-1)(4x+1)\)</p>
+</div>
+
+<p>Que se passe-t-il maintenant lorsqu'on rajoute un coefficient 3 devant l'une des expressions ?</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \((x-3)(4x+1)+3(2x-1)(4x+1)\)</p>
+</div>
+
+<h4>Niveau &#11088;&#11088;&#11088;</h4>
+
+<p>Il est possible de rencontrer dans les calculs une expression du type \(a^5 b^3+a b^4\).</p>
+
+<p>Il faut encore utiliser la méthode de recherche du facteur commun. Si on ne parvient pas à trouver ce facteur commun de tête, il suffit de décomposer les puissances en multiplications pour le voir apparaître. On obtient donc ici <br/>\(a^5 b^3{\color{blue}{\textbf{+}}}a b^4={\color{red}{a}}\times a\times a\times a\times a\times{\color{green}{b}}\times {\color{green}{b}}\times {\color{green}{b}}{\color{blue}{\textbf{+}}}{\color{red}{a}}\times {\color{green}{b}}\times {\color{green}{b}}\times {\color{green}{b}}\times b\)</p>
+
+<p>\(a\times b\times b\times b\) est donc le facteur commun. Il nous reste ensuite à regrouper les lettres restantes pour obtenir \(a^5b^3{\color{blue}{\textbf{+}}}a b^4={\color{red}{a}}\times {\color{green}{b}}\times {\color{green}{b}}\times {\color{green}{b}}\times(a\times a\times a\times a {\color{blue}{\textbf{+}}} b)=a b^3(a^4 + b)\)</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \(a^2 b^2+ab^3\)</p>
+</div>
+
+<p>&#9889; <em>Attention</em>, lorsque le facteur commun regroupe tous les termes, c'est qu'ils sont multipliés par 1, et <span class="important"> IL NE FAUT PAS OUBLIER LE 1.</span></p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>factoriser \(a b^3-a^5 b^4\)</p>
+	<p>Le facteur commun est \(a b^3\) qui regroupe toute la 1ère partie. On obtient donc \(a b^3-a^5 b^4=a b^3\times 1 -a \times a^4\times b^3 \times b=a b^3\times 1 -a b^3 \times a^4 \times b\) <br/>
+	donc \(a b^3-a^5 b^4=a b^3(1-a^4 b)\)</p>
+	<p>Il est facile d'oublier le 1 et c'est le principal piège de la factorisation. Ne tombez pas dedans... </p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>factorisez \(a b^2+a^3 b^3\)</p>
+</div>
+
+{% endblock cours %}
+

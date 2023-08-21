@@ -1,0 +1,179 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>la simplification par le facteur commun</li>
+    <li>l'amplification par le dénominateur</li>
+    <li>la méthode à retenir pour simplifier une fraction de racines carrées</li>
+    <li>la simplification avec une expression conjuguée</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Les fractions sont des objets compliqués à utiliser lors de calculs. Les racines carrées sont également 
+    des objets compliqués. Lorsqu'on travaille avec une fraction de racines carrées, il est souvent utile 
+    de supprimer la racine carrée qui se trouve au dénominateur. Pour conserver la même valeur que la valeur 
+    de départ, il est important d'utiliser des règles mathématiques fiables. Voici quelques règles utiles.</p>
+
+<!-- SIMPLIFICATION DU NUMERATEUR ET DU DENOMINATEUR -->
+<h3>Méthode 1 - simplification par le facteur commun</h3>
+
+<p>Pour éviter de travailler avec des nombres trop grands, il est utile de simplifier les racines 
+    carrées le plus possible afin d'éliminer le facteur commun. En revanche, cela ne permet pas toujours d'éliminer 
+    la racine carrée au dénominateur.</p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{\sqrt{15}}{\sqrt{12}}\)</p>
+    <p>On simplifie le numérateur et le dénominateur séparément et on se rend compte qu'on peut supprimer le radical commun pour n'obtenir plus aucun radical au dénominateur. Chance ! 
+        ce n'est pas toujours le cas.</p>
+    <p>Ainsi \(\sqrt{15}=\sqrt{3 \times 5}=\sqrt{3}\times\sqrt{5}\) et</p>
+    <p>\(\sqrt{12}=\sqrt{2^2 \times 3}=\sqrt{2^2}\times\sqrt{3}=2\sqrt{3}\)</p>
+    <p>donc \(\frac{\sqrt{15}}{\sqrt{12}}=\frac{\sqrt{3}\times\sqrt{5}}{2\sqrt{3}}=\frac{\sqrt{5}}{2}\). On a divisé ici le numérateur et le dénominateur par le radical commun \(\sqrt{3}\). Cette méthode est rapide mais ne marche pas tout le temps.</p>
+</div>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{\sqrt{10}}{\sqrt{14}}\)</p>
+    <p>On simplifie le numérateur et le dénominateur séparément.</p>
+    <p>Ainsi \(\sqrt{10}=\sqrt{5 \times 2}=\sqrt{5}\times\sqrt{2}\) et</p>
+    <p>\(\sqrt{14}=\sqrt{7 \times 2}=\sqrt{7}\times\sqrt{2}\)</p>
+    <p>donc \(\frac{\sqrt{50}}{\sqrt{14}}=\frac{5\sqrt{2}}{\sqrt{7}\times\sqrt{2}}=\frac{\sqrt{5}}{\sqrt{7}}\). On a divisé ici le numérateur et le dénominateur par le radical commun \(\sqrt{3}\). Cette méthode est rapide mais ne marche pas tout le temps.</p>
+</div>
+
+<p>A noter que dans certains cas, il n'est pas possible de simplifier une fraction de racines carrées, 
+    lorsqu'on ne peut trouver aucun facteur commun au numérateur et au dénominateur. No stress, ça arrive...</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{\sqrt{45}}{\sqrt{20}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution1" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{\sqrt{45}}{\sqrt{20}}=\frac{3\sqrt{5}}{2\sqrt{5}}=\frac{3}{2}\)</p>
+	
+	</div>
+</div>
+
+
+<!-- METHODE 2 -->
+<h3>Méthode 2 : amplification par le dénominateur</h3>
+
+<p>Cette méthode présente un avantage important. Elle permet toujours d'éliminer la racine carrée au dénominateur.</p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{\sqrt{15}}{\sqrt{12}}\)</p>
+    <p>On multiplie le numérateur et le dénominateur par le dénominateur. On se retrouve alors avec le carré d'une racine carrée au dénominateur, et on est en mesure de supprimer le radical sans modifier la valeur du calcul.</p>
+    <p>Ainsi \(\frac{\sqrt{15}}{\sqrt{12}}=\frac{\sqrt{15}\times\sqrt{12}}{\sqrt{12}\times \sqrt{12}}=\frac{\sqrt{15 \times 12}}{12}=\frac{\sqrt{180}}{12}\)</p>
+</div>
+
+<p>&#128561; Mais ... les deux méthodes ne fournissent pas le même résultat !</p>
+
+<p>Pas de panique, \(180 = 2^2 \times 3^2 \times 5\)</p>
+<p>donc \(\sqrt{180}=\sqrt{2^2 \times 3^2 \times 5}=\sqrt{2^2}\times \sqrt{3^2}\times \sqrt{5}=2\times 3\times \sqrt{5}\)</p>
+<p>donc \(\frac{\sqrt{180}}{12}=\frac{2\times 3\times \sqrt{5}}{12}=\frac{\sqrt{5}}{2}\)</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{\sqrt{8}}{\sqrt{5}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution2" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{\sqrt{8}}{\sqrt{5}}=\frac{\sqrt{8}\times\sqrt{5}}{\sqrt{5}\times\sqrt{5}}=\frac{\sqrt{40}}{5}=\frac{2\sqrt{10}}{5}\)</p>
+	
+	</div>
+</div>
+
+<h3>Méthode à retenir pour simplifier une fraction de racines carrées</h3>
+
+<p>Dans la pratique pour simplifier une fraction de racines carrées, on multiplie le numérateur et le dénominateur par la plus petite racine carrée possible, ce qui nous conduit à mélanger des 2 méthodes précédentes pour être le plus efficace possible.
+    <ul>
+        <li>étape 1 : on simplifie séparément le numérateur et le dénominateur</li>
+        <li>étape 2 : on multiplie le numérateur et le dénominateur par la racine carrée restant au dénominateur, afin d'éliminer le radical du dénominateur et de multiplier par le plus petit nombre possible</li>
+    </ul>
+</p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{\sqrt{20}}{\sqrt{12}}\)</p>
+    <p>Solution : on simplifie séparément le numérateur et le dénominateur \(\sqrt{20}=\sqrt{2^2 \times 5}=\sqrt{2^2}\times\sqrt{5}=2\sqrt{5}\)</p>
+    <p>et \(\sqrt{12}=\sqrt{2^2 \times 3}=\sqrt{2^2}\times\sqrt{3}=2\sqrt{3}\)</p>
+<p>donc \(\frac{\sqrt{20}}{\sqrt{12}}=\frac{2\sqrt{5}}{2\sqrt{3}}=\frac{\sqrt{5}}{\sqrt{3}}=\frac{\sqrt{5}\times\sqrt{3}}{\sqrt{3}\times\sqrt{3}}=\frac{\sqrt{5 \times 3}}{3}=\frac{\sqrt{15}}{3}\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{\sqrt{28}}{\sqrt{21}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution3" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{\sqrt{28}}{\sqrt{21}}=\frac{2\sqrt{7}}{\sqrt{3}\times\sqrt{7}}=\frac{2\sqrt{7}\times\sqrt{3}\times\sqrt{7}}{21}=\frac{14\sqrt{3}}{21}\)</p>
+	
+	</div>
+</div>
+
+
+
+<!-- SIMPLIFICATION AVEC EXPRESSION CONJUGUEE -->
+<h3>Simplication avec expression conjuguée</h3>
+
+
+<p>On utilise la 3ème identité remarquable \((a-b)(a+b)=a^2-b^2\) pour enlever des sommes de racines carrées qui se trouvent au dénominateur d'une fraction. On 
+    garde à l'esprit que lorsqu'on amplifie une fraction (multiplie au numérateur et au dénominateur par la même quantité), on 
+    ne modifie pas la valeur de cette fraction.</p>
+
+<h4>Premier cas : pas de racine carrée au numérateur</h4>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{3}{1+\sqrt{5}}\)</p>
+    <p>On cherche l'expression conjuguée du dénominateur \(1+\sqrt{5}\). Il s'agit de \(1-\sqrt{5}\). Si on multiplie ces expressions, la 3ème identité remarquable nous permet d'obtenir des carrés et donc d'éliminer les racines carrées.
+         Afin que la valeur de notre fraction ne change pas, il faut également multiplier le numérateur par \(1-\sqrt{5}\).</p>
+         <p>Ainsi, \(\frac{3}{1+\sqrt{5}}=\frac{3(1-\sqrt{5})}{(1+\sqrt{5})(1-\sqrt{5})}=\frac{3(1-\sqrt{5})}{(1^2-\sqrt{5}^2)}=\frac{3(1-\sqrt{5})}{(1-5)}=-\frac{3}{4}(1-\sqrt{5})\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{4}{1+\sqrt{2}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution4" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{3}{1+\sqrt{5}}=3\times\frac{1-\sqrt{5}}{1-5}=-\frac{3}{4}(1-\sqrt{5})\)</p>
+	
+	</div>
+</div>
+
+<h4>Simplification avec racine carrée au numérateur</h4>
+
+<p>La méthode est identique, mais le calcul est plus compliqué.</p>
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{2-\sqrt{3}}{5+\sqrt{3}}\)</p>
+    <p>On multiplie le numérateur et le dénominateur par l'expression conjuguée \(5-\sqrt{3}\).</p>
+    <p>On obtient \(\frac{2-\sqrt{3}}{5+\sqrt{3}}=\frac{(2-\sqrt{3})(5-\sqrt{3})}{(5+\sqrt{3})(5-\sqrt{3})}=\frac{10-5\sqrt{3}-2\sqrt{3}+\sqrt{3}^2}{25-3}=\frac{13-7\sqrt{3}}{22}\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{8-\sqrt{5}}{3-\sqrt{5}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution5" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{8-\sqrt{5}}{3-\sqrt{5}}=\frac{(8-\sqrt{5})(3+\sqrt{5})}{(3-\sqrt{5})(3+\sqrt{5})}=\frac{24+5\sqrt{5}-5}{9-5}=\frac{19+5\sqrt{5}}{4}\)</p>
+	
+	</div>
+</div>
+
+{% endblock cours %}

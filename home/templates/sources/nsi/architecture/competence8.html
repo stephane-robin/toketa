@@ -1,0 +1,90 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>comprendre le fonctionnement des systèmes informatiques embarqués</li>
+	<li>comprendre le fonctionnement du vélo à assistance électrique</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- INTRODUCTION -->
+
+<h3>Introduction</h3>
+
+<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube explique ce qu'est l'informatique embarquée :
+
+	<a href="https://www.youtube.com/watch?v=DOECi_ZKaYI&feature=emb_logo" target="_blank">&#127911; vidéo | Objets connectés - Fun Mooc YouTube</a></p>
+
+
+<p>L'internet des objets consiste en un réseau d'appareils connectés à Internet et capables d'interagir ensemble. 
+	Il ne s'agit pas d'ordinateurs, mais plutôt d'appareils électroménagers, de systèmes 
+	domotiques, de systèmes de sécurité embarqués (dans les avions ou les voitures), de capteurs fournissant des 
+	informations bio-médicales, de drones, ...</p>
+
+<p>L'utilisation des objets connectés modifie nos modes de vies en facilitant notre travail ou en fournissant des 
+	informations détaillées dont nous n'avions pas connaissance auparavant. Le traitement des millions de données 
+	enregistrées participe au Big Data.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Quel intérêt peut-on avoir à développer des objets connectés plutôt 
+		qu'à utiliser des ordinateurs portables et des smartphone déjà très présents sur le marché ?</p>
+</div>
+
+
+<!-- LES SYSTEMES INFORMATIQUES EMBARQUES -->
+
+<h3>Les systèmes informatiques embarqués</h3>
+
+<p>Un système informatique embarqué est une machine dédiée à un groupe de tâches similaires. Il est composé
+	de capteurs qui récupèrent des données, d'un microprocesseur qui effectue les tâches demandées, 
+	d'une application qui traite les données recueillies, d'une mémoire qui stocke ces données, 
+	d'une IHM Interface Homme Machine qui permet à l'utilisateur de communiquer avec le système.</p>
+
+<p>Il s'agit en fait d'un mini-ordinateur capable de fournir un certain type de tâches uniquement. Cela implique 
+	que le système n'est pas du tout polyvalent, mais très efficace dans le peu de tâches qu'il sait accomplir. Le 
+	temps de réaction est donc très faible, la mémoire est limitée et l'encombrement reste réduit.</p>
+
+	<div class=fieldsetDefinition>
+		<h4>VOCABULAIRE ...</h4> 
+		<p>Un capteur est un objet qui détecte un phénomène physique et le transforme en signal.</p>
+		<p>Un microprocesseur est un circuit intégré qui effectue des tâches.</p>
+		<p>Une application est un programme qui traite des données.</p>
+		<p>Une mémoire est une entité qui conserve les informations fournies par un programme.</p>
+		<p>Une Interface Homme Machine est ce qui permet à l'homme de communiquer avec la machine. Cela peut 
+			être par exemple l'écran d'un smartphone.</p>
+	</div>
+
+
+<!-- LE VELO A ASSISTANCE ELECTRIQUE -->
+
+<h3>Le vélo à assistance électrique</h3>
+
+<p>Le moteur électrique du vélo se trouve dans un moyeu, dans le cadre ou dans une jante. La batterie est distincte 
+	du moteur mais généralement placée à proximité. Lorsque le système perçoit l'action musculaire de l'utilisateur, le 
+	moteur se met en marche. Plus l'utilisateur appuie sur ses pédales et plus le moteur l'aide. Le moteur s'arrête 
+	lorsqu'on atteint une vitesse limite (souvent de 27 km/h) ou lorsque l'utilisateur s'arrête de pédaler. Il ne 
+s'agit donc pas d'un moteur autonome mais bien d'une aide qui apporte un surplus de puissance au cycliste.</p>
+
+<p>Un vélo à assistance est composé d'une bicyclette classique à laquelle se rajoutent :</p>
+<ul>
+	<li>un détecteur de pédalage</li>
+	<li>un écran de contrôle (Interface Homme Machine)</li>
+	<li>un contrôleur électronique qui gère le système</li>
+	<li>une batterie</li>
+	<li>un moteur électrique d'une puissance variable</li>
+</ul>
+
+<p>La vidéo suivante publiée par <em>Cyclable</em> sur YouTube explique le fonctionnement des vélos électriques :<br/>
+
+<a href="https://youtu.be/20odJda6a90" target="_blank">&#127911; vidéo | Comment fonctinone un vélo électrique - Cyclable YouTube</a></p>
+
+
+
+<h3>Fiche mémo</h3>
+
+<iframe src='../../documents/memo_objets_connectes.pdf' height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

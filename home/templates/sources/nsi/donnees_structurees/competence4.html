@@ -1,0 +1,324 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comment consulter une table avec SQL</li>
+	<li>comment utiliser une jointure</li>
+	<li>comment modifier une table</li>
+	<li>comprendre les limites de Python face à SQL</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Considérons la base de données <em>skis</em> constituée de la table <em>fournisseurs</em> contenant les éléments suivants :</p>
+
+<table>
+	<tr><th>ID</th><th>nom</th><th>fabriquant</th><th>reference</th><th>prix_HT</th></tr>
+	<tr><td>1</td><td>Piuma Sintesi</td><td>SkiTrab</td><td>12245</td><td>457</td></tr>
+	<tr><td>2</td><td>4x4</td><td>Rossignol</td><td>3425</td><td>568</td></tr>
+	<tr><td>3</td><td>SR08</td><td>Dynafit</td><td>98380</td><td>690</td></tr>
+	<tr><td>4</td><td>Hero</td><td>Rossignol</td><td>123989</td><td>593</td></tr>
+	<tr><td>5</td><td>9X</td><td>Rossignol</td><td>123</td><td>453</td></tr>
+	<tr><td>6</td><td>Pierra Menta</td><td>Dynastar</td><td>9054</td><td>987</td></tr>
+</table>
+
+<p>et de la table <em>competitions</em> contenant les éléments suivants</p>
+
+<table>
+	<tr><th>ID</th><th>idNom</th><th>evenement</th><th>date</th><th>classement</th></tr>
+	<tr><td>1</td><td>3</td><td>Patrouille</td><td>20.04.2020</td><td>3</td></tr>
+	<tr><td>2</td><td>6</td><td>Altitoy</td><td>04.03.2021</td><td>2</td></tr>
+	<tr><td>3</td><td>3</td><td>Adamello</td><td>21.03.2021</td><td>7</td></tr>
+	<tr><td>4</td><td>6</td><td>Patrouille</td><td>20.04.2020</td><td>5</td></tr>
+</table>
+
+<p>Dans la table <em>competition</em>, le champ <em>idNom</em> correspond à la clé primaire de la table <em>fournisseur</em>. Il permet de mettre en relation cette table avec la table <em>fournisseur</em>. On parle de base de données relationnelles.</p>
+
+<h3>Consulter une table avec SQL</h3>
+
+
+<p>L'instruction SELECT permet de lire les données contenues dans une table.</p>
+
+<p>Par exemple, pour lire tous les noms de skis de la table <em>fournisseurs</em>, il suffit d'écrire :</p>
+
+<pre><code class="language-svg">SELECT nom
+FROM fournisseurs</code></pre>
+
+<p>Pour lire tous les enregistrements de la table <em>fournisseurs</em>, il faut écrire :</p>
+
+<pre><code class="language-svg">SELECT *
+FROM fournisseurs</code></pre>
+
+<p>Pour lire tous les fabriquants de la table <em>fournisseurs</em>, sans que les noms se répètent si ils apparaissent plusieurs fois dans la liste :</p>
+
+<pre><code class="language-svg">SELECT DISTINCT fabriquant
+FROM fournisseurs</code></pre>
+
+<p>C'est assez intuitif, mais on n'a pour l'instant introduit aucune condition. Imaginons qu'on souhaite obtenir maintenant toutes les références de skis de la marque Rossignol</p>
+
+<pre><code class="language-svg">SELECT reference
+FROM fournisseurs
+WHERE fabriquant='Rossignol'</code></pre>
+
+<p>Attention, contrairement aux autres langages de programmation, on utilise le signe "=" pour comparer deux entités et non le signe "==".</p>
+
+<p>Si on souhaite obtenir les références de skis des fabriquants commençant par D, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT reference
+FROM fournisseurs
+WHERE fabriquant LIKE 'D%'</code></pre>
+
+<p>Il est possible d'ordonner par ordre alphabétique croissant (ASC) ou décroissant (DESC) suivant le champ <em>nom</em> le résultat obtenu, avec l'instruction suvante</p>
+
+<pre><code class="language-svg">SELECT reference
+FROM fournisseurs
+WHERE fabriquant LIKE 'D%'
+ORDER BY nom ASC</code></pre>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong> comment afficher les prix des skis SkiTrab ?</p>
+	<p>Solution</p>
+	<pre><code class="language-svg">SELECT prix FROM fournisseurs WHERE fabricant='SkiTrab'</code></pre>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong> comment afficher les fabricants de skis commençant par un D et
+	cela par ordre alphabétique décroissant ?</p>
+	<p>Solution</p>
+	<pre><code class="language-svg">SELECT fabricant FROM fournisseurs WHERE fabricant LIKE 'D%' ORDER BY fabricant DESC</code></pre>
+</div>
+
+
+
+
+<!-- JOINTURES -->
+<h3>Les jointures</h3>
+
+<p>Une jointure est un type de requête particulier qui regroupe des informations contenues dans plusieurs tables.</p>
+
+<p>Par exemple pour obtenir le nom des skis avec les événements auxquels ils ont participé, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT nom, evenement FROM fournisseurs
+INNER JOIN competitions ON fournisseurs.ID=competitions.idNOM</code></pre>
+
+
+
+<!-- OPERATIONS SUR LES RESULTATS -->
+<h3>Opérations sur les résultats</h3>
+
+<p>Lorsqu'on lit les données d'une table, il est aussi faisable d'en faire ressortir les principales métriques. Ainsi, on peut compter le nombre de résultats obtenus, on peut rechercher le minimum, le maximum ou la moyenne d'un résultat dès lors que celui-ci est numérique.</p>
+
+<p>Ainsi, pour compter le nombre de noms de skis de la table <em>fournisseurs</em>, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT COUNT(nom) AS nombre
+FROM fournisseurs</code></pre>
+
+<p>Pour connaître le prix minimum des skis de la table <em>fournisseurs</em>, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT MIN(prix_HT) AS minimum
+FROM fournisseurs</code></pre>
+
+<p>Pour connaître le prix maximum des skis de la table <em>fournisseurs</em>, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT MAX(prix_HT) AS maximum
+FROM fournisseurs</code></pre>
+
+<p>Pour connaître le prix moyen des skis de la table <em>fournisseurs</em>, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT AVG(prix_HT) AS moyenne
+FROM fournisseurs</code></pre>
+
+<p>Pour connaître la somme des prix des skis de la table <em>fournisseurs</em>, il faut écrire</p>
+
+<pre><code class="language-svg">SELECT SUM(prix_HT) AS somme
+FROM fournisseurs</code></pre>
+
+
+
+<!-- MODIFIER UNE TABLE -->
+<h3>Modifier une table</h3>
+
+<p>L'instruction INSERT INTO permet de rajouter un enregistrement dans une table.</p>
+
+<p>Pour rajouter Baltoro, Dynafit, 3425, 589 dans la table <em>fournisseur</em>, il faut écrire</p>
+
+<pre><code class="language-svg">INSERT INTO fournisseurs
+VALUES ('Baltoro', 'Dynafit', '3425', 589)</code></pre>
+
+<p>La clé primaire sera dans ce cas automatiquement mise à jour.</p>
+
+<p>L'instruction UPDATE permet de modifier un enregistrement dans une table.</p>
+
+<p>Pour modifier le prix des skis Hero, il faut écrire</p>
+
+<pre><code class="language-svg">UPDATE fournisseurs SET prix_HT=539
+WHERE nom='Hero'</code></pre>
+
+<p>L'instruction DELETE FROM permet de supprimer un enregistrement dans une table. Attention, il n'est pas possible de revenir en arrière.</p>
+
+<pre><code class="language-svg">DELETE FROM fournisseurs
+WHERE reference=3245</code></pre>
+
+
+<!-- LIMITES DE PYTHON -->
+<h3>Comprendre les limites de Python</h3>
+
+<p>Lorsqu'on utilise une base de données dans un site Web ou dans une application, il est tout d'abord 
+	nécessaire de se connecter à cette base puis de faire des requêtes pour obtenir des information stockées 
+	ou les modifier. Cette connexion se fait grâce à un language backend tel que PHP, Python, Java, ... De la 
+	même façon, les requêtes s'effectuent grâce à ce langage backend car elles sont en relation avec le reste 
+	du code, mais elles incorporent du code SQL qui va interagir avec le Système de Gestion des Bases de Données. 
+	C'est uniquement à ce niveau qu'intervient SQL.</p>
+
+	<p>On peut alors se demander pourquoi ne pas se limiter à Python par exemple, et éviter l'utilisation de SQL.</p>
+
+	<p>Pour comprendre cela, prenons l'exemple d'une table 'menus' constituée des descripteurs 'nom_sandwich' et 
+		'prix'.</p>
+
+	<p>On peut modéliser cette table en Python en utilisant une structure de dictionnaire proche d'un tableau 
+		traditionnel tel qu'il s'afficherait avec Excel ou PhpMyAdmin :</p>
+
+<pre><code class="language-python">menus = {
+	'nom_sandwich': ['cheeseburger', 'double cheese', 'italien', 'bacon'],
+	'prix': [3.9, 4.9, 4.9, 7.2]
+}</code></pre>
+
+<p>Si on veut trouver tous les sandwichs dont le prix est à 4,9 €, il faudra utiliser par exemple le code 
+	Python suivant, où l'on retrouve les noms des sandwichs concernés dans la liste resultats :</p>
+
+<pre><code class="language-python">resultats = []
+
+for i in range(len(menus['prix'])):
+	if menus['prix'][i] == 4.9:
+		resultats.append(menus['nom_sandwich'][i])
+</code></pre>
+
+<p>On parcourt donc la liste des prix pour tous les comparer à 4.9, en conservant une liste d'indices 
+	qui correspondent, puis on récupère dans la liste des noms de sandwichs les valeurs correspondant aux 
+	indices. On place finalement tous ces noms dans une liste resultats.</p>
+
+<p>La même requête en SQL s'écrirait :</p>
+
+<pre><code class="language-svg">FROM menus SELECT prix 
+WHERE prix = 4.9</code></pre>
+
+<p>On remarque que la structure de SQL est bien plus simple que celle et Python, et bien qu'il soit 
+	possible d'effectuer une requête simple en Python, une requête complexe demanderait bien plus d'effort 
+	de conception en Python qu'en SQL.</p>
+
+<p>Essayons de modéliser différemment notre table en Python pour nous facilier la tâche. Considérons la 
+	structure de dictionnaire suivante :</p>
+
+<pre><code class="language-python">menus = {
+	'cheeseburger': 3.9,
+	'double cheese': 4.9,
+	'italien': 4.9,
+	'bacon': 7.2
+}</code></pre>
+
+<p>Pour trouver le nom de tous les sandwichs dont le prix est 4,9 €, on pourra écrire :</p>
+
+<pre><code class="language-python">resultats = []
+
+for cle, val in menus.items():
+	if val == 4.9:
+		resultats.append(cle)</code></pre>
+
+<p>Avec cette structure de table, c'est plus facile d'effectuer des requêtes. En revanche, l'affichage 
+	du dictionnaire ressemble moins à la structure d'un tableau traditionnel, et en particulier, le nom 
+	des descripteurs n'apparaît pas. Imaginons que chaque sandwich ait 4 ou 5 descripteurs, la structure 
+	de dictionnaire se compliquerait fortement, et il deviendrait plus difficile d'afficher toutes les 
+valeurs correspondant à un descripteur particulier.</p>
+
+<p>On préfère finalement adopter la structure de liste de dictionnaires pour notre table, comme ci-dessous</p>
+
+<pre><code class="language-python">menus = [
+	{'nom_sandwich': 'cheeseburger', 'prix': 3.9},
+	{'nom_sandwich': 'double cheese', 'prix': 4.9},
+	{'nom_sandwich': 'italien', 'prix': 4.9},
+	{'nom_sandwich': 'bacon', 'prix': 7.2}
+]</code></pre>
+
+<p>Cette structure correspond à ce qu'on obtient lorsqu'on ouvre un fichier avec l'instruction with open(). 
+	En effet, with open() crée un objet qu'on transforme facilement en une liste.</p>
+
+<p>Pour connaître le nom des sandwichs dont le prix est de 4,9 €, on peut écrire :</p>
+
+<pre><code class="language-python">resultats = []
+	
+for elt in menus:
+	if elt['prix'] == 4.9:
+		resultats.append(elt['nom_sandwich'])</code></pre>
+
+<p>Il est très important de bien réfléchir à la structure qu'on souhaite donner à sa table avant de la 
+	constuire, car :</p>
+	<ul>
+		<li>une structure complexe entraîne des difficultés de consultation et de gestion</li>
+		<li>toute modification opérée une fois que la table contient des données peut s'avérer difficile, 
+			voire risquée pour son contenu</li>
+	</ul>
+
+<p>Notons tout de même que, certains frameworks Python comme Django, utilisent leur propre syntaxe pour communiquer 
+	avec la base de données en évitant le plus possible le recours à SQL. Ces instructions d'échange avec 
+	la base de données agissent finalement de façon similaire à SQL.</p>
+
+<!-- ENTRAINEMENT -->
+<h3>Exercices d'entraînement</h3>
+
+<div class="exerciceApplication">
+<p><strong>Exercice 1 :</strong></p>
+<p>Une base de données est constituée des tables suivantes :</p>
+
+<pre><code class="language-svg">produits(id_produit, nom, prix, taux_tva)
+clients(id_client, nom, prenom, telephone)
+commandes(id_commande, date, ref_client)
+contenus_commandes(id_contenu, ref_commande, ref_produit, quantite)</code></pre>
+
+<p>Ecrire en langage SQL le code permettant d'obtenir les résultats suivants :</p>
+
+<ul>
+	<li>les clients dont le nom est Antonin</li>
+	<li>les clients dont le nom est Antonin et le prénom Hervé</li>
+	<li>les clients dont le nom est Antonin ou le prénom est Hervé</li>
+	<li>le nom des clients dont le prénom est Amélie</li>
+	<li>les commandes avec les informations sur les clients qui les ont commandées</li>
+	<li>les dates de commandes avec les noms des clients correspondants</li>
+	<li>les numéros de commande, noms de clients correspondant, nom de produits correspondant et prix correspondant</li>
+	<li>les commandes dont le nom du client correspondant est Antonin</li>
+	<li>les commandes dont le nom du client correspondant est Antonin et les commandes dont la date est 2023-02-11</li>
+	<li>les commandes dont le nom du client correspondant est Antonin à la date du 2023-02-11</li>
+	<li>le nombre de commandes passées le 2023-02-11</li>
+	<li>le montant total de la commande numéro 1214</li>
+</ul>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Exercice 2 : </strong></p>
+	<p>Une base de données est constituée des tables suivantes :</p>
+
+<pre><code class="language-svg">representations(id_representation, nom, lieu)
+musiciens(id_musicien, nom, ref_representation)
+programmes(id_programme, date, ref_representation, tarif)</code></pre>
+
+<p>Ecrire en langage SQL le code permettant d'obtenir les résultats suivants :</p>
+<ul>
+	<li>la liste des noms des représentations</li>
+	<li>la liste des noms des représentations ayant lieu à Geneve</li>
+	<li>la liste des noms des musiciens et les noms des représentations auxquelles ils participent</li>
+	<li>la liste des noms des représentations, des lieux et les tarifs à la date du 2023-02-11</li>
+	<li>le nombre de musiciens qui participent à la représentation 1214</li>
+	<li>les dates des représentations dont le tarif est inférieur à 50 €</li>
+</ul>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Exercice 3 : </strong></p>
+	<p>Proposer une structure pour une base de données capable de stocker les résultats d'un tournoi de 
+		football d'une durée d'un mois, dont les matchs sont payants, les équipes sont enregistrées 
+		avec les noms des joueurs, et plusieurs matchs sont possibles le même jour.</p>
+</div>
+
+{% endblock cours %}
+

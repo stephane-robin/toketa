@@ -1,0 +1,143 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li><a href="">le routage</a></li>
+    <li><a href="">l'algorithme RIP</a></li>
+    <li><a href="">l'algorithme OSPF</a></li>
+    <li><a href="">l'algorithme de Dijkstra</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- LE ROUTAGE -->
+
+<h3>Le routage</h3>
+
+<p>Le routage a pour objectif d'acheminer un paquet à travers un réseau. L'algorithme de routage choisit donc pour chaque noeud du réseau le port de sortie que prendra le paquet. Les algorithmes de routage peuvent être :
+    <ul>
+    <li>statiques, ils utilisent des routes définies à l'avance</li>
+    <li>dynamiques, ils s'adaptent au maillage et au trafic du réseau</li>
+    </ul>
+</p>
+
+<p>Les algorithmes de routage font souvent appel au plus court chemin entre 2 routeurs du réseaux pour calculer le coût total d'un chemin. L'algorithme de Dijkstra (voir cours de SNT) est souvent utilisé pour calculer le plus court chemin entre deux sommets dans un graphe, de même que l'algorithme RIP utilisé avec le protocole IP sur Internet.</p>
+
+
+<h3>L'algorithme RIP</h3>
+
+<p>L'algorithme Routing Information Protocol est le routage spécifique au protocole IP. Il s'agit d'une technique de routage pas à pas, c'est à dire que l'algorithme n'a pas une vue d'ensemble du chemin choisi, mais qu'il décide au niveau de chaque routeur le port de sortie que va emprunter le paquet à transmettre, et donc l'adresse du routeur suivant à atteindre. Cela suppose qu'une table de routage soit intégrée à chaque routeur afin de proposer le routeur suivant pour chaque destinataire.</p>
+
+<p>Une table de routage RIP est composée des éléments suivants :
+    <ul>
+        <li>adresse IP de destination du paquet</li>
+        <li>passerelle, c'est à dire l'adresse du routeur suivant le plus prêt à atteindre. Si son adresse est inconnue le paquet est transmis au routeur par défaut</li>
+        <li>interface, c'est à dire l'adresse du port de sortie du routeur en cours d'utilisation</li>
+        <li>le vecteur distance correspondant au nombre de routeurs restant à parcourir. Si ce vecteur distance est inconnu sa valeur par défaut est 1.</li>
+    </ul>
+</p>
+
+<p>L'algorithme RIP consiste donc à rechercher dans la table de routage de chaque routeur le meilleur routeur suivant pour acheminer le datagramme vers son destinataire.</p> 
+
+<p>L'algorithme RIP utilise finalement l'algorithme de Bellmann-Ford pour choisir les routes les plus rapides et sans cycle.</p> 
+
+
+
+
+<h4>Le message RIP</h4>
+
+<p>Chaque routeur communique en permanence avec ses routeurs voisins. Un message RIP est transmis toutes les 30 secondes par chaque routeur à ses routeurs voisins pour communiquer la liste des destinataires (hôtes ou réseaux) dont il connaît la route dans sa table. Le message RIP contient également l'adresse du routeur voisin dont le vecteur distance est le plus petit.</p>
+
+<p>Ce message RIP ne contient pas l'adresse des hôtes présents sur la table de routage de l'émetteur, mais uniquement l'adresse des réseaux à laquelle se rajoute le vecteur distance.</p>
+
+
+
+<h4>Les limites de l'algorithme RIP</h4>
+
+<ul>
+<li>Le nombre de sauts d'un routeur à l'autre est limité à 15 pour éviter les chemins en boucles.</li>
+<li>l'algorithme RIP recherche la meilleure distance entre les routeurs et ne tient pas compte du trafic et de la bande passante dans les réseaux.</li>
+</ul>
+
+
+
+<h3>L'algorithme OSPF</h3>
+
+<p>L'algorithme Open Shortest Path First est une amélioration de l'algorithme RIP. Il est plus efficace mais également plus complexe.</p>
+
+<p>Contrairement à l'algorithme RIP, les routeurs ont une vision globale du réseau. Par ailleurs, les vecteurs distances tiennent compte du nombre de sauts et du débit binaire entre chaque routeur. Il n'existe pas de limitation du nombre de sauts.</p>
+
+<p>L'algorithme OSPF utilise finalement l'algorithme de Dijkstra pour choisir les routes les plus rapides et sans cycle.</p> 
+
+
+<h3>L'algorithme de Dijkstra</h3>
+
+<p>L'algorithme de Dijkstra est utilisé par exemple pour déterminer les meilleurs chemins à suivre lors de la 
+    transmission de paquets sur Internet, ou encore pour trouver le chemin le plus court entre deux villes.</p>
+
+    
+<p>La vidéo suivante publiée par <em>Maths-et-tiques</em> sur YouTube explique le fonctionnement de l'algorithme de Dijskra :<br/>
+<a href="https://www.youtube.com/watch?v=rHylCtXtdNs" target="_blank">&#127911; VIDEO | algorithme de Dijkstra - Maths-et-tiques YouTube</a></p>
+
+<h4>Le principe de l'algorithme</h4>
+
+<p>A partir d'une carte, on peut modéliser différents itinéraires possibles en construisant un graphe dont les sommets (ou noeuds) représentent des villes et les arêtes représentent des routes. Les valeurs entre plusieurs sommets peuvent représenter le temps de parcours ou la distance entre les sommets.
+
+<p>L'algorithme de Djikstra sert à trouver le plus court chemin entre deux sommets d'un graphe. On représente cet algorithme par un tableau dont chaque étape constitue une ligne. A chaque itération, on sélectionne le plus court chemin possible et on élimine le sommet par lequel on ne repassera plus. En effet, repasser par un même sommet signifie faire une boucle inutile.</p>
+
+<p>La page suivante publiée par <em>Maths-cours</em> explique le fonctionnement de l'algorithme de Dijkstra :
+<a href="https://www.maths-cours.fr/methode/algorithme-de-dijkstra-etape-par-etape/" target="_blank">&#128211; LECTURE | algorithme de Dijkstra - Maths-cours</a></p>
+
+<div class="exerciceType">
+    <p><strong>Explications sur un exemple avec un graphe: </strong></p>
+    <p>Utilisez l’algorithme de Dijkstra pour trouver le chemin le plus rapide entre les points A et E du réseau ci-dessous :</p>
+    <img src="../../images/snt/dijkstra1.png" alt="algorithme Dijkstra">
+    <p>On place dans un tableau tous les noeuds du graphe.</p>
+    <table>
+        <tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+        <tr><td><strong style="color:red;">0(A)</strong></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><strong>|</strong></td><td>5(A)</td><td>6(A)</td><td></td><td></td></tr>
+        <tr><td><strong>|</strong></td><td><strong style="color:red;">5(A)</strong></td><td>6(A)</td><td></td><td></td></tr>
+        <tr><td><strong>|</strong></td><td><strong>|</strong></td><td>6(A)</td><td>14(B)</td><td>19(B)</td></tr>
+        <tr><td><strong>|</strong></td><td><strong>|</strong></td><td><strong style="color:red;">6(A)</strong></td><td>14(B)</td><td>19(B)</td></tr>
+        <tr><td><strong>|</strong></td><td><strong>|</strong></td><td><strong>|</strong></td><td>10(C)</td><td>19(B)</td></tr>
+        <tr><td><strong>|</strong></td><td><strong>|</strong></td><td><strong>|</strong></td><td><strong style="color:red;">10(C)</strong></td><td>19(B)</td></tr>
+        <tr><td><strong>|</strong></td><td><strong>|</strong></td><td><strong>|</strong></td><td><strong>|</strong></td><td>17(D)</td></tr>
+    </table>
+    <p>Le chemin le plus court est donc A-C-D-E avec une longueur de 17. La réponse se lit en parcourant les choix effectués du 
+        dernier au premier.</p>
+    <p>On remarque que lorsque l'algorithme a le choix entre deux chemins de même longueur, il va choisir le premier car
+         cela n'a pas d'importance pour le résultat final. Plusieurs résultats justes sont possibles, mais la distance totale 
+         reste identique.</p>
+    <p>On peut également placer les résultats de l'algorithme directement sur le graphe :</p>
+
+    <p><strong>Explications sur un exemple avec un quadrillage : </strong></p>
+    <p>On cherche à le plus court chemin pour se rendre du point de départ au point d'arrivée en respectant 
+        le labyrinthe ci-dessous. Le quadrillage peut représenter des secteurs d'écran dans un jeu par exemple.</p>
+        <img src="../../images/nsi/djikstra_grille1.png" alt="algorithme Dijkstra">
+    <p>Une correction peut être donnée ci-dessous où le premier nombre désigne la distance parcourue et 
+            la deuxième partie la référence de la cellule de provenance.</p>
+    <img src="../../images/nsi/djikstra_grille2.png" alt="algorithme Dijkstra">
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong></p>
+        <p>1) Trouvez le plus court chemin entre A et H en utilisant l'algorithme de Dijkstra étape par étape. Placer les résultats dans un tableau.</p>
+        <img src="../../images/snt/dijkstra.png" alt="algorithme Dijkstra" width=30%>
+        <div>
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+        </div>
+    
+        <div id="solution1" style="display:none;">
+        <p>La correction de cet exercice se trouve dans la vidéo suivante publiée par <em>Glassus</em> sur YouTube : <a href="https://www.youtube.com/watch?v=rI-Rc7eF4iw&feature=emb_logo" target="_blank">&#127911; VIDEO | glassus YouTube</a></p>
+    </div>
+        <p>2) Utilisez l’algorithme de Dijkstra pour trouver le chemin le plus rapide entre les points A et G du réseau ci-dessous :</p>
+    <img src="../../images/snt/dijkstra2.png" alt="algorithme Dijkstra">
+</div>
+
+<p>On a utilisé l'algorithme de Djikstra avec des graphes, mais peut également l'utiliser avec des quadrillages, 
+    comme par exemple dans le cas d'un jeu où le personnage doit se déplacer dans un labyrinthe.</p>
+
+{% endblock cours %} 

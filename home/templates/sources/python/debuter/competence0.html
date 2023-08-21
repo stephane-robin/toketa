@@ -1,0 +1,349 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li><a href="#interprete">comprendre ce qu'est un langage interprété</a></li>
+    <li><a href="#environnement">bien choisir son outil pour exécuter du Python</a></li>
+    <li><a href="#devinette">découvrir Python avec un jeu de devinette</a></li>
+    <li><a href="#escargots">découvrir Python avec une course d'escargots</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- LANGAGE INTERPRETE -->
+
+<p class="my-5 invisible" id="interprete">ancre</p>
+
+<h3>Python est un langage interprété</h3>
+
+<p>Python est un langage de programmation dont la philosophie repose sur la simplicité du code et 
+    l'implémentation de bonnes pratiques. Rien n'est fait pour empêcher le programmeur de mener une action, 
+    même si celle-ci semble inappropriée. La structure du code en blocs indentés permet de meilleure lecture 
+    de code, et impose une structure commune et compréhensible pour tout codeur qui souhaiterait reprendre le programme.</p>
+
+<p>Python est également un langage <em>interprété</em>. Cela signifie que le code source est traduit pas 
+    à pas par un logiciel appelé interpréteur, qui récupère des données d'entrée au fur et à mesure pour fournir des données de 
+    sortie. Le code source n'est pas transformé entièrement en code binaire avant d'être compilé, comme pour un langage compilé.</p>
+<p>Le principal avantage est que le code source d'un langage interprété peut fonctionner sur tout ordinateur. Le principal inconvénient est qu'un langage interprété est plus lent qu'un langage compilé,
+    qui peut réutiliser certaines parties de code préalablement compilées.</p>
+
+<p>Grâce à ses bibliothèques performantes et régulièrement mises à jour, Python est particulièrement utilisé dans les environnements scientifiques, pour la manipulation de données et pour l'intelligence artificielle.</p>
+<img src="{% static 'home/images/general/python.jpg' %}" width="100px" style="margin-left:50%;border-radius:10%;">
+
+
+<!-- ENVIRONNEMENT DE DEVELOPPEMENT -->
+<p class="my-5 invisible" id="environnement">ancre</p>
+
+<h3>Bien choisir son outil pour exécuter du Python</h3>
+
+<p>On peut exécuter un programme Python en utilisant le Terminal d'un ordinateur (sous Linux et MacOS), mais il est plus pratique d'utiliser un éditeur de texte tel que <em>Sublim Text</em> ou <em>NotePad++</em> qui colorient automatiquement le code en fonction du langage choisi et proposent une auto-complétion des instructions. 
+    Il est encore plus efficace d'utiliser un Environnement de Développement Intégré IDE tel que <em>PyCharm</em> ou <em>JetBeans</em> qui proposent en plus une recherche passive des erreurs de frappe, un debugger (aide pour corriger les bugs)
+    et le paramétrage des outils de versioning (pour conserver l'historique du code).</p>
+
+<p>Le debugger est un outil particulièrement intéressant, qui propose non seulement des commentaires relatifs aux erreurs de code, 
+    des solutions possibles, mais également la possibilité d'exécuter le code de point d'arrêt en point d'arrêt pour connaître l'état des 
+    variables du programme à chacune des lignes de son exécution, ces lignes ayant été préalablement définies par le développeur.</p>
+
+
+<p>Un outil de versioning tel que <em>Git</em> est également très utile puisqu'il permet de conserver un historique des différentes versions de code, de revenir en arrière 
+    en choisissant une version plutôt qu'une autre si le code actuel n'est pas satisfaisant. Par ailleurs, il permet de travailler sur des copies de code 
+    plutôt que sur des originaux et de regrouper le travail de toute une équipe en évitant les conflits de code.</p>
+
+<p>Python est souvent installé nativement sur votre ordinateur, mais sa version permet uniquement de faire fonctionner certaines applications de votre machine.
+    Elle est indépendante de l'éditeur de texte ou de l'Environnement de Développement Intégré que vous utilisez pour exécuter du Python. De ce fait,
+ l'utilisation du langage Python pour exécuter du code nécessite en général que l'utilisateur paramètre sur son ordinateur le chemin d'accès à l'interpréteur Python, 
+ car il y a de fortes chances pour que votre machine dispose de plusieurs versions de Python.</p>
+
+<p>Lorsqu'on débute en Python, ce paramétrage peut s'avérer laborieux et décourageant. Il peut s'avérer pratique de se consacrer uniquement à la rédaction du code 
+    au lieu de passer du temps à installer et à configuration un Environnement de Développement fonctionnel.
+    Pour cela, il existe des interpréteurs Python en ligne, présents sur Internet, qui exécutent votre code 
+    à partir d'un serveur distant ayant déjà installé et configuré Python.</p>
+
+<p>En résumé, il est donc possible d'exécuter Python en utilisant l'un des outils suivants (du plus pratique au plus performant) :</p>
+
+<ul>
+    <li>sur un site internet proposant un interpréteur en ligne</li>
+    <li>à l'aide d'une commande sur votre Terminal et d'un éditeur de texte</li>
+    <li>à l'aide d'un environnement de développement intégré IDE</li>
+</ul>
+
+<p>Nous allons détailler les 3 méthodes ci-dessus, mais il n'est nullement nécessaire de savoir toutes les utiliser., qui sont présentées en détail ci-dessous. 
+    Il est préférable de choisir la méthode la plus simple pour exécuter ton premier codeChoisis-en simplement une afin d'exécuter ton premier code.</p>
+
+
+<h4>Exécuter son code à l'aide d'un interpréteur en ligne</h4>
+
+<p>Il suffit dans ce cas de se rendre sur un site Internet proposant l'exécution de code. Nul besoin d'installer Python sur sa machine.
+    Voici par exemple une liste de trois sites qui fournissent cette prestation et fonctionnent correctement :</p>
+
+<ul>
+    <li><a href="https://www.onlinegdb.com/online_python_compiler" target="_blank">OnlineGDB compiler</a></li>
+    <li><a href="https://www.programiz.com/python-programming/online-compiler/" target="_blank">Programiz compiler</a></li>
+    <li><a href="https://console.basthon.fr/" target="_blank">Basthon console</a></li>
+</ul>
+    
+    <p>Dans tous les cas, l'interface graphique qui se présente devant vos yeux est composée d'une partie consacrée à l'écriture du code et
+    d'une console dans laquelle apparaissent les résultats lors de l'exécution du code. </p>
+
+    <p>Avec OnlineGDB compiler, l'interface graphique ressemble à ceci :</p>
+    <img src="{% static 'home/images/python/gdbcompiler.png' %}"  alt="python online gdb compiler" width="60%" style="margin-bottom:5%;">
+
+    <p>Avec Programiz compiler, l'interface graphique ressemble à ceci : </p>
+    <img src="{% static 'home/images/python/programizcompiler.png' %}"  alt="python online programiz" width="90%" style="margin-bottom:5%;">
+
+    <p>Avec Basthon console, l'interface graphique ressemble à ceci : </p>
+    <img src="{% static 'home/images/python/basthoncompiler.png' %}"  alt="python online Basthon" width="100%" style="margin-bottom:5%;">
+
+
+<p>Les interpréteurs en ligne sont très pratiques, mais ont principalement trois inconvénients. Ils peuvent être lents suivant 
+    le traffic occasionné sur le site au moment de son utilisation, et ils n'acceptent pas d'affichage en sortie avec une fenêtre indépendante
+     du navigateur utilisé. Il devient dans ce cas compliqué de faire des dessins ou de créer des fenêtres pour une application. Par 
+    ailleurs, certains interpréteurs en ligne n'acceptent pas de uploader des images servant de support à 
+votre code.</p>
+
+<p>Les interpréteurs en ligne offrent donc une solution pratique mais temporaire. Si tu ne parviens pas à installer un environnement de 
+    développement, les interpréteurs en ligne sont une bonne alternative permettant un progression rapide 
+    dans l'apprentissage.</p>
+
+    <p>L'exécution d'un programme est très intuitive sur ces interpréteurs et se réalise
+        avec la touche <em>Run</em> ou <em>Exécuter</em>. Tu peux tester le fonctionnement de ces interpréteurs avec le code ci-dessous.</p>
+    
+    <div class="exerciceApplication">
+        <p><strong>A vous de jouer : </strong>par exemple, pour afficher "Hello world", exécutez le code suivant dans l'interpréteur en ligne de ton choix :</p>
+        <pre><code class="language-python">print("Hello world")</code></pre>
+        <p>Petit rappel : la touche <em>Run</em> ou <em>Exécuter</em></p>
+    
+        <p>Si tout fonctionne normalement, tu dois voir s'afficher sur une partie de l'écran <pre><code class="language-python">Hello world</code></pre></p>
+    </div>
+
+    <p>A noter que Basthon offre une particularité très intéressante, en proposant également un moyen de lire et d'exécuter les 
+        Jupyter Notebooks. Il s'agit de documents au format .IPNB contenant à la fois des zones de texte et des 
+        zones de console Python exécutables. Ces Notebooks peuvent donc être stockés sur ton ordinateur et 
+        exécutés en ligne après upload, ce qui ne nécessite pas l'installation de Python et constitue une excellente alternative d'apprentissage.</p>
+    
+    <p>Pour uploader un Notebook, il faut se rendre sur le site <a href="https://notebook.basthon.fr/" target="_blank">Basthon notebook</a></p>
+    
+
+<h4>Exécuter son code à l'aide du Terminal et d'un éditeur de texte</h4>
+
+Pour 
+    cela, il sera nécessaire d'installer une version récente de Python sur ton ordinateur, puis d'installer et de configurer un outil tel que <em>Visual Studio Code</em>, <em>PyCharm</em>, <em>Sublim Text</em>, <em>Netbeans</em> ou
+    <em>Atom</em>. En revanche, si tu utilises déjà un IDE, c'est parfait, ne change rien.
+<p>Cette manière de procéder est plus complexe Elle requiert un peu d'expérience pour télécharger et installer un programme sur son ordinateur, 
+    sachant que pour chaque système d'exploitation l'installation est différente.</p>
+    
+<p>Il faut d'abord installer une version récente de Python sur sa machine. Pour cela, il faut se rendre sur 
+    le <a href="https://www.python.org/downloads/">site officiel de Python</a>, 
+    suivre la documentation, télécharger une version du langage et l'installer. Il existe de nombreux tutoriels 
+expliquant comment installer une version de Python.</p>
+
+<p>Il faut ensuite installer un éditeur de texte comme NotePad++ ou Sublim Text. Voici le lien vers 
+    le <a href="https://www.sublimetext.com/3">site officiel de Sublim Text</a>.</p>
+
+<p>Cette méthode présente deux inconvénients majeurs. Tout d'abord il faut télécharger et installer manuellement 
+    toutes les bibliothèques qui n'exitent pas nativement dans Python et qu'on souhaite utiliser. C'est le cas 
+    par exemple de matplolib ou de biopython. Ensuite, on ne dispose ni d'un correcteur de code intégré, ni 
+d'un debuggeur. Toutefois, il peut être pratique d'exécuter un code directement au Terminal pour vérifier par exemple qu'un 
+    problème d'exécution n'est pas lié à l'environnement de développement qu'on utilise. Et puis cela permet de 
+bien comprendre que Python ne fait pas partie de l'environnement de travail, mais qu'il est utilisé par cet 
+environnement de travail.</p>
+
+<p>L'exécution d'un programme est simple et rapide si les installations de Python et Sublim Text fonctionnent 
+    correctement.</p>
+
+    <div class="exerciceApplication">
+        <p><strong>A vous de jouer : </strong>par exemple, pour afficher "Hello world", il faut se placer dans un dossier comme Documents,
+            creer un fichier appelé bonjour.py dans ce dossier, puis ouvrir ce fichier dans Sublim Text pour écrire le code suivant :</p>
+        <pre><code class="language-python">print("Hello world")</code></pre>
+        <p>Ensuite, ouvrir le Terminal, se déplacer jusque dans le dossier Documents en exécutant l'instruction :</p>
+        <pre><code class="language-svg">cd Documents</code></pre>.
+        <p>Pour exécuter une instruction au Terminal, il suffit d'appuyer sur la touche Entrée après avoir tapé l'instruction.</p>
+        <p>Finalement il ne reste plus qu'à exécuter le code suivant au Terminal :</p>
+        <pre><code class="language-svg">python3 bonjour.py</code></pre>
+        <p>La plus grosse difficulté et la principale source d'erreurs consiste à se placer dans le même dossier 
+            que le fichier bonjour.py avant de l'exécuter.</p>
+        <p>Si tout fonctionne normalement, tu dois voir s'afficher dans ton Terminal :</p>
+        <pre><code class="language-python">Hello world</code></pre>
+    </div>
+
+<p>On constate donc que l'éditeur de texte sert à écrire son code, et le Terminal demande à l'ordinateur 
+    d'exécuter le langage Python.</p>
+
+
+<h4>Exécuter son code à l'aide d'un environnement de développement intégré</h4>
+
+<p>L'installation et la configuration sont dans ce cas plus complexes et dépendent de chaque IDE. De nombreux IDE 
+    utilisent un workspace (espace de travail) dans lequel sont stockés les fichiers sources et les utilitaires.</p>
+
+<!-- EXECUTER SON PREMIER PROGRAMME -->
+<p class="my-5 invisible" id="premier">ancre</p>
+
+
+<p>Lorsque vous exécutez votre programme directement sur votre machine au lieu d'utiliser un interpréteur en ligne, 
+    il peut être utile de rajouter à la première ligne de votre code un shebang qui indique à l'ordinateur où se 
+    trouve dans votre machine la version du langage Python que vous souhaitez utiliser, comme dans l'exemple ci-dessous
+     où Python se trouve dans le répertoire bin :</p>
+
+<pre><code class="language-python">#!/usr/bin/python3</code></pre>
+
+<p>Pour enregistrer votre code, il faut penser à lui donner l'extention .PY, comme par exemple monFichier.py</p>
+
+
+<!-- PYTHON AVEC UN JEU DE DEVINETTE -->
+
+<p class="my-5 invisible" id="devinette">ancre</p>
+
+<h3>Découvrir Python avec un jeu de devinette</h3>
+
+<p>Voici le code d'un programme Python qui tire un nombre au hasard et demander au joueur de le deviner en 5 tentatives.</p>
+
+<!--
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="530" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+-->
+
+<pre><code class="language-python">from random import randint
+
+nbre_essais_max = 5
+tentative = 1
+min = 0
+max = 50
+choisi = randint(min, max)   
+proposition = -1                      
+
+print("Devine en " + str(nbre_essais_max) + " le nombre que j'ai choisi, entre " + str(min) + " et " + str(max))
+
+while proposition != choisi and tentative <= nbre_essais_max:
+    proposition = int(input("Ta proposition : "))
+    if proposition < choisi:
+        print("Trop petit")
+    elif proposition > choisi:
+        print("Trop grand")
+    else:
+        print("Bravo ! Tu as trouvé " + str(choisi) + " en " + str(tentative) + " essai(s)")
+    tentative += 1
+        
+if tentative > nbre_essais_max and proposition != choisi :
+    print("Perdu. J'avais choisi le nombre : " + str(choisi))</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer :</strong> crée un fichier vierge à l'aide de Visual Studio Code. Copie-colle le programme 
+        ci-dessus dans ce nouveau fichier, donne un nom à ton fichier comme par exemple premierJeu.py, puis exécute le code.
+        Attention, l'extension .PY est importante car elle indique à ton environnement de travail que le programme est 
+        écrit en Python.</p>
+    <ul>
+        <li>Pour mieux comprendre ce que fait le programme, lit les lignes de codes une à une en essayant de deviner ce qu'elle fait.</li>
+        <li>Si on veut maintenant que le jeu se joue en 10 tentatives, que faut-il changer dans le code ?</li>
+        <li>Si on veut ensuite que le nombre à deviner soit compris entre 1 et 100, que doit-on changer dans le code ?</li>
+        <li>Si on veut finalement truquer le jeu pour que le joueur ne trouve jamais la solution. Comment pourrait-on changer le code ?</li>
+    </ul>
+</div>
+
+
+<!-- PYTHON AVEC UNE COURSE D'ESCARGOTS -->
+
+<p class="my-5 invisible" id="escargots">ancre</p>
+
+<h3>Découvrir Python avec une course d'escargots</h3>
+
+<p>Voici le code d'un programme Python qui fait courir trois escargots jusqu'à une ligne d'arrivée et affiche 
+    vainqueur lorsque le premier escargot a terminé.</p>
+
+<pre><code class="language-python">from tkinter import *
+from time import sleep
+from random import randint
+
+def demarrer():
+    global x1, x2, x3
+    y = 1000
+    while x1 < 1040 and x2 < 1040 and x3 < 1040:
+        nbre_hasard = randint(1,3)
+        if nbre_hasard == 1:
+            x1 += 10
+            can.coords(esca1, x1, y1)
+            y = y1
+        elif nbre_hasard == 2:
+            x2 += 10
+            can.coords(esca2, x2, y2)
+            y = y2
+        else:
+            x3 += 10
+            can.coords(esca3, x3, y3)
+            y = y3
+        sleep(0.05)  
+        can.update()
+    can.coords(vainqueur, 500, y)
+
+
+def reinit():
+    global x1, x2, x3, y1, y2, y3
+    can.coords(esca1, x1, y1)
+    can.coords(esca2, x2, y2)
+    can.coords(esca3, x3, y3)
+    can.coords(vainqueur, 200, 800)
+
+x1, y1  = 130, 75
+x2, y2  = 130, 225
+x3, y3  = 130, 375
+
+fen = Tk()
+fen.title("Course d'escargots")
+can = Canvas(fen, width=1100, height=500, bg ='white')
+can.pack(side=TOP, padx=5, pady=5)
+b2 = Button(fen, text ='Départ de la course', width=15, command=demarrer)
+b2.pack(side=RIGHT)
+
+can.create_line(1080, 0, 1080, 500, width=5, fill="red")
+can.create_line(250, 0, 250, 500, width=5, fill="green")
+can.create_line(0, 150, 1100, 150, width=5, fill="black")
+can.create_line(0, 300, 1100, 300, width=5, fill="black")
+can.create_line(0, 450, 1100, 450, width=5, fill="black")
+
+photo1 = PhotoImage(file ='~/Documents/ecg1.png')
+esca1 = can.create_image(x1, y1, image=photo1)
+photo2 = PhotoImage(file ='~/Documents/ecg2.png')
+esca2 = can.create_image(x2, y2, image=photo2)
+photo3 = PhotoImage(file ='~/Documents/ecg3.png')
+esca3 = can.create_image(x3, y3, image=photo3)
+photo4 = PhotoImage(file ='~/Documents/vainqueur.png')
+vainqueur = can.create_image(200, 800, image=photo4) 
+
+fen.mainloop()
+fen.destroy()</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer :</strong> crée un fichier vierge à l'aide de Visual Studio Code. Copie-colle le programme 
+        ci-dessus dans ce nouveau fichier, donne un nom à ton fichier comme par exemple escargots.py. Télécharge ensuite les 
+        images ecg1.png, ecg2.png, ecg3.png et vainqueur.png, puis place ces images dans le même dossier que 
+        ton fichier escargot.py. Exécute ensuite le code pour jouer.</p>
+    <p>Il est possible que ton programme rencontre des difficultés pour trouver l'adresse des images. Tu peux 
+        dans ce cas placer ton fichier escargots.py ainsi que les images dans le dossier Documents et modifier 
+        les adresses du type 'ecg1.png' en adresses du type '~/Documents/ecg1.png'  </p>
+    <ul>
+        <li>Cherche sur Internet l'utilité des bibliothèques random, time et tkinter qui sont importées au début du programme</li>
+        <li>Les escargots se déplacent trop vite. Comment pourrait-on changer le code pour ralentir la progression 
+            des escargots et que cela ressemble plus à une course d'escargots.</li>
+        <li>Que représentent les nombres dans la ligne de code can.create_line(1080, 0, 1080, 500, width=5, fill="red") ?</li>
+        <li>Comment pourrait-on modifier le code en truquant le jeu pour que le 3ème escargot gagne systématiquement la course ?</li>
+    </ul>
+    
+<a href="{% static 'home/images/ecg1.png' %}" download><button class="bouton2 bi bi-download"> ecg1.png</button></a>
+<a href="{% static 'home/images/ecg2.png' %}" download><button class="bouton2 bi bi-download"> ecg2.png</button></a>
+<a href="{% static 'home/images/ecg3.png' %}" download><button class="bouton2 bi bi-download"> ecg3.png</button></a>
+<a href="{% static 'home/images/vainqueur.png' %}" download><button class="bouton2 bi bi-download"> vainqueur.png</button></a>
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=0 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

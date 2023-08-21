@@ -1,0 +1,100 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>les moteurs de recherche</li>
+	<li>les méta-moteurs</li>
+	<li>des robots qui parcourent le Web</li>
+	<li>le référencement naturel</li>
+	<li>le deep Web</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>
+
+<p>Pour commencer, une question simple, mais pas si simple : </p>
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Google est une société qui développe de multiples applications et 
+		solutions informatiques. Mais lorsqu'on se rend sur le Web pour utiliser Google, s'agit-il d'un moteur de 
+		recherche ou d'un navigateur ? Et qu'en est-il de Chrome ? Faites-vous bien la différence ?</p>
+</div>
+
+<h3>Les moteurs de recherche</h3>
+
+<p>Un moteur de recherche est une application qui permet d'effectuer des recherches sur Internet à partir de mots clés. 
+	Un navigateur facilite l'utilisation du Web et fournit des services pour enregistrer dans les favoris, retrouver l'historique, 
+	télécharger une page, ... Un navigateur utilise bien évidemment le serveur DNS pour traduire les adresses URL en adresses IP, 
+	et le protocole HTTP pour accéder au Web. Rappel, le protocole HTTPS est la version sécurisée du protocole HTTP, utilisée par 
+	exemple lors de transactions sur le Web.</p>
+
+	<div class="exerciceApplication">
+		<p><strong>A vous de jouer : </strong>trouvez au moins trois navigateurs de marque différente et trois moteurs de 
+		recherche de marque différente.</p>
+	</div>
+
+
+<h3>Les méta-moteurs</h3>
+
+<p>Les méta-moteurs sont des logiciels qui utilisent plusieurs moteurs de recherche généralistes pour afficher un classement des informations suite à une requête. Un méta-moteur permet ainsi de gagner du temps lors d'une requête en évitant à l'utilisateur d'effectuer ses recherches auprès de plusieurs moteurs de recherche séparément.</p>
+
+
+<h3>Des robots parcourent le Web</h3>
+
+<p>Des programmes appelés robots parcourent le Web, indexent les pages dans des bases de données à partir des 
+	mots qu'elles contiennent et suivent chaque lien qu'ils rencontrent. Cela permet aux moteurs de recherche 
+	de gagner du temps lors d'une requête. Cela permet également à certaines agences (nationales ou commerciales) 
+	d'effectuer efficacement des recherches sur Internet, en laissant tourner en permanence ces programmes. 
+	Attention donc, il ne s'agit pas de robots tels qu'on peut les imaginer avec une ossature métallique. </p> 
+
+<h3>Le référencement naturel</h3>
+
+<p>	Il est souvent évoqué la neutralité d'Internet comme principe garantissant l'égalité de traitement des informations. En fait cette neutralité s'applique aux FAI (Fournisseurs d'Accès Internet) qui ne doivent pas examiner ou altérer le contenu d'une page ou en limiter l'accès en fonction du profil de ses utilisateurs. Toutefois, cette neutralité ne s'applique plus au niveau des moteurs de recherche, des sites ou encore des réseaux sociaux.</p>
+
+<p>En ce qui concerne les moteurs de recherche, ceux-ci sont affectés à la fois par le référencement naturel, le profil de l'utilisateur qu'ils ont préalablement mémorisés, et les contrats publicitaires qui ont pu être passés.</p>
+
+<p>Le principe du référencement naturel repose sur le fait que plus un site est cité par d'autres sites, plus il est pertinent sur le Web.</p>  
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>calculer le référencement naturel de chacun des sites Web ci-dessous, sachant qu'une flèche partant du site A vers le site B représente un lien présent dans une page du site A, quoi pointe vers le site B.</p>
+<img src="{% static 'home/images/nsi/referencement_sujet.png' %}" alt="référencement naturel" width=35%>
+
+	<p>Solution : <br/>
+		<em>Etape 1 - calculer le point de chacun des liens</em><br/>
+		au départ chaque site possède un score de 1.<br/>
+		Le site A pointe vers 3 sites, donc chacun de ses liens a une valeur de \(\frac{1}{3}\).<br/>
+		Le site B pointe vers 1 seulu site, donc son lien a une valeur de 1.<br/>
+		Le site C pointe vers 2 autres sites, donc chacun de ses liens a une valeur de \(\frac{1}{2}\).<br/>
+		Le site D pointe vers 3 sites, donc chacun de ses liens a une valeur de \(\frac{1}{3}\).<br/>
+	</p>
+
+		<img src="{% static 'home/images/nsi/referencement_correction.png' %}" alt="référencement naturel" width=35%>
+		<p><em>Etape 2 - pour chaque site rajouter à son poids initial de 1 les valeurs des liens dont il est destinataire</em><br/>
+		Le site A obtient un référencement naturel de \(1 + 1 + \frac{1}{2} + \frac{1}{3} = 2,83\).<br/>
+		Le site B obtient un référencement naturel de \(1 + \frac{1}{3} + \frac{1}{3} = 1,67\).<br/>
+		Le site C obtient un référencement naturel de \(1 + \frac{1}{3} + \frac{1}{3} = 1,67\).</br>
+		Le site D obtient un référencement naturel de \(1 + \frac{1}{2} + \frac{1}{3} = 1,83\).
+	<p>
+</div> 
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong> Calculer le référencement naturel de chacun des sites suivants :</p>
+	<img src="{% static 'home/images/nsi/referencement_exercice.png' %}" alt="référencement naturel" width=35%>
+</div>
+
+<p>Google propose un module <em>Analytics</em> pour connaître le trafic et les différentes statistiques liées au site Web que vous avez créé. Il est possible d'améliorer le référencement final de votre site, par rapport à son référencement naturel.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>comment améliorer le référencement de votre site Web ?</p>
+</div>
+
+<h3>Le Deep Web</h3>
+
+<p>Le moteur de rechercher Google fournit un classement par pages de sites référencés, suite à la requête d'un utilisateur. Toutefois, toutes les pages Web ne sont pas référencées par les moteurs de recherche traditionnels comme Google, Yahoo, DuckDuckGo,... car elles en ont été volontairement exclues lors de leur création. Ces pages appartiennent au Deep Web, leurs interfaces graphiques sont souvent rudimentaires, proches de celles d'un moteur de recherche. Elles peuvent par exemple contenir les ressources volumineuses d'un serveur, des bases de données privées, des réseaux internes d'entreprises Intranet, et sont accessibles par mot de passe, parfois même payantes. Elles représentent la plus grande partie du Web (90 à 96%). Ce que nous consultons tous les jours s'appelle en fait le Web visible, et ne constitue donc qu'une petite partie des ressources du Web.</p>
+
+<p>Le Dark Web appartient au Deep Web, dont il représente une faible proportion. D'après l'entreprise de sécurité informatique <em>Kapersky</em>, "la réputation du Dark Web a souvent été liée à des intentions criminelles ou à des contenus illégaux et à des sites marchands où les utilisateurs peuvent acheter des biens ou des services illicites". Ainsi, le Dark Web fait référence à des sites non indexés, auxquels on ne peut pas accéder avec des navigateurs grand public. Il nécessite l'utilisation d'un VPN et d'un navigateur spécialisé comme Tor, et son accès n'est pas recommandé au regard des risques potentiels encourus. Toujours d'après l'entreprise <em>Kapersky</em> "les utilisateurs peuvent emprunter des chemins assez sinueux et se retrouver sur un site de piratage ou un forum extrémiste sur le plan politique, ou encore tomber sur des contenus d'une violence inquiétante."</p>
+
+{% endblock cours %}
+    

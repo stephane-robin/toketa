@@ -1,0 +1,174 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li href="#range">découvrir la boucle for pour répéter un bloc</li>
+    <li href="#structure_range">comprendre la structure d'une boucle for avec range</li>
+    <li href="#imbriquees">découvrir les boucles for imbriquées</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- BOUCLE FOR AVEC RANGE -->
+
+<p class="my-5 invisible" id="range">ancre</p>
+
+<h3>Découvrir la boucle for pour répéter un bloc</h3>
+
+<figure>
+    <iframe width="854" height="480" src="https://www.youtube.com/embed/vkEfGC-aYBM"
+            title="La boucle for en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+gyroscope; picture-in-picture" allowfullscreen> </iframe>
+    <figcaption> La boucle for, <em>ToKeTa</em> </figcaption>
+</figure>
+
+<p>Python permet de répéter une instruction un certain nombre de fois. Lorsqu'on connaît le nombre de répétitions, on utilise la boucle <strong>for</strong>. Lorsqu'on ne connaît pas le nombre de répétitions et que celui-ci dépend de l'évolution de la situation (par exemple si le nombre de vies d'un joueur devient nul), alors dans ce cas on utilise la boucle <strong>while</strong>.</p>
+
+<p>Par exemple, pour répéter <em>bonjour</em> 5 fois, il suffit d'écrire</p>
+
+<pre><code class="language-python">for i in range(5):
+    print("bonjour")</code></pre>
+
+<p>Si vous avez déjà pratiqué la programmation en Scratch, le script ci-dessus correspond en fait au code Scratch suivant que vous connaissez bien</p>
+
+<img src="{% static 'home/images/snt/codeScratchFor.png' %}" width="15%">
+
+<p>Dans l'instruction <strong>for i in range(5):</strong>, i va prendre les valeurs entières comprises entre 0 et 4.
+Il y aura de ce fait 5 répétitions de l'instruction <strong>print("bonjour")</strong>. En fait, l'instruction
+<strong>range(5)</strong> crée une liste de 5 nombres allant de 0 à 4 dans laquelle va piocher
+l'indice i.</p>
+
+<div class=fieldsetDefinition>
+    <h4>A RETENIR ...</h4>
+    <p>L'indice i d'une boucle <strong>for</strong> commence par défaut par 0.
+    La dernière valeur prise par cet indice est l'entier strictement inférieur à celui mentionné.</p>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong> écrire un code permettant d'afficher la table de multiplication de 16</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+        <pre><code class="language-python">for i in range(11):
+    print("16 fois", i,"égale", 16 * i)</code></pre>
+</div>
+</div>
+
+
+
+<!-- BOUCLE FOR AVEC RANGE -->
+
+<p class="my-5 invisible" id="structure_range">ancre</p>
+
+<h3>Structure d'une boucle for avec range</h3>
+
+<p>Il est possible de personnaliser les répétitions en modifiant le pas ou le nombre de départ.</p>
+
+<pre><code class="language-python">for i in range(0, 7):  # répétition pour i allant de 0 à 6
+    print("bonjour")
+        
+for i in range(2, 9):  # i varie de 2 à 8
+    print(i, end=" ")  # affiche 2 3 4 5 6 7 8
+
+for i in range(0, 11, 2):  # i varie de 0 à 10 en augmentant de 2
+    print(i, end=" ")  # affiche 0 2 4 6 8 10
+
+for i in range(7, 3, -1):  # i varie de 7 à 4 en descendant de 1
+    print(i, end=" ")  # affiche 7 6 5 4</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>essayez les codes précédents pour bien comprendre
+        l'utilisation de la boucle <strong>for</strong> avec <strong>range</strong>.</p>
+</div>
+
+<p> En revanche, on ne peut augmenter le pas que d'un nombre <em>entier</em>. Si on souhaite utiliser un pas décimal,
+    il faut alors utiliser l'instruction <strong>arange</strong> du module <strong>numpy</strong>, qu'il faut
+    commencer par importer.</p>
+
+<pre><code class="language-python">from numpy import *
+
+for i in numpy.arange(0, 1.1, 0.1):  # i varie de 0 à 1.0 en augmentant de 0.1
+    print(i, end=" ")  # affiche 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher tous les nombres entiers compris entre 1 et 9
+    avec le symbole | entre chaque terme, mais pas à la fin de l'affichage.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+        <pre><code class="language-python">for i in range(1, 10):
+    if i == 9:
+        print(i)
+    else:
+        print(i, end=" | ")</code></pre>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<!-- BOUCLES IMBRIQUEES -->
+
+<p class="my-5 invisible" id="imbriquees">ancre</p>
+
+<h3>Boucles for imbriquées</h3>
+
+<center>
+    <figure>
+        <iframe width="854" height="480" src="https://www.youtube.com/embed/ZMjF4JcR7Go"
+                title="Boucles imbriquées en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+    gyroscope; picture-in-picture" allowfullscreen> </iframe>
+        <figcaption> Boucles imbriquées en Python, <em>ToKeTa</em> </figcaption>
+    </figure>
+</center>
+
+<p>Il est tout à fait possible d'intégrer le bloc d'une boucle <strong>for</strong> dans une autre boucle <strong>for</strong>. Par
+exemple pour afficher :</p>
+
+<pre><code class="language-svg">* * *
+* * *
+* * *</code></pre>
+
+<p>on peut utiliser l'instruction suivante :</p>
+
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        print("*", end=" ")</code></pre>
+
+<p>où on répète 3 fois la répétition de 3 étoiles sur une ligne.</p>
+
+<p>On a déjà écrit la table de multiplication de 16 en utilisant la boucle <strong>for</strong>.
+Cherchons maintenant à afficher les tables de multiplication de 2 jusqu'à la table de 7.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire le code des tables de multiplication de 2 jusqu'à la
+    table de 7, en multipliant par tous les entiers entre 1 et 11 inclus.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">
+for i in range(2, 8): # 2 3 4 5 6 7
+    print(f"table de {i}")
+    for j in range(1, 12): # 1 2 3 4 5 6 7 8 9 10 11
+        print(i, "fois", j, "égal à", i * j)
+    print()</code></pre>
+    </div>
+
+</div>
+
+{% endblock cours %}

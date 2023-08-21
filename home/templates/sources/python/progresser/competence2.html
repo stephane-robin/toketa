@@ -1,0 +1,75 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li href="#structure">comprendre la structure de dictionnaire</li>
+    <li href="#manipuler">savoir manipuler les dictionnaires</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- A QUOI SERT LA STRUCTURE DE DICIONNAIRE -->
+
+<p class="my-5 invisible" id="structure">ancre</p>
+
+<h3>A quoi sert la structure de dictionnaire ?</h3>
+
+<p>Cela peut servir à structurer les données de façon plus intuitive ou plus simple, en utilisant 
+    un système clé-valeur. L'inconvénient d'une liste, c'est que ses éléments sont ordonnés, et 
+    que si on veut faire appel à un élément en particulier, il faut connaître son indice.</p>
+    
+<p>Dans le cas d'un dictionnaire, on ne peut pas ordonner ses éléments, puisqu'ils 
+    ne disposent d'aucun indice. Il suffit de connaître la clé pour obtenir la valeur correspondante. 
+    C'est un peu comme un ensemble de boîtes toutes identiques dans un sac. Si on récupère 
+    une boìte sur laquelle se trouve un nom (sa clé), on peut l'ouvrir et obtenir la valeur qui se trouve 
+    à l'intérieur. On ne peut donc pas avoir 2 clés identiques, ou le programme ne saurait pas quelle 
+valeur choisir.</p>
+
+<p>La structure d'un dictionnaire est proche de celle d'un fichier JSON, ce qui rend les interactions entre 
+    les 2 formats de données très faciles. Voici un exemple de dictionnaire :</p>
+
+<pre><code class="language-python">dico = {
+    'prenom': 'Karl',
+    'classe': '1B2',
+    'age': 17
+}</code></pre>
+
+
+<!-- MANIPULER LES DICTIONNAIRES -->
+
+<p class="my-5 invisible" id="manipuler">ancre</p>
+
+<h3>Manipuler les dictionnaires</h3>
+
+<p>Considérons le dictionnaire suivant :</p>
+<pre><code class="language-python">langages = {
+    'python': 'très populaire',
+    'javascript': 'langage web',
+    'java': 'langage objet'
+}</code></pre>
+
+<p>Pour obtenir 'très populaire', il faut utiliser l'instruction :</p>
+
+<pre><code class="language-python">langages['python']</code></pre>
+
+<p>Pour tester si 'python' se trouve dans le dictionnaire, il faut utiliser l'instruction :</p>
+
+<pre><code class="language-python">print('python' in langages)</code></pre>
+<p>Attention, seules les clés peuvent être atteintes de cette façon.</p>
+
+<p>Les instructions langages.keys() et langages.values() récupèrent respectivement 
+    toutes les clés et toutes les valeurs du dictionnaire langages.</p>
+
+<p>Pour afficher un dictionnaire complet, on peut utiliser :</p>
+
+<pre><code class="language-python">for elt in langages:
+    print(elt + ": " + langages[elt])</code></pre>
+
+<p>ou </p>
+
+<pre><code class="language-python">for cle, valeur in langages.items():
+    print(cle + ": " + valeur)</code></pre>
+
+{% endblock cours %}

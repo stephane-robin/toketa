@@ -1,0 +1,174 @@
+<form style="margin-left:3%; margin-top:1%; margin-bottom:1%;" action="" method="post">
+
+    <!-- QUESTION 1 -->
+    <h4>Question 1 :</h4>
+    <p>qu'affiche le code suivant :</p>
+    <pre><code class="language-python">age = input("Quel est ton âge ? ")
+age = age + 1
+print(age)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q1r1" name="q1" value=False>
+    <label style="margin-left:1%;">"Quel est ton âge ?", puis il affiche un an de plus que l'âge saisi</label><br/>
+
+    <input type="radio" id="q1r2" name="q1" value=False>
+    <label style="margin-left:1%;">"Quel est ton âge ?", puis l'âge saisi</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q1r3" name="q1" value=True>
+    <label style="margin-left:1%;">"Quel est ton âge ?", puis "TypeError: can only concatenate str (not "int") to str"</label><br/>
+
+
+    <!-- QUESTION 2 -->
+    <h4>Question 2 :</h4>
+    <p>qu'affiche le code suivant :</p>
+    <pre><code class="language-python">x = 12
+y = x + 3
+y = x
+print(x)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q2r1" name="q2" value=True>
+    <label style="margin-left:1%;">15</label><br/>
+
+    <input type="radio" id="q2r2" name="q2" value=False>
+    <label style="margin-left:1%;">TypeError: can only concatenate str (not "int") to str</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q2r3" name="q2" value=False>
+    <label style="margin-left:1%;">12</label><br/>
+
+
+    <!-- QUESTION 3 -->
+    <h4>Question 3 :</h4>
+    <p>qu'affiche le code suivant :</p>
+    <pre><code class="language-python">x = 12
+y = "bonjour" + 3
+print(y)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q3r1" name="q3" value=False>
+    <label style="margin-left:1%;">bonjourbonjourbonjour<</label><br/>
+
+    <input type="radio" id="q3r2" name="q3" value=True>
+    <label style="margin-left:1%;">TypeError: can only concatenate str (not "int") to str</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q3r3" name="q3" value=False>
+    <label style="margin-left:1%;">bonjour3</label><br/>
+
+
+    <!-- QUESTION 4 -->
+    <h4>Question 4 :</h4>
+    <p>la boucle suivante va se répéter :</p>
+    <pre><code class="language-python">for i in range(0, 11):
+    print(i)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q4r1" name="q4" value=False>
+    <label style="margin-left:1%;">10 fois</label><br/>
+
+    <input type="radio" id="q4r2" name="q4" value=True>
+    <label style="margin-left:1%;">11 fois</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q4r3" name="q4" value=False>
+    <label style="margin-left:1%;">TypeError : index out of range</label><br/>
+
+
+    <!-- QUESTION 5 -->
+    <h4>Question 5 :</h4>
+    <p>la boucle suivante : </p>
+    <pre><code class="language-python">for i in range(0, 11):
+    print(i)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q5r1" name="q5" value=False>
+    <label style="margin-left:1%;">commence pour i=1</label><br/>
+
+    <input type="radio" id="q5r2" name="q5" value=True>
+    <label style="margin-left:1%;">commence pour i=0</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q5r3" name="q5" value=False>
+    <label style="margin-left:1%;">se finit pour i=11</label><br/>
+
+
+    <!-- QUESTION 6 -->
+    <h4>Question 6 :</h4>
+    <p>la boucle suivante va se répéter :</p>
+    <pre><code class="language-python">i = 15
+while (i&lt10):
+    print(i)
+    i = i + 1</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q6r1" name="q6" value=True>
+    <label style="margin-left:1%;">indéfiniment</label><br/>
+
+    <input type="radio" id="q6r2" name="q6" value=False>
+    <label style="margin-left:1%;">10 fois</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q6r3" name="q6" value=False>
+    <label style="margin-left:1%;">11 fois</label><br/>
+
+
+    <!-- QUESTION 7 -->
+    <h4>Question 7 :</h4>
+    <p>la liste suivante va rajouter l'élément 'Monday' :</p>
+    <pre><code class="language-python">liste = ['Tuesday', 'Wednesday', 'Thursday']
+liste.append('Monday')</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q7r1" name="q7" value=True>
+    <label style="margin-left:1%;">en fin de liste</label><br/>
+
+    <input type="radio" id="q7r2" name="q7" value=False>
+    <label style="margin-left:1%;">en début de liste</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q7r3" name="q7" value=False>
+    <label style="margin-left:1%;">et engendrer un message d'erreurs</label><br/>
+
+
+    <!-- QUESTION 8 -->
+    <h4>Question 8 :</h4>
+    <p>le code suivant va afficher :</p>
+    <pre><code class="language-python">chaine = 'bonjour'
+print(chaine.capitalize)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q8r1" name="q8" value=True>
+    <label style="margin-left:1%;">&ltbuilt-in method capitalize of str object at 0x1073b0110&gt</label><br/>
+
+    <input type="radio" id="q8r2" name="q8" value=False>
+    <label style="margin-left:1%;">Bonjour</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q8r3" name="q8" value=False>
+    <label style="margin-left:1%;">BONJOUR</label><br/>
+
+
+    <!-- QUESTION 9 -->
+    <h4>Question 9 :</h4>
+    <p>le code suivant va afficher :</p>
+    <pre><code class="language-python">liste = ['tuesday', 'wednesday', 'thursday']
+print(liste.capitalize())</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q9r1" name="q9" value=False>
+    <label style="margin-left:1%;">['Tuesday', 'Wednesday', 'Thursday']</label><br/>
+
+    <input type="radio" id="q9r2" name="q9" value=False>
+    <label style="margin-left:1%;">['TUESDAY', 'WEDNESDAY', 'THURSDAY']</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q9r3" name="q9" value=True>
+    <label style="margin-left:1%;">AttributeError: 'list' object has no attribute 'capitalize'</label><br/>
+
+
+    <!-- QUESTION 10 -->
+    <h4>Question 10 :</h4>
+    <p>le code suivant va afficher :</p>
+    <pre><code class="language-python">x = 10
+y = 11
+x = y
+y = 12
+print(x)</code></pre>
+
+    <input style="margin-top:2%;" type="radio" id="q10r1" name="q10" value=True>
+    <label style="margin-left:1%;">11</label><br/>
+
+    <input type="radio" id="q10r2" name="q10" value=False>
+    <label style="margin-left:1%;">12</label><br/>
+
+    <input style="margin-bottom:4%;" type="radio" id="q10r3" name="q10" value=False>
+    <label style="margin-left:1%;">&ltbuilt-in method capitalize of str object at 0x1073b0110&gt</label><br/>
+
+    <!-- BOUTON VALIDER -->
+    <button class='bouton' name="validerQuizz" style="margin-left:1%; margin-top:4%;" type='submit'>Valider</button>
+
+</form>

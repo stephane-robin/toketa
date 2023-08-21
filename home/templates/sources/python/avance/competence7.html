@@ -1,0 +1,93 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+  <li href="#package">comprendre ce que contient un package</li>
+  <li href="#poetry">savoir créer un package avec Poetry</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- CREER UN PACKAGE -->
+
+<p class="my-5 invisible" id="package">ancre</p>
+
+<h3>Le contenu d'un package</h3>
+
+    <p>Un package Python est organisé en fichiers ou classes, qui sont regroupées dans des modules. Les noms des packages et des modules seront écrits en minuscule et peuvent contenir des underscore. La structure à adopter est la suivante :</p>
+    <pre><code class="language-svg">librairie // racine du package
+  librairie/  // module Python
+    __init__.py
+    fichier.py
+    main.py
+    .gitignore
+  setup.py</code></pre>
+
+    <p>Le fichier .gitignore devra contenir :</p>
+    <pre><code class="language-svg"># compiled python modules
+*.pyc
+
+# setup tools distribution folder
+/dist/
+
+#python egg metadata, regenerated from source files by setuptools
+/*.egg-info</code></pre>
+
+    <p>Le fichier setup.py contient les commandes suivantes :</p>
+
+    <pre><code class="language-python">from setuptools import setup
+
+setup(name = "librairie",
+  version = "1.0",
+  description = "ma librairie",
+  url = "http://github/librairie",
+  author = "bob",
+  author_email = "bob@gmail.com",
+  licence = "xxx",
+  packages = ['librairie'],
+  install_requires = [ # list of dependancies
+    'nomPakage',
+  ],
+  zip_safe = False)</code></pre>
+
+    <p>L'installation d'un package en local sur Linux se fait avec la commande pip install librairie.</p>
+
+    <p>Pour publier un package sur PyPI, il faut utiliser la commande python setup.py register</p>
+
+
+    <!--  CREER UN PACKAGE AVEC POETRY -->
+
+    <p class="my-5 invisible" id="poetry">ancre</p>
+
+    <h3>Créer un package avec Poetry</h3>
+
+    <p>Il est possible de créer manuellement les fichiers build, manifestes et dépendances en utilisant pip ou conda.
+      Toutefois, la gestion des compatibilités des dépendances n'est pas toujours assurée et la publication sur PyPI peut
+      s'avérer impossible. Poetry est un outil complet ... Pour installer Poetry il faut écrire le script en ligne de commande :</p>
+
+    <pre><code class="language-python">curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3</code></pre>
+
+    <p>Ce script installe Poetry et il est nécessaire de relancer le Terminal pour modifier automatiquement le system PATH. On peut vérifier la bonne installation avec la
+      commande :</p>
+
+    <pre><code class="language-python">poetry --version</code></pre>
+
+    <p>Pour générer un package, il ne faut pas créer de répertoire vide mais écrire directement :</p>
+
+    <pre><code class="language-python">poetry new mon_package</code></pre>
+
+    <p>qui crée le package dans un répertoire du même nom.</p>
+
+    <p>La structure du package ressemble ainsi à ceci :</p>
+
+    <img src="{% static 'home/images/memento/poetry.png' %}" alt="poetry" width=40%/>
+
+    <p>Il faut ensuite ajouter des dépendances au fichier .toml dont la version sera enregistrée dans un fichier .lock. Bien
+      qu'il soit possible de les ajouter manuellement, il est préférable d'utiliser la commande suivante qui gère la compatibilité
+      des dépendances :</p>
+
+    <pre><code class="language-python">poetry add un_module</code></pre>
+
+{% endblock cours %}

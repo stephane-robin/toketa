@@ -1,0 +1,93 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>les langages du Web</li>
+    <li>une architecture trois tiers</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- LANGAGES DU WEB -->
+<h3>Les langages du Web</h3>
+
+<p>Pour construire un site Web, on utilise plusieurs types de langages : des langages de description tels que HTML et CSS qui sont au coeur du fonctionnement du Web et définissent la structure de chaque page visitée, des langages de programmation tels que JavaScript, PHP, Java, Python,... et un langage de traitement des bases de données tel que SQL.</p>
+
+<p>Pour mieux comprendre ce que fait chaque langage, on peut simplifier les explications de la façon suivante :
+    <ul>
+        <li>HTML gère le contenu des pages</li>
+        <li>CSS gère le style des pages</li>
+        <li>Python, PHP, ... gère les autorisations d'accès, les affichages conditionnels, les différents traitements demandés, et l'accès aux bases de données</li>
+        <li>SQL gère le stockage des données et leur récupération</li>
+    </ul>
+</p>
+
+    <p>Chacun de ces langages va interagir avec un interlocuteur différent. Certains vont être interprétés par un client (le navigateur), d'autres par un serveur :
+    <ul>
+        <li>les langages interprétés par un client (on parle de <em>langages frontend</em>) tels que HTML, CSS et JavaScript qui décrivent comment le site Web doit s'afficher. Ils peuvent par exemple afficher un menu clignotant dans la page Web</li>
+        <li>les langages interprétés par un serveur (on parle de <em>langages backend</em>) tels que PHP, Java, Python, C# qui décrivent comment le site Web doit se comporter en appliquant des régles définies par une application. Ils peuvent par exemple n'afficher la page Web que si l'utilisateur s'est identifié. Ils réalisent l'interface avec le langage de requête de bases de données</li>
+        <li>les langages de communication avec une base de données tel que SQL</li>
+    </ul>
+    </p>
+
+    <p><em>Attention</em>, JavaScript est une particularité car il peut également interagir côté serveur.</p>
+    <p>Plutôt que de commencer avec une page blanche pour construire un site Web, on préfère utiliser des <em>frameworks</em>, qui sont des boîtes à outil pratiques, permettant de faciliter le travail. Les principaux <em>frameworks</em> pour le Web sont les suivants :
+    <ul>
+        <li>Symfony et Zend pour PHP</li>
+        <li>NodeJS et Angular pour JavaScript</li>
+        <li>Java EE pour Java</li>
+        <li>Django pour Python</li>
+        <li>ASP.NET pour C#</li>
+        <li>Ruby on Rails pour Ruby</li>
+    </ul>
+    </p>
+
+    <p>On peut également utiliser un CMS Content Management System, qui est un site prêt à être modifié. Le CMS le plus populaire est actuellement WordPress,</p>
+
+
+
+
+
+
+
+<!-- ARCHITECTURE 3 TIERS -->
+<h3>Architecture trois tiers</h3>
+
+
+    <h4> Les bases de données </h4>
+
+    <p> Les bases de données permettent d'enregistrer des informations afin de les ré-utiliser lors d'une prochaine session sur un site. Elles fonctionnent avec un autre serveur appelé serveur de base de données. L'accès à ce serveur s'effectue à l'aide d'un langage de programmation côté serveur tel que Python, Java, PHP, ...</p>
+
+    <p>En revanche, la gestion des données du serveur (choisir un emplacement de stockage, nommer les tables, savoir récupérer des éléments) s'effectue à l'aide d'un Système Gestionnaire de Bases de Données SGBD, qui est un logiciel communiquant principalement en langage SQL. Ainsi, un langage tel que Python peut intégrer du code SQL dans ses requêtes pour servir d'interface entre le programme principal et le gestionnaire de bases de données</p>
+
+    <p> Les principaux systèmes de gestion de base de données SQL sont les suivants :
+    <ul>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+        <li>SQL Serveur</li>
+        <li>Oracle</li>
+        <li>SQLite</li>
+    </ul>
+    </p>
+
+    <p> Il existe des bases de données non relationnelles qui n'utilisent pas le langage SQL. Par exemple MongoDB ou Cassandra. </p>
+   
+
+    <h4> Une architecture 3 tiers pour générer une page Web </h4>
+
+<p>Nous avons appris qu'Internet était construit suivant un modèle en couches, et que le fonctionnement du Web était basé sur une structure client-serveur. Nous venons de voir qu'il existe également un autre serveur pour les bases de données, ce qui donne en fait au Web une architecture 3 tiers.</p>
+
+    <p> L'interaction entre un client et un serveur est la suivante :
+    <ul>
+        <li>le client demande une page au serveur du site</li>
+        <li>le serveur du site effectue une requête auprès du serveur de base de données pour obtenir certains résultats qui ont été conservés en mémoire</li>
+        <li>le serveur du site génère finalement la page en fonction des conditions requises par l'application utilisée, en transformant le code source (par exemple PHP) en HTML, puis il envoie la page créée au client</li>
+        <li>le client lit la page à l'aide du navigateur et utilise éventuellement JavaScript si une interaction dynamique côté client est nécessaire</li>
+    </ul>
+    </p>
+
+    <img src="{% static 'home/images/nsi/architecture3tiers.png' %}" alt="architecture 3 tiers" width="60%">
+
+{% endblock cours %}

@@ -1,0 +1,63 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Règles de calcul</h3>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>si \(a&ltb\) alors \(a+c&ltb+c\) quels que soient les nombres \(a, b, c\)</p>
+</div>
+
+<p><em>Exemple :</em>
+    <p> \(2&lt5\) entraîne \(2+3&lt5+3\) <br/>
+de même <br/>\(2&lt5\) entraîne \(2-3&lt5-3\)</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+    <p>si \(a&ltb\) et \(c&ltd\) alors \(a+c&ltb+d\) quels que soient les nombres \(a, b, c, d\)</p>
+    </div>
+
+<p><em>Exemple :</em>
+<p> \(2&lt5\) et \(7&lt9\) entraîne \(2+7&lt5+9\) <br/>
+    de même<br/> \(2&lt5\) et \(-4&lt-3\) entraîne \(2-4&lt5-3\)</p>    
+
+    <div class="fieldsetDefinition">
+        <h4>A RETENIR ...</h4>
+        <p>si \(a&ltb\) alors \(3a&lt3b\) quels que soient les nombres \(a, b\)</p>
+        <p>Lorsqu'on multiplie par un nombre négatif, cela change le sens de l'inéquation</p>
+        <p>si \(a&ltb\) alors \(-3a&gt-3b\) quels que soient les nombres \(a, b\)</p>
+        <p>Lorsqu'on divise par un nombre négatif, cela change le sens de l'inéquation</p>
+        <p>si \(a&ltb\) alors \(\frac{a}{-3}&gt\frac{b}{-3}\) quels que soient les nombres \(a, b\)</p>
+        </div>
+    
+    <p><em>Exemple :</em>
+    <p> \(2&lt7\) entraîne \(2\times5&lt7\times5\) <br/>
+        de même<br/> \(2&lt7\) entraîne \(\frac{2}{-5}&gt\frac{7}{-5}\)</p>   
+
+<h3>Résolution d'une inéquation</h3>
+
+<p>Le principe de résolution d'une inéquation est identique à celui de la résolution d'une équation. On cherche à isoler l'inconnue \(x\) d'un côté
+    et à placer les nombres de l'autre côté. Mais attention, dans le cas d'une inéquation, il faut changer le sens de l'inégalité lorsqu'on multiplie ou divise par un 
+nombre négatif.</p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type :</strong> Résoudre l'inéquation \(2x-4 &lt 5x+1\)</p>
+    <p>\(2x-5x&lt1+4\)</p>
+    <p>\(-3x&lt5\)</p>
+    <p>\(x&gt\frac{5}{-3}\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>Résoudre l'inéquation \(5x-7 &lt 2x+1\)</p>
+</div>
+
+{% endblock cours %}
+

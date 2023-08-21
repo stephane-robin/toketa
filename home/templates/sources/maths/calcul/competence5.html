@@ -1,0 +1,99 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>l'encadrement d'un nombre</li>
+    <li>l'encadrement d'une expression</li>
+    <li>comment trouver une valeur approchée</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Encadrement d'un nombre</h3>
+
+<p>Tout nombre réel peut être encadré par 2 nombres décimaux avec une amplitude choisie.</p>
+
+<p>Par exemple \(1,4&lt\sqrt{2}&lt1,5\) est un encadrement de \(\sqrt{2}\) à \(10^{-1}\) près, c'est à dire avec une amplitude de 0,1</p>
+
+<p>Un encadrement de \(\sqrt{2}\) à \(10^{-2}\) près est \(1,41&lt\sqrt{2}&lt1,42\). En fait, \(10^{-2}\) correspond
+    à la différence entre les deux bornes.</p>
+
+
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>sachant que \(\sqrt{3}=1,73205\), donner un encadrement de \(\sqrt{3}\) avec une amplitude de 0,001.</p>
+    <p>Solution : \(1,732 &lt\sqrt{3}&lt 1,733\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>en utilisant votre calculatrice, donner un encadrement de \(\sqrt{7}\) avec une amplitude de 0,01</p>
+</div>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>sachant que \(\sqrt{3}=1,73205\), donner un encadrement de \(\sqrt{3}\) à \(10^{-1}\) près.</p>
+    <p>Solution : il s'agit en fait de trouver un encadrement d'amplitude 0,1, donc \(1,7 &lt\sqrt{3}&lt 1,8\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>donner un encadrement de \(\pi\) à \(10^{-2}\) près.</p>
+</div>
+
+
+
+
+<h3>Encadrement d'une expression</h3>
+
+<div class="fieldsetDefinition">
+    <h4>OPERATIONS A RETENIR ...</h4>
+<p>Si \(a&ltb\) et \(c&lt d\) alors \(a+c&lt b+d\)</p>
+<p>Si \(a&ltb\) et \(c&lt d\)  avec \(a, b, c, d\) strictement positifs, alors \(ac&lt bd\)</p>
+<p>Si \(a&lt x&lt b\) et si \(c&lt 0\), alors \(cb &lt cx &lt ca\)</p>
+<p>En particulier, si \(a&lt x&lt b\), alors \(-b &lt -x &lt -a\)</p>
+</div>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>on donne \(-3&lt x&lt 4\) et \(2 &lt y &lt 5\). Donner un encadrement de \(x-y\)</p>
+    <p>Solution : \(-5 &lt -y &lt -2\) donc \(-8 &lt x-y &lt 2\)</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>on donne \(5&lt x&lt 14\) et \(2 &lt y &lt 3\). Donner un encadrement de \(x+2y\)</p>
+</div>
+
+
+
+
+
+<h3>Comment trouver une valeur approchée</h3>
+
+<p>Considérons le nombre 12,3456</p>
+
+<p>Une valeur approchée à \(10^{-2}\) près de ce nombre est la valeur la plus proche en ne conservant que 2 
+    chiffres après la virgule. On hésite donc entre 12,34 et 12,35. Or entre 12,34 et 12,3456 il existe une 
+    distance de 0,0056, alors qu'entre 12,35 et 12,3456 il existe une distance de 0,0044.</p>
+
+<p>On en déduit que la valeur approchée de 12,3456 à \(10^{-2}\) près est 12,35.</p>
+
+<p>La valeur approchée de 12,3456 à \(10^{-2}\) près par excès est la valeur <em>supérieure</em> la plus 
+    proche en ne conservant que 2 chiffres après la virgule. Il s'agit donc dans ce cas également de 12,35</p>
+
+<p>La valeur approchée de 12,3456 à \(10^{-2}\) près par défaut est la valeur <em>inférieure</em> la plus 
+    proche en ne conservant que 2 chiffres après la virgule. Il s'agit donc dans ce cas de 12,34</p>
+
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>donner une valeur approchée de \(\frac{\sqrt{7}-1}{\sqrt{2}}\) à 
+        \(10^{-3}\) près, à \(10^{-2}\) par excès et à \(10^{-1}\) par défaut</p>
+    <p>Avec la calculatrice, on obtient 1,163722, donc une valeur approchée à \(10^{-3}\) près est 1,164, 
+        une valeur approchée à \(10^{-2}\) par excès est 1,17, et une valeur approchée à \(10^{-1}\) par 
+        défaut est 1,1</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>donner une valeur approchée de \(\frac{\sqrt{13}+4}{\sqrt{3}-1}\) 
+        à \(10^{-3}\) près, à \(10^{-2}\) par défaut et à \(10^{-1}\) par excès</p>
+</div>
+
+{% endblock cours %}

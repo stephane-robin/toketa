@@ -1,0 +1,696 @@
+/* couleurs
+target: all pages */
+:root{
+  --couleur_titre:#17aa80;
+  --couleur_important: #e08859; /*#cb3b3b*/
+  --couleur_retenir: #9c5593;
+  --couleur_lien: #85857b; /* A REMPLACER PETIT A PETIT PAR lightslategray */
+}
+
+/* couleur de fond
+target: toutes les pages */
+body{
+  background-color: white;
+}
+
+/* texte important
+target: toutes les pages */
+strong{
+  font-weight: bold;
+}
+
+.important{ /* fils de strong */
+  color: var(--couleur_important);
+  font-weight: bold;
+  display: inline;
+}
+
+/* paragraphes 
+target: all pages */
+p{
+  font-family: Arial, Cambria;
+  font-size: 1.2em;
+  color: black;
+}
+
+/* blocs ligne et colonne
+target: toutes les pages */
+.bloc_colonne{
+  /* deprecated A REMPLACER PETIT A PETIT PAR colonne */
+  display: flex;
+  flex-direction: column;
+}
+  
+.bloc_ligne{
+  /* deprecated */
+  display: flex;
+  flex-direction: row;
+}
+
+.colonne{
+  display: flex;
+  flex-direction: column;
+}
+  
+.ligne{
+  display: flex;
+  flex-direction: row;
+}
+
+.noir{
+  color: black;
+}
+
+/* titres
+target: toutes les pages */
+h2{
+  color: black;
+  font-family: Arial, Cambria;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+h3{
+  color: var(--couleur_titre);
+  font-family: Arial, Cambria;
+  font-size: 1.5em;
+  margin-top: 5%;
+  /* comptage titre h3 */
+  counter-increment: section;
+  counter-reset: subsection;
+}
+
+h3:before{
+  /* comptage titre h3 */
+  content: counter(section) ". ";
+}
+
+.h3_index{
+  color: black;
+  font-family: Arial, Cambria;
+  font-size: 1.5em;
+  margin-top: 5%;
+}
+
+h4{
+  color: var(--couleur_titre);
+  font-family: Arial, Cambria;
+  font-size: 1.2em;
+  margin-top: 5%;
+}
+
+/* partie separee par un saut de ligne, integrant du code
+target: toutes les pages*/ 
+pre{
+  color: black;
+}
+
+/* photo qui s'eloigne 
+target: index.php */
+.stage {
+  overflow: hidden;
+  position: relative;
+}
+
+.actor{
+  animation: zoomout 15s linear;
+  background-size: cover;
+  inset: 0;
+  opacity: 1;
+  position: relative; 
+  }
+
+@keyframes zoomout {
+  1%{
+    opacity: .2;
+    scale: 1.2;
+  }
+  25% {
+    opacity: 1;
+    scale: 1.15;
+  }
+  50% {
+    scale: 1.1;
+    
+  }
+  75%{
+    scale: 1.05;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+/* section sous le header
+target: toutes les pages */
+.principal{  
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column; 
+}
+
+/* section en blanc pour les parties maths
+target: toutes les pages de maths */
+.rappel{
+  border-top: 3px lightslategray solid;
+  border-bottom: 3px lightslategray solid;
+  background-color: lightgray;
+  margin-top: 5%;
+  padding-bottom: 5%;
+}
+
+/* to write upside down 
+target: index.php */
+.upsidedown{
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+a{
+    color: lightslategray;
+    font-family: Arial, Cambria;
+    font-size:1.1em;
+    text-decoration: none;
+}
+
+a:hover{
+    color: var(--couleur_important);
+}
+
+.a_index2{
+  color: lightslategray;
+  margin-left: 30%;
+}
+
+.a_index2:hover{
+  color: var(--couleur_important);
+}
+
+.a_index{
+  color:lightslategray;
+  margin-left:0;
+}
+
+.a_index:hover{
+  color:var(--couleur_important);
+}
+
+
+/* tables */
+table{
+  font-family: Arial, Cambria;
+  font-size: 1.2em;
+  border-collapse: collapse; /* colle les cellules du tableau entre elles */
+  color: black;
+}
+
+td{/* champs */
+  font-family: Arial, Cambria;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid lightslategray;
+  background-color: white;
+}
+
+td > pre{/* champs dans lesquelles se trouvent du code */
+  font-size:0.8em;
+}
+
+th{/* descripteurs */
+  font-family: Arial, Cambria;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid lightslategray;
+  background-color: white;
+}
+
+
+/* listes
+target: toutes les pages */
+li{
+  list-style-type: disc;
+  font-family: Arial, Cambria;
+  font-size: 1.2em;
+  color: black;
+}
+
+/* section 'A vous de jouer'
+target: toutes les pages */
+.exerciceApplication{
+    background-color: lightcyan;
+    border-left: 7px var(--couleur_titre) solid;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+/* section exemple type
+target: toutes les pages de maths */
+.exerciceType{
+  border-left: 4px black dashed;
+  padding-left:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+/* encadre important 
+target: toutes les pages */
+.fieldsetDefinition{
+  border-left: 4px var(--couleur_retenir) dashed;
+  padding: 1%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.fieldsetDefinition > h4{
+  color: var(--couleur_retenir);
+  margin-top: 0%;
+}
+
+.fieldsetDefinition > p{
+  color: var(--couleur_retenir);
+} 
+
+.fieldsetDefinition > li{
+  color: var(--couleur_retenir);
+}
+
+.rappel .fieldsetDefinition p{
+  color: var(--couleur_retenir);
+}
+
+/* images
+target: toutes les pages */
+figure{
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-family: Arial, Cambria;
+  font-size: 1em;
+}
+
+figcaption{
+  font-style: italic;
+}
+
+/* menu navigation
+target: header.php */
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  top: 0%; /* sets the position at the top of the screen */
+  position: fixed; /* the header does not move */
+  margin: 0;
+  width:100%;
+  background-color: white;
+  z-index:1; /* the header is displayed above other content */
+}
+
+#navig_laptop{
+    list-style-type: none;
+    overflow: hidden;
+    background-color: white;
+    margin: 0;
+    width: 100%;
+}
+
+#navig_laptop li{
+    float: left;
+    list-style-type: none;
+}
+
+#navig_laptop li a{
+    color: var(--couleur_titre);
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    padding: 14px 26px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#navig_laptop li .bouton{
+  margin-left: 26px;
+}
+
+#navig_laptop li a:hover:not(.active){
+    color: var(--couleur_important);
+}
+
+label{
+  color:white;
+  font-size:1em;
+}
+
+
+/* pied de page
+target: footer.php */
+footer{
+    background-color: white;
+    padding-bottom: 5%;
+    margin-top: 5%;
+}
+
+footer p{
+color: var(--couleur_lien);
+}
+
+
+/* USE ??? */
+  .bloc_choix_contenu{
+    height:10%;
+    margin: 2%;
+    margin-top: 0%;
+    padding: 2%; 
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 10px var(--couleur_lien) solid;
+    background-color: lightgrey;
+  }
+
+  .image_index{
+    border-radius:5%;
+    box-shadow:2px 8px 10px 2px lightslategray;
+  }
+
+  .bloc_choix_contenu p{
+    color: var(--couleur_lien);
+  }
+
+.navig_table_matiere{
+  display: flex;
+  flex-direction: column;
+  
+}
+.navig_table_matiere a{
+  margin: 1%;
+}
+
+/* bouton 
+target: all pages */
+.bouton{
+    line-height: 2;
+    padding: 5px 10px;
+    border: 0;
+    font-size: 1em;
+    background-color: var(--couleur_titre);
+    color: white;
+    border-radius: 10px;
+    font-family: Arial, Cambria;
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+
+.bouton:hover{
+    background-color: lightgray;
+    cursor: grab;
+}
+
+/* bouton pour fiche memo
+target: all pages */
+.ficheMemo{
+  background-color: white;
+  border: 5px var(--couleur_titre) solid;
+  border-radius: 10%;
+  width: 40%;
+}
+
+/* bouton de fiche mémo 
+target: table of content pages */
+.bouton2{
+  line-height: 2;
+  width: 60%;
+  margin-bottom: 2%;
+  padding: 5px;
+  border: 3px var(--couleur_titre) solid;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 10px;
+  font-family: Arial, Cambria;
+  cursor: pointer;
+  transition: background-color 500ms;
+}
+
+.bouton2 > a{
+  color:black;
+  font-size: 1.1em;
+}
+
+.bouton2:hover{
+  background-color:lightgray;
+  cursor: grab;
+}
+
+/* augmente la taille des liens images au passage de la souris dans l'index*/
+.choix{
+    color: black;
+    text-decoration: none;
+    transform: scale(1);
+    transition: transform 500ms;
+    cursor: pointer;
+  }
+  
+  .choix:hover{
+    transform: scale(1.03);
+  }
+
+  .gridContainerTableMatieres {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    margin-top: 5%;
+   
+  }
+  .gridItemTableMatieres {
+    text-align: left;
+    padding:25px;
+  }
+  .gridItemTableMatieres > h2{
+    
+    text-align: left;  
+    margin-top:0;
+  }
+
+  .gridContainerIndex{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-top: 5%;
+    }
+    .gridItemIndex {
+    text-align: left;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .gridContainerIndex2{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 5%;
+    }
+    .gridItemIndex2 {
+    text-align: left;
+    display:flex;
+    flex-direction:column;
+  }
+  
+  /* fait clignoter */
+.blink_me {
+  font-size:1.5em;
+  margin-top:5%;
+  color:var(--couleur_lien);
+  font-weight:bold;
+  animation: blinker 1s ease infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* BALLE REBONDISSANTE 
+target: pages tables de matieres */
+
+/* forme la balle */
+.ball{
+  background: linear-gradient(#e66465, #9198e5); 
+  height: 150px;
+  width : 150px;
+  border-radius: 50%;
+  position: relative;
+  bottom: 0px;
+  left : 45%;
+  animation: bounce 2s infinite;
+  padding-top:2.5%;
+}
+/*anime la balle*/
+@keyframes bounce {
+  25%{
+  height : 150px;
+  width : 150px;
+  }
+  50%{
+  height : 110px;
+  width : 157px;
+  transform : translateY(150px);
+  }
+  75%{
+  height : 150px;
+  width: 150px;
+  }
+  100%{
+  transform: translateY(0px);
+  }
+}
+/* container de la balle */
+.container_ball{
+  height:250px;
+  margin-bottom:5%;
+}
+/* texte dans la balle */
+.text_ball{
+  color:white;
+  margin-left:10%;
+  font-weight:bold;
+  font-size:2em;
+}
+
+/* -------------------------------------------------
+           LES MISES EN FORMES POUR EXEMPLES
+Ces mises en forme ne sont pas utilisées pour l'ensemble de la page, mais
+uniquement pour l'affichage de certains exemples 
+----------------------------------------------------*/
+
+.exempleBloc:nth-child(1){ /* exemples html "La mise en page avec Flexbox" */
+    background-color: #CF6084;
+  }
+  .exempleBloc:nth-child(2){
+    background-color: #70995E;
+  }
+  .exempleBloc:nth-child(3){
+    background-color: #33A9CC;
+  }
+  #exempleBloc10-1{
+    background-color: #CF6084;
+  }
+  #exempleBloc10-2{
+    background-color: #70995E;
+  }
+  #exempleBloc10-3{
+    background-color: #33A9CC;
+    align-self: flex-end;
+  }
+  #exempleBloc11-1{
+    background-color: #CF6084;
+    order: 2;
+  }
+  #exempleBloc11-2{
+    background-color: #70995E;
+    order: 1;
+  }
+  #exempleBloc11-3{
+    background-color: #33A9CC;
+    order: 3;
+  }
+  #exempleBloc12-1{
+    background-color: #CF6084;
+    flex: 1;
+  }
+  #exempleBloc12-2{
+    background-color: #70995E;
+  }
+  #exempleBloc12-3{
+    background-color: #33A9CC;
+  }
+  #exempleBloc13-1{
+    background-color: #CF6084;
+    flex: 2;
+  }
+  #exempleBloc13-2{
+    background-color: #70995E;
+    flex: 1;
+  }
+  #exempleBloc13-3{
+    background-color: #33A9CC;
+  }
+  #exempleConteneur1{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+  }
+  #exempleConteneur2{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  #exempleConteneur3{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #exempleConteneur4{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #exempleConteneur5{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #exempleConteneur6{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  #exempleConteneur7{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: column;
+  }
+  #exempleConteneur8{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+  }
+  #exempleConteneur9{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .exempleConteneur10{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+  }
+  .exempleConteneur12{
+    border: 1px black dotted;
+    display: flex;
+    flex-direction: row;
+  }
+  #blocIndependant{ /* exemple html "la notion de bloc" */
+    background-color: #33A9CC;
+  }
+  #span1{
+    background-color: #CF6084;
+  }
+  #span2{
+    background-color: #70995E;
+  }
+  

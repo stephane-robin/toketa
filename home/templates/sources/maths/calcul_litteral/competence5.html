@@ -1,0 +1,277 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>la méthode du discriminant avec Scratch</li>
+	<li>la méthode du discriminant avec Python</li>
+	<li>la règle du produit nul</li>
+	<li>résoudre une équation de degré 2 en cherchant le facteur commun</li>
+	<li>résoudre une équation de degré 2 en factorisant par une identité remarquable</li>
+	<li>résoudre une équation de degré2 en utilisant la méthode du discriminant</li>
+	<li>quelle stratégie adopter ?</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>La méthode du discriminant avec Scratch</h3>
+
+<p>Scratch est un logiciel simple et intuitif pour débuter en programmation. Son interface graphique permet de construire rapidement des programmes de jeux interactifs. Toutefois, Scratch est églament au programme du Brevet des collèges en France, et un exercice lui est systématiquement consacré pour l'épreuve de mathématiques.</p>
+
+<p>Nous verrons ensemble durant cette séance comment utiliser Scratch pour le programmer à nous fournir la solution d'une équation de degré 2.</p>
+
+<h4>1ère partie - calcul manuel</h4>
+
+
+<p>Vous allez résoudre sur votre cahier l'équation suivante par la méthode du discriminant :</p>
+
+<p>\(3x^2+2x-5=0\)</p>
+
+
+
+
+<h4>2ème partie - calcul avec Scratch</h4>
+
+<p>Cela n'est pas si facile d'obtenir un résultat juste rapidement en procédant à la main. Voyons comment vérifier ces résultats quasi-instantanément.</p>
+
+<p>Tout d'abord, il faut vous rendre sur le site <a href="https://scratch.mit.edu/projects/editor/?tutorial=getStarted" target="_blank">www.scratch.mit.edu</a> ou télécharger l'application directement sur votre ordinateur. Nous utiliserons ensemble la version en ligne.</p>
+
+<p>Nous allons utiliser le module Variables pour définir les valeurs de a, b, c, et \(\Delta\).</p>
+
+<p>Pour aller plus loin, vous pouvez également demander à l'utilisateur de vous fournir les valeurs de a, b, et c. Ceci permet de généraliser votre travail à n'importe quelle équation de degré 2.</p>
+
+<p>Nous verrons ensemble comment définir et utiliser les différentes variables pour que le Sprite nous annonce les résultats.</p>
+
+
+
+
+<h3>La méthode du discriminant avec Python</h3>
+
+<p>Vous allez reproduire votre code Scratch en Python. Pour cela, commencez par créer un script qui 
+	définit les valeurs de 3 variables a, b et c, puis calcule le discriminant. Vous aurez besoin 
+d'importer la bibliothèque math.</p>
+
+<pre><code class="language-python">from math import *
+a = -3
+b = 2
+c = -1 
+delta = b ** 2 - 4 * a * c</code></pre>
+
+<p>Vous allez ensuite afficher les différentes solutions possibles en fonction du signe du discriminant. 
+	Il faut donc introduire des conditions !</p>
+
+<pre><code class="language-python">if delta &lt 0:
+	print("Pas de solution")
+elif delta &gt 0:
+	x1 = (-b - sqrt(delta)) / 2
+	x2 = (-b + sqrt(delta)) / 2
+	print(f"Les solutions sont {x1} et {x2}")
+else:
+	x = -b / 2
+	print(f"L'unique solution est {x}")</code></pre>
+
+<p>Finalement, vous allez placer ce script dans une fonction discriminant(), qui utilise a, b et c comme paramètres 
+	et affiche le résultat de l'équation de degré 2 relative à ces coefficients.</p>
+
+<pre><code class="language-python">def discriminant(a, b, c):
+	delta = b ** 2 - 4 * a * c
+
+	if delta &lt 0:
+		print("Pas de solution")
+	elif delta &gt 0:
+		x1 = (-b - sqrt(delta)) / 2
+		x2 = (-b + sqrt(delta)) / 2
+		print(f"Les solutions sont {x1} et {x2}")
+	else:
+		x = -b / 2
+		print(f"L'unique solution est {x}")</code></pre>
+
+
+<p>Vous allez devoir tester la validité votre code. Pour cela, il faut être sûr de vos résultats. Vous allez donc résoudre 
+	à la main les équations suivantes :</p> 
+
+	<ul>
+		<li>\(2x^2+3x+5 = 0\)</li>
+		<li>\(x^2-2x+1 = 0\)</li>
+		<li>\(x^2+4x-3 = 0\)</li>
+	</ul>
+	
+<p>avant d'exécuter le code suivant :</p>
+
+<pre><code class="language-python">discriminant(2 ,3, 5)
+discriminant(1, -2, 1)
+discriminant(1, 4, -3)</code></pre>
+
+</div>
+</section>
+
+<section class="px-5 py-5 bg-gris">
+    <div class="container">
+
+<!-- RAPPELS -->
+
+<h2>Rappels</h2>
+
+<h3>La règle du produit nul</h3>
+
+<p>Devant une expression mathématique du type \(A\times B=0\), on peut en déduire que l'un au moins des deux éléments est nul c'est à dire que \(A=0\) ou \(B=0\).</p>
+
+<p>On applique cette règle pour trouver les solutions d'une équation de degré 2 de la forme \((x-a)(x-b)=0\). Dans ce cas, on en déduit que \(x-a=0\) ou \(x-b=0\).</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \((x-2)(x-3)=0\)</p>
+	<p>D'après la règle du produit nul, on en déduit que \(x-2=0\) ou \(x-3=0\), donc \(x=2\) ou \(x=3\).</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre l'équation \((x-5)(x+4)=0\)</p>
+</div>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>\(A\times B=0 \iff A=0\) ou \(B=0\)</p>
+</div>
+
+
+
+
+
+<!-- FACTEUR COMMUN -->
+<h3>Résoudre une équation de degré 2 en cherchant le facteur commun</h3>
+
+<p>Nous allons maintenant utiliser la règle du produit nul associée à une technique de factorisation.</p>
+<p>On peut être amené à résoudre une équation qui ressemble à celle-ci \((x-1)(x-3)+(x-1)(x-2)=0\).</p>
+
+<p>Dans ce cas, il suffit de factoriser par \((x-1)\) qui est le facteur commun. On obtient alors \((x-1)(x-3+x-2)=0\), donc\((x-1)(2x-5)=0\). On se retrouve alors avec un produit de facteur, et la règle du produit nul nous permet de conclure que \(x-1=0\) ou \(2x-5=0\). Les solutions possibles sont donc \(x=1\) et \(x=\frac{5}{2}\).</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre l'équation \((x+2)(2x-1)+(x+2)(x-1)=0\)</p>
+</div>
+
+
+
+
+<!-- IDENTITES REMARQUABLES -->
+<h3>Résoudre une équation de degré 2 en factorisant par une identité remarquable</h3>
+
+<p>Nous savons maintenant résoudre une équation de degré 2 qui se présente sous forme d'un produit de facteurs. Mais comment faire dans un cas plus général où l'énoncé nous donne une équation du type \(ax^2+bx+c=0\) ?</p>
+
+<p>Nous verrons plus loin dans le cours la méthode du discriminant. Nous verrons en 3ème la 4ème identité remarquable qui est bien utile dans cette situation. Mais en attendant, il est parfois possible de factoriser rapidement cette expression si elle correspond à une des 3 identités remarquables qu'on connaît.</p>
+
+<p>En effet, si nous avons à résoudre \(x^2-6x+9=0\), on reconnaît rapidement la 2ème identité remarquable et on peut écrire que l'équation est équivalente à \((x-3)^2=0\). Et dans ce cas les solutions sont \(x-3=0\) et \(x-3=0\) d'après la règle du produit nul. On trouve donc comme solution unique \(x=3\).</p>
+
+<p>De même si nous devons résoudre \(9x^2-4=0\), on reconnaît la 3ème identité remarquable et on peut écrire que l'équation est équivalente à \((3x-2)(3x+2)=0\). On obtient d'après la règle du produit nul que \(3x=2\) ou \(3x=-2\), c'est à dire comme solutions possibles \(x=\frac{2}{3}\) et \(x=\frac{-2}{3}\).</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre les équations
+	<ul>
+	<li>\(4x^2+24x+36=0\)</li>
+	<li>\(81-9x^2=0\)</li>
+	</ul>
+	</p>
+</div>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>\(a^2+2ab+b^2 = (a+b)^2\)</p>
+<p>\(a^2-2ab+b^2 = (a-b)^2\)</p>
+<p>\(a^2-b^2 = (a-b)(a+b)\)</p>
+</div>
+
+
+
+
+<!-- METHODE DU DISCRIMINANT -->
+<h3>Résoudre une équation de degré 2 en utilisant la méthode du discriminant</h3>
+
+<p>Lorsqu'on ne parvient pas à factoriser une équation pour utiliser la règle du produit nul, on applique la méthode 
+	du discriminant.</p>
+<p>La méthode du discriminant permet de résoudre une équation de degré 2, en utilisant des formules légèrement 
+	différentes en fonction des situations. C'est cette différenciation qui fait référence à un discriminant, nombre 
+qu'on obtient par le calcul, qui permet de choisir la bonne formule pour la solution.</p>
+
+<div class="fieldsetDefinition">
+	<h4>METHODE DU DISCRIMINANT ...</h4>
+	<p>Pour résoudre l'équation \(ax^2+bx+c=0\)</p>
+	<p>on cherche d'abord la valeur du discriminant défini par \(\Delta =b^2-4ac\).</p>
+	<ul>
+		<li>si \(\Delta&lt0 \), alors l'équation n'admet pas de solution</li>
+		<li>si \(\Delta\geq 0\), alors l'équation admet pour solutions \(\frac{-b-\sqrt{\Delta}}{2a}\) et \(\frac{-b+\sqrt{\Delta}}{2a}\)</li>
+	<ul>
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(2x^2 - 10x+3=0\).</p>
+	<p>On peut écrire cette équation sous la forme \(ax^2+bx+c=0\) <br/>avec \(a=2\), \(b=-10\) et \(c=3\).</p>
+	<p>On commence par trouver la valeur du discriminant<br/> \(\Delta =(-10)^2-4\times 2\times 3=100-24=76\)</p>
+	<p>On simplifie ensuite \(\sqrt{76}=\sqrt{2^2\times 19}=2\sqrt{19}\)</p>
+	<p>Comme \(\Delta>0\), on en déduit les solutions \(\frac{10-2\sqrt{19}}{4}=\frac{5-\sqrt{19}}{2}\) et \(\frac{5+\sqrt{19}}{2}\)</p>
+</div>
+
+
+
+<div class="exerciceApplication">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(3x^2+2x-5=0\)</p>
+</div>
+
+
+
+<!-- STRATEGIE -->
+<h3>Quelle stratégie adopter ?</h3>
+
+<p>Il ressort de ces méthodes une seule stratégie :</p>
+<ul>
+	<li>il faut avant tout chercher à factoriser (avec un facteur commun ou une identité remarquable) puis utiliser la règle du produit nul,</li>
+	<li>il faut éviter de développer l'expression, ce qui conduit à de longs calculs et engendre souvent des erreurs de calcul,</li>
+	<li>si la factorisation n'est pas faisable, il reste alors la méthode du discriminant qui fournit un résultat dans tous les
+		cas mais dont les calculs peuvent s'avérer fastidieux. Il est alors bien utile de faire un petit script Python qui donne 
+		le résultat des calculs instantanément,</li>
+</ul> 
+	 </p>
+
+<p>Attention toutefois de ne pas s'enfermer dans des techniques apprises par coeur. Il est parfois utile de se laisser guider par l'énoncé, comme dans l'exemple suivant :</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice : </strong></p>
+	<p>On cherche à résoudre \(x^2+6x-7=0\)<br/>
+	1. Montrer que 1 est solution de cette équation<br/>
+	2. En déduire une forme factorisée de l'équation<br/>
+	3. En déduire les solutions</p>
+	<p> Solution :</p>
+	<p>1. On constate que \(1^2+6\times 1-7=0\), donc 1 est bien solution de l'équation.</p>
+	<p>2. Comme 1 est solution, on en déduit que l'équation également peut s'écrire sous la forme (\(x-1)(x-a)=0\), où a est un nombre rationnel à déternimer. Si on développe cette dernière expression, on obtient \(x^2-ax-x+a=0\), donc \(x^2-(a+1)x+a=0\). Il suffit de comparer avec l'expression donnée dans l'énoncé pour trouver que \(a+1=-6\) et \(a=-7\). Ainsi, la forme factorisée de notre équation est \((x-1)(x+7)=0\).</p>
+	<p>3. D'après la règle du produit nul, on en déduit que \(x-1=0\) et \(x+7=0\) donc les solutions possibles sont \(x=1\) et \(x=-7\).</p>
+</div>
+
+
+
+<h3>Entraînement</h3>
+<div class="exerciceApplication">
+	<p><strong>Exercice : </strong>résoudre les équations</p>
+	<p>\((x+5)(2x-4)=0\)</p>
+	<p>\((x+7)(x+12)=0\)</p>
+	<p>\((x-\frac{5}{2})(x-1)=0\)</p>
+	<p>\(2(x-5)(x-8)=0\)</p>
+	<p>\((x+5)(2x-4)-(x-1)(x+5)=0\)</p>
+	<p>\(x^2-14x+49=0\)</p>
+	<p>\((x-1)^2-81=0\)</p>
+	<p>\(2(x-5)(x-8)-(x-5)(x+5)=0\)</p>
+	<p>\(x^2 - 3x-4=0\)</p>
+	<p>\(3x^2 - 5x+3=0\)</p>
+	<p>\(5x^2 - 8x+2=0\)</p>
+	<p>\(2x^2 + 10x-5=0\)</p>
+</div>
+
+<!-- FICHE MEMO -->
+<h3>Fiche mémo</h3>
+
+<iframe src='../../documents/fiche_memo_equations_degre2.pdf' height='1200px' type='application/pdf'></iframe>
+
+</div>
+</section>
+<!-- la fermeture du bloc se fait dans le gabarit -->
+<section class="px-5 py-5 bg-white">
+<div class="container">
+
+{% endblock cours %}

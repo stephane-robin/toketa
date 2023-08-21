@@ -1,0 +1,202 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>le format ouvert</li>
+	<li>le format .CSV</li>
+	<li>le format .JSON</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>
+
+<p>Le format d'un fichier est un mode d'organisation des données qui les rend lisibles et permet de les mettre à jour en respectant un processus établi. Il est indiqué sous forme d'extension à la fin d'un fichier.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>quels formats de fichiers connaissez-vous ?</p>
+	<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+	<p>Il existe par exemple .PDF, .DOCX pour Word, .ODT pour LibreOffice, .JPG pour les images, ...</p>
+	</div>
+</div>
+
+<p>Certaines données sont libres de droit, c'est à dire qu'il est possible de les télécharger et de 
+	les exploiter, mais pas de les modifier bien entendu. On parle alors de format ouvert pour les 
+	fichiers les contenant. Par exemple les fichiers aux extensions .XML, .CSV, .TXT, .ODT ou .JSON 
+	sont des formats ouverts.</p>
+
+<p>Un fichier enregistré dans un format ouvert est indépendant du logiciel utilisé pour le créer, ce qui le rend plus facile à lire, à modifier ou à imprimer pour un autre utilisateur ne disposant pas nécessairement du même logiciel que son auteur.</p>
+<p>Un format ouvert répond à un standard approuvé par une organisation internationale dans un but d'interopérabilité entre différents systèmes.</p>
+
+<p>Un format détenu et développé par une entreprise à titre commercial, et donc non ouvert, est appelé un format propriétaire.</p>
+
+
+
+
+<h3>Exécution à partir du terminal</h3>
+
+<p>Il est toujours possible d'exécuter un fichier Python directement à partir du Terminal. Cela permet de travailler en 
+    dehors du workspace de l'environnement de travail intégré IDE, et donc de trouver plus facilement l'adresse du fichier 
+    à lire. Cette façon de procéder peut également faciliter le travail dans le cas d'une lecture de fichiers distants 
+    à l'aide d'un script Python (qui se trouverait dans le même dossier que le fichier distant).</p>
+
+<p>Il convient tout d'abord de se placer dans le dossier courant du fichier Python à exécuter, (dans notre exemple 
+    le dossier Documemnts) en écrivant dans la console du Terminal :</p>
+<pre><code class="language-svg">cd Documents</code></pre>
+
+<p>Ensuite pour exécuter le fichier test.py qui se trouve également dans Documents, il suffit d'écrire dans la console :</p>
+<pre><code class="language-svg">python3 test.py</code></pre>
+<p>Dans ce cas, l'affichage du programme s'effectue directement à la console.</p>
+
+<p>Si on souhaite maintenant lire le contenu du fichier test.py à la console, il suffit d'écrire (toujours dans la console) :</p>
+<pre><code class="language-svg">cat test.py</code></pre>
+
+
+
+<h3>Le format .CSV</h3>
+
+<p>Le format .CSV Common Separated Value est un format ouvert très utilisé, notamment pour exporter des données d'un fichier vers un autre (par exemple d'un format ouvert LibreOffice vers un 
+	format propriétaire Excel). Il se caractérise par un délimiteur entre les champs des descripteurs comme une virgule ou un point-virgule, et chaque ligne représente un enregistrement.</p>
+
+<p>Voici un exemple de fichier au format .CSV nommé bdd.csv:</p>
+
+<pre><code class='language-svg'>id,nom,prenom,date_naissance
+123,Durand,Jean-Pierre,1985-05-23
+15,Dupont,Christophe,1967-12-15
+19,Terta,Henry,1978-06-12</code></pre>
+
+<div class='exerciceApplication'>
+	<p><strong>A vous de jouer : </strong>dans ce fichier, quels sont les descripteurs, combien trouve t-on d'enregistrements,
+	 quel est le nom donné à la clé primaire ?</p>
+	 <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+	 <p>Les descripteurs sont id, nom, prenom et date_naissance. La clé primaire est donnée par id. On trouve 
+		 trois enregistrements.</p>
+	</div>
+</div>
+
+<h4>Lire un fichier .CSV distant à l'aide de Python</h4>
+
+<p>Il est possible de lire le fichier bdd.csv ci-dessus en utilisant la bibliothèque csv de Python. 
+    Dans ce cas, le contenu du fichier bdd.csv sera affiché dans la console.</p>
+
+<pre><code class="language-python">import csv
+
+with open('bdd.csv', 'r') as f:
+    print(f.read())</code></pre>
+
+<p>L'instruction <strong>open</strong> permet d'ouvrir le fichier à distance, alors que l'instruction 
+<strong>with</strong> ferme automatiquement le fichier et permet d'éviter l'utilisation d'un <strong>close()</strong>. 
+Une fois ouvert, le contenu de ce fichier est placé dans un objet appelé f, qu'il faut lire à l'aide de 
+l'instruction <strong>read()</strong>. A noter l'utilisation de 'r' signifiant que l'accès à bdd.csv ne 
+se fait qu'en lecture seule. Il n'est dans ce cas pas possible de modifier ce fichier.</p>
+
+<p><em>Attention,</em> le fichier bdd.csv doit se trouver dans le même dossier que votre programme Python, 
+    sinon il faut préciser l'adresse absolue (ou relative) complète du fichier bdd.csv. Par exemple 
+    '/Users/etudiants/Documents/bdd.csv'</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>pour tester ce programme, vous pouvez télécharger le fichier 
+        nommé bdd.csv avec le lien ci-dessous. Puis exécutez le code pour voir s'afficher son contenu 
+        sans ouvrir directement ce fichier.</p>
+    <a href='../../documents/bdd.csv' download=bdd.csv><div class='bouton' style='width:15%; margin-bottom:2%;'>Télécharger bdd.csv</div></a>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong> entraînez-vous à importer le fichier bdd.csv vers un tableur Excel ou LibreOffice Calc. 
+    Vous pouvez télécharger le fichier nommé bdd.csv avec le lien ci-dessous.</p>
+    <a href='../../documents/bdd.csv' download=bdd.csv><div class='bouton' style='width:15%; margin-bottom:2%;'>Télécharger bdd.csv</div></a>
+
+<p>Ouvrez ensuite votre tableur Excel ou Calc, puis utilisez l'onglet <em>Importer</em> dans le menu <em>Fichier</em>. Choisissez ensuite le 
+format .CSV, le type de séparateur souhaité (virgule ou point virgule), puis l'emplacement de votre fichier. Le tour est joué... Vous disposez maintenant de votre fichier de données d'origine, 
+lisible dans un tableur Excel ou Calc.</p>
+</div>
+<!-- CREER UNE VIDEO POUR L'IMPORT CSV AVEC EXCEL -->
+
+
+
+<h3>Le format .JSON</h3>
+
+<p>Le format .JSON JavaScript Object Notation est un format ouvert qui est dérivé du langage JavaScript. 
+    Il est très utilisé du fait de la montée en puissance de ce langage Web. Ainsi, de nombreux sites Web 
+    proposent des services utilisant des API Application Programming Interface, qui fournissent des données 
+    au format .JSON prêtes à être exploitées.</p>
+    
+<p>JSON offre par ailleurs comme avantage d'être structuré comme un dictionnaire, ce qui facilite son 
+    importation dans un programme.</p>
+
+<p>Un fichier .JSON fonctionne avec un système de paires clé/valeur, une clé correspondant à une valeur. 
+    Cette valeur peut être un nombre, un string, une liste ou un dictionnaire.</p>
+
+<p>Il est donc possible d'obtenir des structures de données très complexes.</p>
+
+<p>Reprenons le fichier bdd.csv ci-dessus, mais cette fois construisons-le au format .JSON. Nous pourrons 
+    par exemple l'appeler bdd.json</p>
+
+<pre><code class="language-svg">{
+[
+    {
+    'id': 123,
+    'nom': 'Durand',
+    'prenom': 'Jean-Pierre',
+    'date_naissance': 1985-05-23
+    },
+    {
+    'id': 15,
+    'nom': 'Dupont',
+    'prenom': 'Christophe',
+    'date_naissance': 1967-12-15
+    },
+    {
+    'id': 19,
+    'nom': 'Terta',
+    'prenom': 'Henry',
+    'date_naissance': 1978-06-12
+    }
+]
+}</code></pre>
+
+<!-- TODO EXPLIQUER PLUS EN DETAIL LE JSON-->
+
+<h4>Lire un fichier .JSON distant à l'aide de Python</h4>
+
+<p>Il est possible de lire le fichier bdd.json ci-dessus en utilisant la bibliothèque json de Python. 
+    Dans ce cas, le contenu du fichier bdd.json sera affiché dans la console.</p>
+
+<pre><code class="language-python">import json
+
+with open('bdd.json', 'r') as f:
+    print(json.load(f))</code></pre>
+
+<p>L'instruction <strong>open</strong> permet d'ouvrir le fichier à distance, alors que l'instruction 
+<strong>with</strong> ferme automatiquement le fichier et permet d'éviter l'utilisation d'un <strong>close()</strong>. 
+Une fois ouvert, le contenu de ce fichier est placé dans un objet appelé f, qu'il faut lire à l'aide de 
+l'instruction <strong>load()</strong>. A noter l'utilisation de 'r' signifiant que l'accès à bdd.json ne 
+se fait qu'en lecture seule. Il n'est dans ce cas pas possible de modifier ce fichier.</p>
+
+<p><em>Attention,</em> le fichier bdd.json doit se trouver dans le même dossier que votre programme Python, 
+sinon il faut préciser l'adresse absolue (ou relative) complète du fichier bdd.json. Par exemple 
+'/Users/etudiants/Documents/bdd.json'</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong> créez un fichier bdd.json, puis exécutez le code ci-dessus 
+    pour voir s'afficher son contenu sans ouvrir directement ce fichier.</p>
+</div>
+
+
+
+
+<h3>Activité</h3>
+
+<iframe src='../../documents/TP_format_ouvert.pdf' height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

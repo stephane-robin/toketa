@@ -1,0 +1,207 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Travail pratique</h3>
+
+<h4>Partie 1 - calcul manuel</h4>
+
+<p>Lorsqu'on cherche si un grand nombre \(n\) est premier, il n'est pas nécessaire de tester si il est divisible par tous les 
+	nombres premiers plus petits que \(n\). Il suffit de tester tous les nombres premiers plus petits que \(\sqrt{n}\)</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Déterminer si 1307 est un nombre premier.</p>
+	<p>On commence par calculer \(\sqrt{1307}=36,152\).</p>
+	<p>Le nombre entier premier qui précède 36,152 est 31.</p>
+	<p>Pour savoir si 1307 est un nombre premier, il faut trouver si il est divisible par un nombre premier inférieur ou égal à lui-même.</p>
+	<p>Mais on peut en fait se contenter de chercher si il est divisible par un nombre premier inférieur ou égal à 31.</p>
+	<p>En utilisant la calculatrice on remarque que 1307 n'est pas divisible par 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31.</p>
+	<p>Donc 1307 est un nombre premier.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Déterminer si 2013 est un nombre premier</p>
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution1" style="display:none;">
+	
+	<p>\(\sqrt{2013}=44,87\)</p>
+	<p>2013 n'est pas divisible par 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 43</p>
+	<p>2013 est un nombre premier.</p>
+	
+	</div>
+</div>
+
+<p>Lorsqu'on a recourt à des grands nombres, ce calcul à la calculatrice peut s'avérer laborieux.</p>
+
+<h4>Partie 2 - programme Python</h4>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>créer un script Python qui évite tout ce calcul à la main, 
+		et affiche si un nombre est un nombre premier. Ensuite, placer ce script dans une fonction  appelée
+	tester_premier() et tester le résultat pour 13 puis pour 25.</p>
+	<p><em>Indication : </em>le script ne connaît pas tous les nombres premiers. On ne va donc pas 
+	chercher la racine carrée du nombre considéré. En revanche, comme l'ordinateur calcule rapidement, 
+on va chercher le reste de division du nombre considéré par tous les nombres qui lui sont inférieurs. 
+S'il n'est divisible par aucun nombre inférieur (1 exclu), alors le nombre considéré est premier.</p>
+
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution6" style="display:none;">
+
+		<pre><code class='language-python'>nombre = 13
+
+""" On calcule le reste de division de nombre par i et on fait varier i en partant de la valeur 2.
+Tant que le reste de division est non nul, c'est que nombre n'est pas divisible par i 
+et on continue."""
+i = 2
+while i &lt nombre and nombre % i != 0:
+	i = i + 1
+			
+if i == nombre:
+	print(f"Le nombre {nombre} est premier")
+else:
+	print(f"Le nombre {nombre} n'est pas premier")</code></pre>	
+
+	<p>On place maintenant le script dans une fonction tester_premier(): </p>
+<pre><code class='language-python'>def tester_premier(nombre):
+	i = 2
+	while i &lt nombre and nombre % i != 0:
+		i = i + 1
+				
+	if i == nombre:
+		print(f"Le nombre {nombre} est premier")
+	else:
+		print(f"Le nombre {nombre} n'est pas premier")
+
+tester_premier(13)
+tester_premier(25)</code></pre>
+	</div>
+</div>
+
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>créer un script Python qui affiche tous les nombres premiers 
+	jusqu'à un nombre donné par l'utilisateur.</p>
+	<p>On ne tient pas compte du cas où l'utilisateur saisit une valeur interdite (lettre ou nombre réel).</p>
+	<p><em>Indication : </em>on pourra utiliser la fonction tester_premier() vue précédemment en modifiant 
+	son résultat. Au lieu d'afficher si un nombre est premier ou non, cette fonction devrait renvoyer True 
+si le nombre est premier et False sinon.</p>
+
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution7" style="display:none;">
+<p>On commence par ré-écrire la fonction tester_premier().</p>
+		<pre><code class='language-python'>def tester_premier(nombre):
+	i = 2
+	while i &lt nombre and nombre % i != 0:
+		i = i + 1
+				
+	if i == nombre:
+		return True
+	else:
+		return False
+
+print(tester_premier(13))
+print(tester_premier(25))</code></pre>	
+
+	<p>On demande ensuite à l'utilisateur jusqu'à quel nombre il veut afficher des nombres 
+	premiers, puis on exécute en boucle la fonction précédente :</p>
+
+<pre><code class='language-python'>borne_sup = int(input("Jusqu'à quel nombre veux-tu afficher les nombres premiers ?"))
+j = 2
+while j &lt borne_sup:
+	if tester_premier(j) == True:
+		print(j)
+	j = j + 1</code></pre>
+	</div>
+</div>
+
+<section class="px-5 py-2 bg-gris">
+    <div class="container">
+
+<h2>Rappels</h2>
+
+<h3>Nombre premier</h3>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+<p>Un nombre est premier s'il n'admet que deux diviseurs : 1 et lui-même.</p>
+</div>
+
+<p>Les nombres premiers sont particulièrement utilisés dans la cryptographie, c'est à dire le chiffrage de l'information. Vous l'utilisez donc tous les jours sans le savoir en consultant vos emails ou Internet par exemple.
+	On utilise pour cela un théorème que vous connaissez : tout nombre entier peut s'écrire <em>de manière unique</em> comme le produit de nombres premiers.</p>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>8 est-il un nombre premier ?</p>
+	
+
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+<div id="solution2" style="display:none;">
+	<p>Non car 8 n'est pas uniquement divisible par 1 et 8. Il est également divisible par 2 et 4.</p>
+
+</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>7 est-il un nombre premier ?</p>
+
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+
+<div id="solution3" style="display:none;">
+	<p>Oui car 7 n'est divisible que par 1 et 7.</p>
+
+</div>
+</div>
+
+
+
+
+<h3>Nombres premiers entre eux</h3>
+
+<p>Il ne faut pas confondre les nombres premiers et des nombres premiers <em>entre eux</em></p>
+
+<p>Deux nombres sont premiers entre eux lorsque leur unique diviseur <em>commun</em> est 1.</p>
+
+<p>Cela ne veut pas dire pour autant que deux nombres premiers entre eux sont premiers. En effet, 8 et 9 sont premiers entre eux, car leur unique diviseur commun est 1, mais ni 8 ni 9 ne sont des nombres premiers.</p>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>6 et 14 sont-ils premiers entre eux ?</p>
+
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+
+<div id="solution4" style="display:none;">
+	<p>Non car 6 et 14 sont tous les deux divisibles par 2.</p>
+
+</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>6 et 25 sont-ils premiers entre eux ?</p>
+
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+
+<div id="solution5" style="display:none;">
+	<p>Oui car 6 est divisible par 1, 2, 3, 6 alors que 25 est divisible par 1, 5, 25. Ils n'ont donc aucun diviseur commun.</p>
+
+</div>
+</div>
+
+{% endblock cours %}

@@ -1,0 +1,70 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>les réseaux centralisés</li>
+    <li>les réseaux peer-to-peer</li>
+    <li>le Bitcoin</li>
+    <li>une fiche mémo sur le peer-to-peer</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Les réseaux centralisés</h3>
+
+<p>Au niveau des réseaux physiques, on distingue les réseaux centralisés et les réseaux peer-to-peer.</p>
+
+<p>Les réseaux centralisés sont composés de plusieurs clients connectés à un serveur central. Dans la pratique, ce système peut s'étendre à plusieurs clients connectés à plusieurs serveurs. Mais l'idée reste la même, les données sont stockées sur le ou les serveurs accessibles par les clients. Dans ce cas, vu que les ressources sont centralisées :
+    <ul>
+        <li>il est facile d'assurer la sécurité du réseau</li>
+        <li>il est facile de le faire évoluer car sa structure est claire</li>
+        <li>l'entretien du réseau est coûteux</li>
+        <li>le réseau est vite saturé</li>
+    </ul>
+</p>
+
+<h3>Les réseaux peer-to-peer</h3>
+
+<p>Dans les réseaux peer-to-peer, chaque ordinateur est à la fois client et serveur. Vu que les ressources sont partagées :</p>
+<ul>
+    <li>il est difficile d'assurer la sécurité du réseau vu que les données sont éparpillées</li>
+    <li>l'évolution du réseau peut s'effectuer sans que les ordinateurs connectés en soient informés</li>
+    <li>le coût d'entretien est peu élevé</li>
+    <li>le réseau est moins vite saturé</li> 
+</ul>
+<p>Pour les raisons évoquées ci-dessus, ce type de réseau convient mieux aux sites hébergeant du contenu illégal.</p>
+
+<p>Mais le réseau peer-to-peer peut également faciliter le calcul partagé, qui consiste à répartir les charges de calcul scientifique sur un grand nombres d'ordinateurs sans utiliser de serveur centralisé.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Comparez dans un même tableau les caractéristiques des réseaux centralisés 
+        et des réseaux peer-to-peer pour en faire ressortir les avantages et inconvénients.</p>
+</div>
+
+<h3>Le Bitcoin</h3>
+
+<p>De même, le Bitcoin est une monnaie virtuelle et décentralisée qui prend de plus en plus d'importance. D'après le site https://bitcoin.org/fr/, "<em>Bitcoin est une technologie pair à pair fonctionnant sans autorité centrale. La gestion des transactions et la création de bitcoins est prise en charge collectivement par le réseau. Bitcoin est libre et ouvert. Sa conception est publique, personne ne possède ni ne contrôle Bitcoin et tous peuvent s'y joindre</em>".</p>
+
+
+<p>Cette monnaie est donc échangeable sans passer par le serveur centralisé d'une banque, et possède les fonctionnalités suivantes :
+    <ul>
+    <li>permet de payer avec un smartphone simplement, sans inscription, sans numéro de carte bancaire. Il faut afficher le QR-code donné par l'appli Bitcoin et laisser le bénéficiaire le scanner</li>
+    <li>il n'est pas nécessaire d'utiliser le même logiciel. Tous les logiciels qui acceptent le bitcoin sont compatibles et utilisent la même technologie ouverte</li>
+    <li>le bitcoin est utilisable partout et en tout temps</li>
+    <li>les transferts d'argent s'effectuent sans délai, et à moindre coût</li>
+    <li>il est possible de payer sans révéler son identité</li>
+    </ul>
+</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>en vous aidant d'Internet, recherchez puis résumez comment sont effectués les achats
+     ou transferts de Bitcoin.</p>
+</div>
+
+<h3>Fiche mémo</h3>
+
+<iframe src="{% static 'home/documents/memo_p2p.pdf' %}" height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

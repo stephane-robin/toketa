@@ -1,0 +1,322 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li href="#classe">comprendre la notion de classe</li>
+	<li href="#objet">savoir instancier un objet</li>
+	<li href="#attribut">savoir utiliser les attributs et les méthodes</li>
+	<li href="#poo">apprendre à construire son code en orienté objet</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>La programmation a débuté de façon linéaire, avec des lignes de code qui se suivaient en faisant référence à d'autres lignes de code. Puis des procédures ont été rajoutées permettant d'éviter la répétition de code. Et finalement, les programmeurs se sont rendus compte que le monde qui nous entoure était constitué d'éléments possédant un certain nombres de métriques, qu'on pouvait faire changer à l'aide de fonctions à définir.</p>
+
+<p>Par exemple, une voiture est caractérisée par son nombre de chevaux, sa vitesse instantanée, son poids, la quantité de carburants qu'elle contient, ... Si on accélère, on augmente la vitesse et on diminue la quantité de carburant dans le réservoir. Il existe donc des fonctions qui permettent de faire évoluer les paramètres caractéristiques de la voiture.</p>
+
+<p>Ces éléments possédant des caractéristiques sont appelés par les programmeurs des objets. Les différentes métriques de ces objets sont appelés attributs et les fonctions permettant de modifier les attributs sont des méthodes.</p>
+
+<p>En programmation orientée objet, tout est considéré comme un objet. Par exemple le personnage d'un jeu dispose d'un certain nombres de vies et de points de force. La fonction recuperer_or() permet de gagner de la force, alors que la fonction perdre_combat() diminue de le nombre de vies du personnage.</p>
+
+
+<!-- LA NOTION DE CLASSE -->
+
+<p class="my-5 invisible" id="classe">ancre</p>
+
+<h3>La notion de classe</h3>
+
+<p>Il existe une fabrique pour ces objets, qui rassemble des caractéristiques semblables à une famille pour créer un objet spécifique. Cette fabrique s'appelle classe en informatique. Par exemple, tous les objets audi, bmw, mazda ont 4 roues, un moteur, une carrosserie. Ils sont construits à partir de la classe Voiture qui regroupe ces propriétés pour tous les modèles.</p> 
+
+
+
+<h4>Représentation d'une classe</h4>
+
+<p>Une classe permet de décrire un ensemble d'objets ayant une structure commune composée des mêmes attributs sur lesquels on peut appliquer des méthodes.</p>
+
+<p>On peut représenter par exemple la classe Voiture de la façon suivante pour en visualiser la structure :</p>
+
+<img src="{% static 'home/images/nsi/classe.png' %}" alt="classe" width=15%>
+
+<p>Un attribut peut être déclaré comme étant public (les autres objets peuvent consulter cet attribut ou le modifier) ou privé (les autres objets ne peuvent pas accéder directement à cet attribut).</p>
+
+<p>De même, une méthode peut être déclarée comme étant publique (accessible sans condition) ou privée (accessible uniquement à l'intérieur de la classe).</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>représenter dans un diagramme une classe Bateau dont les attributs sont <strong>poids</strong>, <strong>vitesse</strong>, et les 
+		méthodes sont <strong>accelerer()</strong>, <strong>ralentir()</strong>, <strong>charger()</strong> et <strong>decharger()</strong>.</p>
+</div>
+
+
+
+<h4>Définir une classe</h4>
+
+<p>Prenons l'exemple de la classe Voiture pour apprendre à définir une classe : :</p>
+
+<pre><code class="language-python">class Voiture:
+
+	def __init__(self, puissance, consommation, nbrePlaces, vitesse, quantiteCarburant):
+		self.puissance = puissance
+		self.consommation = consommation
+		self.nbrePlaces = nbrePlaces
+		self.vitesse = vitesse
+		self.quantiteCarburant = quantiteCarburant
+
+	def accelerer(self, valeur):
+		self.vitesse += valeur
+
+	def freiner(self):
+		self.vitesse = 0
+
+	def prendreEssence(self, quantite):
+		self.quantiteCarburant += quantite
+
+</code></pre>
+
+<p>A noter le mot-clé self qui représente l'objet auquel sera lié un attribut ou une méthode. En effet, lorsqu'on définit une classe, 
+	on ne peut pas écrire le nom d'un objet en particulier. On écrit donc self qui sera ensuite remplacé dans le code par le nom de l'objet
+	utilisé.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>créer une classe Boite, dont les objets disposent des attributs nom et etat. etat doit prendre la valeur False lors 
+		de l'instanciation des objets. Créer les méthodes ouvrir() et fermer() qui modifient la valeur de etat.</p>
+	
+</div>
+
+
+<!-- INSTANCIER UN OBJET -->
+
+<p class="my-5 invisible" id="objet">ancre</p>
+
+<h3>Instancier un objet</h3>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ... </h4>
+	<p>Lorsqu'on crée un objet à partir d'une classe, on dit qu'on instancie une classe. Chaque objet a pour type la classe qui l'a instancié. Chaque objet est créé en prenant comme modèle une classe.</p>
+</div>
+
+<p>Pour créer un objet à partir d'une classe, il faut appeler cette classe et définir les différents attributs de cet objet, en respectant l'ordre dans lequel ils ont été définis, comme dans le code ci-dessous :</p>
+
+<pre><code class="language-python">mazda = Voiture(8, 6, 5, 0, 50)</code></pre>
+
+
+<!-- UTILISER LES ATTRIBUTS ET LES METHODES -->
+
+<p class="my-5 invisible" id="attribut">ancre</p>
+
+<h3>Utiliser les attributs et les méthodes</h3>
+
+<p>Pour voir la vitesse du véhicule mazda, il suffit d'appeler l'attribut lié à cet objet :</p>
+
+<pre><code class="language-python">print(mazda.vitesse)</code></pre>
+
+<p>A noter l'importance de faire précéder le nom de l'objet devant son attribut.</p>
+
+<p>Pour exécuter la méthode freiner(), il faut utiliser une structure similaire :</p>
+
+<pre><code class="language-python">mazda.freiner()</code></pre>
+
+<p>Pour modifier l'attribut <strong>vitesse</strong>, il suffit maintenant d'écrire :</p>
+
+<pre><code class="language-python">mazda.vitesse = 50</code></pre>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>reprenons l'exemple précédent. Créer dans un script principal une méthode permettant d'afficher si une boîte est 
+	ouverte ou fermée. Créer ensuite un code qui permet d'instancier une boite b, lui attribuer le nom box, l'ouvrir, la fermer puis afficher son état.</p>
+</div>
+
+
+<!-- CONSTRURE SON CODE EN POO -->
+
+<p class="my-5 invisible" id="poo">ancre</p>
+
+<h3>Construire son code en POO</h3>
+
+<p>Imaginons que nous voulions créer un jeu d'arcades avec des dragons. Pour le moment, ceux-ci ne disposent que de 3 attributs : la force, l'agilité en vol et l'intelligence.
+	Seules 3 fonctions permettent de modifier ces attributs : changer_force(), changer_agilite(), acquerir_experience().</p>
+
+<p>Il existe par ailleurs 3 types de dragons dans ce jeu : les timberjack, les thunderdrum et les snoggletog.
+	Chacun de ces dragons dispose pour commencer d'une force et d'une agilité en vol différentes.</p>
+
+<h4>Exemple en programmation impérative</h4>
+
+<p>En programmation impérative, on peut créer un module <em>dragons</em> comprenant les différentes fonctions relatives aux dragons :</p>
+
+<pre><code class="language-python">def changer_force(force, nmr):
+    force += nmr
+    return force
+
+def changer_agilite(agilite, nmr):
+    agilite += nmr
+    return agilite
+
+def acquerir_experience(intelligence, nmr):
+	intelligence += nmr
+	return intelligence</code></pre>
+
+<p>et le fichier principal <em>main.py</em> dans lequel on définit les valeurs initiales de la force et de l'agilité en vol, avant de les modifier suite au combat de thunderdrum 
+	contre timberjack et snoggletog :</p>
+
+<pre><code class="language-python">from dragons import *
+
+# on initialise la force, l'agilite en vol et l'intelligence
+thunderdrum_force = 8
+thunderdrum_agilite = 6	
+thunderdrum_intelligence = 3
+timberjack_force = 4
+timberjack_agilite = 9
+timberjack_intelligence = 6
+snoggletog_force = 8
+snoggletog_agilite = 7
+snoggletog_intelligence = 9
+	
+# au cours du jeu, thunderdrum frappe timberjack puis snoggletog
+# thunderdrum augmente sa force de 1 point alors que timberjack 2 points de force
+# et 1 point d'agilité, snoggletog perd 3 points de force et 2 points d'agilité.
+	
+thunderdrum_force = changer_force(thunderdrum_force, 1)
+timberjack_force = changer_force(timberjack_force, -2)
+timberjack_agilite = changer_agilite(timberjack_agilite, -1)
+snoggletog_force = changer_force(snoggletog_force, -3)
+snoggletog_agilite = changer_agilite(snoggletog_agilite, -2)
+	
+print("force thunderdrum : ", thunderdrum_force)
+print("agilité thunderdrum : ", thunderdrum_agilite)
+print("intelligence thunderdrum : ", thunderdrum_intelligence)
+print("force timberjack : ", timberjack_force)
+print("agilité timberjack : ", timberjack_agilite)
+print("intelligence timberjack : ", timberjack_intelligence)
+print("force snoggletog : ", snoggletog_force)
+print("agilité snoggletog : ", snoggletog_agilite)
+print("intelligence snoggletog : ", snoggletog_intelligence)</code></pre>
+
+<p>On obtient ainsi le résultat suivant affiché à la console :</p>
+
+<pre><code class="language-python">force thunderdrum : 9
+agilité thunderdrum : 6
+intelligence thunderdrum : 3
+force timberjack : 2
+agilité timberjack : 8
+intelligence timberjack : 6
+force snoggletog : 5
+agilité snoggletog : 5
+intelligence snoggletog : 9</code></pre>
+
+<h4>Même exemple en programmation objet</h4>
+
+<p>On va maintenant construire le même jeu en utilisant la programmation orientée objet.</p>
+
+<p>A la place du module de fonctions, on va créer une classe <strong>Dragon</strong> dans laquelle on va définir les attributs d'objets <strong>force</strong> et <strong>agilite</strong> ainsi que les méthodes
+	<strong>changer_force()</strong> et <strong>changer_agilite()</strong>. On peut créer plusieurs classes dans un même module en Python contrairement à d'autres langages, mais 
+on n'a besoin ici que d'une seule classe qu'on placera dans un module appelé <strong>dragons</strong></p>
+
+<pre><code class="language-python">class Dragon:
+
+    def __init__(self, force, agilite, intelligence):
+        self.force = force
+        self.agilite = agilite
+		self.intelligence = intelligence
+
+    def changer_force(self, nmr):
+        self.force += nmr
+
+    def changer_agilite(self, nmr):
+        self.agilite += nmr
+	
+	def acquerir_experience(self, nmr):
+		self.intelligence += nmr</code></pre>
+
+<p>On remarque dans la classe ci-dessus, la présence d'une méthode <strong>__init__</strong> qui est un constructeur permettant lors de la création 
+d'un objet, d'affecter des valeurs aux attributs de cet objet. Voir le code ci-dessous dans lequel <strong>force</strong> prend la valeur 8
+pour l'objet thunderdrum et <strong>agilite</strong> prend la valeur 6 pour l'objet thunderdrum.</p>
+
+<p>Il nous reste maintenant à écrire le code principal dans lequel on crée deux objets thunderdrum et timberjack à partir de la classe Dragon. On 
+	utilise ensuite les méthodes <strong>changer_force()</strong> et <strong>changer_agilite</strong> associé à chacun des objets pour changer les valeurs 
+	de leur <strong>force</strong> et <strong>agilite</strong>.</p>
+
+<pre><code class="language-python">from dragons import *
+
+# on crée un objet thunderdrum, un objet timberjack
+# un objet snoggletog à partir de la classe Dragon
+thunderdrum = Dragon(8, 6, 3)
+timberjack = Dragon(4, 9, 6)
+snoggletog = Dragon(8, 7, 9)
+	
+# au cours du jeu, thunderdrum frappe timberjack puis snoggletog
+# thunderdrum augmente sa force de 1 point alors que timberjack 2 points de force
+# et 1 point d'agilité, snoggletog perd 3 points de force et 2 points d'agilité.	
+thunderdrum.changer_force(1)
+timberjack.changer_force(-2)
+timberjack.changer_agilite(-1)
+snoggletog.changer_force(-3)
+snoggletog.changer_agilite(-2)
+	
+print("force thunderdrum : ", thunderdrum.force)
+print("agilité thunderdrum : ", thunderdrum.agilite)
+print("intelligence thunderdrum : ", thunderdrum.intelligence)
+print("force timberjack : ", timberjack.force)
+print("agilité timberjack : ", timberjack.agilite)
+print("intelligence timberjack : ", timberjack.intelligence)
+print("force snoggletog : ", snoggletog.force)
+print("agilité snoggletog : ", snoggletog.agilite)
+print("intelligence snoggletog : ", snoggletog.intelligence)</code></pre>
+
+<p>On remarque à quel point le modèle objet est pratique pour modifier les attributs des différents dragons qu'on a créés.
+	Le modèle objet est également plus court, surtout lorsqu'on doit créer de nombreux dragons.</p>
+
+<p>On remarque également que les méthodes permettent de modifier les attributs des objets et que ces méthodes s'écrivent après l'objet et un point.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>quels sont les avantages et inconvénients qui, à votre avis, caractérisent la programmation objet ?</p>
+</div>
+
+
+<!-- ENTRAINEMENT -->
+
+<h3>ENTRAINEMENT</h3>
+
+
+<div class="exerciceApplication">
+	<p><strong>Exercice 1 : </strong>Créer une classe Adresse dont les objets sont représentés par des attributs privés de type chaine de caractères rue,
+	ville et code_postal. Créer une classe Personne dont les objets sont représentés par des attributs publics de type chaine de caractères nom, prenom, un attribut privé de type entier age.<br/>
+	1. proposer des setters et getters permettant d'accéder et de modifier les différents attributs <br/>
+	2. représenter ces deux classes dans un tableau permettant de visualiser les attributs et méthodes.</p>
+	<p><strong>Exercice 2 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+	def __init__(self, id):
+		self.id = id
+
+td = Dragon("thunderdrum")
+print(td.id)</code></pre>
+	<p><strong>Exercice 3 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+		def __init__(self, id="snogglelog"):
+			self.id = id
+	
+	td = Dragon("thunderdrum")
+	print(td.id)</code></pre>
+	<p><strong>Exercice 4 : </strong>faut-il rajouter un paramètre après le self de la méthode montrer dans le code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+	def __init__(self, score):
+		self.score = score
+	
+	def montrer(self):
+		print(self.score)
+
+	pendu = Jeu()
+	pendu.montrer()</code></pre>
+	<p><strong>Exercice 5 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+		def __init__(self, score):
+			self.score = score
+		
+		def montrer(self):
+			print(self.score)
+	
+		pendu = Jeu()
+		pendu.montrer()</code></pre>
+	</div>
+
+{% endblock cours %}
+

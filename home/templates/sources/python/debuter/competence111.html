@@ -1,0 +1,406 @@
+
+<h2>Projet</h2>
+
+<p>&#128218; <em>Compétence : </em></p>
+
+<p style="margin-left:40%;">------------------------------</p>
+
+<p>Ce projet de fin d'année est l'occasion d'un travail en binôme. Il vous est demandé de construire un jeu simple mais fonctionnel de pendu ou de morpion.</p>
+
+<p>Vous pourrez vous inspirer du jeu de la bataille navale, dont les grandes lignes sont indiquées ci-dessous :</p>
+
+<p>Le module main.py pourra par exemple contenir le code suivant :</p>
+
+<pre><code class="language-python">import turtle as tl
+    import fonctions as fn
+    
+    # fenêtre turtle
+    tl.setup(800, 800, 100, 100)
+    tl.bgcolor("#adc2eb")
+    tl.title("Bataille navale")
+    tl.hideturtle()
+    tl.bgpic("fond_ecran.png")
+    tl.update()
+    
+    """
+    # création du background avant d'effectuer une capture écran
+    # axe des abscisses
+    tl.penup()
+    tl.goto(-400, 0)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    # axe des ordonnées
+    tl.penup()
+    tl.goto(0, -400)
+    tl.setheading(90)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    # axes horizontaux
+    tl.penup()
+    tl.pencolor("blue")
+    tl.goto(-400, -150)
+    tl.setheading(0)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-400, -100)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-400, -50)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-400, 50)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-400, 100)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-400, 150)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    # axes verticaux
+    tl.penup()
+    tl.goto(-150, -400)
+    tl.setheading(90)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-100, -400)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(-50, -400)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(50, -400)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(100, -400)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    tl.penup()
+    tl.goto(150, -400)
+    tl.pendown()
+    tl.forward(tl.window_width())
+    
+    # 1er cercle
+    tl.penup()
+    tl.pencolor("red")
+    tl.goto(0, -50)
+    tl.setheading(0)
+    tl.pendown()
+    tl.circle(50)
+    
+    # 2ème cercle
+    tl.penup()
+    tl.goto(0, -100)
+    tl.pendown()
+    tl.circle(100)
+    
+    # 3ème cercle
+    tl.penup()
+    tl.goto(0, -150)
+    tl.pendown()
+    tl.circle(150)
+    tl.penup()
+    """
+    
+    print("\n############################")
+    print("      BATAILLE NAVALE")
+    print("############################\n")
+    
+    print("Vous allez placer 3 bateaux dans l'océan indien. Vous devez choisir la position de chaque bateau, en indiquant les coordonnées de la proue."
+          " Chaque bateau sera représenté Verticalement ou Horizontalement. L'ordinateur va "
+          "également positionner 3 bateaux dans l'océan indien, et il vous faudra trouver leurs coordonnées à l'aide d'obus."
+          " Vous disposez au total de 20 obus.")
+    
+    # we initialize the scores of player one and the computer
+    score_ordinateur = 0
+    score_joueur = 0
+    
+    # we initialize the list of coordinates of player one's hits
+    liste_bon_tir_joueur = []
+    liste_mauvais_tir_joueur = []
+    liste_touche_bateaux_joueur = [0, 0, 0]
+    
+    # we initialize the list of coordinates of the computer's hits
+    liste_bon_tir_ordinateur = []
+    liste_mauvais_tir_ordinateur = []
+    liste_touche_bateaux_ordinateur = [0, 0, 0]
+    
+    # we define positions for the 3 computer's boats
+    liste_coordonnees_bateaux_ordinateur = fn.definir_position_bateaux_ordinateur()
+    
+    # development mode
+    # for i in range(3):
+        # fn.afficher_bateau(liste_coordonnees_bateaux_ordinateur[i])
+    
+    # we define positions for the 3 player's boats and show them
+    liste_coordonnees_bateaux_joueur = [[], [], []]
+    for i in range(3):
+        print("\n=== Vous allez définir la position de votre bateau numéro", i + 1, "===")
+        liste_coordonnees_bateaux_joueur[i] = fn.definir_position_bateau_joueur()
+    
+    for i in range(3):
+        fn.afficher_bateau(liste_coordonnees_bateaux_joueur[i])
+    
+    # the game lasts 20 hits
+    for i in range(20):
+        # we ask player one the coordinates of the next hit
+        (xtir, ytir) = fn.demander_joueur_position_tir()
+    
+        # player one hits and we print the results
+        (score_joueur, liste_bon_tir_joueur, liste_mauvais_tir_joueur, liste_touche_bateaux_ordinateur, liste_touche_bateaux_joueur) = \
+            fn.joueur_tire(xtir, ytir, score_joueur, liste_bon_tir_joueur, liste_mauvais_tir_joueur, liste_coordonnees_bateaux_ordinateur, liste_touche_bateaux_ordinateur, liste_coordonnees_bateaux_joueur, liste_touche_bateaux_joueur)
+        fn.afficher_resultats_tir_joueur(score_joueur, liste_bon_tir_joueur, liste_mauvais_tir_joueur)
+    
+        # the compute hits and we print the results
+        (score_ordinateur, liste_bon_tir_ordinateur, liste_mauvais_tir_ordinateur, liste_touche_bateaux_joueur, liste_touche_bateaux_ordinateur) = \
+            fn.ordinateur_tire(score_ordinateur, liste_bon_tir_ordinateur, liste_mauvais_tir_ordinateur, liste_coordonnees_bateaux_joueur, liste_touche_bateaux_joueur, liste_coordonnees_bateaux_ordinateur, liste_touche_bateaux_ordinateur)
+        fn.afficher_resultats_tir_ordinateur(score_ordinateur, liste_bon_tir_ordinateur, liste_mauvais_tir_ordinateur)
+    
+    # final scores
+    print("\n############################")
+    print("           RESULTATS")
+    print("############################\n")
+    fn.afficher_resultats_tir_joueur(score_joueur, liste_bon_tir_joueur, liste_mauvais_tir_joueur)
+    fn.afficher_resultats_tir_ordinateur(score_ordinateur, liste_bon_tir_ordinateur, liste_mauvais_tir_ordinateur)
+    
+    # we close the turtle window
+    tl.exitonclick()
+    </code></pre>
+
+<p>Le module fonction.py pourra par exemple contenir le code suivant : </p>
+
+<pre><code class="language-python">import turtle as tl
+    import random
+    
+    def afficher_bateau(liste_coordonnees_bateau):
+        """shows the 3 boats of player one"""
+    
+        for element in liste_coordonnees_bateau:
+            tl.penup()
+            tl.setposition(element[0] * 50, element[1] * 50)
+            tl.pendown()
+            tl.dot(30, "grey")
+    
+    
+    def definir_position_bateau_joueur():
+        """asks player one to define the position of one of his boats (with the coordinates of the bow)"""
+    
+        liste_coordonnees_bateau = []
+        xproue = -7
+        yproue = -7
+        orientation = ""
+    
+        # we ask player one the orientation of his boat
+        while orientation != "H" and orientation != "V":
+            orientation = input(
+                    "Veuillez choisir H pour représenter votre bateau Horizontalement ou V pour représenter votre bateau Verticalement : ")
+    
+        # if the boat is heading East, we fill up the list of coordinates of the boat
+        if orientation == "H":
+            while yproue < - 6 or yproue > 6:
+                yproue = int(
+                        input(
+                            "A quelle latitude va naviguer votre bateau (entre -6 et +6) ? "))
+            while xproue < -6 or xproue > 3:
+                xproue = int(
+                        input(
+                            "A quelle longitude se trouve la proue de votre bateau (entre -6 et +3) ? "))
+            for i in range(4):
+                liste_coordonnees_bateau.append((xproue + i, yproue))
+    
+        # if the boat is heading North, we fill up the list of coordinatues of the boat
+        if orientation == "V":
+            while xproue < -6 or xproue > 6:
+                xproue = int(
+                        input(
+                            "A quelle longitude va naviguer votre bateau (entre -6 et +6) ? "))
+            while yproue < - 3 or yproue > 6:
+                yproue = int(
+                        input(
+                            "A quelle latitude se trouve la proue votre bateau (entre -3 et +6) ? "))
+            for i in range(4):
+                liste_coordonnees_bateau.append((xproue, yproue - i))
+    
+        return liste_coordonnees_bateau
+    
+    
+    def definir_position_bateaux_ordinateur():
+        """defines the positions of the computer's 3 boats"""
+    
+        liste_coordonnees_bateaux = [[(3, 0), (3, 1), (3, 2), (3, 3)],
+                                     [(1, 2), (1, 3), (1, 4), (1, 5)],
+                                     [(0, -1), (1, -1), (2, -1), (3, -1)]]
+    
+        return liste_coordonnees_bateaux
+    
+    
+    def demander_joueur_position_tir():
+        """asks player one the coordinates for the hit"""
+    
+        # necessary to start the while loop
+        xtir = -7
+        ytir = -7
+    
+        print()
+        while xtir < -6 or xtir > 6:
+            xtir = int(input("longitude du tir (entre -6 et +6) ? "))
+        while ytir < - 6 or ytir > 6:
+            ytir = int(input("latitude du tir (entre -6 et +6) ? "))
+    
+        return (xtir, ytir)
+    
+    
+    def ordinateur_tire(score, liste_bon_tir, liste_mauvais_tir, liste_coordonnees_bateaux_joueur,
+                        liste_touche_bateaux_joueur, liste_coordonnees_bateaux_ordinateur, liste_touche_bateaux_ordinateur):
+        """when the computer hits, the score, the list of good hits and the list of bad hits are updated.
+        If a boat is hit twice, it is sunk. The count of hits for a boat is recorded in liste_touche_bateaux_ordinateur."""
+    
+        x = random.randint(-6, 6)
+        y = random.randint(-6, 6)
+        resultat = ""
+    
+        # for each of the 3 boats
+        for i in range(3):
+    
+            # if the coordinates hit one of the player's boats, the score and the list
+            # of good hits are updated. If a boat is hit twice, it is sunk. The count of hits
+            # for a boat is recorded in liste_touche_bateaux_joueur.
+            if (x, y) in liste_coordonnees_bateaux_joueur[i]:
+                if liste_touche_bateaux_joueur[i] == 0:
+                    score += 1
+                    liste_touche_bateaux_joueur[i] += 1
+                    resultat = "L'ordinateur a touché un bateau !"
+                    liste_bon_tir.append((x, y))
+                elif liste_touche_bateaux_joueur[i] == 1:
+                    score += 10
+                    liste_touche_bateaux_joueur[i] += 1
+                    resultat = "L'ordinateur a coulé un bateau !"
+                    liste_bon_tir.append((x, y))
+    
+            # if the coordinates hit one of the computer's boat
+            elif (x, y) in liste_coordonnees_bateaux_ordinateur[i]:
+                if liste_touche_bateaux_ordinateur[i] == 0:
+                    score -= 1
+                    liste_touche_bateaux_ordinateur[i] += 1
+                    resultat = "L'ordinateur a touché un de ses bateaux !"
+                elif liste_touche_bateaux_ordinateur[i] == 1:
+                    score -= 10
+                    liste_touche_bateaux_ordinateur[i] += 1
+                    resultat = "L'ordinateur a coulé un de ses bateaux !"
+    
+        # if the coordinates don't hit anything, the list of bad hits is updated
+        if resultat == "":
+                resultat = "Le tir de l'ordinateur est dans l'eau !"
+                liste_mauvais_tir.append((x, y))
+    
+        print(resultat)
+    
+        return (score, liste_bon_tir, liste_mauvais_tir, liste_touche_bateaux_joueur, liste_touche_bateaux_ordinateur)
+    
+    
+    def joueur_tire(x, y, score, liste_bon_tir, liste_mauvais_tir, liste_coordonnees_bateaux_ordinateur, liste_touche_bateaux_ordinateur, liste_coordonnees_bateaux_joueur, liste_touche_bateaux_joueur):
+        """when player one hits, the score, the list of good hits and the list of bad hits are updated.
+        If a boat is hit twice, it is sunk. The count of hits for a boat is recorded in liste_touche_bateaux_ordinateur."""
+    
+        resultat = ""
+    
+        # for each of the 3 boats
+        for i in range(3):
+    
+            # if the coordinates hit one of the computer's boats, the score and the list
+            # of good hits are updated. If a boat is hit twice, it is sunk. The count of hits
+            # for a boat is recorded in liste_touche_bateaux_ordinateur.
+            if (x, y) in liste_coordonnees_bateaux_ordinateur[i]:
+                if liste_touche_bateaux_ordinateur[i] == 0:
+                    score += 1
+                    liste_touche_bateaux_ordinateur[i] += 1
+                    resultat = "Vous avez touché un bateau !"
+                    liste_bon_tir.append((x, y))
+                elif liste_touche_bateaux_ordinateur[i] == 1:
+                    score += 10
+                    liste_touche_bateaux_ordinateur[i] += 1
+                    resultat = "Vous avez coulé un bateau !"
+                    liste_bon_tir.append((x, y))
+    
+            # if the coordinates hit one of the player's boat
+            elif (x, y) in liste_coordonnees_bateaux_joueur[i]:
+                if liste_touche_bateaux_joueur[i] == 0:
+                    score -= 1
+                    liste_touche_bateaux_joueur[i] += 1
+                    resultat = "Vous avez touché un de vos bateaux !"
+                elif liste_touche_bateaux_joueur[i] == 1:
+                    score -= 10
+                    liste_touche_bateaux_joueur[i] += 1
+                    resultat = "Vous avez coulé un de vos bateaux !"
+    
+        # if the coordinates don't hit anything, the list of bad hits is updated
+        if resultat == "":
+                resultat = "Votre tir est dans l'eau !"
+                liste_mauvais_tir.append((x, y))
+    
+        print(resultat)
+    
+        return (score, liste_bon_tir, liste_mauvais_tir, liste_touche_bateaux_ordinateur, liste_touche_bateaux_joueur)
+    
+    
+    def afficher_resultats_tir_joueur(score, liste_bon_tir, liste_mauvais_tir):
+        """prints the player one score and shows the hits in a turtle window"""
+    
+        print("VOTRE SCORE", score, "points.")
+    
+        if len(liste_bon_tir) != 0:
+            tl.penup()
+            tl.setposition(liste_bon_tir[-1][0] * 50,
+                               liste_bon_tir[-1][1] * 50)
+            tl.pendown()
+            tl.dot(30, "orange")
+    
+        if len(liste_mauvais_tir) != 0:
+            tl.penup()
+            tl.setposition(liste_mauvais_tir[-1][0] * 50,
+                               liste_mauvais_tir[-1][1] * 50)
+            tl.pendown()
+            tl.dot(30, "navy")
+    
+    
+    def afficher_resultats_tir_ordinateur(score, liste_bon_tir, liste_mauvais_tir):
+        """prints the compute score and shows the hits in a turtle window"""
+    
+        print("SCORE DE L'ORDINATEUR", score, "points.")
+    
+        for i in range(len(liste_bon_tir)):
+            tl.penup()
+            tl.setposition(liste_bon_tir[i][0] * 50,
+                               liste_bon_tir[i][1] * 50)
+            tl.pendown()
+            tl.dot(30, "red")
+    
+        for i in range(len(liste_mauvais_tir)):
+            tl.penup()
+            tl.setposition(liste_mauvais_tir[i][0] * 50,
+                               liste_mauvais_tir[i][1] * 50)
+            tl.pendown()
+            tl.dot(30, "black")
+    </code></pre>

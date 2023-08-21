@@ -1,0 +1,212 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>les carrés parfaits</li>
+    <li>les règles de calcul avec les racines carrées</li>
+    <li>comment simplifier les racines carrées</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>
+
+<figure>
+        <iframe width="854" height="480" src="https://www.youtube.com/embed/mXFMNbk-TJg"
+                title="Apprendre à manipuler les racines carrées, Toketa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+    gyroscope; picture-in-picture" allowfullscreen> </iframe>
+        <figcaption> Apprendre à manipuler les racines carrées, <em>ToKeTa</em> </figcaption>
+    </figure>
+
+<p>On sait que \(3^2 = 3 \times 3 = 9\), donc si on regarde le chiffre 9, on peut en déduire que le chiffre qui manque dans l'expression suivante \(... \times ... = 9\) est 3.</p>
+
+<p>3 est appelé la racine carrée de 9.</p>
+
+<p>On peut maintenant facilement trouver la racine carrée de 16. Il s'agit de 4 puisque \(4 \times 4=16\).</p>
+
+<p>Mais qu'en est-il de la racine carrée de 18 ? Il faut pour cela utiliser la calculatrice qui nous donne comme résultat 4,24.</p>
+
+<div class="fieldsetDefinition">
+    <h4>DEFINITION ...</h4>
+    <p>La racine carrée de \(a\) est le nombre positif noté \(\sqrt{a}\) tel que \((\sqrt{a})^2=a\).</p>
+    <p>Dans cette définition, le nombre \(a\) et sa racine carrée \(\sqrt{a}\) sont toujours positifs.</p>
+</div>
+
+<p>Le symbole \(\sqrt{}\) est appelé radical.</p>
+
+<p>Il est tout à fait normal qu'une racine carrée soit toujours positive, puisque lorsqu'on multiplie un nombre par lui-même, d'après la règle des signes, on obtient un signe +.</p>
+
+<p>A noter que \(\sqrt{0}=0\) et \(\sqrt{1}=1\).</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>utiliser votre calculatrice pour trouver les valeurs de \(\sqrt{32}\), \(\sqrt{3}\), \(\sqrt{175}\), \(\sqrt{-12}\).
+    </p>
+
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution1" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\sqrt{32}\)=5,66, \(\sqrt{3}\)=1,73, \(\sqrt{175}\)=13,23, \(\sqrt{-12}\) n'existe pas (n'admet pas de valeur réelle).</p>
+	
+	</div>
+</div>
+
+<h3>Les carrés parfaits</h3>
+
+<p>Un carré parfait est une valeur telle que sa racine carrée est un nombre entier. Par exemple, 9 est un carré parfait car \(\sqrt{9}=3\). Il est important de connaître par coeur la liste des premiers carrés parfaits pour la suite du cours :</p>
+
+<table>
+    <tr><th>entier</th><th>carré parfait</th><th>entier</th><th>carré parfait</th></tr>
+    <tr><td>2</td><td>4</td><td>8</td><td>64</td></tr>
+    <tr><td>3</td><td>9</td><td>9</td><td>81</td></tr>
+    <tr><td>4</td><td>16</td><td>10</td><td>100</td></tr>
+    <tr><td>5</td><td>25</td><td>11</td><td>121</td></tr>
+    <tr><td>6</td><td>36</td><td>12</td><td>144</td></tr>
+    <tr><td>7</td><td>49</td><td>13</td><td>169</td></tr>
+</table>
+
+<p>Le site suivant offre une explication ludique permettant de bien comprendre la notion de racine carrée : <a href="https://www.mathsisfun.com/square-root.html" target="_blank">Mathisfun racines carrées</a>.</p>
+
+<p>Dans ce chapitre nous aurons besoin de savoir décomposer un nombre entier en facteurs premiers.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>entraînez-vous à décomposer les nombres 480, 125, 98, 156 en facteurs premiers.</p>
+
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution2" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(480=2^5\times 3\times 5\)</p>
+    <p>\(125=5^3\)</p>
+	<p>\(98=2\times 7^2\)</p>
+	<p>\(156=2^2\times 3\times 13\)</p>
+
+	
+	</div>
+</div>
+
+<p>La vidéo suivante publiée sur YouTube par <em>partager lessavoirfaire</em> montre comment décomposer un nombre en facteurs premiers à l'aide de la calculatrice TI-College : <a href="https://youtu.be/hnr9B0XhRzw">décomposition facteurs premiers</a>.</p>
+
+
+
+<!-- REGLES DE CALCUL -->
+<h3>Les règles de calcul</h3>
+
+<p>Il faut savoir appliquer les règles suivantes afin de pouvoir calculer dès qu'une expression contient des racines carrées :</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>\(\sqrt{a \times b}=\sqrt{a}\times\sqrt{b}\)  avec \(a, b > 0\)</p>
+
+<p>\(\sqrt{\frac{a}{b}}=\frac{\sqrt{a}}{\sqrt{b}}\) avec \(a, b > 0\)</p>
+
+<p>\(\sqrt{a^n}=(\sqrt{a})^n\)  avec \(a > 0\)</p>
+</div>
+
+<p>En utilisant la dernière règle on peut par exemple écrire que \((\sqrt{2})^6=\sqrt{2^6}=\sqrt{64}=8\)</p>
+
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>Transformer \(\sqrt{45}\) en un produit de deux racines carrées.</p>
+    <p>Solution : \(\sqrt{45}=\sqrt{15 \times 3}=\sqrt{15}\times\sqrt{3}\).</p> 
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>Simplifier \(\sqrt{48}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution5" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\sqrt{48}=\sqrt{6\times 8}=\sqrt{6}\times\sqrt{8}\)</p>
+
+	</div>
+</div>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>simplifier \(\frac{\sqrt{24}}{\sqrt{3}}\)</p>
+    <p>Solution : il n'est pas facile d'effectuer des calculs avec \(\sqrt{24}\) et \(\sqrt{3}\). Il est possible d'utiliser la 2ème règle de calcul pour obtenir \(\frac{\sqrt{24}}{\sqrt{3}}=\sqrt{\frac{24}{3}}=\sqrt{8}\). Nous nous retrouvons maintenant avec une seule racine au lieu de deux racines, ce qui est un peu plus simple à utiliser.</p> 
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>simplifier \(\frac{\sqrt{45}}{\sqrt{5}}\)</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution4" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\frac{\sqrt{45}}{\sqrt{5}}=\sqrt{9}=3\)</p>
+
+	</div>
+</div>
+
+<p>&#9889; <em>Attention</em> au piège. Il n'existe pas de règle de calcul simple pour \(\sqrt{a+b}\). Utilisez votre calculatrice pour trouver la valeur de \(\sqrt{38}\), puis la valeur de \(\sqrt{21}+\sqrt{17}\). Vous constatez qu'elles sont différentes. Ainsi, en général \(\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}\).</p>
+
+<p>Bravo, vous savez maintenant utiliser les principales règles concernant les racines carrées.</p>
+
+
+
+
+
+<!-- SIMPLIFIER LES RACINES CARREES -->
+<h3>Comment simplifier les racines carrées</h3>
+
+<p>La règle de calcul la plus importante à retenir est la suivante :</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>\(\sqrt{a^2}=(\sqrt{a})^2\)  avec \(a > 0\)</p>
+</div>
+
+<p>Elle permet de simplifier l'écriture des racines carrées, une fois qu'on a fait ressortir un carré parfait.</p>
+<p>Cette stratégie est la plus couramment utilisée en présence de racines carrées. En effet, comme les racines carrées ne sont pas faciles à manipuler, on cherche à les transformer en nombres entiers en faisant ressortir des carrées parfaits.</p>
+
+<div class="exerciceApplication">
+    <p><strong> A vous de jouer : </strong>faites travailler votre mémoire en énonçant le plus grand nombre de carrés parfaits que vous connaissez.</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution6" style="display:none;">
+		<p>Solution : 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, ...</p>
+
+	</div>    
+
+</div>
+
+<p>Cherchons maintenant à simplifier les écritures avec radical.</p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>Simplifier \(\sqrt{150}\)<br/>
+    <p>Solution : il faut commencer par décomposer le nombre 150 en produit de facteurs premiers : \(150=2 \times 3 \times 5^2\), puis chercher si on trouve un carré parfait, afin de le simplifier en utilisant la dernière règle \(\sqrt{a^2}=(\sqrt{a})^2\). <br/>Dans ce cas \(\sqrt{150}=\sqrt{2 \times 3 \times 5^2}=\sqrt{2 \times 3}\times\sqrt{5^2}=\sqrt{2\times 3}\times 5=5\sqrt{6}\)
+</div>
+
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>transformer \(\sqrt{108}\) en un produit de racines carrées</p>
+    <div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution3" style="display:none;">
+		<p>Solution :</p>
+	
+	<p>\(\sqrt{108}=\sqrt{3^3\times 2^2}=\sqrt{3}\sqrt{3^2}\sqrt{2^2}=3\times 2\sqrt{3}=6\sqrt{3}\)</p>
+
+	</div>
+</div>
+
+{% endblock cours %}

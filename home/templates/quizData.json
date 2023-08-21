@@ -1,0 +1,17 @@
+[
+    {
+        "question": "What is the capital of France?",
+        "options": ["Berlin", "Paris", "Madrid", "Rome"],
+        "correctIndex": 1
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "options": ["Mars", "Jupiter", "Venus", "Neptune"],
+        "correctIndex": 0
+    },
+    {
+        "question": "What is the largest mammal?",
+        "options": ["Elephant", "Giraffe", "Blue Whale", "Hippopotamus"],
+        "correctIndex": 2
+    }
+]

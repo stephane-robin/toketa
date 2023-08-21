@@ -1,0 +1,334 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+	<li>utiliser la bibliothèque fractions</li>
+	<li>simplifier une fraction</li>
+	<li>amplifier une fraction</li>
+	<li>opérations sur les fractions</li>
+	<li>fiche mémo sur les fractions</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Utilisation de la bibliothèque fractions</h3>
+
+<p>Vous avez appris à effectuer des opérations avec les fractions. C'est parfois difficile, mais c'est utile de savoir le faire afin de bien comprendre les différentes règles de calcul. Plus tard, vous pourrez alors appliquer ces principes au calcul littéral utilisant des fractions. En attendant, le langage Python permet également de trouver le résultat d'opérations simples sur les fractions, et cela à moindre effort. Une fois que vous saurez utiliser Python correctement, cet outil performant vous permettra par exemple de vérifier le résultat de vos calculs.</p>
+
+
+<h4>Partie 1 - calcul manuel</h4>
+
+
+<p>Dans un premier temps, soyez courageux et effectuez les calculs suivants à la main, afin de comparer plus tard vos résultats et ceux de l'ordinateur.</p>
+
+
+<p>\(\frac{2}{3}+\frac{7}{9} = ...\)</p>
+
+<p>\(\frac{5}{2}-\frac{4}{7} = ...\)</p>
+
+<p>\(\frac{5}{2}\times\frac{4}{7} = ...\)</p>
+
+<p>\(\frac{7}{2}/\frac{3}{7} = ...\)</p>
+
+
+
+
+<h4>Partie 2 - Python</h4>
+
+
+<p>Pour exécuter les codes ci-dessous, vous pouvez appuyer sur le bouton <em>Run</em> de l'interpréteur Python.</p>
+
+<p>Nous allons maintenant retrouver les résultats précédents en utilisant des codes simples du langage Python.</p>
+
+<p>En Python le calcul de fractions nécessite l'importation d'une bibliothèque appelée <em>fractions</em>. Pour cela, commencez votre code par</p>
+
+<pre><code class="language-python">from fractions import Fraction</code></pre>
+
+<p>Pour calculer la somme \(\frac{1}{3}+\frac{1}{4}\) en Python il faut exécuter le code suivant :</p>
+
+<pre><code class="language-python">print(Fraction(1, 3)+Fraction(1, 4))</code></pre>
+
+<p>Essayez maintenant d'obtenir à l'aide de Python les résultats des calculs que vous venez de faire manuellement. Pour rappel, la multiplication utilise le symbole * et la division le symbole / en Python.</p>
+
+
+
+</div>
+</section>
+
+<section class="px-5 py-2 bg-gris">
+    <div class="container">
+
+<h2>Rappels de mathématiques</h2>
+
+<h3>Introduction</h3>
+
+<p>Une fraction représente une portion d'une quantité. Par exemple \(\frac{1}{4}\) de gâteau représente un quart du gâteau, soit 0,25. 
+	On voit que cela correspond donc à la division de 1 par 4.</p>
+	<p>L'intérêt de cette écriture réside dans le fait qu'elle représente une valeur exacte. On n'a donc pas besoin de trouver une valeur approchée comme résultat. Ainsi \(\frac{1}{3}\) représente la valeur exacte de 0,333333333...</p>
+
+<div class="fieldsetDefinition">
+	<h4>VOCABULAIRE ...</h4>
+	<p>fraction\(=\frac{NUMERATEUR}{DENOMINATEUR}\)</p>
+</div>
+
+
+
+<!-- SIMPLIFIER UNE FRACTION -->
+<h3>Simplifier une fraction</h3>
+
+<p>Simplifier une fraction, c'est trouver les plus petites valeurs possibles pour le numérateur et le dénominateur de sorte qu'il n'existe plus de diviseur commun entre eux. 
+	On parle alors de fraction irréductible.</p>
+	<p>&#9889; <em>Attention</em> à aucun moment, on ne doit changer la valeur de la fraction.</p>
+
+	<p>&#128064; <em>Astuce : </em>si on divise par un même nombre le numérateur et le dénominateur, cela ne change pas la valeur de la fraction.</p>
+
+	<div class="exerciceType">
+	<p><strong>Exemple :</strong> simplifier \(\frac{6}{4}\)</p>
+	<p>\(\frac{6}{4}=\frac{6\div 2}{4\div 2}=\frac{3}{2}\), et il n'existe pas de diviseur commun entre 3 et 2 
+		(la fraction obtenue est irréductible).</p>
+	</div>
+	
+	<div class="exerciceApplication">
+	
+		<p><strong>A vous de jouer : </strong>simplifier la fraction suivante \(\frac{121}{33}\).</p>
+	
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution1" style="display:none;">
+	
+	<p>\(\frac{121}{33}=\frac{11}{3}\)</p>
+	
+	</div>
+	</div>
+
+	<div class="exerciceApplication">
+	
+		<p><strong>A vous de jouer : </strong>simplifier la fraction suivante \(\frac{126}{24}\).</p>
+	
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+	</div>
+	
+	<div id="solution3" style="display:none;">
+	
+	<p>\(\frac{126}{24}=\frac{21}{4}\)</p>
+	
+	</div>
+	</div>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>Une fraction est irréductible lorsqu'il n'existe pas de diviseur commun entre le numérateur et le dénominateur.</p>
+</div>
+
+<p>Il est conseillé de toujours commencer son travail par la simplification des fractions de l'énoncé, afin de rendre les calculs suivants plus faciles. Des multiplications de multiplications sans jamais simplifier les résultats peuvent engendrer des calculs très difficiles et sources d'erreurs.</p>
+
+
+
+
+<!-- AMPLIFIER UNE FRACTION -->
+<h3>Amplifier une fraction</h3>
+
+<p>Amplifier une fraction, c'est multiplier le numérateur et le dénominateur par un même nombre, sans changer la valeur de la fraction.
+	Il est nécessaire d'amplifier des fractions lorsqu'on veut les additionner ou les soustraire.</p>
+
+<p>Les règles de calcul qui ont été établies pour les fractions sont compatibles avec la division. En particulier, si on multiplie par un même nombre le numérateur et le dénominateur, cela ne change pas la valeur de la fraction.</p>
+
+<div class="exerciceType">
+	<p><strong>Exemple :</strong> \(\frac{1}{3}=\frac{1\times 2}{3\times 2}=\frac{2}{6}\)</p>
+</div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>amplifier la fraction suivante \(\frac{12}{5}\) afin d'obtenir un dénominateur de 35.</p>
+	<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
+
+<div id="solution2" style="display:none;">
+
+<p>\(\frac{12}{5}=\frac{84}{35}\)</p>
+</div>
+</div>
+
+<div class="exerciceApplication">
+	
+	<p><strong>A vous de jouer : </strong>amplifier la fraction suivante\(\frac{6}{7}\) afin d'obtenir un dénominateur de 35.</p>
+	<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+
+<p>\(\frac{6}{7}=\frac{30}{35}\)</p>
+</div>
+
+</div>
+
+<p>&#9889; <em>Attention</em>, il n'est pas possible de simplifier ou d'amplifier une fraction en utilisant des soustractions et additions.</p>
+<p>Par exemple, \(\frac{6}{12}\neq \frac{6-2}{12-2}\)</p>
+<p>En effet, \(\frac{6}{12}=0,5\) alors que \(\frac{6-2}{12-2}=\frac{4}{10}=0,4\) &#128561;</p>
+<p>De même, \(\frac{3}{2}\neq\frac{3+1}{2+1}\)</p>
+<p>En effet, \(\frac{3}{2}=1,5\) alors que \(\frac{3+1}{2+1}=\frac{4}{3}=1,3333...\)</p>
+
+
+<!-- Opérations sur les fractions -->
+<h3>Opérations sur les fractions</h3>
+
+<h4>Multiplication</h4>
+
+<p>&#9889; <em>Attention</em>, lorsqu'on calcule \(\frac{2}{3}\times\frac{5}{7}=\frac{2\times 5}{3\times 7}\), on ne cherche pas à conserver les valeur de \(\frac{2}{3}\) et \(\frac{5}{7}\) mais à les multiplier. Il ne faut donc pas mettre \(\frac{2}{3}\) et \(\frac{5}{7}\) au même dénominateur.</p>
+
+<div class="exerciceType"><p><strong>Exemple :</strong> pour calculer \(\frac{7}{5}\times\frac{3}{2}\), on multiplie séparément le numérateur et le dénominateur</p>
+	<p>\(\frac{7}{5}\times\frac{3}{2}=\frac{7\times 3}{5\times 2}=\frac{21}{10}\)</p></div>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{6}{7}\times\frac{15}{-8}\)</p> 
+	
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+
+	<div id="solution5" style="display:none;">
+	
+	<p>\(\frac{6}{7}\times\frac{15}{-8}\)=\(\frac{6\times 15}{7\times (-8)}=-\frac{45}{28}\)</p>
+	</div>
+	</div>
+
+	<div class="exerciceApplication">
+	
+		<p><strong>A vous de jouer : </strong>calculer \(\frac{5}{7}\times\frac{2}{-3}\)</p>
+
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+
+	<div id="solution6" style="display:none;">
+		<p>\(\frac{5}{7}\times\frac{2}{-3}=\frac{5\times 2}{7 \times (-3)}=-\frac{10}{21}\)</p>
+	</div>	
+		
+</div>
+
+<p>&#9889; <em>Attention</em> à une erreur classique, lorsqu'on calcule \(5 \times \frac{2}{3}\), il ne faut pas chercher à conserver la valeur de \(\frac{2}{3}\), 
+	il faut simplement effectuer une opération. De ce fait, il ne faut donc pas multiplier le numérateur et le dénominateur par 5 mais uniquement 2 par 5.</p> 
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(7\times\frac{2}{3}\).</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution11');"> Voir la solution </button></p>
+
+	<div id="solution11" style="display:none;">
+		<p>Solution :</p>
+		<p>\(7\times\frac{2}{3}=\frac{7\times 2}{3}\times\frac{14}{3}\)</p>
+	</div>
+</div>
+
+<h4>Division</h4>
+
+<div class="exerciceType">
+	<p><strong>Exemple :</strong> calculer \(\frac{2}{5}\div\frac{3}{4}\)</p>
+	<p>On transforme la division en multiplication sans changer le résultat.</p>
+	<p>\(\frac{2}{5}\div\frac{3}{4}=\frac{2}{5}\times\frac{4}{3}=\frac{2\times 4}{5\times 3}=\frac{8}{15}\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{12}{7}\div\frac{2}{3}\) </p>
+		
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution12');"> Voir la solution </button></p>
+
+	<div id="solution12" style="display:none;">
+		<p>\(\frac{12}{7}\div\frac{2}{3}=\frac{12}{7}\times\frac{3}{2}=\frac{18}{7}\)</p>	
+	</div>
+	</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>\(\frac{12}{5}\div\frac{7}{10}\).</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution13');"> Voir la solution </button></p>
+
+	<div id="solution13" style="display:none;">
+		<p>\(\frac{12}{5}\div\frac{7}{10}=\frac{12}{5}\times\frac{10}{7}=\frac{24}{7}\)</p>	
+
+	</div>
+</div>
+
+
+<h4>Addition, soustraction</h4>
+
+<p>Lorsqu'on additionne deux fractions, il ne faut surtout pas additionner les numérateurs d'un côté et les dénominateurs de l'autre.</p>
+
+<p>En effet, \(\frac{1}{3}+ \frac{1}{4}\neq \frac{2}{7}\). Faites le calcul à la calculatrice si vous n'en êtes pas convaincus. \(\frac{1}{3}+ \frac{1}{4}=0,58...\) alors que \(\frac{2}{7}=0,29...\)</p>
+
+<p>En réalité, \(\frac{1}{3}+ \frac{1}{4}=0,33...+0,25=0,58...=\frac{7}{12}\). On utilise en fait la règle de calcul suivante</p>
+
+<p>\(\frac{1}{3}+ \frac{1}{4}=\frac{1\times 4}{3\times 4}+ \frac{1\times 3}{4\times 3}=\frac{7}{12}\)</p>
+
+<p>On choisit comme dénominateur pour les deux fractions, le plus petit commun multiple de 3 et de 4. On réécrit ensuite chacune des deux fractions en prenant \(3\times 4\) comme dénominateur.</p> 
+
+<div class="exerciceType">
+	<p><strong>Exemple :</strong> calculer \(\frac{7}{5} + \frac{3}{2}\)</p>
+	<p>On amplifie chaque fraction pour obtenir \(5\times 2=10\) comme dénominateur commun.</p>
+	<p>\(\frac{7}{5} + \frac{3}{2}=\frac{7\times 2}{5\times 2}+\frac{3\times 5}{2\times 5}=\frac{14}{10}+\frac{15}{10}=\frac{29}{10}\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{12}{7}+\frac{2}{3}\)</p> 
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+
+	<div id="solution7" style="display:none;">
+		<p>\(\frac{12}{7}+\frac{2}{3}=\frac{36}{21}+\frac{14}{21}=\frac{50}{21}\)</p>
+
+	</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{12}{9}+\frac{4}{3}\)</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+
+	<div id="solution8" style="display:none;">
+		<p>\(\frac{12}{9}+\frac{4}{3}=\frac{12}{9}+\frac{12}{9}=\frac{24}{9}\)</p>
+
+	</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{12}{5}-\frac{7}{10}\)</p> 
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+
+	<div id="solution9" style="display:none;">
+		<p>\(\frac{12}{5}-\frac{7}{10}=\frac{24}{10}-\frac{7}{10}=\frac{17}{10}\)</p>
+
+	</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>calculer \(\frac{1}{9}-\frac{4}{3}\).</p>
+	<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+
+	<div id="solution10" style="display:none;">
+		<p>\(\frac{1}{9}-\frac{4}{3}=\frac{1}{9}-\frac{12}{9}=\frac{11}{9}\)</p>
+	</div>
+</div>
+
+
+
+
+
+<h3>Fiche mémo</h3>
+<!-- 
+<div class="fieldsetDefinition">
+	<h4>FICHE MEMO ...</h4>
+	<p>\(\frac{2}{3}\times\frac{5}{7}=\frac{2\times 5}{3\times 7}\)</p>
+	<p>\(2\times\frac{5}{7}=\frac{2\times 5}{7}\)</p>
+	<p>\(\frac{2}{3}\div\frac{5}{7}=\frac{2\times 7}{3\times 5}\)</p>
+	<p>\(\frac{2}{3}+\frac{5}{3}=\frac{2+5}{3}\)</p>
+	<p>\(\frac{2}{3}+\frac{5}{7}=\frac{2\times 7}{3\times 7}+\frac{3\times 5}{3\times 7}\)</p>
+</div>
+-->
+
+<iframe src='../../documents/fiche_memo_fractions1.pdf' height='1200px' type='application/pdf'></iframe>
+
+</section>
+
+{% endblock cours %}
+

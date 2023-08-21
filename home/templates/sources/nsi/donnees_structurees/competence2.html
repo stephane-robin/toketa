@@ -1,0 +1,122 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>la définition d'une base de données</li>
+	<li>l'utilité des bases de données</li>
+	<li>les éléments caractéristiques des bases de données</li>
+	<li>les métadonnées</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Qu'est-ce qu'une base de données ?</h3>
+
+<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube détaille l'utilisation des données structurées : <br/>
+    <a href="https://youtu.be/IJJgcZ2DEs0" target="_blank">&#127911; vidéo | Données comment les manipuler - Fun Mooc YouTube</a></p>
+
+<p>L'informatique a pour vocation le traitement, le stockage et l'affichage de l'information. Celle-ci peut être
+	regroupée sous la forme de tables connectées entre elles par des relations. Chaque table contient des données 
+	qui occupent un espace mémoire dont le système de gestion connaît l'adresse. L'ensemble de ces tables 
+	permet de décrire une situation ou un objet et constitue une base de données.</p>
+
+<div class=fieldsetDefinition>
+	<h4>VOCABULAIRE ...</h4> 
+	<p>Une <strong>donnée</strong> est une valeur associée à un objet, un individu, un événement permettant de le décrire.</p>
+	<p>Une <strong>base de données</strong> est un ensemble de données reliées entre elles et structurées avec des tables.</p>
+	<p>Le <strong>Big Data</strong> correspond à une quantité importante de données générées par l'utilisation de technologies numériques.</p>
+</div>
+
+<p>Il existe 3 types de données : </p>
+<ul>
+	<li>les données quantitatives, qui s'expriment sous forme de nombres,</li>
+	<li>les données qualitatives, qui ne sont pas quantifiables et s'expriment sous forme de texte,</li>
+	<li>les données catégorielles, qui peuvent être rangées dans des catégories définies à l'avance. Leur valeur 
+		peut être numérique ou textuelle.</li>
+</ul>
+
+
+
+
+<h3>Utilité des bases de données</h3>
+
+<p>Tant qu'un programme est en cours d'exécution, il conserve en mémoire les valeurs des variables utilisées. 
+	En revanche, une fois qu'on stoppe ce programme ou qu'on se déconnecte d'un site Internet, les valeurs des
+	 variables sont perduées. Certaines ont pour vocation d'être temporaires, mais d'autres comme le montant 
+	 du compte en banque, le niveau de jeu atteint, le mot de passe de connexion, ... doivent être conservées 
+	 dans un serveur distant dont le rôle unique est de stocker des bases de données.</p>
+
+<p>On vient de voir que les bases de données servent de support à vos programmes. Mais l'inverse se produit 
+	également. On peut construire des programmes capables d'optimiser la recherche d'information dans une base
+	de données, ou encore qui fournissent un modèle d'intelligence artificielle pour la situation décrite 
+	par la base de données.</p>
+
+
+
+<h3>Elements caractéristiques des bases de données</h3>
+
+<p>Les bases de données sont constituées de <strong>tables</strong>, elles-mêmes composées de 
+	<strong>descripteurs</strong> (les colonnes) et <strong>d'enregistrements</strong>, ou entrées
+	 (les lignes). Chaque élément d'une table est appelé un champ et dans le cas de l'utilisation  
+	d'un tableur Excel une cellule.
+	Chaque table contient une <strong>clé primaire</strong> permettant d'identifier de manière unique 
+	chaque enregistrement. Par ailleurs, les différentes tables d'une base de données peuvent être 
+	reliées entre elles à l'aide de clés étrangères.</p>
+
+<p><em>Attention,</em> un tableur Excel n'est pas une base de données même s'il se présente sous forme de tableau.
+	Il s'agit en fait d'une application qui facilite le traitement et l'affichage de données 
+organisées en tables.</p>
+
+<p>Voici un exemple de table d'une base de données, qui ressemble assez à un tableur Excel :</p>
+<table>
+	<tr><th>ID</th><th>nom</th><th>habitants</th></tr>
+	<tr><td>12134</td><td>Zurich</td><td>402 762</td></tr>
+	<tr><td>4153</td><td>Geneve</td><td>198 979</td></tr>
+	<tr><td>312465</td><td>Bern</td><td>133 115</td></tr>
+	<tr><td>213</td><td>Luzern</td><td>81 592</td></tr>
+</table>
+
+<p>Ces données sont accessibles pour consultation et modification à l'aide d'un logiciel appelé SGDB Système de Gestion de Bases de Données.</p>
+
+<p>On retrouve une clé primaire (ID), des descripteurs (ID, nom, habitants), 4 entrées car 4 lignes 
+	représentant des données, et par exemple un champ "Geneve".</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>donnez un exemple de descripteurs pour chaque type de données 
+	(quantitatif, qualitatif, catégoriel) relatives à une table regroupant des 
+	véhicules immatriculés en France.</p>
+</div>
+
+
+<!-- LES METADONNEES -->
+<h3>Les métadonnées</h3>
+
+<p>Les métadonnées sont un type particulier de données qui décrivent une ressource, comme une image ou un fichier. Par exemple les métadonnées d'une image se présentent sous la forme suivante :</p>
+
+<img src="../../images/snt/metadonnees.png" alt="metadonnees" width=30%>
+
+<p>Les métadonnées d'une image sont facilement accessibles, en sélectionnant l'image puis en cherchant ses Propriétés (souvent avec un clic droit de souris).</p>
+
+<p>Les métadonnées d'une page Web, quant à elles, sont contenues dans la balise &lthead&gt :</p>
+
+<pre><code class="language-html">&lthead&gt
+  &lttitle&gt Toketa-Classmate &lt/title&gt
+  &ltlink rel='stylesheet' href='style_classroom1.css"; ?>'&gt
+  &ltlink rel='icon'
+        type='image/png'
+        href='images/general/symbole.png"; ?>'&gt
+  &ltmeta charset='utf-8'&gt
+&lt/head&gt</code></pre>
+
+<p>Les métadonnées d'une page Web sont également accessibles, en utilisant le Mode Développeur du navigateur, et en lisant le contenu de la balise &lthead&gt,</p>
+
+
+<h3>Activité</h3>
+
+<iframe src='../../documents/TP_donnees_structurees.pdf' height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}
+
+   

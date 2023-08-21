@@ -1,0 +1,1010 @@
+/* variables globales */
+:root{
+  --couleur_fond: #333733;
+  --couleur_header: #999966;
+  --couleur_titre: #00cc99;
+  --couleur_important: #ff9999;
+  --couleur_lien: #999966;
+  --couleur_ombre: #555;
+  --couleur_contour: #ffb366;
+}
+body{
+  /* pour eviter les bords autour du contenu */
+  margin: 0%;
+  /* pour que tous les navigateurs affichent les fonds en blanc */
+  background-color : var(--couleur_fond);
+}
+
+
+/*---------------------------
+          HEADER
+---------------------------*/
+
+/* la ligne du haut contenant les menus de navigation */
+header{
+  background-color : var(--couleur_fond);
+  /* force le header a occuper toute la largeur */
+  width: 100%; 
+  /* fixe la position du header en haut de l'ecran */
+  position: fixed;
+  /* affichage horizontal */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  top: 0%;
+  z-index: 1;
+}
+
+/* navigation pour laptop et desktop */
+@media all and (min-width:960px){
+
+  /* conteneur de navigation */
+  .navig_laptop {
+    /* reinitialise le setting des browsers */
+    margin: 0;
+    padding: 0;
+    background-color : var(--couleur_fond);
+    list-style-type: none;
+  }
+
+  /* conteneur d'element de navigation */
+  .navig_laptop li {
+    float: left;  
+    min-width: 130px;
+    text-align: left;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+
+  /* element de navigation */
+  .navig_laptop li a, .dropbtn {
+    padding: 14px 16px;
+    font-family: Cambria, Arial, Verdana;
+    font-size: 1em;
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    /* affichage en ligne */
+    display: block;
+    cursor: pointer;
+    transition: color 300ms color;
+  }
+
+  .navig_laptop li a:hover, .dropdown:hover .dropbtn {
+    color: var(--couleur_titre);
+    cursor: grab;
+  }
+
+  /* conteneur d'element de navigation deroulable */
+  .navig_laptop li.dropdown {
+    /* affichage en colonne */
+    display: block;
+  }
+
+  .navig_smartphone{
+    display:none;
+  }
+}
+
+/* navigation pour smartphones et tablettes */
+@media all and (max-width:959px) and (orientation:landscape){
+
+  /* conteneur de navigation */
+  .navig_smartphone {
+    /* reinitialise le setting des browsers */
+    margin: 0;
+    padding: 0;
+    background-color : var(--couleur_fond);
+    list-style-type: none;
+  }
+  
+  /* conteneur d'element de navigation */
+  .navig_smartphone li {
+    float: left;  
+    min-width: 130px;
+    text-align: left;
+    font-size: 1em;
+  }
+  
+  /* element de navigation */
+  .navig_smartphone li a, .dropbtn {
+    padding: 14px 16px;
+    font-family: Cambria, Arial, Verdana;
+    font-size: 0.9em;
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    /* affichage en ligne */
+    display: block;
+    cursor: pointer;
+    transition: background-color 300ms color;
+  }
+  
+  .navig_smartphone li a:hover, .dropdown:hover .dropbtn {
+    background-color: grey;
+    cursor: grab;
+  }
+  
+  /* conteneur d'element de navigation deroulable */
+  .navig_smartphone li.dropdown {
+    /* affichage en colonne */
+    display: block;
+  }
+
+  .navig_laptop {
+    display: none;
+  }
+}
+
+/* navigation commune a tous les appareils */
+
+/* conteneur de navigation des pages */
+.navig {
+  /* reinitialise le setting des browsers */
+  margin: 0;
+  padding: 0;
+  background-color : var(--couleur_fond);
+  list-style-type: none;
+}
+
+/* conteneur d'element de navigation */
+.navig li {
+  float: left;  
+  min-width: 130px;
+  text-align: left;
+  font-size: 1em;
+}
+
+/* element de navigation */
+.navig li a, .dropbtn {
+  padding: 14px 16px;
+  font-family: Cambria, Arial, Verdana;
+  font-size: 0.9em;
+  text-align: left;
+  text-decoration: none;
+  color: left;
+  /* affichage en ligne */
+  display: block;
+  cursor: pointer;
+  transition: color 300ms color;
+}
+
+.navig li a:hover, .dropdown:hover .dropbtn {
+  color: var(--couleur_titre);
+  cursor: grab;
+}
+
+/* conteneur d'element de navigation deroulable */
+.navig li.dropdown {
+  /* affichage en colonne */
+  display: block;
+}
+
+/* deroule du conteneur d'element */
+.dropdown-content {
+  /* le deroule n'apparaît pas tant qu'on ne survole pas*/
+  display: none;
+  position: absolute;
+  min-width: 130px;
+  /* fait passer l'element au premier plan */
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: left;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--couleur_titre);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* logo de menu */
+.logo{
+  width: 40px;
+  height: 40px;
+  margin: 4%;
+}
+
+/*navigation dans les pages modeleTableMatiere*/
+.navig_table_matiere{
+  display: flex;
+  flex-direction: column;
+}
+
+.navig_table_matiere a{
+  margin-bottom:0.5%;
+  font-size:1.3em;
+}
+
+/*----------------------------
+            INDEX
+----------------------------*/     
+
+/* affichage smartphone et tablette */
+@media all and (max-width:1024px){
+  /* permet d'afficher le contenu verticalement sur les smartphones */
+  .bloc_ligne_index{
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* permet d'afficher le texte sur toute la largeur de l'ecran
+  des smartphones */
+  .bloc_colonne_index{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .bloc_colonne_index p{
+    color: var(--couleur_contour);
+    font-size: 1.3em;
+  }
+
+  .img_index{
+    display: none;
+  }
+}
+
+/* affichage laptop et desktop */
+@media all and (min-width:1025px){
+  /* permet d'afficher le contenu horizontalement sur les laptop */
+  .bloc_ligne_index{
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* permet de contenir le texte pour que les images à gauche du texte 
+  conservent toute la meme taille */
+  .bloc_colonne_index{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .bloc_colonne_index p{
+    color: var(--couleur_contour);
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+
+
+/* ------------------------------
+        LIENS DANS LE TEXTE 
+-------------------------------*/
+a{
+  text-decoration: none;
+  color: var(--couleur_contour);
+}
+
+a:hover{
+  color: var(--couleur_titre);
+}
+
+/* lien particulier */
+.choix{
+  color: black;
+  text-decoration: none;
+  transform: scale(1);
+  transition: transform 500ms;
+  cursor: pointer;
+}
+
+.choix:hover{
+  transform: scale(1.03);
+}
+
+
+/* -------------------------------
+         CODE  PRINCIPAL
+   ------------------------------- */
+
+.input:focus + .question{
+  border-left: 10px;
+  background-color: var(--couleur_titre);
+}
+
+.bouton{
+  padding: 0 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: 0;
+  line-height: 2.5;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  background-color: var(--couleur_titre);
+  background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 500ms, box-shadow 300ms;
+}
+
+.bouton:hover {
+  background-color: var(--couleur_contour);
+  cursor: grab;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6), 5px 5px 5px rgba(0, 0, 0, .6);
+}
+
+.bouton:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+              inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.principal{  
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 5%;
+  /* affichage vertical */
+  display: flex;
+  flex-direction: column;  
+}
+
+#principal_index{  
+  padding-left: 0%;
+  padding-right: 0%;
+  margin-top: 5%;
+  /* affichage vertical */
+  display: flex;
+  flex-direction: column;  
+}
+
+#contenu{
+  width:100%;
+  display: flex;
+  flex-direction: column; 
+}
+
+#bandeau_sousTitre{
+  width: 95%;  
+  padding-left: 2%;
+  margin-top: 10%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+#bandeau_sousTitre p{
+  color: black;
+}
+
+#bandeau_contenu{
+  width: 30%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: black;
+  opacity: 0.4;
+  margin-left: 2%;
+  padding-left: 2%;
+  text-align: center;
+}
+
+#bandeau_contenu p{
+  color: white;
+}
+
+#bandeau_controle{
+  width: 95%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 1px 8px 12px var(--couleur_ombre);
+  background-color: white;
+  opacity: 0.6;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+p{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  text-align: justify;
+  color: white;
+}
+
+label{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  text-align: justify;
+  color:white;
+}
+
+.ancre{
+    margin: 10%;
+}
+
+.pcle{/* classe de paragraphes de mots-clés */
+  width: 80%;
+  margin: auto;
+  color: rgb(153,102,102);
+  font-family: Arial, Verdana, "Trebuchet MS";
+  font-size: 1.2em;
+  text-align: justify;
+  font-style: italic;
+}
+
+/* texte mis en valeur */
+strong{
+  font-weight: bold;
+}
+
+.important{
+  font-weight: bold;
+  color: var(--couleur_important);
+  display: inline;
+}
+
+figure{/* figure */
+  text-align: center;
+}
+
+figcaption{
+  color: white;
+}
+
+fieldset{/* encadrement avec titre */
+  border: 2px var(--couleur-important) solid;
+  border-radius: 10px;
+  box-shadow: 1px 8px 12px var(--couleur_ombre);
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.fieldsetDefinition{
+  background-color: vavr(--couleur_fond);
+  border: 5px var(--couleur_contour) solid;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 3%;
+  margin-top: 1%;
+}
+
+.fieldsetDefinition h4{/* titres de fieldsetDefinition */
+  font-size: 1.2em;
+  font-family: Cambria, Arial, Verdana;
+  color: var(--couleur_contour);
+  margin-top: 1%;
+}
+
+.fieldsetDefinition p{
+  color: var(--couleur_contour);
+}
+
+.fieldsetDefinition ul{
+  color: var(--couleur_contour);
+}
+
+.fieldset_inside{
+  width:100%;
+  margin: auto;
+  border: 2px var(--couleur-important) solid;
+  border-radius: 10px;
+  box-shadow: 1px 8px 12px var(--couleur_ombre);
+  background-color: white;
+  margin-top: 30px;
+  margin-bottom:30px;
+}
+
+.bloc_colonne{
+  display: flex;
+  flex-direction: column;
+}
+  
+.bloc_ligne{
+  display: flex;
+  flex-direction: row;
+}
+
+fieldset2{
+  width: 50px;
+  border: 2px var(--couleur-important) solid;
+  border-radius: 10px;
+  box-shadow: 1px 8px 12px var(--couleur_ombre);
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+/* classe de légende des lignes de code */
+.legendeCode{
+  font-size:0.8em;
+  color: #807070;
+  text-align: right;
+  margin-top: 5px;
+  height:30px;
+}
+
+.ulExemple{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  list-style-type: square;
+}
+
+.image{
+  border: 2px black solid;
+  width: 60%;
+}
+
+.bloc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.droite{
+  margin:15px;
+}
+
+.gauche{
+  margin:15px;
+  margin-left:0px;
+}
+
+.bloc_choix_titre{
+  height:100px;
+  margin: 2%;
+  margin-bottom: 0%;
+  padding: 2%;
+  padding-top: 7%;
+  padding-bottom: 7%; 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 2px grey solid;
+  border-right: 2px grey solid;
+  border-left: 2px grey solid;
+  opacity: 0.8;
+}
+
+.rotate img{
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.rotate:hover img{
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(-15deg);
+}
+
+.bloc_choix_contenu{
+  height:10%;
+  margin: 2%;
+  margin-top: 0%;
+  padding: 2%; 
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 10px white solid;
+  background-color: var(--couleur_contour);
+}
+
+.bloc_choix_contenu p{
+  color:black;
+  font-weight:bold;
+  text-align:center;
+  font-size:1.3em;
+}
+.exemple{
+  color: black;
+}
+
+.exerciceApplication{
+  /* tous fichiers */
+  background-color: lightgray;
+  border-left: 7px var(--couleur_titre) solid;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.exerciceApplication p{
+  color: black;
+}
+
+.exerciceApplication ul{
+  color: black;
+}
+
+.exerciceType{
+  border-left: 4px white dashed;
+  color: black;
+  padding-left:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.elt_socialMedia{
+  margin: 0.5%;
+}
+
+input:focus{
+  border: 2px solid red;
+}
+
+/* ----------------------------------
+         TABLE DES MATIERES
+---------------------------------- */
+
+/* CHERCHER L UTILITE */
+#chapitres{
+  width: 10%;
+  margin: 2%;
+  margin-left: 90%;
+  position: fixed; /* empêche le déroulement du menu avec la souris */
+}
+
+#fieldsetTableMatieres{
+  padding-left: 1%;
+  padding-right: 1%;
+  margin: auto; 
+  font-family: Cambria, Arial, Verdana;
+  text-align: justify;
+  background-color: grey;
+  /* crée le menu verticalement */
+  display: flex;
+  flex-direction: column;
+}
+
+#fieldsetTableMatieres  a{
+  padding-top: 2%;
+  color: white;
+  /* enleve le soulignement des liens du menu */
+  text-decoration: none; 
+}
+
+#fieldsetTableMatieres  a:hover{
+  color: var(--couleur_titre);
+}
+
+#fieldsetTableMatieres p{
+  color: white;
+}
+
+
+/* ----------------------
+         TITRES 
+------------------------- */
+
+h1{/* titre du site */
+  font-family: Arial, "Comic Sans MS";
+  font-size: 2.5em;
+  margin-left: 2%;
+  margin-bottom: 0;
+  margin-top: 0.5%;
+  color: var(--couleur_titre);
+}
+
+h2{/* titre de page */
+  font-family: Cambria, Arial, Verdana;
+  font-size: 2em;
+  margin-bottom:5%;
+  color: var(--couleur_titre);
+  text-align: center;
+}
+
+.h2_prelim{
+  margin-top: 10%;
+  color: var(--couleur_ombre);
+  margin-bottom: 0%;
+}
+
+h3{ /* titre de sections */
+  font-size: 1.7em;
+  font-family: Cambria, Arial, Verdana;
+  color: var(--couleur_titre);
+  margin-top: 5%;
+}
+
+h4{/* titres de sous-sections */
+  font-size: 1.2em;
+  margin-top: 4%;
+  font-family: Cambria, Arial, Verdana;
+  color: var(--couleur_titre);
+}
+
+h5{/* titres de sous-sections */
+  font-size: 1.2em;
+  margin-top: 1%;
+  font-style: italic;
+  font-family: Cambria, Arial, Verdana;
+  color: var(--couleur_titre);
+}
+
+
+/* --------------------------------------
+            WORKSHOP
+----------------------------------------- */
+
+#penalite{
+  width:60%;
+  border-radius: 10px;
+  box-shadow: 1px 8px 12px var(--couleur_ombre);
+  background-color:#ffcccc;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-left: 2%;
+}
+
+
+/* ---------------------------
+           FOOTER
+------------------------------ */
+
+footer p{/* texte de pied de balise */
+    font-family: Cambria, Arial, Verdana;
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+}
+
+.footerColumn{
+  font-family: Cambria, Arial, Verdana;
+  /* enleve le soulignement des liens du menu */
+  text-decoration: none; 
+  margin-left: 2%;
+  width: 30%;
+  /* crée le menu verticalement */
+  display: flex;
+  flex-direction: column; 
+}
+
+.footerNav{   
+  font-size: 1.1em;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+/* pied de page, classe hérite de footer */
+.piedPage{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 0.9em;
+  color: white;
+  background-color: #404040;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.piedPageTitre{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.1em;
+  color: white;
+  text-align: left;
+}
+
+.piedPageParagraphe{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.1em;
+  color: white;
+  text-align: left;
+  margin-top:0%;
+}
+
+
+/* -------------------------------
+              LISTES
+---------------------------------- */
+
+ul{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  list-style-type: disc;
+  color: white;
+}
+
+ol{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  color: white;
+}
+
+
+/* -----------------------
+        TABLES 
+-------------------------- */
+
+table{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.2em;
+  /* colle les cellules du tableau entre elles */
+  border-collapse: collapse; 
+  color: white;
+}
+
+td{/* champs */
+  font-family: Cambria, Arial, Verdana;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid var(--couleur_lien);
+}
+
+td pre{/* champs dans lesquelles se trouvent du code */
+  font-size:0.8em;
+}
+
+th{/* titres de champs */
+  font-family: Cambria, Arial, Verdana;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid var(--couleur_lien);
+}
+
+.footer_table{
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1.1em;
+  border-collapse: collapse; /* colle les cellules du tableau entre elles */
+}
+
+.footer_table td{/* champs */
+  font-family: Cambria, Arial, Verdana;
+  border: none;
+  padding: 0px;
+  padding-bottom: 1%;
+}
+
+.barreProgression{
+  margin-top:5%; 
+  padding:1%; 
+  font-family: Cambria, Arial, Verdana; 
+  background-color: var(--couleur_titre); 
+  color:black; 
+  border-radius:25px;
+}
+
+
+/* -------------------------------------------------
+           LES MISES EN FORMES POUR EXEMPLES
+Ces mises en forme ne sont pas utilisées pour l'ensemble de la page, mais
+uniquement pour l'affichage de certains exemples 
+----------------------------------------------------*/
+
+.exempleBloc:nth-child(1){ /* exemples html "La mise en page avec Flexbox" */
+  background-color: #CF6084;
+}
+.exempleBloc:nth-child(2){
+  background-color: #70995E;
+}
+.exempleBloc:nth-child(3){
+  background-color: #33A9CC;
+}
+#exempleBloc10-1{
+  background-color: #CF6084;
+}
+#exempleBloc10-2{
+  background-color: #70995E;
+}
+#exempleBloc10-3{
+  background-color: #33A9CC;
+  align-self: flex-end;
+}
+#exempleBloc11-1{
+  background-color: #CF6084;
+  order: 2;
+}
+#exempleBloc11-2{
+  background-color: #70995E;
+  order: 1;
+}
+#exempleBloc11-3{
+  background-color: #33A9CC;
+  order: 3;
+}
+#exempleBloc12-1{
+  background-color: #CF6084;
+  flex: 1;
+}
+#exempleBloc12-2{
+  background-color: #70995E;
+}
+#exempleBloc12-3{
+  background-color: #33A9CC;
+}
+#exempleBloc13-1{
+  background-color: #CF6084;
+  flex: 2;
+}
+#exempleBloc13-2{
+  background-color: #70995E;
+  flex: 1;
+}
+#exempleBloc13-3{
+  background-color: #33A9CC;
+}
+#exempleConteneur1{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+}
+#exempleConteneur2{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+#exempleConteneur3{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#exempleConteneur4{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#exempleConteneur5{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#exempleConteneur6{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row-reverse;
+}
+#exempleConteneur7{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: column;
+}
+#exempleConteneur8{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+}
+#exempleConteneur9{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.exempleConteneur10{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+.exempleConteneur12{
+  border: 1px black dotted;
+  display: flex;
+  flex-direction: row;
+}
+#blocIndependant{ /* exemple html "la notion de bloc" */
+  background-color: #33A9CC;
+}
+#span1{
+  background-color: #CF6084;
+}
+#span2{
+  background-color: #70995E;
+}
+
+.a_presentation{
+  color: black;
+  text-decoration: none;
+  font-family: Cambria, Arial, Verdana;
+  font-size: 1em;
+  text-align: justify;
+}
+
+/* comportement des liens dans le texte au survol */
+.a_presentation:hover{
+  color: white;
+}

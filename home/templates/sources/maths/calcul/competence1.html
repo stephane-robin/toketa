@@ -1,0 +1,105 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>définition</li>
+    <li>les formules utiles</li>
+    <li>les formules complexes</li>
+    <li>les puissances à exposant négatif</li>
+    <li>fiche mémo sur les puissances</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Introduction</h3>
+<p>La puissance d'un nombre consiste à répéter plusieurs fois la multiplication par ce nombre. Il s'agit en fait d'une notation raccourcie,
+    qu'on retrouve par exemple dans l'écriture scientifique ou la notation binaire en informatique.</p>
+
+
+<h3>Définition</h3>
+
+<p>Pour \(n &gt; 0\), on définit \(a^n=a\times a\times ... \times a\) où le facteur \(a\) est écrit \(n\) fois.</p>
+
+<p>&#9889; <em>Attention</em>, il ne faut surtout pas confondre \(a^n\) et \(n\times a = a +a+ ...+a\), où le terme \(a\) apparaît 
+\(n\) fois. On comprend bien que dans le premier cas il s'agit de multiplications alors que dans le second cas il s'agit d'additions.</p>
+
+<p>Cherchons maintenant la valeur de \(a^1\). D'après la définition, on voit que dans \(a^1\) le terme \(a\) apparaît 
+    une seule fois, d'où la formule :</p>
+
+    <p>\(a^1=a\)</p>
+
+
+
+<!-- LES FORMULES UTILES -->
+<h3>Les formules utiles</h3>
+
+<p>On remarquera que dans chacune des formules ci-dessous, il existe un terne commun, soit l'exposant, 
+    soit le terme en dessous de l'exposant.</p>
+
+    <p>\(\color{var(--couleur_lien)}{a}^n \times \color{var(--couleur_lien)}{a}^m=a^{n+m}\)</p>
+
+    <p>Cherchons à comprendre à l'aide d'un exemple, \(2^3\times 2^4=2\times 2\times 2\times 2\times 2\times 2\times 2=2^7\)</p>
+
+<p>\(\frac{\color{var(--couleur_lien)}{a}^n}{\color{var(--couleur_lien)}{a}^m}=a^{n-m}\)</p>
+
+<p>Cherchons à comprendre à l'aide d'un exemple, \(2^5\times 2^3=\frac{2\times 2\times 2\times 2\times 2}{2\times 2\times 2}=2^2\)</p>
+
+<p>\(a^\color{var(--couleur_lien)}{n}\times b^\color{var(--couleur_lien)}{n}=(a\times b)^n\)</p>
+
+<p>Cherchons à comprendre à l'aide d'un exemple, \(2^4\times 3^4=2\times 2\times 2\times 2\times 3\times 3\times 3\times 3=2\times 3\times 2\times 3\times 2\times 3\times 2\times 3=6\times 6\times 6\times 6=6^4\)</p>
+
+<p>\(\frac{a^\color{var(--couleur_lien)}{n}}{b^\color{var(--couleur_lien)}{n}}=(\frac{a}{b})^n\)</p>
+
+<p>Cherchons à comprendre à l'aide d'un exemple, \(\frac{3^4}{2^4}=\frac{3\times 3\times 3\times 3}{2\times 2\times 2\times 2}=\frac{3}{2}\times\frac{3}{2}\times\frac{3}{2}\times\frac{3}{2}=(\frac{3}{2})^4\)</p>
+
+<p>\((a^n)^m=a^{n\times m}\)</p>
+
+<p>Cherchons à comprendre à l'aide d'un exemple, \((4^3)^2=(4\times 4\times 4)\times (4\times 4\times 4)=4^6\)</p>
+
+
+
+<!-- LES FORMULES COMPLEXES -->
+<h3>Les formules complexes</h3>
+
+<p>Que se passe-t-il lorsque l'exposant est nul ?</p>
+
+<p>\(a^0=1\)</p>
+
+<p>Explications : on connaît la formule \(a^n \times a^m=a^{n+m}\), qui est également valable lorsque \(m\) vaut 0.
+    On obtient dans ce cas \(a^n \times a^0=a^{n+0}=a^n\). Pour que cette équation soit vraie, il est nécessaire que \(a^0=1\)</p>
+
+<p>\(a^{-n} = \frac{1}{a^n}\) lorsque \(n\geq0\)</p>
+
+<p>Explications : on connaît la formule \(a^n \times a^m=a^{n+m}\), qui est également valable lorsque \(m\) vaut \(-m\).
+    On obtient dans ce cas \(a^n \times a^{-n}=a^{n-n}=a^0=1\). Pour que cette équation soit vraie, il est nécessaire que 
+    \(a^{-n} = \frac{1}{a^n}\)</p>
+
+<p>\(a^{\frac{1}{2}}=\sqrt{a}\)</p>
+
+<p>Explications : on connaît la formule \((a^n)^m=a^{n\times m}\), qui est également valable lorsque \(n\) vaut \(\frac{1}{2}\) et 
+    \(m\) vaut 2. On obtient dans ce cas \((a^{\frac{1}{2}})^2=a^{\frac{1}{2}\times 2}=a^1=a\). Pour que cette équation soit vraie, il est nécessaire que 
+    \(a^{\frac{1}{2}}=\sqrt{a}\)</p>
+
+
+<h3>Les puissances à exposant négatif</h3>
+
+<p>Lorsqu'on travaille avec des puissances à exposant négatif, il est parfois plus simple de se ramener au calcul avec des puissances positives. Pour cela, on utilise la formule \(a^{-n}=\frac{1}{a^n}\).</p>
+
+<p>Cette formule peut également s'avérer utile dans l'autre sens : \(a^{n}=\frac{1}{a^{-n}}\).</p>
+
+<p>Rappel, afin de retrouver ces formules, on peut se poser la question suivante : quelle est l'inverse de \(a^n\) ? ou encore quelle valeur doit-on donner à \(p\) pour que \(a^{n}\times a^p=1\) ?</p>
+
+<p>Comme \(a^n \times a^p=a^{n+p}\) et que \(1=a^0\), on en déduit que \(a^{n+p}=a^0\)</p>
+
+<p>Ainsi \(n+p=0\), donc \(p=-n\)</p>
+
+<p>On retrouve donc la formule \(a^n \times a^{-n}=1\)</p>
+
+    <!-- FICHE MEMO -->
+    <h3>Fiche mémo</h3>
+
+    <iframe src='../../documents/fiche_memo_puissances.pdf' height='1200px' type='application/pdf'></iframe>
+
+{% endblock cours %}

@@ -1,0 +1,109 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Comment tracer la courbe d'une fonction affine ?</h3>
+
+<h4>Pente</h4>
+
+<p>La pente est le rapport entre la hauteur parcourue divisé par la distance horizontale parcourue. Dans le dessin ci-dessous, la pente est donc \(pente = \frac{h}{d}\)</p>
+<p><img src="../../images/maths/pente.png" alt="pente"></p>
+
+<p>En trigonométrie \(tan (\alpha) = \frac{h}{d}\). Ainsi la pente correspond en fait à \(tan (\alpha)\)</p>
+
+<div class="fieldsetDefinition">
+	<h4>DEFINITION - Fonction affine</h4>
+	<p>Une fonction affine est une fonction \(f\) pouvant s'écrire sous la forme \(f(x)=ax+b\) où \(a\) est la pente et \(b\) est l'ordonnée à l'origine.</p>
+</div>
+<p>Une fonction affine est représentée par une droite. La pente \(a\) définit l'inclinaison de cette droite, l'ordonnée à l'origine \(b\) représente l'endroit où cette droite coupe l'axe vertical.</p>
+
+	<div class="exemple">
+	<p><em>Exemple : </em> La fonction \(f\) définie par \(f(x)=2x+3\) coupe l'axe vertical en 3, et sa pente est de 2 c'est à dire que si on avance de 1 unité horizontalement, on monte de 2 unités verticalement (\(\frac{2}{1}=2\)). On peut donc dessiner la courbe représentative de \(f\) facilement, sans calcul et sans utiliser de tableau de valeurs.</p>
+	<img src="../../images/maths/courbeAffine.png" alt="courbe affine">
+</div>
+
+<div class="exerciceType">
+<p><strong>Exercice type : <br/>
+Tracer la courbe représentative de la fonction \(f\) définie par \(f(x)=x-2\)</strong></p>
+<p>Solution :<br/>
+	La pente de cette fonction vaut 1 et l'ordonnée à l'origine vaut -2. On obtient donc la courbe suivante</p>
+	<img src="../../images/maths/exempleCourbeAffine.png" alt="courbe affine">
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong><br/>
+	1. Tracer la courbe représentative de la fonction \(f\) définie par \(f(x)=5x-2\)<br/>
+	2. Tracer la courbe représentative de la fonction \(f\) définie par \(f(x)=-2x+1\)</p>
+</div>
+
+
+<h4>Fonction linéaire</h4>
+
+	<p>Notons qu'une fonction linéaire \(f\) est une fonction affine particulière dont l'ordonnée à l'origine vaut 0. Elle est donc de la forme \(f(x)=ax\). Ainsi la courbe d'une fonction linéaire passe par l'origine O du repère, et une fonction linéaire représente une situation de proportionnalité.
+		<img src="../../images/maths/fonctionLineaire.png" alt="fonction linéaire"></p>
+
+<h4>Fonction constante</h4>
+
+<p>Lorsque la pente d'une fonction affine est nulle, sa courbe représentative ne monte pas. On dit qu'il s'agit d'une fonction constante, qui est donc de la forme \(f(x)=b\).</p>
+
+
+<h3>Comment trouver l'expression algébrique d'une fonction affine ?</h3>
+
+<h4>Trouver la pente et l'ordonnée à l'origine à partir d'un dessin</h4>
+
+	<div class="exemple">
+	<p><em>Exemple : </em> La fonction \(f\) représentée par la courbe ci-dessous est une droite qui coupe l'axe vertical en 3. Son ordonnée à l'origine est donc 3. A partir du point (0; 3) si on avance de 1 horizontalement, il faut monter de 2 verticalement pour atteindre la courbe. Ainsi, la pente de cette droite est 2.</p>
+	<img src="../../images/maths/courbeAffine.png" alt="courbe affine">
+	<p>On en déduit que la fonction \(f\) peut s'écrire sous la forme \(f(x)=2x+3\).</p>
+</div>
+
+<div class="exerciceType">
+<p><strong>Exercice type : <br/>
+A partir du graphe ci-dessous représentant une fonction \(f\), trouver la pente et l'ordonnée à l'origine. En déduire l'expression algébrique de cette fonction.</strong></p>
+<img src="../../images/maths/exerciceTypeEquationFonctionAffine.png" alt="courbe affine">
+<p>Solution :<br/>
+	La courbe de la fonction coupe l'axe horizontal en -3. L'ordonnée à l'origine vaut donc -3. Si on avance de 1 horizontalement, il faut monter de 5 verticalement pour atteindre la courbe. La pente vaut donc 5. Ainsi l'expression algébrique de cette fonction est \(f(x)=5x-3\).</p>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong><br/>
+	1. Trouver l'expression algébrique de la fonction dont la courbe représentative est la suivante<br/>
+	<img src="../../images/maths/exAppliPente1.png" alt="courbe affine" style="margin:2%;"><br/>
+	2. Trouver l'expression algébrique de la fonction dont la courbe représentative est la suivante<br/>
+<img src="../../images/maths/exAppliPente2.png" alt="courbe affine" style="margin:2%;"></p></div>
+
+<h4>Trouver l'expression d'une fonction affine passant par deux points</h4>
+
+<p>Prérequis : savoir résoudre un système de deux équations à deux inconnues.</p>
+
+<div class="exemple">
+<p><em>Exemple : </em>Lorsqu'on sait que la courbe de la fonction affine recherchée \(f\) passe par les points A(2; 5) et B(-1; -4), on peut écrire \(f(2)=5\) et \(f(-1)=-4\). Comme par ailleurs \(f\) est affine, on sait qu'elle s'écrit sous la forme \(f(x)=ax+b\).</p>
+<p>On se retrouve donc avec deux équations : \(2a+b=5\) et \(-a+b=-4\).</p>
+<p>La résolution de ce système conduit au résultat suivant : \(a=3\) et \(b=-1\). Ainsi la fonction \(f\) peut s'écrire sous la forme \(f(x)=3x-1\)</p>
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : <br/>
+	Trouver l'expression algébrique de la fonction \(f\) sachant que sa courbe passe par les points A(5; 1) et B(-3; 9).</strong></p>
+	<p>Solution :<br/>
+		Comme \(f\) est une fonction affine, elle peut s'écrire sous la forme \(f(x)=ax+b\).<br/>
+		Comme la courbe de \(f\) passe par le point A, on obtient \(5a+b=1\).
+		De même comme la courbe de \(f\) passe par le point B, on obtient \(-3a+b=9\).<br/>
+	La résolution de ce système permet d'obtenir \(a=-1\) et \(b=6\). Ainsi \(f\) peut s'écrire sous la forme \(f(x)=-x+6\).</p>
+	</div>
+
+	<div class="exerciceApplication">
+	<p><strong>A vous de jouer :</strong><br/>
+		1. Trouver l'expression algébrique de la fonction \(f\) sachant que sa courbe passe par les points A(-1; -1) et B(2; 2)<br/>
+		2. Trouver l'expression algébrique de la fonction \(f\) sachant que sa courbe passe par les points A(-1; 3) et B(2; 1)<br/>
+	</p>
+	</div>
+
+{% endblock cours %}

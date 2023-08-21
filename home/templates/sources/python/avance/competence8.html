@@ -1,0 +1,404 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+    <li>utilisation de listes</li>
+    <li>programmation objet</li>
+    <li>pratique de la construction de code</li>
+</ul>  
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Description du jeu</h3>
+
+<p>Vous allez créer un petit jeu de rôles en utilisant les principes de la programmation objet. 
+    Dans ce jeu, deux personnages luttent en 15 tentatives, où chacun doit prendre une décision à 
+    chaque étape de la compétence qu'il souhaite développer. Les deux joueurs jouent à partir des lignes 
+    de commande d'un seul ordinateur. L'ordinateur, quant à lui, reste le maître du jeu et propose à
+     chaque tour une décision aléatoire pénalisante pour un personnage.</p>
+     
+<p>Les personnages fantastiques peuvent être un dragon, un elf ou un orc. Chaque personnage possède les 
+    attributs privés suivants : intelligence, force, agilite dont les valeurs entières varient de 0 à 10.</p>
+
+<p>Un dragon possède au départ une force de 6, une intelligence de 5 et une agilite de 3. Un elf possède 
+    au départ une force de 3, un intelligence de 6 et une agilite de 5.
+    Un orc possède une force de 6, une intelligence de 3 et une agilite de 5.</p>
+
+<p>Lorsqu'un personnage atteint 10 en intelligence, force ou agilite, il a gagné. Lorsqu'il atteint 0 en 
+    intelligence, force ou agilite, il a perdu.</p>
+
+<p>Le jeu se joue en 15 tentatives, et s'arrête si l'un des personnages gagne ou perd.</p>
+
+<p>A chaque tour, les joueurs 1 et 2 peuvent choisir : </p>
+    <ul>
+        <li>de se battre avec l'autre joueur</li>
+        <li>de s'instruire en lisant des ouvrages</li>
+        <li>de se muscler en s'entraînant</li>
+        <li>de tirer une carte chance</li>
+    </ul>
+<p>A chaque tour, le maître du jeu (qui est l'ordinateur) décide de supprimer au hasard 1 point de n'importe 
+    quel attribut d'un des deux joueurs.</p>
+
+<p>Lorsqu'un joueur décide de s'instruire en lisant des ouvrages, il gagne 1 point d'intelligence.</p>
+
+<p>Lorsqu'un joueur décide de se muscler en s'entraînant, il gagne 1 point de force.</p>
+
+<p>Lorsqu'un joueur décide de tirer une carte chance, il a une chance sur deux de gagner un point 
+    d'agilité.</p>
+
+<p>Lorsqu'un joueur décide de se battre avec un autre joueur, ses points d'intelligence, de force et 
+        d'agilité s'ajoutent au sort du combat. Le sort du combat prend une valeur aléatoire comprise entre
+        -4 et 4. Si la somme est de tous ses points est supérieure à celle de son adversaire, il gagne 
+        2 points dans chacun de ses attributs et dans le cas contraire il perd 2 points dans chacun de 
+        ses attributs. </p>
+
+<h3>De quoi avons-nous besoin ?</h3>
+
+<p>Nous devons créer une classe Personnage et implémenter suivant le choix de l'utilisateur
+    un dragon, un elf ou un orc.</p>
+    
+    <p>Afin de pouvoir identifier chaque joueur dans le Terminal, nous devons donner à chaque personnage
+     un nom, donc le nom doit être un attribut de la classe Personnage.</p>
+    
+    <p>Le programme doit demander à l'utilisateur quel personnage il souhaite être. Il est
+    possible d'utiliser cette instruction dans la partie principale, mais il est aussi cohérent
+    de demander à chaque joueur au moment de l'instanciation d'un objet de type Personnage.</p>
+
+<p>Le constructeur de la classe Personnage ressemble à :</p>
+    
+    <pre><code class="language-python">def __init__(self, nom):
+
+        self.__nom = nom
+        liste_personnages = ['dragon', 'elf', 'orc']
+
+        question_choix = self.__nom + " - quel personnage souhaitez-vous être ? \
+dragon, elf ou orc ? "
+        choix = input(question_choix)
+        while choix not in liste_personnages:
+            choix = input(question_choix)
+
+        if choix == "dragon":
+            self.__intelligence = 5
+            self.__force = 6
+            self.__agilite = 3
+        elif choix == "elf":
+            self.__intelligence = 6
+            self.__force = 3
+            self.__agilite = 5
+        else:
+            self.__intelligence = 3
+            self.__force = 6
+            self.__agilite = 5</code></pre>
+    
+    <p>Nous avons besoin d'afficher les résultats à chaque tour du jeu. Ces résultats
+    concernent les attributs des différents personnages. Il est donc logique de créer une
+    méthode d'affichage __str__() dans la classe Personnage.</p>
+    
+    <pre><code class="language-python">def __str__(self):
+
+        return "\n---RESULTATS " + self.__nom + "---\nintelligence : " + \
+            str(self.__intelligence) + "\nforce : " + str(self.__force) + \
+            "\nagilite : " + str(self.__agilite)</code></pre>
+    
+    <p>Il est nécessaire de créer également une classe Jeu afin de donner les instructions
+    au programme à chacun des tours du jeu.</p>
+    
+    <p>Une méthode jouer() permet d'appliquer les règles décrites par l'énoncé. Il est possible
+    de créer cette méthode dans la classe Personnage comme dans la classe Jeu. Si on intègre
+    cette méthode dans la classe Personnage, il sera difficile de comparer les valeurs des
+    attributs des 2 joueurs, vu que la méthode sera liée à un objet de type Personnage et
+    n'aura aucun lien avec l'autre personnage. Il est donc préférable de construire cette
+    méthode jouer() dans la classe Jeu</p>
+    
+    <pre><code class="language-python">def jouer(self, personnage):
+        
+        liste_actions = ['c', 'l', 'm', 'a']
+
+        question_action = "\n" + personnage.get_nom() + " - quelle action \
+souhaitez-vous mener ? \n([c]ombat, [l]ecture, [m]usculation, ch[a]nce) "
+        action = input(question_action)
+
+        while action not in liste_actions:
+            action = input(question_action)
+
+        if action == 'c':
+            if self.personnage1.somme_capacites() + random.randint(-4, 4) \
+                > self.personnage2.somme_capacites():
+
+                self.personnage1.set_intelligence(1)
+                self.personnage1.set_force(1)
+                self.personnage1.set_agilite(1)
+                self.personnage2.set_intelligence(-1)
+                self.personnage2.set_force(-1)
+                self.personnage2.set_agilite(-1)
+
+            else:
+                self.personnage1.set_intelligence(-1)
+                self.personnage1.set_force(-1)
+                self.personnage1.set_agilite(-1)
+                self.personnage2.set_intelligence(1)
+                self.personnage2.set_force(1)
+                self.personnage2.set_agilite(1)
+
+        elif action == 'l':
+            personnage.set_intelligence(1)
+
+        elif action == 'm':
+            personnage.set_force(1)
+
+        else:
+            personnage.set_agilite(random.randint(0, 1))</code></pre>
+    
+    <p>On a besoin de modifier les attributs privés __intelligence, __force et __agilite
+        dans la méthode jouer(). Il faut donc rajouter les setters correspondant dans
+        la classe Personnage. Il n'est pas nécessaire de créer un setter pour
+        l'attribut __nom qui n'a pas pour vocation de changer.</p>
+    
+    <pre><code class="language-python">def set_intelligence(self, niveau):
+    self.__intelligence += niveau
+
+def set_force(self, niveau):
+    self.__force += niveau
+
+def set_agilite(self, niveau):
+    self.__agilite += niveau</code></pre>
+    
+    <p>On a besoin de trouver la somme des capacités de chaque joueur dans la méthode
+     jouer(). Cette somme est directement liée aux attributs de chaque personnage. Il
+    faut donc créer une méthode somme_capacites() dans la classe Personnage.</p>
+    
+    <pre><code class="language-python">def somme_capacites(self):
+        
+    return self.__intelligence + self.__force + self.__agilite</code></pre>
+    
+    <p>Le programme décide à chaque tour d'enlever 1 point à un des 2 joueurs au hasard
+    pour un des attributs au hasard. Il faut donc créer une méthode malchance() qui gère
+    cet événement. </p>
+
+
+    <!-- CORRECTION -->
+    <h3>Vers une correction du jeu de roles</h3>
+
+    
+    <pre><code class="language-python">"""
+Mini jeu de role avec des personnages fantastiques
+"""
+        
+import random
+        
+        
+class Personnage:
+        
+    def __init__(self, nom):
+        
+        self.__nom = nom
+        liste_personnages = ['dragon', 'elf', 'orc']
+        
+        question_choix = self.__nom + " - quel personnage souhaitez-vous être ? \
+        dragon, elf ou orc ? "
+        choix = input(question_choix)
+        while choix not in liste_personnages:
+            choix = input(question_choix)
+        
+        if choix == "dragon":
+            self.__intelligence = 5
+            self.__force = 6
+            self.__agilite = 3
+        elif choix == "elf":
+            self.__intelligence = 6
+            self.__force = 3
+            self.__agilite = 5
+        else:
+            self.__intelligence = 3
+            self.__force = 6
+            self.__agilite = 5
+        
+        
+    def somme_capacites(self):
+        """
+        Renvoie la somme de l'intelligence, la force et l'agilite du personnage 
+        en cours.
+        param:
+            None
+        return:
+            (int) somme de l'intelligence, la force et l'agilite"""
+        
+        return self.__intelligence + self.__force + self.__agilite
+        
+        
+    def __str__(self):
+        """
+        Affiche l'intelligence, la force et l'agilite du personnage en cours 
+        suivant un format defini.
+        param:
+            None
+        return:
+            (str) intelligence,force et agilite
+        """
+        return "\n---RESULTATS " + self.__nom + "---\nintelligence : " + \
+            str(self.__intelligence) + "\nforce : " + str(self.__force) + \
+            "\nagilite : " + str(self.__agilite)
+        
+    def get_nom(self):
+        return self.__nom
+        
+    def get_intelligence(self):
+        return self.__intelligence
+        
+    def get_force(self):
+        return self.__force
+        
+    def get_agilite(self):
+        return self.__agilite
+        
+    def set_intelligence(self, niveau):
+        self.__intelligence += niveau
+        
+    def set_force(self, niveau):
+        self.__force += niveau
+        
+    def set_agilite(self, niveau):
+        self.__agilite += niveau
+        
+        
+class Jeu:
+        
+    def __init__(self, personnage1, personnage2):
+        self.personnage1 = personnage1
+        self.personnage2 = personnage2
+        self.vainqueur = None
+        
+    def jouer(self, personnage):
+        """
+        Demande a personnage l'action qu'il souhaite donner au jeu.
+        En cas de lecture, personnage gagne 1 point d'intelligence,
+        en cas de musculation, personnage gagne 1 point de force,
+        en cas de change, il a une chance sur deux de gagner 1 point d'agilite,
+        en cas de combat, la somme des attributs de personnage1 sont compares a 
+        celle de personnage2 moyennant une valeur au hasard entre -4 et +4.
+        param:
+            personnage: (Personnage) le joueur en train de jouer
+        return:
+            None
+        """
+        liste_actions = ['c', 'l', 'm', 'a']
+        
+        question_action = "\n" + personnage.get_nom() + " - quelle action \
+souhaitez-vous mener ? \n([c]ombat, [l]ecture, [m]usculation, ch[a]nce) "
+        action = input(question_action)
+        
+        while action not in liste_actions:
+            action = input(question_action)
+        
+        if action == 'c':
+            if self.personnage1.somme_capacites() + random.randint(-4, 4) \
+                > self.personnage2.somme_capacites():
+        
+                self.personnage1.set_intelligence(1)
+                self.personnage1.set_force(1)
+                self.personnage1.set_agilite(1)
+                self.personnage2.set_intelligence(-1)
+                self.personnage2.set_force(-1)
+                self.personnage2.set_agilite(-1)
+        
+            else:
+                self.personnage1.set_intelligence(-1)
+                self.personnage1.set_force(-1)
+                self.personnage1.set_agilite(-1)
+                self.personnage2.set_intelligence(1)
+                self.personnage2.set_force(1)
+                self.personnage2.set_agilite(1)
+        
+        elif action == 'l':
+            personnage.set_intelligence(1)
+        
+        elif action == 'm':
+            personnage.set_force(1)
+        
+        else:
+            personnage.set_agilite(random.randint(0, 1))
+        
+        
+    def tester_victoire(self):
+        """
+        Teste la victoire ou la defaite de chacun des 2 personnages du jeu,
+        met a jour d'identite du vainqueur.
+        param:
+            None
+        return:
+            (bool) True en cas de victoire ou de defaite d'un personnage, 
+            False sinon.
+        """
+        if self.personnage1.get_intelligence() == 10 or \
+            self.personnage1.get_force() == 10 or \
+            self.personnage1.get_agilite() == 10 or \
+            self.personnage2.get_intelligence() == 0 or \
+            self.personnage2.get_force() == 0 or \
+            self.personnage2.get_agilite() == 0:
+        
+            self.vainqueur = self.personnage1
+            return True      
+        
+        elif self.personnage2.get_intelligence() == 10 or \
+            self.personnage2.get_force() == 10 or \
+            self.personnage2.get_agilite() == 10 or \
+            self.personnage1.get_intelligence() == 0 or \
+            self.personnage1.get_force() == 0 or \
+            self.personnage1.get_agilite() == 0:
+        
+            self.vainqueur = self.personnage2
+            return True
+        
+        else:
+            return False
+        
+        
+    def jouer_malchance(self):
+        hasard_personnage = random.choice([self.personnage1, self.personnage2])
+        hasard_attribut = random.randint(0, 2)
+        
+        if hasard_attribut == 0:
+            hasard_personnage.set_force(-1)
+            return "\n" + hasard_personnage.get_nom() + " - le maître du jeu a \
+                décidé de vous retirer un point d'intelligence."
+        
+        elif hasard_attribut == 1:
+            hasard_personnage.set_force(-1)
+            return "\n" + hasard_personnage.get_nom() + " - le maître du jeu a \
+                décidé de vous retirer un point de force."
+        
+        else:
+            hasard_personnage.set_force(-1)
+            return "\n" + hasard_personnage.get_nom() + " - le maître du jeu a \
+                décidé de vous retirer un point d'agilité."
+        
+        
+if __name__ == '__main__':
+        
+    print("Jeu de role\n")
+    joueur1 = Personnage("joueur 1")
+    joueur2 = Personnage("joueur 2")
+    role = Jeu(joueur1, joueur2)
+    tour = 0
+        
+    while not role.tester_victoire() and tour < 15:
+        tour += 1
+        print(f"\n=== Tour numero {tour} ===")
+        role.jouer(joueur1)
+        role.jouer(joueur2)
+        role.jouer_malchance()
+        
+        print(joueur1)
+        print(joueur2)
+        
+    if role.vainqueur == None:
+        print("\nEgalité...")
+    else:
+        print(f"\nVictoire de {role.vainqueur.get_nom()}")</code></pre>
+
+{% endblock cours %}

@@ -1,0 +1,304 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>connaître les principaux descripteurs d'un arbre</li>
+	<li>comprendre la structure d'arbre binaire</li>
+	<li>savoir parcourir un arbre binaire</li>
+	<li>comprendre la structure d'arbre binaire de recherche</li>
+	<li>comprendre la structure de tas binaire</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Un arbre est une structure de données hiérarchisée constituée de noeuds, qui possèdent le plus souvent
+	 un parent et un ou plusieurs enfants. On donne un nom à chacun de ces noeuds, qu'on appelle 
+	 étiquette. On représente généralement un arbre à partir d'un sommet qui se disperse vers le bas. </p>
+
+<figure><img src="../../images/nsi/arbre.png" alt="arbre"><figcaption>Exemple d'arbre</figcaption></figure>
+
+
+<p>On retrouve cette structure de données dans l'arborescence des fichiers, la représentation de tous les 
+	coups possibles dans un jeu, le DOM des pages Web, ou pour représenter une hiérarchie.</p>
+
+
+<!-- PRINCIPAUX DESCRIPTEURS D'UN ARBRE -->
+
+<h3>Principaux descripteurs d'un arbre</h3>
+
+<p>Pour comprendre les terminologies utilisées pour décrire un arbre, il faut 
+	donc l'imaginer renversé, avec la racine en haut et les feuilles en bas.</p>
+
+<h4>Racine</h4>
+
+<p>Vu que la représentation d'un arbre est inversé, le sommet d'un l'arbre est appelé racine.</p>
+
+<h4>Branche et feuille</h4>
+
+<p>Une feuille est un noeud sans enfant. C'est donc un des bouts de l'arbre. Une branche est une 
+	suite de noeuds consécutifs partant de la racine et se terminant en une feuille.</p>
+<p>Un noeud interne possède au moins un enfant. Il ne s'agit donc pas d'une feuille.</p>
+
+<p>On remarque d'après ces définitions qu'un arbre en informatique a autant de branches que de feuilles.</p>
+
+<h4>Taille, profondeur, arité</h4>
+
+<p>La taille d'un arbre est le nombre de noeuds qui le composent.</p>
+<p>La hauteur ou profondeur d'un noeud correspond à la distance qui sépare ce noeud de la racine. 
+	La hauteur ou profondeur d'un arbre correspond à la distance de la racine à la feuille la plus éloignée.</p>
+<p>L'arité (ou le degré) d'un noeud est le nombre de fils de ce noeud. L'arité (ou le degré) d'un arbre est le nombre maximal de fils 
+	qu'un noeud peut avoir dans un arbre.</p>
+
+
+	<h4>Complexité des algorithmes liés aux arbres</h4>
+
+	<p>Nous pourrons déterminer la complexité d'un algorithme associé à un arbre en utilisant les descripteurs suivants :
+	<ul>
+		<li>la taille de l'arbre,</li>
+		<li>la profondeur d'un noeud dans l'arbre,</li>
+		<li>la profondeur de l'arbre,</li>
+		<li>la longueur de cheminement de l'arbre, correspondant à la somme des profondeurs de tous les noeuds</li>
+		<li>la profondeur moyenne de l'arbre, correspondant au rapport de la longueur de cheminement par le taille de l'arbre</li>
+	</ul>
+	</p>
+	
+	<p>On peut résumer ainsi les formules correspondant aux principaux descripteurs d'un arbre :</p>
+	
+	<p>profondeur du noeud \(x_i\) : \(P(x_i) = 1 + P(x_{i-1})\). On considère en général que la hauteur de la racine vaut 0.</p>
+	
+	<p>profondeur de l'arbre : <br/>\(P(arbre) = max(P(x_1), ..., P(x_n))\) pour tous les noeuds \(x_1, ..., x_n\)</p>
+	
+	<p>longueur de cheminement de l'arbre :<br/> \(LC = P(x_1) + ... + P(x_n)\) pour tous les noeuds \(x_1, ..., x_n\)</p>
+	
+	<p>profondeur moyenne de l'arbre : \(PM = \frac{LC}{n}\) où \(n\) est la taille de l'arbre.</p>
+	
+	<div class="exerciceType">
+		<p><strong>Exemple : </strong>en utilisant l'arbre ci-dessus, nous allons déterminer les principaux
+			descripteurs.</p>
+		<p>L'arbre possède 12 noeuds. Sa taille est donc 12</p>
+		<p>Les différentes feuilles sont D, F, G, K, M. L'arbre possède donc 5 branches</p>
+		<p>Profondeurs de certains noeuds : \(P(A) = 0, P(B) = 1, P(D) = 3\)</p>
+		<p>Profondeur de l'arbre : \(P(arbre) = 4 = P(M)\)</p>
+		<p>Longueur de cheminement de l'arbre : \(LC = P(A)+P(B) + P(C) + ... + P(M)\) <br/>
+			à la profondeur 0 se trouve la racine,<br/>
+			à la profondeur 1 se trouvent 3 noeuds,<br/>
+			à la profondeur 2 se trouvent 3 noeuds,<br/>
+			à la profondeur 3 se trouvent 4 noeuds,<br/>
+			à la profondeur 4 se trouve 1 noeud,<br/>
+	donc \(LC = 0 + 1 \times 3 + 2 \times 3 + 3 \times 4 + 4 \times 1 = 25 \)</p>
+	<p>La longueur de cheminement interne de l'arbre vaut 
+		\(LCI = 0 + 1 \times 3 + 2 \times 3 + 1 \times 4 = 13 \)</p>
+	<p>La longueur de cheminement externe de l'arbre vaut \(LCE = 25-13=12\)</p>
+		<p>Profondeur moyenne de l'arbre : \(PM = \frac{LC}{taille} = \frac{25}{12} = 2,1\)</p>
+<p>La profondeur moyenne interne de l'arbre vaut \(PMI = \frac{LCI}{8} = \frac{13}{8} = 1,63\)</p>
+<p>La profondeur moyenne externe de l'arbre \(PME = \frac{LCE}{4} = \frac{12}{4} = 3\)</p>
+<p>Il est possible de représenter ces profondeurs moyennes sur l'arbre.</p>
+<figure><img src="../../images/nsi/profondeur.png" alt="arbre" width="80%"><figcaption>Les profondeurs moyennes</figcaption></figure>
+
+	</div>	
+
+
+<!-- ARBRES BINAIRES -->
+
+<h3>Arbres binaires</h3>
+
+<p>Les arbres binaires sont constitués de noeuds pouvant avoir 0, 1 ou 2 enfants. 
+	Attention, pas 0 ou 1 mais dans ce cas 0, 1 ou 2. Dans ce type d'arbre, on distingue généralement 
+	le sous-arbre gauche noté SAG du sous-arbre droit noté SAD.</p>
+
+<p>Les arbres binaires sont utilisés notamment pour modéliser les opérations de calcul en respectant le bon parenthésage.</p>
+
+<p>Un arbre binaire est complet lorsque tous les niveaux sont remplis. C'est donc un arbre dont toutes les feuilles 
+	sont au niveau hiérarchique le plus bas.</p>
+
+<div class="bloc_ligne">
+<figure><img src="../../images/nsi/arbre_complet.png" alt="arbre"><figcaption>arbre binaire complet</figcaption></figure>
+<figure><img src="../../images/nsi/arbre_non_complet.png" alt="arbre"><figcaption>arbre binaire non complet</figcaption></figure>
+</div>
+
+<p>Un arbre binaire est dégénéré lorsque les noeuds ne possèdent qu'un seul enfant ou pas d'enfant.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>on définit les instructions suivantes en pseudo-code :</p>
+<ul>
+	<li>RACINE(A) représente la racine de l'arbre A</li>
+	<li>SAD(A) représente le sous arbre droit de l'arbre A</li>
+	<li>SAG(A) représente le sous arbre gauche de l'arbre A</li>
+	<li>CREER_ARBRE_VIDE() représente un arbre vide, donc aucun noeud</li>
+	<li>CREER_ARBRE_FEUILLE(2) représente une feuille dont l'étiquette est 2</li>
+	<li>CREER_ARBRE(1, A, B) représente un arbre dont la racine a pour étiquette 1, le SAG est l'arbre A, 
+le SAD est l'arbre B</li>
+</ul>
+<p>On donne la suite d'instructions suivantes.</p>
+	<pre>A = CREER_ARBRE(7, CREER_ARBRE_FEUILLE(4), CREER_ARBRE_FEUILLE(2))
+B = CREER_ARBRE(1, CREER_ARBRE_VIDE(), CREER_ARBRE_FEUILLE(6))
+C = CREER_ARBRE(8, A, B)</pre>
+<ol>
+	<li>Représenter cette suite d'instructions sous forme d'un arbre.</li>
+	<li>Quelle est la valeur renvoyée par l'instruction R = RACINE(A)</li>
+	<li>Donner l'arbre correspondant à l'instruction D = SAD(C)</li>
+</ol>
+</div>
+
+<p>Un arbre binaire peut être modélisé en Python par une structure récursive qui contient des sous-arbres. On se retrouve 
+	alors avec une liste de noeuds qui contient elle-même des sous-listes de noeuds.</p>
+<pre><code class="language-python">class ArbreBin:
+	def __init__(self, etiquette=0, gauche=None, droit=None):
+		self.etiquette = etiquette 
+		self.gauche = gauche 
+		self.droit = droit
+
+sag = ArbreBin('*', ArbreBin('6', None, None), ArbreBin('3', None, None))
+sad = ArbreBin('7', None, None)
+arbre1 = ArbreBin('-', sag, sad)</code></pre>
+
+<p>qui représente l'arbre suivant :</p>
+<figure><img src="../../images/nsi/arbre_binaire.png" alt="arbre"><figcaption>arbre binaire modélisé en Python</figcaption></figure>
+
+
+<!-- PARCOURS D'ARBRE BINAIRE -->
+
+<h3>Parcourir un arbre binaire</h3>
+
+<p>Il existe essentiellement le parcours en largeur et le parcours en profondeur.</p>
+
+<h4>Parcours en profondeur</h4>
+
+<p>Pour le parcours en profondeur, on parcourt totalement une branche avant d'en parcourir une autre.</p>
+
+<p>Il existe 3 façons d'effectuer un parcours en profondeur :</p>
+<ul>
+	<li>le parcours préfixe, qui passe par les opérations avant de passer par les opérandes</li>
+	<li>le parcours infixe, qui passe par un opérande, une opération puis un opérande avant de recommencer</li>
+	<li>le parcours postfixe, qui passe par les opérandes avant de passer par les opérations</li>
+</ul>
+<figure><img src="../../images/nsi/prefixe.png" alt="arbre"><figcaption>Parcours en profondeur</figcaption></figure>
+<p>En utilisant l'arbre ci-dessus, un parcours préfixe correspond au chemin T-Y-P-O-H-N,<br/>
+un parcours infixe correspond au chemin P-Y-T-H-O-N,<br/>
+un parcours postfixe correspond au chemin P-Y-H-N-O-T.</p>
+
+<p>On remarque qu'un parcours infixe correspond au système traditionnel de calcul avec priorité des opérations,
+	comme dans l'exemple ci-dessous où on effectue le calcul \((6\times3)-(2+5)\).</p>
+<figure><img src="../../images/nsi/calcul.png" alt="arbre"><figcaption>Arbre pour calculer</figcaption></figure>
+
+
+<h4>Parcours en largeur</h4>
+
+<p>Pour le parcours en largeur, l'arbre est parcouru étage par étage.</p>
+
+<figure><img src="../../images/nsi/prefixe.png" alt="arbre"><figcaption>Parcours en largeur</figcaption></figure>
+<p>Dans l'arbre ci-dessus le parcours en largeur donnerait le chemin T-Y-O-P-H-N</p>
+
+<p>On peut modéliser en Python le parcours en largeur en utilisant une structure de File et des listes : </p>
+
+<pre><code class="language-python">class Queue:
+	def __init__(self):
+		self.data = []
+	
+	def is_empty(self):
+		return not bool(self.data)
+
+	def enfiler(self, valeur):
+		self.data.append(valeur)
+
+	def defiler(self):
+		return self.data.pop()
+	
+def parcourir_largeur(arbre):
+	file = Queue()
+	file.enfiler(arbre)
+	while not file.is_empty():
+		a = file.defiler()
+		if a is not None:
+			print(a.data)
+			file.enfiler(a.gauche)
+			file.enfiler(a.droit)</code></pre>
+
+
+<!-- ARBRES BINAIRES DE RECHERCHE -->
+
+<h3>Arbres binaires de recherche</h3>
+
+<p>Un arbre binaire de recherche est un arbre binaire étiqueté avec des valeurs telles que :</p>
+<ul>
+	<li>les valeurs du SAG sont inférieures ou égales à la racine</li>
+	<li>les valeurs du SAD sont strictement supérieures à la racine</li>
+	<li>les SAG et SAD sont eux-mêmes des arbres binaires de recherche, c'est à dire que cet ordre 
+		établi se propage d'étage en étage sur l'arbre.</li>
+</ul>
+
+<p>On utilise des arbres binaires de recherche afin d'ordonner les noeuds d'un arbre pour faciliter les 
+	recherches de valeurs dans cet arbre.</p>
+
+<p>Par exemple, l'arbre 1 ci-dessous n'est pas un arbre binaire de recherche car le chiffre 3 est plus petit 
+	que 4 et devrait donc se trouver dans le sous arbre gauche. En revanche, l'arbre 2 ci-dessous est un 
+	arbre binaire de recherche.</p>
+
+	<div class="bloc_ligne">
+		<figure><img src="../../images/nsi/no_abr.png" alt="arbre"><figcaption>arbre 1</figcaption></figure>
+		<figure><img src="../../images/nsi/abr.png" alt="arbre"><figcaption>arbre 2</figcaption></figure>
+	</div>
+
+
+	<div class="exerciceApplication">
+		<p><strong>A vous de jouer : </strong>on donne une liste de nombres entiers. Construire dans l'ordre 
+		de la liste l'arbre binaire de recherche associé. <em>Indication :</em>l'arbre à construire se lit de haut
+	en bas.</p>
+	<table>
+		<tr>
+			<td>25</td>
+			<td>61</td>
+			<td>35</td>
+			<td>11</td>
+			<td>5</td>
+			<td>21</td>
+			<td>67</td>
+			<td>41</td>
+			<td>72</td>
+			<td>40</td>
+			<td>50</td>
+			<td>55</td>
+			<td>32</td>
+			<td>17</td>
+		</tr>
+	</table>
+	</div>
+
+<p>On peut modéliser un arbre binaire de recherche à l'aide d'une liste, de façon unique grâce 
+		aux règles qui régissent les arbres binaires de recherche.</p>
+
+
+<!-- TAS BINAIRE -->
+
+<h3>Tas binaire</h3>
+
+<p>Un tas binaire est un arbre binaire étiqueté avec des valeurs telles que :</p>
+<ul>
+	<li>l'arbre binaire est complet à gauche</li>
+	<li>le noeud racine a une étiquette supérieure à toutes les autres étiquettes</li>
+	<li>les SAG et SAD sont aussi des tas binaires, c'est à dire que cet ordre établi se propage 
+		d'étage en étage sur le tas.</li>
+</ul>
+
+<p>On utilise les tas binaires dans les algorithmes de tri et la gestion des files de priorité.</p>
+
+
+<!-- ENTRAINEMENT -->
+
+<h3>Entraînement</h3>
+
+<div class="exerciceApplication">
+	<p><strong>Annale Bac NSI : </strong></p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Annale Bac NSI : </strong></p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Annale Bac NSI : </strong></p>
+</div>
+
+{% endblock cours %}

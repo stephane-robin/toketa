@@ -1,0 +1,23 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Dans ce travail pratique, nous allons voir que les probabilités ne s'appliquent pas à un petit 
+    nombre de tentatives, afin de comprendre que les probabilités correspondent en fait à une loi 
+    dite loi des grands nombres. Nous allons pour cela apprendre à constuire un code Python 
+    qui calcule le nombre de tirages d'un chiffre</p>
+
+<div class="row">
+<div class="my-5 col-12">
+<embed src="{% static 'home/documents/TP_tirage_sort.pdf' %}" height='1200px' type='application/pdf'/>
+</div>
+</div>
+
+{% endblock cours %}

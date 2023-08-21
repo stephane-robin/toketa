@@ -1,0 +1,258 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li><a href="#tp">travail pratique</a></li>
+	<li><a href="#regles">règles de calcul</a></li>
+	<li><a href="#rationnel">lorsque les coefficients sont rationnels</a></li>
+	<li><a href="#terminer">comment terminer les calculs</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- TRAVAIL PRATIQUE -->
+<p class="my-5 invisible" id="tp">ancre</p>
+
+<h3>Travail pratique</h3>
+
+<p>Il est possible de résoudre une équation de degré 1 en écrivant un petit script facile en Python. Voyons
+	ensemble comment procéder.</p>
+
+<p>On cherche à résoudre une équation du type \(ax + b = cx + d\) où \(a, b, c, d \in \mathbb{R}\). 
+	On se limite ici dans un premier temps à des coefficients réels. 
+	La solution de cette équation vaut \((d-b)/(a-c)\) lorsque \(a\) est différent de \(c\).</p>
+	
+	<p>Lorsque \(a\) vaut \(c\), on obtient \(ax + b = ax + d\), donc \(b = d\). Si \(b\) vaut \(d\) alors 
+		il existe une infinité de solutions vu que les 2 expressions sont identiques et représentent 
+		donc la même droite. Si \(b\) est différent de \(d\), alors il n'existe aucune solution, 
+		vu que 2 valeurs différentes ne peuvent pas être égales.</p>
+
+
+<h4>Analysons des différentes étapes</h4>
+
+<ul>
+<li>demander à l’utilisateur de saisir les valeurs de \(a, b, c, d\) au clavier (indic. : pensez à input),</li>
+<li>vérifier que les valeurs de \(a, b, c, d\) saisies soient bien des nombres réels,(indic. : 
+	il faudra pour cela créer une fonction isFloat() qui teste si un nombre passé en paramètre peut être 
+	transformé en réel, sachant qu'il est de type string une fois saisi au clavier), 
+	et afficher "entrer un nombre" tant que l'utilisateur ne saisit pas une valeur réelle 
+	(indic. : pensez à une boucle while),</li>
+<li>on préfèrera tester séparément si chaque coefficient peut être réel. D'abord \(a\) puis \(b\), ...</li>
+<li>transformer ensuite les variables de type string saisies en variables de type float afin de pouvoir effectuer des 
+	calculs (on s'est assuré à l'étape précédente qu'on pourrait effectuer ce travail sans planter le programme),</li>
+<li>afficher la solution en fonction des valeurs données (indic. : pensez aux conditions if)</li>
+</ul>
+
+
+<h4>A vos claviers</h4>
+
+<p>On commence par créer la fonction isFloat(x). Elle doit renvoyer True lorsque le nombre x passé en paramètre 
+	peut être changé en nombre réel, sachant qu'il est de type string après avoir été saisi au clavier.
+	L'instruction à appliquer est <code>float(x)</code>.</p>
+
+<p>On gère l'erreur créée si on cherche à transformer ce nombre x et que ce n'est pas possible en utilisant 
+	l'instruction <code>try ... except</code>, qui évite au code de planter.</p>
+
+<pre><code class="language-python">def isFloat(x):
+	try:
+		float(x)
+		return True
+	except ValueError:
+		return False</code></pre>
+
+<p>On demande à l'utilisateur de saisir une valeur pour a, et tant que celle-ci n'est pas transformable 
+	en réel, on continue de demander. Il faut donc utiliser une boucle while et la fonction isFloat() dans 
+	la condition de cette boucle.</p>
+
+<pre><code class="language-python">a = input("Valeur pour a ? ")
+while isFloat(a) == False:
+	a = input("Entrez un nombre pour a ? ")
+a = float(a)</code></pre>
+
+<p>Les conditions if pour afficher les résultats possibles ne devraient pas poser de difficulté. Voici donc
+	une solution possible :</p>
+
+<pre><code class="language-python">def isFloat(x):
+    try:
+        float(x)
+        return True
+    except ValueError:
+        return False
+
+a = input("Valeur pour a ? ")
+while isFloat(a) == False:
+    a = input("Entrez un nombre pour a ? ")
+a = float(a)
+
+b = input("Valeur pour b ? ")
+while isFloat(b) == False:
+    b = input("Entrez un nombre pour b ? ")
+b = float(b)
+
+c = input("Valeur pour c ? ")
+while isFloat(c) == False:
+    c = input("Entrez un nombre pour c ? ")
+c = float(c)
+
+d = input("Valeur pour d ? ")
+while isFloat(d) == False:
+    d = input("Entrez un nombre pour d ? ")
+d = float(d)
+
+if a == c:
+    if b == d:
+        print("Infinité de solutions")
+    else:
+        print("Aucune solution")
+else:
+    print("Solution unique : " + str((d - b) / (a - c)))</code></pre>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>créer un programme similaire qui prend comme paramètres des 
+	coefficients \(a, b, c, d\) sous forme de fractions et qui affiche un résultat sous forme d'une fraction.</p>
+</div>
+
+</div>
+</section>
+<section class="px-5 py-3 bg-gris">
+	<div class="container">
+
+<h2>Rappels</h2>
+
+<p>Une équation de degré 1 est une équation du type \(ax+b=cx+d\) avec \(a, b, c, d \in \mathbb{N}\) ou \(a, b, c, d \in \mathbb{Q}\)</p>
+
+
+
+<!-- REGLES DE CALCUL -->
+<p class="my-5 invisible" id="regles">ancre</p>
+
+<h3>Règles de calcul</h3>
+
+<p>Pour résoudre une telle équation, il faut mettre les termes en \(x\) d'un côté de l'égalité et les nombres sans \(x\) de l'autre côté de l'égalité.</p>
+
+<p>Il existe une unique règle pour faire passer les termes d'un côté de l'égalité à l'autre, sans modifier la solution de l'équation : <em>chaque opération faite à gauche de l'égalité doit être également faite à droite de l'égalité</em>.</p>
+
+<p>Par exemple \(2x+1=3x-5\) peut également s'écrire \(2x+1-1=3x-5-1\), c'est à dire \(2x=3x-6\).</p>
+
+<p>Autre exemple \(7x=2\) peut également s'écrire \(\frac{7x}{7}=\frac{2}{7}\), c'est à dire \(x=\frac{2}{7}\).</p>
+
+<p>Encore un exemple \(\frac{5x}{3}=2\) peut également s'écrire \(\frac{5x}{3}\times \frac{3}{5}=2\times \frac{3}{5}\), c'est à dire \(x=\frac{6}{5}\).</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>terminez le calcul pour obtenir la valeur de \(x\) qui convient
+	<ul>
+	<li>lorsque \(9x=7\),</li>
+	<li>idem lorsque \(\frac{2x}{5}=-7\)</li>
+</ul></p>
+</div>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>Si on applique la même opération à chaque membre d'une équation, alors on ne change pas les solutions de cette équation.</p>
+</div>
+
+<p>La stratégie à adopter pour résoudre une équation de degré 1 est la suivante :
+	<ul>
+		<li>mettre les \(x\) d'un côté de l'égalité et les nombres de l'autre (avec une addition ou une soustraction)</li>
+		<li>enlever le coefficient qui se trouve devant le \(x\), s'il y en a un (avec une division)</li>
+	</ul>
+</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(5x-7=3x+2\)</p>
+	<p>On commence par soustraire 3x aux deux membres de l'égalité et ajouter 7 aux deux membres.</p>
+	<p>On obtient \(5x{\color{red}{-3x}}-7{\color{blue}{+7}}=3x{\color{red}{-3x}}+2{\color{blue}{+7}}\)</p>
+	<p>ainsi \(2x=9\)</p>
+	<p>donc \(\frac{2x}{2}=\frac{9}{2}\)</p>
+	<p>donc \(x=\frac{9}{2}\)</p>
+	<p>Remarquons que si on démarre autrement, en enlevant 5x aux deux membres de l'égalité et en enlevant 2 aux deux membres, on obtient le même résultat à la fin des calculs.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre l'équation \(5x-7=3x+2\)</p>
+</div>
+
+
+<!-- LORSQUE LES COEFFICIENTS SONT RATIONNELS -->
+<p class="my-5 invisible" id="rationnel">ancre</p>
+
+<h3>Lorsque les coefficients sont rationnels</h3>
+
+<p>Lorsque \(a, b, c, d \in \mathbb{Q}\), la résolution est un peu plus compliquée.</p>
+
+<h4>Méthode 1</h4>
+
+<p>On utilise la même méthode que précédemment avec des fractions à la place de nombres entiers. Cela peut rapidement devenir difficile.</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(\frac{4x}{3}-\frac{1}{2}=\frac{2x}{3}+\frac{3}{2}\)</p>
+	<p>\(\frac{4x}{3}{\color{red}{-\frac{2x}{3}}}-\frac{1}{2}{+\color{blue}{\frac{1}{2}}}=\frac{2x}{3}{\color{red}{-\frac{2x}{3}}}+\frac{3}{2}{\color{blue}{+\frac{1}{2}}}\)</p>
+	<p>donc \(\frac{2x}{3}=\frac{4}{2}\)</p>
+	<p>donc \(\frac{2x}{3}\times\frac{3}{2}=\frac{4}{2}\times\frac{3}{2}\)</p>
+	<p>donc \(x=3\)</p>	
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre l'équation \(\frac{5x}{3}-\frac{7}{2}=\frac{x}{3}+\frac{1}{3}\)</p>
+</div>
+
+
+<h4>Méthode 2</h4>
+
+<p>On met tous les membres de l'équation au même dénominateur, puis on multiplie les membres par ce dénominateur pour obtenir une équation avec des coefficients entiers. Cette méthode comporte une étape supplémentaire mais s'avère souvent plus confortable dans la pratique.</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(\frac{4x}{3}-\frac{1}{2}=\frac{2x}{3}+\frac{3}{2}\)</p>
+	<p>\({\color{red}{6\times}}\frac{8x}{6}-{\color{red}{6\times}}\frac{3}{6}={\color{red}{6\times}}\frac{4x}{6}+{\color{red}{6\times}}\frac{9}{6}\)</p>
+	<p>on se retrouve ainsi avec une équation plus simple \(8x-3=4x+9\)</p>
+	<p>donc \(8x-4x=9+3\)</p>
+	<p>donc \(4x=12\)</p>	
+	<p>donc \(x=3\)</p>
+</div>
+
+<p>Il existe une variante à cette méthode où on multiplie directement chacun des membres de l'équation par le plus petit commun multiple de tous les dénominateurs. Dans l'exemple ci-dessus, il faut multiplier donc par \(3\times 2=6\).</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>résoudre l'équation \(\frac{4x}{3}-\frac{1}{2}=\frac{2x}{3}+\frac{3}{2}\)</p>
+	<p>\({\color{red}{6\times}}\frac{4x}{3}-{\color{red}{6\times}}\frac{1}{2}={\color{red}{6\times}}\frac{2x}{3}+{\color{red}{6\times}}\frac{3}{2}\)</p>
+	<p>on se retrouve de nouveau avec l'équation \(8x-3=4x+9\)</p>
+	<p>en effet, on a par exemple \(6\times \frac{4x}{3}=\frac{3\times 2\times 4x}{3}=8x\)</p>
+	<p>donc \(8x-4x=9+3\)</p>
+	<p>donc \(4x=12\)</p>	
+	<p>donc \(x=3\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>résoudre l'équation \(-\frac{3x}{2}+\frac{5}{4}=\frac{x}{2}-\frac{5}{2}\)</p>
+</div>
+
+
+<!-- COMMENT TERMINER LES CALCULS -->
+<p class="my-5 invisible" id="terminer">ancre</p>
+
+<h3>Comment terminer les calculs</h3>
+
+<p>Lorsqu'on se retrouve avec une expression du type \(\frac{2x}{5}=\frac{3}{7}\), on peut résoudre l'équation de la façon suivante \(\frac{5}{2}\times\frac{2x}{5}=\frac{5}{2}\times\frac{3}{7}\), donc \(x=\frac{15}{14}\).</p>
+
+<p>Mais on peut également effectuer un produit en croix, cela revient au même. On obtient donc \(2x\times 7 = 5 \times 3\), donc \(14x=15\), donc \(x=\frac{15}{14}\).</p>
+
+<div class="fieldsetDefinition">
+	<h4>A RETENIR ...</h4>
+	<p>Devant une expression du type \(\frac{a}{b}=\frac{c}{d}\), on peut en déduire que \(a\times d=b\times c\).</p>
+</div>
+
+
+<h3>Entraînement</h3>
+
+<div class="exerciceApplication">
+	<p>Résoudre les équations</p>
+	<p>\(3x-7=2x+3\)</p>
+	<p>\(5x-1=2x-1\)</p>
+	<p>\(3x+8=2x+4\)</p>
+	<p>\(7x-3=-6x+8\)</p>
+</div>
+
+{% endblock cours %}

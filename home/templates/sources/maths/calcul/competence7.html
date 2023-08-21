@@ -1,0 +1,293 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li>travail pratique</li>
+	<li>qu'est-ce qu'un multiple ?</li>
+	<li>parité d'un nombre</li>
+	<li>qu'est-ce qu'un diviseur ?</li>
+	<li>une méthode de démonstration, la contraposée</li>
+	<li>une méthode de démonstration, la disjonction de cas</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Dans toute la page, nous travaillons avec des entiers relatifs. Les définitions et propriétés que nous abordons ne sont pas valables 
+	pour des nombres réels quelconques.</p>
+
+<h3>Travail pratique</h3>
+
+<h4>Partie 1, calcul manuel</h4>
+
+<p>Déterminer par la méthode de votre choix tous les diviseurs de 1256.</p>
+
+<h4>Partie 2, programme Python</h4>
+
+<div class="exerciceApplication">
+	<p><strong>Défi 1 : </strong>écrire un programme Python qui fournit tous les diviseurs d'un nombre entier. Indication : la fonction modulo a%b est utilisée pour donner le reste de division de a par b.</p>
+	<div>
+		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+	</div>
+
+	<div id="solution1" style="display:none;">
+	<pre><code class="language-python">nombre = 120
+liste_diviseurs = []
+max = nombre // 2
+
+for i in range(1, max + 1):
+	if nombre % i == 0:
+		liste_diviseurs.append(i)
+
+liste_diviseurs.append(nombre)
+print(liste_diviseurs)</code></pre>
+	</div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Défi 2 : </strong>écrire un programme Python qui décompose un nombre entier en facteurs premiers.</p>
+</div>
+	
+<section class="px-5 py-2 bg-gris">
+    <div class="container">
+
+<h2>Rappels</h2>
+
+<h3>Qu'est-ce qu'un multiple ?</h3>
+
+<div class="fieldsetDefinition">
+	<h4>MULTIPLE ...</h4>
+	<p>soit \(a, b \in \mathbb{Z}\), \(a\) est un multiple de \(b\) si il existe \(q \in \mathbb{Z}\) tel que \(a=qb\).</p>
+	<p>Si \(a\) est un multiple de \(b\) non nul, alors \(b\) est un diviseur de \(a\).</p>
+</div>
+
+<p>&#9889; <em>Attention</em>, trouver un nombre \(q \in \mathbb{R}\) est insuffisant. Il est important de vérifier que \(q \in \mathbb{Z}\). En effet,
+	on peut toujours effectuer la division d'un nombre \(a\) par un nombre \(b\neq0\) dans \(\mathbb{R}\), et même la division d'un nombre \(a\) par un nombre \(b\neq0\) dans \(\mathbb{Z}\), c'est ce qu'on appelle la division euclidienne. Dans ce cas,
+	il existe un quotient \(q \in \mathbb{Z}\) et un reste \(r \in \mathbb{Z}\) tels que \(a=qb+r\). Mais on ne dit que \(a\) est un multiple de \(b\) (ou \(b\) est un diviseur de \(a\)) que lorsque \(r=0\), c'est à dire
+	lorsque \(a=qb\).
+</p>
+
+<p>Par exemple, 6 est un multiple de 3 car on peut écrire \(6 = 2\times 3\). En revanche, on ne peut pas dire que 6,6 est un multiple de 3, même si \(6,6 = 2,2\times 3\).</p>
+
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que si a et b sont des multiples de c, alors a+b est un multiple de c.</p>
+</div>
+
+
+
+<!-- PARITE -->
+<h3>Parité d'un nombre</h3>
+
+<div class="fieldsetDefinition">
+<h4>A RETENIR ...</h4>
+<p>Un nombre entier \(a\) est pair si il existe \(k \in \mathbb{Z}\) tel que \(a=2k\) (il est divisible par 2, il est multiple de 2).</p>
+<p>Un nombre entier \(a\) est impair si il existe \(k \in \mathbb{Z}\) tel que \(a=2k+1\) (il n'est pas divisible par 2, il n'est pas multiple de 2).</p>
+</div>
+
+<p>&#9889; <em>Attention</em>, cette notion de parité n'a pas de sens avec les nombres réels.</p>
+
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Montrer que \(6p^2-2p+8\) est un entier pair quelque soit \(p\in \mathbb{Z}\).</p>
+	<p>D'une part \(6p^2-2p+8=2(3p^2-p+4)\), d'autre part \(3p^2-p+4 \in \mathbb{Z}\) car \(p\in \mathbb{Z}\).</p>
+	<p>donc \(6p^2-2p+8\) est un entier pair quelque soit \(p\in \mathbb{Z}\)</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que le carré d'un nombre impair est impair.</p>
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Combien existe-t-il de multiples de 13 compris entre 1500 et 1600 ? Déterminer l'ensemble de ces multiples.</p>
+	<p>Solution : Les multiples positifs de 13 sont de la forme \(13k\) avec \(k \in \mathbb{N}\). Les nombres qui répondent à la question vérifient donc l'inéquation suivante \(1500\leq13k\leq1700\).</p>
+	<p>Donc \(\frac{1500}{13}\leq k\leq\frac{1600}{13}\), donc \(115,38\leq k \leq123,08\)</p>
+	<p>Comme \(k\) est un entier, on en déduit que \(116\leq k \leq 123\).</p>
+	<p>Il existe donc 123-116+1 = 8 multiples de 13 compris entre 1500 et 1600.</p>
+	<p>Ainsi, les multiples de 13 compris entre 1500 et 1600 sont \(13\times 116, 13 \times 117, ..., 13 \times 123\), c'est à dire 1508, 1521, 1534, 1547, 1560, 1573, 1586, 1599</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Combien existe-t-il de multiples de 19 compris entre 1500 et 1650 ? Déterminer l'ensemble de ces multiples.</p>
+</div>
+
+
+<!-- QU'EST CE QU'UN DIVISEUR -->
+<h3>Qu'est-ce qu'un diviseur ?</h3>
+
+<p>Un nombre \(b\) est un diviseur d'un nombre \(a\) si il reste 0 lorsqu'on divise \(a\) par \(b\). Il est alors possible de 
+	réfléchir en se disant que \(a\) est dans la table de multiplication de \(b\).</p>
+
+
+<p>On rappelle que la division euclidienne de \(a\) par \(b\) s'écrit sous la forme \(a=q\times b + r\), où tous les nombres 
+	sont des entiers relatifs. Dans le cas d'un diviseur, on a vu que le reste devait être nul, d'où la définition suivante :</p>
+
+<div class="fieldsetDefinition">
+	<h4>DIVISEUR ...</h4>
+	<p>soit \(a, b \in \mathbb{Z}\), \(b\) est un diviseur de \(a\) si il existe \(q \in \mathbb{Z}\) tel que \(a=q\times b\).</p>
+	<p>Si \(b\) non nul est un diviseur de \(a\), alors \(a\) est un multiple de \(b\).</p>
+</div>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>déterminer les diviseurs de 50.</p>
+	<p>Solution : on commence par décomposer 50 en facteurs premiers</p>
+	<img src="../../images/maths/decompositionFacteurs.png" alt="décomposition en facteurs premiers" width=20%>
+	<p>Ainsi \(50=2\times 5^2\)</p>
+	<p>On utilise ensuite un arbre de construction des diviseurs</p>
+	<img src="../../images/maths/arbreConstruction.png" alt="arbre de construction des diviseurs" width=30%>
+	<p>On en déduit l'ensemble des diviseurs de 50, à savoir 1; 2; 5; 10; 25; 50.</p>
+	<p>Ce travail peut vite devenir fastidieux avec des grands nombres. Le recours à un algorithme en Python s'avère alors bien utile.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>Exercice d'application : </strong>déterminer les diviseurs de 438</p>
+	<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+    <p>1, 2, 3, 6, 73, 146, 219, 438.</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Montrer que si a divise b et b divise c alors a divise c.</p>
+	<p>Solution : comme a divise b, il existe \(p \in \mathbb{Z}\) tel que \(b=pa\).</p>
+	<p>De même, comme b divise c, il existe \(q \in \mathbb{Z}\) tel que \(c=qb\).</p>
+	<p>Ainsi, \(c=q(pa)=(qp)a\) avec \(qp \in \mathbb{Z}\).</p>
+</div>
+<p>&#9889; <em>Attention</em>, il est essentiel de préciser que \(qp \in \mathbb{Z}\) dans la démonstration ci-dessus. Sinon, on n'a pas prouvé que a divise c.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que si a divise b et si a divise c, alors a divise b+c.</p>
+	<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+    <p>Comme a divise b, il existe un entier k tel que \(b = ka\).</p>
+	<p>Comme a divise c, il existe un entier p tel que \(c = pa\).</p>
+	<p>Donc \(b+c=ka+pa=(k+p)a\)</p>
+	<p>Comme k et p sont entiers, on en déduit que k+p est entier, donc a divise b+c.</p>
+	<p>&#9889; <em>Attention</em>, la dernière étape est très importante pour prouver la divisibilité.</p>
+    </div>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que \(n-1\) est un diviseur de \(n^2-1\) pour tout \(n \in \mathbb{Z}\).</p>
+	<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+    <p>\(n^2-1=(n-1)(n+1)\)</p>
+	<p>Comme \(n\) est entier, on en déduit que \(n+1\) est entier, donc \(n-1\) est un diviseur de \(n^2-1\)</p>
+    </div>
+</div>
+
+
+<div class="fieldsetDefinition">
+	<h4>CRITERES DE DIVISIBILITE ...</h4>
+	<p>Un nombre est divisible par 2 si il se termine par 0; 2; 4; 6; 8.</p>
+	<p>Un nombre est divisible par 3 si la somme de ses chiffres est un multiple de 3.</p>
+	<p>Un nombre est divisible par 5 si il se termine par 0 ou 5.</p>
+	<p>Un nombre est divisible par 10 si il se termine par 0.</p>
+</div>
+
+
+
+
+
+<!-- LES METHODES DE DEMONSTRATION -->
+<h3>Une méthode de démonstration, la contraposée</h3>
+
+
+<div class="fieldsetDefinition">
+	<h4>CONTRAPOSEE ...</h4>
+	<p>Considérons la relation suivante : \(A \Rightarrow B\)</p>
+	<p>La contraposée est toujours vraie et s'exprime de la façon suivante : contraire de \(B \Rightarrow\) contraire de \(A\)
+	</p>
+</div>
+
+<p>Par exemple, <span style="font-style:italic;">"il pleut donc il ne fait pas beau"</span>. La contraposée de cette affirmation est vraie et s'exprime ainsi
+	<span style="font-style:italic;">"il fait beau donc il ne pleut pas"</span>. </p>
+
+<p>Il est important au lycée de maîtriser ces deux types de raisonnement logique.</p>
+
+<h4>Dans quel cas utiliser la contraposée</h4>
+
+<p>Lorsqu'on souhaite montrer que "si n est pair alors \(n^2-3\) est impair", il n'est pas nécessaire d'utiliser la contraposée car \(n\) est déjà inclus dans l'expression finale \(n^2-3\).</p>
+<p>En effet, il existe \(k \in \mathbb{Z}\) tel que <br/>\(n^2-3=(2k)^2-3=4k^2-3=4k^2-4+1=2(2k^2-2)+1\)</p>
+<p>Comme \(k \in \mathbb{Z}\), on en déduit que \(2k^2-2\in \mathbb{Z}\) donc \(n^2-3\) est impair</p>
+
+<p>En revanche, lorsqu'on veut démontrer la proposition dans le sens opposé, il est utile d'utiliser la contraposée pour revenir à une forme de calcul avec laquelle on est familier, comme dans l'exemple ci-dessous</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Montrer que si \(n^2+7\) est impair alors n est pair.</p>
+	<p>Dans ce cas on utilise la contraposée, car on ne sait pas comment écrire \(n^2+7\) dans \(n\).</p>
+	<p>La contraposée s'écrit si n est impair alors \(n^2+7\) est pair.</p>
+	<p>Supposons donc que n soit impair. Il existe \(k \in \mathbb{Z}\) tel que \(n=2k+1\), donc \(n^2+7=(2k+1)^2+7=4k^2+4k+1+7=2(2k^2+2k+4)\)</p>
+	<p>Comme \(k \in \mathbb{Z}\), on en déduit que \(2k^2+2k+4 \in \mathbb{Z}\) donc \(n^2+7\) est pair.</p>
+	<p>On vient de prouver la contraposée de notre proposition, donc si \(n^2+7\) est impair alors n est pair.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que si \(n^2-3\) est impair alors n est pair.</p>
+</div>
+
+<h4>Différence entre contraposée et réciproque</h4>
+
+<p>&#9889; <em>Attention</em> de ne pas confondre contraposée et réciproque. Il s'agit de deux notions logiques suffisamment
+	 proches pour qu'on puisse les confondre facilement.</p>
+
+<p>Dès qu'une proposition est vraie, sa contraposée est également vraie. En revanche, la réciproque 
+	d'une proposition peut être vraie (et dans ce cas il faut le souligner et l'utiliser) comme elle peut
+	ne pas être vraie. Donc PIEGE !!!</p>
+
+<p>Reprenons l'exemple de la pluie :
+<span style="font-style:italic;">"il pleut donc il ne fait pas beau"</span>. La contraposée de cette affirmation est vraie et s'exprime ainsi
+	<span style="font-style:italic;">"il fait beau donc il ne pleut pas"</span>. En revanche la réciproque de cette affirmation n'est pas vraie et s'exprime de la façon suivante
+	<span style="font-style:italic;">"il ne fait pas beau donc il pleut"</span>. En effet, il peut ne pas faire 
+	beau et neiger ou simplement être couvert sans pleuvoir.</p>
+
+	<p>Prenons un autre exemple, <span style="font-style:italic;">"la température de l'eau est supérieure à 100°C donc l'eau bout"</span>. 
+		Dans ce cas la réciproque est vraie et s'écrit <span style="font-style:italic;">"l'eau bout donc la température est supérieure à 100°C"</span>.
+	Il s'agit d'un exemple simplifié où l'on ne tient pas compte du milieu dans lequel on se trouve ou de la pression alentours.</p>
+	
+
+<div class="fieldsetDefinition">
+	<h4>RECIPROQUE ...</h4>
+	<p>Considérons la relation suivante \(A \Rightarrow B\)</p>
+	<p>La réciproque s'écrit de la façon suivante 
+		\(B \Rightarrow A\). Il arrive parfois que la réciproque soit vraie (mais ce n'est pas toujours le cas). 
+	</p>
+</div>
+
+
+<!-- DEMONSTRATION PAR DISJONCTION DE CAS -->
+<h3>Une méthode de démonstration, la disjonction de cas</h3>
+
+<p>La disjonction de cas consiste à considérer plusieurs cas dans la démonstration, qui regroupent tous les cas possibles.</p>
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>Montrer que \(5n^2-n\) est pair</p>
+	<p>\(n^2\) peut être aussi bien pair qu'impair, donc on ne peut pas conclure immédiatement. En revanche, on peut considérer les 2 cas suivants : n est pair et n est impair. Ces 2 cas regroupent tous les cas possibles.</p>
+	<p>Si n est pair, il existe \(k \in \mathbb{Z}\) tel que \(n=2k\), <br/>donc \(5n^2-n=5(2k)^2-2k=20k^2-2k=2(10k^2-k)\).</p>
+	<p>Comme \(k \in \mathbb{Z}\), on en déduit que \(10k^2-k\in \mathbb{Z}\) donc \(5n^2-n\) est pair.</p>
+	<p>Si n est impair, il existe \(k \in \mathbb{Z}\) tel que \(n=2k+1\), <br/>donc \(5n^2-n=5(2k+1)^2-(2k+1)=5(4k^2+4k+1)-2k-1\)<br/>
+		ainsi \(5n^2-n=20k^2+20k+5-2k-1=20k^2+18k+4=2(10k^2+9k+2)\).</p>
+	<p>Comme \(k \in \mathbb{Z}\), on en déduit que \(10k^2+9k+2\in \mathbb{Z}\) donc \(5n^2-n\) est pair.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>Montrer que \(7n^2+n\) est pair</p>
+</div>
+
+{% endblock cours %}

@@ -1,0 +1,101 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+  <li href="#argparse">savoir construire une interface en ligne de commande avec argparse</li>
+  <li href="#tkinter">savoir utiliser l'interface graphique de Tkinter</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<!------ ARGPARSE ------->
+
+<p class="my-5 invisible" id="argparse">ancre</p>
+
+<h3>L'interface en ligne de commande avec argparse</h3>
+
+  <p>Le module argparse permet de créer une Command Line Interface. Par exemple :</p>
+  <pre><code class="language-python">mp = argparse.ArgumentParser(prog='nom_programme', description="A description that shows up")
+mp.add_argument("nom", type=str, help="requires a string")
+mp.add_argument("--collect", action='store_true', help="description of the --collect option")
+args = mp.parse_args()
+item = args.nom
+
+if args.collect:
+    print(item)</code></pre>
+
+
+<!-----TKINTER------>
+
+<p class="my-5 invisible" id="tkinter">ancre</p>
+
+<h3>L'interface graphique avec Tkinter</h3>
+
+  <p>L'interface graphique Tkinter est fonctionnelle mais relativement sommaire. Il est possible d'intégrer du code java
+  pour améliorer l'interface en utilisant le module Jython. Toutefois, le code suivant permet d'obtenir une fenetre pourvue des
+  principales fonctionnalités :</p>
+
+  <pre><code class="language-python"># creates a window
+fenetre = Tk()
+fenetre.title("Bumber")
+fenetre.geometry("800x800")
+fenetre.configure(bg="#83C7BC")
+interfaceAccueil = InterfaceAccueil(fenetre)
+interfaceAccueil.mainloop()
+
+couleurFond = "#83C7BC"
+
+class InterfaceAccueil(Frame):
+    """
+    defining a graphical interface class which asks the user the kind of
+    action he wants to do : consult, insert, modify, delete
+    """
+
+    def __init__(self, fenetre, **kwargs):
+
+        # creating the structure of the window
+        Frame.__init__(self, fenetre, **kwargs)
+        frame = Frame(fenetre, bg=couleurFond)
+        frameHaut = Frame(frame, bg=couleurFond)
+        frameMilieu = Frame(frame, bg=couleurFond)
+        frameBas = Frame(frame, bg=couleurFond)
+        frame.pack(side=TOP)
+        frameHaut.pack(side=TOP)
+        frameMilieu.pack()
+        frameBas.pack(side=BOTTOM)
+        self.pack()
+
+        # creating a widget message at the top of the page
+        self.messageAnnonce = Label(frameHaut, text="Select a category below :\n", bg=couleurFond)
+        self.messageAnnonce.pack()
+
+        # creating a widget radio button
+        self.choixCategorie = StringVar()
+        self.boutonRadioService = Radiobutton(frameHaut, text="Service", bg=couleurFond,
+                                    variable=self.choixCategorie, value="service")
+        self.boutonRadioAdministration = Radiobutton(frameHaut, text="Administration",
+                                                     bg=couleurFond, variable=self.choixCategorie,
+                                                     value="administration")
+        self.boutonRadioService.pack(side=RIGHT)
+        self.boutonRadioAdministration.pack(side=RIGHT)
+
+        # creating widgets button Consult, Insert
+        self.messageVide = Label(frameMilieu, text="", bg=couleurFond)
+        self.messageVide.pack(side=TOP)
+        self.boutonConsult = Button(frameMilieu, text="Consult", fg="blue", bg=couleurFond,
+                                     command=self.cliquerConsult)
+        self.boutonInsert = Button(frameMilieu, text="Insert", fg="black", bg=couleurFond,
+                                    command=self.cliquerInsert)
+        self.boutonConsult.pack(side=RIGHT)
+        self.boutonInsert.pack(side=RIGHT)
+
+        # creating a message answering the request
+        self.messageReponse = Label(frameBas, text="", bg=couleurFond)
+        self.messageReponse.pack()
+
+    def cliquerConsult(self):
+        self.messageReponse["text"] = self.choixCategorie.get()</code></pre>
+
+{% endblock cours %}

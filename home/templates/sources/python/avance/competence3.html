@@ -1,0 +1,237 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+	<li href="#constructeur">comprendre l'utilité des constructeurs, getters, setters</li>
+	<li href="#poo">comprendre les principes de la programmation objet</li>
+</ul> {% endblock contenu %}
+
+{% block cours %}
+
+<!-- CONSTRUCTEUR GETTER SETTER -->
+
+<p class="my-5 invisible" id="constructeur">ancre</p>
+
+<h3>Constructeurs, getters, setters</h3>
+
+<h4>Les constructeurs</h4>
+
+<p>Le constructeur est une méthode particulière, définie dans une classe, qui est invoquée lors de la création d'un objet et sert à définir des valeurs aux attributs au moment de l'instanciation d'un objet</p>
+
+<p>Un constructeur a comme valeur de retour l'objet créé.</p>
+
+<p>Pour rappel, on instancie l'objet obj à partir de la classe Test, en définissant la valeur "Antoine" à l'attribut nom, suite à l'instruction :</p>
+<pre><code class="language-python">obj = Test("Antoine")</code></pre>
+
+<p>Dans ce cas, le programme va chercher à l'intérieur de la classe Test la méthode __init__ permettant de construire l'objet obj et d'affecter la valeur "Antoine" à nom.</p>
+<pre><code class="language-python">class Test:
+
+	def __init__(self, nom):
+		self.nom = nom</code></pre>
+
+<p>L'objet obj est de type Test. Pour s'en convaincre, il suffit d'exécuter l'instruction :</p>
+
+<pre><code class="language-python">print(type(obj))</code></pre>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>écrire le constructeur présent dans la classe <strong>Voiture</strong> permettant de définir les attributs <strong>puissance, consommation, nbrePlaces,
+	vitesse, quantiteCarburant</strong> d'un nouvel objet de cette classe.</p>
+</div>
+
+
+
+<h4>Les getters</h4>
+
+<p>Pour accéder à l'attribut nom dans le programme précédent (et donc en récupérer la valeur), il faut utiliser une méthode particulière appelée getter, présente dans la classe Test :</p>
+
+<pre><code class="language-python">def getNom(self):
+	return self.nom</code></pre>
+
+<p>Ainsi, pour obtenir la valeur de l'attribut nom de l'objet obj, on écrit <strong>obj.getNom()</strong> au lieu de <strong>obj.nom</strong></p>
+
+<p>Cela permet notamment de créer des autorisation d'accès aux valeurs de nom dans la méthode <strong>getNom()</strong>, et donc de sécuriser un code contenant des attributs privés.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>écrire le code du getter de l'attribut consommation. Afficher ensuite la valeur de cet attribut en utilisant le getter que vous venez d'écrire.</p>
+</div>
+
+<h4>Les setters</h4>
+
+<p>Pour modifier la valeur de l'attribut nom dans le programme précédent, il faut utiliser une méthode particulière appelée setter, présente dans la classe Test :</p>
+
+<pre><code class="language-python">def setNom(self, nouveauNom):
+	self.nom = nouveauNom</code></pre>
+
+<p>Ainsi, pour modifier la valeur de l'attribut nom de l'objet obj, on écrit <strong>obj.setNom("julien")</strong> au lieu de <strong>obj.nom = "julien"</strong></p>
+
+<p>Cela permet notamment de créer des autorisation d'accès aux valeurs de nom dans la méthode <strong>setNom()</strong>, et donc de sécuriser un code contenant des attributs privés.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>écrire le code du setter de l'attribut <strong>quantiteCarburant</strong>. Définir ensuite la valeur de cet attribut à 45 litres en utilisant le setter que vous venez d'écrire.</p>
+</div>
+
+
+<!-- PRINCIPES DE LA PROGRAMMATION ORIENTEE OBJET -->
+
+<p class="my-5 invisible" id="poo">ancre</p>
+
+<h3>Principes de la programmation objet</h3>
+
+<h4>Encapsulation</h4>
+
+<p>L'encapsulation consiste à enfermer dans un objet ses attributs et ses méthodes. Elle cache les détails de l'implémentation à l'utilisateur de l'objet et ne fournit qu'une interface. Ainsi les données sont cachées et protégées de l'utilisateur.</p>
+
+<p>Le principe de l'encapsulation entraîne que les objets ne peuvent communiquer entre eux qu'à travers une interface et des appels de méthodes qui jouent le rôle de messages.</p>
+
+<p>On utilise donc des méthodes getters et setters pour accéder aux attributs qui peuvent être définis comme privés. En Python, on définit un attribut privé en plaçant __ devant le nomde l'attribut. Testez les codes suivants pour comprendre :</p>
+
+<pre><code class="language-python">class Test:
+
+    def __init__(self, nom):
+        self.nom = nom
+
+obj = Test("Antoine")
+print(obj.nom)</code></pre>
+
+<p>Le code ci-dessus fonctionne et affiche la valeur de l'attribut nom. En revanche, si nom devient un attribut privé, le code ne fonctionne plus et l'accès 
+	à cet attribut n'est plus autorisé. Essayez pour vous en convaincre le code suivant :</p>
+
+<pre><code class="language-python">class Test:
+
+    def __init__(self, nom):
+        self.__nom = nom
+
+obj = Test("Antoine")
+print(obj.__nom)</code></pre>
+
+<p>Afin s'accéder à cet attribut privé, il faut créer un getter dans lequel on peut définir les restrictions d'accès comme on souhaite (il n'y a aucune restriction
+	d'accès dans cet exemple):</p>
+
+<pre><code class="language-python">class Test:
+
+    def __init__(self, nom):
+        self.__nom = nom
+
+    def getNom(self):
+        return self.__nom
+
+obj = Test("Antoine")
+print(obj.getNom())</code></pre>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>essayez de modifier l'attribut <strong>nom</strong> en utilisant le code habituel :</p>
+	<pre><code class="language-python">obj.nom = "Alix"</code></pre>
+	<p>Essayez ensuite de modifier votre code en utilisant un setter que vous allez créer dans la class Test</p>
+</div>
+
+
+
+<h4>Héritage</h4>
+
+<p>L'héritage permet de définir une nouvelle classe à partir d'une classe existante, à laquelle on ajoute de nouveaux attributs et de nouvelles méthodes. L'héritage facilite donc la réutilisation de certaines classes.</p>
+
+<p>Hériter d'une classe signifie donc pouvoir utiliser les attributs et méthodes de la classe mère dans la classe fille (encore appelée sous-classe).</p>
+
+<p>Prenons un exemple pour mieux comprendre:</p>
+
+<pre><code class="language-python">class Vehicule:
+
+    def __init__(self, poids, typeCarburant):
+        self.poids = poids
+		self.typeCarburant = typeCarburant
+        self.vitesse = 0
+
+    def charger(self, quantite):
+        self.poids += quantite
+
+    def decharger(self, quantite):
+        self.poids -= quantite
+
+class Voiture(Vehicule):
+
+	def __init__(self, poids, nbrePlaces):
+		self.poids = poids
+		self.typeCarburant = "essence"
+		self.nbrePlaces = nbrePlaces
+		self.reservoir = 0
+
+    def remplirReservoir(self, quantite):
+        self.reservoir += quantite
+
+scania = Vehicule(6700, "gasoil")
+mercedes = Voiture(1250, 5)
+
+# l'attribut poids est connu de l'objet mercedes
+print(mercedes.poids)
+
+# la méthode charger() est connue de l'objet mercedes
+mercedes.charger(200)
+print(mercedes.poids)
+
+# les méthodes et attributs de la classe Voiture sont
+# connus de l'objet mercedes
+mercedes.remplirReservoir(45)
+print(mercedes.reservoir)</code></pre>
+
+<p>La classe <code>Vehicule</code> est une classe mère, et la classe <code>Voiture</code> hérite de <code>Vehicule</code>. Un objet issu de 
+	la classe Voiture aura donc des attributs poids, typeCarburant et vitesse sans qu'il soit nécessaire de les redéfinir. De même l'objet mercedes issu de 
+	la classe Voiture utilise les méthodes charger() et decharger() de la classe Vehicule. Il est possible de rajouter des attributs 
+	propres à la classe Voiture comme nbrePlaces ou reservoir. Dans ce cas, il faut définir un nouveau constructeur qui tient compte des nouveaux attributs et des attributs hérités si nécessaire. Il est bien sûr possible de rajouter des méthodes propres à la classe 
+	Voiture permettant d'accéder à ses attributs, comme par exemple la méthode <code>remplirReservoir()</code>.</p>
+
+	
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>créer une classe Boite contenant les attributs longueur, largeur, hauteur et la méthode remplir(nom) où nom 
+	représente l'ingrédient contenu dans une boite. Créer une classe paquet qui hérite de la classe Boite, dont la hauteur vaut 1, et qui possède l'attribut 
+	ziplock pouvant prendre la valeur True ou False.</p>
+</div>
+
+<div class="exerciceApplication">
+	<p><strong>ENTRAINEMENT : </strong></p>
+	<p><strong>Exercice 1 : </strong>Créer une classe Adresse dont les objets sont représentés par des attributs privés de type chaine de caractères rue,
+	ville et code_postal. Créer une classe Personne dont les objets sont représentés par des attributs publics de type chaine de caractères nom, prenom, un attribut privé de type entier age.<br/>
+	1. proposer des setters et getters permettant d'accéder et de modifier les différents attributs <br/>
+	2. représenter ces deux classes dans un tableau permettant de visualiser les attributs et méthodes.</p>
+	<p><strong>Exercice 2 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+	def __init__(self, id):
+		self.id = id
+
+td = Dragon("thunderdrum")
+print(td.id)</code></pre>
+	<p><strong>Exercice 3 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+	def __init__(self, id="snogglelog"):
+		self.id = id
+	
+	td = Dragon("thunderdrum")
+	print(td.id)</code></pre>
+	<p><strong>Exercice 4 : </strong>faut-il rajouter un paramètre après le self de la méthode montrer dans le code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+	def __init__(self, score):
+		self.score = score
+	
+	def montrer(self):
+		print(self.score)
+
+	pendu = Jeu(0)
+	pendu.montrer()</code></pre>
+	<p><strong>Exercice 5 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+		def __init__(self, score):
+			self.score = score
+		
+		def montrer(self):
+			print(self.score)
+	
+		pendu = Jeu()
+		pendu.montrer()</code></pre>
+	<p><strong>Exercice 6 : </strong>créer une classe Boite, dont les objets disposent des attributs nom et etat. etat doit prendre la valeur False lors 
+	de l'instanciation des objets. Créer les méthodes ouvrir() et fermer() qui modifient la valeur de etat. Créer une méthode permettant d'afficher si une boîte est 
+ouverte ou fermée. Créer un script principal dans lequel, vous allez instancier un boite b, lui attribuer le nom box, l'ouvrir, la fermer puis afficher son état.</p>
+</div>
+
+{% endblock cours %}
+

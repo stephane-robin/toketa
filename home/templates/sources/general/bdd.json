@@ -1,0 +1,486 @@
+{
+    "Quatrieme": [
+        {
+            "nom": "May",
+            "groupe": "groupe3",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Raphael",
+            "groupe": "groupe2",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Leonard",
+            "groupe": "groupe3",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Alix",
+            "groupe": "groupe3",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Ethan",
+            "groupe": "groupe1",
+            "participation": 1,
+            "penalite": -1
+        },
+        {
+            "nom": "Joaquim",
+            "groupe": "groupe1",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Tess",
+            "groupe": "groupe5",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Colombe",
+            "groupe": "groupe5",
+            "participation": 2,
+            "penalite": 0
+        },
+        {
+            "nom": "Ariane",
+            "groupe": "groupe5",
+            "participation": 3,
+            "penalite": 0
+        },
+        {
+            "nom": "Eva",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Anna",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Aedan",
+            "groupe": "groupe8",
+            "participation": 2,
+            "penalite": 0
+        },
+        {
+            "nom": "Clara",
+            "groupe": "groupe6",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Jonathan",
+            "groupe": "groupe7",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Capucine",
+            "groupe": "groupe6",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Meije",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Nicolas",
+            "groupe": "groupe2",
+            "participation": 2,
+            "penalite": 0
+        },
+        {
+            "nom": "Martin",
+            "groupe": "groupe2",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Clement",
+            "groupe": "groupe7",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Asal",
+            "groupe": "groupe8",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Darius",
+            "groupe": "groupe6",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Alban",
+            "groupe": "groupe1",
+            "participation": 1,
+            "penalite": 0
+        }
+    ],
+    "groupes4eme": [
+        {
+            "nom": "groupe1",
+            "membres": [
+                "Joaquim",
+                "Ethan",
+                "Alban"
+            ],
+            "note": 11
+        },
+        {
+            "nom": "groupe2",
+            "membres": [
+                "Nicolas",
+                "Raphael",
+                "Martin"
+            ],
+            "note": 10
+        },
+        {
+            "nom": "groupe3",
+            "membres": [
+                "May",
+                "Alix",
+                "Leonard"
+            ],
+            "note": 11
+        },
+        {
+            "nom": "groupe4",
+            "membres": [
+                "Meije",
+                "Eva",
+                "Anna"
+            ],
+            "note": 11
+        },
+        {
+            "nom": "groupe5",
+            "membres": [
+                "Tess",
+                "Colombe",
+                "Ariane"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe6",
+            "membres": [
+                "Clara",
+                "Capucine",
+                "Darius"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe7",
+            "membres": [
+                "Clement",
+                "Jonathan"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe8",
+            "membres": [
+                "Aedan",
+                "Asal"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe9",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe10",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe11",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe12",
+            "membres": [],
+            "note": 0
+        }
+    ],
+    "Sixieme": [
+        {
+            "nom": "Vadim",
+            "groupe": "groupe1",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Paul",
+            "groupe": "groupe1",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "William",
+            "groupe": "groupe1",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Ava",
+            "groupe": "groupe7",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Daria",
+            "groupe": "groupe7",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Joseph",
+            "groupe": "groupe2",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Andrea",
+            "groupe": "groupe2",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "David",
+            "groupe": "groupe2",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Thibaut",
+            "groupe": "groupe3",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Hugo",
+            "groupe": "groupe3",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Giacomo",
+            "groupe": "groupe3",
+            "participation": 1,
+            "penalite": 0
+        },
+        {
+            "nom": "Donatella",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Anna",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Sebastian",
+            "groupe": "groupe4",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Eva",
+            "groupe": "groupe5",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Xiyue",
+            "groupe": "groupe5",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Sophia",
+            "groupe": "groupe5",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Alexandre",
+            "groupe": "groupe6",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Levon",
+            "groupe": "groupe6",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Guillaume",
+            "groupe": "groupe6",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Emma",
+            "groupe": "groupe8",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Juliette",
+            "groupe": "groupe8",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Anais",
+            "groupe": "groupe7",
+            "participation": 0,
+            "penalite": 0
+        },
+        {
+            "nom": "Mia",
+            "groupe": "groupe8",
+            "participation": 0,
+            "penalite": 0
+        }
+    ],
+    "groupes6eme": [
+        {
+            "nom": "groupe1",
+            "membres": [
+                "Vadim",
+                "William",
+                "Paul"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe2",
+            "membres": [
+                "Joseph",
+                "Andrea",
+                "David"
+            ],
+            "note": 8
+        },
+        {
+            "nom": "groupe3",
+            "membres": [
+                "Thibaut",
+                "Hugo",
+                "Giacomo"
+            ],
+            "note": 10
+        },
+        {
+            "nom": "groupe4",
+            "membres": [
+                "Donatella",
+                "Anna",
+                "Sebastian"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe5",
+            "membres": [
+                "Eva",
+                "Xiyue",
+                "Sophia"
+            ],
+            "note": 11
+        },
+        {
+            "nom": "groupe6",
+            "membres": [
+                "Alexandre",
+                "Levon",
+                "Guillaume"
+            ],
+            "note": 11
+        },
+        {
+            "nom": "groupe7",
+            "membres": [
+                "Ava",
+                "Daria",
+                "Anais"
+            ],
+            "note": 10
+        },
+        {
+            "nom": "groupe8",
+            "membres": [
+                "Emma",
+                "Juliette",
+                "Mia"
+            ],
+            "note": 9
+        },
+        {
+            "nom": "groupe9",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe10",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe11",
+            "membres": [],
+            "note": 0
+        },
+        {
+            "nom": "groupe12",
+            "membres": [],
+            "note": 0
+        }
+    ],
+    "starters": {
+        "quatrieme": [
+            "starter1.png",
+            "starter2.png",
+            "starter3.png"
+        ],
+        "sixieme": [
+            "starter1.png",
+            "starter2.png",
+            "starter3.png",
+            "starter4.png",
+            "starter5.png",
+            "starter6.png",
+            "starter7.png",
+            "starter8.png",
+            "starter9.png"
+        ]
+    }
+}

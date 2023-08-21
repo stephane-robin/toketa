@@ -1,0 +1,364 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+    <li><a href="">les algorithmes utilisant un protocole</a></li>
+    <li><a href="">les algorithmes avec clé de chiffrement</a></li>
+    <li><a href="">les algorithmes de hashage</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- INTRODUCTION -->
+
+<h3>Introduction</h3>
+
+<p>Une communication est sécurisée dès lors que les 2 parties sont authentifiées 
+    par un code d'accès et que la transmission des données est chiffrée ou cryptée,
+     c'est à dire que le message est rendu incompréhensible pour toute 
+    personne qui l'intercepterait sans en être le destinataire. Ainsi, le message 
+    sécurisé n'est pas intelligible sans l'utilisation d'un protocole ou de clés 
+afin de pouvoir le lire en clair.</p>
+
+<p>La sécurisation des données permet d'éviter que les données sensibles ne soient 
+    partagées sans le consentement des personnes concernées. Il est couramment 
+    utilisé sur Internet, dans les applications de messagerie, mais également 
+    dans les différents protocoles de communications. On peut citer par exemple :</p>
+
+<ul>
+<li>HTTP est le protocole chargé des requêtes d'affichage de pages Web. HTTPS est 
+    sa version sécurisée, qui incorpore les protocoles SSL Secure Socket Layer et 
+    TLS Transport Layer Security, permettant l'authentification des parties et le 
+    chiffrement des données.</li>
+
+<li>SSH Secure SHell est un protocole de prise de commande à distance sécurisé d'une 
+    machine à partir d'une autre.</li>
+
+<li>WPA2 Wifi Protected Access est un protocole de chiffrement permettant de sécuriser 
+    les communications entre un routeur Wifi et les machines connectées à son réseau local.</li>
+</ul>
+
+<p>On parle de message chiffré lorsque le message sécurisé ne contient que des 
+    chiffres. On parle de message crypté lorsque celui-ci contient des caractères 
+    quelconques et pas uniquement des chiffres. Bien souvent, un message crypté est 
+    d'abord chiffré avant d'être retransformé en caractères quelconques.</p>
+
+<p>Dans cette partie, on considère que Bob envoie un message crypté à 
+    Alice, qui est en mesure de le décrpyter.</p>
+
+
+<!-- ALGORITHME UTILISANT UN PROTOCOLE -->
+<h3>Les algorithmes utilisant un protocole</h3>
+
+<p>Le protocole permet de détailler les différentes étapes à suivre pour chiffrer le 
+    message initial. Lu dans le sens inverse, il permet de déchiffrer le message reçu.</p>
+
+<p>L'algorithme suivant permet à Bob de chiffrer des données en utilisant le protocole 
+    détaillé ci-dessous.</p>
+
+<p>Les données sont initialement groupées en 1 octet.</p>
+<ul>
+    <li>après chaque bit, ajouter un bit de valeur opposée, ce qui double la 
+        longueur du message</li>
+    <li>couper le message en deux parties de longueur égale afin de les permuter</li>
+    <li>en comparant les bits de la partie gauche du message avec ceux de la partie 
+        droite du message, rajouter 1 aux bits de la partie gauche si les bits 
+        correspondants sur le partie droite sont des 1.</li>
+</ul>
+
+<p>En partant du message initial suivant 11010111, on obtient donc :</p>
+<ul>
+    <li>10100110 01101010</li>
+    <li>01101010 10100110</li>
+    <li>11001100 10100110</li>
+</ul>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un script Python contenant deux 
+        fonction chiffrer() et dechiffrer() qui permet de chiffrer et déchiffrer un 
+        message en utilisant le protocole défini ci-dessus. Retrouver ensuite les 
+        résultats obtenus dans l'exemple.</p>
+</div>
+
+
+<h4>Le chiffrement ECB</h4>
+
+<p>Le chiffrement ECB découpe une suite de chiffres en blocs de taille fixe, par exemple 
+    un octet, 5 bits, ... puis permute les éléments suivant un protocole.</p>
+
+<p>Par exemple, l'algorithme suivant permet à Bob de chiffrer des données en utilisant 
+    le protocole ECB détaillé ci-dessous.</p>
+
+<p>Les données sont regroupées en 1 octet, et il faut permuter le 1er bit avec le
+     3ème, le 2ème avec le 7ème, le 4ème avec le 5ème, le 6ème avec le 8ème,</p>
+    
+<p>En partant du message initial suivant 01101111 10001111 11010111, on obtient donc </p>
+
+<p>11010111 01110101 01110111</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un script Python contenant deux 
+        fonction chiffrerECB() et dechiffrerECB() qui permet de chiffrer et déchiffrer un 
+        message en utilisant le protocole ECB défini ci-dessus. Retrouver ensuite les 
+        résultats obtenus dans l'exemple.</p>
+</div>
+
+
+
+<!-- ALGORITHME CLE DE CHIFFREMENT -->
+<h3>Les algorithmes avec clé de chiffrement</h3>
+
+<p>Il n'est pas trop difficile de déchiffrer un message lorsqu'on connaît l'algorithme de 
+    chiffrement. Il est possible de sécuriser davantage les données en utilisant une clé de 
+chiffrement dans l'algorithme de chiffrement. Il s'agit d'une séquence unique qui sert 
+de référence. Lorsque la clé sert à chiffrer et déchiffrer, on parle de clé publique. 
+Lorsque la clé sert uniquement à déchiffrer, on parle de clé privée.</p>
+
+<p>Par exemple, l'algorithme ci-dessous permet de chiffrer les données à l'aide d'une clé :</p>
+
+<p>Les données sont initialement groupées en 1 octet. La clé est 11100011</p>
+<ul>
+    <li>permuter le 1er bit avec le 4ème, le 2ème avec le 3ème, le 6ème avec le 5ème, 
+        le 7ème avec le 8ème,</li>
+    <li>après chaque bit, ajouter un bit de valeur opposée, ce qui double la 
+        longueur du message</li>
+    <li>adapater la clé à la taille du message en répétant la clé jusqu'à obtenir 
+        la même taille que celle du message</li>
+    <li>en comparant les bits du message avec ceux de la clé, rajouter 1 aux bits 
+        du message si les bits correspondants sur le partie droite sont des 0.</li>
+</ul>
+
+<p>En partant du message initial suivant 01101111, on obtient donc :</p>
+<ul>
+    <li>01110011</li>
+    <li>01101010 01011010</li>
+    <li>la clé devient 01101111 01101111</li>
+    <li>le message devient 11111010 11001010</li>
+</ul>
+
+
+
+
+<!-- CHIFFREMENT SYMETRIQUE -->
+<h4>Le chiffrement symétrique</h4>
+
+<p>Dans le cas d'un cryptage symétrique, la clé est rendue publique, c'est 
+    à dire qu'elle est connue de l'émetteur et du récepteur. Cela ne veut pas 
+    dire que sa valeur soit publique pour le reste du monde, bien au contraire. 
+    Cette clé publique est utilisée à la fois par l'émetteur et le récepteur pour 
+    chiffrer et déchiffrer les données.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> imaginez une clé publique simple 
+        permettant de déchiffrer un message et de le chiffrer. Concrétisez votre 
+        travail par l'écriture du code Python correspondant. Ce script devra donc 
+        contenir une fonction chiffrer(message) et une fonction dechiffrer(message).</p>
+</div>
+
+<h4>Exemple de cryptage symétrique - code César</h4>
+
+<p>Le code César est un algorithme de cryptage symétrique qui utilise un décalage 
+    connu des deux parties. Ce décalage représente une clé publique. Le code 
+    César ne produit pas un résultat sous forme de chiffre, mais sous forme de 
+    lettre qui a été modifiée. Par exemple la lettre 'a' devient la lettre 'f', 
+    etc ...</p>
+
+<p>Le code César utilise la table ASCII pour ordonner les lettres de l'alphabet 
+    à modifier. Il s'agit d'un tableau de correspondance entre des caractères 
+    et des nombres. Cette table contient des caractères de la valeur 0 à la valeur 127, 
+    mais aucun caractère n'est affiché à l'écran entre les valeurs 0 et 32. Ces 
+    valeurs ne pourront donc pas être utilisées. Par ailleurs, même s'il existe 
+26 lettres dans l'alphabet, le décalage peut être un nombre supérieur à 26. En effet, 
+lorsqu'on dépasse la valeur 127, il suffit de reprendre à la valeur 33.</p>
+
+<p>Afin d'utiliser la table ASCII, en Python on écrit l'instruction ord() pour
+    passer d'un caractère au nombre correspondant, et l'instruction chr() pour 
+    passer d'un nombre au caractère correspondant. Ainsi, ord('a') renvoie 97 
+et chr(97) renvoie 'a'.</p>
+
+<p>Dans la cas d'un décalage de 41 par exemple, on l'appelle également ROT41.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un script Python contenant deux 
+        fonction crypter() et decrypter() qui permet de crypter et décrypter un 
+        message en utilisant un décalage fourni en paramètre des fonctions.</p>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un script Python permettant de 
+    trouver le décalage utilisé pour décrypter le message suivant "Python est un 
+    beau langage", sachant qu'il a été crypté avec un code César. </p>
+    <p><em>Indication : </em>on peut créer une boucle qui teste toutes les clés 
+    possibles pour le code César jusqu'à obtenir un message qui a un sens en 
+français.</p>
+</div>
+
+
+
+
+<!-- CHIFFREMENT ASYMETRIQUE -->
+<h4>Chiffrement asymétrique</h4>
+
+<p>Dans le cas du chiffrement asymétrique, une clé publique est connue de 
+    l'émetteur comme du récepteur et une clé privée n'est connue que du récepteur. 
+    Ainsi la clé publique sert à chiffrer un message alors que la clé privée sert 
+    à le déchiffrer.</p>
+
+<p>Ce principe est également utilisé pour permettre l'authentification d'un 
+    expéditeur en validant sa signature numériques.</p>
+
+<h4>Exemple de chiffrement asymétrique - RSA</h4>
+
+<p>Il s'agit d'un chiffrement asymétrique qui utilise le petit théorème de Fermat
+     et les opérateurs modulo. Pour rappel, en Python on écrit % pour le modulo 
+     c'est à dire le reste de division. Par exemple le reste de division de 7 par 2
+     est 1. On l'écrit 7%2 qui renvoie la valeur 1. En mathématiques, on écrit 
+     plutôt 7 = 1[2] ou 7 = 1(2) ou 7 = 1 mod 2.</p>
+
+<p>Alice choisit deux nombres premiers p=11 et q=13 pour construire
+    le module de chiffrement n = p.q = 143 et l'indicateur d'Euler phi(n) = (p-1)(q-1) = 120.
+    Alice choisit ensuite l'exposant de chiffrement e = 7 premier avec 120 et inférieur 
+    strictement à 120, comme élément de clé publique. Sa clé publique est le couple 
+    (n, e) = (143, 7). Alice calcule ensuite l'élément primordial de sa clé privée
+     d = 103. La clé privée est (n, d) = (143, 103).</p>
+
+<p>Comment Alice calcule-t-elle d ? d est l'exposant de déchiffrement. 
+ Il s'agit de l'inverse de e modulo 120 qui doit être inférieur strictement à 120.
+En effet, e.d mod 120 = 7 x 103 mod 120 = 721 mod 120 = 1
+120 = 17 x 7 + 1</p>
+
+
+<p>Bob veut envoyer à Alice le message chiffré 'a'. Pour cela il demande à Alice 
+    sa clé publique. Alice lui renvoie (143, 7).
+    Comme la lettre 'a' est représentée par le nombre 97 en code ASCII, Bob 
+    transforme 'a' en 97, puis commence à chiffrer ce nombre en recherchant la 
+    valeur de \(97^e mod n = 97^7 mod 143 = 59\)</p>
+
+<p>Lorsque Alice reçoit le message de Bob, elle le déchiffre à l'aide de sa clé 
+    privée (143, 103). Le 59 reçu par Alice va être transformé 
+    en \(59^d mod n = 59^103 mod 143 = 97\).
+    Elle traduit ensuite le 97 en 'a' grâce à la table ASCII.</p>
+
+
+
+    <p>Comment générer une clé privée facilement ? Choisir des nombres premiers p et q 
+        ayant des longueurs assez proches. p et q doivent être tenus secrets en permanence.
+    Calculer n = p.q qui sert de modulo, et fait partie de la clé publique.
+    Calculer phi(n) = (p -1).(q - 1). En déduire d comme étant l'inverse de e modulo phi(n).</p>
+
+<p>On remarque donc que les clés publiques et privées du cryptage RSA sont des 
+    couples de nombres.</p>
+
+<p>On peut traduire le cryptage RSA en Python de la façon suivante :</p>
+
+<pre><code class="language-python">"""Cette partie est utilisee par Bob pour chiffrer son message.
+Bob ne connaît pas la cle de privee."""
+def chiffrer(lettre):
+    """
+    @param:
+        lettre (str)
+    @return:
+        (str)
+    """
+    cpu = (143 ,7) 
+    return str((ord(lettre) ** cpu[1]) % cpu[0])
+
+def chiffrer_mot(mot):
+    """
+    @param:
+        mot (str)
+    @return:
+        (str)
+    """
+    liste_mot_chiffre = []
+    for elmt in mot:
+        liste_mot_chiffre.append(chiffrer(elmt))
+    return " ".join(liste_mot_chiffre)
+
+"""Cette partie est utilisee par Alice qui connait la cle privee 
+et va pouvoir dechiffrer le message de Bob."""
+def dechiffrer(val_chiffree):
+    """
+    @param:
+        val_chiffree (str)
+    @return:
+        (str)
+    """
+    cpe = (143, 103)
+    return chr((int(val_chiffree) ** cpe[1]) % cpe[0])
+    
+
+def dechiffrer_valeur_chiffree(val_chiffree):
+    """
+    @param:
+        val_chiffree (str)
+    @return:
+        (str)
+    """
+    while val_chiffree != "":
+        pass
+
+print(chiffrer('a'))
+print(dechiffrer('59'))
+print(chiffrer_mot("Bonjour Madame,"))</code></pre>
+
+<p>Afin de pouvoir déchiffrer le message sécurisé, il faudrait par exemple marquer 
+    le nombre de chiffres à déchiffrer au moment de la sécurisation des données. 
+    Par exemple si on obtient comme message sécurisé 123156, on pourrait choisir 
+    d'interpréter 12 - 31 - 56 ou 123 - 156 ou encore 123 - 15 - 6, ... si on ne 
+    dispose d'aucune indication pour déchiffrer. Dans ce cas, on pourrait rajouter 
+    un 0 devant chaque groupe de chiffres ne comprenant que 3 chiffres, ou enregistrer
+    une séquence de chiffres relative au nombre de chiffres à déchiffrer. Par 
+    exemple, si on reprend les interprétations ci-dessus, on pourrait fournir comme aide 
+    au déchiffrement respectivement 222 ou 33 ou encore 321.</p>
+
+
+
+<!-- LES ALGORITHMES DE HASHAGE -->
+<h3>Les algorithmes de hashage</h3>
+
+<p>Dans certains cas, on a besoin de crypter un message sans qu'il soit nécessaire de 
+    le décrypter. Il faut en fait rendre le décryptage impossible. On parle dans ce cas 
+    de hashage. Par exemple, lorsqu'on veut tester si un mot de passe saisi par 
+    l'utilisateur est le bon mot de passe, on ne va pas conserver le mot de passe 
+    correct dans le code qui effectue le test.
+    Cela serait trop dangereux dès lors qu'un hacker accède au code source.</p>
+
+<h4>Le sha256</h4>
+
+<p>Le sha256 est un algorithme de hashage qui permet par exemple de comparer un mot 
+    de passe hashé avec un mot hashé saisi par l'utilisateur. Il est utilisé 
+uniquement comme comparaison de valeurs cryptées et non pas comme comparaison 
+de valeurs initiales, notamment dans les sites Web.</p>
+
+<p>En Python, on l'utilise de la façon suivante :</p>
+
+<pre><code class="language-python">import hashlib
+
+""" On transforme pw en suite de caractères sha256 dans un script indépendant 
+du fichier principal. On obtient 
+ce1dc4b2eb92ae169c14e055c989b9dfb6c09b3022588cfceea32fae78de0b7e"""
+print(hashlib.sha256('jana123'.encode('utf-8')).hexdigest())
+
+# Programme principal
+mot_passe = input("donner votre mot de passe : ")
+
+""" Cette structure est mauvaise car le mot de passe apparait dans le 
+programme principal"""
+if mot_passe == 'jana123':
+    print("accès autorisé")
+else:
+    print("accès refusé")
+
+""" Cette structure est plus securisee car elle ne laisse apparaitre
+que la valeur sha256 du mot de passe. Celle-ci est telle qu'on ne 
+peut pas revenir en arriere"""
+if hashlib.sha256(mot_passe.encode('utf-8')).hexdigest() == 'ce1dc4b2eb92ae169c14e055c989b9dfb6c09b3022588cfceea32fae78de0b7e':
+    print("ACCES AUTORISE")
+else:
+    print('ACCES REFUSE')</code></pre>
+
+{% endblock cours %}

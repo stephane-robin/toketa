@@ -1,0 +1,216 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>comprendre la structure d'une pile</li>
+    <li>savoir modéliser une pile à l'aide d'une liste</li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<h3>Les piles</h3>
+
+<div class="fieldsetDefinition">
+    <h4>DEFINITION ...</h4>
+    <p>Une pile est une structure de données donnant accès en priorité au dernier élément ajouté. On peut donc consulter tout ce que contient une pile, mais il vaut pour cela la vider par le haut, étape par étape (la dépiler).</p>
+</div>
+
+<p>Afin de comprendre le comportement d'une pile, nous allons maintenant la construire de façon abstraite en considérant qu'une pile est en fait un tableau temporaire P. Le 1er élément de la pile P[0] contient l'index de la 1ère case vide où pourra être inséré le prochain élément. Tous les autres indices permettent d'enregistrer les éléments de la pile. Le sommet de la pile est le dernier élément non vide.</p>
+
+<div class="exerciceType"><p><strong>Exercice type : </strong>construire étape par étape P à partir du pseudo-code suivant :
+<ul>
+<li>P = CREER_PILE_VIDE()</li>
+<li>EMPILER(P, 'i')</li>
+<li>EMPILER(P, 'a')</li>
+<li>DEPILER(P)</li>
+<li>EMPILER(P, 'n')</li>
+<li>EMPILER(P, 'f')</li>
+<li>EMPILER(P, 'o')</li>
+</ul></p>
+<p>Solution :</p>
+<table>
+<tr><td>index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td>P</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>P</td><td>2</td><td>i</td><td></td><td></td><td></td></tr>
+<tr><td>P</td><td>3</td><td>i</td><td>a</td><td></td><td></td></tr>
+<tr><td>P</td><td>2</td><td>i</td><td></td><td></td><td></td></tr>
+<tr><td>P</td><td>3</td><td>i</td><td>n</td><td></td><td></td></tr>
+<tr><td>P</td><td>4</td><td>i</td><td>n</td><td>f</td><td></td></tr>
+<tr><td>P</td><td>5</td><td>i</td><td>n</td><td>f</td><td>o</td></tr>		
+</table>
+</div>
+
+<p>On rencontre un processus sous forme de pile pour mémoriser l'historique des pages Web visitées par exemple. En cliquant sur Affichage de la page précédente, on dépile l'adresse de la dernière page visitée.</p>
+
+
+<!-- MODELISER UNE PILE A L'AIDE D'UNE LISTE PYTHON -->
+
+<h3>Modéliser une pile à l'aide d'une liste Python</h3>
+
+<h4>Premier modèle</h4>
+
+<p>Nous allons reconstruire la fonction empiler(pile, element) en Python pour reproduire l'état de 
+    la pile abstraite P ci-dessus. 
+    Des espaces mémoire vides seront volontairement alloués en fin de pile pour permettre d'empiler les 
+    éléments. Nous ne gérons pas les exceptions de type error index out of range. On conserve à l'indice 0 
+l'indice du prochain emplacement disponible de la pile.</p>
+
+<pre><code class="language-python">def empiler(pile, element):
+    """
+    Empile element dans pile qui est modelise par une liste.
+    L'indice du prochain element disponible se trouve dans pile[0].
+    On met a jour pile[0] apres empilement
+    param:
+        pile: (list) la pile a modifier
+        element: (str) l'element a empiler
+    return:
+        None
+    """
+    pile[pile[0]] = element 
+    pile[0] += 1
+
+P = [1, None, None, None, None, None, None, None, None, None]
+empiler(P, 'i')
+empiler(P, 'a')
+print(P)</code></pre>
+ 
+
+<p>Le résultat obtenu à l'affichage correspond bien à ce qui était recherché :</p>
+<pre><code class="language-python">>>> [3, 'i', 'a', None, None, None, None, None, None, None, None]</code></pre>
+
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire 
+    la fonction depiler(pile) pour reproduire l'état de la pile abstraite P ci-dessus, qui retire de 
+    la pile l'élément au sommet, c'est à dire le dernier élément.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+
+<pre><code class="language-python">def depiler(pile):
+    """
+    On depile pile et on renvoie le dernier element entre dans la pile.
+    L'indice du prochain element disponible se trouve dans pile[0].
+    On met a jour pile[0] apres depilement.
+    param:
+        pile: (list) la pile a modifier
+        element: (str) l'element a empiler
+    return:
+        (str) dernier element de pile qu'on retire de pile
+    """
+    a_retirer = pile[pile[0] - 1]
+    pile[pile[0] - 1] = None
+    pile[0] -= 1
+
+    return a_retirer
+
+P = [1, 'i', 'a', None, None, None, None, None, None, None]
+print(depiler(P))
+print(P)</code></pre></div>
+
+</div>
+
+    <div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire la 
+        fonction is_empty(pile) qui teste si pile est vide ou non et renvoie un booléen.</p>
+        
+        <div>
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+        </div>
+    
+        <div id="solution2" style="display:none;">
+        <pre><code class="language-python">def is_empty1(pile):
+    """
+    Teste si pile est vide et renvoie un booleen
+    param:
+        pile: (list) pile testee
+    return:
+        (bool) True si pile est vide, False sinon
+    """
+    return pile == [1, None, None, None, None, None, None, None, None, None]
+
+P = [1, None, None, None, None, None, None, None, None, None]
+print(is_empty(P))</code></pre>
+</div>
+</div>
+
+
+<h4>Deuxième modèle</h4>
+
+<p>Nous allons reconstruire la fonction empiler(pile, element) en Python pour 
+    modéliser le comportement d'une pile abstraite. 
+On ne se préoccupe pas de l'indice du prochain élément disponible.</p>
+
+<pre><code class="language-python">def empiler(pile, element):
+    """
+    Empile element dans pile qui est modelise par une liste.
+    param:
+        pile: (list) la pile a modifier
+        element: (str) l'element a empiler
+    return:
+        None
+    """
+    pile.append(element)
+
+P = []
+empiler(P, 'i')
+empiler(P, 'a')
+print(P)</code></pre>
+
+<p>Le résultat obtenu à l'affichage correspond bien à ce qui était recherché :</p>
+<pre><code class="language-python">>>> ['i', 'a']</code></pre>
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire 
+    la fonction depiler(pile) pour modéliser le comportement d'une pile abstraite, qui retire de 
+    la pile l'élément au sommet, c'est à dire le dernier élément.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+
+<pre><code class="language-python">def depiler(pile):
+    """
+    On depile pile et on renvoie le dernier element entre dans la pile.
+    param:
+        pile: (list) la pile a modifier
+        element: (str) l'element a empiler
+    return:
+        (str) dernier element de pile qu'on retire de pile
+    """
+    return pile.pop()
+
+P = ['i', 'a']
+print(depiler(P))
+print(P)</code></pre></div>
+</div>
+
+
+    <div class="exerciceApplication"><p><strong>A vous de jouer : </strong>construire la 
+        fonction is_empty(pile) qui teste si pile est vide ou non et renvoie un booléen.</p>
+        
+        <div>
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+        </div>
+    
+        <div id="solution4" style="display:none;">
+        <pre><code class="language-python">def is_empty(pile):
+    """
+    Teste si pile est vide et renvoie un booleen
+    param:
+        pile: (list) pile testee
+    return:
+        (bool) True si pile est vide, False sinon
+    """
+    return pile == []
+
+P = []
+print(is_empty(P))</code></pre>
+</div>
+</div>
+
+{% endblock cours %}
