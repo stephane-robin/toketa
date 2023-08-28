@@ -58,6 +58,7 @@ solutions rapides et prêtes à l'emploi.</p>
     intègre du contenu mathématique, LaTeX est fait pour vous.</p>
 
 
+<!-- UN MODELE POUR LES EVALUATIONS -->
 <h3>Un modèle pour les évaluations</h3>
 
 <h4>Overleaf</h4>
@@ -65,7 +66,7 @@ solutions rapides et prêtes à l'emploi.</p>
 <p>Voyons maintenant comment optimiser notre courbe d'apprentissage du LaTeX. Tout d'abord, il faut éviter 
     une installation manuelle sur un poste afin d'éviter la gestion des packages et des chemin d'accès. Pour 
     cela, je recommande l'utilisation d'un éditeur/compilateur en ligne. Inscrivez-vous par exemple sur Overleaf 
-    à l'adresse suivante <a href="https://www.overleaf.com/" target="_blank">www.overleaf.com</a>et ouvrez 
+    à l'adresse suivante <a href="https://www.overleaf.com/" target="_blank">www.overleaf.com</a> et ouvrez 
     votre premier projet.</p>
 
 <p>Un projet correspond tout simplement à un fichier LaTeX.</p>
@@ -75,11 +76,11 @@ solutions rapides et prêtes à l'emploi.</p>
 
 <p>Vous obtenez maintenant dans la partie gauche de l'écran un éditeur de code avec quelques lignes pré-remplies comme ci-dessous :</p>
 
-<img src="../../images/maths/latex1.png" alt="latex" width=50%>
+<img src="{% static 'home/images/maths/latex1.png' %}" alt="latex" width=50%>
 
 <p>et dans la partie droite de l'écran un affichage du résultat de la compilation comme ci-dessous :</p>
 
-<img src="../../images/maths/latex2.png" alt="latex" width=50%>
+<img src="{% static 'home/images/maths/latex2.png' %}" alt="latex" width=50%>
 
 <h4>Utilisation d'une classe déjà définie</h4>
 
@@ -174,6 +175,6 @@ A compléter...
 
 <p>Dans l'état actuel, la compilation de votre modèle produit le résultat suivant :</p>
 
-<img src="../../images/maths/latex3.png" alt="latex" width="50%">
+<img src="{% static 'home/images/maths/latex3.png' %}" alt="latex" width="50%">
 
 {% endblock cours %}

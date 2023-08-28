@@ -1,4 +1,4 @@
-{% extends '../../../modelePage.html' %}
++{% extends '../../../modelePage.html' %}
 {% load static %}
 
 {% block contenu %}
@@ -9,9 +9,12 @@
 
 {% block cours %}
 
-<p><em>Travail Pratique proposé par T. Morel.</em></p>
-
-<iframe src="{% static 'home/documents/TP_adresseIP.pdf' %}" height='1200px' type='application/pdf'></iframe>
+<div class="row">
+    <div class="col-12">
+        <p><em>Travail Pratique proposé par T. Morel.</em></p>
+        <iframe src="{% static 'home/documents/TP_adresseIP.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
+    </div>
+</div>
 
 {% endblock cours %}
 

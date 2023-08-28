@@ -1,0 +1,63 @@
+{% load static %}
+
+<div class="quiz-container">
+    <div class="question-container">
+        <div id="question-{{nmr}}"></div>
+        <form id="optionsForm-{{nmr}}">
+            <input type="radio" id="option0-{{nmr}}" name="answer" value=0>
+            <label for="option0-{{nmr}}" id="label0-{{nmr}}"></label><br>
+            <input type="radio" id="option1-{{nmr}}" name="answer" value=1>
+            <label for="option1-{{nmr}}" id="label1-{{nmr}}"></label><br>
+            <input type="radio" id="option2-{{nmr}}" name="answer" value=2>
+            <label for="option2-{{nmr}}" id="label2-{{nmr}}"></label><br>
+        </form>
+        <p class="py-2" id="commentaire-{{mnr}}"></p>
+    </div>
+    <button class="bouton my-1" id="valider-{{nmr}}">Soumettre</button> 
+</div>
+
+<script>
+function questionnaireUnique(nmr){
+    const optionsForm = document.getElementById('optionsForm-' + nmr);
+    const question = document.getElementById('question-' + nmr);
+    const option0 = document.getElementById('label0-' + nmr);
+    const option1 = document.getElementById('label1-' + nmr);
+    const option2 = document.getElementById('label2-' + nmr);
+    const commentaire10 = document.getElementById('commentaire-' + nmr);
+    const submitButton = document.getElementById('valider-' + nmr);
+
+    question.innerHTML = questionsData.question;
+    option0.innerHTML = questionsData.options[0];
+    option1.innerHTML = questionsData.options[1];
+    option2.innerHTML = questionsData.options[2];
+
+    function validateAnswer() {
+        const selectedAnswer = optionsForm.querySelector('input[name="answer"]:checked');
+        /* evite le declenchement d'une erreur si aucune option n'a ete choisie */
+        if (selectedAnswer === null) {
+            return;
+        }
+        const selectedIndex = parseInt(selectedAnswer.value);
+
+        const correctIndex = questionsData.correctIndex;       
+        const options = optionsForm.querySelectorAll('input[name="answer"]');
+
+        if (selectedIndex === correctIndex) {
+            options[correctIndex].nextElementSibling.classList.add('couleur_reponseCorrecte');
+        } 
+        else {
+            options[selectedIndex].nextElementSibling.classList.add('couleur_reponseIncorrecte');
+            options[correctIndex].nextElementSibling.classList.add('couleur_reponseCorrecte');
+        }
+
+        commentaire10.innerHTML = questionsData.commentaire;
+
+        /* pour desactiver le bouton de validation apres la reponse */
+        for (let i = 0; i < options.length; i++) {
+            options[i].disabled = true;
+        }
+    }
+
+    submitButton.addEventListener('click', validateAnswer);
+}
+</script>

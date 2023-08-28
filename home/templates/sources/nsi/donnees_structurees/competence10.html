@@ -17,7 +17,7 @@
 	 un parent et un ou plusieurs enfants. On donne un nom à chacun de ces noeuds, qu'on appelle 
 	 étiquette. On représente généralement un arbre à partir d'un sommet qui se disperse vers le bas. </p>
 
-<figure><img src="../../images/nsi/arbre.png" alt="arbre"><figcaption>Exemple d'arbre</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/arbre.png' %}" alt="arbre"><figcaption>Exemple d'arbre</figcaption></figure>
 
 
 <p>On retrouve cette structure de données dans l'arborescence des fichiers, la représentation de tous les 
@@ -95,7 +95,8 @@
 <p>La profondeur moyenne interne de l'arbre vaut \(PMI = \frac{LCI}{8} = \frac{13}{8} = 1,63\)</p>
 <p>La profondeur moyenne externe de l'arbre \(PME = \frac{LCE}{4} = \frac{12}{4} = 3\)</p>
 <p>Il est possible de représenter ces profondeurs moyennes sur l'arbre.</p>
-<figure><img src="../../images/nsi/profondeur.png" alt="arbre" width="80%"><figcaption>Les profondeurs moyennes</figcaption></figure>
+
+<figure><img src="{% static 'home/images/nsi/profondeur.png' %}" alt="arbre" width="80%"><figcaption>Les profondeurs moyennes</figcaption></figure>
 
 	</div>	
 
@@ -114,8 +115,8 @@
 	sont au niveau hiérarchique le plus bas.</p>
 
 <div class="bloc_ligne">
-<figure><img src="../../images/nsi/arbre_complet.png" alt="arbre"><figcaption>arbre binaire complet</figcaption></figure>
-<figure><img src="../../images/nsi/arbre_non_complet.png" alt="arbre"><figcaption>arbre binaire non complet</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/arbre_complet.png' %}" alt="arbre"><figcaption>arbre binaire complet</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/arbre_non_complet.png' %}" alt="arbre"><figcaption>arbre binaire non complet</figcaption></figure>
 </div>
 
 <p>Un arbre binaire est dégénéré lorsque les noeuds ne possèdent qu'un seul enfant ou pas d'enfant.</p>
@@ -155,7 +156,7 @@ sad = ArbreBin('7', None, None)
 arbre1 = ArbreBin('-', sag, sad)</code></pre>
 
 <p>qui représente l'arbre suivant :</p>
-<figure><img src="../../images/nsi/arbre_binaire.png" alt="arbre"><figcaption>arbre binaire modélisé en Python</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/arbre_binaire.png' %}" alt="arbre"><figcaption>arbre binaire modélisé en Python</figcaption></figure>
 
 
 <!-- PARCOURS D'ARBRE BINAIRE -->
@@ -174,21 +175,21 @@ arbre1 = ArbreBin('-', sag, sad)</code></pre>
 	<li>le parcours infixe, qui passe par un opérande, une opération puis un opérande avant de recommencer</li>
 	<li>le parcours postfixe, qui passe par les opérandes avant de passer par les opérations</li>
 </ul>
-<figure><img src="../../images/nsi/prefixe.png" alt="arbre"><figcaption>Parcours en profondeur</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/prefixe.png' %}" alt="arbre"><figcaption>Parcours en profondeur</figcaption></figure>
 <p>En utilisant l'arbre ci-dessus, un parcours préfixe correspond au chemin T-Y-P-O-H-N,<br/>
 un parcours infixe correspond au chemin P-Y-T-H-O-N,<br/>
 un parcours postfixe correspond au chemin P-Y-H-N-O-T.</p>
 
 <p>On remarque qu'un parcours infixe correspond au système traditionnel de calcul avec priorité des opérations,
 	comme dans l'exemple ci-dessous où on effectue le calcul \((6\times3)-(2+5)\).</p>
-<figure><img src="../../images/nsi/calcul.png" alt="arbre"><figcaption>Arbre pour calculer</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/calcul.png' %}" alt="arbre"><figcaption>Arbre pour calculer</figcaption></figure>
 
 
 <h4>Parcours en largeur</h4>
 
 <p>Pour le parcours en largeur, l'arbre est parcouru étage par étage.</p>
 
-<figure><img src="../../images/nsi/prefixe.png" alt="arbre"><figcaption>Parcours en largeur</figcaption></figure>
+<figure><img src="{% static 'home/images/nsi/prefixe.png' %}" alt="arbre"><figcaption>Parcours en largeur</figcaption></figure>
 <p>Dans l'arbre ci-dessus le parcours en largeur donnerait le chemin T-Y-O-P-H-N</p>
 
 <p>On peut modéliser en Python le parcours en largeur en utilisant une structure de File et des listes : </p>
@@ -237,8 +238,8 @@ def parcourir_largeur(arbre):
 	arbre binaire de recherche.</p>
 
 	<div class="bloc_ligne">
-		<figure><img src="../../images/nsi/no_abr.png" alt="arbre"><figcaption>arbre 1</figcaption></figure>
-		<figure><img src="../../images/nsi/abr.png" alt="arbre"><figcaption>arbre 2</figcaption></figure>
+		<figure><img src="{% static 'home/images/nsi/no_abr.png' %}" alt="arbre"><figcaption>arbre 1</figcaption></figure>
+		<figure><img src="{% static 'home/images/nsi/abr.png' %}" alt="arbre"><figcaption>arbre 2</figcaption></figure>
 	</div>
 
 

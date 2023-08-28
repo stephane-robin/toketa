@@ -87,32 +87,20 @@ else:
 </div>
 </div>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-1"></p>
-        <form id="options_form-1">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-1"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
-        commentaire: ""
+        question: '<p>L\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":\n \
+    print("hello")</code></pre><p>va afficher <em>hello</em> ...</p>',
+        options:["si prenom est différent de Antoine", "si prenom vaut Antoine", "si les variables prenom et Antoine sont les mêmes"],
+        correctIndex: 1,
+        commentaire: "== signifie est égal à"
     };
 questionnaireUnique(1);
 </script>
@@ -161,34 +149,22 @@ else:
 </div>
 </div>
 
-<p>Vous connaissez maintenant la structure de base pour créer un QCM ...</p>
+<p>Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
+    à respecter pour valider chaque question ...</p>
+
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-2"></p>
-        <form id="options_form-2">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-2"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
-        commentaire: ""
+        question: "Un pseudo-code sert à ...",
+        options:["traduire le code dans un langage humain afin de comprendre son fonctionnement", "traduire le code dans un autre langage de programmation", "créer un commentaire dans le code"],
+        correctIndex: 0,
+        commentaire: " "
     };
 questionnaireUnique(2);
 </script>
@@ -317,32 +293,20 @@ print("le maximum est" + maximum)</code></pre>
 <p>La condition a > 4 or b > 4 nécessite qu'une seule des deux variables a ou b soit supérieure
     à 4. Cette condition est donc vérifiée et le programme entre dans le bloc de la ligne 8.</p>
 
+
 <!-- QESTIONNAIRE -->
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-3"></p>
-        <form id="options_form-3">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-3"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
+        question: '<p>Dans l\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":</code></pre>',
+        options:["prenom est un booleen", "if est un booleen", 'prenom == "Antoine" est un booleen'],
         correctIndex: 2,
-        commentaire: ""
+        commentaire: 'Si prenom == "Antoine" est vérifié (vaut True) alors le bloc suivant est exécuté'
     };
 questionnaireUnique(3);
 </script>
@@ -380,32 +344,21 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
         le programme est perdu. Il correspond dans d'autres langages à l'utilisation des { et }.</p>
 </div>
 
+
 <!-- QESTIONNAIRE -->
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-4"></p>
-        <form id="options_form-4">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-4"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-4">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
+        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10: \n \
+    print("Bravo")</code></pre>',
+        options:["il s'affiche Bravo", "les blocs sont correctement indentés", "la 2ème ligne est mal indentée"],
         correctIndex: 2,
-        commentaire: ""
+        commentaire: "Le bloc suivant une condition doit être indenté."
     };
 questionnaireUnique(4);
 </script>
@@ -717,30 +670,18 @@ IndexError: string index out of range</code></pre>
 
 <p><em>Solution</em> : il faut changer l'indice de début de boucle ou l'indice de fin de boucle.</p>
 
+
 <!-- QESTIONNAIRE -->
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-5"></p>
-        <form id="options_form-5">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-5"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-5">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='5' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
+        question: "Si la console affiche le message suivant : line 6 NameError: name 'score' is not defined ...",
+        options:["il faut chercher si la variable score a été définie après la ligne 6", "il faut chercher si la variable score exite dans le programme", "il faut chercher si la variable score a été définie avant la ligne 6"],
         correctIndex: 2,
         commentaire: ""
     };
@@ -756,9 +697,9 @@ questionnaireUnique(5);
     <p><strong>Exercice 1 : </strong>écrire un programme qui demande à l'utilisateur de saisir son âge 
     puis affiche "Vous êtes majeur" si il a 18 ans ou plus, ou affiche "Vous êtes mineur" dans le cas 
 contraire.</p>
-    </div>
+</div>
 
-    <p class="separateur"></p>
+<p class="separateur"></p>
 
 <div class="exerciceApplication">
 <p><strong>Exercice 2 : </strong>écrire un programme qui teste si une année est bissextile ou non, et affiche 

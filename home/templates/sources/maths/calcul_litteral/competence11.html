@@ -31,7 +31,7 @@ graphe.plot(x, y, linewidth=1, color="r", label="fonction quadratique")
 graphe.legend()
 plt.show()</code></pre>
 
-<img src="../../images/maths/courbe2d.png" alt="courbe 2d" width=50% style="margin-top:2%;">
+<img src="{% static 'home/images/maths/courbe2d.png' %}" alt="courbe 2d" width=50% style="margin-top:2%;">
 
   <p>Il est possible de modifier la largeur avec le mot-clé linewidth, la couleur avec le mot-clé color parmi les possibilités
   suivantes :</p>
@@ -77,7 +77,7 @@ plt.xlabel("abscisses")
 plt.ylabel("ordonnées")
 pt.show()</code></pre>
 
-<img src="../../images/maths/points.png" alt="points" width=50% style="margin-top:2%;">
+<img src="{% static 'home/images/maths/points.png' %}" alt="points" width=50% style="margin-top:2%;">
 
   <h4>Les nuages de points</h4>
 
@@ -91,7 +91,7 @@ area = 200 * r**2 * np.random.rand(nbre_points)
 c12 = plt.scatter(theta, r, c=theta, s=area, cmap=plt.cm.winter)
 plt.show()</code></pre>
 
-  <img src="../../images/maths/nuagePoints.png" alt="nuage de points" width=50% style="margin-top:2%;">
+  <img src="{% static 'home/images/maths/nuagePoints.png' %}" alt="nuage de points" width=50% style="margin-top:2%;">
 
   <p>La couleur winter peut être modifiée parmi les couleurs de la gamme cmap (Colormap) :</p>
 <ul>
@@ -140,7 +140,7 @@ graphe.legend()
 
 plt.show()</code></pre>
 
-<img src="../../images/maths/courbe3d.png" alt="courbe 3d" width=50% style="margin-top:2%;">
+<img src="{% static 'home/images/maths/courbe3d.png' %}" alt="courbe 3d" width=50% style="margin-top:2%;">
 
 <h4>Surface 3d</h4>
 
@@ -167,7 +167,7 @@ graphe.set_zlim(-0.5, 1.5)
 fig.colorbar(surf, shrink=0.5, aspect=10)
 plt.show()</code></pre>
 
-<img src="../../images/maths/surface3d.png" alt="surface 3d" width=50% style="margin-top:2%;">
+<img src="{% static 'home/images/maths/surface3d.png' %}" alt="surface 3d" width=50% style="margin-top:2%;">
 
   <h4>Contour plot</h4>
 
@@ -187,12 +187,12 @@ Z = f(X, Y)
 plt.contourf(X, Y, Z,35, cmap='BrBG')
 plt.show()</code></pre>
 
-  <img src="../../images/maths/contour.png" alt="contour plot" width=50% style="margin-top:2%;">
+  <img src="{% static 'home/images/maths/contour.png' %}" alt="contour plot" width=50% style="margin-top:2%;">
 
 </div>
 </section>
 
-<section class="px-5 py-5 bg-white">
+<section class="px-5 py-5 bg-gris">
     <div class="container">
 
 <!-- RAPPELS -->
@@ -206,7 +206,7 @@ plt.show()</code></pre>
 
 <div class="exemple">
 	<p><em>Exemple :</em> Le point A(3; 2) se place dans un plan en avançant de 3 unités horizontalement et de 2 unités verticalement, comme ci-dessous</p>
-	<img src="../../images/maths/placerPoint.png" alt="points dans un repere">
+	<img src="{% static 'home/images/maths/placerPoint.png' %}" alt="points dans un repere">
 </div>
 
 <div class="fieldsetDefinition">
@@ -219,7 +219,7 @@ plt.show()</code></pre>
 
 <div class="exemple">
 	<p><em>Exemple : </em>dans le graphe ci-dessous le point A(3; 2) n'appartient pas à la courbe de la fonction \(f\) dessinée en vert, mais le point B(2; 4) appartient à cette courbe. Ainsi 4 est l'image de 2 par la fonction \(f\). On écrit \(f(2)=4\).</p>
-	<img src="../../images/maths/pointCourbe.png" alt="points dans un repere">
+	<img src="{% static 'home/images/maths/pointCourbe.png' %}" alt="points dans un repere">
 	</div>
 
 <h4></h4>
@@ -234,7 +234,7 @@ plt.show()</code></pre>
 			<tr><td>\(f(x)\)</td><td>9</td><td>4</td><td>1</td><td>0</td><td>1</td><td>4</td><td>9</td></tr>
 		</table>
 	<p>On va donc maintenant placer les points (-3; 9), (-2; 4), (-1; 1), (0; 0), (1; 1), (2; 4), (3; 9) dans un plan puis les relier pour dessiner la courbe représentative de \(f\).</p> 
-	<img src="../../images/maths/fonctionCarre.png" alt="fonction carre">
+	<img src="{% static 'home/images/maths/fonctionCarre.png' %}" alt="fonction carre">
 
 </div>
 
@@ -248,7 +248,7 @@ plt.show()</code></pre>
 			<tr><td>\(f(x)\)</td><td>-3.375</td><td>-1</td><td>-0.125</td><td>0</td><td>0.125</td><td>1</td><td>3.375</td></tr>
 		</table>
 		<p>On va donc maintenant relier les points (-1.5; -3.375), (-1; -1), (-0.5; -0.125), (0; 0), (0.5; 0.125), (1; 1), (1.5; 3.375) dans un plan pour obtenir la courbe représentative de \(f\).</p> 
-		<img src="../../images/maths/fonctionCube.png" alt="fonction cube">
+		<img src="{% static 'home/images/maths/fonctionCube.png' %}" alt="fonction cube">
 </div>
 
 <div class="exerciceApplication">
@@ -257,20 +257,17 @@ plt.show()</code></pre>
 	2. Tracer la courbe représentative de la fonction \(f\) définie par \(f(x) = \frac{1}{x}\)</p>
 </div>
 
-	<h3>Lecture de courbe</h3>
 
+<!-- LECTURE DE COURBE -->
+<h3>Lecture de courbe</h3>
 
 	<h4>Méthode : comment trouver l'image</h4>
 	
-	
-	
-	
-	
 	<div class="exemple">
 		<p><em>Exemple : </em> Trouver l'image de 2 par la fonction \(f\) représentée ci-dessous.</p>
-			<img src="../../images/maths/courbeImageFonction.png" alt="recherche image">
+			<img src="{% static 'home/images/maths/courbeImageFonction.png' %}" alt="recherche image">
 			<p>On se place au niveau de la valeur 2 en abscisses. On cherche le point correspondant sur la courbe, puis la valeur correspondante sur l'axe des ordonnées. </p>
-			<img src="../../images/maths/courbeImageFonctionCorrection.png" alt="recherche image">
+			<img src="{% static 'home/images/maths/courbeImageFonctionCorrection.png' %}" alt="recherche image">
 			<p>L'image de 2 par la fonction \(f\) est donc 1.</p>
 		</div>
 	
@@ -281,7 +278,7 @@ plt.show()</code></pre>
 	<div class="exerciceType">
 		<p><strong>Exercice type :<br/>
 		Trouver l'image de 2 par la fonction représentée ci-dessous</strong></p>
-		<img src="../../images/maths/exerciceImageAntecedent.png" alt="exercice images antécédents">
+		<img src="{% static 'home/images/maths/exerciceImageAntecedent.png' %}" alt="exercice images antécédents">
 		<p>On lit sur le graphe que l'image de 2 est 2.</p>
 		</div>
 	
@@ -293,12 +290,11 @@ plt.show()</code></pre>
 	
 	<h4>Méthode : comment trouver les antécédents</h4>
 	
-	
 	<div class="exemple">
 		<p><em>Exemple : </em> Trouver les antécédents de 1 par la fonction \(f\) représentée ci-dessous.</p>
-			<img src="../../images/maths/courbeImageFonction.png" alt="recherche image">
+			<img src="{% static 'home/images/maths/courbeImageFonction.png' %}" alt="recherche image">
 			<p>On se place au niveau de la valeur 1 en ordonnées. On cherche le point correspondant sur la courbe, puis la valeur correspondante sur l'axe des abscisses. </p>
-			<img src="../../images/maths/courbeAntecedentFonctionCorrection.png" alt="recherche image">
+			<img src="{% static 'home/images/maths/courbeAntecedentFonctionCorrection.png' %}" alt="recherche image">
 			<p>Les antécédents de 1 par la fonction \(f\) sont donc -1 et 2.</p>
 		</div>
 	
@@ -309,7 +305,7 @@ plt.show()</code></pre>
 	<div class="exerciceType">
 		<p><strong>Exercice type :<br/>
 		Trouver le ou les antécédents de -3 par la fonction représentée ci-dessous</strong></p>
-		<img src="../../images/maths/exerciceImageAntecedent.png" alt="exercice images antécédents">
+		<img src="{% static 'home/images/maths/exerciceImageAntecedent.png' %}" alt="exercice images antécédents">
 		<p>On lit sur le graphe que l'antécédent de -3 est -5.</p>
 		</div>
 	

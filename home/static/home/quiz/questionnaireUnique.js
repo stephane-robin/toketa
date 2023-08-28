@@ -1,4 +1,7 @@
-function questionnaireUnique(nmr){
+
+
+
+function questionnaireUnique_initial(nmr){
     const questionElement = document.getElementById('question-' + nmr);
     const optionsForm = document.getElementById('options_form-' + nmr);
     const commentaireElement = document.getElementById('commentaire-' + nmr);
@@ -6,7 +9,7 @@ function questionnaireUnique(nmr){
 
     function displayQuestion() {
         
-        questionElement.textContent = questionsData.question;
+        questionElement.innerHTML = questionsData.question; /* textContent a ete remplace par innerHTML */
         optionsForm.innerHTML = '';
         commentaireElement.innerHTML = '';
 
@@ -23,7 +26,6 @@ function questionnaireUnique(nmr){
             optionsForm.appendChild(input);
             optionsForm.appendChild(label);
             optionsForm.appendChild(lineBreak);
-
         });
         submitButton.disabled = false;
     }

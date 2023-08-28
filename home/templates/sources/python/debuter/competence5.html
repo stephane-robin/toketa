@@ -76,30 +76,17 @@ def f(x):
     </div>
 </div>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-1"></p>
-        <form id="options_form-1">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-1"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
+        question: "Pour définir une fonction, il faut utiliser le mot-clé ...",
+        options:["function", "f", "def"],
         correctIndex: 2,
         commentaire: ""
     };
@@ -251,31 +238,18 @@ print(renforcer_motpasse(pseudo, date))</code></pre>
 
 </div>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-2"></p>
-        <form id="options_form-2">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-2"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
+        question: "Pour appeler la fonction construire, qui prend en paramètre la superficie, il faut écrire ...",
+        options:["(construire, superficie)", "construire(superficie)", "construire.superficie"],
+        correctIndex: 1,
         commentaire: ""
     };
 questionnaireUnique(2);
@@ -315,31 +289,18 @@ print(f(3))  # affiche 7</code></pre>
 # on peut afficher la valeur de f(3) directement
 f(3)  # affiche 7</code></pre>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-3"></p>
-        <form id="options_form-3">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-3"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
+        question: "Le mot-clé return permet de ...",
+        options:["renvoyer une valeur en terminant l'exécution d'une fonction", "renvoyer une valeur en continuant l'exécution d'une fonction", "retourner au début de la fonction"],
+        correctIndex: 0,
         commentaire: ""
     };
 questionnaireUnique(3);

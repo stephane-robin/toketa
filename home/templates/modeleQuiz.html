@@ -19,8 +19,10 @@
     <div class="quiz-container">
         
         <div class="question-container">
+            
             <p id="nmr_question" class="p3_index" style="color:var(--couleur_titre);"></p>
-            <p id="question"></p>
+           
+            {% autoescape off %}<div id="question"></div> {% endautoescape %}
             <form id="options-form">
                 <ul>
                     <li id="options"></li>

@@ -188,12 +188,19 @@ print(mercedes.reservoir)</code></pre>
 	ziplock pouvant prendre la valeur True ou False.</p>
 </div>
 
+
+<!-- ENTRAINEMENT -->
+<h3>Entrainement</h3>
+
 <div class="exerciceApplication">
-	<p><strong>ENTRAINEMENT : </strong></p>
 	<p><strong>Exercice 1 : </strong>Créer une classe Adresse dont les objets sont représentés par des attributs privés de type chaine de caractères rue,
 	ville et code_postal. Créer une classe Personne dont les objets sont représentés par des attributs publics de type chaine de caractères nom, prenom, un attribut privé de type entier age.<br/>
 	1. proposer des setters et getters permettant d'accéder et de modifier les différents attributs <br/>
 	2. représenter ces deux classes dans un tableau permettant de visualiser les attributs et méthodes.</p>
+</div>
+
+<p class="separateur"></p>
+<div class="exerciceApplication">
 	<p><strong>Exercice 2 : </strong>quel est l'affichage en réponse au code suivant ?</p>
 	<pre><code class="language-python">class Dragon:
 	def __init__(self, id):
@@ -201,6 +208,10 @@ print(mercedes.reservoir)</code></pre>
 
 td = Dragon("thunderdrum")
 print(td.id)</code></pre>
+</div>
+
+<p class="separateur"></p>
+<div class="exerciceApplication">
 	<p><strong>Exercice 3 : </strong>quel est l'affichage en réponse au code suivant ?</p>
 	<pre><code class="language-python">class Dragon:
 	def __init__(self, id="snogglelog"):
@@ -208,6 +219,10 @@ print(td.id)</code></pre>
 	
 	td = Dragon("thunderdrum")
 	print(td.id)</code></pre>
+</div>
+
+<p class="separateur"></p>
+<div class="exerciceApplication">
 	<p><strong>Exercice 4 : </strong>faut-il rajouter un paramètre après le self de la méthode montrer dans le code suivant ?</p>
 	<pre><code class="language-python">class Jeu:
 	def __init__(self, score):
@@ -218,6 +233,10 @@ print(td.id)</code></pre>
 
 	pendu = Jeu(0)
 	pendu.montrer()</code></pre>
+</div>
+
+<p class="separateur"></p>
+<div class="exerciceApplication">
 	<p><strong>Exercice 5 : </strong>quel est l'affichage en réponse au code suivant ?</p>
 	<pre><code class="language-python">class Jeu:
 		def __init__(self, score):
@@ -228,6 +247,10 @@ print(td.id)</code></pre>
 	
 		pendu = Jeu()
 		pendu.montrer()</code></pre>
+</div>
+
+<p class="separateur"></p>
+<div class="exerciceApplication">
 	<p><strong>Exercice 6 : </strong>créer une classe Boite, dont les objets disposent des attributs nom et etat. etat doit prendre la valeur False lors 
 	de l'instanciation des objets. Créer les méthodes ouvrir() et fermer() qui modifient la valeur de etat. Créer une méthode permettant d'afficher si une boîte est 
 ouverte ou fermée. Créer un script principal dans lequel, vous allez instancier un boite b, lui attribuer le nom box, l'ouvrir, la fermer puis afficher son état.</p>

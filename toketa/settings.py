@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-pw7yn8hvsixg$r-_n%)_u$p-9nr6su!@62kxi4q%u-xd^8ge3g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mytoketa.eu.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition

@@ -41,7 +41,7 @@
 	<li>des bus qui permettent la communication en le processeur et la mémoire</li>
 </ul>
 
-<img src="../../images/nsi/vonneumann.png" alt="architecture Von Neumann" width="50%">
+<img src="{% static 'home/images/nsi/vonneumann.png' %}" alt="architecture Von Neumann" width="50%">
 
 
 <h4>Processeur</h4>
@@ -87,11 +87,14 @@ les données venant d'être utilisées.</li>
 </ul>
 
 
-
 <!-- FICHE MEMO -->
 
 <h3>Fiche mémo</h3>
 
-<iframe src='../../documents/memo_architecture_materielle.pdf' width='850px' height='1120px' type='application/pdf'></iframe>
+<div class="row">
+    <div class="col-12">
+		<iframe src="{% static 'home/documents/memo_architecture_materielle.pdf' %}" width='1200px' height='1100px' type='application/pdf'></iframe>
+	</div>
+</div>
 
 {% endblock cours %}

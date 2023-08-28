@@ -93,7 +93,7 @@
 <div class="exerciceType">
     <p><strong>Explications sur un exemple avec un graphe: </strong></p>
     <p>Utilisez l’algorithme de Dijkstra pour trouver le chemin le plus rapide entre les points A et E du réseau ci-dessous :</p>
-    <img src="../../images/snt/dijkstra1.png" alt="algorithme Dijkstra">
+    <img src="{% static 'home/images/nsi/dijkstra1.png' %}" alt="algorithme Dijkstra">
     <p>On place dans un tableau tous les noeuds du graphe.</p>
     <table>
         <tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
@@ -116,16 +116,16 @@
     <p><strong>Explications sur un exemple avec un quadrillage : </strong></p>
     <p>On cherche à le plus court chemin pour se rendre du point de départ au point d'arrivée en respectant 
         le labyrinthe ci-dessous. Le quadrillage peut représenter des secteurs d'écran dans un jeu par exemple.</p>
-        <img src="../../images/nsi/djikstra_grille1.png" alt="algorithme Dijkstra">
+        <img src="{% static 'home/images/nsi/djikstra_grille1.png' %}" alt="algorithme Dijkstra">
     <p>Une correction peut être donnée ci-dessous où le premier nombre désigne la distance parcourue et 
             la deuxième partie la référence de la cellule de provenance.</p>
-    <img src="../../images/nsi/djikstra_grille2.png" alt="algorithme Dijkstra">
+    <img src="{% static 'home/images/nsi/djikstra_grille2.png' %}" alt="algorithme Dijkstra">
 </div>
 
 <div class="exerciceApplication">
     <p><strong>A vous de jouer : </strong></p>
         <p>1) Trouvez le plus court chemin entre A et H en utilisant l'algorithme de Dijkstra étape par étape. Placer les résultats dans un tableau.</p>
-        <img src="../../images/snt/dijkstra.png" alt="algorithme Dijkstra" width=30%>
+        <img src="{% static 'home/images/nsi/dijkstra.png' %}" alt="algorithme Dijkstra" width=30%>
         <div>
             <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
         </div>
@@ -134,7 +134,7 @@
         <p>La correction de cet exercice se trouve dans la vidéo suivante publiée par <em>Glassus</em> sur YouTube : <a href="https://www.youtube.com/watch?v=rI-Rc7eF4iw&feature=emb_logo" target="_blank">&#127911; VIDEO | glassus YouTube</a></p>
     </div>
         <p>2) Utilisez l’algorithme de Dijkstra pour trouver le chemin le plus rapide entre les points A et G du réseau ci-dessous :</p>
-    <img src="../../images/snt/dijkstra2.png" alt="algorithme Dijkstra">
+    <img src="{% static 'home/images/nsi/dijkstra2.png' %}" alt="algorithme Dijkstra">
 </div>
 
 <p>On a utilisé l'algorithme de Djikstra avec des graphes, mais peut également l'utiliser avec des quadrillages, 

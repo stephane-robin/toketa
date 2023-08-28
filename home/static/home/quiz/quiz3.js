@@ -2,13 +2,13 @@ const titreQcm = "Les conditions";
 
 var questionsData = [
 	{
-		question: 'Une condition sert à ...',
+		question: '<p style="color:red;">Une condition sert à ...</p>',
 		options:['uniquement changer le type d\'une variable', 'faire ressortir les erreurs d\'un code', 'demander au programme de prendre une décision'],
 		correctIndex: 2,
 		commentaire: 'Les décisions prises par le programme ont été imaginées à l\'avance par le développeur.'
 	},
 	{
-		question: 'Quel est l\'affichage lors de l\'exécution du code suivant :	nom = "Laurine"	if nom == "Alice":	print("bonjour")	else:	print("au revoir") ...',
+		question: '<p>Quel est l\'affichage lors de l\'exécution du code suivant :	</p><pre><code class="language-python">nom = "Laurine"</code></pre><p>	if nom == "Alice":	print("bonjour")	else:	print("au revoir") ...</p>',
 		options:['bonjour', 'au revoir', 'SyntaxError'],
 		correctIndex: 1,
 		commentaire: ''

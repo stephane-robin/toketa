@@ -54,44 +54,32 @@ print("Fin du jeu")</code></pre>
 2 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
     on affiche "Continuez de jouer"
     nbreVies prend la valeur 1
-}
+    }
 1 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
     on affiche "Continuez de jouer"
     nbreVies prend la valeur 0
-}
+    }
 0 n'est pas strictement positif, donc on n'exécute plus ce qui se trouve dans la boucle while 
 on continue l'exécution du reste du programme, donc on affiche "Fin du jeu"</code></pre>
 
 <p>Si vous avez déjà programmé en Scratch, le script ci-dessus correspond au code Scratch suivant :</p>
 
-<img src="{% static 'home/images/python/codeScratchWhile.png' %}" width="250px">
+<img src="{% static 'home/images/python/codeScratchWhile.png' %}" width="300px">
+
 
 <!-- QESTIONNAIRE -->
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-1"></p>
-        <form id="options_form-1">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-1"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
+        question: "La boucle while permet de répéter un bloc d'instructions ...",
+        options:["tant qu'une condition n'est pas vérifiée", "tant qu'une variable est positive", "tant qu'une condition est vérifiée"],
         correctIndex: 2,
-        commentaire: ""
+        commentaire: "Une condition doit être vérifiée pour entrer dans la boucle."
     };
 questionnaireUnique(1);
 </script>
@@ -119,7 +107,6 @@ afficher "Fin du jeu"</code></pre>
 <img src="{% static 'home/images/python/diagramme2.png' %}" alt="diagramme" width="40%">
 
 
-
 <!-- STRUCTURE D'UNE BOUCLE WHILE -->
 <p class="my-5 invisible" id="structure">ancre</p>
 
@@ -136,31 +123,18 @@ afficher "Fin du jeu"</code></pre>
     
 <p>On renarque que c'est la variable <strong>nbreVies</strong> qui varie pour modifier la condition à tester.</p>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-2"></p>
-        <form id="options_form-2">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-2"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
+        question: "Il est nécessaire de faire varier une variable dans une boucle while ...",
+        options:["pour que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour éviter que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour afficher une valeur à la fin de la boucle"],
+        correctIndex: 0,
         commentaire: ""
     };
 questionnaireUnique(2);
@@ -332,31 +306,17 @@ while age.isnumeric() == False:
 </div>
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-3"></p>
-        <form id="options_form-3">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-3"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
-        commentaire: ""
+        question: "On donne la valeur 0 à une variable compteur. Pour répéter 5 fois un bloc d'instructions, il faut utiliser ...",
+        options:["while compteur < 5:", "while compteur = 5:", "while compteur < 6:"],
+        correctIndex: 0,
+        commentaire: "On démarre de 0 pour aller jusqu'à 4 inclus, ce qui constitue 5 répétitions."
     };
 questionnaireUnique(3);
 </script>
@@ -450,31 +410,18 @@ print(new_mot)</code></pre>
 
 </div>
 
-<!-- QESTIONNAIRE -->
 
+<!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-4"></p>
-        <form id="options_form-4">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-4"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-4">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
 var questionsData = 
     {
-        question: " ...",
-        options:["", "", ""],
-        correctIndex: 2,
+        question: "Pour connaître la longueur d'une chaîne de caractères appelée phrase, on utilise ...",
+        options:["len(phrase)", "phrase.len", "phrase.len()"],
+        correctIndex: 0,
         commentaire: ""
     };
 questionnaireUnique(4);

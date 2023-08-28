@@ -57,26 +57,13 @@ print(age)</code></pre>
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-1"></p>
-        <form id="options_form-1">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-1"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
 var questionsData = 
     {
         question: "Pour récupérer le pseudo d'un utilisateur, il faut exécuter ...",
-        options:["pseudo = input('quel est ton pseudo ?')", "input('quel est ton pseudo ?')", "pseudo = print('quel est ton pseudo ?')"],
+        options:['pseudo = input("quel est ton pseudo ?")', 'input("quel est ton pseudo ?")', 'pseudo = print("quel est ton pseudo ?")'],
         correctIndex: 0,
         commentaire: "Il faut stocker la valeur saisie par une instruction input dans une variable."
     };
@@ -176,25 +163,12 @@ print("-3".isnumeric()) # affiche False, -3 est un nombre entier négatif</code>
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-2"></p>
-        <form id="options_form-2">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-2"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
 var questionsData = 
     {
-        question: "Dans le code suivant : poids = input('combien pèse le vélo ?'), quel est le type de la variable poids ...",
+        question: '<p>Dans le code suivant : </p><pre><code class="language-python">poids = input("combien pèse le vélo ?")</code></pre><p>quel est le type de la variable poids ...</p>',
         options:["int car le poids est un nombre entier", "float car il s'agit en fait d'un nombre à virgule", "str car il est stocké ainsi"],
         correctIndex: 2,
         commentaire: "Toute saisie clavier est stockée par défaut en tant que str."
@@ -265,20 +239,7 @@ print(a + b) # concaténation de caractères, affiche "1215"</code></pre>
 
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-3"></p>
-        <form id="options_form-3">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-3"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
 var questionsData = 
