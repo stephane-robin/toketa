@@ -24,7 +24,7 @@
 
 
 <!-- DECOUVRIR LES CONDITIONS -->
-<p class="my-5 invisible" id="decouvrir">ancre</p>
+<p class="invisible" id="decouvrir">ancre</p>
 
 <h3>Découvrir les conditions</h3>
 
@@ -45,10 +45,13 @@ else:
     print("Désolé, accès refusé.")</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>exécutez le code ci-dessus pour voir ce qui s'affiche,
-        puis modifiez la variable <strong>nom</strong> en lui donnant la valeur "Camille".
-        Exécutez à nouveau votre code pour constater la différence d'affichage.</p>
+    <p><strong>A toi de jouer : </strong>exécute le code ci-dessus pour voir ce qui s'affiche,
+        puis modifie la variable <strong>nom</strong> en lui donnant la valeur "Camille".
+        Exécute à nouveau votre code pour constater la différence d'affichage.</p>
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <p>Vous avez peut-être découvert la programmation avec Scratch. Dans ce cas, le code Python ci-dessus correspond en Scratch au script suivant :</p>
 
@@ -62,7 +65,7 @@ le bloc concerné par l'instruction <strong>if</strong>, et quand se termine le 
  l'instruction <strong>else</strong>.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> donner une valeur entière à la variable mois, comprise entre 1 et 12.
+    <p><strong>A toi de jouer : </strong> donne une valeur entière à la variable mois, comprise entre 1 et 12.
     Le programme devra afficher "1er semestre" si mois est compris entre 1 et 6. Il devra afficher "2ème semestre"
     sinon.</p>
     <pre><code class="language-python">mois = 4
@@ -87,6 +90,9 @@ else:
 </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 
 <!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
@@ -98,16 +104,16 @@ var questionsData =
     {
         question: '<p>L\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":\n \
     print("hello")</code></pre><p>va afficher <em>hello</em> ...</p>',
-        options:["si prenom est différent de Antoine", "si prenom vaut Antoine", "si les variables prenom et Antoine sont les mêmes"],
+        options:['si prenom est différent de Antoine', 'si prenom vaut Antoine', 'si les variables prenom et Antoine sont les mêmes'],
         correctIndex: 1,
-        commentaire: "== signifie est égal à"
+        commentaire: '== signifie est égal à'
     };
 questionnaireUnique(1);
 </script>
 
 
 <!-- PSEUDO CODE ET DIAGRAMMES -->
-<p class="my-5 invisible" id="pseudo">ancre</p>
+<p class="invisible" id="pseudo">ancre</p>
 
 <h3>Les pseudo-codes et diagrammes pour représenter les conditions</h3>
 
@@ -126,9 +132,9 @@ sinon afficher "Désolé, accès refusé"</code></pre>
 
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> posez la question suivante à un utilisateur "Comment 
-    s'appelle l'auteur de l'Odyssée ?" S'il répond Homère, rajoutez deux points à sa note qui valait 10
-auparavant, sinon enlevez-lui un point.</p>
+    <p><strong>A toi de jouer : </strong> pose la question suivante à un utilisateur "Comment 
+    s'appelle l'auteur de l'Odyssée ?" S'il répond Homère, rajoute deux points à sa note qui valait 10
+auparavant, sinon enleve-lui un point.</p>
     <pre><code class="language-python">note = 10
 
 reponse = input(???)
@@ -149,6 +155,9 @@ else:
 </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <p>Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
     à respecter pour valider chaque question ...</p>
 
@@ -162,7 +171,7 @@ else:
 var questionsData = 
     {
         question: "Un pseudo-code sert à ...",
-        options:["traduire le code dans un langage humain afin de comprendre son fonctionnement", "traduire le code dans un autre langage de programmation", "créer un commentaire dans le code"],
+        options:['traduire le code dans un langage humain afin de comprendre son fonctionnement', 'traduire le code dans un autre langage de programmation', 'créer un commentaire dans le code'],
         correctIndex: 0,
         commentaire: " "
     };
@@ -171,7 +180,7 @@ questionnaireUnique(2);
 
 
 <!-- LES BOOLEENS -->
-<p class="my-5 invisible" id="booleen">ancre</p>
+<p class="invisible" id="booleen">ancre</p>
 
 <h3>Les booléens</h3>
 
@@ -200,7 +209,7 @@ sinon{
     }</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, il suffit d'exécuter le code suivant</p>
+    <p><strong>A toi de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, il suffit d'exécuter le code suivant</p>
     <pre><code class="language-python">nom = "Albert"
 print(nom == "Albert")  # affiche True
 print(nom == "Bob")  # affiche False
@@ -208,6 +217,9 @@ print(12 &lt 5)  # affiche False
 print(7 &lt 10)  # affiche True</code></pre>
 
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 
 <h4>Les opérateurs utilisés</h4>
@@ -228,14 +240,17 @@ print(7 &lt 10)  # affiche True</code></pre>
 </table>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> Voyons ensemble comment peut évaluer une comparaison. Essayez le code suivant :</p>
+    <p><strong>A toi de jouer : </strong> Voyons ensemble comment peut évaluer une comparaison. Essaye le code suivant :</p>
     <pre><code class="language-python">nom = "Alice"
 print(nom == "Alice")
 print(nom != "Bob")</code></pre>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> complétez le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
+    <p><strong>A toi de jouer : </strong> compléte le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
         grand de ces nombres automatiquement :</p>
     <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
 y = float(input("Entrer un deuxième nombre : "))
@@ -273,6 +288,8 @@ print("le maximum est" + maximum)</code></pre>
 
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <h4>Les opérateurs and / or</h4>
 
@@ -295,7 +312,6 @@ print("le maximum est" + maximum)</code></pre>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
@@ -304,7 +320,7 @@ print("le maximum est" + maximum)</code></pre>
 var questionsData = 
     {
         question: '<p>Dans l\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":</code></pre>',
-        options:["prenom est un booleen", "if est un booleen", 'prenom == "Antoine" est un booleen'],
+        options:['prenom est un booleen', 'if est un booleen', 'prenom == "Antoine" est un booleen'],
         correctIndex: 2,
         commentaire: 'Si prenom == "Antoine" est vérifié (vaut True) alors le bloc suivant est exécuté'
     };
@@ -328,7 +344,7 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
 <p><em>Bonjour Alice. Comment allez-vous aujourd'hui ?</em> ne s'affichera que si le <strong>nom</strong> vaut <strong>Alice</strong>. Les deux phrases font partie du même bloc d'instructions. En revanche, <em>Aujourd'hui c'est journée portes ouvertes.</em> s'affichera tout le temps, même si <strong>nom</strong> ne vaut pas <strong>Alice</strong>, car cette instruction est indépendante de la condition <strong>if nom == "Alice":</strong>.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>exécutez le code ci-dessus pour voir ce qui s'affiche, puis 
+    <p><strong>A toi de jouer : </strong>exécute le code ci-dessus pour voir ce qui s'affiche, puis 
         pour bien comprendre le rôle de l'indentation :</p>
         <ul>
             <li>changez le nom 'Alice' en 'Bob' et exécutez de nouveau le code</li>
@@ -336,6 +352,9 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
                 la différence d'affichage.</li>
         </ul>
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <div class=fieldsetDefinition>
     <h4>A RETENIR ...</h4>
@@ -346,7 +365,6 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='4' %}
@@ -354,9 +372,9 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
 <script>
 var questionsData = 
     {
-        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10: \n \
-    print("Bravo")</code></pre>',
-        options:["il s'affiche Bravo", "les blocs sont correctement indentés", "la 2ème ligne est mal indentée"],
+        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
+print("Bravo")</code></pre>',
+        options:['il s\'affiche Bravo', 'les blocs sont correctement indentés', 'la 2ème ligne est mal indentée'],
         correctIndex: 2,
         commentaire: "Le bloc suivant une condition doit être indenté."
     };
@@ -365,7 +383,7 @@ questionnaireUnique(4);
 
 
 <!-- IMBRIQUER LES CONDITIONS -->
-<p class="my-5 invisible" id="imbriquer">ancre</p>
+<p class="invisible" id="imbriquer">ancre</p>
 
 <h3>Imbriquer les conditions</h3>
 
@@ -393,7 +411,7 @@ elif temperature > 10:
 
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>écrire les instructions suivantes</p>
+    <p><strong>A toi de jouer : </strong>écris les instructions suivantes</p>
     <ul><li>définir deux variables <strong>a</strong> et <strong>b</strong> en leur donnant les valeurs 3 et 5 respectivement,</li>
         <li>afficher <em>a est plus petit que b</em> si <strong>a</strong> est plus petit que <strong>b</strong>,</li>
         <li>afficher <em>a est plus grand que b</em> si <strong>a</strong> est plus grand que <strong>b</strong>,</li>
@@ -420,13 +438,16 @@ else:
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <p>Les conditions imbriquées sont très fréquentes dans les programmes car elles représentent les situations complexes
 de la vie de tous les jours ou les structures complexes des applications. A noter qu'en Python il existe 
 l'instruction <strong>match</strong> qui est l'équivalent de l'instruction <strong>switch</strong> des autres langages 
 de programmation.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> une séance de cinéma est interdite aux moins de 16 ans.
+    <p><strong>A toi de jouer : </strong> une séance de cinéma est interdite aux moins de 16 ans.
         Le prix du billet dépend de l'âge de l'utilisateur. Les seniors (plus de 65 ans) et les mineurs (moins de 18 ans) paient un tarif réduit, les autres un tarif plein.
         Ecrire un script qui affiche le type de tarif si l'utilisateur a le droit d'assister à une séance, et "accès refusé" dans le cas contraire.</p>
 
@@ -452,6 +473,7 @@ else:
 </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
 <!-- BIEN COMPRENDRE LA STRUCTURE D'UNE CONDITION -->
@@ -486,7 +508,7 @@ Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout". Du coup on 
 9 | print("voilà c'est tout")</code></pre>
 
 <div class="exerciceApplication">
-<p><strong>A vous de jouer : </strong>en revanche le programme suivant exécute tous les blocs. Essayez par vous-mêmes :</p>
+<p><strong>A toi de jouer : </strong>en revanche le programme suivant exécute tous les blocs. Essaie par toi-même :</p>
 
 <pre><code class="language-python">1 | cheveux = "bruns"
 2 | yeux = "bleus"
@@ -503,8 +525,11 @@ Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout". Du coup on 
 exécute la ligne 8. Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout".</p>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>compléter le programme suivant qui demande à un élève
+    <p><strong>A toi de jouer : </strong>complète le programme suivant qui demande à un élève
     sa moyenne au 1er trimestre, au 2ème trimestre puis au 3ème trimestre et affiche la mention
     obtenue par l'élève en fin d'année (examen à repasser en-dessous de 10, mention passable entre 10 et 12,
     mention assez bien entre 12 et 14, mention bien entre 14 et 16, mention très bien entre 16 et 20.</p>
@@ -536,12 +561,14 @@ else:
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <p>On va maintenant essayer de comprendre les décisions prises par un programme en suivant les
     valeurs prises par plusieurs variables.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>considérons le code suivant</p>
+    <p><strong>A toi de jouer : </strong>considérons le code suivant</p>
 <pre><code class="language-python">1 | x = 3
 2 | y = 2
 3 | t = x - y
@@ -554,7 +581,7 @@ else:
 10|    z = 2 * x
 11| else: # sinon
 12|    y = 3 * z - t</code></pre>
-<p>quelles sont les valeurs des variables x, y, z et t à la ligne 4, à la ligne 8 et à la fin du code ?</p>
+<p>quelles sont les valeurs des variables x, y, z et t à la ligne 4, à la ligne 8 et à la fin du code ? (travail sans ordinateur)</p>
     <div>
         <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
     </div>
@@ -672,7 +699,6 @@ IndexError: string index out of range</code></pre>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='5' %}
@@ -681,7 +707,7 @@ IndexError: string index out of range</code></pre>
 var questionsData = 
     {
         question: "Si la console affiche le message suivant : line 6 NameError: name 'score' is not defined ...",
-        options:["il faut chercher si la variable score a été définie après la ligne 6", "il faut chercher si la variable score exite dans le programme", "il faut chercher si la variable score a été définie avant la ligne 6"],
+        options:['il faut chercher si la variable score a été définie après la ligne 6', 'il faut chercher si la variable score exite dans le programme', 'il faut chercher si la variable score a été définie avant la ligne 6'],
         correctIndex: 2,
         commentaire: ""
     };

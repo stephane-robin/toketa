@@ -59,9 +59,9 @@ titres = {
             'Représenter les réseaux sociaux avec des graphes',
             ],
         'architecture': [
-            'Architecture Von Neumann',
+            'Architecture de Von Neumann',
             'Système Linux',
-            'TP - Le Terminal',
+            'TP - Utiliser le Terminal sur Linux',
             'Concurrence de processus',
             'Adresse IP',
             'Le routage IP',
@@ -73,7 +73,7 @@ titres = {
             'Photographie numérique',
             'TP - Photographie numérique',
             'TP - Traitement d\'image avec Gimp',
-            'Triangulation',
+            'Les coordonnées géodésiques',
             'TP - Triangulation',
             'TP - Géolocalisation'
             ],

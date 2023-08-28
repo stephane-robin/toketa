@@ -27,7 +27,7 @@ var questionsData = [
 		commentaire: 'L\'opérateur % appelé modulo est souvent utilisé. Il calcule le reste de division.'
 	},
 	{
-		question: 'Le code suivant x = 2\ny = 3\nx = y\ny = x sert à inverser les valeurs des variables x et y ...',
+		question: '<p>Le code suivant</p><pre><code>x = 2<br/>y = 3<br/>x = y<br/>y = x</code></pre><p>sert à inverser les valeurs des variables x et y ...</p>',
 		options:['vrai', 'faux', 'il permet en fait de rajouter x à y'],
 		correctIndex: 1,
 		commentaire: 'Il est nécessaire d\'introduire une variable temporaire pour ne pas perdre la valeur de <strong>x</strong>.'

@@ -3,13 +3,11 @@
 
 {% block principal %}
 
-<script src="{% static pageQuiz %}"></script>
 
 
 <section class="px-5 py-5 bg-white">
     <div class="container">
         <h2 id="titreQuiz"></h2>
-
     </div>
 </section>
 
@@ -22,7 +20,7 @@
             
             <p id="nmr_question" class="p3_index" style="color:var(--couleur_titre);"></p>
            
-            {% autoescape off %}<div id="question"></div> {% endautoescape %}
+            <div id="question"></div>
             <form id="options-form">
                 <ul>
                     <li id="options"></li>
@@ -34,6 +32,8 @@
         <button class="bouton my-5" id="next-btn" disabled>Question suivante</button>
         
     </div>
+    <script src="{% static pageQuiz %}"></script>
+
     <script src="{% static 'home/quiz/quiz.js' %}"></script>
 
 </div>

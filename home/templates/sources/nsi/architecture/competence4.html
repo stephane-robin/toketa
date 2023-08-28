@@ -3,19 +3,24 @@
 
 {% block contenu %} 
 <ul>
-    <li><a href="">le datagramme IP</a></li>
-    <li><a href="">l'adresse IP</a></li>
-    <li><a href="">la composition d'une adresse IPv4</a></li>
+    <li><a href="#datagramme">comprendre ce qu'est un datagramme IP</a></li>
+    <li><a href="#adresse">comprendre l'adresse IP</a></li>
+    <li><a href="#composition">connaître la composition d'une adresse IPv4</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- DIAGRAMME IP -->
+<p class="invisible" id="datagramme">ancre</p>
 
 <h3>Datagramme IP</h3>
 
 <p>Le protocole IP découpe les données en paquets de même taille appelés datagrammes IP avant de trouver l'itinéraire à suivre pour chacun de ces datagrammes.</p>
+
+
+<!-- ADRESSE IP -->
+<p class="invisible" id="adresse">ancre</p>
 
 <h3>Adresse IP</h3>
 
@@ -34,6 +39,10 @@
 <p><strong>A vous de jouer : </strong>chacun des nombres 172.16.254.1 reste compris entre 0 et 255. Pourquoi ? indication : les différentes combinaisons possibles pour 2 bits sont 00, 01, 10, 11 et pour 4 bits 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111. Qu'en est-il pour 8 bits ?</p>
 </div>
 
+
+<!-- COMPOSITION D'UNE ADRESSE IPv4 -->
+<p class="invisible" id="composition">ancre</p>
+
 <h3>Composition d'une adresse IPv4</h3>
 
 <p>Une adresse IPv4 est en fait composée d'une partie identifiant le réseau local utilisé et d'une partie identifiant l'ordinateur utilisé. La partie réseau prend plus ou moins de place dans l'adresse IP et permet de définir une catégorie d'adresse, allant de la classe A à la classe E.</p>
@@ -43,7 +52,7 @@
 
 <p>Les adresses IP de la classe A sont donc adaptés à de grands réseaux, moins répandus sur le marché.</p>
 
-<img src="../../images/nsi/classeA.png" alt="adresse ipv4" width=55%>
+<img src="{% static 'home/images/nsi/classeA.png' %}" alt="adresse ipv4" width=55%>
 
 <p>Puisque une adresse IP de classe A commence par 0, la plage d'adresses possibles pour les réseaux s'étend de 00000000 à 01111111. Ainsi, les adresses IP de classe A commencent par un nombre compris entre 0 et 127.</p>
 
@@ -51,7 +60,7 @@
 
 <p>La classe B commence par 10 et les 14 bits suivants fournissent \(2^{14}\) adresses possibles de réseaux.</p>
 
-<img src="../../images/nsi/classeB.png" alt="adresse ipv4" width=55%>
+<img src="{% static 'home/images/nsi/classeB.png' %}" alt="adresse ipv4" width=55%>
 
 <p>Puisque une adresse IP de classe B commence par 10, la plage d'adresses possibles pour les réseaux s'étend de 10000000 à 10111111. Ainsi, les adresses IP de classe A commencent par un nombre compris entre 128 et 191.</p>
 
@@ -59,13 +68,11 @@
 
 <p>La classe C commence par 110 et les 21 bits suivants fournissent \(2^{21}\) adresses possibles de réseaux.</p>
 
-<img src="../../images/nsi/classeC.png" alt="adresse ipv4" width=55%>
+<img src="{% static 'home/images/nsi/classeC.png' %}" alt="adresse ipv4" width=55%>
 
 <p>Puisque une adresse IP de classe C commence par 110, la plage d'adresses possibles pour les réseaux s'étend de 11000000 à 11011111. Ainsi, les adresses IP de classe A commencent par un nombre compris entre 192 et 223.</p>
 
 <p>Un exemple d'adresse IP de classe C est 11000000.10101000.00000011.00001100 qui correspond à 192.168.3.12.</p>
-
-
 
 <p>Les classe D et E sont réservées. Elles commencent respectivement par 1110 et 1111.</p>
 

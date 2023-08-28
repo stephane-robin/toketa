@@ -17,7 +17,7 @@
 {% block cours %}
 
 <!-- STRUCTURE DU CODE -->
-<p class="my-5 invisible" id="structure">ancre</p>
+<p class="invisible" id="structure">ancre</p>
 
 <h3>La structure des blocs de code Python</h3>
 
@@ -82,7 +82,7 @@ sur plusieurs lignes
 
 
 <!-- DECOUVRIR LES VARIABLES  -->
-<p class="my-5 invisible" id="decouvrir">ancre</p>
+<p class="invisible" id="decouvrir">ancre</p>
 
     <h3>Découvrir les variables</h3>
 
@@ -140,7 +140,7 @@ x = 44</code></pre>
     <em>print, input, if, while, for, range, list, str, float, int, def, match, else, elif</em></p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>parmi les noms suivants, choisir ceux qu'on peut utiliser comme noms de variables 
+    <p><strong>A toi de jouer : </strong>parmi les noms suivants, choisir ceux qu'on peut utiliser comme noms de variables 
         (attention, on ne peut pas non plus utiliser de mot-clé Python comme nom de variable):</p>
         <ul>
             <li>nA2rt5</li>
@@ -164,21 +164,24 @@ x = 44</code></pre>
 
 <pre><code class="language-python">print("Hello world")</code></pre>
 
-<p>Notez l'importance des <strong>""</strong> dans le script ci-dessus. Essayez le même script sans les <strong>""</strong>. L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les <strong>""</strong> permettent simplement d'afficher du texte et non pas la valeur d'une variable.</p>
+<p>Note l'importance des <strong>""</strong> dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les <strong>""</strong> permettent simplement d'afficher du texte et non pas la valeur d'une variable.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>pour comprendre l'utilité des guillemets "", donnez la valeur "Antoine" à la variable <strong>prenom</strong> :</p>
+    <p><strong>A toi de jouer : </strong>pour comprendre l'utilité des guillemets "", donne la valeur "Antoine" à la variable <strong>prenom</strong> :</p>
     <pre><code class="language-python">prenom = "Antoine"</code></pre>
-    <p>puis exécutez le code suivant :</p>
+    <p>puis exécute le code suivant :</p>
     <pre><code class="language-python">print("prenom")
 print(prenom)</code></pre>
     <p>Votre code devra afficher<br/><strong>prenom<br/>Antoine</strong></p>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <p>Pour afficher les valeurs de plusieurs variables successives, il suffit de les séparer avec le signe "+" dans l'instruction <strong>print</strong></p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>affectez votre prénom à la variable <strong>prenom</strong>, puis votre nom à la variable <strong>nom</strong>, comme ceci :</p>
+    <p><strong>A toi de jouer : </strong>affecte ton prénom à la variable <strong>prenom</strong>, puis ton nom à la variable <strong>nom</strong>, comme ceci :</p>
     <pre><code class="language-python">prenom = "Antoine"
 nom = "Legendre"</code></pre>
         <p>Affichez ensuite à l'écran votre nom suivi de votre prénom en utilisant
@@ -195,27 +198,16 @@ print(nom + prenom)</code></pre>
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <p>Nous verrons plus tard dans le tutoriel comment créer un format d'affichage qui nous convient bien.</p>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-1"></p>
-        <form id="options_form-1">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-1"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-1">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
 var questionsData = 
@@ -231,7 +223,7 @@ questionnaireUnique(1);
 
 <!-- LES TYPES -->
 
-<p class="my-5 invisible" id="type">ancre</p>
+<p class="invisible" id="type">ancre</p>
 
 <h3>Les différents types de variables</h3>
 
@@ -254,10 +246,10 @@ préférable de travailler avec un type de variable plutôt qu'un autre.</p>
 
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>dans un jeu vidéo, le niveau peut varier de <em>beginner</em> à 
-        <em>master</em>. Donnez la valeur "beginner" à une variable que vous appelerez 
+    <p><strong>A toi de jouer : </strong>dans un jeu vidéo, le niveau peut varier de <em>beginner</em> à 
+        <em>master</em>. Donne la valeur "beginner" à une variable que vous appelerez 
         <strong>utilisateur</strong>, puis à la ligne suivante la valeur "master" à cette même variable.
-         Affichez ensuite le type de la variable <strong>utilisateur</strong>.</p>
+         Affiche ensuite le type de la variable <strong>utilisateur</strong>.</p>
 
     <div>
         <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
@@ -271,33 +263,22 @@ print(type(utilisateur))</code></pre>
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>on écrit le code suivant qui permet d'effectuer certains calculs :</p>
+    <p><strong>A toi de jouer : </strong>on écrit le code suivant qui permet d'effectuer certains calculs :</p>
 <pre><code class="language-python">compteur_tours = 7
 compteur_ravitaillement = compteur_tours * 2
 quantite_nourriture = 3500 - 64 * compteur_ravitaillement</code></pre>
-<p>Quelle est la valeur de la variable <strong>quantite_nourriture</strong> ?</p>
+<p>Quelle est la valeur de la variable <strong>quantite_nourriture</strong> lors de l'exécution du code ? (travail sans ordinateur)</p>
 </div>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-2"></p>
-        <form id="options_form-2">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-2"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-2">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
 var questionsData = 
@@ -313,7 +294,7 @@ questionnaireUnique(2);
 
 <!-- CONVENTIONS DE NOTATION -->
 
-<p class="my-5 invisible" id="notation">ancre</p>
+<p class="invisible" id="notation">ancre</p>
 
 <h3>Les conventions de notation</h3>
 
@@ -333,23 +314,9 @@ précédent de PI.</p>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-3"></p>
-        <form id="options_form-3">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-3"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-3">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
 var questionsData = 
@@ -365,7 +332,7 @@ questionnaireUnique(3);
 
 <!-- OPERATIONS -->
 
-<p class="my-5 invisible" id="operateur">ancre</p>
+<p class="invisible" id="operateur">ancre</p>
 
 <h3>Les principaux opérateurs</h3>
 
@@ -410,8 +377,8 @@ questionnaireUnique(3);
         <pre><code class="language-python">x = 7 % 5</code></pre>
 
         <div class="exerciceApplication">
-            <p><strong>A vous de jouer : </strong>donnez les valeurs 3, 8 et 9 aux variables <strong>x</strong>, <strong>y</strong>, <strong>z</strong>, 
-                puis affichez le résultat des opérations
+            <p><strong>A toi de jouer : </strong>donne les valeurs 3, 8 et 9 aux variables <strong>x</strong>, <strong>y</strong>, <strong>z</strong>, 
+                puis affiche le résultat des opérations
              \(x + y \times z\) et \((x + y) \times z\). Les parenthèses jouent le même rôle en Python qu'en mathématiques.</p>
 
             <div>
@@ -427,6 +394,8 @@ questionnaireUnique(3);
         print((x + y) * z)</code></pre>
         </div>
         </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
 <p>En mathématiques, on utilise essentiellement des variables de type <strong>int</strong> 
@@ -452,7 +421,7 @@ questionnaireUnique(3);
 <p>Ce code affiche True car x a été défini avec la valeur 17.2, donc la comparaison de x et de 17.2 renvoie True.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>quel est l'affichage du code suivant ?</p>
+    <p><strong>A toi de jouer : </strong>quel est l'affichage du code suivant ? (travail sans ordinateur)</p>
     <pre><code class="language-python">a = -3
 b = a + 4
 c = a
@@ -461,8 +430,8 @@ print(a)</code></pre>
 </div>
         
     <div class="exerciceApplication">
-<p><strong>A vous de jouer : </strong>certes on peut additionner et multiplier des nombres, mais en Python on peut également additionner et 
-            multiplier du texte. Essayez par exemple le code suivant pour comprendre ce qu'il fait :</p>
+<p><strong>A toi de jouer : </strong>certes on peut additionner et multiplier des nombres, mais en Python on peut également additionner et 
+            multiplier du texte. Essaye par exemple le code suivant pour comprendre ce qu'il fait :</p>
 
 <pre><code class="language-python">instrument = "guitare"
 orchestre = "Groove"
@@ -472,10 +441,14 @@ repetition = 3 * instrument
 print(repetition)</code></pre>
 
 <p>Dans le cas d'un texte, l'addition s'appelle concaténation et la multiplication s'appelle duplication.</p>
-    </div>
+</div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+    
 
     <div class="exerciceApplication">
-        <p><strong>A vous de jouer :</strong> stockez votre prénom dans une variable appelée <strong>prenom</strong>, puis affichez 3 fois votre prénom sur une
+        <p><strong>A toi de jouer :</strong> stocke ton prénom dans une variable appelée <strong>prenom</strong>, puis affiche 3 fois ton prénom sur une
             même ligne.</p>
         
 
@@ -496,39 +469,30 @@ print(3 * prenom)</code></pre>
         </div>
         </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>l'utilisateur d'un site donne son nom qui est enregistré dans une 
+    <p><strong>A toi de jouer : </strong>l'utilisateur d'un site donne son nom qui est enregistré dans une 
     variable appelée <strong>nom</strong>, puis un code non secret de 4 chiffres enregistré dans une variable 
 appelée <strong>nombre</strong>. A partir de ces deux variables, créer une variable appelée <strong>pseudo</strong> 
-qui sera en permanence affichée en haut du site, composée du nom rattaché au code à 4 chiffres. Affichez ensuite 
+qui sera en permanence affichée en haut du site, composée du nom rattaché au code à 4 chiffres. Affiche ensuite 
 la valeur de <strong>pseudo</strong> à l'écran.</p>
 
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-6"></p>
-        <form id="options_form-6">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-6"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-6">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='6' %}
 
 <script>
 var questionsData = 
     {
-        question: "Quelle est la valeur de la variable c lors de l'exécution du code suivant a = 12 b = a + 7 c = a + b",
+        question: "<p>Quelle est la valeur de la variable c lors de l'exécution du code suivant</p> <pre><code>a = 12<br/>b = a + 7<br/>c = a + b</code></pre>",
         options:["19", "7", "31"],
         correctIndex: 2,
         commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
@@ -539,7 +503,7 @@ questionnaireUnique(6);
 
 <!-- MANIPULER LES VARIABLES -->
 
-<p class="my-5 invisible" id="manipuler">ancre</p>
+<p class="invisible" id="manipuler">ancre</p>
 
 <h3>Manipuler les variables</h3>
 
@@ -564,7 +528,7 @@ questionnaireUnique(6);
 <p>Pour bien comprendre le principe, il suffit de manipuler les fichiers une fois comme dans l'exemple ci-dessous :</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>créer 3 fichiers vides qu'on pourra appeler f1.py, f2.py, f3.py. 
+    <p><strong>A toi de jouer : </strong>créer 3 fichiers vides qu'on pourra appeler f1.py, f2.py, f3.py. 
     Ensuite, rajouter un nouveau fichier vide que vous appelerez f2.py. Ce fichier doit donc prendre la place de f2.py 
 qui va maintenant s'appeler f3.py. Quant à f3.py, il va maintenant s'appeler f4.py.</p>
 
@@ -577,7 +541,7 @@ qui va maintenant s'appeler f3.py. Quant à f3.py, il va maintenant s'appeler f4
     qui prendra momentanément la valeur d'une des deux variables.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>écrire un script qui permet d'inverser les valeurs de deux variables x et y.</p>
+    <p><strong>A toi de jouer : </strong>écrire un script qui permet d'inverser les valeurs de deux variables x et y.</p>
     <pre><code class="language-python">x = 3
 y = 8
 # completer la suite ...</code></pre>
@@ -607,6 +571,9 @@ print("y = ", y)</code></pre>
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <h4>Effectuer des calculs avec des variables</h4>
 
 <p>On peut calculer la valeur d'une variable en utilisant celle d'autres variables. Par exemple si on veut trouver la hauteur
@@ -621,7 +588,7 @@ calcul littéral en mathématiques. Cela rend le calcul plus facile lorsqu'on do
 les valeurs initiales.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>écrire un script qui calcule la vitesse moyenne d'un cycliste, connaissant la distance de montée de 16 km,
+    <p><strong>A toi de jouer : </strong>écris un script qui calcule la vitesse moyenne d'un cycliste, connaissant la distance de montée de 16 km,
         la distance de descente de 51 km, le temps de montée de 1,2 heures et le temps de descente de 1,5 heures.<br/> <em>Indication : </em>
         la vitesse moyenne se calcule en faisant la moyenne de la vitesse de montée et de la vitesse de descente. Une vitesse est le quotient 
     d'une distance par un temps, d'où l'unité km/h.</p>
@@ -701,7 +668,7 @@ print(str(nbre_heures) + " heures, " + str(nbre_minutes) + " minutes, " + str(nb
 
 <!-- AFFICHAGE A L'ECRAN -->
 
-<p class="my-5 invisible" id="afficher">ancre</p>
+<p class="invisible" id="afficher">ancre</p>
 
 <h3>Afficher les variables à l'écran</h3>
 
@@ -757,23 +724,9 @@ nom_restaurant = "Chaîne d'or"</code></pre>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-4"></p>
-        <form id="options_form-4">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-4"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-4">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
 var questionsData = 
@@ -789,7 +742,7 @@ questionnaireUnique(4);
 
 <!-- IMPORTER UNE BIBLIOTHEQUE -->
 
-<p class="my-5 invisible" id="biblio">ancre</p>
+<p class="invisible" id="biblio">ancre</p>
 
 <h3>Importer une bibliothèque</h3>
 
@@ -866,23 +819,9 @@ from numpy import *</code></pre>
 
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
-<div class="quiz-container">
-        
-    <div class="question-container">
-        <p id="question-5"></p>
-        <form id="options_form-5">
-            <ul>
-                <li id="options"></li>
-            </ul>
-        </form>
-        <p class="py-2" id="commentaire-5"></p>
-    </div>
-    <button class="bouton my-1" id="submit_btn-5">Soumettre</button>
-    
-</div>
+{% include '../../../questionnaireUnique.html' with nmr='5' %}
 
 <script>
 var questionsData = 

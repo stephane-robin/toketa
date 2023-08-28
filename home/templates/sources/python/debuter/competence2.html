@@ -41,7 +41,7 @@
 <pre><code class="language-python">print(nom)</code></pre>
 
 <div class="exerciceApplication">
-<p><strong>A vous de jouer :</strong> demandez à l'utilisateur son âge puis affichez la valeur saisie en utilisant une variable <strong>age</strong>.</p>
+<p><strong>A toi de jouer :</strong> demande à l'utilisateur son âge puis affichez la valeur saisie en utilisant une variable <strong>age</strong>.</p>
     <div>
         <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
     </div>
@@ -52,9 +52,10 @@ print(age)</code></pre>
 </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <!-- QESTIONNAIRE -->
-
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
@@ -110,7 +111,7 @@ print(2+1) # affiche 3</code></pre>
 </div>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>imaginons que le programme souhaite connaître l'âge de l'utilisateur puis que plus tard, il souhaite lui rajouter un an (lors de son anniversaire).
+    <p><strong>A toi de jouer : </strong>imaginons que le programme souhaite connaître l'âge de l'utilisateur puis que plus tard, il souhaite lui rajouter un an (lors de son anniversaire).
         Ecrire le programme qui effectue ces instructions.</p>
 
     <div>
@@ -145,11 +146,14 @@ print(age)</code></pre>
     </div>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+
 <p>Il existe en Python un moyen de vérifier qu'une valeur saisie peut être transformée en entier, à l'aide de
 l'instruction <strong>isnumeric()</strong>.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>essayez le code ci-dessous pour bien comprendre ce que teste l'instruction <strong>isnumeric()</strong>.</p>
+    <p><strong>A toi de jouer : </strong>essaie le code ci-dessous pour bien comprendre ce que teste l'instruction <strong>isnumeric()</strong>.</p>
 
 <pre><code class="language-python">print("22".isnumeric()) # affiche True
 print("bonjour".isnumeric()) # affiche False, bonjour est une chaîne de caractères
@@ -157,6 +161,8 @@ print("2.45".isnumeric()) # affiche False, 2.45 est un nombre réel
 print("-3".isnumeric()) # affiche False, -3 est un nombre entier négatif</code></pre>
 
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
 <!-- QESTIONNAIRE -->
@@ -223,8 +229,8 @@ print(maChaine[2])  # affiche n</code></pre>
 
 
     <div class="exerciceApplication">
-<p><strong>A vous de jouer : </strong></p>
-<p>Pour bien comprendre la différence entre l'addition et la concaténation, exécutez le code suivant :</p>
+<p><strong>A toi de jouer : </strong></p>
+<p>Pour bien comprendre la différence entre l'addition et la concaténation, exécute le code suivant :</p>
 <pre><code class="language-python">a = 12
 b = 15
 print(a + b) # addition de nombres, affiche 27
@@ -233,6 +239,8 @@ a = "12"
 b = "15"
 print(a + b) # concaténation de caractères, affiche "1215"</code></pre>
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
 <!-- QESTIONNAIRE -->
@@ -274,7 +282,7 @@ questionnaireUnique(3);
 </table>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> utilisez les méthodes ci-dessus pour afficher à partir de la variable <strong>maChaine = "la neige se transforme en névé l'été"</strong>
+    <p><strong>A toi de jouer :</strong> utilise les méthodes ci-dessus pour afficher à partir de la variable <strong>maChaine = "la neige se transforme en névé l'été"</strong>
     <ul>
         <li>lo neige se tronsforme en névé l'été</li>
         <li>LA NEIGE SE TRANSFORME EN NEVE L'ETE</li>
@@ -298,6 +306,9 @@ print(maChaine.find('s'))
 print(len(maChaine))</code></pre>
     </div>
 </div>
+
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 
 <p>Les méthodes ci-dessus ne modifient pas les chaînes de caractères, mais construisent une nouvelle 
     chaîne à partir de la chaîne de départ. Ainsi, </p>
@@ -334,7 +345,7 @@ print(chaine) # renvoie 'Hello world'</code></pre>
     terme n'est pas pris en compte.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong> exécutez le code suivant pour bien comprendre ce qui
+    <p><strong>A toi de jouer : </strong> exécute le code suivant pour bien comprendre ce qui
         est extrait de <strong>maChaine</strong></p>
 
     <pre><code class="language-python">maChaine = "la neige fond en été"
@@ -346,12 +357,13 @@ print(maChaine[-1])  # affiche "é"
 print(maChaine[-5])  # affiche "n"</code></pre>
 </div>
 
+<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
 <p>On est maintenant capable d'extraire une partie d'une chaîne, de la concaténer avec une autre partie
     de cette chaîne. On devrait donc pouvoir inverser les lettres d'un mot à l'aide d'un programme.</p>
 
-    <iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
-
+<!-- ENTRAINEMENT -->
 <h3>Entraînement</h3>
 
 <div class="exerciceApplication">

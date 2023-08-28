@@ -20,14 +20,14 @@
 
 <p>Une entité est un élément distint possédant un identifiant et des attributs. Par exemple on peut modéliser des étudiants dans une université par l'entité <em>etudiants</em> de la façon suivante :</p>
 
-<img src="../../images/nsi/etudiants.png" alt="diagramme entité association" width=15%>
+<img src="{% static 'home/images/nsi/etudiants.png' %}" alt="diagramme entité association" width=15%>
 
 
 <p>Les liens existantes entre chaque entité de la base de données sont des associations caractérisées par un nom et 2 cardinalités. Ces dernières traduisent avec des nombres les règles de gestion des associations.</p>
 
 <p>Par exemple, si notre base de données est composée des entités <em>etudiants</em> et <em>livres</em>, chaque étudiant est propriétaire d'aucun livre ou de plusieurs livres (ce qu'on traduit par <em>0, n</em>  de <em>etudiants</em> vers <em>livres</em>), et chaque livre n'appartient qu'à un seul étudiant (ce qu'on traduit par <em>1, 1</em> de <em>livres</em> vers <em>etudiants</em>). Il ne s'agit que d'un modèle, qui ne tient pas compte dans ce cas des livres de la bibliothèque universitaire.</p>
 
-<img src="../../images/nsi/relations.png" alt="diagramme entité association" width=50%>
+<img src="{% static 'home/images/nsi/relations.png' %}" alt="diagramme entité association" width=50%>
 
 <div class="exerciceApplication">
 	<p><strong>A vous de jouer : </strong>représenter par un modèle entité/association le lien existant entre les Elfes et les armes qu'ils fabriquenet dans Le Seigneur des Anneaux, sachant qu'un Elf a au moins fabriqué une arme dans sa vie et qu'une arme a pu être fabriquée par un ou plusieurs Elfes.</p>
@@ -40,13 +40,13 @@
 
 <p>Dans le modèle relationnel, chaque table représente à la fois une entité et une association, de sorte que les différentes tables de la base de données soient bien en relation. On peut représenter le modèle entité/association <em>etudiants-livres</em> ci-dessus avec un modèle relationnel de la façon suivante :</p>
 
-<img src="../../images/nsi/diagramme_relationnel.png" alt="diagramme relationnel" width=50%>
+<img src="{% static 'home/images/nsi/diagramme_relationnel.png' %}" alt="diagramme relationnel" width=50%>
 
 <div class="exerciceType">
 	<p><strong>Exercice type : </strong>reprenez le modèle entité/association entre les Elfes et les armes pour le transformer en modèle relationnel.</p>
 	<p><em>Solution : </em>dans le cas présent, les armes ayant plusieurs fabriquants possibles et les Elfes ayant construits plusieurs armes, le modèle est constitué de 2 clés étrangères, et ce couple de clés étrangères forme la clé primaire.</p>
 
-	<img src="../../images/nsi/diagramme_relationnel2.png" alt="diagramme relationnel" width=50%>
+	<img src="{% static 'home/images/nsi/diagramme_relationnel2.png' %}" alt="diagramme relationnel" width=50%>
 
 </div>
 

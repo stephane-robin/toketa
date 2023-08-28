@@ -3,16 +3,18 @@
 
 {% block contenu %} 
 <ul>
-    <li><a href="">les processus</a></li>
-    <li><a href="">l'ordonnanceur</a></li>
-    <li><a href="">la modélisation d'un tourniquet en Python</a></li>
-    <li><a href="">l'utilisation des threads en Python</a></li>
+    <li><a href="#processus">comprendre comment s'exécutent des processus</a></li>
+    <li><a href="#ordonnanceur">comprendre ce qu'est un ordonnanceur</a></li>
+    <li><a href="#tourniquet">savoir modéliser un tourniquet en Python</a></li>
+    <li><a href="#thread">savoir utiliser des threads en Python</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- LES PROCESSUS -->
+<p class="invisible" id="processus">ancre</p>
+
 <h3>Les processus</h3>
 
 <div class="fieldsetDefinition">
@@ -32,6 +34,10 @@
 
 <p>Notons qu'un processus ne pourra se terminer que dans l'état élu.</p>
 
+
+<!-- ORDONNANCEUR -->
+<p class="invisible" id="ordonnanceur">ancre</p>
+
 <h3>L'ordonnanceur</h3>
 
 <p>Lorsque deux processus appellent la même ressource, celle-ci n'est pas partagée, c'est son temps d'utilisation qui est partagé par le noyau. La partie du noyau dont le rôle est d'optimiser l'allocation de cette ressource est appelée l'ordonnanceur, qui joue un rôle non négligeable dans l'amélioration des performances d'un ordinateur.</p>
@@ -48,6 +54,10 @@
 <p>Lorsque 2 processus appellent la même ressource, on  dit qu'ils sont concurrents. L'ordonnanceur va alors décider de l'ordre de passage des processus. On parle d'interblocage uniquement lorsque 2 processus s'empêchent mutuellement d'accéder à une même ressource.</p>
 
 <p>Par exemple, si un processus P1 ne peut modifier une variable <strong>niveau</strong> que si elle atteint une certaine valeur, et que ce calcul nécessite l'utilisation d'un processus P2 en attente </p>
+
+
+<!-- MODELISATION D'UN TOURNIQUET EN PYTHON -->
+<p class="invisible" id="tourniquet">ancre</p>
 
 <h3>Modélisation d'un tourniquet en Python</h3>
 
@@ -149,6 +159,10 @@ while not tester_indice(taille_max, indice_instruction):
     indice_instruction += 1</code></pre>
 </div>
 </div>
+
+
+<!-- UTILISATION DES THREADS EN PYTHON -->
+<p class="invisible" id="thread">ancre</p>
 
 <h3>Utilisation des threads en Python</h3>
 

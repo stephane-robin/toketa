@@ -3,10 +3,11 @@
 
 {% block contenu %} 
 <ul>
-  <li><a href="">le rôle d'un système d'exploitation</a></li>
-  <li><a href="">l'architecture Linux</a></li>
-  <li><a href="">les principales lignes de commande</a></li>
-  <li><a href="">l'affichage d'un fichier au terminal</a></li>
+  <li><a href="#systeme">comprendre le rôle d'un système d'exploitation</a></li>
+  <li><a href="#principaux">connaître les principaux systèmes d'exploitation</a></li>
+  <li><a href="#linux">connaître l'architecture Linux</a></li>
+  <li><a href="#bash">savoir utiliser les principales lignes de commande</a></li>
+  <li><a href="#fichier">savoir afficher un fichier au terminal</a></li>
   <li><a href="">la documentation</a></li>
   <li><a href="">les droits d'utilisateur</a></li>
   <li><a href="">l'installation d'un programme, la décompression d'une archive</a></li>
@@ -19,14 +20,9 @@
 {% block cours %}
 
 <!-- ROLE D'UN SYSTEME D'EXPLOITATION -->
+<p class="invisible" id="systeme">ancre</p>
 
 <h3>Rôle d'un système d'exploitation</h3>
-
-<p>Les systèmes d'exploitation les plus répandus sont les suivants : Windows, Android, iOS, Mac OS, Linux et Unix.</p>
-<p>On peut les classer en deux catégories : les systèmes posix et le système Windows.</p>
-
-<p>Windows est issu de MS-DOS alors que les systèmes posix sont tous issus de Unix. Android, iOS, Mac OS 
-  et Linux sont des systèmes posix.</p>
 
 <p>Le rôle d'un système d'exploitation est le suivant :
 	<ul>
@@ -42,10 +38,34 @@
 <p>Une ressource peut être par exemple un processeur, une variable stockée en mémoire, une imprimante, ...</p>
 
 
+<!-- PRINCIPAUX SYSTEMES D'EXPLOITATION -->
+<p class="invisible" id="principaux">ancre</p>
+
+<h3>Les principaux systèmes d'exploitation</h3>
+
+<p>Les systèmes d'exploitation les plus répandus sont les suivants : Windows, Android, iOS, MacOS, Linux et Unix.</p>
+<p>On peut les classer en deux catégories : le système Windows et les systèmes posix.</p>
+
+<p>Windows est issu de MS-DOS alors que les systèmes posix sont un ensemble de normes techniques définissant les 
+  interfaces communes à tous les systèmes issus de Unix, tels que Linux, MacOS, Android, iOS, ... Windows est particulièrement 
+utilisé dans le monde du jeu vidéo et dispose de normes, frameworks et langages tels que ASP.net, C#, ...</p>
+
+<p>Nous étudierons tout particulièrement la famille de systèmes d'exploitation GNU/Linux inventée par Linus Torvalds en 1991.
+  Il s'agit de systèmes d'exploitation open source de type Unix, essentiellement utilisé dans les serveurs et par les professionnels 
+  travaillant comme développeurs d'applications. De nombreuses distributions ont vu le jour dont notamment Debian et Ubuntu. 
+Le noyau Linux est issu du projet GNU créé en 1984 par Richard Stallman, maintenu par une communauté de hackers et soutenu 
+par la Free Software Foundation. La philosophie du projet GNU s'inscrit dans un démarche sociale favorisant le mouvement 
+du logiciel libre.</p>
+
+<p>Les systèmes d'exploitations Linux sont souvent critiqués car ils sont gratuits et leur mise en oeuvre est moins intuitive 
+  que celle d'autres systèmes. Pourtant, ils sont très fiables et extrêmement puissants.</p>
+
+
 <!-- ARCHITECTURE LINUX -->
+<p class="invisible" id="linux">ancre</p>
+
 <h3>Architecture Linux</h3>
 
-	
 <h4>Arborescence</h4>
 
   <p>La racine est symbolisée par / en Linux.</p>
@@ -69,7 +89,8 @@
 
 <p>Un point "." devant le nom d'un fichier ou d'un dossier indique qu'il est caché lors de l'affichage. Il n'est pas pour autant introuvable,
 Linux a souhaité le cacher pour ne pas encombrer l'affichage. En revanche un point "." devant une adresse représente le dossier courant,
-alors qu'un point double point ".." devant une adresse représente le dossier parent. Le signe ~ symbolise le dossier personnel /home/stephane.</p>
+alors qu'un point double point ".." devant une adresse représente le dossier parent. Le signe ~ symbolise le dossier personnel /home/[nomUtilisateur] où [nomUtilisateur] est 
+le nom de l'utilisateur tel qu'il a été défini par la machine lors de la configuration du système.</p>
 
 
 
@@ -80,18 +101,18 @@ alors qu'un point double point ".." devant une adresse représente le dossier pa
 
 
 
+  <h4>L'invite de commande</h4>
 
+  <p>Par défaut, le Terminal s'ouvre dans le dossier /home/[nomUtilisateur]. Une fois le Terminal ouvert, le signe $ symbolise l'utilisateur alors que le signe # symbolise le superutilisateur qui travaille 
+  en mode root. On voit donc apparaître à l'ouverture du Terminal une invite de commande de la forme :</p>
+  
+  <pre><code class="language-svg">[nomUtilisateur]@[nomOrdinateur]:~$</code></pre>
 
+  <p>Le superutilisateur est en fait l'administrateur de la machine et dispose de tous les droits sur son système. 
+Pour exercer ses droits, le superutilisateur précède chacune des instructions ayant un impact sur le système d'exploitation par la commande sudo qui nécessaire la saisie 
+du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
 
-
-
-
-  <h4 id="inviteComamnde">L'invite de commande</h4>
-
-  <p>Par défaut, l'invite de commande s'ouvre dans le dossier /home/[nomUtilisateur] où [nomUtilisateur] est 
-	le nom de l'utilisateur du système tel qu'il a été défini dans la machine. On peut également trouver l'invite de 
-  commande sous le nom de Terminal. Une fois l'invite de commande ouverte, le signe $ symbolise l'utilisateur alors que le signe # symbolise le superutilisateur qui travaille donc
-  en mode root. </p>
+<pre><code class="language-svg">sudo apt-get install python</code></pre>
 
   <p>L'autocomplétion se réalise avec la touche de tabulation, la navigation dans le terminal se fait à l'aide des flèches haut et bas.</p>
 
@@ -104,29 +125,30 @@ alors qu'un point double point ".." devant une adresse représente le dossier pa
   <p><em>exit</em> ou Ctrl+d permet de fermer la console</p>
 
 
-  <p>Le .bashrc est un fichier de configuration du Terminal. Il se situe dans le répertoire personnel /home/stephane/</p>
+  <p>Le .bashrc est un fichier de configuration du Terminal. Il se situe dans le répertoire personnel /home/[nomUtilisateur]/</p>
 
-  <p>nano est un éditeur de texte léger présent par défaut dans les systèmes Linux. On peut le lancer en tapant simplement nano dans l'invite de commande.
-    Pour ouvrir monFichier à partir de nano il faut taper nano monFichier dans l'invite de commande lorsqu'on se situe dans le répertoire parent.
-    L'enregistrement d'un fichier à partir de nano se fait directement dans le dossier personnel /home/[nomUtilisateur]. Pour sortir de 
-  nano il suffit de taper Ctrl+X</p>
-
+  
 
 
   <!-- LIGNES DE COMMANDE -->
+  <p class="invisible" id="bash">ancre</p>
 
-  <h3 id="commande">Les principales lignes de commande</h3>
+  <h3>Les principales lignes de commande</h3>
 
-  <h4>Se déplacer, connaître l'emplacement</h4>
+  <h4>Commandes générales</h4>
 
   <table>
     <tr> <th> Objectif</th> <th> Instruction</th> </tr>
     <tr> <td> afficher le dossier courant (print working directory)</td><td><pre><code class="language-svg">pwd</code></pre></td></tr>
-    <tr> <td> connaître l'emplacement d'un programme (par exemple Python)</td> <td><pre><code class="language-svg">which python3</code></pre></td></tr>
     <tr> <td> se rendre dans le dossier <em>Documents</em> </td> <td> <pre><code class="language-svg">cd Documents</code></pre> </td> </tr>
     <tr> <td> revenir au dossier parent </td> <td> <pre><code class="language-svg">cd ..</code></pre></td> </tr>
     <tr> <td> revenir à /home/stephane </td> <td> <pre><code class="language-svg">cd</code></pre></td> </tr>
     <tr> <td> afficher la date </td> <td> <pre><code class="language-svg">date</code></pre></td></tr>
+    <tr> <td> connaître la version du système Linux</td> <td><pre><code class="language-svg">lsb_release -a</code></pre></td></tr>
+    <tr> <td> connaître la taille du dossier courant (uniquement) en utilisant une lecture facile pour l'homme</td> <td><pre><code class="language-svg">du -sh</code></pre></td></tr>
+    <tr> <td> stopper l'exécution d'un code ou d'un serveur </td><td><pre><code class="language-svg">Ctrl+c</code></pre></td></tr>
+    <tr> <td> quitter une interface exécutée à partir du terminal </td> <td><pre><code class="language-svg">q</code></pre></td></tr>
+    <tr> <td> vider le terminal</td> <td><pre><code class="language-svg">clear</code></pre></td> </tr>
   </table>
 
 
@@ -141,7 +163,7 @@ alors qu'un point double point ".." devant une adresse représente le dossier pa
     <tr> <td> afficher la liste des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -a</code></pre></td> </tr>
     <tr> <td> afficher la liste détaillée des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -la</code></pre></td> </tr>
     <tr> <td> afficher la liste détaillée des éléments du dossier courant en triant par date de dernière modification au lieu de trier par ordre alphabétique</td> <td><pre><code class="language-svg">ls -lt</code></pre></td></tr>
-    <tr> <td> afficher la liste des éléments de MonDossier</td> <td><pre><code class="language-svg">ls ~/Documents/MonDossier</code></pre></td></tr>
+    <tr> <td> afficher la liste des éléments de MonDossier à partir de son adresse absolue</td> <td><pre><code class="language-svg">ls ~/Documents/MonDossier</code></pre></td></tr>
     <tr> <td> afficher la liste des éléments actifs du dossier local </td> <td> <pre><code class="language-svg">ps</code></pre></td> </tr>
     <tr> <td> afficher le contenu de <em>monFichier</em> (voir détails plus bas)</td> <td> <pre><code class="language-svg">cat monFichier</code></pre></td> </tr>
   </table>
@@ -155,48 +177,46 @@ alors qu'un point double point ".." devant une adresse représente le dossier pa
 
   <table>
     <tr> <th> Objectif</th> <th> Instruction</th> </tr>
-    <tr> <td> créer le fichier <em>monFichier</em> </td> <td> <pre>touch monFichier</pre></td> </tr>
-    <tr> <td> créer le dossier <em>monDossier</em> </td> <td> <pre>mkdir monDossier</pre></td> </tr>
-    <tr> <td> creer le dossier <em>monDossier</em> contenant le sous-dossier <em>monSousDossier</em></td> <td><pre>mkdir -p monDossier/monSousDossier</pre></td></tr>
-    <tr> <td> supprimer <em>monFichier</em> </td> <td><pre>sudo rm monFichier</pre></td></tr>
-    <tr> <td> supprimer <em>monFichier</em> en demandant confirmation (-i) et en demandant l'état de ce qui a été fait (-v)</td> <td><pre>sudo rm -vi monFichier</pre></td></tr>
-    <tr> <td> supprimer <em>monDossier</em> et tout ce qu'il contient</td> <td><pre>sudo rm -r monDossier</pre></td></tr>
-    <tr> <td> déplacer <em>monFichier</em></td> <td><pre>mv chemin_monFichier  chemin_nouvelEmplacement</pre></td></tr>
-    <tr> <td>copier monFichier dans le répertoire courant</td> <td><pre>cp monFichier monFichierCopie</pre></td></tr>
-    <tr> <td>copier monFichier dans Documents</td> <td><pre>cp monFichier ~/Documents/monFichierCopie</pre></td></tr>
-    <tr> <td>copier monFichier dans Documents sous le même nom</td> <td><pre>cp monFichier ~/Documents/</pre></td></tr>
-    <tr> <td> copier tous les fichiers au format .py dans monDossier</td> <td><pre>cp *.py monDossier/</pre></td></tr>
-    <tr> <td> copier monDossier et tout ce qu'il contient</td> <td><pre>cp -R monDossier monDossierCopie</pre></td></tr>
-    <tr> <td> déplacer monFichier dans monDossier</td> <td><pre>mv monFichier monDossier/</pre></td></tr>
-    <tr> <td> déplacer monDossier et tout ce qu'il contient dans monAutreDossier</td> <td><pre>mv monDossier/ monAutreDossier/</pre></td></tr>
-    <tr> <td> déplacer tous les fichiers au format .py dans monDossier</td> <td><pre>mv *.py monDossier/</pre></td></tr>
-    <tr> <td> renommer monFichier en nouveauNomFichier</td> <td><pre>mv monFichier nouveauNomFichier</pre></td></tr>
-    <tr> <td> déplacer monFichier dans monDossier et le renommer nouveauNomFichier</td> <td><pre>mv monFichier monDossier/nouveauNomFichier</pre></td></tr>
+    <tr> <td> créer le fichier <em>monFichier</em> </td> <td> <pre><code class="language-svg">touch monFichier</code></pre></td> </tr>
+    <tr> <td> créer le dossier <em>monDossier</em> </td> <td> <pre><code class="language-svg">mkdir monDossier</code></pre></td> </tr>
+    <tr> <td> creer le dossier <em>monDossier</em> contenant le sous-dossier <em>monSousDossier</em></td> <td><pre><code class="language-svg">mkdir -p monDossier/monSousDossier</code></pre></td></tr>
+    <tr> <td> supprimer <em>monFichier</em> </td> <td><pre><code class="language-svg">sudo rm monFichier</pre></td></tr>
+    <tr> <td> supprimer <em>monFichier</em> en demandant confirmation (-i) et en demandant l'état de ce qui a été fait (-v)</td> <td><pre><code class="language-svg">sudo rm -vi monFichier</code></pre></td></tr>
+    <tr> <td> supprimer <em>monDossier</em> et tout ce qu'il contient</td> <td><pre><code class="language-svg">sudo rm -r monDossier</code></pre></td></tr>
+    <tr> <td> déplacer <em>monFichier</em></td> <td><pre><code class="language-svg">mv chemin_monFichier  chemin_nouvelEmplacement</code></pre></td></tr>
+    <tr> <td>copier monFichier dans le répertoire courant</td> <td><pre><code class="language-svg">cp monFichier monFichierCopie</code></pre></td></tr>
+    <tr> <td>copier monFichier dans Documents</td> <td><pre><code class="language-svg">cp monFichier ~/Documents/monFichierCopie</code></pre></td></tr>
+    <tr> <td>copier monFichier dans Documents sous le même nom</td> <td><pre><code class="language-svg">cp monFichier ~/Documents/</code></pre></td></tr>
+    <tr> <td> copier tous les fichiers au format .py dans monDossier</td> <td><pre><code class="language-svg">cp *.py monDossier/</code></pre></td></tr>
+    <tr> <td> copier monDossier et tout ce qu'il contient</td> <td><pre><code class="language-svg">cp -R monDossier monDossierCopie</code></pre></td></tr>
+    <tr> <td> déplacer monFichier dans monDossier</td> <td><pre><code class="language-svg">mv monFichier monDossier/</code></pre></td></tr>
+    <tr> <td> déplacer monDossier et tout ce qu'il contient dans monAutreDossier</td> <td><pre><code class="language-svg">mv monDossier/ monAutreDossier/</code></pre></td></tr>
+    <tr> <td> déplacer tous les fichiers au format .py dans monDossier</td> <td><pre><code class="language-svg">mv *.py monDossier/</code></pre></td></tr>
+    <tr> <td> renommer monFichier en nouveauNomFichier</td> <td><pre><code class="language-svg">mv monFichier nouveauNomFichier</code></pre></td></tr>
+    <tr> <td> déplacer monFichier dans monDossier et le renommer nouveauNomFichier</td> <td><pre><code class="language-svg">mv monFichier monDossier/nouveauNomFichier</code></pre></td></tr>
   </table>
 
-  <h4>Commandes générales</h4>
+
+
+  <h4>Commandes liées à Python</h4>
 
   <table>
     <tr> <th> Objectif</th> <th> Instruction</th> </tr>
-    <tr> <td> stopper l'exécution d'un code ou d'un serveur </td><td><code class="language-svg">Ctrl+c</code></td></tr>
-    <tr> <td> quitter une interface exécutée à partir du terminal </td> <td><code class="language-svg">q</code></td></tr>
-    <tr> <td> vider le terminal</td> <td><code class="language-svg">clear</code></td> </tr>
-    <tr> <td> lancer l'interpréteur Python </td> <td><code class="language-svg">python3</code></td></tr>
-    <tr> <td> exécuter monFichier.py </td> <td><code class="language-svg">python3 monFichier.py</code></td></tr>
-    <tr> <td> quitter l'interpréteur Python </td> <td><code class="language-svg">exit()</code></td></tr>
-    <tr> <td> installer un package Python </td> <td><code class="language-svg">pip install monPackage</code></td></tr>
-    <tr> <td> désinstaller un package Python </td> <td><code class="language-svg">pip uninstall monPackage</code></td></tr>
-    <tr> <td> exécuter monPackage en Python </td> <td><code class="language-svg">python -m monPackage</code></td></tr>
-    <tr> <td> connaître la taille du dossier courant (uniquement) en utilisant une lecture facile pour l'homme</td> <td><code class="language-svg">du -sh</code></td></tr>
-    <tr> <td> connaître la version du système Linux</td> <td><code class="language-svg">lsb_release -a</code></td></tr>
-    <tr> <td> ouvrier monFichier avec nano</td> <td><code class="language-svg">nano monFichier</code></td></tr>
+    <tr> <td> connaître l'emplacement d'un programme (par exemple Python)</td> <td><pre><code class="language-svg">which python3</code></pre></td></tr>
+    <tr> <td> connaître la version d'un programme (par exemple Python)</td> <td><pre><code class="language-svg">python3 --version</code></pre></td></tr>
+    <tr> <td> lancer l'interpréteur Python </td> <td><pre><code class="language-svg">python3</code></pre></td></tr>
+    <tr> <td> exécuter monFichier.py en utilisant Python</td> <td><pre><code class="language-svg">python3 monFichier.py</code></pre></td></tr>
+    <tr> <td> quitter l'interpréteur Python </td> <td><pre><code class="language-svg">exit()</code></pre></td></tr>
+    <tr> <td> installer un package Python </td> <td><pre><code class="language-svg">pip install monPackage</code></pre></td></tr>
+    <tr> <td> désinstaller un package Python </td> <td><pre><code class="language-svg">pip uninstall monPackage</code></pre></td></tr>
+    <tr> <td> exécuter monPackage en Python </td> <td><pre><code class="language-svg">python3 -m monPackage</code></pre></td></tr>
   </table>
 
 
+<!-- AFFICHAGE D'UN FICHIER AU TERMINAL -->
+<p class="invisible" id="fichier">ancre</p>
 
-
-
-<h3 id="affichageConsole">Affichage d'un fichier au Terminal</h3>
+<h3>Affichage d'un fichier au Terminal</h3>
 
   <p>Pour afficher un fichier tout entier dans la console, on se place dans le dossier parent du fichier à lire puis on utilise l'instruction</p>
   <pre><code class="language-svg">cat nomFichier</code></pre>
@@ -213,12 +233,40 @@ alors qu'un point double point ".." devant une adresse représente le dossier pa
     <li>pour descendre d'une ligne, on peut utiliser la flèche du bas</li>
     <li>pour monter d'une ligne, on peut utiliser la flèche du haut</li>
     <li>pour descendre en bas de l'ếcran, on peut utiliser la touche Entrée ou la touche Page Down</li>
-    <li>pour monter en haut de l'écran, on peut utiliser la touche Page Up</li>
+    <li>pour monter en haut de l'écran, on peut utiliser la touche PageUp</li>
     <li>pour rechercher unMot dans le fichier lu dans la console, on peut utiliser /unMot directement</li>
   </ul>
 
   <p>Pour afficher les 5 premières lignes de monFichier</p>
   <pre><code class="language-svg">head -n 5 monFichier</code></pre>
+
+  <p><em>Attention</em> toutefois, le terminal n'est en mesure de lire que des formats simples tels que .TXT, .HTML, .JSON, etc... ou des formats de 
+  langage de programmation tels que .C, .PY, .JAVA, .JS, etc ... Ainsi le format .ODT de LibreOffice n'est pas lu correctement, 
+de même que les formats propriétaires comme .DOCX, .XLSX, etc ...</p>
+
+
+
+<h4>Utilisation de nano</h4>
+
+<p>Il est également possible de lire un fichier au Terminal en utilisant un éditeur de texte minimaliste appelé nano, 
+  présent par défaut dans les systèmes Linux.</p>
+
+<p>Pour connaître la version de nano prise en charge par ton système d'exploitation Linux, exécute au Terminal l'instruction suivante :</p>
+<pre><code class="language-svg">nano --version</code></pre>
+
+<p>Pour installer nano sur les machines Debian ou Ubuntu, exécute la commande suivante au Terminal :</p>
+<pre><code class="language-svg">sudo apt-get install nano</code></pre>
+
+<p>Ensuite, pour ouvrir le fichier monFichier.txt avec nano, il suffit de se rendre dans le dossier contenant monFichier.txt et d'exécuter au Terminal l'instruction :</p>
+<pre><code class="language-svg">nano monFichier.txt</code></pre>
+
+<p>ou alors, rester dans le dossier courant et indiquer l'adresse absolue de monFichier.txt comme dans l'exemple ci-dessous :</p>
+<pre><code class="language-svg">nano ~/Documents/monFichier.txt</code></pre>
+
+<p>Une fois le fichier ouvert avec nano, il est possible de naviger à l'aide des flèches, de modifier le contenu du 
+  fichier puis d'enregistrer les modifications à l'aide des touches Ctrl+O ou Ctrl+S. Pour quitter nano, il faut appuyer sur les 
+  touches Ctrl+X.</p>
+
 
 
 
@@ -329,7 +377,7 @@ et les droits des autres utilisateurs (0 donc aucun droit).</p>
   
   <p>Il faut généralement mettre à jour le cache des paquets (i.e. télécharger la nouvelle liste des paquets proposés par le dépôt) avant de procéder à l'installation :</p>
   <pre><code class="language-svg">sudo apt-get update
-  sudo apt-get install monPaquet</code></pre>
+sudo apt-get install monPaquet</code></pre>
   
   <p>Pour obtenir la description d'un paquet :</p>
   <pre><code class="language-svg">sudo apt-cache show nomPaquet</code></pre>
@@ -340,34 +388,41 @@ et les droits des autres utilisateurs (0 donc aucun droit).</p>
     <pre><code class="language-svg">sudo apt-get update
 sudo apt-get upgrade</code></pre>
  
+
   
+  <h4>Commandes pour zipper/dézipper un dossier/fichier .zip</h4>
   
-  
-  
-  <!-- zipper un dossier zip -->
-  
-  <h4 id="zip">Commandes pour zipper/dézipper un dossier .zip</h4>
-  
-  <p>Pour zipper le dossier mon_dossier en l'appelant mon_archive.zip :</p>
-  <pre><code class="language-svg">zip -r mon_archive.zip mon_dossier</code></pre>
+  <p><em>Rappel, </em>compresser un dossier permet de le transformer en un fichier encodé qui occupe suffisamment peu d'espace mémoire 
+  pour pouvoir être transmis facilement. Un format classique de compression est le format .ZIP. Le destinataire peut ensuite 
+décompresser ce fichier qui détient les clés de décompression, pour obtenir le dossier de départ.</p>
+
+  <p>Pour zipper le dossier monProjet sans changer de nom, il faut ouvrir le Terminal, se placer dans le dossier contenant monProjet puis exécuter :</p>
+  <pre><code class="language-svg">zip monProjet</code></pre>
+
+  <p>Le fichier zippé obtenu monProjet.zip a été créé dans le même dossier que monProjet.</p>
+
+  <p>Pour dézipper le fichier monProjet.zip sans changer de nom, il faut ouvrir le Terminal, se placer dans le dossier contenant monProjet.zip puis exécuter :</p>
+  <pre><code class="language-svg">unzip monProjet.zip</code></pre>
+
+  <p>Le dossier dézippé obtenu monProjet a été créé dans le même dossier que monProjet.zip</p>
+
+  <p>Pour zipper le dossier monProjet en l'appelant moArchive.zip :</p>
+  <pre><code class="language-svg">zip -r moArchive.zip monProjet</code></pre>
   
   <p>Pour dézipper l'archive mon_archive.zip en l'appelant mon_dossier :</p>
   <pre><code class="language-svg">unzip mon_archive.zip -d mon_dossier</code></pre>
   
   
   
-  <!-- dézipper un dossier .gz-->
+  <h4>Commande pour dézipper un fichier .gz</h4>
   
-  <h4 id="gz">Commande pour dézipper un dossier .gz</h4>
-  
-  <p>Il faut se placer dans le dossier contenant mondossier.gz et l'instruction
+  <p>Il faut se placer dans le dossier contenant monDossier.gz et l'instruction
 	suivante va le décompresser à ce même emplacement :</p>
-  <pre><code class="language-svg">gunzip mondossier.gz</code></pre>
+  <pre><code class="language-svg">gunzip monDossier.gz</code></pre>
   
   
-  <!-- installation d'un logiciel avec sh -->
   
-  <h4 id="bash">Installation d'un logiciel à partir de .sh</h4>
+  <h4>Installation d'un logiciel à partir de .sh</h4>
   
   <p>Un fichier au format .sh est un fichier d'installation qui s'ouvre avec une commande bash. Pour cela, dans le répertoire courant, il faut d'abord
 	vérifier l'intégrité de l'installer en utilisant :</p>
@@ -378,7 +433,7 @@ sudo apt-get upgrade</code></pre>
   
   <pre><code class="language-svg">bash nomInstaller.sh</code></pre>
   
-  <!-- installation d'un logiciel avec.tar.gz -->
+
   
   <h4 id="targz">Installation d'un logiciel à partir de .tar.gz</h4>
   

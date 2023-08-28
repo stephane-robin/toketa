@@ -3,16 +3,13 @@
 
 {% block contenu %} 
 <ul>
-    <li><a href="">l'historique</a></li>
-	<li><a href="">l'architecture de Von Neumann</a></li>
-	<li><a href="">une fiche mémo sur l'architecture des ordinateurs</a></li>
+	<li><a href="#vonneumann">comprendre l'architecture de Von Neumann</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- HISTORIQUE -->
-
 <h3>Historique</h3>
 
 <ul>
@@ -26,6 +23,9 @@
 	<li>1981 - IBM PC</li>
 </ul>
 
+
+<!-- ARCHITECTURE VON NEUMANN -->
+<p class="invisible" id="vonneumann">ancre</p>
 
 <h3>Architecture de Von Neumann</h3>
 
@@ -44,6 +44,7 @@
 <img src="{% static 'home/images/nsi/vonneumann.png' %}" alt="architecture Von Neumann" width="50%">
 
 
+
 <h4>Processeur</h4>
 
 <p>On trouve dans le processeur :</p>
@@ -58,6 +59,8 @@
 	effectuées en 1 seconde. Les processeurs actuels sont multi-coeurs, c'est à dire qu'ils sont construits 
 	avec plusieurs unités autonomes de travail appelées coeurs, qui leur permettent d'effectuer des 
 	opérations simultanément.</p>
+
+
 
 <h4>Mémoire</h4>
 
@@ -88,7 +91,6 @@ les données venant d'être utilisées.</li>
 
 
 <!-- FICHE MEMO -->
-
 <h3>Fiche mémo</h3>
 
 <div class="row">
