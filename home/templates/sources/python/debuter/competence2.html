@@ -22,7 +22,7 @@
 
 <!-- DEMANDER UNE SAISIE CLAVIER -->
 
-<p class="my-5 invisible" id="demander">ancre</p>
+<p class="invisible" id="demander">ancre</p>
 
 <h3>Demander une saisie clavier</h3>
 
@@ -61,14 +61,14 @@ print(age)</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
-var questionsData = 
+var questionsData1 = 
     {
         question: "Pour récupérer le pseudo d'un utilisateur, il faut exécuter ...",
         options:['pseudo = input("quel est ton pseudo ?")', 'input("quel est ton pseudo ?")', 'pseudo = print("quel est ton pseudo ?")'],
         correctIndex: 0,
         commentaire: "Il faut stocker la valeur saisie par une instruction input dans une variable."
     };
-questionnaireUnique(1);
+questionnaireUnique(1, questionsData1);
 </script>
 
 
@@ -172,20 +172,20 @@ print("-3".isnumeric()) # affiche False, -3 est un nombre entier négatif</code>
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
-var questionsData = 
+var questionsData2 = 
     {
         question: '<p>Dans le code suivant : </p><pre><code class="language-python">poids = input("combien pèse le vélo ?")</code></pre><p>quel est le type de la variable poids ...</p>',
         options:["int car le poids est un nombre entier", "float car il s'agit en fait d'un nombre à virgule", "str car il est stocké ainsi"],
         correctIndex: 2,
         commentaire: "Toute saisie clavier est stockée par défaut en tant que str."
     };
-questionnaireUnique(2);
+questionnaireUnique(2, questionsData2);
 </script>
 
 
 <!-- TEXTE COMPOSE DE CARACTERES -->
 
-<p class="my-5 invisible" id="texte">ancre</p>
+<p class="invisible" id="texte">ancre</p>
 
 <h3>Un string est composé de caractères</h3>
 
@@ -198,8 +198,7 @@ questionnaireUnique(2);
     le 'a' a pour indice 1, le 'r' a pour indice 2 et le 'c' a pour indice 3.
 </p>
 
-    <p>Python associe à une
-    chaîne de caractères le type <strong>str</strong> pour <em>string</em>.</p>
+    <p>Python associe à une chaîne de caractères le type <strong>str</strong> pour <em>string</em>.</p>
 
 <p>Il est facile de repérer la position de chaque caractère d'une chaîne grâce à son indice, comme on peut le
 voir dans l'exemple suivant :</p>
@@ -213,10 +212,28 @@ print(maChaine[2])  # affiche n</code></pre>
 <p>Dans la chaîne de caractères <em>bonjour</em>, la lettre <em>b</em> a pour indice 0 et non pas 1, c'est à dire qu'elle se trouve à la position 0.</p>
 </div>
 
+<p>Les chaînes de caractères sont enregistrées dans le programme entre des guillements " ou des apostrophes ' indifféremment.
+    Cela permet d'utiliser des balises différentes lorsque Python collabore avec un autre langage comme HTML, JavaScript, SQL, C, ... Cette 
+situation est fréquente lorsqu'on programme des applications Web.</p>
+
+<p>Attention toutefois, lorsqu'on utilise des apostrophes ' et que la chaîne contient une apostrophe, Python pourrait 
+    l'interpréter comme la fin de la chaine. Pour éviter cela, on utilise un antislash \ qui indique à Python que le caractère suivant 
+    appartient à la chaîne. Par exemple, les codes ci-dessous sont identiques :</p>
+
+<pre><code class="language-python">phrase = "Les pâtes viennent d'Italie"</code></pre>
+<pre><code class="language-python">phrase = 'Les pâtes viennent d\'Italie'</code></pre>
+
+<p>Attention, lorsqu'on utilise des accents dans un texte comme par exemple en français é, à, è, ù, etc... 
+    cela crée des difficultés d'affichage pour Python qui a été créé en anglais. Il faut dans ce cas 
+    rajouter dès la première ligne de code l'instruction suivante qui indique à Python que les accents 
+    et caractères spéciaux sont autorisés et qu'il pourra les trouver dans la table utf-8 :</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-</code></pre>
+
 
 <!-- CONCATENATION -->
 
-<p class="my-5 invisible" id="concatenation">ancre</p>
+<p class="invisible" id="concatenation">ancre</p>
 
 <h3>La concaténation</h3>
 
@@ -250,14 +267,14 @@ print(a + b) # concaténation de caractères, affiche "1215"</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
-var questionsData = 
+var questionsData3 = 
     {
         question: "Si on a défini nom = 'Henri' et age = 17, qu'affiche l'exécution du code print(nom + age) ...",
         options:["Henri17", "Henri 17", "un message d'erreur"],
         correctIndex: 2,
         commentaire: "On ne peut pas concaténer deux variables de types différents. Il est donc important de bien connaître les types des variables utilisées."
     };
-questionnaireUnique(3);
+questionnaireUnique(3, questionsData3);
 </script>
 
 
@@ -334,7 +351,7 @@ print(chaine) # renvoie 'Hello world'</code></pre>
 
 <!-- EXTRAIRE UNE CHAINE -->
 
-<p class="my-5 invisible" id="extraire">ancre</p>
+<p class="invisible" id="extraire">ancre</p>
 
 <h3>Extraire une sous-chaîne à partir d'une chaîne</h3>
 

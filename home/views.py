@@ -73,7 +73,7 @@ titres = {
             'Photographie numérique',
             'TP - Photographie numérique',
             'TP - Traitement d\'image avec Gimp',
-            'Les coordonnées géodésiques',
+            'Les coordonnées géographiques',
             'TP - Triangulation',
             'TP - Géolocalisation'
             ],
@@ -97,7 +97,7 @@ titres = {
         'debuter' : [
             'Découvrir Python',
             'Les variables',
-            'Les chaînes',
+            'Les chaînes de caractères',
             'Les conditions',
             'La boucle while / retour sur les chaînes',
             'Les fonctions',
@@ -105,10 +105,13 @@ titres = {
             'TP - Jeu du pendu, niveau 1'
             ],
         'progresser': [
+            'Construire un code propre',
             'La boucle for',
             'Les listes',
             'Les dictionnaires',
             'La portée des variables',
+            'TP - quiz',
+            'TP - jeu de devinette',
             'TP - Mot de passe',
             'TP - Les fonctions',
             'TP - Convertisseur binaire',
@@ -117,10 +120,11 @@ titres = {
             'TP - Jeu du pendu, niveau 2'
             ],
         'avance': [
+            'Paradigme de programmation',
             'Programmation fonctionnelle',
-            'Algorithmique',
             'Programmation orientée objet',
             'Principes de la programmation objet',
+            'Algorithmique',
             'Test et validation',
             'Interface graphique',
             'Créer un site Web avec Django',
@@ -128,7 +132,8 @@ titres = {
             'TP - Jeu de rôles',
             'TP - Le jeu de la vie',
             'TP - Séquence de génome',
-            'TP - Jeu du pendu, niveau 3'
+            'TP - Jeu du pendu, niveau 3',
+            'Le versioning avec Git'
             ]
     }
 }

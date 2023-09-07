@@ -3,15 +3,14 @@
 
 {% block contenu %} 
 <ul>
-    <li>comprendre le fonctionnement des systèmes informatiques embarqués</li>
-	<li>comprendre le fonctionnement du vélo à assistance électrique</li>
+    <li href="#embarque">comprendre le fonctionnement des systèmes informatiques embarqués</li>
+	<li href="#assistance">comprendre le fonctionnement du vélo à assistance électrique</li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- INTRODUCTION -->
-
 <h3>Introduction</h3>
 
 <p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube explique ce qu'est l'informatique embarquée :
@@ -35,6 +34,7 @@
 
 
 <!-- LES SYSTEMES INFORMATIQUES EMBARQUES -->
+<p class="invisible" id="embarque">ancre</p>
 
 <h3>Les systèmes informatiques embarqués</h3>
 
@@ -59,6 +59,7 @@
 
 
 <!-- LE VELO A ASSISTANCE ELECTRIQUE -->
+<p class="invisible" id="assistance">ancre</p>
 
 <h3>Le vélo à assistance électrique</h3>
 

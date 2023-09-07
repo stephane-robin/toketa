@@ -1,0 +1,250 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+  <div class="bloc">
+        <div class="gauche">
+          <img src="{% static 'home/images/python/git.png' %}" width="80" height="80" alt="git">       
+        </div>
+
+        <div class="droite">
+            <p> <em>Git</em> est un logiciel de versionnement de code qui fonctionne avec un système d'arborescence à partir d'une branche master. <em>Git</em> fait constamment le lien entre un repository local et un repository hébergé par <em>GitHub</em>. Un repository est un dossier qui est configuré pour travailler avec <em>git</em>.</p>
+            <p>Une des particularités de <em>Git</em>, c'est l'existence de sites web collaboratifs basés sur <em>Git</em> comme <em>GitHub</em>. Il s'agit d'une sorte de réseau social pour développeurs qui permet de suivre l'évolution de projets et de décider de participer à ces projets. <em>GitHub</em> fournit le serveur qui permet de créer et stocker des repositories en utilisant les fonctionnalités de <em>git</em>.</p>
+        </div>
+    </div>
+
+<!-- CREATION DEPOT GIT -->
+<h3 id="depotGit">Création d'un dépôt Git</h3>
+
+<p>On peut créer un dépôt Git vide ou clôner un dépôt distant.</p>
+
+<p>Pour créer un dépôt Git vide, il faut créer un répertoire, se placer dans ce répertoire puis exécuter</p>
+  <pre><code class="language-svg">git init</code></pre>
+
+<p>Pour clôner un dépôt distant, il faut importer un remote repository du dépôt distant :</p>
+  <pre><code class="language-svg">git remote add nomProjet https://github.com/monProjet
+git clone https://github.com/monProjet</code></pre>
+
+
+<!-- CONFIGURATION -->
+
+<h3 id="configGit"> Configuration de Git</h3>
+
+<p>Pour connaître la version du logiciel <em>git</em> : </p>
+  <pre><code class="language-svg">git --version</code></pre>
+
+<p>Pour configurer les données utilisateur de <em>git</em> :</p>
+<pre><code class="language-svg">git config --global user.name "monNom"
+git config --global user.email "monEmail"</code></pre>
+<p>Il n'est pas recommandé de configurer les données utilisateur, mais préférable
+de fournir les credentials à chaque utilisation pour des raisons de sécurité.</p>
+
+<p>Pour activer la couleur dans la console :</p>
+<pre><code class="language-svg">git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto</code></pre>
+
+
+  <p>Pour vérifier la configuration enregistrée :</p>
+  <pre><code class="language-svg">git config --list</code></pre>
+
+
+<!-- L'HISTORIQUE -->
+
+<h3 id="historique">L'historique Git</h3>
+
+<p>Pour consulter l'historique (les <em>logs</em>) :</p>
+  <pre><code class="language-svg">git log</code></pre>
+
+<p>Pour obtenir l'historique et le détail des lignes retirées et rajoutées :</p>
+  <pre><code class="language-svg">git log -p</code></pre>
+
+<p>Pour quitter la liste des <em>logs</em>, il faut taper Q.</p>
+
+<p>On peut se positionner à un moment de l'historique en ne tenant compte que des commit enregistrés jusqu'à un commit défini. On utilise alors <strong>git checkout codeCommit</strong> oû <em>codeCommit</em> est le code sha présent dans le log et représentatif d'un unique commit. A partir de cette requête, <strong>git log</strong> n'affiche que les commit enregistrés jusqu'au commit <em>codeCommit</em>. Pour revenir à l'état du dernier commit, on utilise l'instruction <strong>git checkout master</strong>.</p>
+
+<p>Pour consulter les modifications :</p>
+  <pre><code class="language-svg">git diff</code></pre>
+<p>Les ligness ajoutées sont précédées d'un + et affichées en vert, tandis que les lignes supprimées sont précédées d'un - et affichées en rouge.</p>
+
+<p>Pour consulter les modifications d'un seul fichier :</p>
+  <pre><code class="language-svg">git diff monFichier</code></pre>
+
+<p>A noter que <em>GitHub</em> propose un affichage des modifications d'un commit plus convivial que le Terminal. Il s'agit dans ce cas des commits envoyés au remote.</p>
+
+<p>Pour annuler les modifications d'un fichier avant un commit, et restaurer le fichier tel qu'il était au dernier commit :</p>
+  <pre><code class="language-svg">git checkout nomFichier</code></pre>
+
+<p>Pour annuler le dernier commit et revenir à l'avant dernier : </p>
+  <pre><code class="language-svg">git reset HEAD^</code></pre>
+
+<p>Pour annuler un numéro de commit précis : </p>
+  <pre><code class="language-svg">git reset nrmCommit </code></pre>
+<p>Dans ce cas seul le commit est retiré de <em>Git</em>, les fichiers restent modifiés.</p>
+
+<p>Pour annuler le dernier commit et les changements effectués dans les fichiers :</p>
+  <pre><code class="language-svg">git reset --hard HEAD^</code></pre>
+<p>Attention, dans ce cas tous les changements sont perdus sans préavis.</p>
+
+<p>Dans le cas où des commits ont été faits simultanément par plusieurs postes dans un même projet, les modifications sont incorporées automatiquement. Dans le cas où deux changement concernent la même zode de code, un conflit apparaît qui doit être résolu manuellement en travaillant sur la zone de code marquée <<<<<<<<<<<<< . Sur <em>GitHub</em>, la résolution de conflit ne pourra être faite que par la personne déclarée responsable de projet.</p>
+
+<p>Attention, un push est en revanche irréversible. Il est donc recommandé de faire régulièrement des commit, mais de faire un push qu'une fois par jour, sinon on perd la facilité avec laquelle il est possible d'annuler ou de modifier les commit.</p>
+
+<p>Il reste toutefois possible d'annuler un commit déjà pushé en créant un nouveau commit qui effectue l'inverse des modifications. On ne peut en effet pas réellement supprimer un commit.</p>
+  <pre><code class="language-svg">git revert nrmCommit</code></pre>
+
+<p>Pour donner un tag à un commit afin de le retrouver sous une référence particulière, comme une version par exemple :</p>
+<pre><code class="language-svg">git tag nomTag nmrCommit
+  git push --tags</code></pre>
+
+<p>Attention, cette instruction spécifique <strong>--tags</strong> est importante car autrement un tag n'est pas envoyé lors d'un push.</p>
+
+<p>Pour supprimer un tag :</p>
+  <pre><code class="language-svg">git tag -d nomTag</code></pre>
+
+<p>Pour retrouver qui a modifié une ligne précise de code dans un projet :</p>
+  <pre><code class="language-svg">git blame nomFichier</code></pre>
+<p>On obtient ainsi toutes les modifications faites sur un fichier ligne par ligne avec le début du <em>sha</em> du commit correspondant. Il faut alors utiliser l'instruction suivante pour consulter les détail du commit recherché :</p>
+  <pre><code class="language-svg">git show nrmCommit</code></pre>
+
+
+
+
+
+
+
+
+<!-- IGNORER DES FICHIERS -->
+
+<h3 id="gitignore">Ignorer des fichiers avec gitignore</h3>
+
+<p>Il ne faut jamais versionner une variable de configuration, comme par exemple un mot de passe ou une clé secrète. Si le code a déjà été envoyé sur <em>GitHub</em>, il convient de changer de mot de passe ou générer une nouvelle clé secrète.</p>
+
+  <p>Il est important d'ignorer certains fichiers dans <em>Git</em>, tels que :</p>
+  <ul>
+    <li>les fichiers de configuration (config.xml, database.yml)</li>
+    <li>les fichiers temporaires (tml, temp)</li>
+    <li>les fichiers créés par l'IDLE ou l'OS (.DS_Store)</li>
+  </ul>
+<p>Ainsi, les variables de configuration devront être déplacées dans un fichier de configuration et ignorées dans <em>Git</em>.</p>
+
+<p>Il faut créer un fichier <em>.gitignore</em> et placer dans ce fichier le nom de tous les fichiers qui devront être ignorés par le versionnement.</p>
+  <pre><code class="language-svg">touch .gitignore</code></pre>
+
+<p>Pour écrire dans ce fichier <em>.gitignore</em>, il faut ouvrir l'éditeur de terminal <em>vim</em> :</p>
+  <pre><code class="language-svg">vim .gitignore</code></pre>
+
+<p>Pour sortir de <em>vim</em> :</p>
+  <pre><code class="language-svg">:q</code></pre>
+
+
+  <!-- PRINCIPALES INSTRUCTIONS -->
+  <h3>Les principales instructions Git</h3>
+  
+  <p>La structure Git est composée de 3 zones locales :</p>
+  <ul>
+  <li>le working directory</li>
+  <li>l'index ou stage qui regroupe tous les fichiers modifiés qu'on souhaite 
+  voir apparaître dans le prochain commit</li>
+  <li>le dépôt local</li>
+  </ul>
+  
+  <p>La commande add permet d'ajouter des fichiers du working directory vers l'index. La commande
+  commit permet d'enregistrer les modifications de l'index vers le dépôt local.
+  La commande push permet de mettre à jour le dépôt distant grâce au dépôt local, 
+  alors que la commande pull permet de récupérer l'état du dépôt distant vers le 
+  dépôt local afin de travailler dessus.</p>
+  
+  <p>Notons que les commit sont réalisés sur la branche courante.</p>
+  
+  <p>Pour ajouter un fichier local à l'index : </p>
+    <pre><code class="language-svg">git add monFichier</code></pre>
+  
+  <p>Pour supprimer un fichier local de l'index après l'avoir rajouté sans l'avoir commité :</p>
+    <pre><code class="language-svg">git reset HEAD --nomFichier</code></pre>
+  
+  <p>Pour ajouter rapidement à l'index sans distinction de fichier : </p>
+    <pre><code class="language-svg">git add .</code></pre>
+  
+  <p>On travaille normalement dans le repository local. Pour synchroniser le remote repository <em>master</em> avec le repository local <em>origin</em>, on commence par rajouter dans l'index chaque fichier modifié (add), on ajoute les dernières modifications dans l'historique des modifications (commit) et finalement on insère le fichier validé vers le remote repository (push) :</p>
+  <pre><code class="language-svg">git add .
+  git commit -m "monCommentaire"
+  git push origin master</code></pre>
+  
+  <p>Notons que le -m dans le commit permet d'en modifier le message.</p>
+  
+  <p>Il n'est pas nécessaire de définir le nom des fichiers concernés car tous les fichiers indexés et non validés vont être pris en compte par le commit. <em>Attention</em>, chaque étape est nécessaire. On peut toutefois regrouper les étapes du rajout à l'index et du commit :</p>
+  <pre><code class="language-svg">git commit -a -m "monCommentaire"
+    git push origin master</code></pre>
+  <p>Attention, ici le <strong>-a</strong> ne correspond pas à l'instruction <strong>add</strong>, mais à la prise en compte de tous les fichiers <em>all</em>.</p>
+  <p>On remarque qu'un commit avec <em>Git</em> est local jusqu'à ce qu'on push ce commit sur le serveur.</p>
+  
+  <p><em>Attention</em>, les fichiers modifiés mais non entrés dans l'index ne seront pas synchronisés.</p>
+  
+  <p>Pour modifier le dernier message du commit (dans le cas par exemple où une erreur s'est glissée) :</p>
+    <pre><code class="language-svg">git commit --amend -m "nouveau message de commit"</code></pre>
+  
+  <p>Pour rajouter un fichier oublié alors que le commit a déjè été réalisé, sans modifier le message du commit</p>
+  <pre><code class="language-svg">git add fichierOublie.txt
+  git commit --amend --no-edit</code></pre>
+  
+  <p>Pour récupérer un fichier de travail :</p>
+    <pre><code class="language-svg">git pull monFichier master</code></pre>
+  
+  <p>Ou de façon plus générale :</p>
+    <pre><code class="language-svg">git pull origin master</code></pre>
+  <p>Dans ce cas, origin correspond au remote repository.</p>
+  
+  <p>Il est possible à tout moment de voir l'état des fichiers (ceux qui ont été modifiés 
+  mais pas encore committés par exemple) en exécutant</p>
+  <pre><code class="language-svg">git status</code></pre>
+  
+
+  <!-- LA GESTION DES BRANCHES -->
+  
+  <h3>La gestion des branches Git</h3>
+  
+  <p>La branche master correspond à celle dans laquelle aboutissent toutes les 
+  modifications. Il ne faut pas réaliser les modifications sur cette branche master,
+  mais les réaliser sur une autre branche qu'on intègre ultérieurement à la branche master.</p>
+  
+  <p>Pour connaître les branches présentes dans un projet, il faut exécuter</p>
+  <pre><code class="language-svg">git branch</code></pre>
+  
+  <p>L'étoile qui apparaît dans la réponse marque la branche sur laquelle on travaille actuellement.</p>
+  
+  <p>Pour créer la branche maBranche en local (elle ne sera pas dupliquée sur le dépôt distant)</p>
+  <pre><code class="language-svg">git branch maBranche</code></pre>
+  
+  <p>Attention, une branche créée est toujours locale.</p>
+  
+  <p>Pour changer de branche et se retrouver dans maBranche</p>
+  <pre><code class="language-svg">git checkout maBranche</code></pre>
+  
+  <p>Attention, <strong>checkout</strong> a un double usage avec <em>Git</em>.</p>
+  
+  <p>On peut également créer une branche et s'y rendre directement avec l'instruction :</p>
+    <pre><code class="language-svg">git checkout -b nomBranche</code></pre>
+  
+  <p>Pour fusionner les changements d'une branche avec la branche master, il faut d'abord se rendre sur la branche master :</p>
+  <pre><code class="language-svg">git checkout master
+  git merge nomBranche</code></pre>
+  
+  <p>Pour supprimer une branche : </p>
+    <pre><code class="language-svg">git branch -d nomBranche</code></pre>
+  
+  <p>Cette suppression n'est possible que si le travail réalisé sur la branche fille a été incorporé dans la branche master, sinon <em>Git</em> interdit la suppression.</p>
+  
+  <p>Pour supprimer une branche dont les modifications n'ont pas été incorporées à la branche master, parce que par exemple le travail réalisé n'est pas concluant :</p>
+    <pre><code class="language-svg">git branch -D nomBranche</code></pre>
+  
+
+
+{% endblock cours %}

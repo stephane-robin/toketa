@@ -11,42 +11,294 @@
 
 {% block cours %}
 
-<p>L'objectif de ce travail pratique est d'écrire 4 fonctions Python permettant de mettre à jour nos connaissances. 
-    <ul>
-        <li>une fonction decimalToBinaire() qui transforme l'écriture décimale d'un nombre en écriture binaire,</li>
-        <li>une fonction binaireToDecimal() qui transforme l'écriture binaire d'un nombre en écriture décimale,</li>
-        <li>une fonction binaireToSexagesimal() qui transforme l'écriture binaire d'un nombre en écriture sexagésimale,</li>        
-        <li>une fonction sexagesimalToBinaire() qui transforme l'écriture sexagésimale d'un nombre en écriture binaire.</li>
-    </ul>
-</p>
+<!-- LE JOUEUR DOIT DEVINER -->
+<h3>Lorsque le joueur doit deviner</h3>
 
-<p>Une fois écrites, ces fonctions seront conservées pour être utilisées dans le cours sur les réseaux.</p>
+<p>L'objectif est de créer un programme Python qui demande à l'utilisateur de deviner un pays en Europe, suite à 3 indications données par 
+    le programme. Le joueur dispose donc de 3 tentatives pour trouver le pays et sa réponse est acceptée en minuscules ou 
+    avec la première lettre en majuscule.</p>
 
-<h3>Proposition de correction pour decimalToBinaire()</h3>
+<p>Il faudra utiliser les structures de données suivantes :</p>
 
-<p>Le code suivant permet de convertir un nombre en base 10 dans son écriture binaire. Il ne s'agit pas du code le plus court ou le plus performant, 
-    mais il permet de comprendre comment procéder pour obtenir le résultat.</p>
+<pre><code class="language-python">pays = [
+    {
+        'nom': 'Allemagne',
+        'langue': 'l\'allemand',
+        'personnalite': 'Goethe',
+        'capitale': 'Bonn'
+    },
+    {
+        'nom': 'Autriche',
+        'langue': 'l\'allemand',
+        'personnalite': 'Freud',
+        'capitale': 'Vienne'
+    },
+    {
+        'nom': 'Suisse',
+        'langue': 'l\'allemand',
+        'personnalite': 'Rousseau',
+        'capitale': 'Bern'
+    }
+]
 
-<pre><code class="language-python">def decimalToBinaire(decimal):
-    binaire = ''
+questions = [
+    "La langue parlée dans ce pays est : ",
+    "Une personnalité célèbre de ce pays est : ",
+    "La capitale de ce pays est : "
+]
 
-    while decimal > 0:
-        # decimal%2 doit etre transformé en string avant d'être concaténé
-        binaire = str(decimal % 2) + binaire
-        decimal = decimal // 2
+cles = [
+    'langue',
+    'personnalite',
+    'capitale'
+]</code></pre>
 
-    return binaire</code></pre>
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
 
-<p>Le code ci-dessus fournit le résultat 110100 lorsqu'on exécute</p>
+<div id="solution1" style="display:none;">
 
-<pre><code class="language-python">print(decimalToBinaire(52))</code></pre>
+<pre><code class="language-python">import random
 
-<p>A noter l'existence de la fonction bin() qui fournit le même résultat : </p>
+trouve = False 
+nbre_tentatives = 0
 
-<pre><code class="language-python">def decimalToBinaire2(n):
-    return bin(n).replace("0b", "")</code></pre>
+pays = [
+    {
+        'nom': 'Allemagne',
+        'langue': 'l\'allemand',
+        'personnalite': 'Goethe',
+        'capitale': 'Bonn'
+    },
+    {
+        'nom': 'Autriche',
+        'langue': 'l\'allemand',
+        'personnalite': 'Freud',
+        'capitale': 'Vienne'
+    },
+    {
+        'nom': 'Suisse',
+        'langue': 'l\'allemand',
+        'personnalite': 'Rousseau',
+        'capitale': 'Bern'
+    }
+]
 
-<p>A noter dans ce cas que le résultat de la fonction bin() est perçu comme un nombre binaire par l'interpréteur Python, et qu'il 
-    faut donc remplacer le "0b" au début de ce nombre par un caractère vide.</p>
+questions = [
+    "La langue parlée dans ce pays est : ",
+    "Une personnalité célèbre de ce pays est : ",
+    "La capitale de ce pays est : "
+]
 
+cles = [
+    'langue',
+    'personnalite',
+    'capitale'
+]
+
+paysATrouver = random.choices(pays)[0]
+
+i = 0
+while trouve == False and nbre_tentatives < 3:
+    reponse = input(questions[i] + paysATrouver[cles[i]] + ". Quel est ce pays ? ").capitalize()
+    nbre_tentatives += 1
+    if reponse == paysATrouver['nom']:
+        trouve = True
+    i += 1
+
+if trouve == True: 
+    print("Bravo, vous avez trouvé en " + str(nbre_tentatives) + " tentative(s).")
+else:
+    print("Dommage, vous avez perdu. La réponse était : " + paysATrouver['nom'])</code></pre>
+
+</div>
+
+
+<!-- L'ORDINATEUR DOIT DEVINER -->
+<h3>Lorsque l'ordinateur doit deviner</h3>
+
+<p>L'objectif est de créer un programme Python qui fait deviner à l'ordinateur le nom d'un personnage célèbre 
+    parmi la liste suivante : Napoléon, Rousseau, Pelé, Dali, Baudelaire, Coppi, Monnet, Churchill. Pour cela, 
+    l'ordinateur dispose de 3 questions définies à l'avance. Le joueur devra choisir un de ces personnages puis 
+    répondre honnêtement à ces 3 questions afin que l'ordinateur trouve la bonne réponse.</p>
+<div>
+
+<p>Tu devras utiliser le dictionnaire suivant pour construire ton code :</p>
+
+<pre><code class="language-python">particularites = {
+    'Napoleon': {
+        'nationalite': 'France',
+        'siecle': '19',
+        'domaine': 'histoire',
+        'score': 0
+    },
+    'Voltaire': {
+        'nationalite': 'France',
+        'siecle': '18',
+        'domaine': 'littérature',
+        'score': 0
+    },
+    'Nadal': {
+        'nationalite': 'Espagne',
+        'siecle': '20',
+        'domaine': 'sport',
+        'score': 0
+    },
+    'Dali': {
+        'nationalite': 'Espagne',
+        'siecle': '20',
+        'domaine': 'art',
+        'score': 0
+    },
+    'Baudelaire': {
+        'nationalite': 'France',
+        'siecle': '19',
+        'domaine': 'littérature',
+        'score': 0
+    },
+    'Coppi': {
+        'nationalite': 'Italie',
+        'siecle': '20',
+        'domaine': 'sport',
+        'score': 0
+    },
+    'Monnet': {
+        'nationalite': 'France',
+        'siecle': '20',
+        'domaine': 'art',
+        'score': 0
+    },
+    'Churchill': {
+        'nationalite': 'Angleterre',
+        'siecle': '20',
+        'domaine': 'histoire',
+        'score': 0
+    }
+}</code></pre>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
+
+<div id="solution2" style="display:none;">
+<pre><code class="language-python">"""Ce jeu consiste a faire deviner a l'ordinateur le nom d'un personnage celebre parmi 
+Napoleon, Rousseau, Pele, Dali, Baudelaire, Coppi, Monnet, Churchill. Pour cela 
+l'ordinateur dispose de 3 questions definies a l'avance auquel l'utilisateur 
+devra repondre, apres avoir choisi un personnage parmi la liste ci-dessus."""
+
+print("""Ce jeu consiste a faire deviner a l'ordinateur le nom d'un personnage celebre parmi 
+Napoleon, Rousseau, Pele, Dali, Baudelaire, Coppi, Monnet, Churchill. 
+Pour cela l'ordinateur dispose de 3 questions definies a l'avance auquel l'utilisateur 
+devra repondre, apres avoir choisi un personnage parmi la liste ci-dessus.
+
+Commencez par choisir un personnages parmi ceux proposés...
+
+""")
+
+particularites = {
+    'Napoleon': {
+        'nationalite': 'France',
+        'siecle': '19',
+        'domaine': 'histoire',
+        'score': 0
+    },
+    'Voltaire': {
+        'nationalite': 'France',
+        'siecle': '18',
+        'domaine': 'littérature',
+        'score': 0
+    },
+    'Nadal': {
+        'nationalite': 'Espagne',
+        'siecle': '20',
+        'domaine': 'sport',
+        'score': 0
+    },
+    'Dali': {
+        'nationalite': 'Espagne',
+        'siecle': '20',
+        'domaine': 'art',
+        'score': 0
+    },
+    'Baudelaire': {
+        'nationalite': 'France',
+        'siecle': '19',
+        'domaine': 'littérature',
+        'score': 0
+    },
+    'Coppi': {
+        'nationalite': 'Italie',
+        'siecle': '20',
+        'domaine': 'sport',
+        'score': 0
+    },
+    'Monnet': {
+        'nationalite': 'France',
+        'siecle': '20',
+        'domaine': 'art',
+        'score': 0
+    },
+    'Churchill': {
+        'nationalite': 'Angleterre',
+        'siecle': '20',
+        'domaine': 'histoire',
+        'score': 0
+    }
+}
+
+# question 1
+reponse1 = input("Quelle est la nationalité de la personne recherchée ?\nRépondre au choix (a, b ou c):\ta. France\tb. Angleterre\tc. Italie \td. Espagne\n")
+match reponse1:
+    case 'a':
+        reponse1 = 'France' 
+    case 'b':
+        reponse1 = 'Angleterre' 
+    case 'c':
+        reponse1 = 'Italie'
+    case 'd':
+        reponse1 = 'Espagne'
+
+# question 2
+reponse2 = input("Durant quel siècle cette personne a-t-elle existé ?\nRépondre au choix (a, b ou c):\ta. 18\tb. 19\tc. 20\n")
+match reponse2:
+    case 'a':
+        reponse2 = '18' 
+    case 'b':
+        reponse2 = '19' 
+    case 'c':
+        reponse2 = '20'
+
+# question 3
+reponse3 = input("Quel est le domaine de prédilection de cette personne ?\nRépondre au choix (a, b ou c):\ta. histoire\tb. art\tc. sport\td. littérature\n")
+match reponse3:
+    case 'a':
+        reponse3 = 'histoire' 
+    case 'b':
+        reponse3 = 'art' 
+    case 'c':
+        reponse3 = 'sport'
+    case 'd':
+        reponse3 = 'littérature'
+
+# parcours du dictionnaire particularites pour compter les valeurs correctes
+for cles, valeurs in particularites.items():
+    score = 0
+    for keys, values in valeurs.items():
+        if values == reponse1:
+            score += 1
+        if values == reponse2:
+            score += 1
+        if values == reponse3:
+            score += 1
+        valeurs['score'] = score
+
+# parcours du dictionnaire particularites pour trouver le score le plus eleve
+maximum = 0
+for cles, valeurs in particularites.items():
+    if valeurs['score'] > maximum:
+        maximum = valeurs['score']
+        personnage_trouve = cles
+
+print(f"Le personnage à deviner est {personnage_trouve}.")</code></pre>
+</div>
 {% endblock cours %}

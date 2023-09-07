@@ -1,0 +1,421 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+    <li>utilisation de listes</li>
+    <li>pratique de la construction de code</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Nous allons créer un jeu de morpion simple représenté par un tableau de 3 lignes et 3 colonnes. L'interface 
+    graphique se fera à la console, et il faudra donc afficher le tableau des résultats après chaque tour.</p>
+
+<p>L'utilisateur va jouer contre l'ordinateur, et le programme ne va pas demander à l'ordinateur de réfléchir à
+     la meilleur position, car ce serait trop compliqué. En revanche, l'ordinateur va systématiquement choisir la 1ère 
+     case libre en commençant par la 1ère ligne, la 1ère colonne, puis la 1ère ligne, 2ème colonne, etc ...</p>
+
+
+<h3>Les différentes étapes du code</h3>
+
+
+<h4>Plan de travail</h4>
+
+<ol>
+<li>Nous allons jouer en utilisant la console, et donc sans interface graphique. La grille du morpion (de taille 3 fois 3) pourra être représentée par une liste de 3 listes permettant de stocker les résultats après chaque tour. 
+Nous devrons penser à un système de coordonnées des éléments de la grille (très vraisemblablement les indices de lignes et de colonnes de la liste), afin de pouvoir placer les pions. Attention, l'utilisateur devra compter les lignes et les colonnes de 1 à 3 alors que les indices de liste vont de 0 à 2.</li>
+
+<li>Nous devons créer une fonction qui affiche la grille du morpion, et enlève les crochets représentatifs des listes.</li>
+
+<li>Nous devons créer une fonction qui fait jouer l'utilisateur</li>
+
+<li>Il faut gérer le cas où la saisie de l'utilisateur est incorrecte, afin d'éviter que le programme ne plante.</li>
+
+<li>Il faut également une fonction qui fait jouer l'ordinateur</li>
+
+<li>Le programme devra s'arrêter quand le joueur gagne, l'ordinateur gagne ou personne ne gagne. Pour cela, il peut être adapté de créer une fonction aui renvoie True dans chacun des cas ci-dessus ou False sinon.</li>
+
+<li>Il est nécessaire de créer une fonction qui affiche le vainqueur ou l'égalité.</li>
+</ol>
+
+
+<h4>Etape 1</h4>
+
+<p>Vous aller créer une liste appelée <strong>grille</strong> contenant 3 listes composées d'espaces vides.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
+
+<div id="solution2" style="display:none;">
+<pre><code class="language-python">grille = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+</code></pre>
+
+</div>
+
+
+<h4>Etape 2</h4>
+
+<p>Vous allez créer une fonction appelée <strong>afficher()</strong>, qui prend comme paramètre un tableau 
+    et va renvoyer une chaîne de caractères composée de 3 lignes, représentant <strong>grille</strong>. 
+    Dans une chaîne de caractères, l'instruction <strong>\n</strong> permet de sauter une ligne.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+</div>
+
+<div id="solution3" style="display:none;">
+<pre><code class="language-python">def afficher(tab):
+    affichage = "\n"
+
+    for i in range(3):
+        for j in range(3):
+            affichage += " | " + tab[i][j]
+        affichage += " | \n"
+
+    return affichage</code></pre>
+
+</div>
+
+
+<h4>Etape 3</h4>
+
+<p>Vous allez créer la fonction <strong>utilisateur_jouer()</strong>, qui prend comme paramètre un tableau, et modifie une case de ce tableau suivant la saisie effectuée par l'utilisateur. Attention ce dernier compte de 1 à 3, alors que le tableau est une liste de listes dont les indices varient de 0 à 2. Les erreurs occasionnées par une mauvaise saisie de l'utilisateur ne sont pas prises en compte pour faciliter le travail. En revanche, si la case choisie est déjà occupée par un X ou un O, alors la fonction affiche "erreur, la case est déjà occupée".</p>
+
+<p>Il faut penser que ce qui est saisi par l'utilisateur est enregistré comme chaîne de caractère. Il faut donc le transformer en entier afin de pouvoir l'utiliser comme un indice.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+<pre><code class="language-python">def utilisateur_jouer(tab):
+    
+    liste_indices = [0, 1, 2]
+    print("choisissez la position de votre croix.")
+    ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+    colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+
+    while tab[ligne][colonne] != ' ':
+        print("Erreur, la case est déjà occupée")
+        print("choisissez la position de votre croix.")
+        ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+        colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+ 
+    tab[ligne][colonne] = 'X'
+    
+    return tab</code></pre>
+
+</div>
+
+<h4>Etape 4</h4>
+
+<p>Il faut maintenant gérer les cas où l'utilisateur va entrer un caractère autre que 1, 2 ou 3 pour les indices des coordonnées de la case à remplir. En effet, il faut éviter que le programme plante si l'utilisateur se trompe au moment de sa saisie clavier. On parle de gestion des exceptions. On utilisera simplement une condition <strong>if</strong>.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+</div>
+
+<div id="solution5" style="display:none;">
+<pre><code class="language-python">def utilisateur_jouer(tab):
+    
+    liste_indices = [0, 1, 2]
+    print("choisissez la position de votre croix.")
+    ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+    colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+
+    while ligne not in liste_indices or colonne not in liste_indices:
+        print("L'indice doit être compris entre 1 et 3")
+        ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+        colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+
+    while tab[ligne][colonne] != ' ':
+        print("Erreur, la case est déjà occupée")
+        print("choisissez la position de votre croix.")
+        ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+        colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+ 
+    tab[ligne][colonne] = 'X'
+    
+    return tab</code></pre>
+
+</div>
+
+<h4>Etape 5</h4>
+
+<p>Vous allez naintenant créer une fonction <strong>ordinateur_jouer()</strong>, qui prend comme paramètre un tableau, et modifie une case de ce tableau suivant le choix effectué par l'ordinateur. Ce choix doit être le plus simple possible, c'est à dire la 1ère case vide lorsqu'on parcourt le tableau ligne par ligne et colonne par colonne dans chaque ligne.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+</div>
+
+<div id="solution6" style="display:none;">
+<pre><code class="language-python">def ordinateur_jouer(tab):
+    
+    ligne = 0
+    colonne = 0
+    compteur_possibilites = 0
+
+    for i in range(3):
+        for j in range(3):
+            if tab[i][j] == ' ':
+                compteur_possibilites += 1
+
+            if compteur_possibilites == 1 and tab[i][j] == ' ':
+                ligne = i
+                colonne = j
+
+    tab[ligne][colonne] = 'O'
+
+    return tab</code></pre>
+
+</div>
+
+
+<h4>Etape 6</h4>
+
+<p>Vous allez créer une fonction <strong>tester_victoire()</strong>, qui prend comme paramètre un tableau, parcourt ce tableau puis 
+    renvoie True et affiche "victoire du joueur" ou "victoire de l'ordinateur" en cas de victoire ou False 
+    et dans ce cas le jeu continue. Il est parfois utile de transformer les ligne d'un tableau en chaîne de 
+caractères pour les comparer facilement avec les séquences XXX ou OOO.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+</div>
+
+<div id="solution7" style="display:none;">
+<pre><code class="language-python">def tester_victoire(tab):
+   
+    resultat = False
+    grille_str = []
+   
+    # On rajoute dans grille_str chacune des lignes de la grille
+    for i in range(3):
+        grille_str.append(''.join(tab[i]))
+
+    # On rajoute dans grille_str chacune des colonnes de la grille
+    str_colonne = ''
+    for j in range(3):
+        for i in range(3):
+            str_colonne += tab[i][j]
+        grille_str.append(str_colonne)
+        # On vide la colonne precedente avant de construire la colonne suivante
+        str_colonne = ''
+
+    # on rajoute dans grille_str chacune des diagonales de la grille
+    grille_str.append(tab[0][0] + tab[1][1] + tab[2][2])
+    grille_str.append(tab[0][2] + tab[1][1] + tab[2][0])
+    
+    # On teste chaque element de grille_str pour detecter la presence de XXX
+    # ou de OOO
+    for elt in grille_str:
+        if elt.find('XXX') != -1:
+            print('victoire du joueur')
+            resultat = True
+        elif elt.find('OOO') != -1:
+            print("victoire de l'ordinateur")
+            resultat = True
+    
+    return resultat</code></pre>
+
+</div>
+
+
+<h4>Etape 7</h4>
+
+<p>Vous allez construire le programme principal qui va appeler les différentes fonctions que vous venez de créer.</p>
+
+<p>Ce programme doit tester la victoire de l'utilisateur ou de l'ordinateur et tant qu'il n'y a aucune victoire, il doit faire jouer l'utilisateur, faire jouer l'ordinateur, puis afficher l'état du tableau à chaque tour de jeu.</p>
+
+<p>En cas de victoire, le programme doit afficher le nom du vainqueur.</p>
+
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+<pre><code class="language-python">if __name__ == '__main__':
+    
+    grille = [
+    [' ', ' ', ' '], 
+    [' ', ' ', ' '], 
+    [' ', ' ', ' ']
+    ]
+    
+    # Tant qu'aucun joueur n'est victorieux, on fait jouer l'utilisateur 
+    # et l'ordinateur puis on affiche la grille.
+    while tester_victoire(grille) == False:
+        grille = utilisateur_jouer(grille)
+        grille = ordinateur_jouer(grille)
+        print(afficher(grille))</code></pre>
+
+</div>
+
+<p>Bon, maintenant il ne reste plus qu'à exécuter le code pour jouer à une version simplifiée du morpion</p>  
+<center>&#11093;&#11093;&#10060;<br/>&#11093;&#10060;&#11093;<br/>&#11093;&#10060;&#11093;</center>
+
+<h3>Vers une correction du jeu</h3>
+
+<pre><code class="language-python">"""
+    Jeu de morpion ou l'ordinateur prend la 1ere position vide de la grille de jeu
+    """
+    
+    
+    def afficher(tab):
+        """
+        Affiche la grille dans son etat actuel.
+    
+        parameters:
+            tab (list) : grille de jeu
+        return:
+            affichage (str) : grille transformee en str pour pouvoir etre affichee
+            en console.
+        """
+        affichage = "\n"
+    
+        for i in range(3):
+            for j in range(3):
+                affichage += " | " + tab[i][j]
+            affichage += " | \n"
+    
+        return affichage
+    
+    
+    def utilisateur_jouer(tab):
+        """
+        Demande a l'utilisateur de saisir une coordonnee de jeu 
+        et verifie que la position n'a pas deja ete jouee.
+        Pas de gestion des exceptions.
+    
+        parameters:
+            tab (list) : la grille de jeu
+        return: 
+            tab (list) : la grille de jeu mise à jour
+        """
+        liste_indices = [0, 1, 2]
+        print("choisissez la position de votre croix.")
+        ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+        colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+    
+        while ligne not in liste_indices or colonne not in liste_indices:
+            print("L'indice doit être compris entre 1 et 3")
+            ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+            colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+    
+        while tab[ligne][colonne] != ' ':
+            print("Erreur, la case est déjà occupée")
+            print("choisissez la position de votre croix.")
+            ligne = int(input("à quelle ligne ? (entre 1 et 3) ")) - 1
+            colonne = int(input("à quelle colonne ? (entre 1 et 3) ")) - 1
+     
+        tab[ligne][colonne] = 'X'
+        
+        return tab
+    
+    
+    def ordinateur_jouer(tab):
+        """
+        Place un O pour l'ordinateur au premier emplacement vide de la grille.
+        On compte les possibilites pour ne conserver en memoire dans ligne, colonne
+        que le premier emplacement disponible.
+    
+        parameters:
+            tab (list) : la grille de jeu
+        return:
+            tab (list) : la grille de jeu mise à jour
+        """
+        ligne = 0
+        colonne = 0
+        compteur_possibilites = 0
+    
+        for i in range(3):
+            for j in range(3):
+                if tab[i][j] == ' ':
+                    compteur_possibilites += 1
+    
+                if compteur_possibilites == 1 and tab[i][j] == ' ':
+                    ligne = i
+                    colonne = j
+    
+        tab[ligne][colonne] = 'O'
+    
+        return tab
+    
+    
+    def tester_victoire(tab):
+        """
+        Teste si l'utilisateur est victorieux par l'alignement de XXX, et si 
+        l'ordinateur est victorieux par l'alignement de OOO. Affiche le vainqueur 
+        et renvoie un booleen pour marquer la victoire, qui servira dans le 
+        programme principal a arreter le jeu.
+        Transforme les lignes, colonnes et diagonales de la grille en string places 
+        dans une liste grille_str dont les elements sont des string. Ces string sont 
+        ensuite analyses pour trouver XXX ou OOO. 
+    
+        parameters:
+            tab (list) : la grille de jeu
+        return:
+            resultat (boolean) : determine si la victoire est acquise 
+        """
+        resultat = False
+        grille_str = []
+       
+        # On rajoute dans grille_str chacune des lignes de la grille
+        for i in range(3):
+            grille_str.append(''.join(tab[i]))
+    
+        # On rajoute dans grille_str chacune des colonnes de la grille
+        str_colonne = ''
+        for j in range(3):
+            for i in range(3):
+                str_colonne += tab[i][j]
+            grille_str.append(str_colonne)
+            # On vide la colonne precedente avant de construire la colonne suivante
+            str_colonne = ''
+    
+        # on rajoute dans grille_str chacune des diagonales de la grille
+        grille_str.append(tab[0][0] + tab[1][1] + tab[2][2])
+        grille_str.append(tab[0][2] + tab[1][1] + tab[2][0])
+        
+        # On teste chaque element de grille_str pour detecter la presence de XXX
+        # ou de OOO
+        for elt in grille_str:
+            if elt.find('XXX') != -1:
+                print('victoire du joueur')
+                resultat = True
+            elif elt.find('OOO') != -1:
+                print("victoire de l'ordinateur")
+                resultat = True
+        
+        return resultat
+    
+    
+    if __name__ == '__main__':
+        
+        grille = [
+        [' ', ' ', ' '], 
+        [' ', ' ', ' '], 
+        [' ', ' ', ' ']
+        ]
+        
+        # Tant qu'aucun joueur n'est victorieux, on fait jouer l'utilisateur 
+        # et l'ordinateur puis on affiche la grille.
+        while tester_victoire(grille) == False:
+            grille = utilisateur_jouer(grille)
+            grille = ordinateur_jouer(grille)
+            print(afficher(grille))</code></pre>
+
+{% endblock cours %}
+
+
+

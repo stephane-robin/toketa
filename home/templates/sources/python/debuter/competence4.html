@@ -74,14 +74,14 @@ on continue l'exécution du reste du programme, donc on affiche "Fin du jeu"</co
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
-var questionsData = 
+var questionsData1 = 
     {
         question: "La boucle while permet de répéter un bloc d'instructions ...",
         options:["tant qu'une condition n'est pas vérifiée", "tant qu'une variable est positive", "tant qu'une condition est vérifiée"],
         correctIndex: 2,
         commentaire: "Une condition doit être vérifiée pour entrer dans la boucle."
     };
-questionnaireUnique(1);
+questionnaireUnique(1, questionsData1);
 </script>
 
 
@@ -130,14 +130,14 @@ afficher "Fin du jeu"</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
-var questionsData = 
+var questionsData2 = 
     {
         question: "Il est nécessaire de faire varier une variable dans une boucle while ...",
         options:["pour que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour éviter que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour afficher une valeur à la fin de la boucle"],
         correctIndex: 0,
         commentaire: ""
     };
-questionnaireUnique(2);
+questionnaireUnique(2, questionsData2);
 </script>
 
 
@@ -311,14 +311,14 @@ while age.isnumeric() == False:
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
-var questionsData = 
+var questionsData3 = 
     {
         question: "On donne la valeur 0 à une variable compteur. Pour répéter 5 fois un bloc d'instructions, il faut utiliser ...",
         options:["while compteur < 5:", "while compteur = 5:", "while compteur < 6:"],
         correctIndex: 0,
         commentaire: "On démarre de 0 pour aller jusqu'à 4 inclus, ce qui constitue 5 répétitions."
     };
-questionnaireUnique(3);
+questionnaireUnique(3, questionsData3);
 </script>
 
 
@@ -417,14 +417,14 @@ print(new_mot)</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
-var questionsData = 
+var questionsData4 = 
     {
         question: "Pour connaître la longueur d'une chaîne de caractères appelée phrase, on utilise ...",
         options:["len(phrase)", "phrase.len", "phrase.len()"],
         correctIndex: 0,
         commentaire: ""
     };
-questionnaireUnique(4);
+questionnaireUnique(4, questionsData4);
 </script>
 
 

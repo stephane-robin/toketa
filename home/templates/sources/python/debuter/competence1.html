@@ -25,7 +25,8 @@
     leur orthographe et leur grammaire. Contrairement à la langue française, le nombre de mots est très limité, 
 et la syntaxe est toujours la même. Elle peut paraître compliquée au début mais le meilleur moyen de bien la connaître 
  est de pratiquer en s'aidant des commentaires de l'ordinateur pour effectuer les corrections. Il faut par ailleurs 
-toujours garder à l'esprit que l'ordinateur exécute à la lettre ce qu'on lui demande de faire, ligne après ligne.</p>
+toujours garder à l'esprit que l'ordinateur exécute à la lettre ce qu'on lui demande de faire, ligne après ligne et 
+de haut en bas.</p>
 
 <p>Les phrases composent des paragraphes, qui eux-même composent des chapitres qui composent un livre. 
     En suivant cette analogie, une ligne de code serait une phrase, un bloc ou ensemble d'instructions 
@@ -58,8 +59,11 @@ instruction du bloc 1</code></pre>
     il est impératif de penser à décaler les instructions du bloc 2, sinon elles appartiendraient 
     au bloc 1 et cela changerait le code.</p>
 
-<p>Par ailleurs, la fin d'une ligne symbolise la fin d'une instruction. Il n'est pas nécessaire en Python 
+<p>La fin d'une ligne symbolise la fin d'une instruction. Il n'est pas nécessaire en Python 
     d'utiliser des points-virgules pour symboliser la fin d'une instruction.</p>
+
+<p>Par ailleurs, les programmes comprennent des fonctions qu'on appelle autant de fois que nécessaire pour éviter de 
+    répéter les mêmes lignes de code.</p>
 
 <p>Il est possible et même très important d'écrire des commentaires dans un programme. Ces portions de code ne
     sont pas exécutées par l'interpréteur Python et ont pour but de faciliter la compréhension du code, pour le 
@@ -74,11 +78,17 @@ ceci est un commentaire
 sur plusieurs lignes
 """</code></pre>
 
-<p>Il faut prendre l'habitude d'écrire les commentaires en anglais car Python est écrit en anglais. 
-    A défaut, il faut écrire en français sans accent, ou alors rajouter dès la première ligne de code l'instruction 
-    suivante qui indique à Python que les accents et caractères spéciaux sont autorisés :</p>
+<p>Il faut prendre l'habitude d'écrire les commentaires en anglais car Python est écrit en anglais.</p>
 
-<pre><code class="language-python"># -*- coding: utf-8 -*-</code></pre>
+<div class="exerciceType">
+<p>En résumé</p>
+
+<ul>
+    <li>les codes Python sont composés de blocs qu'on repère grâce à leur décalage par rapport au bord gauche de la page.</li>
+    <li>les commentaires sont destinés aux développeurs et permettent de mieux comprendre le code</li>
+    <li>les fonctions permettent d'éviter de répéter le code</li>
+</ul>
+</div>
 
 
 <!-- DECOUVRIR LES VARIABLES  -->
@@ -136,6 +146,11 @@ x = 44</code></pre>
     qu'à la fin x vaut 44 et y vaut 12 alors qu'il était écrit y = x. IL NE S'AGIT PAS D'UNE EGALITE MAIS DE 
     L'AFFECTATION DE VALEURS A DES VARIABLES.</p>
 
+<div class="fieldsetDefinition">
+    <p>A RETENIR ...</p>
+    <p>Le signe = ne symbolise pas une égalité en Python, mais l'affectation d'une valeur à une variable.</p>
+</div>
+
 <p>Voici une liste non exhaustive de mots-clés qu'il n'est donc pas possible d'utiliser comme nom de variable :
     <em>print, input, if, while, for, range, list, str, float, int, def, match, else, elif</em></p>
 
@@ -164,7 +179,9 @@ x = 44</code></pre>
 
 <pre><code class="language-python">print("Hello world")</code></pre>
 
-<p>Note l'importance des <strong>""</strong> dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les <strong>""</strong> permettent simplement d'afficher du texte et non pas la valeur d'une variable.</p>
+<p>Note l'importance des <strong>""</strong> dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. 
+    L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les guillemets 
+    <strong>""</strong> permettent simplement d'afficher du texte et non pas la valeur d'une variable.</p>
 
 <div class="exerciceApplication">
     <p><strong>A toi de jouer : </strong>pour comprendre l'utilité des guillemets "", donne la valeur "Antoine" à la variable <strong>prenom</strong> :</p>
@@ -201,7 +218,6 @@ print(nom + prenom)</code></pre>
 <iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
-<p>Nous verrons plus tard dans le tutoriel comment créer un format d'affichage qui nous convient bien.</p>
 
 
 <!-- QESTIONNAIRE -->
@@ -210,15 +226,25 @@ print(nom + prenom)</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
-var questionsData = 
+var questionsData1 = 
     {
         question: "Quelle affirmation est vraie ...",
         options:["une variable peut prendre plusieurs valeurs en même temps", "une variable ne change pas de valeur", "une variable ne change pas de nom"],
         correctIndex: 2,
         commentaire: "Seule le nom d'une variable reste inchangé."
     };
-questionnaireUnique(1);
+questionnaireUnique(1, questionsData1);
 </script>
+
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    
+    <ul>
+        <li>les variables stockent des données en mémoire durant l'exécution d'un programme</li>
+        <li>les variables sont composées d'un nom, d'une valeur et d'un type</li>
+    </ul>
+</div>
 
 
 <!-- LES TYPES -->
@@ -281,15 +307,24 @@ quantite_nourriture = 3500 - 64 * compteur_ravitaillement</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
-var questionsData = 
+var questionsData2 = 
     {
         question: "Quelle affirmation est vraie ...",
         options:["le type d'une variable définit sa famille d'appartenance", "le type d'une variable est immuable", "on accède au type de la variable x en écrivant x.type()"],
         correctIndex: 0,
         commentaire: "Le type d'une variable définit à quel groupe elle appartient."
     };
-questionnaireUnique(2);
+questionnaireUnique(2, questionsData2);
 </script>
+
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    
+    <ul>
+        <li>les types de base des variables sont int, float, str, bool</li>
+    </ul>
+</div>
 
 
 <!-- CONVENTIONS DE NOTATION -->
@@ -319,14 +354,14 @@ précédent de PI.</p>
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
-var questionsData = 
+var questionsData3 = 
     {
         question: "3nom_securise est un nom de variable valable ...",
         options:["vrai", "faux", "peut le devenir si on enlève le underscore _"],
         correctIndex: 1,
         commentaire: "Un nom de variable ne peut pas commencer par un chiffre en Python."
     };
-questionnaireUnique(3);
+questionnaireUnique(3, questionsData3);
 </script>
 
 
@@ -490,14 +525,14 @@ la valeur de <strong>pseudo</strong> à l'écran.</p>
 {% include '../../../questionnaireUnique.html' with nmr='6' %}
 
 <script>
-var questionsData = 
+var questionsData6 = 
     {
         question: "<p>Quelle est la valeur de la variable c lors de l'exécution du code suivant</p> <pre><code>a = 12<br/>b = a + 7<br/>c = a + b</code></pre>",
         options:["19", "7", "31"],
         correctIndex: 2,
         commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
     };
-questionnaireUnique(6);
+questionnaireUnique(6, questionsData6);
 </script>
 
 
@@ -723,20 +758,50 @@ nom_restaurant = "Chaîne d'or"</code></pre>
 </div>
 
 
+<h4>Affichage respectant la structure donnée</h4>
+
+<p>Il est possible d'afficher un texte en respectant les sauts de ligne et les espaces comme dans le texte d'origine. 
+    Pour cela, il convient d'utiliser """, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">print("""Deux coeurs qui s'aiment,
+n'allez pas chercher plus loin la poésie;
+et deux baisers qui dialoguent,
+n'allez pas chercher plus loin la musique. (V. Hugo)""")</code></pre>
+
+<p>qui va afficher :</p>
+
+<pre><code class="language-svg">Deux coeurs qui s'aiment,
+n'allez pas chercher plus loin la poésie;
+et deux baisers qui dialoguent,
+n'allez pas chercher plus loin la musique. (V. Hugo)</code></pre>
+
+<p>Il est possible de couper les lignes de codes Python afin d'afficher toutes les instructions sur une même 
+page sans devoir bouger la souris pour lire le code, en utilisant un antislash \ qui indique à Python que le 
+code continue. En Effet, contrairement à d'autres langages où un point-virgule ; symbolise la fin d'une instruction, 
+en Python le saut de ligne ferme une instruction. Voici quelques exemples d'utilisation de l'antislash :</p>
+
+<pre><code class="language-python">print("Deux coeurs qui s'aiment,\
+n'allez pas chercher plus loin la poésie;\
+et deux baisers qui dialoguent,\
+n'allez pas chercher plus loin la musique. (V. Hugo)")
+
+moyenne = (trimestre1 + trimestre2 +\
+trimestre3) / 3</code></pre>
+
 <!-- QESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
-var questionsData = 
+var questionsData4 = 
     {
         question: "Pour afficher le nom suivi du prénom d'une personne en sautant la ligne entre les deux variables nom et prenom, il faut exécuter ...",
         options:["print(nom + '\\n' + prenom)", "print(nom + '\\t' + prenom)", "print(nom + \\n + prenom)"],
         correctIndex: 0,
         commentaire: "'\n' lu comme une chaîne de caractères permet de sauter une ligne."
     };
-questionnaireUnique(4);
+questionnaireUnique(4, questionsData4);
 </script>
 
 
@@ -824,15 +889,25 @@ from numpy import *</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='5' %}
 
 <script>
-var questionsData = 
+var questionsData5 = 
     {
         question: "si on écrit au début d'un programme 'import math', on doit exécuter le code suivant pour calculer le pgcd de 18 et 24 ...",
         options:["gcd(18, 24)", "m.gcd(18, 24)", "math.gcd(18, 24)"],
         correctIndex: 2,
         commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
     };
-questionnaireUnique(5);
+questionnaireUnique(5, questionsData5);
 </script>
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    <p>On peut importer la bibliothèque random en utilisant au choix l'une des instructions suivantes :</p>
+    <ul>
+        <li>import random</li>
+        <li>from random import *</li>
+        <li>import random as rd</li>
+    </ul>
+    </div>
 
 
 <!-- ENTRAINEMENT -->

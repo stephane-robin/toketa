@@ -6,422 +6,142 @@
     <li>utilisation de conditions</li>
     <li>utilisation de boucles</li>
     <li>utilisation de fonctions</li>
-    <li>utilisation de listes</li>
+    <li>utilisation de dictionnaires</li>
+    <li>lecture de fichier distant</li>
     <li>pratique de la construction de code</li>
 </ul>  
 {% endblock contenu %}
 
 {% block cours %}
 
-<p>Nous allons mettre en pratique la lecture d'un fichier au format <strong>.txt</strong> pour rechercher une chaîne dans une séquence de génome.</p>
+<pre><code class="language-python">def saisir_data():
+    """
+    saisit les données du réseau étudié avec l'utilisateur
+    :return: (dict) dico_sites dont les clés sont des noms de sites, les valeurs
+    sont des listes (indice 0 une liste contenant les sites successeurs, indice
+    1 une liste contenant les sites prédécesseurs, indice 2 le poids des liens du
+    site, indice 3 le poids du site clé)
+    """
+    dico_sites = {}
+    liste_sites = []
+    site = ""
+
+    # on saisit les noms des sites du réseau
+    while site != "#":
+        site = input("entrez le nom de chaque site. \nLa valeur '#' va arrêter la saisie : ")
+        liste_sites.append(site)
+
+    # on enlève le # qui a été saisi en dernier de la liste des sites
+    liste_sites.pop()
+
+    # on saisit les noms des successeurs de chaque site
+    for site in liste_sites:
+
+        nom_successeur = ""
+        liste_successeurs = []
+
+        while nom_successeur != "#":
+                nom_successeur = input(f"quel est le site dont le lien est présent sur {site} ?"
+                                   f"\nLa valeur '#' va arrêter la saisie pour {site} : ")
+                liste_successeurs.append(nom_successeur)
+
+        # on enlève le # qui a été saisi en dernier de le liste des successeurs
+        liste_successeurs.pop()
+        # on initialise la liste des prédecesseurs vide, le poids des liens du
+        # site nul, le poids du site à 1
+        dico_sites[site] = [liste_successeurs, [], 0, 1]
+
+    return dico_sites
+
+
+def calculer_poids_liens(dico):
+    """
+    calcule le poids de chacun des sites de dico en comptant le nombre d'éléments
+    de l'élément d'indice 0, puis place le résultat dans l'élément d'indice 2
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 2 de dico
+    """
+    for cle in dico:
+        dico[cle][2] = 1 / len(dico[cle][0])
+
+
+def construire_liste_predecesseurs(dico):
+    """
+    construit la liste des prédécesseurs dans dico, en utilisant la liste des
+    successeurs (élément d'indice 0 de dico), en rajoutant dans l'élément
+    d'indice 1 la clé correspondante
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 1 de dico
+    """
+    for cle in dico:
+        for elmt in dico[cle][0]:
+            dico[elmt][1].append(cle)
+
+
+def calculer_poids_sites(dico):
+    """
+    calcule le poids de chaque cle de dico en tenant compte de la liste des sites
+    prédecesseurs et du poids de ces sites prdécesseurs. Pour chaque site, on récupère
+     le poids des liens des sites prédécesseurs (élément d'indice 2 du site prdécesseur)
+     qu'on ajoute au poids du site (élément d'indice 3)
+    :param dico: (dict) dictionnaire qyant la structure définie dans saisir_data()
+    :return: ne renvoie rien mais modifie l'élément d'indice 3 de dico
+    """
+    for cle in dico:
+        for elmt in dico[cle][1]:
+            dico[cle][3] += dico[elmt][2]
+
+
+def not_empty(dico):
+    """
+    teste si dico n'est pas vide
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: (bool) True si dico n'est pas vide, False si dico est vide
+    """
+    if len(dico) > 0:
+        return True
+    else:
+        return False
+
+
+def to_string(dico):
+    """
+    affiche le résultat sous forme de string, tant que le dictionnaire n'est pas vide,
+    on cherche la valeur maximale du poids du site, on sort le site de dico, on
+    l'insère dans liste_resultat qui contient donc les sites classés suivant le
+    poids décroissant. On se sert de liste_resultat pour afficher la solution sous
+    forme de string dans resultat
+    :param dico: (dict) dictionnaire ayant la structure définie dans saisir_data()
+    :return: (str) classement des sites suivant leur référencement naturel du plus
+    élevé au moins élevé
+    """
+    liste_resultat = []
 
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> dans un premier temps, vous allez créer une fonction Python appelée <code>creerGenome()</code>, qui prend en paramètre la taille de la séquence génomique à créer et construit au hasard une séquence génomique comprenant uniquement les caractères A, T, C ou G. Cette fonction renvoie ensuite la séquence génomique dans son intégralité.</p>
+    while not_empty(dico):
+        max = 1
+        site = ""
 
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
-</div>
+        for elmt in dico:
+            if dico[elmt][3] > max:
+                max = dico[elmt][3]
+                site = elmt
 
-<div id="solution1" style="display:none;">
-    <p>Solution :</p>
+        liste_resultat.append(site)
+        dico.pop(site)
 
-<pre><code class="language-python">def creerGenome(taille)
+    resultat = "Le référencement naturel des sites est le suivant :\n"
 
-    genome = ""
+    for i in range(len(liste_resultat)):
+        resultat += str(i + 1) + " - " + liste_resultat[i] +"\n"
 
-    for i in range(taille):
+    return resultat
 
-        hasard = randrange(4)
-
-        if hasard == 0:
-            genome += 'A'
-        elif hasard == 1:
-            genome += 'T'
-        elif hasard == 2:
-            genome += 'C'
-        else:
-            genome += 'G'
-
-    return genome</code></pre>
-</div>
-</div>
-
-<p>Pour construire une séquence de 100 000 caractères puis l'afficher, il suffit donc d'exécuter le code suivant :</p>
-
-<pre><code class="language-python">print(creerGenome(100000))</code></pre>
-
-<p>On obtient alors un affichage semblable à celui-ci, mais en plus long...</p>
-
-<pre><code class="language-svg">GCCTGTATGGCTGCAACTTAGGGGGGGTCGTTACACGTCGAAGTTTCTCTCTTTTCTGCGGGCATTGGTGTCCCATACTATTC
-ATTAAAATGAGGCCTGATGCGTTTGTGGCACCTGTCGGACACAATAAGGTATGCCCAAAGGCGCGCCATTGGGAGCCCACTAT
-TTAACTGGTCCAATTAAATATCCTTTTGCCTCACTTCTCATCAGCTTCTTCTATTGCGGACGTTCACTCCACTAGAGACCAGC
-TTAAGAAATACTCTAGATAGTGGTAAGTCCTAATTCATCCCCTCGGCGGTCCAGGTCCAGACTTATAGCACGTGCTGAAAAGA
-ACAGTCTACGACTGCGCCCGCACCAGTTCGGAGACACCCCCCCCTGGACATATCTGCTCCTCCAATGTGCGGTCGGGGGAAGT
-ATAAGTCTAACTTCGAAATAACTTTCTAACGGGGCACGACGATTATTTGTTGCCCCCGCAGCCCAAAATCAGGCTCCCGTGCC
-GTTATTTTCTGTGCGTGCCTCTGACATACAACTGGTCAAGCTCCGAGGATGTTTTCTCTTTCTAACTGTAGGTCAGTACGGAG
-TGTGGTTGTTCGCAGCTACCACTAGTCACCCCGAACAGAATACACGTCCGAAATGGACGTGAGAGGGAGGAGTTCGGCCTATC
-TACAAGCATGTTCACTACCTGTACTTTTTCATTTAGTTTCCTTGCTGTCGATTAGGCTCGGTACTACTATTCCGACGTCACGA
-CTTAGCGTAGCGCATGTTGATGTAAACCCCCGGACGACTTAAAACCCCAATTTGGCCGCCTAAGCAAATATTCAGAAAGTCAG
-</code></pre>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> vous allez maintenant créer un fichier vierge appelé <strong>genome.txt</strong>, puis modifier notre fonction <code>creerGenome()</code> pour qu'elle écrive le contenu de la séquence génomique construite dans ce fichier <strong>genome.txt</strong> en utilisant l'instruction <code>with open()</code> :</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
-</div>
-
-<div id="solution2" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">from random import randrange
-
-def creerGenome(nomFichier, taille):
-    """cree de maniere aleatoie une sequence genomique suivant une taille
-    fixee, et place cette sequence dans nomFichier.
-
-    parameters:
-    nomFichier (str): nom du fichier dans lequel va etre stockee la sequence
-    taille (str): taille de la chaine de caracteres qui compose la sequence"""
-
-    genome = ""
-
-    for i in range(taille):
-
-        hasard = randrange(4)
-
-        if hasard == 0:
-            genome += 'A'
-        elif hasard == 1:
-            genome += 'T'
-        elif hasard == 2:
-            genome += 'C'
-        else:
-            genome += 'G'
-
-    with open(nomFichier, 'w') as f:
-        f.write(genome)</code></pre>
-
-    </div>
-</div>
-
-<p>Pour savoir si notre fonction a bien rajouté une séquence génomique dans le fichier <strong>genome.txt</strong>, il faut pouvoir le lire.</p>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> vous allez donc créer une fonction <code>afficherGenome()</code>, qui prend en argument le nom d'un fichier et en affiche le contenu :</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
-</div>
-
-<div id="solution3" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">def afficherGenome(nomFichier):
-    """affiche le contenu de nomFichier qui est compose d'une sequence
-    genomique.
-
-    parameters:
-    nomFichier (str): nom du fichier contenant la sequence"""
-    
-    with open(nomFichier, 'r') as f:
-        print(f.read())</code></pre>
-
-    </div>
-</div>
-
-<p>Nous pouvons donc voir le contenu de notre fichier <strong>fichier.txt</strong> en exécutant l'instruction :</p>
-
-<pre><code class="language-python">afficherGenome('genome.txt')</code></pre>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> il faut ensuite créer une fonction <code>rechercher()</code> qui prend en paramètres une sequence et une chaine et qui compare les éléments de cette séquence avec ceux de la chaine. Si cette chaine existe dans la séquence, la fonction revoie l'indice de la 1ère lettre de la chaine dans la séquence, sinon elle renvoie -1</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
-</div>
-
-<div id="solution4" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">def rechercher(sequence, chaine):
-    taille_sequence = len(sequence)
-    taille_chaine = len(chaine)
-
-    # on parcourt la séquence et on compare une partie de la séquence 
-    # qui démarre à l'indice i avec la chaine
-    for i in range(taille_sequence):
-        if sequence[i: i + taille_chaine] == chaine:
-            return i
-
-    return -1</code></pre>
-
-</div>
-</div>
-
-<p>On peut tester le bon fonctionnement de notre fonction en utilisant la variable <code>genome</code> avec le code suivant :</p>
-
-<pre><code class="language-python">genome = 'ATCAGGTGTATCTTTGGGAGTACCATGCAATCTGATCTACTGTC'
-
-print(rechercher(genome, 'ATCT')) # renvoie 9
-print(rechercher(genome, 'ATCG')) # renvoie -1</code></pre>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> on va maintenant améliorer notre fonction <code>rechercher()</code>, en renvoyant dans une liste tous les indices pour lesquels notre chaine apparaît. Si notre chaîne n'apparait pas, la fonction renvoie la liste <code>[-1]</code>.</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
-</div>
-
-<div id="solution5" style="display:none;">
-    <p>Solution :</p>
-
-<p>Le code suivant fournit par exemple le résultat souhaité :</p>
-
-<pre><code class="language-python">def rechercher(sequence, chaine):
-    taille_sequence = len(sequence)
-    taille_chaine = len(chaine)
-    liste_resultats = []
-
-    # on parcourt la séquence et on compare une partie de la séquence 
-    # qui démarre à l'indice i avec la chaine
-    for i in range(taille_sequence):
-        if sequence[i: i + taille_chaine] == chaine:
-            liste_resultats.append(i)
-
-    # on place les résultats obtenus dans une liste
-    if len(liste_resultats) == 0:
-        liste_resultats.append(-1)
-
-    return liste_resultats</code></pre> 
-
-</div>
-</div>
-
-<p>Que faut-il modifier dans notre fonction <code>rechercher()</code> pour tester l'appartenance d'une chaîne au génome représenté par le fichier <strong>genome.txt</strong> ?</p>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> effectuez les modifications de cette fonction</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
-</div>
-
-<div id="solution6" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">def rechercher(nomFichier, chaine):
-    """recherche une chaine de caracteres dans nomFichier, et renvoie
-    une liste comprenant les indices où la chaine apparait.
-
-    parameters:
-    nomFichier (str): fichier dans lequel la recherche est effectuée
-    chaine (str): chaine de caracteres a rechercher
-
-    returns:
-    liste_resultats (list): liste avec les indices où le début de la 
-    chaine apparait."""
-
-    with open(nomFichier, 'r') as f:
-        sequence = f.read()
-
-        taille_sequence = len(sequence)
-        taille_chaine = len(chaine)
-        liste_resultats = []
-
-        for i in range(taille_sequence):
-            if sequence[i: i + taille_chaine] == chaine:
-                liste_resultats.append(i)
-
-        if len(liste_resultats) == 0:
-            liste_resultats.append(-1)
-
-    return liste_resultats</code></pre>
-
-</div>
-</div>
-
-<p>Il ne reste plus qu'à exécuter un script qui construit une séquence génomique dans un fichier, puis teste l'appartenance d'une chaîne de caractères dans ce génome.</p>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> écrire le script principal</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
-</div>
-
-<div id="solution7" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">if __name__ == '__main__':
-
-    # creation de la sequence du genome dans genome.txt
-    creerGenome('genome.txt', 100)
-
-    # affichage de la sequence de genome.txt
-    afficherGenome('genome.txt')
-
-    # recherche de la chaine 'ATCT' dans la sequence de genome.txt
-    print(rechercher('genome.txt', 'ATCT'))</code></pre>
-
-</div>
-</div>
-
-<p>Le résultat obtenu dépend bien entendu de votre séquence de départ et de la chaîne de caractères que vous souhaitez détecter. Par exemple, une première exécution du code affiche la liste suivante :</p>
-
-<pre><code class="language-svg">[2417, 10286, 10684, 18954, 19212, 19273, 33516, 37438, 38186, 39101, 39318]</code></pre>
-
-<p>Imaginons maintenant que nous voulions modifier quelques caractères seulement à l'intérieur de notre séquence génomique, à partir de l'indice j. Comment pouvons-nous procéder ? </p>
-
-<div class='exerciceApplication'>
-<p><strong>A vous de jouer :</strong> vous allez créer la fonction <code>modifierGenome()</code>, qui prend en paramètres, le nom du fichier dans lequel se trouve la séquence, l'emplacement où doit se faire la modification et la chaîne de caractères qui doit se substituer à une autre.</p>
-
-<div>
-    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
-</div>
-
-<div id="solution8" style="display:none;">
-    <p>Solution :</p>
-
-<pre><code class="language-python">def modifierGenome(nomFichier, j, chaine):
-    """modifie nomFichier en insérant chaine à l'indice j.
-
-    parameters:
-    nomFichier (str): nom du fichier dans lequel est stocke la sequence
-    a modifier
-    j (int): indice auquel est effectuee la modification
-    chaine (str): chaine de caracteres qui va remplacer plusieurs caracteres
-    de la sequence a l'indice j"""
-
-    with open(nomFichier, 'r+') as f:
-        sequence = f.read()
-        f.seek(0)
-        newSequence = sequence[0: j] + chaine + sequence[j + len(chaine):]
-        f.write(newSequence)</code></pre>
-
-    </div>
-</div>
-
-<p>Il ne reste plus qu'à procéder à la modification en exécutant le script suivant :</p>
-
-<pre><code class="language-python">if __name__ == '__main__':
-
-    # creation de la sequence du genome dans genome.txt
-    creerGenome('genome.txt', 1000)
-
-    # modification de la sequence de genome.txt a l'indice 10 avec
-    # la chaine 'AAAA'
-    modifierGenome('genome.txt', 10, 'AAAA')
-
-    # affichage de la sequence de genome.txt
-    afficherGenome('genome.txt')</code></pre>
-
-<h3>En résumé</h3>
-
-<p>Nous avons finalement construit le code suivant pour effectuer ce travail pratique :</p>
-
-<pre><code class="language-python">from random import randrange
-
-def rechercher(nomFichier, chaine):
-    """recherche une chaine de caracteres dans nomFichier, et renvoie
-    une liste comprenant les indices où la chaine apparait.
-
-    parameters:
-    nomFichier (str): fichier dans lequel la recherche est effectuée
-    chaine (str): chaine de caracteres a rechercher
-
-    returns:
-    liste_resultats (list): liste avec les indices où le début de la 
-    chaine apparait."""
-
-    with open(nomFichier, 'r') as f:
-        sequence = f.read()
-
-        taille_sequence = len(sequence)
-        taille_chaine = len(chaine)
-        liste_resultats = []
-
-        for i in range(taille_sequence):
-            if sequence[i: i + taille_chaine] == chaine:
-                liste_resultats.append(i)
-
-        if len(liste_resultats) == 0:
-            liste_resultats.append(-1)
-
-    return liste_resultats
-
-
-def creerGenome(nomFichier, taille):
-    """cree de maniere aleatoie une sequence genomique suivant une taille
-    fixee, et place cette sequence dans nomFichier.
-
-    parameters:
-    nomFichier (str): nom du fichier dans lequel va etre stockee la sequence
-    taille (str): taille de la chaine de caracteres qui compose la sequence"""
-
-    genome = ""
-
-    for i in range(taille):
-
-        hasard = randrange(4)
-
-        if hasard == 0:
-            genome += 'A'
-        elif hasard == 1:
-            genome += 'T'
-        elif hasard == 2:
-            genome += 'C'
-        else:
-            genome += 'G'
-
-    with open(nomFichier, 'w') as f:
-        f.write(genome)
-
-
-def modifierGenome(nomFichier, j, chaine):
-    """modifie nomFichier en insérant chaine à l'indice j.
-
-    parameters:
-    nomFichier (str): nom du fichier dans lequel est stocke la sequence
-    a modifier
-    j (int): indice auquel est effectuee la modification
-    chaine (str): chaine de caracteres qui va remplacer plusieurs caracteres
-    de la sequence a l'indice j"""
-
-    with open(nomFichier, 'r+') as f:
-        sequence = f.read()
-        f.seek(0)
-        newSequence = sequence[0: j] + chaine + sequence[j + len(chaine):]
-        f.write(newSequence)
-
-
-def afficherGenome(nomFichier):
-    """affiche le contenu de nomFichier qui est compose d'une sequence
-    genomique.
-
-    parameters:
-    nomFichier (str): nom du fichier contenant la sequence"""
-    
-    with open(nomFichier, 'r') as f:
-        print(f.read())
-    
 
 if __name__ == '__main__':
+    dico_sites = saisir_data()
+    calculer_poids_liens(dico_sites)
+    construire_liste_predecesseurs(dico_sites)
+    calculer_poids_sites(dico_sites)
+    print(to_string(dico_sites))</code></pre>
 
-    # creation de la sequence du genome dans genome.txt
-    creerGenome('genome.txt', 1000)
-
-    # affichage de la sequence de genome.txt
-    afficherGenome('genome.txt')
-
-    # recherche de la chaine 'ATCT' dans la sequence de genome.txt
-    print(rechercher('genome.txt', 'ATCT'))
-
-    # modification de la sequence de genome.txt a l'indice 10 avec
-    # la chaine 'AAAA'
-    modifierGenome('genome.txt', 10, 'AAAA')
-
-    # affichage de la sequence de genome.txt
-    afficherGenome('genome.txt')</code></pre>
-    
 {% endblock cours %}

@@ -1,4 +1,4 @@
-# TOKETA
+# TOKETA 20230907
 
 Application destinée aux élèves et aux enseignants comme support de cours.
 
@@ -13,7 +13,7 @@ typing_extensions==4.6.3
 ## responsive design
 1. ~~bases en bootstrap~~ 
 2. résoudre problèmes avec mathjax
-3. résoudre problème avec vidéos trop petites
+3. ~~résoudre problème avec vidéos trop petites~~
 4. ~~ résoudre problème avec pdf trop petits~~
 5. enlever my-5 des ancres pour chaque section
 
@@ -23,8 +23,7 @@ typing_extensions==4.6.3
 3. ~~construire un fichier html qu'on appelle pour les mini-quiz en utilisant include with~~
 3. regrouper les quiz par dossier (attention le chemin se perd)
 4. corriger les quiz de la page d'index
-5. affichage du code HTML dans les questions du quiz
-6. ordre videos et quiz dans index.html
+5. ~~ordre videos et quiz dans index.html~~
 
 ## menus des chapitres
 1. ~~créer les menus~~
@@ -46,6 +45,9 @@ typing_extensions==4.6.3
 ## rajouter bumber
 ...
 
+## rajouter module de recherche de mots cles
+...
+
 ## rajouter partage
 ...
 
@@ -58,11 +60,10 @@ typing_extensions==4.6.3
 ## basculer en mode securise sur pythonanywhere
 ...
 
-## intégrer des trinkets
-...
+## remplacer les trinkets par du js
 
-## faire la page python/debuter/0
-...
+## ~~intégrer des trinkets~~
+## ~~faire la page python/debuter/0~~
 
 # TROUBLE SHOOTING
 
@@ -71,6 +72,7 @@ typing_extensions==4.6.3
 ## ~~image python/progresser/0~~
 ## ~~nsi/architecture comprend 17 items et seulement 15 fichiers html~~
 ## ~~latex n'est pas reconnu sur la page maths/calcul/7 (il faut réactiver le serveur Django)~~
-
-## les quiz par section de la page python/debuter/3 ont des reponses fausses
+## ~~les quiz par section ont des reponses fausses~~
 ## le menu bootstrap ne fonctionne pas sur smartphone
+## affichage du code HTML dans les questions du quiz
+

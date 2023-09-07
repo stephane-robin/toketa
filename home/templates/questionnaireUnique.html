@@ -17,13 +17,13 @@
 </div>
 
 <script>
-function questionnaireUnique(nmr){
+function questionnaireUnique(nmr, questionsData){
     const optionsForm = document.getElementById('optionsForm-' + nmr);
     const question = document.getElementById('question-' + nmr);
     const option0 = document.getElementById('label0-' + nmr);
     const option1 = document.getElementById('label1-' + nmr);
     const option2 = document.getElementById('label2-' + nmr);
-    const commentaire10 = document.getElementById('commentaire-' + nmr);
+    const commentaire = document.getElementById('commentaire-' + nmr);
     const submitButton = document.getElementById('valider-' + nmr);
 
     question.innerHTML = questionsData.question;
@@ -50,7 +50,7 @@ function questionnaireUnique(nmr){
             options[correctIndex].nextElementSibling.classList.add('couleur_reponseCorrecte');
         }
 
-        commentaire10.innerHTML = questionsData.commentaire;
+        commentaire.innerHTML = questionsData.commentaire;
 
         /* pour desactiver le bouton de validation apres la reponse */
         for (let i = 0; i < options.length; i++) {

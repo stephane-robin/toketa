@@ -1,0 +1,124 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %}
+<ul>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>utilisation de fonctions</li>
+    <li>utilisation de listes</li>
+    <li>pratique de la construction de code</li>
+</ul> 
+{% endblock contenu %}
+
+{% block cours %}
+
+<p>Ce projet est l'occasion d'un travail en binôme. Il vous est demandé de construire un jeu de pendu simple 
+    mais fonctionnel, qui utilise la console pour saisir les propositions du joueur et afficher les résultats.</p>
+
+<p>Vous afficherez sur la console des tirets à la place du mot à trouver, puis les lettres correctes trouvées 
+    par le joueur aux emplacements correspondant dans ce mot. Vous afficherez également toutes les lettres 
+    proposées par le joueur.</p>
+
+<p>Le joueur dispose de 5 tentatives pour gagner. A la 6ème tentative, le joueur perd la partie.</p>
+
+<p>Vous afficherez finalement à la console si le joueur a perdu ou gagné, et dans ce cas vous rajouterez 
+    son score en pourcentage.</p>
+
+<p>Votre code pourra utiliser des listes pour simplifier le travail sur les lettres trouvées. Il devra utiliser :</p>
+<ul>
+    <li>une fonction demander_lettre() qui demande une lettre au joueur parmi les minuscules de l'alphabet.
+        Tant que le joueur saisit un autre caractère, on lui demande de saisir à nouveau une lettre. 
+        Tant que le joueur saisit une lettre qu'il a déjà jouée, on lui indique et on lui demande de saisir une autre lettre.</li>
+    <li>une fonction remplacer() qui prend en argument une lettre et teste si cette lettre se trouve dans le mot de référence. 
+        Si c'est le cas, on met à jour le mot en cours de recherche par le joueur et on renvoie ce mot. Si ce n'est pas le cas,
+         on renvoie None.</li>
+    <li>une fonction pendu() qui joue jusqu'à ce que le joueur gagne ou perdre.</li>
+</ul>
+    
+
+
+<p>Une solution possible :</p>
+
+<pre><code class="language-python">"""
+Jeu du pendu.
+"""
+
+def demander_lettre():
+    """
+    Demande une lettre au joueur parmi les minuscules de l'alphabet.
+    Si le joueur entre un autre caractere, on lui demande de saisir a 
+    nouveau. Si le joueur entre une lettre qu'il a deja jouee, on lui 
+    indique et on lui demande de saisir une autre lettre.
+    """
+    liste_caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    global lettres_jouees
+    caractere = input('Choisis une lettre : ')
+    while caractere not in liste_caracteres:
+        caractere = input('Attention, le caractere doit etre une lettre : ')
+    
+    while caractere in lettres_jouees:
+        caractere = input('Attention, tu as deja joue cette lettre. Choisis une \
+autre lettre : ')
+    return caractere
+
+def remplace(reference, actuel, lettre):
+    """
+    Teste si lettre se trouve dans le mot reference. Si c'est le cas, on 
+    met a jour actuel qui est le mot en cours de recherche par le joueur 
+    et on renvoie actuel. Si ce n'est pas le cas on renvoie None. Pour mettre 
+    a jour actuel on le transforme en liste puis on le remet en chaine de 
+    caracteres a la fin.
+    param :
+        reference : (str) le mot a trouver
+        actuel : (str) le mot en cours de recherche par le joueur
+        lettre : (str) la lettre proposee par le joueur
+    return :
+        actuel (str) le mot en cours de recherche mis a jour ou None
+    """
+    if lettre in reference:
+        liste_reference = list(reference)
+        liste_actuel = list(actuel)
+        for i in range(len(reference)):
+            if liste_reference[i] == lettre:
+                liste_actuel[i] = lettre
+        actuel = ''.join(liste_actuel)
+        return actuel
+    else:       
+        return None
+    
+def pendu(mot, nb_erreurs):
+    """Tant que le nombre d'erreurs commises par le joueur n'est pas descendu
+        a 0 et que le mot a chercher n'a pas ete trouve, on demande une lettre au
+        joueur et on la rajoute a la liste lettres_jouees. Si la fonction remplace()
+        renvoie None, on decremente nb_erreurs, sinon on met a jour mot_actuel qui 
+        est le mot en cours de recherche par le joueur. On affiche mot_actuel pour 
+        qu'a chaque tour, le joueur voit ou il en est.
+        param :
+        mot : (str) le mot a trouver
+        nb_erreurs : (int) le nombre d'erreurs autorisees avant de perdre
+    return :
+        None
+    """
+    
+    global lettres_jouees
+    global mot_actuel
+    while nb_erreurs > 0 and mot_actuel != mot:
+        
+        lettre_choisie = demander_lettre()
+        lettres_jouees.append(lettre_choisie)
+        
+        if remplace(mot, mot_actuel, lettre_choisie) == None:
+            nb_erreurs -= 1
+        else:
+            mot_actuel = remplace(mot, mot_actuel, lettre_choisie)
+        print(mot_actuel)
+    
+if __name__ == '__main__':
+    nb_erreurs = 6
+    mot_choisi = 'ananas'
+    mot_actuel = '-' * len(mot_choisi)
+    lettres_jouees = []
+    pendu(mot_choisi, nb_erreurs)</code></pre>
+
+{% endblock cours %}

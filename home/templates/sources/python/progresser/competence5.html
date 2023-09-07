@@ -6,18 +6,75 @@
     <li>utilisation de conditions</li>
     <li>utilisation de boucles</li>
     <li>utilisation de fonctions</li>
-    <li>pratique de la construction de code</li>
-</ul>
+</ul> 
 {% endblock contenu %}
 
 {% block cours %}
 
-<p><em>Travail Pratique proposé par N. Samarine.</em></p>
+<!-- PARTIE 1 -->
+<h3>Le sujet du projet</h3>
 
-<div class="row">
-    <div class="col-12">
-        <iframe src="{% static 'home/documents/TP_liste_fonctions.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
-    </div>
+<p>L'objectif est de construire un programme Python qui propose un quiz de 3 questions et attend les réponses de l'utilisateur.
+    Tu es libre de choisir ton sujet de prédilection. Chaque réponse correcte donne 1 point au joueur et le score final devra s'afficher 
+    à la fin du quiz sous forme de pourcentage arrondi à l'unité avec la mention 'Bravo,' si le score est supérieur à 60% et 'Merci d'avoir participé,' sinon. 
+    Le programme devra par ailleurs afficher chaque question sous la forme :</p>
+
+    
+<pre><code class="language-svg">Le pays le plus peuplé en Europe est :
+a. France   b. Allemagne    c. Espagne</code></pre>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
 </div>
+
+<div id="solution1" style="display:none;">
+
+<pre><code class="language-python">print("Veuillez répondre par a, b ou c\n")
+score  = 0
+
+reponse1 = input("Le pays le plus peuplé en Europe est :\na. France\tb. Allemagne\tc. Espagne\n")
+if reponse1 == 'b':
+    score += 1
+
+reponse2 = input("Le plus grand pays d'Europe est :\na. Suède\tb. France\tc. Allemagne\n")
+if reponse2 == 'b':
+    score += 1
+
+reponse3 = input("Quelle est la langue la plus parlée au sein de l'Europe ?\na. français\tb. allemand\tc. anglais\n")
+if reponse3 == 'c':
+    score += 1
+
+score = int(round(score / 3 * 100, 0))
+
+if score > 60:
+    commentaire = "Bravo, "
+else:
+    commentaire = "Merci de votre participation, "
+print(commentaire + "votre score est de " + str(score) + " %")</code></pre>
+
+</div>
+
+
+<!-- PARTIE 2 -->
+<h3>Forcer le champ des réponses du joueur</h3>
+
+<p>On pourra ensuite améliorer le code en imposant au joueur d'utiliser uniquement comme réponses les lettres a, b ou c. Pour cela, il faut 
+    rajouter pour chaque question posée une boucle while qui tourne tant que le joueur ne répond pas a, b ou c. Par 
+exemple pour reponse1 :</p>
+
+<pre><code class="language-python">reponse1 = ""
+while reponse1 not in ['a', 'b', 'c']:
+    reponse1 = input("Le pays le plus peuplé en Europe est :\na. France\tb. Allemagne\tc. Espagne\n")
+    if reponse1 == 'b':
+        score += 1</code></pre>
+
+
+<!-- PARTIE 3 -->
+<h3>Proposer une interface graphique</h3>
+
+<p>Finalement, on peut améliorer notre projet en proposant une interface graphique plutôt qu'un affichage 
+    sur la console de travail. Pour cela, on peut utiliser la bibliothèque tkinter. 
+    Visite la <a href="https://docs.python.org/3/library/tkinter.html">doc Python tkinter</a> et essaie de 
+    proposer une interface simple mais fonctionnelle pour ton quiz.</p>
 
 {% endblock cours %}

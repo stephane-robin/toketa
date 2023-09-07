@@ -19,17 +19,22 @@
 
 <div class="fieldsetDefinition">
 	<h4>A RETENIR ...</h4>
-	<p>Lorsqu'un programme s'exécute, il génère plusieurs processus. Un processus est donc une partie de programme en cours d'exécution. Chaque processus possède ses données d'entrée, ses données renvoyées et utilise des ressources.</p>
+	<p>Lorsqu'un programme s'exécute, il génère plusieurs processus. Un processus est donc une partie de programme en 
+        cours d'exécution. Chaque processus possède ses données d'entrée, ses données renvoyées et utilise des 
+        ressources. Une ressource peut être par exemple un espace mémoire, le coeur d'un processeur ou un périphérique</p>
 </div>
 
-<p>L'accès d'un processus à une ressource peut être exclusif lorsque l'utilisation de cette ressource entraîne l'attente de tout autre processus pour accéder à cette ressource. C'est par exemple le cas lors de la modification de la valeur d'une variable stockée en mémoire, alors que ce n'est pas le cas pour uniquement consulter la valeur de cette variable.</p>
+<p>L'accès d'un processus à une ressource peut être exclusif lorsque l'utilisation de cette ressource entraîne 
+    l'attente de tout autre processus pour accéder à cette ressource. C'est par exemple le cas lors de la modification 
+    de la valeur d'une variable stockée en mémoire, alors que ce n'est pas le cas pour uniquement consulter la valeur 
+    de cette variable.</p>
 
 <p>Les processus peuvent être dans l'un des 3 états suivants :</p>
 
 <ul>
-	<li>état élu - le processus est en exécution et obtient l'accès à la ressource</li>
-	<li>état prêt - le processus attend de pouvoir accéder à la ressource</li>
-	<li>étst bloqué - le processus attend qu'un autre processus libère l'accès d'une ressource pour pouvoir l'utiliser</li>
+	<li>état élu - le processus a obtenu l'accès à une ressource et il est en cours d'exécution en utilisant cette ressource</li>
+	<li>état prêt - le processus a obtenu l'accès à une ressource mais n'est pas encore en cours d'exécution</li>
+	<li>état bloqué - le processus attend qu'un autre processus libère l'accès d'une ressource pour pouvoir l'utiliser</li>
 </ul>
 
 <p>Notons qu'un processus ne pourra se terminer que dans l'état élu.</p>
@@ -68,15 +73,15 @@ instructions, on pourra écrire :</p>
 
 <pre><code class="language-python">liste_processus = [
     # process 1
-    ["P1_instr1", "P1_instr2", "P1_instr3", "P1_instr4", "P1_instr5", "P1_instr6", "P1_instr7"],
+    ["P1_I1", "P1_I2", "P1_I3", "P1_I4", "P1_I5", "P1_I6", "P1_I7"],
     # process 2
-    ["P2_instr1", "P2_instr2", "P2_instr3"],
+    ["P2_I1", "P2_I2", "P2_I3"],
     # process 3
-    ["P3_instr1", "P3_instr2", "P3_instr3", "P3_instr4", "P3_instr5"]
+    ["P3_I1", "P3_I2", "P3_I3", "P3_I4", "P3_I5"]
 ]</code></pre>
 
-<p>Pour rappel un tourniquet va d'abord exécuter P1_instr1, puis P2_instr1, 
-    puis P3_instr1, puis P1_instr2, ...</p>
+<p>Pour rappel un tourniquet va d'abord exécuter P1_I1, puis P2_I1, 
+    puis P3_I1, puis P1_I2, ...</p>
 
 <div class="exerciceApplication">
     <p><strong>A vous de jouer : </strong>construire un programme Python qui affiche

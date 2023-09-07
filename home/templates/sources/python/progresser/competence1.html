@@ -3,620 +3,171 @@
 
 {% block contenu %}
 <ul>
-    <li href="#decouvrir">découvrir les listes</li>
-    <li href="#definir">savoir définir une liste</li>
-    <li href="#operations">connaître les opérations élémentaires sur les listes</li>
-    <li href="#parcourir">savoir parcourir une liste</li>
-    <li href="manipuler">savoir manipuler les éléments d'une liste</li>
-    <li href="appartenance">tester l'appartenance à une liste</li>
-    <li href="reference">comprendre la différence entre l'affectation par valeur et l'affectation par référence</li>
-    <li href="tuple">découvrir la notion de tuple</li>
+    <li href="#range">découvrir la boucle for pour répéter un bloc</li>
+    <li href="#structure_range">comprendre la structure d'une boucle for avec range</li>
+    <li href="#imbriquees">découvrir les boucles for imbriquées</li>
 </ul> 
 {% endblock contenu %}
 
 {% block cours %}
 
-<!-- DECOUVRIR LES LISTES -->
+<!-- BOUCLE FOR AVEC RANGE -->
 
-<p class="my-5 invisible" id="decouvrir">ancre</p>
+<p class="my-5 invisible" id="range">ancre</p>
 
-<h3>Découvrir les listes</h3>
+<h3>Découvrir la boucle for pour répéter un bloc</h3>
 
-<p>Nous avons vu qu'une chaîne de caractères est un ensemble de caractères qu'on repère par un indice. On peut considérer une liste comme étant un ensemble d'éléments (textes ou nombres) qu'on repère par un indice.</p>
+<figure>
+    <iframe width="854" height="480" src="https://www.youtube.com/embed/vkEfGC-aYBM"
+            title="La boucle for en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+gyroscope; picture-in-picture" allowfullscreen> </iframe>
+    <figcaption> La boucle for, <em>ToKeTa</em> </figcaption>
+</figure>
 
-<p>Par exemple, ceci est une liste</p>
+<p>Python permet de répéter une instruction un certain nombre de fois. Lorsqu'on connaît le nombre de répétitions, on utilise la boucle <strong>for</strong>. Lorsqu'on ne connaît pas le nombre de répétitions et que celui-ci dépend de l'évolution de la situation (par exemple si le nombre de vies d'un joueur devient nul), alors dans ce cas on utilise la boucle <strong>while</strong>.</p>
 
-    <pre><code class="language-python">maListe = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"]</code></pre>
+<p>Par exemple, pour répéter <em>bonjour</em> 5 fois, il suffit d'écrire</p>
+
+<pre><code class="language-python">for i in range(5):
+    print("bonjour")</code></pre>
+
+<p>Si vous avez déjà pratiqué la programmation en Scratch, le script ci-dessus correspond en fait au code Scratch suivant que vous connaissez bien</p>
+
+<img src="{% static 'home/images/python/codeScratchFor.png' %}" width="15%" alt="code scratch">
+
+<p>Dans l'instruction <strong>for i in range(5):</strong>, i va prendre les valeurs entières comprises entre 0 et 4.
+Il y aura de ce fait 5 répétitions de l'instruction <strong>print("bonjour")</strong>. En fait, l'instruction
+<strong>range(5)</strong> crée une liste de 5 nombres allant de 0 à 4 dans laquelle va piocher
+l'indice i.</p>
 
 <div class=fieldsetDefinition>
     <h4>A RETENIR ...</h4>
-    <p>Dans une liste le 1er élément a pour indice 0 et non pas 1, c'est à dire qu'il se trouve à la position 0.</p>
+    <p>L'indice i d'une boucle <strong>for</strong> commence par défaut par 0.
+    La dernière valeur prise par cet indice est l'entier strictement inférieur à celui mentionné.</p>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer :</strong> écrire un code permettant d'afficher la table de multiplication de 16</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+        <pre><code class="language-python">for i in range(11):
+    print("16 fois", i,"égale", 16 * i)</code></pre>
+</div>
 </div>
 
 
-<!-- DEFINIR UNE LISTE -->
 
-<p class="my-5 invisible" id="definir">ancre</p>
+<!-- BOUCLE FOR AVEC RANGE -->
 
-<h3>Définir une liste</h3>
+<p class="my-5 invisible" id="structure_range">ancre</p>
 
-<p>Pour définir une liste vide, on a le choix entre deux possibilités</p>
+<h3>Structure d'une boucle for avec range</h3>
 
-<pre><code class="language-python">maListe = []
-maListe = list()</code></pre>
+<p>Il est possible de personnaliser les répétitions en modifiant le pas ou le nombre de départ.</p>
 
-<p>Pour définir une liste contenant déjà des éléments, il suffit de les écrire en les séparant à l'aide d'une virgule. Attention, il faut penser à mettre des " pour chaque élément lorsqu'il s'agit d'une chaîne de caractères.</p>
+<pre><code class="language-python">for i in range(0, 7):  # répétition pour i allant de 0 à 6
+    print("bonjour")
+        
+for i in range(2, 9):  # i varie de 2 à 8
+    print(i, end=" ")  # affiche 2 3 4 5 6 7 8
 
-<pre><code class="language-python">maListe = [3, 5, 2, 7, 8, 1]</code></pre>
+for i in range(0, 11, 2):  # i varie de 0 à 10 en augmentant de 2
+    print(i, end=" ")  # affiche 0 2 4 6 8 10
 
-<p>On peut définir une liste contenant les mêmes éléments (par exemple 0) en la remplissant automatiquement, comme dans le code ci-dessous :</p>
-
-<pre><code class="language-python">maListe = 10 * [0]</code></pre>
-
-<p>Il existe une méthode plus avancée pour remplir cette liste, en faisant appel à une boucle <strong>for</strong> :</p>
-
-<pre><code class="language-python">liste = [0 for k in range(10)]</code></pre>,
-
-<p>ce qui nous permet, suivant le même procédé, de cérer une liste composée de nombres pairs par exemple :</p>
-
-<pre><code class="language-python">liste = [2 * i for i in range(10)]</code></pre>
-
-<p>Pour afficher les listes que nous venons de créer, il suffit d'écrire</p>
-
-<pre><code class="language-python">print(liste)</code></pre>
+for i in range(7, 3, -1):  # i varie de 7 à 4 en descendant de 1
+    print(i, end=" ")  # affiche 7 6 5 4</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>exécutez les codes ci-dessus pour bien comprendre le
-    mécanisme de création d'une liste. Puis créez une liste composée uniquement de nombres impairs.</p>
+    <p><strong>A vous de jouer : </strong>essayez les codes précédents pour bien comprendre
+        l'utilisation de la boucle <strong>for</strong> avec <strong>range</strong>.</p>
+</div>
+
+<p> En revanche, on ne peut augmenter le pas que d'un nombre <em>entier</em>. Si on souhaite utiliser un pas décimal,
+    il faut alors utiliser l'instruction <strong>arange</strong> du module <strong>numpy</strong>, qu'il faut
+    commencer par importer.</p>
+
+<pre><code class="language-python">from numpy import *
+
+for i in numpy.arange(0, 1.1, 0.1):  # i varie de 0 à 1.0 en augmentant de 0.1
+    print(i, end=" ")  # affiche 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher tous les nombres entiers compris entre 1 et 9
+    avec le symbole | entre chaque terme, mais pas à la fin de l'affichage.</p>
 
     <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
     </div>
 
-    <div id="solution4" style="display:none;">
+    <div id="solution2" style="display:none;">
+        <pre><code class="language-python">for i in range(1, 10):
+    if i == 9:
+        print(i)
+    else:
+        print(i, end=" | ")</code></pre>
 
-        <p>Solution :</p>
-        <pre><code class="language-python">liste = [2 * i + 1 for i in range(10)]</code></pre>
+    </div>
+
+
+
 
 </div>
-</div>
-
-
-<!-- OPERATIONS ELEMENTAIRES -->
-
-<p class="my-5 invisible" id="operations">ancre</p>
-
-<h3>Les opérations élémentaires sur les listes</h3>
-
-<h4>Récupérer un élément</h4>
-
-<p>Pour récupérer l'élément d'indice i de maListe et le placer dans la variable <strong>jour</strong> :</p>
-
-<pre><code class="language-python">jour = maListe[i]</code></pre>
 
 
 
-<h4>Rajouter un élément en fin de liste</h4>
+<!-- BOUCLES IMBRIQUEES -->
 
-<pre><code class="language-python">maListe.append("mon nouvel élément")</code></pre>
+<p class="my-5 invisible" id="imbriquees">ancre</p>
 
-<p>Attention, l'instruction append() ne permet de rajouter qu'un seul élément à une liste. Par exemple l'instruction 
-    suivante engendre une erreur :</p>
+<h3>Boucles for imbriquées</h3>
 
-<pre><code class="language-python">mois = ["janvier", "février", "mars"]
-mois.append("avril", "mai") # ERREUR</code></pre>
+<center>
+    <figure>
+        <iframe width="854" height="480" src="https://www.youtube.com/embed/ZMjF4JcR7Go"
+                title="Boucles imbriquées en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+    gyroscope; picture-in-picture" allowfullscreen> </iframe>
+        <figcaption> Boucles imbriquées en Python, <em>ToKeTa</em> </figcaption>
+    </figure>
+</center>
 
-<p>Si on rajoute l'élément ("avril", "mai"), on ne rajoute qu'un seul élément mais il s'agit d'un tuple, 
-    ce qui modifie la structure de notre liste, comme ceci :</p>
+<p>Il est tout à fait possible d'intégrer le bloc d'une boucle <strong>for</strong> dans une autre boucle <strong>for</strong>. Par
+exemple pour afficher :</p>
 
-<pre><code class="language-python">mois = ["janvier", "février", "mars"]
-mois.append(("avril", "mai"))
-print(mois) # affiche ["janvier", "février", "mars", ("avril", "mai")]</code></pre>
+<pre><code class="language-svg">* * *
+* * *
+* * *</code></pre>
 
-<p>Il faut donc procéder en plusieurs étapes de la façon suivante :</p>
+<p>on peut utiliser l'instruction suivante :</p>
 
-<pre><code class="language-python">mois = ["janvier", "février", "mars"]
-mois.append("avril")
-mois.append("mai")</code></pre>
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        print("*", end=" ")</code></pre>
 
-<p>ou utiliser l'instruction extend() plutôt que append(). Au lieu de prendre comme paramètre un unique élément, 
-    extend() prend en paramètre une liste, comme dans l'exemple ci-dessous :</p>
+<p>où on répète 3 fois la répétition de 3 étoiles sur une ligne.</p>
 
-<pre><code class="language-python">mois = ["janvier", "février", "mars"]
-mois.extend(["avril", "mai"])</code></pre>
-
-
-
-
-<h4>Changer un élément dans une liste</h4>
-
-
-<p>Pour remplacer l'élément d'indice <strong>i</strong> de <strong>maListe</strong> par "élément modifié", il suffit de redéfinir cet élément.
-     Contrairement aux chaînes de caractères, on peut modifier uniquement un élément d'une liste,
-    car chaque élément est considéré comme une variable indépendante :</p>
-<pre><code class="language-python">maListe[i] = "élément modifié"</code></pre>
+<p>On a déjà écrit la table de multiplication de 16 en utilisant la boucle <strong>for</strong>.
+Cherchons maintenant à afficher les tables de multiplication de 2 jusqu'à la table de 7.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>créer une liste contenant les noms "May", "Capucine", "Joaquim". Rajouter ensuite "Ethan", puis afficher l'élément d'indice 2 de cette liste.</p>
+    <p><strong>A vous de jouer : </strong>écrire le code des tables de multiplication de 2 jusqu'à la
+    table de 7, en multipliant par tous les entiers entre 1 et 11 inclus.</p>
 
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution5" style="display:none;">
-
-        <p>Solution :</p>
-    <pre><code class="language-python">listeNoms = ["May", "Capucine", "Joaquim"]
-listeNoms.append("Ethan")
-print(listeNoms[2])</code></pre>
-    </div>
-
-</div>
-
-<p>Et maintenant le même type de travail, mais avec une liste vide au départ.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>créer une liste vide, puis rajouter à cette liste les villes "Zurich", "Geneve", "Bern". Changer "Bern" par "Neuchatel".</p>
     <div>
         <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
     </div>
 
     <div id="solution3" style="display:none;">
         <p>Solution :</p>
-        <pre><code class="language-python">liste_villes = []
-liste_villes.append('Zurich')
-liste_villes.append('Geneve')
-liste_villes.append('Bern')
-liste_villes[2] = 'Neuchatel'</code></pre>
+        <pre><code class="language-python">
+for i in range(2, 8): # 2 3 4 5 6 7
+    print(f"table de {i}")
+    for j in range(1, 12): # 1 2 3 4 5 6 7 8 9 10 11
+        print(i, "fois", j, "égal à", i * j)
+    print()</code></pre>
     </div>
-</div>
-
-
-<!-- PARCOURIR UNE LISTE -->
-
-<p class="my-5 invisible" id="parcourir">ancre</p>
-
-<h3>Parcourir une liste</h3>
-
-<p>La boucle <strong>for</strong> permet de parcourir une liste. On distingue deux structures différentes, l'une basée sur l'indice de chaque élément de la liste, l'autre basée directement sur chaque élément de la liste.</p>
-
-<p>Les deux exemples ci-dessous fournissent le même résultat en utilisant des méthodes différentes. Il faut absolument connaître les deux méthodes, car elles sont plus ou moins pratiques en fonction de chaque situation.</p>
-<p>Le nombre d'éléments de <strong>maListe</strong> est donné par l'instruction <strong>len(maListe)</strong>.</p>
-
-
-<pre><code class="language-python">maListe = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"]
-
-# méthode 1 basée sur l'indice i
-for i in range(len(maListe)):
-    print(maListe[i])
-
-# méthode 2 basée directement sur l'élément lui-même
-for elt in maListe:
-    print(elt)</code></pre>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>soit la liste <strong>maListe = [2, 1, 5, 4, 3, 6, 7]</strong><br/>
-        En parcourant maListe avec une boucle for, afficher uniquement les éléments pairs de cette liste. On rappelle que l'instruction <strong>x % 2</strong> permet de tester si <strong>x</strong> est divisible par 2.</p>
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution2" style="display:none;">
-        <p>Solution :</p>
-<pre><code class="language-python">maListe = [2, 1, 5, 4, 3, 6, 7]
-
-for i in range(len(maListe)):
-    if maListe[i] % 2 == 0:
-        print(maListe[i])</code></pre>
-    </div>
-</div>
-
-
-<!-- MANIPULER LES ELEMENTS D'UNE LISTE -->
-
-<p class="my-5 invisible" id="manipuler">ancre</p>
-
-<h3>Manipuler les éléments d'une liste</h3>
-
-<p>Rappel, le nombre d'éléments de <strong>maListe</strong> est donné par l'instruction <strong>len(maListe)</strong>.</p>
-
-
-<p>Dans le code ci-dessous, on cherche à parcourir maListe et si on trouve l'élément "bonjour", alors on le modifie dans la liste en "hello".</p>
-<pre><code class="language-python">for i in range(len(maListe)):
-    if maListe[i] == "bonjour":
-        maListe[i] = "hello"</code></pre>
-
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>considérons la liste suivante <br/><strong>maListe = ["lundi", "mardi", "mercredi"]</strong><br/>
-        1. Ajouter à chacun des éléments de la maListe la lettre s<br/>
-        2. Afficher chaque élément de maListe en y rajoutant la lettre s, et sans modifier maListe</p>
-
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution6" style="display:none;">
-
-        <pre><code class="language-python"># question 1 : maListe est modifiée
-maListe = ["lundi", "mardi", "mercredi"]
-for i in range(len(maListe)):
-    maListe[i] = maListe[i] + "s"
-print(maListe) # affiche ["lundis", "mardis", "mercredis"]
-
-# qestion 2 : maListe est utilisée pour l'affichage mais n'est pas modifiée
-maListe = ["lundi", "mardi", "mercredi"]
-for elt in maListe:
-    print(elt + "s") # affiche ["lundis", "mardis", "mercredis"]
-print(maListe) # affiche ["lundi", "mardi", "mercredi"]</code></pre>
-    </div>
-</div>
-
-<p>Notons qu'on utilise systématiquement le parcours de liste avec son indice pour modifier une liste. Cette méthode 
-    permet de récupérer, d'utiliser, d'afficher et de modifier les éléments d'une liste, alors que le parcours de liste
-    élément par élément ne modifie pas la liste.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>pour comprendre le principe énoncé ci-dessus, exécutez le code suivant.</p>
-    <pre><code class="language-python">jours = ["lundi", "mardi", "mercredi"]
-
-for elt in jours:
-    if elt == "mardi":
-        elt = "Tuesday"
-
-print(jours) # affiche ["lundi", "mardi", "mercredi"]
-
-for i in range(len(jours)):
-    if jours[i] == "mardi":
-        jours[i] = "Tuesday"
-
-print(jours) # affiche ["lundi", "Tuesday", "mercredi"]</code></pre>
-<p>Le parcours par élément récupère chaque élément et place sa valeur dans une variable appelée elt. 
-    Il affecte alors la valeur "Tuesday" à elt lorsque celui-ci vaut "mardi", puis au tour suivant elt prend la valeur
-    "mercredi". elt est une variable utilisable dans le programme mais n'affecte pas le contenu de jours qui n'a jamais 
-    été modifé. En revanche l'affectation jours[i] = "Tuesday" dans le parcours par indice modifie le contenu de jours.</p>
-</div>
-
-<p>Et maintenant on complique un petit peu le travail.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>créer un liste contenant les 10 premiers mois de l'année, puis rajouter "Novembre" et "Décembre". Finalement, modifier chacun de ces mois par le numéro
-        de mois qui leur correspond habituellement. Par exemple "Février" doit être remplacé par 2.</p>
-
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution7" style="display:none;">
-
-        <p>Solution : </p>>
-
-    <pre><code class="language-python">maListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre"]
-maListe.append("Novembre")
-maListe.append("Décembre")
-for i in range(len(maListe)):
-    maListe[i] = i + 1</code></pre>
-</div>
-</div>
-
-<p>Un peu plus de calcul à partir des éléments d'une liste. Attention, les éléments doivent être des entiers ou
-des nombres réels pour pouvoir être utilisés dans des calculs.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> définir une liste contenant les entiers 2, 5, 4, 7 et 9 dans cet ordre. Additionner 10 avec tous les éléments de cette liste,
-        puis ajouter 321 à la fin de la liste. Finalement, afficher la liste pour voir les modifications effectuées.</p>
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution8" style="display:none;">
-
-        <p>Solution : </p>>
-
-        <pre><code class="language-python">maListe = [2, 5, 4, 7, 9]
-
-        for i in range(len(maListe)):
-    maListe[i] = maListe[i] + 10
-
-maListe.append(321)
-print(maListe)</code></pre>
-
-
-    <p>Attention, l'utilisation de la stucture suivante ne fonctionne pas :</p>
-    <pre><code class="language-python">for elmt in maListe:
-    elmt = elmt + 10
-
-maListe.append(321)
-print(maListe)</code></pre>
-    <p>En effet, si elle permet d'afficher les éléments d'une liste, elle ne permet pas
-     de les modifier. Ainsi <strong>elmt</strong> est reconnu pour affichage mais n'est pas
-    reconnu comme un élément à modifier à une position particulière.</p>
-
-    <p>En revanche, le code suivant, bien plus avancé, permet d'effectuer le travail,
-    en utilisant une structure plus complexe :</p>
-
-    <pre><code class="language-python">maListe = [i + 10 for i in maListe]
-maListe.append(321)
-print(maListe)</code></pre>
-</div>
-</div>
-
-
-<!-- APPARTENANCE A UNE LISTE -->
-
-<p class="my-5 invisible" id="appartenance">ancre</p>
-
-<h3>Tester l'appartenance à une liste</h3>
-
-<p>Considérons la liste <strong>desserts = ["orange", "pamplemousse", "banane", "raisin"]</strong>. Il existe des méthodes pour
-savoir si un mot appartient à cette liste ou combien de fois il apparaît dans la liste par exemple :</p>
-
-
-<table>
-    <tr><th>méthode</th><th>signification</th></tr>
-    <tr><td><pre><code class="language-python">"banane" in desserts</code></pre></td><td>renvoie <strong>True</strong>
-        si le mot "banane" est un élément de la <strong>desserts</strong>. Attention, cela ne teste pas si "banane" se trouve dans un élément de <strong>desserts</strong></td></tr>
-    <tr><td><pre><code class="language-python">desserts.count("banane")</code></pre></td><td>renvoie le nombre de fois que "banane" est un élément de <strong>desserts</strong></td></tr>
-    <tr><td><pre><code class="language-python">desserts.index("banane")</code></pre></td><td>renvoie le 1er indice de "banane" dans <strong>desserts</strong></td></tr>
-</table>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> à partir de desserts définie ci-dessus, tester si "banane" appartient à cette liste,
-        et si c'est le cas, afficher "il faut acheter du chocolat", sinon afficher "il faut acheter des bananes".</p>
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution10" style="display:none;">
-
-        <p>Solution : </p>>
-        <pre><code class="language-python">desserts = ["chocolat à l'orange", "confit de pamplemousse", "sorbet de myrtille", "raisin"]
-if "banane" in desserts:
-    print("il faut acheter du chocolat")
-else:
-    print("il faut acheter des bananes")</code></pre>
-        </p>
-    </div>
-</div>
-
-<p>Les choses se compliquent un peu lorsqu'un mot n'est pas un élément de la liste, mais
-appartient quand même à un élément de cette liste.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> pour bien comprendre le fonctionnement de l'inclusion <strong>in</strong>,
-        testez le code suivant</p>
-    <pre><code class="language-python">desserts = ["chocolat à l'orange", "confit de pamplemousse", "sorbet de myrtille", "raisin"]
-print("sorbet de myrtille" in desserts)  # renvoie True
-print("myrtille" in desserts)  # renvoie False</code></pre>
-</div>
-
-<p>On constate que Python n'est pas capable de trouver 'myrtille' alors que le mot se trouve à l'intérieur de notre 
-    liste. Ceci est dû au fait que Python compare chaque élément de notre liste avec 'myrtille' et non pas ce que 
-    contient chaque élément de notre liste.</p>
-
-<p>Mais comment tester si le mot "myrtille" appartient à la chaîne "sorbet de myrtille" ?</p>
-
-<p>"sorbet de myrtille" est une chaîne de caractères, il faut donc utiliser les méthodes relatives aux
-chaînes pour trouver la solution à notre problème. Ainsi, le code suivant va renvoyer
-la position de "myrtille" dans "sorbet de myrtille", et -1 s'il ne s'y trouve pas.</p>
-
-<pre><code class="language-python">chaine = "sorbet de myrtille"
-print(chaine.find("myrtille"))</code></pre>
-
-<p>A noter que si maintenant <strong>chaine</strong> vaut "sorbet de myrtilles" avec un "s",
-l'instruction <strong>print(chaine.find("myrtille"))</strong> fonctionne quand même
-puisqu'elle ne cherche pas la présence d'un mot complet dans la chaîne, mais la
-présence de la chaîne "myrtille" dans la chaîne "sorbet de myrtilles". </p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>testez le code pour bien comprendre ce que
-    cherche l'instruction <strong>find()</strong>.</p>
-    <pre><code class="language-python">chaine = "sorbet de myrtilles"
-print(chaine.find("myrtille"))  # renvoie 10
-print(chaine.find("myrtilles"))  # renvoie 10</code></pre>
-</div>
-
-<p>On peut également utiliser une condition pour tester l'appartenance de "myrtille" à chaine. Par exemple :</p>
-<pre><code class="language-python">chaine = "sorbet de myrtille"
-if "myrtille" in chaine:
-    print(True)</code></pre>
-
-<p>On sait donc chercher un élément dans une liste, on sait également chercher une sous-chaîne
-dans une chaîne de caractères. Testons maintenant si "myrtille" se trouve présent dans un élément d'une liste.</p>
-
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>à partir de <strong>desserts = ["chocolat à l'orange", "confit de pamplemousse", "sorbet de myrtille", "raisin"]</strong>,
-    écrire un code qui teste si un élément de cette liste contient le mot "myrtille", et affiche <strong>True</strong>
-    ou <strong>False</strong> en fonction du résultat.</p>
-
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution11');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution11" style="display:none;">
-
-        <p>Solution : </p>
-
-<p>Attention, le code suivant ne fournira pas le bon résultat car il va afficher False, False, True, False et on ne 
-    veut pas connaître la réponse pour chaque élément de la liste, mais une réponse globale pour toute la liste.</p>
-<pre><code class="language-python">desserts = ["chocolat à l'orange", "confit de pamplemousse", "sorbet de myrtille", "raisin"]
-
-for elt in maListe:
-    if "myrtille" in elt:
-        print(True)
-    else:
-        print(False)</code></pre>
-
-<p>Il faut donc corriger le code de la façon suivante :</p>
-<pre><code class="language-python">desserts = ["chocolat à l'orange", "confit de pamplemousse", "sorbet de myrtille", "raisin"]
-
-resultat = False 
-
-for elt in maListe:
-    if "myrtille" in elt:
-        resultat = True
-    
-print(resultat)</code></pre>
-
-    </div>
-
-</div>
-
-
-<p>Il est temps maintenant d'apprendre une nouvelle notation pour incrémenter une
-    variable. Lorsqu'on utilise un compteur et qu'on souhaite augmenter la valeur
-de ce compteur (on parle d'incrémenter), on utilise pour l'instant l'instruction :</p>
-
-<pre><code class="language-python">compteur = compteur + 1</code></pre>
-
-<p>Et bien il existe une instruction plus compacte pour effectuer la même tâche :</p>
-<pre><code class="language-python">compteur += 1</code></pre>
-
-<p>Souvenez-vous en, c'est très utilisé...</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> complétez le code suivant, en augmentant le compteur de 3 fois sa valeur initiale.</p>
-    <pre><code class="language-python">compteur = 2
-# modifier la valeur de compteur en la multipliant par 3
-
-print(compteur)</code></pre>
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution9" style="display:none;">
-
-        <p>Solution : </p>
-        <pre><code class="language-python">compteur = 2
-compteur *= 3
-print(compteur)</code></pre>
-    </div>
-</div>
-
-
-<!-- AFFECTATION PAR REFERENCE -->
-
-<p class="my-5 invisible" id="reference">ancre</p>
-
-<h3>Affectation par valeurs, affectation par référence</h3>
-
-<p>Il s'agit d'une subtilité dans l'utilisation des listes, source de beaucoup d'erreurs de logique, 
-    difficiles à corriger.</p>
-
-<p>Pour les types de variables construits (objets, listes, ...), on peut affecter une variable par référence, 
-    ou par valeur.</p>
-
-<p>Par référence signifie qu'on utilise l'adresse mémoire de la variable pour lui affecter une valeur. Par exemple :</p>
-<pre><code class="language-python">liste1 = liste2</code></pre>
-<p>est une affectation par référence car les données de la liste1 se trouvent au même emplacement mémoire que les 
-    données de la liste2.</p>
-
-<p>Par valeur signifie qu'on utilise directement une donnée pour affecter une valeur à la variable. Par exemple :</p>
-<pre><code class="language-python">liste1 = [4, 5, 2, 1]</code></pre>
-<p>est une affectation par valeur car les données de la liste1 sont fournies directement à la variable et ne dépendent 
-    pas de l'adresse mémoire d'une autre variable.</p>
-
-<p>Le piège est le suivant : lorsqu'on affecte une variable liste1 par référence à une variable liste2, 
-    toute modification de liste1 entraîne le changement de liste2 et vice versa.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>pour comprendre ce principe, exécutez le code suivant :</p>
-    <pre><code class="language-python"># AFFECTATION PAR REFERENCE
-liste1 = ['x', 'y', 'z']
-liste2 = liste1 
-liste2[0] = 'a'
-print(liste1) # affiche ['a', 'y', 'z']
-print(liste2) # affiche ['a', 'y', 'z']
-
-# AFFECTATION PAR VALEUR
-liste3 = ['x', 'y', 'z']
-liste4 = liste3.copy() 
-liste4[0] = 'a'
-print(liste3) # affiche ['x', 'y', 'z']
-print(liste4) # affiche ['a', 'y', 'z']</code></pre>
-<p>On remarque que dans le deuxième cas, on a juste copié les valeurs une à une, au lieu de 
-    pointer vers l'adresse de liste3.</p>
-</div>
-
-<p>Il faut comprendre que cette subtilité n'existe que pour les types de variables construits. Ainsi, 
-    dans le code suivant, si on modifie b, cela ne change pas a :</p>
-
-<pre><code class="language-python">a = 12
-b = a
-b = 5
-print(a) # affiche 12
-print(b) # affiche 5</code></pre>
-
-<h4>Egalité par référence ou par valeur</h4>
-
-<p>On peut être amené à se poser la question suivante : est-ce que 2 listes qu'on souhaite comparer sont
-    égales par référence ou par valeur ?</p>
-    
-<p>Si elles sont égales par référence, cela signifie que leurs adresses
-    mémoires sont identiques. On utilise dans ce cas l'opérateur is.</p>
-
-    <p>Si elles sont égales par valeur, cela signifie que tous les éléments des listes sont 
-        les mêmes individuellement, mais que leurs emplacements mémoire diffèrent. On utilise dans ce cas
-        l'opérateur ==</p>
-
-<p>Ainsi, si l'on reprend l'exemple précédent, on obtient :</p>
-
-<pre><code class="language-python">print(liste1 == liste2) # affiche True
-print(liste1 is liste2) # affiche True
-print(liste3 == liste4) # affiche True
-print(liste3 is liste4) # affiche False</code></pre>
-
-
-<!-- TUPLES -->
-
-<p class="my-5 invisible" id="tuple">ancre</p>
-
-<h3>La notion de tuple</h3>
-
-<p>En Python, il existe un type particulier appelé tuple, qui pourrait s'apparenter à une liste car il s'agit 
-    d'un regroupement de variables. Toutefois, les tuples sont immuables, c'est à dire qu'on ne peut pas les 
-    agrandir, les diminuer ou les modifier.</p>
-
-<p>Les tuples sont essentillement utilisés pour afficher ou conserver un résultat sous la forme de plusieurs 
-    valeurs liées. Par exemple :</p>
-
-<pre><code class="language-python">groupes = ("1B1", "1B2")</code></pre>
-
-<p>est un tuple. On remarque l'utilisation de () au lieu de [] pour une liste. 
-On peut afficher "1B1" de la même façon que pour une liste avec l'instruction :</p>
-
-<pre><code class="language-python">print(groupes[0])</code></pre>
-
-<p>En revanche, on ne peut pas rajouter ou enlever un élément au tuple groupes. On ne peut pas modifier "1B1" en 
-    "1B3" par exemple. En effet, l'instruction :</p>
-
-<pre><code class="language-python">groupes[0] = "1B3" # ERREUR</code></pre>
-
-<p>génère une erreur de type TypeError: 'tuple' object does not support item assignment.</p>
-
-<p>Voici un autre exemple d'utilisation de tuples avec une fonction qui crée un point dont les coordonnées sont 
-    aléatoires :</p>
-
-<pre><code class="language-python">from random import *
-
-def creer_point():
-    return (randint(0, 100), randint(0, 100))
-
-pointA = creer_point()
-print(pointA) # affiche les coordonnees du point A</code></pre>
-
-<p>Les tuples offrent l'avantage d'occuper moins d'espace mémoire que les listes, vu qu'au moment de leur création, 
-    ils n'est pas nécessaire d'allouer de l'espace de stockage supplémentaire pour gérer leur agrandissement.</p>
-
-
-<h3>Entraînement</h3>
-
-<div class="exerciceApplication">
-    <p><strong>Exercice 1 : </strong>écrire une fonction appelée to_number(), qui prend une liste de mois en arguments et renvoie une liste 
-        composée des numéros correspondant pour chaque mois. Par exemple, février correspond à 2, mars à 3, etc... </p>
-    <pre><code class="language-python">mois = ["janvier", "mars", "février", "décembre"]
-# COMPLETER LE CODE</code></pre>
 
 </div>
 

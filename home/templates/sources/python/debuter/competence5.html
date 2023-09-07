@@ -83,14 +83,14 @@ def f(x):
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
-var questionsData = 
+var questionsData1 = 
     {
         question: "Pour définir une fonction, il faut utiliser le mot-clé ...",
         options:["function", "f", "def"],
         correctIndex: 2,
         commentaire: ""
     };
-questionnaireUnique(1);
+questionnaireUnique(1, questionsData1);
 </script>
 
 
@@ -245,14 +245,14 @@ print(renforcer_motpasse(pseudo, date))</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
-var questionsData = 
+var questionsData2 = 
     {
         question: "Pour appeler la fonction construire, qui prend en paramètre la superficie, il faut écrire ...",
         options:["(construire, superficie)", "construire(superficie)", "construire.superficie"],
         correctIndex: 1,
         commentaire: ""
     };
-questionnaireUnique(2);
+questionnaireUnique(2, questionsData2);
 </script>
 
 
@@ -296,14 +296,14 @@ f(3)  # affiche 7</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
-var questionsData = 
+var questionsData3 = 
     {
         question: "Le mot-clé return permet de ...",
         options:["renvoyer une valeur en terminant l'exécution d'une fonction", "renvoyer une valeur en continuant l'exécution d'une fonction", "retourner au début de la fonction"],
         correctIndex: 0,
         commentaire: ""
     };
-questionnaireUnique(3);
+questionnaireUnique(3, questionsData3);
 </script>
 
 

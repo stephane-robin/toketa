@@ -3,21 +3,21 @@
 
 {% block contenu %} 
 <ul>
-    <li>comprendre la géolocalisation</li>
-    <li>comprendre le fonctionnement du GPS</li>
-    <li>découvrir les cartes numériques</li>
+    <li><a href="#geoloc">comprendre la géolocalisation</a></li>
+    <li><a href="#gps">comprendre le fonctionnement du GPS</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- INTRODUCTION -->
-
 <h3>Introduction</h3>
 
 <p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube explique le fonctionnement de la géolocalisation :<br/>
     <a href="https://www.youtube.com/watch?time_continue=1&v=iTfNhcC2vBA&feature=emb_logo" target="_blank">&#127911; VIDEO | triangulation - Fun Mooc YouTube</a></p>
 
+
+<!-- COORDONNEES GEOGRAPHIQUES -->
 <h3>Coordonnées géographiques</h3>
 
 <p>Pour localiser un point à la surface de la Terre, on utilise des coordonnées géographiques composées d'une 
@@ -25,6 +25,12 @@
     montagneuses on utilise souvent l'altitude pour se repérer (par rapport à l'altitude 0 définie à Marseille). 
     Le système géodésique WGS84 utilise ces coordonnées géographiques couplées avec le centre de la Terre comme 
     référence mondiale de localisation par GPS.</p>
+
+<div class=fieldsetDefinition>
+    <h4>A RETENIR ...</h4> 
+    <p>Les latitudes représentent les lignes horizontales sur le globe (on retrouve les parallèles).</p>
+    <p>Les longitudes représentent les lignes verticales sur le globe (on retrouve les méridiens).</p>
+</div>
 
 <p>Si on coupe en deux le globe terrestre, on se retrouve avec une demi-sphère étalée sur 360°. Chaque méridien correspond en fait 
     à un fuseau horaire. Comme il existe 24 fuseaux horaires sur Terre, cela signifie qu'on trouve un angle de 
@@ -34,24 +40,71 @@
     minutes ('), secondes (''), par exemple 34°23'54''Nord 21°46'27''Est. Il est également possible d'utiliser la notation décimale, 
 par exemple 34,3983°Nord 21,7742°Est.</p>
 
-<p>Pour passer d'une notation à une autre il faut utiliser la règle suivante : 1° = 60', 1' = 60''. Par exemple 48°51'23'' = 48,8564°</p>
+<p>Pour passer d'une notation à une autre il faut utiliser la règle suivante : 1° = 60', 1' = 60''. 
+    Par exemple 48°51'23'' = 48,8564°. Nous allons détailler comment obtenir ce résultat.</p>
 
-<div class=fieldsetDefinition>
-	<h4>A RETENIR ...</h4> 
-	<p>Les latitudes représentent les lignes horizontales sur le globe (on retrouve les parallèles).</p>
-    <p>Les longitudes représentent les lignes verticales sur le globe (on retrouve les méridiens).</p>
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>convertir 48°51'23'' en degrés.</p>
+    <p>Je convertis 23'' en minutes en conservant une précision de 4 chiffres significatifs après la virgule : 23'' = 23 / 60' = 0,3833'</p>
+    <p>Je rajoute 51' et 0,3833' que je convertis en degrés en conservant une précision de 4 chiffres significatifs après la virgule : 51,3833' = 51,3833 / 60° = 0,8564°</p>
+    <p>Je rajoute 48° et 0,8564° pour obtenir mon résultat : 48°51'23'' = 48,8564°</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceType">
+    <p><strong>Exercice type : </strong>dans le sens inverse, convertir 48,8564° en degrés, minutes, secondes.</p>
+    <p>Je conserve 48° et je convertis 0,8564° en minutes en prenant une précision de 4 chiffres significatifs après la virgule : 0,8564° = 0,8564 x 60' = 51,384'</p>
+    <p>Je conserve 51' et je convertis 0,384' en secondes en arrondissant à l'unité car c'est la fin de mon calcul : 0,384' = 0,384 x 60'' = 23''</p>
+    <p>J'obtiens donc le résultat : 48,8564° = 48°51'23''</p>
 </div>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong></p>
-    <p>1) Convertissez 24°51'59'' en valeur décimale. Essayez ensuite 
+    <p><strong>A toi de jouer : </strong></p>
+    <p>1) Convertir 24°51'59'' en valeur décimale. Essayer ensuite 
         dans le sens inverse de retrouver 24°51'59'' en valeur sexagésimale.</p>
-    <p>2) Voici les coordonnées de Paris 48,8566°N 2,3522°E. Convertissez ces coordonnées en coordonnées 
+    <p>2) Voici les coordonnées de Paris 48,8566°N 2,3522°E. Convertir ces coordonnées en coordonnées 
         sexagésimales.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>construis un programme Python capable de transformer une valeur 
+    donnée en degrés, minutes, secondes en une valeur exprimées uniquement en degrés et inversement.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+<p>Dans le code ci-dessous, on a choisi de créer 2 fonctions afin de pouvoir les réutiliser facilement. 
+    On utilise une structure de tuple, c'est à dire un regroupement de valeurs. La méthode floor() de la 
+    bibliothèque math permet de calculer la partie décimale d'un nombre réel, c'est à dire les chiffres se 
+    trouvant après la virgule.</p>
+
+<pre><code class="language-python">import math
+
+def toDecimal(degres, minutes, secondes):
+    minutes = minutes + round(secondes / 60, 4)
+    return round(degres + minutes / 60, 4)
+
+def toSexagesimal(decimal):
+    apresVirguleDegres = decimal - math.floor(decimal)
+    minutes = round(apresVirguleDegres * 60, 4)
+    apresVirguleMinutes = minutes - math.floor(minutes)
+    secondes = round(apresVirguleMinutes * 60, 0)
+
+    return (math.floor(decimal), math.floor(minutes), math.floor(secondes))
+
+print(toDecimal(48, 51, 23))
+print(toSexagesimal(48.8564))</code></pre>
+</div>
 </div>
 
 
 <!-- GEOLOCALISATION -->
+<p class="invisible" id="geoloc">ancre</p>
 
 <h3>Géolocalisation</h3>
 
@@ -62,14 +115,105 @@ par exemple 34,3983°Nord 21,7742°Est.</p>
     <li>par satellite, appelé GPS</li>
 </ul>
 
-<p>Ces technologies sont baées sur le principe de triangulation pour trouver un appareil récepteur.</p>
+<p>Ces technologies sont baées sur le principe de triangulation pour trouver un appareil récepteur cible.</p>
 
-<p>La triangulation permet de localiser un appareil récepteur à l'aide d'au moins 3 appareils émetteurs. Pour chaque signal reçu, le récepteur compare l'heure d'arrivée avec l'heure d'émission qui est incluse dans le signal. La différence correspond au temps de parcours du signal entre l'émetteur et le récepteur. Si le signal est lumineux, sa vitesse de propagation est de 300 000 km/s. Si le signal est sonore, sa vitesse de propagation est de 340 m/s. Cela nous indique alors la distance entre un émetteur et le récepteur. Il suffit maintenant de tracer un cercle de centre l'émeteur et de rayon cette distance pour obtenir les emplacements possibles du récepteur. Avec au moins 3 appareils émetteurs, on obtient une intersection plus ou moins précise permettant de géolocaliser l'appareil récepteur.</p>
+<p>La triangulation permet de localiser un appareil récepteur à l'aide d'au moins 3 appareils émetteurs. 
+    Pour chaque signal reçu, le récepteur compare l'heure d'arrivée avec l'heure d'émission qui est incluse 
+    dans le signal. Cela suppose une grande précision dans la détermination de chacune de ces heures. 
+    La différence correspond au temps de parcours du signal entre l'émetteur et le récepteur. 
+    Si le signal est lumineux, sa vitesse de propagation est de 300 000 km/s. Si le signal est sonore, sa 
+    vitesse de propagation est de 340 m/s.</p>
+    
+<p>On est ensuite en mesure de calculer la distance entre un émetteur et le récepteur cible car on sait qu'une 
+    distance peut être définie par \(distance = vitesse \times temps\). Il suffit maintenant de tracer 3 cercles
+     de centres les émetteurs et de rayon leurs distances de parcours pour 
+    obtenir un secteur approximatif dans lequel le récepteur cible peut se trouver. Ce secteur correspond à 
+    l'intersection des 3 cercles et ressemble plus ou moins à un triangle. Avec 4 appareils émetteurs, on obtient une 
+    intersection plus précise permettant de géolocaliser l'appareil récepteur.</p>
 
 <img src="{% static 'home/images/nsi/triangulation.png' %}" alt="triangulation" width=45%>
 
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>à l'aide la <a href="https://docs.python.org/3/library/turtle.html">doc Python relative à la bibliothèque turtle</a>, construit 
+    3 points A, B et C représentant des émetteurs d'ondes radio, de coordonnées respectives (-200, -250), (50, -30) et (-150, 100).
+    Ces coordonnées sont exprimées en kilomètres.
+Sachant qu'une onde lumineuse partant du point A parvient à un récepteur cible en 0,733333 millisecondes, qu'une 
+onde lumineuse partant du point B parvient à ce même récepteur en 0,5 millisecondes et qu'une onde 
+lumineuse partant du point C parvient au récepteur en 0,6 millisecondes, trouve les distances possibles 
+séparant les points A, B et C du récepteur. Trace ensuite à l'aide de turtle les 3 cercles relatifs à ces 
+distances afin de trouver visuellement la zone dans laquelle se trouve notre récepteur.</p>
+
+<p>Tu pourras compléter le code ci-dessous avec des valeurs exactes et en améliorer la présentation :</p>
+<pre><code class="language-python">import turtle as tu
+
+t = tu.Turtle()
+tu.hideturtle()
+tu.title("Triangulation")
+tu.setup(800, 600)
+tu.penup()
+
+# point A
+tu.setposition(-200, -250)
+tu.pendown()
+tu.fillcolor("red")
+tu.begin_fill()
+tu.circle(5)
+tu.end_fill()
+tu.penup()
+
+# cercle emis a partir de A
+distanceA_cible = ???
+tu.setposition(-200, -250 - distanceA_cible)
+tu.pendown()
+tu.circle(distanceA_cible)
+tu.penup()
+
+# point B
+tu.setposition(50, -30)
+tu.pendown()
+tu.fillcolor("red")
+tu.begin_fill()
+tu.circle(5)
+tu.end_fill()
+tu.penup()
+
+# cercle emis a partir de B
+distanceB_cible = ???
+tu.setposition(50, -30 - distanceB_cible)
+tu.pendown()
+tu.circle(distanceB_cible)
+tu.penup()
+
+# point C
+tu.setposition(-150, 100)
+tu.pendown()
+tu.fillcolor("red")
+tu.begin_fill()
+tu.circle(5)
+tu.end_fill()
+tu.penup()
+
+# cercle emis a partir de C
+distanceC_cible = ???
+tu.setposition(-150, 100 - distanceC_cible)
+tu.pendown()
+tu.circle(distanceC_cible)
+tu.penup()
+
+tu.exitonclick()</code></pre>
+</div>
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    <ul>
+        <li>Il est possible de géolocaliser un point sur une carte dès lors qu'on connaît la position de 3 émetteurs 
+            et qu'on a mesuré le temps mis par chacun des messages provenant des émetteurs pour atteindre le point cible.</li>
+    </ul>
+</div>
+
 
 <!-- LE GPS -->
+<p class="invisible" id="gps">ancre</p>
 
 <h3>Le GPS</h3>
 
@@ -77,11 +221,11 @@ par exemple 34,3983°Nord 21,7742°Est.</p>
 
 <p>L'Europe a également mis un point un système équivalent au GPS pour tenter de rester indépendant dans le domaine de la géolocalisation. Il s'agit du projet Galileo, qui est fonctionnel mais reste encore en retrait commercialement face au GPS implanté dans le secteur depuis longtemps.</p>
 
-<p>La vidéo suivante publiée par le <em>CNES</em> sur YouTube explique le fonctionnement de Galileo :
+<p>La vidéo suivante publiée par le <em>CNES</em> sur YouTube explique le fonctionnement de Galileo :<br/>
 <a href="https://www.youtube.com/watch?time_continue=1&v=e79tSIpLiDk&feature=emb_logo" target="_blank">&#127911; VIDEO | Galileo - CNES YouTube</a></p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>quelles différences faites-vous entre le système GPS et le système Galileo ?</p>
+    <p><strong>A toi de jouer : </strong>quelles différences fais-tu entre le système GPS et le système Galileo ?</p>
 </div>
 
 {% endblock cours %}

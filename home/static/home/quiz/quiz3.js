@@ -8,7 +8,7 @@ var questionsData = [
 		commentaire: 'Les décisions prises par le programme ont été imaginées à l\'avance par le développeur.'
 	},
 	{
-		question: '<p>Quel est l\'affichage lors de l\'exécution du code suivant :	</p><pre><code class="language-python">nom = "Laurine"</code></pre><p>	if nom == "Alice":	print("bonjour")	else:	print("au revoir") ...</p>',
+		question: '<p>Quel est l\'affichage lors de l\'exécution du code suivant :	</p><pre><code>nom = "Laurine"</code></pre><p>	if nom == "Alice":	print("bonjour")	else:	print("au revoir") ...</p>',
 		options:['bonjour', 'au revoir', 'SyntaxError'],
 		correctIndex: 1,
 		commentaire: ''

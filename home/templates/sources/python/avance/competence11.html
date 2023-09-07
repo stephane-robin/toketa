@@ -8,237 +8,420 @@
     <li>utilisation de fonctions</li>
     <li>utilisation de listes</li>
     <li>pratique de la construction de code</li>
-</ul> 
+</ul>  
 {% endblock contenu %}
 
 {% block cours %}
 
-<p>Ce projet est l'occasion d'un travail en binôme. Il vous est demandé de construire un jeu de pendu simple 
-    mais fonctionnel, qui utilise la bibliothèque turtle pour dessiner le pendu et une interface graphique 
-    sous forme de fenêtre pour saisir les propositions du joueur.</p>
+<p>Nous allons mettre en pratique la lecture d'un fichier au format <strong>.txt</strong> pour rechercher une chaîne dans une séquence de génome.</p>
 
-<p>Vous afficherez dans une fenêtre des tirets à la place du mot à trouver, puis les lettres correctes trouvées 
-    par le joueur aux emplacements correspondant dans ce mot. Vous afficherez également toutes les lettres 
-    proposées par le joueur.</p>
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> dans un premier temps, vous allez créer une fonction Python appelée <code>creerGenome()</code>, qui prend en paramètre la taille de la séquence génomique à créer et construit au hasard une séquence génomique comprenant uniquement les caractères A, T, C ou G. Cette fonction renvoie ensuite la séquence génomique dans son intégralité.</p>
 
-<p>Le joueur dispose de 5 tentatives pour gagner. A la 6ème tentative, le joueur perd la partie.</p>
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
 
-<p>Vous afficherez finalement dans la même fenêtre si le joueur a perdu ou gagné, et dans ce cas vous rajouterez 
-    son score en pourcentage.</p>
+<div id="solution1" style="display:none;">
+    <p>Solution :</p>
 
-<p>Une solution possible :</p>
+<pre><code class="language-python">def creerGenome(taille)
 
-<pre><code class="language-python">"""
-This module implements a simple hangman game using the turtle graphics library 
-to draw the hangman figure on the screen.
+    genome = ""
 
-The module includes several helper functions for word manipulation and game control.
+    for i in range(taille):
 
-The module requires the follownig dependencies :
-    - turtle library 
-    - random library
+        hasard = randrange(4)
 
-Usage:
-    Run the module to start the hangman game. Guess letters to find the hidden word
-    before the hangman is completely drawn.
+        if hasard == 0:
+            genome += 'A'
+        elif hasard == 1:
+            genome += 'T'
+        elif hasard == 2:
+            genome += 'C'
+        else:
+            genome += 'G'
 
-Functions:
-    to_word(liste: list) -> str:
-        Converts a list of characters into a single word.
+    return genome</code></pre>
+</div>
+</div>
 
-    to_list(mot: str) -> list:
-        Converts a word into a list of individual characters.
+<p>Pour construire une séquence de 100 000 caractères puis l'afficher, il suffit donc d'exécuter le code suivant :</p>
 
-    terminer(mot_trouve: str, mot_cherche: str, nb_tentatives: int) -> bool:
-        Determines if the game should stop based on the conditions.
+<pre><code class="language-python">print(creerGenome(100000))</code></pre>
 
-    dessiner(etape: int) -> None:
-        Draws a specific step of the hangman figure on the turtle canvas.
-"""
-import turtle as tu
-import random
-import time
+<p>On obtient alors un affichage semblable à celui-ci, mais en plus long...</p>
 
-def to_word(liste: list) -> str:
-    """
-    Converts a list of characters into a single word.
+<pre><code class="language-svg">GCCTGTATGGCTGCAACTTAGGGGGGGTCGTTACACGTCGAAGTTTCTCTCTTTTCTGCGGGCATTGGTGTCCCATACTATTC
+ATTAAAATGAGGCCTGATGCGTTTGTGGCACCTGTCGGACACAATAAGGTATGCCCAAAGGCGCGCCATTGGGAGCCCACTAT
+TTAACTGGTCCAATTAAATATCCTTTTGCCTCACTTCTCATCAGCTTCTTCTATTGCGGACGTTCACTCCACTAGAGACCAGC
+TTAAGAAATACTCTAGATAGTGGTAAGTCCTAATTCATCCCCTCGGCGGTCCAGGTCCAGACTTATAGCACGTGCTGAAAAGA
+ACAGTCTACGACTGCGCCCGCACCAGTTCGGAGACACCCCCCCCTGGACATATCTGCTCCTCCAATGTGCGGTCGGGGGAAGT
+ATAAGTCTAACTTCGAAATAACTTTCTAACGGGGCACGACGATTATTTGTTGCCCCCGCAGCCCAAAATCAGGCTCCCGTGCC
+GTTATTTTCTGTGCGTGCCTCTGACATACAACTGGTCAAGCTCCGAGGATGTTTTCTCTTTCTAACTGTAGGTCAGTACGGAG
+TGTGGTTGTTCGCAGCTACCACTAGTCACCCCGAACAGAATACACGTCCGAAATGGACGTGAGAGGGAGGAGTTCGGCCTATC
+TACAAGCATGTTCACTACCTGTACTTTTTCATTTAGTTTCCTTGCTGTCGATTAGGCTCGGTACTACTATTCCGACGTCACGA
+CTTAGCGTAGCGCATGTTGATGTAAACCCCCGGACGACTTAAAACCCCAATTTGGCCGCCTAAGCAAATATTCAGAAAGTCAG
+</code></pre>
 
-    Args:
-        liste (list): A list of characters.
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> vous allez maintenant créer un fichier vierge appelé <strong>genome.txt</strong>, puis modifier notre fonction <code>creerGenome()</code> pour qu'elle écrive le contenu de la séquence génomique construite dans ce fichier <strong>genome.txt</strong> en utilisant l'instruction <code>with open()</code> :</p>
 
-    Returns:
-        (str): The word formed by joining the characters in the list.
-    """
-    return ''.join(liste)
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+</div>
 
-assert to_word(['a', 'b', 'c']) == 'abc', 'erreur to_word()'
+<div id="solution2" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">from random import randrange
+
+def creerGenome(nomFichier, taille):
+    """cree de maniere aleatoie une sequence genomique suivant une taille
+    fixee, et place cette sequence dans nomFichier.
+
+    parameters:
+    nomFichier (str): nom du fichier dans lequel va etre stockee la sequence
+    taille (str): taille de la chaine de caracteres qui compose la sequence"""
+
+    genome = ""
+
+    for i in range(taille):
+
+        hasard = randrange(4)
+
+        if hasard == 0:
+            genome += 'A'
+        elif hasard == 1:
+            genome += 'T'
+        elif hasard == 2:
+            genome += 'C'
+        else:
+            genome += 'G'
+
+    with open(nomFichier, 'w') as f:
+        f.write(genome)</code></pre>
+
+    </div>
+</div>
+
+<p>Pour savoir si notre fonction a bien rajouté une séquence génomique dans le fichier <strong>genome.txt</strong>, il faut pouvoir le lire.</p>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> vous allez donc créer une fonction <code>afficherGenome()</code>, qui prend en argument le nom d'un fichier et en affiche le contenu :</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+</div>
+
+<div id="solution3" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">def afficherGenome(nomFichier):
+    """affiche le contenu de nomFichier qui est compose d'une sequence
+    genomique.
+
+    parameters:
+    nomFichier (str): nom du fichier contenant la sequence"""
+    
+    with open(nomFichier, 'r') as f:
+        print(f.read())</code></pre>
+
+    </div>
+</div>
+
+<p>Nous pouvons donc voir le contenu de notre fichier <strong>fichier.txt</strong> en exécutant l'instruction :</p>
+
+<pre><code class="language-python">afficherGenome('genome.txt')</code></pre>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> il faut ensuite créer une fonction <code>rechercher()</code> qui prend en paramètres une sequence et une chaine et qui compare les éléments de cette séquence avec ceux de la chaine. Si cette chaine existe dans la séquence, la fonction revoie l'indice de la 1ère lettre de la chaine dans la séquence, sinon elle renvoie -1</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">def rechercher(sequence, chaine):
+    taille_sequence = len(sequence)
+    taille_chaine = len(chaine)
+
+    # on parcourt la séquence et on compare une partie de la séquence 
+    # qui démarre à l'indice i avec la chaine
+    for i in range(taille_sequence):
+        if sequence[i: i + taille_chaine] == chaine:
+            return i
+
+    return -1</code></pre>
+
+</div>
+</div>
+
+<p>On peut tester le bon fonctionnement de notre fonction en utilisant la variable <code>genome</code> avec le code suivant :</p>
+
+<pre><code class="language-python">genome = 'ATCAGGTGTATCTTTGGGAGTACCATGCAATCTGATCTACTGTC'
+
+print(rechercher(genome, 'ATCT')) # renvoie 9
+print(rechercher(genome, 'ATCG')) # renvoie -1</code></pre>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> on va maintenant améliorer notre fonction <code>rechercher()</code>, en renvoyant dans une liste tous les indices pour lesquels notre chaine apparaît. Si notre chaîne n'apparait pas, la fonction renvoie la liste <code>[-1]</code>.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+</div>
+
+<div id="solution5" style="display:none;">
+    <p>Solution :</p>
+
+<p>Le code suivant fournit par exemple le résultat souhaité :</p>
+
+<pre><code class="language-python">def rechercher(sequence, chaine):
+    taille_sequence = len(sequence)
+    taille_chaine = len(chaine)
+    liste_resultats = []
+
+    # on parcourt la séquence et on compare une partie de la séquence 
+    # qui démarre à l'indice i avec la chaine
+    for i in range(taille_sequence):
+        if sequence[i: i + taille_chaine] == chaine:
+            liste_resultats.append(i)
+
+    # on place les résultats obtenus dans une liste
+    if len(liste_resultats) == 0:
+        liste_resultats.append(-1)
+
+    return liste_resultats</code></pre> 
+
+</div>
+</div>
+
+<p>Que faut-il modifier dans notre fonction <code>rechercher()</code> pour tester l'appartenance d'une chaîne au génome représenté par le fichier <strong>genome.txt</strong> ?</p>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> effectuez les modifications de cette fonction</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+</div>
+
+<div id="solution6" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">def rechercher(nomFichier, chaine):
+    """recherche une chaine de caracteres dans nomFichier, et renvoie
+    une liste comprenant les indices où la chaine apparait.
+
+    parameters:
+    nomFichier (str): fichier dans lequel la recherche est effectuée
+    chaine (str): chaine de caracteres a rechercher
+
+    returns:
+    liste_resultats (list): liste avec les indices où le début de la 
+    chaine apparait."""
+
+    with open(nomFichier, 'r') as f:
+        sequence = f.read()
+
+        taille_sequence = len(sequence)
+        taille_chaine = len(chaine)
+        liste_resultats = []
+
+        for i in range(taille_sequence):
+            if sequence[i: i + taille_chaine] == chaine:
+                liste_resultats.append(i)
+
+        if len(liste_resultats) == 0:
+            liste_resultats.append(-1)
+
+    return liste_resultats</code></pre>
+
+</div>
+</div>
+
+<p>Il ne reste plus qu'à exécuter un script qui construit une séquence génomique dans un fichier, puis teste l'appartenance d'une chaîne de caractères dans ce génome.</p>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> écrire le script principal</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+</div>
+
+<div id="solution7" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">if __name__ == '__main__':
+
+    # creation de la sequence du genome dans genome.txt
+    creerGenome('genome.txt', 100)
+
+    # affichage de la sequence de genome.txt
+    afficherGenome('genome.txt')
+
+    # recherche de la chaine 'ATCT' dans la sequence de genome.txt
+    print(rechercher('genome.txt', 'ATCT'))</code></pre>
+
+</div>
+</div>
+
+<p>Le résultat obtenu dépend bien entendu de votre séquence de départ et de la chaîne de caractères que vous souhaitez détecter. Par exemple, une première exécution du code affiche la liste suivante :</p>
+
+<pre><code class="language-svg">[2417, 10286, 10684, 18954, 19212, 19273, 33516, 37438, 38186, 39101, 39318]</code></pre>
+
+<p>Imaginons maintenant que nous voulions modifier quelques caractères seulement à l'intérieur de notre séquence génomique, à partir de l'indice j. Comment pouvons-nous procéder ? </p>
+
+<div class='exerciceApplication'>
+<p><strong>A vous de jouer :</strong> vous allez créer la fonction <code>modifierGenome()</code>, qui prend en paramètres, le nom du fichier dans lequel se trouve la séquence, l'emplacement où doit se faire la modification et la chaîne de caractères qui doit se substituer à une autre.</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+    <p>Solution :</p>
+
+<pre><code class="language-python">def modifierGenome(nomFichier, j, chaine):
+    """modifie nomFichier en insérant chaine à l'indice j.
+
+    parameters:
+    nomFichier (str): nom du fichier dans lequel est stocke la sequence
+    a modifier
+    j (int): indice auquel est effectuee la modification
+    chaine (str): chaine de caracteres qui va remplacer plusieurs caracteres
+    de la sequence a l'indice j"""
+
+    with open(nomFichier, 'r+') as f:
+        sequence = f.read()
+        f.seek(0)
+        newSequence = sequence[0: j] + chaine + sequence[j + len(chaine):]
+        f.write(newSequence)</code></pre>
+
+    </div>
+</div>
+
+<p>Il ne reste plus qu'à procéder à la modification en exécutant le script suivant :</p>
+
+<pre><code class="language-python">if __name__ == '__main__':
+
+    # creation de la sequence du genome dans genome.txt
+    creerGenome('genome.txt', 1000)
+
+    # modification de la sequence de genome.txt a l'indice 10 avec
+    # la chaine 'AAAA'
+    modifierGenome('genome.txt', 10, 'AAAA')
+
+    # affichage de la sequence de genome.txt
+    afficherGenome('genome.txt')</code></pre>
+
+<h3>En résumé</h3>
+
+<p>Nous avons finalement construit le code suivant pour effectuer ce travail pratique :</p>
+
+<pre><code class="language-python">from random import randrange
+
+def rechercher(nomFichier, chaine):
+    """recherche une chaine de caracteres dans nomFichier, et renvoie
+    une liste comprenant les indices où la chaine apparait.
+
+    parameters:
+    nomFichier (str): fichier dans lequel la recherche est effectuée
+    chaine (str): chaine de caracteres a rechercher
+
+    returns:
+    liste_resultats (list): liste avec les indices où le début de la 
+    chaine apparait."""
+
+    with open(nomFichier, 'r') as f:
+        sequence = f.read()
+
+        taille_sequence = len(sequence)
+        taille_chaine = len(chaine)
+        liste_resultats = []
+
+        for i in range(taille_sequence):
+            if sequence[i: i + taille_chaine] == chaine:
+                liste_resultats.append(i)
+
+        if len(liste_resultats) == 0:
+            liste_resultats.append(-1)
+
+    return liste_resultats
 
 
-def to_list(mot: str) -> list:
-    """
-    Converts a word into a list of individual characters.
+def creerGenome(nomFichier, taille):
+    """cree de maniere aleatoie une sequence genomique suivant une taille
+    fixee, et place cette sequence dans nomFichier.
 
-    Args:
-        mot (str): A word to be converted into a list.
+    parameters:
+    nomFichier (str): nom du fichier dans lequel va etre stockee la sequence
+    taille (str): taille de la chaine de caracteres qui compose la sequence"""
 
-    Returns:
-        (list): A list containing individual characters of the word.
-    """
-    resultats = []
-    for l in mot:
-        resultats.append(l)
-    return resultats
+    genome = ""
 
-assert to_list('abc') == ['a', 'b', 'c'], 'erreur to_list()'
+    for i in range(taille):
+
+        hasard = randrange(4)
+
+        if hasard == 0:
+            genome += 'A'
+        elif hasard == 1:
+            genome += 'T'
+        elif hasard == 2:
+            genome += 'C'
+        else:
+            genome += 'G'
+
+    with open(nomFichier, 'w') as f:
+        f.write(genome)
 
 
-def terminer(mot_trouve: str, mot_cherche: str, nb_tentatives: str) -> bool:
-    """
-    Determines if the game should stop based on the conditions.
+def modifierGenome(nomFichier, j, chaine):
+    """modifie nomFichier en insérant chaine à l'indice j.
 
-    Args:
-        mot_trouve (str): The word that has been found so far.
-        mot_cherche (str): The target word to be found.
-        nb_tentatives (int): The number of attempts made.
+    parameters:
+    nomFichier (str): nom du fichier dans lequel est stocke la sequence
+    a modifier
+    j (int): indice auquel est effectuee la modification
+    chaine (str): chaine de caracteres qui va remplacer plusieurs caracteres
+    de la sequence a l'indice j"""
 
-    Returns:
-        (bool): True if the game should stop, False otherwise.
-    """
-    return mot_trouve == mot_cherche or nb_tentatives == 6
+    with open(nomFichier, 'r+') as f:
+        sequence = f.read()
+        f.seek(0)
+        newSequence = sequence[0: j] + chaine + sequence[j + len(chaine):]
+        f.write(newSequence)
 
-assert terminer('bonjour', 'bonjour', 5) == True, 'erreur terminer()'
-assert terminer('bonjour', 'hello', 5) == False,  'erreur terminer()'
-assert terminer('bonjour', 'hello', 6) == True, 'erreur terminer()'
 
-def dessiner(etape: int) -> None:
-    """
-    Draws a specific step of the hangman figure on the turtle canvas.
+def afficherGenome(nomFichier):
+    """affiche le contenu de nomFichier qui est compose d'une sequence
+    genomique.
 
-    Args:
-        etape (int): The step of the hangman figure to be drawn.
-                        Valid values are integers from 1 to 6.
-
-    Returns:
-        None
-    """
-    tu.color('red')
-    match etape:
-        case 1:
-            # head
-            tu.goto(-74, 140)
-            tu.pendown()
-            tu.right(90)
-            tu.circle(15, None, 100)
-            tu.penup()
-        case  2:
-            # chest
-            tu.goto(-74, 140)
-            tu.pendown()
-            tu.left(90)
-            tu.penup()
-            tu.forward(30)
-            tu.pendown()
-            tu.forward(40)
-            tu.right(180)
-            tu.forward(30)
-            tu.penup()
-        case 3:
-            # right arm
-            tu.goto(-74, 100)
-            tu.pendown()
-            tu.left(55)
-            tu.forward(45)
-            tu.right(180)
-            tu.forward(45)
-            tu.penup()
-        case 4:
-            # left arm
-            tu.goto(-74, 100)
-            tu.pendown()
-            tu.left(70)
-            tu.forward(45)
-            tu.right(180)
-            tu.forward(45)
-            tu.penup()
-        case 5:
-            # right leg
-            tu.goto(-74, 100)
-            tu.pendown()
-            tu.left(55)
-            tu.forward(30)
-            tu.right(30)
-            tu.forward(60)
-            tu.right(180)
-            tu.forward(60)
-            tu.penup()
-        case 6:
-            # left leg
-            tu.goto(-74, 70)
-            tu.pendown()
-            tu.right(120)
-            tu.forward(60)
-            tu.penup()
-    tu.color('black')
+    parameters:
+    nomFichier (str): nom du fichier contenant la sequence"""
+    
+    with open(nomFichier, 'r') as f:
+        print(f.read())
+    
 
 if __name__ == '__main__':
-    police = ("Arial", 14, "normal")
-    tu.hideturtle()
-    tu.clear()
-    tu.speed(0)
-    tu.pensize(3)
-    tu.home()
-    tu.pendown()
-    tu.left(90)
-    tu.forward(175)
-    tu.left(90)
-    tu.forward(74)
-    tu.left(90)
-    tu.forward(35)
-    tu.penup()
 
-    # on choisit un mot a trouver et on le place dans une liste de lettres
-    mots = ['python', 'difficile', 'activisme', 'proportionnel', 'capitalisme']
-    mot_cherche = random.choice(mots)
-    mot_cherche_list = to_list(mot_cherche)
+    # creation de la sequence du genome dans genome.txt
+    creerGenome('genome.txt', 1000)
 
-    # on initialise les compteurs et la liste des lettres trouvees
-    nb_tentatives = 0
-    essais = []
-    lettres_trouvees = ['_' for l in mot_cherche]   
-    mot_trouve = to_word(lettres_trouvees)
+    # affichage de la sequence de genome.txt
+    afficherGenome('genome.txt')
 
-    while terminer(mot_trouve, mot_cherche, nb_tentatives) == False:
+    # recherche de la chaine 'ATCT' dans la sequence de genome.txt
+    print(rechercher('genome.txt', 'ATCT'))
 
-        time.sleep(1)
-        lettre_proposee = tu.textinput('Jeu du pendu', f'{mot_trouve}.\nProposez une lettre').lower()
-        essais.append(lettre_proposee)
-        
-        tu.goto(-135, -35)
-        # si la lettre proposee n'est pas dans le mot a trouver
-        # on augmente le nombre de tentatives et on continue le dessin
-        if lettre_proposee not in mot_cherche:
-            nb_tentatives += 1
-            dessiner(nb_tentatives)
-        else:
-            for i in range(len(mot_cherche_list)):         
-                if lettre_proposee == mot_cherche_list[i]:           
-                    lettres_trouvees[i] = lettre_proposee
+    # modification de la sequence de genome.txt a l'indice 10 avec
+    # la chaine 'AAAA'
+    modifierGenome('genome.txt', 10, 'AAAA')
 
-        mot_trouve = to_word(lettres_trouvees)
-
-        essais_str = ', '.join(essais).upper()
-        tu.goto(-200, -60)
-        tu.write(f'Vous avez essayé les lettres {essais_str}', True, align='left', font=police)
-
-    if nb_tentatives == 6:
-        tu.goto(-200, -150)
-        tu.write('Perdu...', False, align='left', font=police)
-
-    if mot_trouve == mot_cherche:
-        score = round(100 - 100 / 6 * nb_tentatives, 1)
-        tu.goto(-200, -150)
-        tu.write(f'Bravo, vous avez gagné.\nLe mot à trouver était {mot_cherche.upper()}.\nVotre score {score} %', False, align='left', font=police)
-
-    tu.exitonclick()</code></pre>
-
+    # affichage de la sequence de genome.txt
+    afficherGenome('genome.txt')</code></pre>
+    
 {% endblock cours %}

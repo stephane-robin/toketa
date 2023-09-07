@@ -46,9 +46,11 @@ target: all pages */
 .quiz-container{
   margin: 0 auto;
 }
+
 .bg-gris{
   background-color:lightgray;
 }
+
 /* couleur de fond
 target: toutes les pages */
 body{
@@ -80,6 +82,11 @@ p{
   font-size:2em;
 }
 
+iframe{
+  height:auto;
+  width:100%;
+  aspect-ratio:16/9;
+}
 .p3_index{
   font-size:1.5em;
 }

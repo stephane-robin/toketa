@@ -3,99 +3,198 @@
 
 {% block contenu %}
 <ul>
-  <li href="#argparse">savoir construire une interface en ligne de commande avec argparse</li>
-  <li href="#tkinter">savoir utiliser l'interface graphique de Tkinter</li>
-</ul> 
+    <li href="#tester">savoir tester un programme</li>
+    <li href="#valider">savoir valider un programme</li>
+</ul>
 {% endblock contenu %}
 
 {% block cours %}
 
-<!------ ARGPARSE ------->
+<!-- LES TESTS -->
 
-<p class="my-5 invisible" id="argparse">ancre</p>
+<p class="my-5 invisible" id="tester">ancre</p>
 
-<h3>L'interface en ligne de commande avec argparse</h3>
+<h3>Les tests</h3>
 
-  <p>Le module argparse permet de créer une Command Line Interface. Par exemple :</p>
-  <pre><code class="language-python">mp = argparse.ArgumentParser(prog='nom_programme', description="A description that shows up")
-mp.add_argument("nom", type=str, help="requires a string")
-mp.add_argument("--collect", action='store_true', help="description of the --collect option")
-args = mp.parse_args()
-item = args.nom
-
-if args.collect:
-    print(item)</code></pre>
+<p>Les tests sont essentiels tout au long de la conception d'un programme. Ils permettent de s'assurer que celui-ci fonctionne. Une erreur courante consiste à effectuer des tests uniquement lorsque le programme est terminé et de se consacrer essentiellement à la création du code. Or la correction d'un bug tôt dans le développement d'un code est plus simple à trouver et prends moins de temps que lorsque le programme est terminé. Les tests doivent donc être effectués tout au long du programme et intégrés dans le code.</p>
 
 
-<!-----TKINTER------>
+<h4>La gestion des exceptions</h4>
 
-<p class="my-5 invisible" id="tkinter">ancre</p>
+<p>Lorsqu'une instruction ne tient pas compte des exceptions entraînant une erreur à l'exécution, elle peut conduire à l'arrêt du programme. Pour éviter cela, le développeur englobe l'instruction initiale dans un bloc try/except qui tient compte des cas de dysfonctionnement. Par exemple, définissons la fonction \(f\) définie par \(f(x)=\sqrt{x-1}\).</p>
 
-<h3>L'interface graphique avec Tkinter</h3>
+<pre><code class="language-python">import math as m
 
-  <p>L'interface graphique Tkinter est fonctionnelle mais relativement sommaire. Il est possible d'intégrer du code java
-  pour améliorer l'interface en utilisant le module Jython. Toutefois, le code suivant permet d'obtenir une fenetre pourvue des
-  principales fonctionnalités :</p>
+def f(x):
+    return m.sqrt(x - 1)</code></pre>
 
-  <pre><code class="language-python"># creates a window
-fenetre = Tk()
-fenetre.title("Bumber")
-fenetre.geometry("800x800")
-fenetre.configure(bg="#83C7BC")
-interfaceAccueil = InterfaceAccueil(fenetre)
-interfaceAccueil.mainloop()
 
-couleurFond = "#83C7BC"
+<p>On sait que cette fonction n'est définie que pour \(x\geq1\), mais le programme ne le sait pas, et l'utilisateur pourrait se tromper. Par exemple, l'exécution de \(f(-3)\) entraîne une erreur de type ValueError. Il faut donc imposer une condition pour l'antécédent utilisé de la façon suivante :</p>
 
-class InterfaceAccueil(Frame):
-    """
-    defining a graphical interface class which asks the user the kind of
-    action he wants to do : consult, insert, modify, delete
-    """
+<pre><code class="language-python">import math as m
 
-    def __init__(self, fenetre, **kwargs):
+def f(x):
+    try:
+        return m.sqrt(x - 1)
+    except ValueError:
+        return "l'antécédent doit être supérieur ou égal à 1"</code></pre>
 
-        # creating the structure of the window
-        Frame.__init__(self, fenetre, **kwargs)
-        frame = Frame(fenetre, bg=couleurFond)
-        frameHaut = Frame(frame, bg=couleurFond)
-        frameMilieu = Frame(frame, bg=couleurFond)
-        frameBas = Frame(frame, bg=couleurFond)
-        frame.pack(side=TOP)
-        frameHaut.pack(side=TOP)
-        frameMilieu.pack()
-        frameBas.pack(side=BOTTOM)
-        self.pack()
+<p>Maintenant l'exécution de \(f(-3)\) n'arrêtera pas le programme et affichera "l'antécédent doit être supérieur ou égal à 1".</p>
 
-        # creating a widget message at the top of the page
-        self.messageAnnonce = Label(frameHaut, text="Select a category below :\n", bg=couleurFond)
-        self.messageAnnonce.pack()
+<p>Attention, une instruction try peut être liée à plusieurs types d'exceptions. Il faudra donc les traiter à la suite les unes des autres. En effet, l'exécution de f("bonjour") entraîne une erreur de type TypeError. On peut donc modifier le code ainsi :</p>
 
-        # creating a widget radio button
-        self.choixCategorie = StringVar()
-        self.boutonRadioService = Radiobutton(frameHaut, text="Service", bg=couleurFond,
-                                    variable=self.choixCategorie, value="service")
-        self.boutonRadioAdministration = Radiobutton(frameHaut, text="Administration",
-                                                     bg=couleurFond, variable=self.choixCategorie,
-                                                     value="administration")
-        self.boutonRadioService.pack(side=RIGHT)
-        self.boutonRadioAdministration.pack(side=RIGHT)
+<pre><code class="language-python">import math as m
 
-        # creating widgets button Consult, Insert
-        self.messageVide = Label(frameMilieu, text="", bg=couleurFond)
-        self.messageVide.pack(side=TOP)
-        self.boutonConsult = Button(frameMilieu, text="Consult", fg="blue", bg=couleurFond,
-                                     command=self.cliquerConsult)
-        self.boutonInsert = Button(frameMilieu, text="Insert", fg="black", bg=couleurFond,
-                                    command=self.cliquerInsert)
-        self.boutonConsult.pack(side=RIGHT)
-        self.boutonInsert.pack(side=RIGHT)
+def f(x):
+    try:
+        return m.sqrt(x - 1)
+    except ValueError:
+        return "l'antécédent doit être supérieur ou égal à 1"
+    except TypeError:
+        return "l'antécédent doit être un nombre"</code></pre>
 
-        # creating a message answering the request
-        self.messageReponse = Label(frameBas, text="", bg=couleurFond)
-        self.messageReponse.pack()
 
-    def cliquerConsult(self):
-        self.messageReponse["text"] = self.choixCategorie.get()</code></pre>
+
+<h4>Les assertions</h4>
+
+<p>On peut également utiliser des assertions tout au long du code. Dans ce cas, le programme vérifie régulièrement que le code effectue correctement le travail demandé. Toutefois,
+    contrairement à l'utilisation de try/except, l'emploi de assert stoppe le programme lorsque les conditions ne sont pas vérifiées. Cela permet de connaître le motif de l'erreur et 
+    son emplacement alors que celle-ci n'aurait pas été détectée par le debugger. L'instruction assert est donc essentielle pour vérifier tout au long du code que celui-ci effectue le 
+    bon travail.</p>
+
+<p>Il suffit de modifier la fonction précédente de la façon suivante :</p>
+
+<pre><code class="language-python">import math as m
+
+def f(x):
+    assert x >= 1, "l'antécédent doit être supérieur ou égal à 1"
+    return m.sqrt(x - 1)</code></pre>
+
+<p>Dans ce cas l'exécution du code sera arrêtée mais l'origine de l'erreur sera immédiatement localisée avec un message "AssertionError: l'antécédent doit être supérieur ou égal à 1", ce qui permet au développeur de gagner du temps
+    dans la création de son code.</p>
+
+<p>En résumé, tout traitement dans le code peut être contrôlé à l'aide des exceptions et toute valeur de variable peut être vérifiée avec des assertions.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>définir la fonction saisieClavier() dans laquelle vous demandez à l'utilisateur de saisir un nombre entier, puis transformez le terme saisi en nombre entier, 
+    tout en vous assurant de gérer l'exception générée par la saisie d'une chaîne de caractères qu'on ne peut pas transformer en entier.</p>
+</div>
+
+
+
+
+<h4>Les tests unitaires</h4>
+
+<p>Les tests unitaires concernent chaque bloc de code, c'est à dire principalement chaque fonction utilisée, chaque boucle et chaque condition. En Python par exemple, on pourra utiliser le module unittest.</p>
+
+<p>Si nous voulons créer une fonction qui rajoute 'x' à la fin de chaque mot, et que nous nous trompons dans le code en écrivant :</p>
+
+<pre><code class="language-python">def rajoutX(mot):
+	return 'x' + mot</code></pre>
+
+<p>nous pouvons effectuer un test unitaire de cette fonction à partir d'un mot dont nous connaissons le résultat escompté. Ici le mot "oiseau" devrait fournir comme résultat "oiseaux". Il suffit alors de rajouter au programme</p>
+
+<pre><code class="language-python">import unittest
+
+class TestUnitaire(unittest.TestCase):
+
+    def test_rajoutX(self):
+        self.assertEqual(rajoutX("oiseau"), "oiseaux")
+
+if __name__ == '__main__':
+    unittest.main()</code></pre>
+
+<p>Dans ce cas, le test unitaire va effectuer la comparaison entre "xoiseau" (résultat fourni par la fonction) et "oiseau" (résultat escompté). Il va remarquer la non-conformité du résultat attendu et afficher</p>
+
+<pre><code class="language-svg">F
+======================================================================
+FAIL: test_rajoutX (__main__.TestUnitaire)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/Documents/__main__.py", line 19, in test_rajoutX
+    self.assertEqual(rajoutX("oiseau"), "oiseaux")
+AssertionError: 'xoiseau' != 'oiseaux'
+- xoiseau ? -
++ oiseaux ? +
+----------------------------------------------------------------------
+Ran 1 test in 0.022s
+
+FAILED (failures=1)
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: True</code></pre>
+
+<p>Notons dans la création de la fonction test, qu'elle commence par le mot clé "test_" et qu'elle prend self comme argument, vu qu'il s'agit d'une méthode de la classe TestUnitaire.</p>
+
+<p>unittest offre en plus de la méthode assertEqual() les méthodes utiles suivantes :</p>
+<ul>
+<li>assertTrue(x), vérifie que x est True</li>
+<li>assertFalse(x), vérifie que x est False</li>
+<li>assertIn(x, y), qui vérifie que x est dans y</li>
+<li>assertNotIn(), qui vérifie que x n'est pas dans y</li>
+<li>assertInstance(x, y), qui vérifie que y est le type de x</li>
+</ul>
+
+
+<div class="exerciceApplication"><p><strong>A vous de jouer : </strong>vous venez d'écrire le code suivant</p>
+	<pre><code class="language-python">maListe = ["bonjour", "hello"]
+
+def appartientListe(mot, liste):
+    return mot in liste</code></pre>
+
+<p>Effectuez un test unitaire sur cette fonction à l'aide du module unittest.</p>
+</div>
+
+<h4>Les tests d'intégration</h4>
+
+<p>Les tests d'intégration s'effectuent au moment du regroupement des différents blocs de code. Ils consistent à vérifier que le code fournit le résultat attendu en proposant des données d'entrée dont on connaît les données de retour. En Python, on peut également utiliser à ce niveau de test le module pylint afin d'améliorer l'écriture du code au regard du PEP Python Enhancement Proposals. pylint fournit une note entre 0 et 10 qui reflète le respect des règles du PEP-8 et du PEP-257, notamment en ce qui concerne</p>
+<ul>
+<li>la lisibilité du code en terme d’espaces entre les signes,</li>
+<li>le respect de la longueur maximale pour chaque ligne (80 caractères),</li>
+<li>l’indentation pour assurer la cohérence des blocs et la compréhension lors d’un retour à la ligne,</li>
+<li>la documentation des méthodes et des modules.</li>
+</ul>
+<p>pylint reprend également les erreurs de structure de code, les manques de définition de variables ou les
+ambiguïtés dans l’utilisation de variables locales portant le même nom. Ces dernières fonctionnalités
+sont également assurées par le correcteur statique de code intégré dans dans votre Environnement de Développement Intégré (comme PyCharm par exemple).</p>
+
+<p>L’exécution de pylint se fait directement en ligne de commande en se plaçant dans le dossier parent du fichier à tester. Par exemple, pour tester la fonction rajoutX() qui se trouve dans le fichier __main__.py, il suffit d'écrire dans le Terminal :</p>
+
+<pre><code class="language-svg">pylint __main__.py</code></pre>
+
+<p>pour obtenir la note suivante :</p>
+
+<pre><code class="language-svg">************* Module __main__
+__main__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+__main__.py:1:0: C0103: Function name "rajoutX" doesn't conform to snake_case naming style (invalid-name)
+__main__.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+------------------------------------------------------------------
+Your code has been rated at 0.00/10</code></pre>
+
+<h4>Les autres tests</h4>
+
+<p>Il existe d'autres types de tests en fonction de l'état d'avancement du programme. Citons par exemple 
+<ul>
+<li>les tests de non-régression, qui permettent de vérifier que les modifications apportées au programme
+durant chaque phase de test n’ont pas altéré son fonctionnement,</li>
+<li>les tests de performance, qui cherchent à optimiser le traitement des données, à vérifier la capacité des serveurs et réseaux pour supporter les charges d'accès demandées,</li>
+<li>les tests d'installation, qui permettent de s'assurer que l'utilisateur sera en mesure d'installer le programme, quel que soit son système d'exploitation et son environnement de travail. Ce problème de compatibilité avec d'autres application peut s'avérer plus complexe que prévu et demander de travailler sur place chez le client. Toutefois dans un premier temps, il est fréquent d'utiliser une machine virtuelle ou un container afin de simuler les réactions de chaque système d'exploitation et de chaque environnement.</li>
+</ul></p>
+
+
+<!-- LA VALIDATION -->
+
+<p class="my-5 invisible" id="valider">ancre</p>
+
+<h3>La validation</h3>
+
+<p>La validation est différente du test. Elle consiste à vérifier la conformité du programme développé par rapport à aux attentes du client, aux fonctionnalités initiales et au cahier des charges.</p>
+
+<p>La validation d'un code passe également par la création de commentaires pertinents pour chaque fonction et chaque module, puis par la réalisation d'une documentation détaillée.</p>
+
+<div class="fieldsetDefinition">
+    <h4>EN RESUME ...</h4>
+    <p>Les tests permettent d'éviter l'arrêt du programme (les bugs) alors que la validation permet de vérifier la conformité du code aux exigences.</p>
+</div>
 
 {% endblock cours %}

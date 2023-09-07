@@ -100,7 +100,7 @@ else:
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
 
 <script>
-var questionsData = 
+var questionsData1 = 
     {
         question: '<p>L\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":\n \
     print("hello")</code></pre><p>va afficher <em>hello</em> ...</p>',
@@ -108,7 +108,7 @@ var questionsData =
         correctIndex: 1,
         commentaire: '== signifie est égal à'
     };
-questionnaireUnique(1);
+questionnaireUnique(1, questionsData1);
 </script>
 
 
@@ -168,14 +168,14 @@ else:
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
 
 <script>
-var questionsData = 
+var questionsData2 = 
     {
         question: "Un pseudo-code sert à ...",
         options:['traduire le code dans un langage humain afin de comprendre son fonctionnement', 'traduire le code dans un autre langage de programmation', 'créer un commentaire dans le code'],
         correctIndex: 0,
         commentaire: " "
     };
-questionnaireUnique(2);
+questionnaireUnique(2, questionsData2);
 </script>
 
 
@@ -317,14 +317,14 @@ print("le maximum est" + maximum)</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
 
 <script>
-var questionsData = 
+var questionsData3 = 
     {
         question: '<p>Dans l\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":</code></pre>',
         options:['prenom est un booleen', 'if est un booleen', 'prenom == "Antoine" est un booleen'],
         correctIndex: 2,
         commentaire: 'Si prenom == "Antoine" est vérifié (vaut True) alors le bloc suivant est exécuté'
     };
-questionnaireUnique(3);
+questionnaireUnique(3, questionsData3);
 </script>
 
 
@@ -370,7 +370,7 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='4' %}
 
 <script>
-var questionsData = 
+var questionsData4 = 
     {
         question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
 print("Bravo")</code></pre>',
@@ -378,7 +378,7 @@ print("Bravo")</code></pre>',
         correctIndex: 2,
         commentaire: "Le bloc suivant une condition doit être indenté."
     };
-questionnaireUnique(4);
+questionnaireUnique(4, questionsData4);
 </script>
 
 
@@ -704,14 +704,14 @@ IndexError: string index out of range</code></pre>
 {% include '../../../questionnaireUnique.html' with nmr='5' %}
 
 <script>
-var questionsData = 
+var questionsData5 = 
     {
         question: "Si la console affiche le message suivant : line 6 NameError: name 'score' is not defined ...",
         options:['il faut chercher si la variable score a été définie après la ligne 6', 'il faut chercher si la variable score exite dans le programme', 'il faut chercher si la variable score a été définie avant la ligne 6'],
         correctIndex: 2,
         commentaire: ""
     };
-questionnaireUnique(5);
+questionnaireUnique(5, questionsData5);
 </script>
 
 

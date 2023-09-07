@@ -3,91 +3,439 @@
 
 {% block contenu %}
 <ul>
-  <li href="#package">comprendre ce que contient un package</li>
-  <li href="#poetry">savoir créer un package avec Poetry</li>
-</ul>
+  <li href="#executer">savoir exécuter un script Python dans une balise HTML</li>
+  <li href="#fonctionnement">comprendre comment fonctionne Django</li>
+  <li href="#installer">savoir installer Django</li>
+  <li href="#projet">savoir créer un projet Django</li>
+  <li href="#demarrer">savoir démarrer le serveur Python</li>
+  <li href="#appli">savoir créer une application</li>
+  <li href="#bdd">savoir créer une base de données</li>
+  <li href="#structure">comprendre la structure d'un projet</li>
+  <li href="#mvt">comprendre l'interaction MVT</li>
+</ul> 
 {% endblock contenu %}
 
 {% block cours %}
 
-<!-- CREER UN PACKAGE -->
+<!-- COMMENT EXECUTER UN SCRIPT PYTHON DANS UNE BALISE HTML -->
 
-<p class="my-5 invisible" id="package">ancre</p>
+<p class="my-5 invisible" id="executer">ancre</p>
 
-<h3>Le contenu d'un package</h3>
+<h3>Comment exécuter un script Python dans une balise HTML ?</h3>
 
-    <p>Un package Python est organisé en fichiers ou classes, qui sont regroupées dans des modules. Les noms des packages et des modules seront écrits en minuscule et peuvent contenir des underscore. La structure à adopter est la suivante :</p>
-    <pre><code class="language-svg">librairie // racine du package
-  librairie/  // module Python
-    __init__.py
-    fichier.py
-    main.py
-    .gitignore
-  setup.py</code></pre>
+<p>Il est possible d'exécuter un script Python, dans une page Web. Pour cela, il est nécessaire 
+  d'utiliser la bibliothèque pyscript de JavaScript qui va donc exécuter le code Python côté client, 
+  donc au niveau du navigateur. Par exemple pour dire 'hello world', il faut écrire l'instruction :</p>
 
-    <p>Le fichier .gitignore devra contenir :</p>
-    <pre><code class="language-svg"># compiled python modules
-*.pyc
+<pre><code class="language-html">&ltscript defer src="https://pyscript.net/alpha/pyscript.js"&gt&lt/script&gt
+&ltpy-script&gt
+  print("hello world")
+&lt/py-script&gt</code></pre>
 
-# setup tools distribution folder
-/dist/
-
-#python egg metadata, regenerated from source files by setuptools
-/*.egg-info</code></pre>
-
-    <p>Le fichier setup.py contient les commandes suivantes :</p>
-
-    <pre><code class="language-python">from setuptools import setup
-
-setup(name = "librairie",
-  version = "1.0",
-  description = "ma librairie",
-  url = "http://github/librairie",
-  author = "bob",
-  author_email = "bob@gmail.com",
-  licence = "xxx",
-  packages = ['librairie'],
-  install_requires = [ # list of dependancies
-    'nomPakage',
-  ],
-  zip_safe = False)</code></pre>
-
-    <p>L'installation d'un package en local sur Linux se fait avec la commande pip install librairie.</p>
-
-    <p>Pour publier un package sur PyPI, il faut utiliser la commande python setup.py register</p>
+<p>Toutefois, le framework Django n'exécute pas le code Python au milieu des balises HTML comme dans l'exemple 
+  ci-dessus. Sa structure est bien plus complexe, comme nous allons le découvrir.</p>
 
 
-    <!--  CREER UN PACKAGE AVEC POETRY -->
+<!-- COMMENT FONCTIONNE DJANGO -->
 
-    <p class="my-5 invisible" id="poetry">ancre</p>
+<p class="my-5 invisible" id="fonctionnement">ancre</p>
 
-    <h3>Créer un package avec Poetry</h3>
+<h3>Comment fonctionne Django ?</h3>
 
-    <p>Il est possible de créer manuellement les fichiers build, manifestes et dépendances en utilisant pip ou conda.
-      Toutefois, la gestion des compatibilités des dépendances n'est pas toujours assurée et la publication sur PyPI peut
-      s'avérer impossible. Poetry est un outil complet ... Pour installer Poetry il faut écrire le script en ligne de commande :</p>
+  <p>Django est un framework opensource pour le développement Web Python. Il construit les applications suivant le
+    design pattern MVT, inspiré de la structure classique MVC. Il contient déjà : </p>
+    
+  <ul>
+    <li>un gestionnaire de bases de données sqlite, PostgreSQL, MySQL et un langage spécifique de requêtes</li>
+    <li>un serveur Python capable d'interpréter un langage de Template</li>
+  </ul>
+  
+<p>Django est un framework pour les sites Web orientés base de données, qui met l'accent sur la réutilisation des 
+  composants déjà créés DRY (Don't Repeat Yourself).</p>
 
-    <pre><code class="language-python">curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3</code></pre>
+  <p>La connexion à la base de données et les requêtes ne nécessitent pas d'utiliser le 
+    langage SQL car Django utilise ses propres instructions qui intègrent nativement des requêtes  CRUD (Create Read 
+    Update Delete). De même, les 
+    modèles de page ne sont pas construits en intégrant du Python dans des balises HTML, mais des objets Python constuits 
+    en utilisant un langage de framework appelé langage Template, proche de Python mais ne respectant pas les bases de la structure Python. 
+    L'exécution de ces modèles crée un fichier au format HTML.</p>
 
-    <p>Ce script installe Poetry et il est nécessaire de relancer le Terminal pour modifier automatiquement le system PATH. On peut vérifier la bonne installation avec la
-      commande :</p>
+    <p>Le design pattern MVT Model View Template est une architecture qui sépare les responsabilités de chaque groupe
+        de code.</p>
+    <ul>
+        <li>Le Model interagit avec la base de données en utilisant un ORM Object Relational Mapping, qui transforme
+    les résultats d'une requête SQL en objets Python et inversement. Par exemple l'instruction SQL suivante
+    SELECT * FROM maTable se traduit de la façon suivante maTable.objects.all(). Attention il ne s'agit pas des modèles 
+  de page, mais de modèles de connexion et de requête vers la base de données. Le Model se trouve en général dans 
+un fichier appelé models.py</li>
+  <li>La View reçoit une requête HTTP et interprète cette requête en HTML pour le navigateur à l'aide du fichier 
+    urls.py qui recense toutes les adresses relatives à l'affichage. La vue est en fait une fonction qui prend en arguments 
+  une requête HTTP, importe les datas nécessaires au traitement et envoie des informations au Template. La View se trouve 
+en général dans un fichier appelé views.py</li>
+        <li>Le Template est un fichier HTML qui peut recevoir les objets Python et qui est lié à une View pour s'afficher. Il
+        peut donc interpréter des variables pour les afficher, mais les modifications de ces variables sont effectuées en 
+        Python en dehors des Templates. Le Template gère donc la logique de l'affichage, et se trouve en général 
+      dans un dossier appelé templates.</li>
+    </ul>
 
-    <pre><code class="language-python">poetry --version</code></pre>
+<p>Alors, maintenant qu'on connaît les bases de la structure de notre framework, on peut se demander comment fonctionne 
+  Django dans la pratique.</p>
 
-    <p>Pour générer un package, il ne faut pas créer de répertoire vide mais écrire directement :</p>
+<p>Lorsque l'utilisateur demande d'accéder à une URL spécifique, Django appelle dans le fichier urls.py la View 
+  correspondant à cette URL. Il cherche ensuite dans le fichier views.py les modèles de data nécessaires et les importe 
+  du fichier models.py. Ces datas sont incorporés dans un template qui contient du code HTMl associé à des balises Django. 
+  Le résultat final qui s'affiche est du HTML interprété par le navigateur.</p>
 
-    <pre><code class="language-python">poetry new mon_package</code></pre>
 
-    <p>qui crée le package dans un répertoire du même nom.</p>
+<!-- INSTALLATION DE DJANGO -->
 
-    <p>La structure du package ressemble ainsi à ceci :</p>
+<p class="my-5 invisible" id="installer">ancre</p>
 
-    <img src="{% static 'home/images/memento/poetry.png' %}" alt="poetry" width=40%/>
+<h3>Installation du framework Django</h3>
 
-    <p>Il faut ensuite ajouter des dépendances au fichier .toml dont la version sera enregistrée dans un fichier .lock. Bien
-      qu'il soit possible de les ajouter manuellement, il est préférable d'utiliser la commande suivante qui gère la compatibilité
-      des dépendances :</p>
+<p>Il est possible de créer notre environnement de travail dans n'importe quel dossier. 
+  Nous choisissons de le placer dans ~/Documents/projets/django_projects.</p>
 
-    <pre><code class="language-python">poetry add un_module</code></pre>
+<p>Nous commençons par créer le dossier django-projects avant de créer l'environnement de travail que nous 
+  appelerons envDjango, puis d'activer cet environnement :</p>
+
+  <pre><code class="language-svg">mkdir django_projects
+cd django_projects
+python3 -m venv envDjango 
+source envDjango/bin/activate</code></pre>
+
+<p>Pour installer Django, il nous suffit maintenant d'exécuter :</p>
+
+<pre><code class="language-svg">pip install django</code></pre>
+
+  <p>On peut ensuite vérifier que la librairie Django est bien disponible en écrivant</p>
+
+  <pre><code class="language-svg">python3 -m django --version</code></pre>
+
+  <p>ou encore</p>
+
+  <pre><code class="language-svg">django-admin --version</code></pre>
+
+<p>On peut sortir à tout moment de l'environnement de travail envDjango en exécutant :</p>
+
+<pre><code class="language-svg">deactivate</code></pre>
+
+<p>Dans ce cas le prompteur du bash affiche de nouveau :</p>
+
+<pre><code class="language-svg">username:~/Documents/projets/django_projects$</code></pre>
+
+
+  <!-- CREATION PROJET DJANGO -->
+
+  <p class="my-5 invisible" id="projet">ancre</p>
+
+  <h3>Création d'un projet Django</h3>
+
+  <p>La création du projet monProjet et de sa structure se fait de la façon suivante :</p>
+
+  <pre><code class="language-svg">django-admin startproject monProjet</code></pre>
+
+  <p>Le dossier <strong>monProjet</strong> contient les éléments suivants. On remarque notamment un sous-dossier également 
+  appelé monProjet :</p>
+
+  <pre><code class="language-svg">manage.py
+monProjet/
+  |_ asgi.py
+  |_ __init__.py
+  |_ settings.py
+  |_ urls.py
+  |_ wsgi.py</code></pre>
+
+  <ul>
+    <li>le fichier manage.py est un outil d'exécution des commandes utiles au projet, comme par exemple la
+    création de tables dans la BDD</li>
+    <li>le fichier settings.py contient la configuration globale du projet, comme par exemple les identifiants de
+      connexion à la BDD, les chemins des différentes ressources, les différentes applications Django utilisées</li>
+    <li>le fichier urls.py est le contrôleur des requêtes du projet</li>
+    <li>le fichier wsgi.py permet la configuration du serveur</li>
+  </ul>
+
+
+<!-- DEMARRER LE SERVEUR PYTHON -->
+
+<p class="my-5 invisible" id="demarrer">ancre</p>
+
+<h3>Comment démarrer le serveur Python ?</h3>
+
+<p>Pour lancer le serveur, il faut se placer dans monProjet et exécuter manage.py avec la commande bash :</p>
+  <pre><code class="language-svg">python3 manage.py runserver</code></pre>
+
+<p>On voit alors apparaître dans le bash les instructions suivantes pour nous aider à visualiser notre site Web :</p>
+
+<pre><code class="language-svg">Django version 4.2.3, using settings 'monProjet.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre>
+
+<p>Il suffit ensuite de donner au navigateur (dans la barre de navigation) le chemin d'accès local vers les ressources du projet 
+    pour pouvoir travailler :</p>
+
+  <pre><code class="language-svg">127.0.0.1:8000</code></pre>
+
+  <p>ou encore</p>
+
+  <pre><code class="language-svg">localhost:8000</code></pre>
+
+<p>On voit alors apparaître à l'écran la page de garde de Django comme ci-dessous, qui signifie que le serveur Python 
+  fonctionne correctement :</p>
+
+  <img src="{% static 'home/images/python/django1.png' %}" alt="django" width="60%">
+
+
+    <p>Il est fréquent de devoir redémarrer le framework, après une modification importante ou des difficultés rencontrées 
+      par le serveur Python.</p>
+      
+<p>Pour reprendre son travail après une interruption, il faut redémarrer le framework. Dans ce cas, il faut 
+  d'abord activer l'environnement de travail 
+      (Django, ses dépendances et les packages nécessaires), puis démarrer le server lié au projet :</p>
+
+    <pre><code class="language-svg">cd django_projects
+source envDjango/bin/activate
+cd monProjet
+python3 manage.py runserver</code></pre>
+
+
+<!-- CREATION D'UN APPLICATION -->
+
+<p class="my-5 invisible" id="appli">ancre</p>
+
+  <h3>Création d'une application</h3>
+
+  <p>Toutes les fonctionnalités du projet sont gérées par des applications qu'il faut créer, puis paramétrer.</p>
+  
+<p>Nous allons créer deux applications. Une 1ère application appeler afficherPage qui affiche le contenu d'une page HTML, puis une 2ème 
+  application appelée executerFonction qui exécute une fonction.</p>
+
+  <p>IMPORTANT : si le serveur Python est en train de fonctionner, il n'est pas possible d'écrire ou d'exécuter des 
+    instructions bash. Il est donc nécessaire d'arrêter le serveur Python avec la commande CTRL+C avant de créer une application 
+    ou d'ouvrir un second Terminal bash.</p>
+
+
+<h4>Une application pour afficher une page HTML</h4>
+
+<p>Pour créer une application afficherPage au sein d'un même projet, il faut se placer dans monProjet et exécuter en Python le fichier manage.py :</p>
+
+  <pre><code class="language-svg">python3 manage.py startapp afficherPage</code></pre>
+
+  <p>Le dossier <strong>afficherPage</strong> contient les éléments suivants lors de sa création :</p>
+
+  <pre><code class="language-svg">migrations
+__init__.py
+admin.py
+apps.py
+models.py
+tests.py
+views.py</code></pre>
+
+  <ul>
+    <li>le fichier __init__.py est nécessaire à la création d'un package</li>
+    <li>le fichier admin.py permet de définir les fonctionnalités de l'application au sein du projet</li>
+    <li>le fichier models.py accueille les paramètres de connexion à la base de données</li>
+    <li>le fichier tests.py accueille les tests unitaires et d'intégration de l'application</li>
+    <li>le fichier views.py accueille les controleurs de l'application avec des fonctions Python, et gère la logique de l'affichage</li>
+
+  </ul>
+
+  <p>Il faut maintanant préciser dans le fichier settings.py de monProjet que nous allons utiliser monApp en le rajoutant dans 
+    la partie INSTALLED_APPS :</p>
+<pre><code class="language-python">INSTALLED_APPS={
+  # APPLICATIONS DEJA ENREGISTREES ...
+  'afficherPage',
+}</code></pre>
+
+<p>Il est également nécessaire de créer un dossier templates dans afficherPage, qui va contenir tous les modèles de pages :</p>
+
+<pre><code class="language-svg">mkdir afficherPage/templates/</code></pre>
+
+<p>C'est dans ce dossier qu'on va retrouver notamment les pages HTML du site Web. Rajoutons par exemple dans templates une page vide appelée 
+  page1.html à l'aide de l'instruction :</p>
+
+<pre><code class="language-svg">touch afficherPage/templates/page1.html</code></pre>
+
+<p>On va maintenant écrire un petit bout de code HTML dans ce fichier page1.html, comme ci-dessous :</p>
+
+<pre><code class="language-html"><h1>Bonjour tout le monde</h1></code></pre>
+
+<p>On crée ensuite un fichier urls.py dans afficherPage</p>
+
+<pre><code class="language-svg">touch afficherPage/urls.py</code></pre>
+
+<p>Une URL est le premier point d'entrée d'une requête. Le fichier urls.py va donc se situer dans le dossier de configuration
+  du projet monProjet/monProjet. Une bonne pratique consiste à créer un fichier urls.py par application et
+  de l'importer dans les routes du projet.</p>
+
+<p>Il faut lier les urls de monProjet avec les urls de afficherPage. Pour cela, on écrit dans le fichier urls.py de monProjet :</p>
+
+<pre><code class="language-python">from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('afficherPage.urls')),
+    path('admin/', admin.site.urls),
+]</code></pre>
+
+<p>Puis dans le fichier urls.py de afficherPage :</p>
+
+<pre><code class="language-python">from django.urls import path
+from afficherPage import views 
+
+urlpatterns = [
+  path('', views.afficherPage, name='afficherPage')
+]</code></pre>
+
+<p>Il faut ensuite rajouter la fonction afficher() dans le fichier views.py de afficherPage :</p>  
+
+<pre><code class="language-python">from django.shortcuts import render 
+  
+def afficher(request):
+    return render(request, 'page1.html', {})</code></pre>
+
+<p>On utilise la fonction render, l'objet request, le nom de la page à afficher et les éventuelles variables à utiliser 
+  se trouvent dans le dictionnaire {}.</p>
+
+
+<h4>Une application pour afficher un modèle contenant un nom de variable et un autre fichier HTML.</h4>
+
+<p>Reprenons notre application précédente et modifions le fichiers afficherPage/views.py. Ce dernier doit contenir 
+  les instructions :</p>
+
+<pre><code class="language-python">from django.shortcuts import render 
+  
+def afficher(request):
+    context = {'nom':'Tony'}
+    return render(request, 'modelePage.html', context)</code></pre>
+
+<p>Il nous reste à créer le fichier modelePage.html dans le dossier templates :</p>
+
+<pre><code class="language-svg">touch afficherPage/templates/modelePage.html</code></pre>
+
+<p>qui contient les lignes de code suivantes :</p>
+
+{% verbatim %}
+<pre><code class="language-html">&lth1&gtCeci est un modele de page&lt/h1&gt
+
+&ltp&gtJe m'appelle {{ nom }}&lt/p&gt
+
+{% include 'page1.html' %}</code></pre>
+{%endverbatim %}
+
+<p>Lors de l'affichage de la page sur le navigateur, il devrait donc s'afficher :</p>
+
+<img src="{% static 'home/images/python/django2.png' %}" alt="django" width="30%">
+
+<h4>Une application pour exécuter une fonction</h4>
+
+<p>Il faut ensuite rajouter la fonction afficherPage() dans le fichier views.py de monApp :</p>
+
+<pre><code class="language-python">from django.shortcuts import render
+# on doit rajouter la bibliothèque HttpResponse qui est utilisée dans afficher()
+from django.http import HttpResponse 
+
+def afficherPage(request):
+    return HttpResponse("Hello world")</code></pre>
+
+
+<h4>Supprimer une application</h4>
+
+<p>Pour supprimer une application appelée monApp, il suffit de mettre le dossier monApp à la corbeille, puis de 
+  retirer l'instuction 'monApp' de INSTALLED_APPS présent dans le fichier settings.py de monProjet. Il faut également 
+  retirer l'instruction path('', include(monApp.urls)) du fichier monProjet/urls.py.</p>
+
+
+<!-- CREATION D'UN BDD -->
+
+<p class="my-5 invisible" id="bdd">ancre</p>
+
+<h3>Création d'une base de données</h3>
+
+  <p>Il faut ensuite rajouter un gestionnaire de base de données. Choisissons par exemple PostgreSQL. Pour savoir si
+    il est déjà installé, il suffit de taper psql, ce qui ouvre une console de communication avec le serveur. On peut alors
+    revenir au terminal en tapant \q</p>
+
+  <p>Pour installer Postgresql, il faut donner à un utilisateur le rôle de gestionnaire de la base de données. Il faut donc
+  définir la variable d'environnement en ce sens. Nous choisissons le superuser comme gestionnaire.</p>
+
+  <pre><code class="language-svg">sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib libpq-dev
+sudo -u postgres createuser --superuser $USER
+sudo -u postgres createdb $USER</code></pre>
+
+  <p>Il faut créer un fichier conservant l'historique de travail dans le dossier home.</p>
+
+  <pre><code class="language-svg">touch .psql_history
+mv .psql_history ~/stephane</code></pre>
+
+  <p>On peut maintenant se connecter au serveur en tapant psql, ce qui ouvre une console de commmunication avec
+  Postgresql. Pour revenir au terminal, il faut taper \q afin de quitter la console.</p>
+
+  <p>Il faut préciser dans le fichier settings.py la BDD que nous souhaitons utiliser.</p>
+  <pre><code class="language-python">DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'nomBdd',
+    }
+}</code></pre>
+
+
+  <p>Il faut également créer les tables de la BDD, en se plaçant dans monProjet (afin que l'interpréteur trouve le
+  fichier manage.py)</p>
+<pre><code class="language-svg">cd monProjet
+python manage.py syncdb</code></pre>
+
+
+  <!-- STRUCTURE DU PROJET -->
+
+  <p class="my-5 invisible" id="structure">ancre</p>
+
+  <h3>Structure du projet</h3>
+
+  <p>Le projet est donc composé de la structure suivante :</p>
+  
+  <pre><code class="language-svg">monProjet
+    |_ monProjet
+    |     |_ __init__.py
+    |     |_ settings.py 
+    |     |_ urls.py 
+    |     |_ wsgi.py 
+    |_ manage.py 
+    |_ monApp 
+          |_ __init__.py 
+          |_ admin.py 
+          |_ apps.py 
+          |_ models.py 
+          |_ tests.py 
+          |_ views.py 
+          |_ templates 
+          |     |_ page1.html
+          |_ urls.py</code></pre>
+  
+  <p>Comparativement à une structure MVC classique :</p>
+  <ul>
+    <li>le Modèle se trouve au niveau de templates et non pas au niveau de models.py qui représente la connexion et 
+      la gestion avec les bases de données. Le modèle est donc remplacé par un Template.</li>
+    <li>la Vue se trouve au niveau de urls.py du projet qui fait référence aux urls.py de chaque application et qui est 
+      liée à views.py</li>
+    <li>le Contrôleur qui gère la logique de l'affichage se trouve également au niveau de views.py. Ainsi Vue et Contrôleur 
+      sont tous les deux représentés par le fichier views.py</li>
+  </ul>  
+
+  <p>Ce n'est donc pas très intuitif au niveau des notations, et on se retrouve ainsi avec une architecture 
+    Models (modèles de gestion de Bdd), View (vue et contrôleur de la logique de
+    l'affichage), Template (modèle de page utilisant des objets Python).</p>
+  
+
+<!-- L'INTERACTION MVT -->
+
+<p class="my-5 invisible" id="mvt">ancre</p>
+
+<h3>L'interaction MVT</h3>
+
+<p></p>
+
+<img src="{% static 'home/images/python/mvt.png' %}" alt="architecture mvt" width="50%">
 
 {% endblock cours %}

@@ -3,16 +3,15 @@
 
 {% block contenu %} 
 <ul>
-    <li><a href="">les algorithmes utilisant un protocole</a></li>
-    <li><a href="">les algorithmes avec clé de chiffrement</a></li>
-    <li><a href="">les algorithmes de hashage</a></li>
+    <li><a href="#protocole">comprendre les algorithmes utilisant un protocole</a></li>
+    <li><a href="#chiffrement">comprendre les algorithmes avec clé de chiffrement</a></li>
+    <li><a href="#hashage">savoir utiliser un algorithme de hashage</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
 <!-- INTRODUCTION -->
-
 <h3>Introduction</h3>
 
 <p>Une communication est sécurisée dès lors que les 2 parties sont authentifiées 
@@ -50,6 +49,8 @@ afin de pouvoir le lire en clair.</p>
 
 
 <!-- ALGORITHME UTILISANT UN PROTOCOLE -->
+<p class="invisible" id="protocole">ancre</p>
+
 <h3>Les algorithmes utilisant un protocole</h3>
 
 <p>Le protocole permet de détailler les différentes étapes à suivre pour chiffrer le 
@@ -107,8 +108,9 @@ afin de pouvoir le lire en clair.</p>
 </div>
 
 
-
 <!-- ALGORITHME CLE DE CHIFFREMENT -->
+<p class="invisible" id="chiffrement">ancre</p>
+
 <h3>Les algorithmes avec clé de chiffrement</h3>
 
 <p>Il n'est pas trop difficile de déchiffrer un message lorsqu'on connaît l'algorithme de 
@@ -141,8 +143,6 @@ Lorsque la clé sert uniquement à déchiffrer, on parle de clé privée.</p>
 
 
 
-
-<!-- CHIFFREMENT SYMETRIQUE -->
 <h4>Le chiffrement symétrique</h4>
 
 <p>Dans le cas d'un cryptage symétrique, la clé est rendue publique, c'est 
@@ -198,8 +198,6 @@ français.</p>
 
 
 
-
-<!-- CHIFFREMENT ASYMETRIQUE -->
 <h4>Chiffrement asymétrique</h4>
 
 <p>Dans le cas du chiffrement asymétrique, une clé publique est connue de 
@@ -241,8 +239,6 @@ En effet, e.d mod 120 = 7 x 103 mod 120 = 721 mod 120 = 1
     privée (143, 103). Le 59 reçu par Alice va être transformé 
     en \(59^d mod n = 59^103 mod 143 = 97\).
     Elle traduit ensuite le 97 en 'a' grâce à la table ASCII.</p>
-
-
 
     <p>Comment générer une clé privée facilement ? Choisir des nombres premiers p et q 
         ayant des longueurs assez proches. p et q doivent être tenus secrets en permanence.
@@ -316,8 +312,9 @@ print(chiffrer_mot("Bonjour Madame,"))</code></pre>
     au déchiffrement respectivement 222 ou 33 ou encore 321.</p>
 
 
-
 <!-- LES ALGORITHMES DE HASHAGE -->
+<p class="invisible" id="hashage">ancre</p>
+
 <h3>Les algorithmes de hashage</h3>
 
 <p>Dans certains cas, on a besoin de crypter un message sans qu'il soit nécessaire de 

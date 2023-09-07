@@ -14,9 +14,31 @@
 
 <!-- LANGAGE INTERPRETE -->
 
-<p class="my-5 invisible" id="interprete">ancre</p>
+<p class="invisible" id="interprete">ancre</p>
 
 <h3>Python est un langage interprété</h3>
+
+<p>Python est un langage de programmation généraliste qui permet de construire tous types de projets : études et gestion 
+    de bases de données, calculs scientifiques, graphismes, jeux vidéos, applications, sites Web, intelligence artificielle, ...</p>
+
+    <p>Les languages de programmation les plus populaires en juin 2023 sont (source index Tiobe):</p>
+    <ul>
+        <li>Python</li>
+        <li>C</li>
+        <li>C++</li>
+    </ul>
+    
+    <p>Les languages de programmation les plus demandés sur les offres d'emploi en 2023 sont (source devjobscanner.com):</p>
+    <ul>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Java</li>
+    </ul>
+    
+    <p>Tous indices confondus, on constate en fait une large domination de 4 langages : Python, C, C++ et Java.</p>
+    
+    <p>Python n'est donc pas qu'un langage scolaire, mais un véritable langage polyvalent utilisé pour tous types de projets.</p>
+    
 
 <p>Python est un langage de programmation dont la philosophie repose sur la simplicité du code et 
     l'implémentation de bonnes pratiques. Rien n'est fait pour empêcher le programmeur de mener une action, 
@@ -29,8 +51,12 @@
 <p>Le principal avantage est que le code source d'un langage interprété peut fonctionner sur tout ordinateur. Le principal inconvénient est qu'un langage interprété est plus lent qu'un langage compilé,
     qui peut réutiliser certaines parties de code préalablement compilées.</p>
 
-<p>Grâce à ses bibliothèques performantes et régulièrement mises à jour, Python est particulièrement utilisé dans les environnements scientifiques, pour la manipulation de données et pour l'intelligence artificielle.</p>
-<img src="{% static 'home/images/general/python.jpg' %}" width="100px" style="margin-left:50%;border-radius:10%;">
+<p>Grâce à ses bibliothèques performantes et régulièrement mises à jour, Python est particulièrement utilisé dans les 
+    environnements scientifiques, pour la manipulation de données et pour l'intelligence artificielle. Par ailleurs Python 
+bénéficie d'une communauté active et de nombreux forums permettant de résoudre tous types de problèmes rencontrés.</p>
+<img src="{% static 'home/images/general/python.jpg' %}" width="100px" style="margin-left:50%;padding-bottom:5%;border-radius:10%;">
+
+
 
 
 <!-- ENVIRONNEMENT DE DEVELOPPEMENT -->
@@ -38,42 +64,49 @@
 
 <h3>Bien choisir son outil pour exécuter du Python</h3>
 
-<p>On peut exécuter un programme Python en utilisant le Terminal d'un ordinateur (sous Linux et MacOS), mais il est plus pratique d'utiliser un éditeur de texte tel que <em>Sublim Text</em> ou <em>NotePad++</em> qui colorient automatiquement le code en fonction du langage choisi et proposent une auto-complétion des instructions. 
-    Il est encore plus efficace d'utiliser un Environnement de Développement Intégré IDE tel que <em>PyCharm</em> ou <em>JetBeans</em> qui proposent en plus une recherche passive des erreurs de frappe, un debugger (aide pour corriger les bugs)
-    et le paramétrage des outils de versioning (pour conserver l'historique du code).</p>
+<p>On peut construire un programme et l'exécuter en utilisant un site internet disposant d'une console et d'un interpréteur 
+    en ligne. Dans ce cas aucune installation de Python n'est requise. On peut également construire un programme Python
+     et l'exécuter à l'aide de l'éditeur intégré de Python <em>IDLE</em>, qui colorie 
+    automatiquement le code mais dispose de fonctionnalités très limitées. Il est plus pratique d'utiliser un éditeur de 
+    texte tel que <em>Sublim Text</em> ou <em>NotePad++</em> qui colorient automatiquement le code en fonction du langage choisi et 
+    proposent en plus une auto-complétion des instructions. Il faut dans ce cas utiliser le Terminal pour exécuter le code. 
+    Il est encore plus efficace d'utiliser un Environnement de Développement Intégré IDE tel que <em>PyCharm</em>, 
+    <em>JetBeans</em> ou <em>Visual Studio Code</em> (ce dernier n'étant pas toujours considéré comme un IDE),
+     qui proposent en plus une recherche passive des erreurs de frappe, un debugger (aide pour corriger les bugs)
+    et le paramétrage des outils de versioning (pour conserver l'historique du code). L'exécution du code s'effectue 
+    dans ce cas par le biais de l'IDE qui propose le choix des versions de Python présentes sur l'ordinateur.
+    
+    
+    IDLE s'installe automatiquement avec Python, 
+    et il faut ouvrir un nouveau module pour créer un fichier 
+</p>
+<p>On peut construire un programme Python en utilisant un éditeur de texte tel que <em>Sublim Text</em>,
+    <em>NotePad++</em>  qui colorient automatiquement le code en fonction du langage choisi et proposent une 
+    auto-complétion des instructions. On peut ensuite exécuter ce programme à l'aide du Terminal d'un ordinateur 
+    (sous Linux et MacOS) ou le Powershell (sous Windows).
+    </p>
 
-<p>Le debugger est un outil particulièrement intéressant, qui propose non seulement des commentaires relatifs aux erreurs de code, 
-    des solutions possibles, mais également la possibilité d'exécuter le code de point d'arrêt en point d'arrêt pour connaître l'état des 
-    variables du programme à chacune des lignes de son exécution, ces lignes ayant été préalablement définies par le développeur.</p>
 
+<div class="exerciceType">
+    <p>En résumé</p>
+    <p>Il est possible d'exécuter Python en utilisant l'un des outils suivants (du plus pratique au plus performant) :</p>
 
-<p>Un outil de versioning tel que <em>Git</em> est également très utile puisqu'il permet de conserver un historique des différentes versions de code, de revenir en arrière 
-    en choisissant une version plutôt qu'une autre si le code actuel n'est pas satisfaisant. Par ailleurs, il permet de travailler sur des copies de code 
-    plutôt que sur des originaux et de regrouper le travail de toute une équipe en évitant les conflits de code.</p>
-
-<p>Python est souvent installé nativement sur votre ordinateur, mais sa version permet uniquement de faire fonctionner certaines applications de votre machine.
-    Elle est indépendante de l'éditeur de texte ou de l'Environnement de Développement Intégré que vous utilisez pour exécuter du Python. De ce fait,
- l'utilisation du langage Python pour exécuter du code nécessite en général que l'utilisateur paramètre sur son ordinateur le chemin d'accès à l'interpréteur Python, 
- car il y a de fortes chances pour que votre machine dispose de plusieurs versions de Python.</p>
-
-<p>Lorsqu'on débute en Python, ce paramétrage peut s'avérer laborieux et décourageant. Il peut s'avérer pratique de se consacrer uniquement à la rédaction du code 
-    au lieu de passer du temps à installer et à configuration un Environnement de Développement fonctionnel.
-    Pour cela, il existe des interpréteurs Python en ligne, présents sur Internet, qui exécutent votre code 
-    à partir d'un serveur distant ayant déjà installé et configuré Python.</p>
-
-<p>En résumé, il est donc possible d'exécuter Python en utilisant l'un des outils suivants (du plus pratique au plus performant) :</p>
-
-<ul>
-    <li>sur un site internet proposant un interpréteur en ligne</li>
-    <li>à l'aide d'une commande sur votre Terminal et d'un éditeur de texte</li>
-    <li>à l'aide d'un environnement de développement intégré IDE</li>
-</ul>
-
-<p>Nous allons détailler les 3 méthodes ci-dessus, mais il n'est nullement nécessaire de savoir toutes les utiliser., qui sont présentées en détail ci-dessous. 
-    Il est préférable de choisir la méthode la plus simple pour exécuter ton premier codeChoisis-en simplement une afin d'exécuter ton premier code.</p>
+    <ul>
+        <li>un site internet proposant un interpréteur en ligne</li>
+        <li>l'éditeur intégré de Python IDLE</li>
+        <li>un éditeur de texte et le Terminal pour exécuter le code</li>
+        <li>un environnement de développement intégré IDE</li>
+    </ul>
+</div>
 
 
 <h4>Exécuter son code à l'aide d'un interpréteur en ligne</h4>
+
+<p>Lorsqu'on débute en Python, l'installation de Python et le paramétrage du chemin d'accès peut s'avérer laborieux et décourageant. 
+    Il peut être pratique de se consacrer uniquement à la rédaction du code 
+    au lieu de passer du temps à installer et à configurer un Environnement de Développement fonctionnel.
+    Pour cela, il existe des consoles Python en ligne, présentes sur des pages Web, qui exécutent votre code 
+    à partir d'un serveur distant ayant déjà installé et configuré Python.</p>
 
 <p>Il suffit dans ce cas de se rendre sur un site Internet proposant l'exécution de code. Nul besoin d'installer Python sur sa machine.
     Voici par exemple une liste de trois sites qui fournissent cette prestation et fonctionnent correctement :</p>
@@ -97,73 +130,95 @@
     <img src="{% static 'home/images/python/basthoncompiler.png' %}"  alt="python online Basthon" width="100%" style="margin-bottom:5%;">
 
 
-<p>Les interpréteurs en ligne sont très pratiques, mais ont principalement trois inconvénients. Ils peuvent être lents suivant 
-    le traffic occasionné sur le site au moment de son utilisation, et ils n'acceptent pas d'affichage en sortie avec une fenêtre indépendante
-     du navigateur utilisé. Il devient dans ce cas compliqué de faire des dessins ou de créer des fenêtres pour une application. Par 
-    ailleurs, certains interpréteurs en ligne n'acceptent pas de uploader des images servant de support à 
-votre code.</p>
-
-<p>Les interpréteurs en ligne offrent donc une solution pratique mais temporaire. Si tu ne parviens pas à installer un environnement de 
-    développement, les interpréteurs en ligne sont une bonne alternative permettant un progression rapide 
-    dans l'apprentissage.</p>
-
     <p>L'exécution d'un programme est très intuitive sur ces interpréteurs et se réalise
         avec la touche <em>Run</em> ou <em>Exécuter</em>. Tu peux tester le fonctionnement de ces interpréteurs avec le code ci-dessous.</p>
     
     <div class="exerciceApplication">
-        <p><strong>A vous de jouer : </strong>par exemple, pour afficher "Hello world", exécutez le code suivant dans l'interpréteur en ligne de ton choix :</p>
+        <p><strong>A toi de jouer : </strong>par exemple, pour afficher "Hello world", exécutez le code suivant dans l'interpréteur en ligne de ton choix :</p>
         <pre><code class="language-python">print("Hello world")</code></pre>
         <p>Petit rappel : la touche <em>Run</em> ou <em>Exécuter</em></p>
     
-        <p>Si tout fonctionne normalement, tu dois voir s'afficher sur une partie de l'écran <pre><code class="language-python">Hello world</code></pre></p>
+        <p>Si tout fonctionne normalement, tu dois voir s'afficher sur une partie de l'écran</p> <pre><code class="language-python">Hello world</code></pre>
     </div>
 
+<p>Bien joué, tu viens d'exécuter ton premier programme Python. &#128515;</p>
+
     <p>A noter que Basthon offre une particularité très intéressante, en proposant également un moyen de lire et d'exécuter les 
-        Jupyter Notebooks. Il s'agit de documents au format .IPNB contenant à la fois des zones de texte et des 
+        Jupyter Notebooks. Il s'agit de documents au format .IPYNB contenant à la fois des zones de texte et des 
         zones de console Python exécutables. Ces Notebooks peuvent donc être stockés sur ton ordinateur et 
-        exécutés en ligne après upload, ce qui ne nécessite pas l'installation de Python et constitue une excellente alternative d'apprentissage.</p>
-    
-    <p>Pour uploader un Notebook, il faut se rendre sur le site <a href="https://notebook.basthon.fr/" target="_blank">Basthon notebook</a></p>
-    
+        exécutés en ligne après upload, ce qui ne nécessite pas l'installation de Python et constitue une excellente alternative 
+        d'apprentissage. Pour uploader un Notebook, il faut se rendre sur le site <a href="https://notebook.basthon.fr/" target="_blank">Basthon notebook</a></p>
 
-<h4>Exécuter son code à l'aide du Terminal et d'un éditeur de texte</h4>
+        <p>Les interpréteurs en ligne sont très pratiques, mais ont principalement trois inconvénients. Ils peuvent être lents suivant 
+            le traffic occasionné sur le site au moment de son utilisation, et ils n'acceptent pas d'affichage en sortie avec une fenêtre indépendante
+             du navigateur utilisé. Il devient dans ce cas compliqué de faire des dessins ou de créer des fenêtres pour une application. Par 
+            ailleurs, certains interpréteurs en ligne n'acceptent pas de uploader des images servant de support à 
+        votre code.</p>
+        
+        <p>Les interpréteurs en ligne offrent donc une solution pratique mais temporaire. Si tu ne parviens pas à installer un environnement de 
+            développement, les interpréteurs en ligne sont une bonne alternative permettant un progression rapide 
+            dans l'apprentissage.</p>
 
-Pour 
-    cela, il sera nécessaire d'installer une version récente de Python sur ton ordinateur, puis d'installer et de configurer un outil tel que <em>Visual Studio Code</em>, <em>PyCharm</em>, <em>Sublim Text</em>, <em>Netbeans</em> ou
-    <em>Atom</em>. En revanche, si tu utilises déjà un IDE, c'est parfait, ne change rien.
-<p>Cette manière de procéder est plus complexe Elle requiert un peu d'expérience pour télécharger et installer un programme sur son ordinateur, 
-    sachant que pour chaque système d'exploitation l'installation est différente.</p>
+
+<h4>Exécuter son code à l'aide de IDLE</h4>
+
+<p>Cette manière de procéder est plus complexe. Elle requiert un peu d'expérience pour télécharger et installer Python sur son ordinateur.</p>
+<p>Python est souvent installé nativement sur les ordinateurs, mais sa version permet uniquement de faire fonctionner certaines applications de la machine.
+    Cette version n'est généralement pas accessible à l'utilisateur pour exécuter du code. Il est donc nécessaire d'installer une 
+    autre version de Python pour développer ses propres programmes.</p>
     
-<p>Il faut d'abord installer une version récente de Python sur sa machine. Pour cela, il faut se rendre sur 
-    le <a href="https://www.python.org/downloads/">site officiel de Python</a>, 
+<p>Il faut d'abord télécharger et installer une version récente de Python sur 
+    sa machine. Pour cela, il faut se rendre sur le <a href="https://www.python.org/downloads/">site officiel de Python</a>, 
     suivre la documentation, télécharger une version du langage et l'installer. Il existe de nombreux tutoriels 
-expliquant comment installer une version de Python.</p>
+expliquant comment installer une version de Python, sachant que pour chaque système d'exploitation l'installation est différente.</p>
 
-<p>Il faut ensuite installer un éditeur de texte comme NotePad++ ou Sublim Text. Voici le lien vers 
+<div class="exerciceApplication">
+<p><strong>A toi de jouer : </strong>une fois qu'une version de Python a été installée sur la machine, l'éditeur intégré de Python appelé IDLE est présent 
+    et fonctionnel. Il suffit de l'ouvrir pour voir apparaître une console capable d'exécuter séparément des lignes de 
+    code. Pour exécuter un programme complet, donc un fichier, il faut ouvrir un nouveau Module, taper une ligne de code 
+    comme par exemple :</p>
+
+<pre><code class="language-python">print("hello world")</code></pre>
+
+<p>puis enregistrer le fichier en lui donnant un nom et un emplacement, par exemple bonjour.py dans le dossier Documents.</p>
+
+<p>Pour exécuter le code il suffit de sélectionner Run Module en haut de la fenêtre IDLE et il devrait apparaître dans 
+    la toute première page qui a été ouverte, celle de la console :</p>
+
+<pre><code class="language-svg">hello world</code></pre>
+</div>
+
+<p>A ce niveau les principaux problèmes que tu peux rencontrer sont les suivants :</p>
+<ul>
+    <li>tu as donné un nom de fichier avec des " et des espaces et le programme s'exécute mal</li>
+    <li>tu ne vois pas le résultat affiché car tu cherches sur ta page Module au lieu de la première page ouverte Console</li>
+</ul>
+           
+
+<h4>Exécuter son code à l'aide du Terminal</h4>
+    
+<p>Comme précédemment, il faut télécharger et installer une version récente de Python sur 
+    sa machine. Pour cela, il faut se rendre sur le <a href="https://www.python.org/downloads/">site officiel de Python</a>, 
+    suivre la documentation, télécharger une version du langage et l'installer. Il existe de nombreux tutoriels 
+expliquant comment installer une version de Python, sachant que pour chaque système d'exploitation l'installation est différente.</p>
+
+<p>Il faut ensuite installer un éditeur de texte comme Sublim Text ou NotePad++. Voici le lien vers 
     le <a href="https://www.sublimetext.com/3">site officiel de Sublim Text</a>.</p>
 
-<p>Cette méthode présente deux inconvénients majeurs. Tout d'abord il faut télécharger et installer manuellement 
-    toutes les bibliothèques qui n'exitent pas nativement dans Python et qu'on souhaite utiliser. C'est le cas 
-    par exemple de matplolib ou de biopython. Ensuite, on ne dispose ni d'un correcteur de code intégré, ni 
-d'un debuggeur. Toutefois, il peut être pratique d'exécuter un code directement au Terminal pour vérifier par exemple qu'un 
-    problème d'exécution n'est pas lié à l'environnement de développement qu'on utilise. Et puis cela permet de 
-bien comprendre que Python ne fait pas partie de l'environnement de travail, mais qu'il est utilisé par cet 
-environnement de travail.</p>
-
-<p>L'exécution d'un programme est simple et rapide si les installations de Python et Sublim Text fonctionnent 
+<p>L'exécution d'un programme au Terminal est simple et rapide si les installations de Python et Sublim Text fonctionnent 
     correctement.</p>
 
     <div class="exerciceApplication">
-        <p><strong>A vous de jouer : </strong>par exemple, pour afficher "Hello world", il faut se placer dans un dossier comme Documents,
-            creer un fichier appelé bonjour.py dans ce dossier, puis ouvrir ce fichier dans Sublim Text pour écrire le code suivant :</p>
+        <p><strong>A toi de jouer : </strong>par exemple, pour afficher "Hello world", il faut se placer dans un dossier comme Documents,
+            creer un fichier appelé bonjour.py dans ce dossier, puis ouvrir ce fichier dans Sublim Text et finalement écrire son premier code :</p>
         <pre><code class="language-python">print("Hello world")</code></pre>
-        <p>Ensuite, ouvrir le Terminal, se déplacer jusque dans le dossier Documents en exécutant l'instruction :</p>
-        <pre><code class="language-svg">cd Documents</code></pre>.
-        <p>Pour exécuter une instruction au Terminal, il suffit d'appuyer sur la touche Entrée après avoir tapé l'instruction.</p>
-        <p>Finalement il ne reste plus qu'à exécuter le code suivant au Terminal :</p>
-        <pre><code class="language-svg">python3 bonjour.py</code></pre>
-        <p>La plus grosse difficulté et la principale source d'erreurs consiste à se placer dans le même dossier 
-            que le fichier bonjour.py avant de l'exécuter.</p>
+
+        <p>Ensuite, ouvrir le Terminal, et exécuter l'instruction suivante en précisant le chemin d'accès à bonjour.py qui 
+            se trouve dans le dossier Documents. Pour exécuter du Python il suffit de commencer par python3. Pour exécuter 
+            une instruction au Terminal, il suffit d'appuyer sur la touche Entrée après avoir tapé cette instruction.</p>
+        <pre><code class="language-svg">python3 ~/Documents/bonjour.py</code></pre>
+        <p>La plus grosse difficulté et la principale source d'erreurs consiste à se tromper dans l'adresse du fichier 
+            ~/Documents/bonjour.py, qui dépend de l'emplacement où se trouve ton fichier.</p>
         <p>Si tout fonctionne normalement, tu dois voir s'afficher dans ton Terminal :</p>
         <pre><code class="language-python">Hello world</code></pre>
     </div>
@@ -171,15 +226,41 @@ environnement de travail.</p>
 <p>On constate donc que l'éditeur de texte sert à écrire son code, et le Terminal demande à l'ordinateur 
     d'exécuter le langage Python.</p>
 
+    <p>Cette méthode présente deux inconvénients majeurs. Tout d'abord il faut télécharger et installer manuellement 
+        toutes les bibliothèques qui n'existent pas nativement dans Python et qu'on souhaite utiliser. C'est le cas 
+        par exemple de matplolib ou de biopython. Ensuite, on ne dispose ni d'un correcteur de code intégré, ni 
+    d'un debuggeur. Toutefois, il peut être pratique d'exécuter un code directement au Terminal pour vérifier par exemple qu'un 
+        problème d'exécution n'est pas lié à l'environnement de développement qu'on utilise. Et puis cela permet de 
+    bien comprendre que Python ne fait pas partie de l'environnement de développement ou de l'éditeur de texte,
+     mais qu'il est simplement utilisé par cet environnement de développement.</p>
 
-<h4>Exécuter son code à l'aide d'un environnement de développement intégré</h4>
 
-<p>L'installation et la configuration sont dans ce cas plus complexes et dépendent de chaque IDE. De nombreux IDE 
-    utilisent un workspace (espace de travail) dans lequel sont stockés les fichiers sources et les utilitaires.</p>
+<h4>Exécuter son code à l'aide d'un environnement de développement intégré IDE</h4>
+ 
+<p>La principale difficulté lors de l'utilisation d'un environnement de développement intégré est la suivante : 
+    l'exécution d'un programme Python nécessite en général que le développeur paramètre sur son ordinateur le chemin d'accès à l'interpréteur Python, 
+ car il y a de fortes chances pour que votre machine dispose de plusieurs versions de Python.</p>
 
-<!-- EXECUTER SON PREMIER PROGRAMME -->
-<p class="my-5 invisible" id="premier">ancre</p>
+<p>L'installation et la configuration sont dans ce cas plus complexes que pour un simple éditeur de texte et dépendent de chaque IDE. 
+    A noter que de nombreux IDE utilisent un espace de travail (workspace) dans lequel sont stockés les fichiers 
+    sources et les utilitaires. Attention donc, les fichiers enregistrés ne sont pas toujours là où l'on pense.</p>
 
+<p>Prenons l'exemple de Visual Studio Code. L'installation se fait à partir de la page <a href="https://code.visualstudio.com/download">Visual Studio Code download</a>.</p>
+    
+<div class="exerciceApplication">
+
+<p><strong>A toi de jouer : </strong>une fois l'installation et la configuration de Visual Studio Code terminée, il est possible d'ouvrir un Nouveau fichier, de choisir le langage 
+de développement (ici Python), de créer un petit programme comme par exemple :</p>
+
+<pre><code class="language-python">print("hello world")</code></pre>
+
+<p>Il suffit de l'exécuter en cliquant sur la flèche en haut à gauche de la fenêtre. Il est même possible de choisir 
+    un autre Terminal d'exécution pour conserver le Terminal courant actif, ou d'exécuter le fichier en mode debuggage.</p>
+
+<img src="{% static 'home/images/python/visual.png' %}" width="30%">
+<p>pour voir s'afficher un Terminal dans lequel apparaît le résultat :</p>
+<pre><code class="language-svg">hello world</code></pre>
+</div>
 
 <p>Lorsque vous exécutez votre programme directement sur votre machine au lieu d'utiliser un interpréteur en ligne, 
     il peut être utile de rajouter à la première ligne de votre code un shebang qui indique à l'ordinateur où se 
@@ -190,6 +271,20 @@ environnement de travail.</p>
 
 <p>Pour enregistrer votre code, il faut penser à lui donner l'extention .PY, comme par exemple monFichier.py</p>
 
+<p>Le debugger est un outil particulièrement intéressant, qui propose non seulement des commentaires relatifs aux erreurs de code, 
+    des solutions possibles, mais également la possibilité d'exécuter le code de point d'arrêt en point d'arrêt pour connaître l'état des 
+    variables du programme à chacune des lignes de son exécution, ces lignes ayant été préalablement définies par le développeur.</p>
+
+<p>Un outil de versioning tel que <em>Git</em> est également très utile puisqu'il permet de conserver un historique des différentes versions de code, de revenir en arrière 
+    en choisissant une version plutôt qu'une autre si le code actuel n'est pas satisfaisant. Par ailleurs, il permet de travailler sur des copies de code 
+    plutôt que sur des originaux et de regrouper le travail de toute une équipe en évitant les conflits de code.</p>
+
+
+<!-- PREMIER CONTACT AVEC PYTHON -->
+<h3>Premier contact avec Python</h3>
+
+<p>Rends-toi sur le site <a href="https://py-rates.fr">py-rates.fr</a> et commence les premiers challenges pour 
+comprendre les bases du code Python en pratiquant tout en jouant.</p>
 
 <!-- PYTHON AVEC UN JEU DE DEVINETTE -->
 
