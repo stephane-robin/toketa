@@ -50,6 +50,7 @@ titres = {
             'Comprendre le Web',
             'Structure des pages Web',
             'TP - Créer un site Web avec HTML/CSS',
+            'Bootstrap',
             'Structure d\'un script',
             'Réseaux peer-to-peer',
             'Moteurs de recherche',
@@ -102,7 +103,8 @@ titres = {
             'La boucle while / retour sur les chaînes',
             'Les fonctions',
             'TP - Dessiner avec Python',
-            'TP - Jeu du pendu, niveau 1'
+            'TP - Jeu du pendu, niveau 1',
+            'test'
             ],
         'progresser': [
             'Construire un code propre',
@@ -120,6 +122,7 @@ titres = {
             'TP - Jeu du pendu, niveau 2'
             ],
         'avance': [
+            'La modularité dans les projets',
             'Paradigme de programmation',
             'Programmation fonctionnelle',
             'Programmation orientée objet',
@@ -138,11 +141,11 @@ titres = {
     }
 }
 
-
 def creerIndex(request):
     """Affiche la page d'accueil"""
     context = {}
     return render(request, 'index.html', context)
+
 
 def testNotebook(request):
     context={}
@@ -151,7 +154,7 @@ def testNotebook(request):
 
 def afficherPage(request, niveau, chapitre, id):
     """Affiche une page de cours"""
-    global titres 
+    global titres
     context = {'titre': titres[niveau][chapitre][id]}
     context['niveau'] = niveau 
     context['chapitre'] = chapitre 
@@ -188,11 +191,17 @@ def afficherPresentation(request, niveau):
     context = recupererNiveau(niveau)
     return render(request, 'sources/' + niveau + '/' + niveau + '.html', context)
 
-
 def afficherModeleQuiz(request, niveau, chapitre, id):
     """Affiche une page de quiz de 10 questions rassemblees"""
     context = {'pageQuiz': 'home/quiz/quiz' + str(id) + '.js'}
     return render(request, 'modeleQuiz.html', context)
 
+def afficherPartage(request):
+    """Affiche la page de partage de documents en ligne"""
+    context = {}
+    return render(request, 'modelePartage.html', context)
 
-
+def afficherConnexion(request):
+    """Affiche la page de connexion"""
+    context = {}
+    return render(request, 'connexion.html', context)

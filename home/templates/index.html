@@ -3,14 +3,19 @@
 
 {% block principal %}
 
-<section class="py-5" style="background-image: linear-gradient(160deg, #f0ad4e 0%, white 30%);opacity:.8;">
+<section class="py-5 bg-white">
     <div class="container">
-        <h1 class="text-center mt-5 pt-5" style="color:black">ToKeTa</h1> 
+
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <img src="{% static 'home/images/general/toketa_index.png' %}" width="300px" class="my-5 center">
         <p class="text-center">Construis rapidement des connaissances fiables en programmation.</p>
         <p class="text-center">Apprends à coder efficacement.</p>
         <img src="{% static 'home/images/general/python.jpg' %}" width="100px" class="center">
-        <a href=""><button class="bouton center mt-5">Créer un compte ...</button></a> 
-        <p class="text-center">(En construction)</p>
+        <a href="{% url 'afficherConnexion' %}"><button class="bouton center mt-5">Créer un compte ...</button></a> 
         <p class="text-center py-5">"Everybody in this country should learn how to program a computer because it teaches you how to think." <em>Steve Jobs</em></p>
     </div>
 </section>
@@ -29,7 +34,9 @@
         
         <p>Vous pourrez aussi apprendre les bases d'autres langages de programmation, en vous entraînant sur des 
             projets concrets, renforcer vos capacités de mémoire, de concentration en pratiquant des 
-            jeux simples, ou encore améliorer vos connaissances mathématiques de base.</p> 
+            jeux simples, ou encore améliorer vos connaissances mathématiques de base.</p>
+
+        <p>Happy coding ...</p>
     </div>
 </section>
 
@@ -38,11 +45,9 @@
 
 <section class="px-5 py-5 my-1 bg-white">
     <div class="container">
-        <div class="row gx-0 gy-2 gy-md-0">
-            <div class="col-12 col-md-6 stage">
-                <div class="actor">
-                    <img src="{% static 'home/images/general/index10.jpg' %}" width=100%>  
-                </div>
+        <div class="row gx-0 gy-2 gy-md-0 pb-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index10.jpg' %}" width=100%>   
             </div>
             <div class="col-12 col-md-6">
                 <h2>Pratique les quiz</h2>
@@ -50,17 +55,11 @@
                 <h2>Essaie les travaux pratiques</h2>
             </div>
         </div>
-        <div class="row gx-0 gy-2 gy-md-0">
-            <div class="col-12 col-md-6 my-auto">
-                <!-- LOGO CREATIVE IDEAS -->
-                <div style="border:7px var(--couleur_nav);border-style:solid none;padding:13px;border-radius:50%;width:120px;text-align:center;margin-top:10%;margin:auto;">
-                    <p style="rotate:30deg;color:black;font-size:2em;">creative<br/>ideas</p>
-                </div>             
-            </div>
-            <div class="col-12 col-md-6 stage">
-                <div class="actor">
-                    <img src="{% static 'home/images/general/index9.jpg' %}" width=100%>
-                </div>
+        
+        <div class="row my-5">
+            <div class="col-5"></div>
+            <div class="col-7">
+                <img src="{% static 'home/images/general/toketa_index.gif' %}" width=40%>                   
             </div>
         </div>
     </div>
@@ -69,10 +68,10 @@
 
 <!-- TRAVAUX PRATIQUES -->
 
-<section class="px-5 py-5 my-1" style="background-color:lightgray;">
+<section class="px-5 pt-5 pb-3 mt-1" style="background-color:lightgray;">
     <div class="container">
         <div class="row gy-3 gx-md-4 mb-3">
-            <p style="font-size:2em;">Ma sélection de travaux pratiques</p>
+            <h2 class="text-start">Ma sélection de travaux pratiques</h2>
             <div class="col-12 col-md-4">
                 <p class="p3_index">Geogebra</p> 
                 <p>L'application <em>Geogebra</em> permet de dessiner des courbes mathématiques en utilisant une interface graphique très intuitive. Il est également possible de factoriser, développer une 
@@ -125,11 +124,11 @@
 
 <!-- QUIZ ----->
 
-<section class="px-5 py-5 my-1">
+<section class="px-5 pb-5 mb-1 bg-white">
     <div class="container">
-        <p class="p2_index">Ma sélection de Quiz</p>
+        <h2 class="text-start my-5">Ma sélection de Quiz</h2>
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-7">
                 <div class="row">
                 <a href="">&#10061; Python - l'environnement de développement</a>
                 <a href="">&#10061; Python - les variables</a>
@@ -141,7 +140,7 @@
                 <a href="">&#10061; Python - questionnaire</a>
                 </div>
             </div>
-            <div class="col-12 col-md-6 center my-auto">
+            <div class="col-12 col-md-5 center my-auto">
                 <img src="{% static 'home/images/general/interrogation.png' %}" alt="ideas">
             </div>
         </div>
@@ -160,7 +159,7 @@
 <section class="px-5 py-5 my-1 bg-white">
     <div class="container">
         <div class="row">
-            <p class="p2_index">Ma sélection de vidéos</p>
+            <h2 class="text-start my-0">Ma sélection de vidéos</h2>
             
             <div class="col-12 col-md-8 my-5">
                 <iframe src="https://www.youtube.com/embed/mXFMNbk-TJg"
@@ -216,7 +215,7 @@
 
 <section class="px-5 py-5 my-1 bg-white">
     <div class="container">
-        <p class="p2_index">Actualités</p>
+        <h2 class="text-start mt-0">Actualités</h2>
         <div class="row">
             <div class="col-12 col-md-6">
                 <img class="img_ombre" src="{% static 'home/images/general/index15.jpg' %}">
@@ -281,9 +280,9 @@
 
 <!-- FORMULAIRE -->
 
-<section class="px-5 py-5 bg-white">
+<section class="px-5 pb-5 pt-3 bg-white">
     <div class="container">
-        <p class="p2_index">Ils en parlent le mieux</p>
+        <h2 class="text-start mt-0">Ils en parlent le mieux</h2>
         <div class="row">
             <div class="col-12 col-md-6">
                 <img class="img_ombre" src="{% static 'home/images/general/index11.jpg' %}">

@@ -3,340 +3,283 @@
 
 {% block contenu %}
 <ul>
-	<li href="#classe">comprendre la notion de classe</li>
-	<li href="#objet">savoir instancier un objet</li>
-	<li href="#attribut">savoir utiliser les attributs et les méthodes</li>
-	<li href="#poo">apprendre à construire son code en orienté objet</li>
-</ul> 
-{% endblock contenu %}
+<li><a href="#recursif">comprendre la récursivité</a></li>
+<li><a href="#croisee">comprendre la récursivité croisée</a></li>
+</ul>
+ {% endblock contenu %}
 
 {% block cours %}
 
-<p>La programmation a débuté de façon linéaire, avec des lignes de code qui se suivaient en faisant référence à d'autres lignes de code. Puis des procédures ont été rajoutées permettant d'éviter la répétition de code. Et finalement, les programmeurs se sont rendus compte que le monde qui nous entoure était constitué d'éléments possédant un certain nombres de métriques, qu'on pouvait faire changer à l'aide de fonctions à définir.</p>
-
-<p>Par exemple, une voiture est caractérisée par son nombre de chevaux, sa vitesse instantanée, son poids, la quantité de carburants qu'elle contient, ... Si on accélère, on augmente la vitesse et on diminue la quantité de carburant dans le réservoir. Il existe donc des fonctions qui permettent de faire évoluer les paramètres caractéristiques de la voiture.</p>
-
-<p>Ces éléments possédant des caractéristiques sont appelés par les programmeurs des objets. Les différentes métriques de ces objets sont appelés attributs et les fonctions permettant de modifier les attributs sont des méthodes.</p>
-
-<p>En programmation orientée objet, tout est considéré comme un objet. Par exemple le personnage d'un jeu dispose d'un certain nombres de vies et de points de force. La fonction recuperer_or() permet de gagner de la force, alors que la fonction perdre_combat() diminue de le nombre de vies du personnage.</p>
+<p>Le paradigme fonctionnel utilise des blocs de fonctions pour produire des données à partir de données. Contrairement à la 
+    programmation impérative où l'on affecte différentes valeurs successives à une variable, en programmation fonctionnelle on crée 
+    d'autres expressions. Par exemple, le code peut s'appeller lui-même et les modifications se font souvent au niveau des 
+    paramètres des fonctions. Cela correspond par exemple aux langages Lisp, Haskell, Logo...</p> 
 
 
-<!-- LA NOTION DE CLASSE -->
+<!-- RECURSIVITE -->
+<p class="invisible" id="recursif">ancre</p>
 
-<p class="my-5 invisible" id="classe">ancre</p>
+<h3>La récursivité</h3>
 
-<h3>La notion de classe</h3>
+<p>Dans ce cas, le code s'appelle lui-même en utilisant une complexité moindre, jusqu'à obtenir un problème élémentaire qu'il sait résoudre. 
+    Les modifications se font souvent au niveau des paramètres des fonctions, et il est nécessaire de définir un point d'arrêt pour éviter une boucle infinie.
+ La récursivité s'utilise essentiellement à la place de boucles while.</p>
 
-<p>Il existe une fabrique pour ces objets, qui rassemble des caractéristiques semblables à une famille pour créer un objet spécifique. Cette fabrique s'appelle classe en informatique. Par exemple, tous les objets audi, bmw, mazda ont 4 roues, un moteur, une carrosserie. Ils sont construits à partir de la classe Voiture qui regroupe ces propriétés pour tous les modèles.</p> 
+<p>La notion de récursivité est proche du concept mathématique de récurrence, utilisé par exemple dans les suites de nombres.</p>
 
 
+<p>L'exemple le plus classique est celui du calcul de la puissance d'un nombre.</p>
 
-<h4>Représentation d'une classe</h4>
+<div class='exerciceApplication'>
+    <p><strong>A toi de jouer : </strong>sans utiliser la notion de récursivité, écrire une fonction 
+    appelée <code>factorielle()</code> qui calcule la factorielle d'un nombre entier passé en paramètre.
+On rappelle que la factorielle de 5 par exemple est définie par \(5\times4\times3\times2\times 1\) et que par 
+convention la factorielle de 0 vaut 1.</p>
 
-<p>Une classe permet de décrire un ensemble d'objets ayant une structure commune composée des mêmes attributs sur lesquels on peut appliquer des méthodes.</p>
 
-<p>On peut représenter par exemple la classe Voiture de la façon suivante pour en visualiser la structure :</p>
+<pre><code class='language-python'>def factorielle(n):
+    resultat = 1
+    for i in range(2, n + 1):
+        resultat = resultat * i
+    return resultat</code></pre>
+</div>
 
-<img src="{% static 'home/images/nsi/classe.png' %}" alt="classe" width=15%>
+<p>Voici maintenant la même fonction écrite en utilisant cette fois la récursivité :</p>
 
-<p>Un attribut peut être déclaré comme étant public (les autres objets peuvent consulter cet attribut ou le modifier) ou privé (les autres objets ne peuvent pas accéder directement à cet attribut).</p>
+<pre><code class='language-python'>def factorielle(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorielle(n - 1)</code></pre>
 
-<p>De même, une méthode peut être déclarée comme étant publique (accessible sans condition) ou privée (accessible uniquement à l'intérieur de la classe).</p>
+<p>On remarque qu'à l'intérieur de la fonction <code>factorielle(n)</code> est exécutée la fonction 
+<code>factorielle(n-1)</code>. Ainsi le calcul de <code>factorielle(7)</code> va entraîner le calcul 
+de <code>factorielle(6)</code>, qui lui-même va entraîner le calcul de <code>factorielle(5)</code>, etc...</p>
+
+
+<p>Pour bien comprendre le fonctionnement d'une fonction qui s'appelle elle-même, analysons le code suivant :</p>
+
+<pre><code class="language-python">def fonctionRecursive(valeur):
+    if valeur &lt 5:
+        fonctionRecursive(valeur + 1)
+    print(valeur)
+
+valeur = 0
+fonctionRecursive(valeur)</code></pre>
+
+<p>Lors de son exécution, il fournit le résultat suivant :</p>
+
+<pre><code class="language-python">5
+4
+3
+2
+1
+0</code></pre>
+
+<p>On remarque que là encore la fonction s'appelle elle-même en modifiant la valeur du paramètre. Le reste des instructions de la fonction, 
+    à savoir print(valeur), ne peut pas s'exécuter tant que la fonction appelée dans la fonction n'a pas été exécutée. Ainsi la fonction recommence son exécution
+    tant que valeur est inférieur à 1. Lorsque cette condition n'est plus remplie, la dernière fonction est exécutée en premier et print(valeur) peut enfin s'exécuter.
+    Cela explique que la première valeur affichée soit la dernière obtenue, c'est à dire 5.</p>
+
+<p>Résumons ce qui se passe dans un ordre chronologique :</p>
+
+<pre><code class="language-svg">valeur = 0
+fonctionRecursive(0) : 
+0&lt5
+donc execution fonctionRecursive(1) # blocage fonctionRecursive(0), print(0) en attente :
+    1&lt5 
+    donc fonctionRecursive(2) # blocage fonctionRecursive(1), print(1) en attente :
+        2&lt5 
+        donc fonctionRecursive(3) # blocage fonctionRecursive(2), print(2) en attente : 
+            3&lt5 
+            donc fonctionRecursive(4) # blocage fonctionRecursive(3), print(3) en attente : 
+                4&lt5 
+                donc fonctionRecursive(5) # blocage fonctionRecursive(4), print(4) en attente :
+                    5 n'est pas inferieur a 5
+                    on execute print(5)
+                print(4) en attente est execute # déblocage fonctionRecursive(4)
+            print(3) en attente est execute # déblocage fonctionRecursive(3)
+        print(2) en attente est execute # déblocage fonctionRecursive(2) 
+    print(1) en attente est execute # déblocage fonctionRecursive(1)
+print(0) en attente est execute # déblocage fonctionRecursive(0)</code></pre>
+
+<p>Ainsi, les différents résultats sont bloqués, stockés en mémoire dans une pile, puis par dépilages successifs 
+    on obtient d'abord le résultat du problème élémentaire puis le résultat souhaité. La récursivité est une technique 
+    très rapide, mais elle consomme énormément d'espace mémoire, vu qu'elle empile tous les appels successifs.</p>
+
+<div class="exerciceApplication"><p><strong>A toi de jouer : </strong>que se passe-t-il lorsqu'on remplace print(valeur) par 
+return valeur ?</p>
+</div>
 
 <div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>représenter dans un diagramme une classe Bateau dont les attributs sont <strong>poids</strong>, <strong>vitesse</strong>, et les 
-		méthodes sont <strong>accelerer()</strong>, <strong>ralentir()</strong>, <strong>charger()</strong> et <strong>decharger()</strong>.</p>
+    <p><strong>A toi de jouer : </strong>écrire une fonction exponentielle(n) qui utilise la notion de récursivité pour 
+        calculer l'exponentielle de base a de n. On rappelle que l'exponentielle de base a de n est définie par \(exp(a, 0)=1\) 
+    et \(exp(a, n)=a\times exp(a, n - 1)\)</p>
 </div>
 
 
+<!-- RECURSIVITE CROISEE -->
+<p class="invisible" id="croisee">ancre</p>
 
-<h4>Définir une classe</h4>
+<h3>La récursivité croisée</h3>
 
-<p>Prenons l'exemple de la classe Voiture pour apprendre à définir une classe : :</p>
+<p>Il s'agit d'un cas particulier de récursivité dans laquelle une fonction appelle une autre fonction qui appelle elle-même la première fonction.</p>
 
-<pre><code class="language-python">class Voiture:
+<p>Par exemple les fonctions suivantes permettent de tester si un nombre est pair ou impair :</p>
 
-	def __init__(self, puissance, consommation, nbrePlaces, vitesse, quantiteCarburant):
-		self.puissance = puissance
-		self.consommation = consommation
-		self.nbrePlaces = nbrePlaces
-		self.vitesse = vitesse
-		self.quantiteCarburant = quantiteCarburant
+<pre><code class="language-python">def pair(n):
+    if n == 0:
+        return True
+    else:
+        return impair(n-1)
 
-	def accelerer(self, valeur):
-		self.vitesse += valeur
+def impair(n):
+    if n == 0:
+        return False
+    else:
+        return pair(n-1)
 
-	def freiner(self):
-		self.vitesse = 0
+# on affiche la parité de 3
+print(pair(3))
 
-	def prendreEssence(self, quantite):
-		self.quantiteCarburant += quantite
+# on affiche la parité de 4
+print(pair(4))</code></pre>
 
+<p>Reprenons ensemble le travail fait par l'interpréteur à l'exécution du code pair(3) :</p>
+
+<pre><code class="language-python"># exécution de pair(3)
+# n différent de 0 donc renvoie impair(2)
+
+# exécution de impair(2)
+# n différent de 0 donc renvoie pair(1)
+
+# exécution de pair(1)
+# n différent de 0 donc renvoie impair(0)
+
+# exécution de impair(0)
+# n égal à 0 donc renvoie False</code></pre>
+
+<p>A noter qu'on pourrait également exécuter le code impair(3) pour obtenir le même résultat.</p>
+
+<p>Par ailleurs, il est tentant de construire la fonction <code>impair()</code> de la façon suivante :</p>
+
+<pre><code class="language-python">def impair(n):
+    if n == 1:
+        return True # code maladroit
+    else:
+        return pair(n-1)</code></pre>
+
+<p>Toutefois, il est nécessaire que le code puisse renvoyer False, car sinon il renvoie True dans tous les cas et la 
+    profondeur maximale de récursivité est atteinte, ce qui plante le programme.</p>
+
+
+<!-- MEMOISATION -->
+<h3>Récursivité avec mémoisation</h3>
+
+<p>La suite de Fibonacci est à l'origine du nombre d'Or en mathématiques et de certaines oeuvres d'art de Léonardo 
+    da Vinci. Elle est définie de la façon suivante :</p>
+
+<pre><code class="language-python">def fibonacci(n):
+    if n < 2:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
 </code></pre>
 
-<p>A noter le mot-clé self qui représente l'objet auquel sera lié un attribut ou une méthode. En effet, lorsqu'on définit une classe, 
-	on ne peut pas écrire le nom d'un objet en particulier. On écrit donc self qui sera ensuite remplacé dans le code par le nom de l'objet
-	utilisé.</p>
+<p>On remarque également l'utilisation de la valeur butoir 1, pour que le calcul de proche en proche pour 
+    des valeurs de n de plus en plus petites finisse par renvoyer une valeur, qui sera utilisée pour trouver 
+    toutes les factorielles.</p>
+    
+<pre><code class='language-python'>def creer_binome(nbre):
+    """Renvoie les coefficients du binôme de Newton sous forme de string.
 
-<div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>créer une classe Boite, dont les objets disposent des attributs nom et etat. etat doit prendre la valeur False lors 
-		de l'instanciation des objets. Créer les méthodes ouvrir() et fermer() qui modifient la valeur de etat.</p>
-	
-</div>
+    Parameters:
+        nbre (int): correspond au nombre jusqu'auquel le programme effectue la
+        recherche des coefficients.
 
+    Results:
+        resultat (str): renvoie les coefficients du binôme suivant une structure
+        pyramidale.
 
-<!-- INSTANCIER UN OBJET -->
+    La fonction travaille sous forme de liste de listes de nombres, puis
+    transforme à la fin la liste obtenue en résultat sous forme de string.
+    La fonction accepte comme valeurs de départ la liste [[1], [1, 1]] appelée
+    binome. A chaque tour, la fonction analyse une liste qui correspond à
+    l'élément d'indice j de binome et commence par créer une liste vide comme
+    élément d'indice j+1, puis rajoute 1 à cette liste et les sommes de 2 nombres
+     de la liste d'indice j. Pour calculer les sommes des 2 nombres, la fonction
+     crée à l'indice j une liste glissante comprenant uniquement 2 éléments et
+     parcourant la liste à l'indice j. La somme des éléments de cette liste
+     glissante correspond ainsi à une somme de 2 nombres. Finalement, on rajoute
+     1 à la liste d'indice j+1.
 
-<p class="my-5 invisible" id="objet">ancre</p>
+    La liste binome est transformée en string dans la variable resultat qui est
+    structurée sous forme de pyramide."""
+    resultat = ""
+    binome = [[1], [1, 1]]
 
-<h3>Instancier un objet</h3>
+    for j in range(1, nbre):
+        binome.append([])
+        binome[j + 1].append(1)
+        for i in range(0, j):
+            liste_glissante = binome[j][i:i+2]
+            somme_glissante = sum(liste_glissante)
+            binome[j + 1].append(somme_glissante)
+        binome[j + 1].append(1)
 
-<div class="fieldsetDefinition">
-	<h4>A RETENIR ... </h4>
-	<p>Lorsqu'on crée un objet à partir d'une classe, on dit qu'on instancie une classe. Chaque objet a pour type la classe qui l'a instancié. Chaque objet est créé en prenant comme modèle une classe.</p>
-</div>
-
-<p>Pour créer un objet à partir d'une classe, il faut appeler cette classe et définir les différents attributs de cet objet, en respectant l'ordre dans lequel ils ont été définis, comme dans le code ci-dessous :</p>
-
-<pre><code class="language-python">mazda = Voiture(8, 6, 5, 0, 50)</code></pre>
-
-
-<!-- UTILISER LES ATTRIBUTS ET LES METHODES -->
-
-<p class="my-5 invisible" id="attribut">ancre</p>
-
-<h3>Utiliser les attributs et les méthodes</h3>
-
-<p>Pour voir la vitesse du véhicule mazda, il suffit d'appeler l'attribut lié à cet objet :</p>
-
-<pre><code class="language-python">print(mazda.vitesse)</code></pre>
-
-<p>A noter l'importance de faire précéder le nom de l'objet devant son attribut.</p>
-
-<p>Pour exécuter la méthode freiner(), il faut utiliser une structure similaire :</p>
-
-<pre><code class="language-python">mazda.freiner()</code></pre>
-
-<p>Pour modifier l'attribut <strong>vitesse</strong>, il suffit maintenant d'écrire :</p>
-
-<pre><code class="language-python">mazda.vitesse = 50</code></pre>
-
-<div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>reprenons l'exemple précédent. Créer dans un script principal une méthode permettant d'afficher si une boîte est 
-	ouverte ou fermée. Créer ensuite un code qui permet d'instancier une boite b, lui attribuer le nom box, l'ouvrir, la fermer puis afficher son état.</p>
-</div>
-
-
-<!-- CONSTRURE SON CODE EN POO -->
-
-<p class="my-5 invisible" id="poo">ancre</p>
-
-<h3>Construire son code en POO</h3>
-
-<p>Imaginons que nous voulions créer un jeu d'arcades avec des dragons. Pour le moment, ceux-ci ne disposent que de 3 attributs : la force, l'agilité en vol et l'intelligence.
-	Seules 3 fonctions permettent de modifier ces attributs : changer_force(), changer_agilite(), acquerir_experience().</p>
-
-<p>Il existe par ailleurs 3 types de dragons dans ce jeu : les timberjack, les thunderdrum et les snoggletog.
-	Chacun de ces dragons dispose pour commencer d'une force et d'une agilité en vol différentes.</p>
-
-<h4>Exemple en programmation impérative</h4>
-
-<p>En programmation impérative, on peut créer un module <em>dragons</em> comprenant les différentes fonctions relatives aux dragons :</p>
-
-<pre><code class="language-python">def changer_force(force, nmr):
-    force += nmr
-    return force
-
-def changer_agilite(agilite, nmr):
-    agilite += nmr
-    return agilite
-
-def acquerir_experience(intelligence, nmr):
-	intelligence += nmr
-	return intelligence</code></pre>
-
-<p>et le fichier principal <em>main.py</em> dans lequel on définit les valeurs initiales de la force et de l'agilité en vol, avant de les modifier suite au combat de thunderdrum 
-	contre timberjack et snoggletog :</p>
-
-<pre><code class="language-python">from dragons import *
-
-# on initialise la force, l'agilite en vol et l'intelligence
-thunderdrum_force = 8
-thunderdrum_agilite = 6	
-thunderdrum_intelligence = 3
-timberjack_force = 4
-timberjack_agilite = 9
-timberjack_intelligence = 6
-snoggletog_force = 8
-snoggletog_agilite = 7
-snoggletog_intelligence = 9
-	
-# au cours du jeu, thunderdrum frappe timberjack puis snoggletog
-# thunderdrum augmente sa force de 1 point alors que timberjack 2 points de force
-# et 1 point d'agilité, snoggletog perd 3 points de force et 2 points d'agilité.
-	
-thunderdrum_force = changer_force(thunderdrum_force, 1)
-timberjack_force = changer_force(timberjack_force, -2)
-timberjack_agilite = changer_agilite(timberjack_agilite, -1)
-snoggletog_force = changer_force(snoggletog_force, -3)
-snoggletog_agilite = changer_agilite(snoggletog_agilite, -2)
-	
-print("force thunderdrum : ", thunderdrum_force)
-print("agilité thunderdrum : ", thunderdrum_agilite)
-print("intelligence thunderdrum : ", thunderdrum_intelligence)
-print("force timberjack : ", timberjack_force)
-print("agilité timberjack : ", timberjack_agilite)
-print("intelligence timberjack : ", timberjack_intelligence)
-print("force snoggletog : ", snoggletog_force)
-print("agilité snoggletog : ", snoggletog_agilite)
-print("intelligence snoggletog : ", snoggletog_intelligence)</code></pre>
-
-<p>On obtient ainsi le résultat suivant affiché à la console :</p>
-
-<pre><code class="language-python">force thunderdrum : 9
-agilité thunderdrum : 6
-intelligence thunderdrum : 3
-force timberjack : 2
-agilité timberjack : 8
-intelligence timberjack : 6
-force snoggletog : 5
-agilité snoggletog : 5
-intelligence snoggletog : 9</code></pre>
-
-<h4>Même exemple en programmation objet</h4>
-
-<p>On va maintenant construire le même jeu en utilisant la programmation orientée objet.</p>
-
-<p>A la place du module de fonctions, on va créer une classe <strong>Dragon</strong> dans laquelle on va définir les attributs d'objets <strong>force</strong> et <strong>agilite</strong> ainsi que les méthodes
-	<strong>changer_force()</strong> et <strong>changer_agilite()</strong>. On peut créer plusieurs classes dans un même module en Python contrairement à d'autres langages, mais 
-on n'a besoin ici que d'une seule classe qu'on placera dans un module appelé <strong>dragons</strong></p>
-
-<pre><code class="language-python">class Dragon:
-
-    def __init__(self, force, agilite, intelligence):
-        self.force = force
-        self.agilite = agilite
-		self.intelligence = intelligence
-
-    def changer_force(self, nmr):
-        self.force += nmr
-
-    def changer_agilite(self, nmr):
-        self.agilite += nmr
-	
-	def acquerir_experience(self, nmr):
-		self.intelligence += nmr</code></pre>
-
-<p>On remarque dans la classe ci-dessus, la présence d'une méthode <strong>__init__</strong> qui est un constructeur permettant lors de la création 
-d'un objet, d'affecter des valeurs aux attributs de cet objet. Voir le code ci-dessous dans lequel <strong>force</strong> prend la valeur 8
-pour l'objet thunderdrum et <strong>agilite</strong> prend la valeur 6 pour l'objet thunderdrum.</p>
-
-<p>Il nous reste maintenant à écrire le code principal dans lequel on crée deux objets thunderdrum et timberjack à partir de la classe Dragon. On 
-	utilise ensuite les méthodes <strong>changer_force()</strong> et <strong>changer_agilite</strong> associé à chacun des objets pour changer les valeurs 
-	de leur <strong>force</strong> et <strong>agilite</strong>.</p>
-
-<pre><code class="language-python">from dragons import *
-
-# on crée un objet thunderdrum, un objet timberjack
-# un objet snoggletog à partir de la classe Dragon
-thunderdrum = Dragon(8, 6, 3)
-timberjack = Dragon(4, 9, 6)
-snoggletog = Dragon(8, 7, 9)
-	
-# au cours du jeu, thunderdrum frappe timberjack puis snoggletog
-# thunderdrum augmente sa force de 1 point alors que timberjack 2 points de force
-# et 1 point d'agilité, snoggletog perd 3 points de force et 2 points d'agilité.	
-thunderdrum.changer_force(1)
-timberjack.changer_force(-2)
-timberjack.changer_agilite(-1)
-snoggletog.changer_force(-3)
-snoggletog.changer_agilite(-2)
-	
-print("force thunderdrum : ", thunderdrum.force)
-print("agilité thunderdrum : ", thunderdrum.agilite)
-print("intelligence thunderdrum : ", thunderdrum.intelligence)
-print("force timberjack : ", timberjack.force)
-print("agilité timberjack : ", timberjack.agilite)
-print("intelligence timberjack : ", timberjack.intelligence)
-print("force snoggletog : ", snoggletog.force)
-print("agilité snoggletog : ", snoggletog.agilite)
-print("intelligence snoggletog : ", snoggletog.intelligence)</code></pre>
-
-<p>On remarque à quel point le modèle objet est pratique pour modifier les attributs des différents dragons qu'on a créés.
-	Le modèle objet est également plus court, surtout lorsqu'on doit créer de nombreux dragons.</p>
-
-<p>On remarque également que les méthodes permettent de modifier les attributs des objets et que ces méthodes s'écrivent après l'objet et un point.</p>
-
-<div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>quels sont les avantages et inconvénients qui, à votre avis, caractérisent la programmation objet ?</p>
-</div>
+    for elt in binome:
+        for val in elt:
+            resultat += " " + str(val)
+        resultat += "\n"
+    return resultat</code></pre>
 
 
 <!-- ENTRAINEMENT -->
-
-<h3>ENTRAINEMENT</h3>
-
+<h3>Entrainement</h3>
 
 <div class="exerciceApplication">
-	<p><strong>Exercice 1 : </strong>Créer une classe Adresse dont les objets sont représentés par des attributs privés de type chaine de caractères rue,
-	ville et code_postal. Créer une classe Personne dont les objets sont représentés par des attributs publics de type chaine de caractères nom, prenom, un attribut privé de type entier age.<br/>
-	1. proposer des setters et getters permettant d'accéder et de modifier les différents attributs <br/>
-	2. représenter ces deux classes dans un tableau permettant de visualiser les attributs et méthodes.</p>
+    <p><strong>Exercice 1 : </strong>reprenons notre exemple de conversion d'un nombre décimal en nombre binaire. 
+        Ré-écrire la fonction précédente en respectant les concepts de programmation fonctionnelle : </p>
+    <p>Solution</p>
+    <pre><code class="language-python">def decimalToBinaire(decimal):
+        if decimal &gt 0:
+            decimalToBinaire(decimal // 2)
+        print(decimal % 2, end = '')</code></pre>
+    
+    <p>On remarque la particularité de ce code avec une fonction decimalToBinaire() qui s'appelle elle-même. La condition
+        decimal &gt 0 est essentielle pour arrêter l'appel en cascade de cette fonction.
+    </p>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-	<p><strong>Exercice 2 : </strong>quel est l'affichage en réponse au code suivant ?</p>
-	<pre><code class="language-python">class Dragon:
-	def __init__(self, id):
-		self.id = id
-
-td = Dragon("thunderdrum")
-print(td.id)</code></pre>
+    <p><strong>Exercice 2 : </strong>écrire une fonction récursive d'argument n qui génère la liste [n, n - 1, ..., 0]</p>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-	<p><strong>Exercice 3 : </strong>quel est l'affichage en réponse au code suivant ?</p>
-	<pre><code class="language-python">class Dragon:
-		def __init__(self, id="snogglelog"):
-			self.id = id
-	
-	td = Dragon("thunderdrum")
-	print(td.id)</code></pre>
+    <p><strong>Exercice 3 : </strong>on considère les fonctions suivantes :</p>
+    <pre><code class="language-python">def f(x):
+    if x == 0:
+        return True 
+    return g(x - 1)
+
+def g(y):
+    if y == 0:
+        return False
+    return f(y - 1)</code></pre>
+<p>Que calcule la fonction g(y)</p>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-	<p><strong>Exercice 4 : </strong>faut-il rajouter un paramètre après le self de la méthode montrer dans le code suivant ?</p>
-	<pre><code class="language-python">class Jeu:
-	def __init__(self, score):
-		self.score = score
-	
-	def montrer(self):
-		print(self.score)
-
-	pendu = Jeu()
-	pendu.montrer()</code></pre>
+    <p><strong>Exercice 4 : </strong>l'exponentielle rapide permet de calculer le nombre \(a^n\) en utilisant les expressions 
+        suivantes : \(a^0=1\), si \(n\) est pair \(a^n=(a\times a)^{n/2}\), sinon \(a^n=a\times(a\times a)^{(n-1)/2}\). 
+    Ecrire le script d'une fonction récursive qui calcule l'exponentielle d'un nombre n.</p>
 </div>
 
-<p class="separateur"></p>
-
-<div class="exerciceApplication">
-	<p><strong>Exercice 5 : </strong>quel est l'affichage en réponse au code suivant ?</p>
-	<pre><code class="language-python">class Jeu:
-		def __init__(self, score):
-			self.score = score
-		
-		def montrer(self):
-			print(self.score)
-	
-		pendu = Jeu()
-		pendu.montrer()</code></pre>
-</div>
 
 {% endblock cours %}
-

@@ -3,682 +3,258 @@
 
 {% block contenu %}
 <ul>
-    <li href="#lineaire">savoir construire un algorithme de recherche linéaire</li>
-    <li href="#dichotomie">savoir construire un algorithme de recherche dichotomique</li>
-    <li href="#glouton">savoir construire un algorithme glouton</li>
-    <li href="#diviser">comprendre les algorithme diviser pour régner</li>
-    <li href="#tri">savoir construire un algorithme de tri</li>
-    <li href="#complexite">découvrir la complexité des algorithmes</li>
-</ul> 
-{% endblock contenu %}
+	<li href="#constructeur">comprendre l'utilité des constructeurs, getters, setters</li>
+	<li href="#poo">comprendre les principes de la programmation objet</li>
+</ul> {% endblock contenu %}
 
 {% block cours %}
 
-<p>Dans cette section, nous allons découvrir les algorithmes les plus connus 
-et les implémenter en Python.</p>
+<!-- CONSTRUCTEUR GETTER SETTER -->
 
-<p>La principale fonction d'un ordinateur consiste à automatiser le traitement 
-    de l'information. Trier ou rechercher des données est essentiel à une époque où la gestion 
-    de flux de données important est devenu un réel enjeu technologique, 
-    juridique, environnemental et financier.</p>
+<p class="my-5 invisible" id="constructeur">ancre</p>
 
-<p>Lorsque nous voyons une suite de nombres, nous sommes instinctivement capables de les 
-    ordonner du plus petit au plus grand. Cela devient compliqué avec une centaine de 
-    nombres, mais nous y arrivons quand même car nous avons devant les yeux ces valeurs
-     et il nous suffit de les échanger.</p>
+<h3>Constructeurs, getters, setters</h3>
 
-<p>Un ordinateur ne voit pas tous les nombres à ordonner, car ceux-ci se trouvent 
-stockés dans des espaces mémoire dont il ne connaît que l'emplacement et non pas 
-la valeur. En revanche, il est capable de récupérer deux valeurs à deux emplacements
- différents et de les comparer. Ainsi, pour ordonner une liste de nombres, un 
- programme devra choisir deux nombres (suivant une règle à définir), les comparer 
- et les échanger éventuellement. Ces règles à définir consistent en des algorithmes.</p>
+<h4>Les constructeurs</h4>
 
-<p>Les algorithmes peuvent s'écrire de différentes manières :</p>
+<p>Le constructeur est une méthode particulière, définie dans une classe, qui est invoquée lors de la création d'un objet et sert à définir des valeurs aux attributs au moment de l'instanciation d'un objet</p>
 
-<ul>
-    <li>en pseudo-code, qui décrit brièvement en français les instructions à suivre</li>
-    <li>en utilisant un diagramme de type flowchart, qui permet de schématiser les différentes étapes</li>
-    <li>en utilisant un langage de programmation Python, Java, ...</li>
-</ul>
+<p>Un constructeur a comme valeur de retour l'objet créé.</p>
 
-<p>Les règles de représentation des flowcharts sont les suivantes :</p>
-<ul>
-    <li>un ovale représente le début ou la fin de l'algorithme</li>
-    <li>un rectangle représente une opération à effectuer</li>
-    <li>un parallélogramme représente une saisie de données ou son affichage</li>
-    <li>un losange représente une décision suite à une condition</li>
-</ul>
+<p>Pour rappel, on instancie l'objet obj à partir de la classe Test, en définissant la valeur "Antoine" à l'attribut nom, suite à l'instruction :</p>
+<pre><code class="language-python">obj = Test("Antoine")</code></pre>
+
+<p>Dans ce cas, le programme va chercher à l'intérieur de la classe Test la méthode __init__ permettant de construire l'objet obj et d'affecter la valeur "Antoine" à nom.</p>
+<pre><code class="language-python">class Test:
+
+	def __init__(self, nom):
+		self.nom = nom</code></pre>
+
+<p>L'objet obj est de type Test. Pour s'en convaincre, il suffit d'exécuter l'instruction :</p>
+
+<pre><code class="language-python">print(type(obj))</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>l'algorithme ci-dessous affiche une valeur 
-    lors de son exécution. Construire un flowchart correspondant à cet algorithme 
-puis traduire ce pseudo-code en langage Python.</p>
-<pre><code class="language-svg">a prend la valeur 2
-b prend la valeur 9
-tant que b est strictement plus grand que a 
-{
-on soustrait a à b pour attribuer une nouvelle valeur à b
-}
-fin tant que 
-on affiche b</code></pre>
+	<p><strong>A vous de jouer : </strong>écrire le constructeur présent dans la classe <strong>Voiture</strong> permettant de définir les attributs <strong>puissance, consommation, nbrePlaces,
+	vitesse, quantiteCarburant</strong> d'un nouvel objet de cette classe.</p>
 </div>
 
 
-<!-- RECHERCHE LINEAIRE -->
 
-<p class="my-5 invisible" id="lineaire">ancre</p>
+<h4>Les getters</h4>
 
-<h3>Algorithme de recherche linéaire</h3>
+<p>Pour accéder à l'attribut nom dans le programme précédent (et donc en récupérer la valeur), il faut utiliser une méthode particulière appelée getter, présente dans la classe Test :</p>
 
-<p>Un des algorithmes les plus simples est celui de la recherche linéaire dans une 
-    liste. Il va parcourir tous les éléments un à un et les comparer à une valeur 
-    cherchée.</p>
+<pre><code class="language-python">def getNom(self):
+	return self.nom</code></pre>
 
-<p>On peut coder en Python un algorithme de recherche linéaire de la façon suivante :</p>
+<p>Ainsi, pour obtenir la valeur de l'attribut nom de l'objet obj, on écrit <strong>obj.getNom()</strong> au lieu de <strong>obj.nom</strong></p>
 
-<pre><code class="language-python">def recherche_lineaire(tab, valeur):
-    for i in range(len(tab)):
-        if tab[i] == valeur:
-            return i
-    return -1</code></pre>
-
-
-<!-- RECHERCHE DICHOTOMIQUE -->
-
-<p class="my-5 invisible" id="dichotomie">ancre</p>
-
-<h3>Algorithme de recherche dichotomique</h3>
-
-<p>L'algorithme de recherche dichotomique consiste à se placer au milieu d'une 
-    liste et à comparer la valeur lue avec la valeur cherchée. La comparaison des 
-    2 valeurs permet d'éliminer la moitié de la liste dont les valeurs sont alors
-    trop grandes ou trop petites par rapport à la recherche effectuée. La recherche 
-    dichotomique ne peut fonctionner qu'avec une liste déjà triée, sinon l'élimination 
-    de la moitié de la liste n'a aucun sens.</p>
-
-<p>Une fois qu'on a divisé la liste initiale en 2 sous-listes, on continue la 
-    division de la sous-liste sélectionnée en 2 jusqu'à obtenir la valeur souhaitée 
-    ou alors une sous-liste ne comportant qu'un seul élément qui n'est pas la valeur
-    cherchée.</p>
-
-<p>On peut coder en Python la recherche dichotomique de la façon suivante :</p>
-
-<pre><code class="language-python">def recherche_dichotomique(tab, val):
-    idx_left = 0
-    idx_right = len(tab)
-
-    while idx_left <= idx_right:
-        idx_mid = (idx_left + idx_right) // 2
-        if tab[idx_mid] == val:
-            return idx_mid
-        elif tab[idx_mid] < val:
-            idx_left = idx_mid + 1
-        else:
-            idx_right = idx_mid - 1
-    return -1</code></pre>
-
-<div class="exerciceType">
-    <p><strong>Exemple : </strong>on considère la liste suivante dans laquelle 
-    on cherche la valeur 23</p>
-    <table>
-        <tr><td>2</td><td>5</td><td>10</td><td>12</td><td>23</td><td>41</td></tr>
-    </table>
-    <p>La liste comporte 6 éléments, on la coupe donc en 2 sous-listes dont 
-        l'une commence à l'indice 3. La valeur se trouvant à l'indice 3 est le 
-        nombre 12 qui est plus petit que 23. On ne conserve donc que la sous-liste 
-        de droite :</p>
-        <table>
-            <tr><td>12</td><td>23</td><td>41</td></tr>
-        </table>
-    <p>La sous-liste sélectionnée comporte maintenant 3 éléments, on la coupe donc 
-        en 2 sous-listes dont l'une commence à l'indice 1. La valeur se trouvant à 
-        l'indice 1 est le nombre 23 qu'on recherchait.</p>
-    <p>Dans ce cas, on a trouvé la valeur cherchée en 2 opérations de comparaison au 
-        lieu de 5.</p>
-</div>
-
-
-<div class="exerciceType">
-    <p><strong>Exemple : </strong>on considère la liste suivante dans laquelle 
-    on cherche la valeur 9</p>
-    <table>
-        <tr><td>2</td><td>5</td><td>10</td><td>12</td><td>23</td><td>41</td></tr>
-    </table>
-    <p>La liste comporte 6 éléments, on la coupe donc en 2 sous-listes dont 
-        l'une commence à l'indice 3. La valeur se trouvant à l'indice 3 est le 
-        nombre 12 qui est plus grand que 9. On ne conserve donc que la sous-liste 
-        de gauche :</p>
-        <table>
-            <tr><td>2</td><td>5</td><td>10</td></tr>
-        </table>
-    <p>La sous-liste sélectionnée comporte maintenant 3 éléments, on la coupe donc 
-        en 2 sous-listes dont l'une commence à l'indice 1. La valeur se trouvant à 
-        l'indice 1 est le nombre 5 qui est plus petit que 9. On ne conserve donc 
-        que la sous-liste de droite composée du nombre 10 qui n'est pas la valeur cherchée.</p>
-    <p>Dans ce cas, on a trouvé que la valeur cherchée n'appartient pas à la liste 
-        en 2 opérations de comparaison au lieu de 6.</p>
-</div>
+<p>Cela permet notamment de créer des autorisation d'accès aux valeurs de nom dans la méthode <strong>getNom()</strong>, et donc de sécuriser un code contenant des attributs privés.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>chercher la valeur 8 dans la liste suivante
-    en précisant les étapes de l'algorithme de recherche dichotomique.</p>
-    <table>
-        <tr><td>1</td><td>5</td><td>8</td><td>10</td><td>12</td><td>17</td></tr>
-    </table>
-
+	<p><strong>A vous de jouer : </strong>écrire le code du getter de l'attribut consommation. Afficher ensuite la valeur de cet attribut en utilisant le getter que vous venez d'écrire.</p>
 </div>
 
+<h4>Les setters</h4>
 
-<!-- ALGORITHME GLOUTON -->
+<p>Pour modifier la valeur de l'attribut nom dans le programme précédent, il faut utiliser une méthode particulière appelée setter, présente dans la classe Test :</p>
 
-<p class="my-5 invisible" id="glouton">ancre</p>
+<pre><code class="language-python">def setNom(self, nouveauNom):
+	self.nom = nouveauNom</code></pre>
 
-<h3>Les algorithmes glouton</h3>
+<p>Ainsi, pour modifier la valeur de l'attribut nom de l'objet obj, on écrit <strong>obj.setNom("julien")</strong> au lieu de <strong>obj.nom = "julien"</strong></p>
 
-<p>Les algorithmes glouton sont une famille d'algorithmes qui fonctionnent 
-    suivant le même principe : le problème est résolu étape par étape en faisant 
-le plus grand progrès possible à chaque étape.</p>
-
-<p>On peut utiliser un algorithme glouton pour résoudre un problème de rendu
-    de monnaie par une machine automatique de paiement, ou encore pour résoudre 
-    un problème de remplissage d'un container avec des objets de volume connu.</p>
-
-<p>L'algorithme glouton ne fournit pas nécessairement un résultat optimal 
-    car il commence systématiquement par le plus grand élément alors qu'il ne faudrait 
-    peut-être pas commencer par cet élément. En revanche, il assure de fournir 
-    rapidement une réponse au problème. Il n'agit donc pas de manière optimale.</p>
-
-<div class="exerciceType">
-    <p><strong>Exemple : </strong>on veut remplir un container de 327 litres en utilisant des 
-    boîtes de 3 litres, 5 litres, 10 litres, 25 litres, 30 litres et 50 litres.</p>
-    <p>L'algorithme glouton commence par utiliser 6 boîtes de 50 litres (tant 
-        qu'on peut mettre des boîtes de 50 litres dans notre container), puis 1 boîte de 
-        25 litres. On arriverait donc rapidement à remplir 325 litres parmi les 327 du container.</p>
-        <p>On remarque par ailleurs qu'on aurait pu remplir complètement le container avec 
-            109 boîtes de 3 litres. Mais dans ce cas on n'aurait pas utilisé d'algorithme glouton.</p>
-</div>
+<p>Cela permet notamment de créer des autorisation d'accès aux valeurs de nom dans la méthode <strong>setNom()</strong>, et donc de sécuriser un code contenant des attributs privés.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>un automate dispose des pièces suivantes en 
-    quantité suffisante (1€, 2€, 5€, 10€, 20€) et doit rembourser la somme de 334€. 
-Sachant qu'il utilise un algorithme glouton, quelles pièces va-t-il rendre ?</p>
-</div>
-
-<p>On peut coder en Python l'algorithme glouton de la façon suivante : </p>
-
-<pre><code class="language-python">def glouton(somme):
-    """
-    Algorithme glouton pour le rendu de monnaie.
-    Cet algorithme choisit parmi une liste de billets et 
-    pieces les valeurs les plus grandes a chaque etape.
-    On commence par comparer somme avec pieces[0]. Si 
-    somme est superieur a pieces[0] alors on place 100 
-    dans rendues et somme devient somme - 100. Si somme 
-    est inferieur a pieces[0] alors on compare somme 
-    avec pieces[1]. Et ainsi de suite ... On continue
-    ce processus tant que la somme a rendre ne vaut pas 0.
-    param :
-        somme : (int) somme a rendre
-    return :
-        rendues : (list) liste des pieces a rendre
-    """
-    pieces = [100.0, 50.0, 20.0, 10.0, 5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05]
-    rendues = []
-    # indice qui me permet de parcourir mes billets et pieces
-    i = 0
-    while somme > 0:
-        if somme >= pieces[i]:
-            somme = round(somme - pieces[i], 2)
-            rendues.append(pieces[i])
-        else:
-            i += 1
-    return rendues</code></pre>
-
-
-<!-- DIVISER POUR REGNER -->
-
-<p class="my-5 invisible" id="diviser">ancre</p>
-
-<h3>Les algorithmes diviser pour régner</h3>
-
-<p>La méthode diviser pour régner consiste à prendre un problème complexe et à 
-    le fractionner en une multitude de petits problèmes, tous plus simples à résoudre 
-    que le problème initial. Une fois qu'on a résolu chacun des petits problèmes, 
-    on les recombine afin d'obtenir la solution du problème initial.</p>
-
-<p>On peut utiliser cette méthode pour trier les éléments d'une liste ou pour 
-    calculer la puissance d'un nombre par exemple.</p>
-
-<div class="exerciceType">
-    <p><strong>Exemple : </strong>on souhaite calculer \(5^24\).</p>
-    <p>On pourrait multiplier le nombre 5 par lui-même 24 fois, donc en 24 opérations, 
-        mais la méthode diviser pour régner consiste à diviser le problème en deux 
-        et à calculer \(5^12\) qu'on multiplie par lui-même. On effectue dans ce cas 
-    \(12+1\) opérations.</p>
-    <p>On recommence ensuite avec \(5^12\) qu'on obtient en multipliant \(5^6\) 
-        par lui-même. On effectue dans ce cas \(6+1+1\) opérations.</p>
-    <p>On continue ce principe de manière récursive jusqu'à calculer \(5\times 5^2\), 
-        qui se fait en 3 opérations.</p>
-    <p>On aura donc au total effectué \(3+1+1+1\) opérations, soit 6 opérations au lieu 
-        de 24.</p>
-    <p>On constate donc que la méthode diviser pour régner est récursive et permet 
-        de diminuer le nombre d'opérations à effectuer lors d'un calcul.</p>
-
-    <p>On peut implémenter en Python cet algorithme de calcul de puissance diviser 
-        pour régner de la façon suivante :</p>
-    <pre><code class="language-python">def puissance(x, n):
-    if n == 0:
-        return 1
-    elif n % 2 == 0:
-        temp = puissance(x, n / 2)
-        return temp * temp
-    else:
-        return x * puissance(x, n - 1)</code></pre>
+	<p><strong>A vous de jouer : </strong>écrire le code du setter de l'attribut <strong>quantiteCarburant</strong>. Définir ensuite la valeur de cet attribut à 45 litres en utilisant le setter que vous venez d'écrire.</p>
 </div>
 
 
-<!-- ALGORITHMES DE TRI -->
+<!-- PRINCIPES DE LA PROGRAMMATION ORIENTEE OBJET -->
 
-<p class="my-5 invisible" id="tri">ancre</p>
+<p class="my-5 invisible" id="poo">ancre</p>
 
-<h3>Les algorithmes de tri</h3>
+<h3>Principes de la programmation objet</h3>
 
-<p>il est très souvent nécessaire de pouvoir trier les éléments d'une liste. 
-    Pour cette raison, il existe de nombreux algorithmes de tri, qui ont tous leurs
-    qualités et leurs défauts. Pour simplifier, on pourra dire que l'algorithme 
-quicksort est souvent le plus rapide pour parvenir au résultat, les tris par insertion 
-et par sélection sont bien adaptés aux petites listes, le tri à bulles est le plus 
-intuitif et le tri fusion le plus performant pour des grandes listes.</p>
+<h4>Encapsulation</h4>
 
+<p>L'encapsulation consiste à enfermer dans un objet ses attributs et ses méthodes. Elle cache les détails de l'implémentation à l'utilisateur de l'objet et ne fournit qu'une interface. Ainsi les données sont cachées et protégées de l'utilisateur.</p>
 
+<p>Le principe de l'encapsulation entraîne que les objets ne peuvent communiquer entre eux qu'à travers une interface et des appels de méthodes qui jouent le rôle de messages.</p>
 
-<h4>Le tri fusion</h4>
+<p>On utilise donc des méthodes getters et setters pour accéder aux attributs qui peuvent être définis comme privés. En Python, on définit un attribut privé en plaçant __ devant le nomde l'attribut. Testez les codes suivants pour comprendre :</p>
 
-<p>Il est efficace pour trier des listes immenses. Le principe est le suivant : </p>
-<ul>
-    <li>on divise la liste initiale en deux sous-listes de même taille ou 
-        presque de même taille (suivant que le nombre d'éléments du tableau est 
-        pair ou impair),</li>
-    <li>on continue de diviser jusqu'à obtenir des sous-listes de 2 éléments,</li>
-    <li>on trie facilement chaque sous-liste de 2 éléments</li>
-    <li>on reconstitue les sous-listes en les triant suivant l'algorithme du tri 
-        par insertion.</li>
-</ul> 
-<p>On se retrouve à la fin avec une liste triée, comme dans l'exemple ci-dessous.</p>
+<pre><code class="language-python">class Test:
 
-<div class="exerciceType">
-    <p><strong>Exemple : </strong>trier la liste suivante :</p>
+    def __init__(self, nom):
+        self.nom = nom
 
-    <table>
-        <tr><td>5</td><td>23</td><td>12</td><td>41</td><td>2</td><td>10</td></tr>
-    </table>
-    
-    <table>
-        <tr><td>5</td><td>23</td><td>12</td><td></td><td>41</td><td>2</td><td>10</td></tr>
-    </table>
-    
-    <table>
-        <tr><td>5</td><td></td><td>23</td><td>12</td><td></td><td>41</td><td></td><td>2</td><td>10</td></tr>
-    </table>
-    
-    <table>
-        <tr><td>5</td><td></td><td>12</td><td>23</td><td></td><td>41</td><td></td><td>2</td><td>10</td></tr>
-    </table>
-    
-    <table>
-        <tr><td>5</td><td>12</td><td>23</td><td></td><td>2</td><td>10</td><td>41</td></tr>
-    </table>
-    
-    <table>
-        <tr><td>2</td><td>5</td><td>10</td><td>12</td><td>23</td><td>41</td></tr>
-    </table>
-</div>
+obj = Test("Antoine")
+print(obj.nom)</code></pre>
 
-<!--TODO RAJOUTER ANIMATION JS-->
+<p>Le code ci-dessus fonctionne et affiche la valeur de l'attribut nom. En revanche, si nom devient un attribut privé, le code ne fonctionne plus et l'accès 
+	à cet attribut n'est plus autorisé. Essayez pour vous en convaincre le code suivant :</p>
 
-<p>A noter que la dernière étape de reconstruction est très rapide car le tri par insertion 
-    s'effectue dans ce cas avec des sous-listes déjà triées.</p>
+<pre><code class="language-python">class Test:
 
-<p>On peut coder en Python le tri fusion de la façon suivante : </p>
+    def __init__(self, nom):
+        self.__nom = nom
 
-<!--TODO CODE PYTHON TRI FUSION-->
+obj = Test("Antoine")
+print(obj.__nom)</code></pre>
 
-<pre><code class="language-python"></code></pre>
+<p>Afin s'accéder à cet attribut privé, il faut créer un getter dans lequel on peut définir les restrictions d'accès comme on souhaite (il n'y a aucune restriction
+	d'accès dans cet exemple):</p>
+
+<pre><code class="language-python">class Test:
+
+    def __init__(self, nom):
+        self.__nom = nom
+
+    def getNom(self):
+        return self.__nom
+
+obj = Test("Antoine")
+print(obj.getNom())</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong></p>
+	<p><strong>A vous de jouer : </strong>essayez de modifier l'attribut <strong>nom</strong> en utilisant le code habituel :</p>
+	<pre><code class="language-python">obj.nom = "Alix"</code></pre>
+	<p>Essayez ensuite de modifier votre code en utilisant un setter que vous allez créer dans la class Test</p>
 </div>
 
 
 
-<h4>L'algorithme du tri à bulles</h4>
+<h4>Héritage</h4>
 
-<p>L'algorithme du tri à bulles est un des premiers 
-    algorithmes à étudier pour en comprendre le fonctionnement, car il est très 
-    intuitif. Toutefois, il est peu utilisé car il est très long à mettre en oeuvre 
-et donc inefficace.</p>
+<p>L'héritage permet de définir une nouvelle classe à partir d'une classe existante, à laquelle on ajoute de nouveaux attributs et de nouvelles méthodes. L'héritage facilite donc la réutilisation de certaines classes.</p>
 
-<p>On compare les éléments 2 à 2 en commençant par les nombres
-     de gauche et on progresse ainsi tout le long de la liste à trier. Naturellement, 
-     le plus grand nombre va se décaler vers la droite.
-    A la fin du 1er tour de comparaisons, le nombre le plus grand se 
-     retrouve tout à droite, car il a été comparé à tous les autres et déplacé 
-     autant de fois que nécessaire. On ne va plus le comparer aux autres par la suite
-     car il se trouve déjà trié à la bonne position.</p>
+<p>Hériter d'une classe signifie donc pouvoir utiliser les attributs et méthodes de la classe mère dans la classe fille (encore appelée sous-classe).</p>
 
-<p>Au 2ème tour on recommence les comparaisons 2 à 2 en partant de la gauche, mais
-     cette fois, on ne compare pas les deux nombres les plus à droite car le plus 
-     grand nombre a déjà été décalé tout à droite.</p>
+<p>Prenons un exemple pour mieux comprendre:</p>
 
-<p>Au 3ème tour on ne compare pas les 3 nombres les plus à droites pour les mêmes 
-    raisons que précédemment. A chaque tour, on effectue donc un tri à bulles avec 
-une liste écourtée d'un élément.</p>
+<pre><code class="language-python">class Vehicule:
 
-<p>Finalement on continue le travail jusqu'à ce qu'il n'y ait plus de nombre à 
-    comparer. On est donc obligé de parcourir plusieurs fois la liste, ce qui rend 
-le tri à bulles assez long.</p>
+    def __init__(self, poids, typeCarburant):
+        self.poids = poids
+		self.typeCarburant = typeCarburant
+        self.vitesse = 0
 
-<div class="exerciceType">
-    <p><strong>Exemple : </strong></p>
-    <table>
-        <tr><td style="color:red;">7</td><td style="color:red;">2</td><td>9</td><td>4</td><td>6</td></tr>
-        <tr><td>2</td><td>7</td><td>9</td><td>4</td><td>6</td></tr>
-        <tr><td>2</td><td style="color:red;">7</td><td style="color:red;">9</td><td>4</td><td>6</td></tr>
-        <tr><td>2</td><td>7</td><td>9</td><td>4</td><td>6</td></tr>
-        <tr><td>2</td><td>7</td><td style="color:red;">9</td><td style="color:red;">4</td><td>6</td></tr>
-        <tr><td>2</td><td>7</td><td>4</td><td>9</td><td>6</td></tr>
-        <tr><td>2</td><td>7</td><td>4</td><td style="color:red;">9</td><td style="color:red;">6</td></tr>
-        <tr><td>2</td><td>7</td><td>4</td><td>6</td><td>9</td></tr>
-        <tr><td style="color:red;">2</td><td style="color:red;">7</td><td>4</td><td>6</td><td>9</td></tr>
-        <tr><td>2</td><td>7</td><td>4</td><td>6</td><td>9</td></tr>
-        <tr><td>2</td><td style="color:red;">7</td><td style="color:red;">4</td><td>6</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td>7</td><td>6</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td style="color:red;">7</td><td style="color:red;">6</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td>6</td><td>7</td><td>9</td></tr>
-        <tr><td style="color:red;">2</td><td style="color:red;">4</td><td>6</td><td>7</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td>6</td><td>7</td><td>9</td></tr>
-        <tr><td>2</td><td style="color:red;">4</td><td style="color:red;">6</td><td>7</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td>6</td><td>7</td><td>9</td></tr>
-        <tr><td style="color:red;">2</td><td style="color:red;">4</td><td>6</td><td>7</td><td>9</td></tr>
-        <tr><td>2</td><td>4</td><td>6</td><td>7</td><td>9</td></tr>
-    </table>
-    <p>On remarque bien que la plus grande valeur de la liste est rejetée étape par étape jusqu'au dernier 
-        indice, puis le programme reprend ses comparaisons dès le début de la liste sans comparer les 2 
-        derniers éléments car il sait que le dernier nombre est le plus grand de la liste. A chaque tour, le 
-        programme reprend à l'indice 0 mais s'arrête de comparer un indice plus tôt.</p>
-    <p>On remarque également que le programme continue son travail même après que la liste soit déjà triée. 
-        L'ordinateur ne peut pas vérifier visuellement comme nous que la séquence est déjà ordonnée. Il lui faut 
-        donc continuer l'algorithme jusqu'à ce qu'il arrive à son terme en comparant uniquement les 2 nombres les 
-        plus à gauche.</p>
-</div>
-<!--TODO RAJOUTER ANIMATION JS-->
+    def charger(self, quantite):
+        self.poids += quantite
 
-<p>On peut coder en Python le tri à bulles de la façon suivante : </p>
+    def decharger(self, quantite):
+        self.poids -= quantite
 
-<pre><code class="language-python">def tri_bulles(tab):
-    # Traverser tous les éléments du tableau
-    for i in range(len(tab)):
-        for j in range(len(tab) - i - 1):
-            # échanger si l'élément trouvé est plus grand que le suivant
-            if tab[j] > tab[j + 1] :
-                tab[j], tab[j + 1] = tab[j + 1], tab[j]
-    return tab</code></pre>
+class Voiture(Vehicule):
 
+	def __init__(self, poids, nbrePlaces):
+		self.poids = poids
+		self.typeCarburant = "essence"
+		self.nbrePlaces = nbrePlaces
+		self.reservoir = 0
+
+    def remplirReservoir(self, quantite):
+        self.reservoir += quantite
+
+scania = Vehicule(6700, "gasoil")
+mercedes = Voiture(1250, 5)
+
+# l'attribut poids est connu de l'objet mercedes
+print(mercedes.poids)
+
+# la méthode charger() est connue de l'objet mercedes
+mercedes.charger(200)
+print(mercedes.poids)
+
+# les méthodes et attributs de la classe Voiture sont
+# connus de l'objet mercedes
+mercedes.remplirReservoir(45)
+print(mercedes.reservoir)</code></pre>
+
+<p>La classe <code>Vehicule</code> est une classe mère, et la classe <code>Voiture</code> hérite de <code>Vehicule</code>. Un objet issu de 
+	la classe Voiture aura donc des attributs poids, typeCarburant et vitesse sans qu'il soit nécessaire de les redéfinir. De même l'objet mercedes issu de 
+	la classe Voiture utilise les méthodes charger() et decharger() de la classe Vehicule. Il est possible de rajouter des attributs 
+	propres à la classe Voiture comme nbrePlaces ou reservoir. Dans ce cas, il faut définir un nouveau constructeur qui tient compte des nouveaux attributs et des attributs hérités si nécessaire. Il est bien sûr possible de rajouter des méthodes propres à la classe 
+	Voiture permettant d'accéder à ses attributs, comme par exemple la méthode <code>remplirReservoir()</code>.</p>
+
+	
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>trier la liste suivante en utilisant le tri à bulles : </p>
-    <table><tr><td>3</td><td>1</td><td>5</td><td>2</td><td>4</td></tr></table>
+	<p><strong>A vous de jouer : </strong>créer une classe Boite contenant les attributs longueur, largeur, hauteur et la méthode remplir(nom) où nom 
+	représente l'ingrédient contenu dans une boite. Créer une classe paquet qui hérite de la classe Boite, dont la hauteur vaut 1, et qui possède l'attribut 
+	ziplock pouvant prendre la valeur True ou False.</p>
 </div>
 
 
-
-<h4>Le tri par insertion</h4>
-
-<p>Il est efficace pour trier des listes courtes.</p>
-
-<p>Le tri par insertion parcourt la liste de la gauche vers la droite et trie la liste 
-    en plaçant les éléments tout à gauche. Au départ, il crée une liste vide et regardre 
-    si l'élément considéré (appelé clé) peut s'insérer dans la liste triée à la bonne 
-    position.</p>
-
-<p>Voici une explication à partir d'un exemple :</p>
-<div class="exerciceType">
-    <p><strong>Exemple : </strong></p>
-    <table>
-        <tr><td>4</td><td>3</td><td>5</td><td>7</td><td>1</td></tr>
-        <tr><td>4</td><td style="color:red;">3</td><td>5</td><td>7</td><td>1</td></tr>
-        <tr><td>3</td><td>4</td><td style="color:red;">5</td><td>7</td><td>1</td></tr>
-        <tr><td>3</td><td>4</td><td>5</td><td style="color:red;">7</td><td>1</td></tr>
-        <tr><td>3</td><td>4</td><td>5</td><td>7</td><td style="color:red;">1</td></tr>
-        <tr><td>1</td><td>3</td><td>4</td><td>5</td><td>7</td></tr>
-    </table>
-</div>
-
-<!--TODO RAJOUTER ANIMATION JS-->
-
-<p>On insère la clé dans une pré-liste qui grandit à chaque tour.</p>
-
-<p>On peut coder en Python le tri par insertion de la façon suivante : </p>
-
-<pre><code class="language-python">def tri_insertion(tab):
-    for i in range(len(tab) - 1):
-        j = i + 1
-        while j > 0 and tab[j] &lt tab[j - 1]:
-            tab[j - 1], tab[j] = tab[j], tab[j - 1
-            j -= 1
-    return tab</code></pre>
+<!-- ENTRAINEMENT -->
+<h3>Entrainement</h3>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>trier par insertion la liste suivante : </p>
-    <table><tr><td>3</td><td>1</td><td>5</td><td>6</td><td>2</td><td>9</td></tr></table>
+	<p><strong>Exercice 1 : </strong>Créer une classe Adresse dont les objets sont représentés par des attributs privés de type chaine de caractères rue,
+	ville et code_postal. Créer une classe Personne dont les objets sont représentés par des attributs publics de type chaine de caractères nom, prenom, un attribut privé de type entier age.<br/>
+	1. proposer des setters et getters permettant d'accéder et de modifier les différents attributs <br/>
+	2. représenter ces deux classes dans un tableau permettant de visualiser les attributs et méthodes.</p>
 </div>
 
-
-
-<h4>Le tri par sélection</h4>
-
-<p>Il est efficace pour les listes courtes.</p>
-
-<p>Le tri par sélection compare le 1er élément de la liste avec le plus petit de la 
-    liste et les inverse si besoin. Ensuite, il compare le 2ème élément de la liste 
-    et le compare avec le plus petit de ce qui reste, etc... Donc il se crée une liste 
-    triée à gauche de notre liste initiale, comme pour le tri par insertion. On parle 
-    de tri par sélection car on sélectionne le plus grand élément à chaque fois.</p>
-
-    <p>Voici une explication à partir d'un exemple :</p>
-<div class="exerciceType">
-    <p><strong>Exemple :</strong></p>
-    <table>
-        <tr><td style="color:red;">4</td><td>3</td><td>5</td><td>7</td><td style="color:red;">1</td></tr>
-        <tr><td>1</td><td style="color:red;">3</td><td>5</td><td>7</td><td>4</td></tr>
-        <tr><td>1</td><td>3</td><td style="color:red;">5</td><td>7</td><td style="color:red;">4</td></tr>
-        <tr><td>1</td><td>3</td><td>4</td><td style="color:red;">7</td><td style="color:red;">5</td></tr>
-        <tr><td>1</td><td>3</td><td>4</td><td>5</td><td>7</td></tr>
-    </table>
-</div>
-
-<!--TODO RAJOUTER ANIMATION JS-->
-
-
-<p>On peut coder en Python le tri par sélection de la façon suivante : </p>
-
-<pre><code class="language-python">def tri_selection(tab):
-
-    for i in range(len(tab) - 1):
-        j_min = i
-        for j in range(i + 1, len(tab)):
-            if tab[j] &lt tab[j_min]:
-                j_min = j
-        if j_min != i:
-            tab[i], tab[j_min] = tab[j_min], tab[i]
-    return tab</code></pre>
-
-    <div class="exerciceApplication">
-        <p><strong>A vous de jouer : </strong>trier par sélection la liste suivante : </p>
-        <table><tr><td>3</td><td>1</td><td>5</td><td>6</td><td>2</td><td>9</td></tr></table>
-    </div>
-
-
-
-<h4>Le tri rapide ou quicksort</h4>
-
-<p>Il consiste à choisir un pivot (étape délicate, on choisit en général le terme
-     le plus proche de la valeur moyenne ou médiane au 1er tour puis la 1ère valeur
-      de chaque sous liste aux tours suivants), puis on place à gauche tous les termes
-    plus petits et à droite tous les termes plus grands.</p>
-
-<p>On réitère l'opération avec les deux sous-listes obtenues. Le principe est donc 
-    récursif et consiste à découper le problème en sous problèmes plus faciles à 
-    résoudre. Il s'agit donc d'une implémentation du principe diviser pour régner.</p>
-
-    <div class="exerciceType">
-        <p><strong>Exemple : </strong>On choisit 6 comme pivot initial, 3 et 9 sont 
-            les pivots suivants.</p>
-            <table>
-                <tr><td>3</td><td>1</td><td>5</td><td style="color:red;">6</td><td>2</td><td>9</td></tr>
-                <tr><td style="color:red;">3</td><td>1</td><td>5</td><td>2</td><td>6</td><td style="color:red;">9</td></tr>
-                <tr><td>1</td><td>2</td><td>3</td><td>5</td><td>6</td><td>9</td></tr>
-            </table>
-    </div>
-
-
-
-
-<!--TODO RAJOUTER ANIMATION JS-->
-
-
-
-<!-- COMPLEXITE -->
-
-<p class="my-5 invisible" id="complexite">ancre</p>
-
-<h3>Découvrons la complexité des algorithmes</h3>
-
-<p>La complexité est l'estimation théorique du temps d'exécution d'un algorithme 
-    en fonction de la taille des données n. La complexité compte le nombre 
-    d'opérations effectuées dans le cas le plus défavorable.</p>
-
-<p>Ce nombre d'opérations est un indicateur du temps d'exécution.</p>
-    
-<p>Dans les algorithmes de tri n représente la taille du tableau et on compte 
-    les comparaisons de valeurs, les échanges et les accès au tableau.</p>
-
-
-
-<h4>Complexité d'un algorithme de recherche linéaire</h4>
-
-<pre><code class="language-python">def recherche_lineaire(tab, valeur):
-    for i in range(len(tab)):
-        if tab[i] == valeur:
-            return i
-    return -1</code></pre>
-
-<p>Un algorithme de recherche linéaire parcourt un tableau du 1er élément au dernier 
-    et compare les valeur avec une valeur cherchée.</p>
-
-<p>On parcourt les n éléments du tableau pour faire n comparaisons (il n'y a qu'une seule boucle for),
-    donc la complexité d'un algorithme de recherche linéaire est n.</p>
-
-
-
-<h4>Complexité du tri par insertion</h4>
-
-<p>On trouve une complexité  de 1 + 2 + … + (n-1) , c’est-à-dire n(n-1)/2.
-    Cette complexité est quadratique, donc équivalente à \(n^2/2\)</p>
-
-
-
-<h4>Complexité du tri par sélection</h4>
-
-<p>On trouve une complexité  de 1 + 2 + … + (n-1) , c’est-à-dire n(n-1)/2.
-    Cette complexité est quadratique, donc équivalente à \(n^2/2\)</p>
-
-
-    <!-- ENTRAINEMENT -->
-
-<h3>Entraînement</h3>
-
+<p class="separateur"></p>
 <div class="exerciceApplication">
-    <p><strong>Exercice 1 : </strong>compléter le code suivant au niveau des ??? pour qu'il effectue une recherche linéaire.</p>
-    <pre><code class="language-python">def recherche_lineaire(tab, valeur):
-    for i in range(???):
-        if tab[i] == valeur:
-            return ???
-    return -1</code></pre>
-</div>
-<div class="exerciceApplication">
-    <p><strong>Exercice 2 : </strong>compléter le code suivant au niveau des ??? pour qu'il effectue une 
-    recherche dichotomique.</p>
-    <pre><code class="language-python">def recherche_dichotomique(tab, val):
-    idx_left = 0
-    idx_right = len(tab)
+	<p><strong>Exercice 2 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+	def __init__(self, id):
+		self.id = id
 
-    while idx_left <= ???:
-        idx_mid = (idx_left + idx_right) // 2
-        if tab[???] == val:
-            return idx_mid
-        elif tab[idx_mid] < val:
-            idx_left = idx_mid + 1
-        else:
-            idx_right = ???
-    return -1</code></pre>
+td = Dragon("thunderdrum")
+print(td.id)</code></pre>
 </div>
+
+<p class="separateur"></p>
 <div class="exerciceApplication">
-    <p><strong>Exercice 3 : </strong>compléter le code suivant au niveau des ??? pour qu'il implémente un algorithme glouton.</p>
-    <pre><code class="language-python">def glouton(somme):
-    pieces = [100.0, 50.0, 20.0, 10.0, 5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05]
-    rendues = []
-    i = 0
-    while somme > 0:
-        if somme >= ???:
-            somme = round(somme - pieces[i], 2)
-            rendues.append(???)
-        else:
-            i += 1
-    return rendues</code></pre>
+	<p><strong>Exercice 3 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Dragon:
+	def __init__(self, id="snogglelog"):
+		self.id = id
+	
+	td = Dragon("thunderdrum")
+	print(td.id)</code></pre>
 </div>
+
+<p class="separateur"></p>
 <div class="exerciceApplication">
-    <p><strong>Exercice 4 : </strong>compléter le code suivant au niveau des ??? pour qu'il effectue un tri 
-    à bulles.</p>
-    <pre><code class="language-python">def tri_bulles(tab):    
-    for i in range(len(tab)):
-        for j in ???:
-            if tab[j] > ??? :
-                tab[j], tab[j + 1] = tab[j + 1], tab[j]
-    return tab</code></pre>
+	<p><strong>Exercice 4 : </strong>faut-il rajouter un paramètre après le self de la méthode montrer dans le code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+	def __init__(self, score):
+		self.score = score
+	
+	def montrer(self):
+		print(self.score)
+
+	pendu = Jeu(0)
+	pendu.montrer()</code></pre>
 </div>
+
+<p class="separateur"></p>
 <div class="exerciceApplication">
-    <p><strong>Exercice 5 : </strong>compléter le code suivant au niveau des ??? pour qu'il effectue un tri 
-    par insertion.</p>
-    <pre><code class="language-python">def tri_insertion(tab):
-    for i in range(len(tab) - 1):
-        j = ???
-        while j > 0 and tab[j] &lt ???:
-            tab[j - 1], tab[j] = tab[j], tab[j - 1
-            j -= 1
-    return tab</code></pre>
+	<p><strong>Exercice 5 : </strong>quel est l'affichage en réponse au code suivant ?</p>
+	<pre><code class="language-python">class Jeu:
+		def __init__(self, score):
+			self.score = score
+		
+		def montrer(self):
+			print(self.score)
+	
+		pendu = Jeu()
+		pendu.montrer()</code></pre>
 </div>
+
+<p class="separateur"></p>
 <div class="exerciceApplication">
-    <p><strong>Exercice 6 : </strong>compléter le code suivant au niveau des ??? pour qu'il effectue un tri par sélection.</p>
-    <pre><code class="language-python">def tri_selection(tab):
-    for i in range(len(tab) - 1):
-        j_min = ???
-        for j in range(i + 1, len(tab)):
-            if tab[j] &lt ???:
-                j_min = j
-        if j_min != i:
-            tab[i], tab[j_min] = tab[j_min], tab[i]
-    return tab</code></pre>
-</div>
-<div class="exerciceApplication">
-    <p><strong>Exercice 7 : </strong>que fait cet algorithme ? S'agit-il d'un algorithme connu ?</p>
-    <pre><code class="language-python">def mystere(c):    
-    for p in range(len(c)):
-        for k in range(len(c) - p - 1):
-            if c[k] > c[k + 1] :
-                c[k], c[k + 1] = c[k + 1], c[k]
-    return c</code></pre>
+	<p><strong>Exercice 6 : </strong>créer une classe Boite, dont les objets disposent des attributs nom et etat. etat doit prendre la valeur False lors 
+	de l'instanciation des objets. Créer les méthodes ouvrir() et fermer() qui modifient la valeur de etat. Créer une méthode permettant d'afficher si une boîte est 
+ouverte ou fermée. Créer un script principal dans lequel, vous allez instancier un boite b, lui attribuer le nom box, l'ouvrir, la fermer puis afficher son état.</p>
 </div>
 
 {% endblock cours %}
+

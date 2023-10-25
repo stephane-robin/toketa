@@ -3,7 +3,8 @@
 
 {% block principal %}
 
-
+<!-- page ou se trouvent les questions/reponses pour chacun des chapitres -->
+<script src="{% static pageQuiz %}"></script>
 
 <section class="px-5 py-5 bg-white">
     <div class="container">
@@ -32,9 +33,9 @@
         <button class="bouton my-5" id="next-btn" disabled>Question suivante</button>
         
     </div>
-    <script src="{% static pageQuiz %}"></script>
-
-    <script src="{% static 'home/quiz/quiz.js' %}"></script>
+    
+<!-- page de gestion du quiz -->
+<script src="{% static 'home/quiz/quiz.js' %}"></script>
 
 </div>
 </section>

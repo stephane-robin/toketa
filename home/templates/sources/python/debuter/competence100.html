@@ -1,0 +1,126 @@
+<li><a href="#biblio">comment importer une bibliothèque</a></li>
+
+<!-- IMPORTER UNE BIBLIOTHEQUE -->
+
+<p class="invisible" id="biblio">ancre</p>
+
+<h3>Importer une bibliothèque</h3>
+
+<p>Il est parfois très utile de savoir importer une bibliothèque, par exemple 
+    lorsqu'on veut introduire un paramètre de fatalité dans certains jeux, lorsqu'on veut utiliser la 
+    fonction racine carrée ou sinus en mathématiques, lorsqu'on veut créer un modèle spécifique
+    en intelligence artificielle. Une bibliothèque est un ensemble de fonctionnalités et de méthodes qui permettent de fournir certains résultats aux 
+    questions que d'autres développeurs se sont déjà posées. Schématiquement, il s'agit d'un ensemble de fonctions qui 
+    vous permettent d'éviter de reconstruire ce qui existe déjà.</p>
+
+<p>Les bibliothèques représentent donc un gain de temps précieux pour vous, et il est astucieux de s'en servir à profusion, 
+    d'autant plus qu'il existe probablement une bibliothèque répondant aux questions de vous vous posez lorsque vous créez 
+    un programme.</p>
+    
+<p>Vous devez vous demander "pourquoi ne pas toutes les installer si elles sont si importantes ?" Tout simplement pour ne pas 
+    encombrer la mémoire occupée par votre programme avec des bibliothèques inutiles. Par exemple, à quoi cela sert-il de pouvoir utiliser  
+    la fonction tangente lorsqu'on crée un jeu vidéo ? Dans ce cas la bibliothèque math ne semble pas très utile.</p>
+
+
+    <p>Apprenons maintenant à importer une bibliothèque. Les bibliothèques Python sont téléchargées et installées 
+        sur votre ordinateur automatiquement par votre environnement de développement, 
+        ou manuellement si vous souhaitez les installer vous-même à un emplacement spécifique.</p>
+
+<p>Importer une bibliothèque dans le code ne consiste pas à la télécharger sur Internet et à l'installer, mais à la récupérer 
+    à partir de son emplacement d'installation afin de la rendre disponible pour votre programme. Pour cela, rien 
+de plus simple, il suffit d'utiliser en début du code l'instruction <strong>import</strong>, et uniquement au début du code.</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+    <p>Il faut importer les bibliothèques au début d'un fichier Python.</p>
+</div>
+
+<p>Python est un langage de programmation permettant des calculs scientifiques poussés et des représentations graphiques élaborées, grâce à l'utilisation de bibliothèques conçues à cet effet.</p>
+
+<p>En mathématiques, nous utiliserons souvent la bibliothèque <strong>math</strong> pour accéder à certaines fonctions, et 
+    la bibliothèque <strong>random</strong> pour fournir des résultats aléatoires en probabilité. Nous utiliserons également 
+    la bibliothèque <strong>numpy</strong> pour accéder à certaines fonctionnalités de calcul.</p>
+
+<p>Il existe 4 façons de procéder pour importer une bibliothèque. Prenons pour exemple la bibliothèque 
+    math afin de calculer \(\sqrt{3}\). Dans le premier cas, on importe toute la bibliothèque 
+et on doit l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
+
+<pre><code class="language-python">import math
+
+print(math.sqrt(3))</code></pre>
+
+<p>Dans le deuxième cas, on importe la bibliothèque math en lui donnant un pseudo plus rapide 
+    à écrire, qu'on doit utiliser devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
+
+    <pre><code class="language-python">import math as m
+
+print(m.sqrt(3))</code></pre>
+
+<p>Dans le troisième cas, on importe la bibliothèque math sans lui donner de pseudo, mais
+    il n'est pas nécessaire de l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.
+C'est très pratique mais cela peut entraîner des confusions si on utilise deux fonctions portant le 
+même nom mais appartenant à des bibliothèques différentes.</p>
+
+    <pre><code class="language-python">from math import *
+
+print(sqrt(3))</code></pre>
+
+<p>Dans le quatrième cas, on importe uniquement la fonction sqrt() de la bibliothèque 
+math et on ne peut donc utiliser aucune autre fonction de cette bibliothèque. Il n'est pas non plus 
+nécessaire d'utiliser le nom de la bibliothèque devant la fonction sqrt().</p>
+
+<pre><code class="language-python">from math import sqrt
+
+print(sqrt(3))</code></pre>
+
+
+<h4>La bibliothèque time</h4>
+
+<p>Il peut parfois être utile de connaître la durée d'exécution d'une instruction. Pour cela, on
+    utilise la bibliothèque <strong>time</strong>. L'instruction <strong>time()</strong> renvoie le
+        temps en secondes depuis le 1er janvier 1970 (big bang de l'informatique). L'instruction <strong>sleep()</strong>
+        permet de suspendre l'exécution d'une partie d'un programme pendant un certain nombre de secondes. Le code suivant
+    permet par exemple de se rendre compte du temps nécessaire à Python pour compter jusqu'à 100 000 :</p>
+    <pre><code class="language-python">import time
+    
+print(time.time())
+
+compteur = 0
+for i in range(100000):
+    compteur = compteur + 1
+
+print(time.time())</code></pre>
+
+<p>La bibliothèque time permet également de faire une pause dans l'exécution d'un code. Par exemple pour marquer une 
+    pause de 2 secondes, il faut exécuter l'instruction :</p>
+
+<pre><code class="language-python">import time 
+
+time.sleep(2)</code></pre>
+
+
+<!-- QESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='5' %}
+
+<script>
+var questionsData5 = 
+    {
+        question: "si on écrit au début d'un programme 'import math', on doit exécuter le code suivant pour calculer le pgcd de 18 et 24 ...",
+        options:["gcd(18, 24)", "m.gcd(18, 24)", "math.gcd(18, 24)"],
+        correctIndex: 2,
+        commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
+    };
+questionnaireUnique(5, questionsData5);
+</script>
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    <p>On peut importer la bibliothèque random en utilisant au choix l'une des instructions suivantes :</p>
+    <ul>
+        <li>import random</li>
+        <li>from random import *</li>
+        <li>import random as rd</li>
+    </ul>
+    </div>

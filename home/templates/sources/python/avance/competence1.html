@@ -3,283 +3,99 @@
 
 {% block contenu %}
 <ul>
-<li><a href="#recursif">comprendre la récursivité</a></li>
-<li><a href="#croisee">comprendre la récursivité croisée</a></li>
+<li><a href="#imperatif">comprendre le paradigme impératif</a></li>
+<li><a href="#evenementiel">comprendre le paradigme événementiel</a></li>
+<li><a href="#fonctionnel">comprendre le paradigme fonctionnel</a></li>
+<li><a href="#poo">comprendre le paradigme orienté objet</a></li>
 </ul>
  {% endblock contenu %}
 
 {% block cours %}
 
+<p>Un paradigme de programmation correspond à un certain état d'esprit qui va être utilisé pour construire le code.</p>
+
+<div class="fieldsetDefinition">
+    <h4>A RETENIR ...</h4>
+<p>Un paradigme de programmation est un style de programmation répondant à certains critères et respectant certains processus.</p>
+</div>
+
+<p>Le choix du paradigme de programmation à adopter dépend donc de la nature du programme à construire. Par exemple un projet sccientifique 
+    sera souvent codé à l'aide d'un script en mode impératif, une application de bureau se prêtera volontiers à de la programmation 
+    objet alors qu'une appli pour smartphone utilisera de la programmation événementielle.</p>
+
+
+<!-- LE PARADIGME IMPERATIF -->
+
+<p class="invisible" id="imperatif">ancre</p>
+
+<h3>Le paradigme impératif</h3>
+
+<p>Dans le cas du paradigme impératif, le code est construit suivant une exécution étape par étape, de haut en bas. On parle également de programmation linéaire. Il correspond par exemple aux langages C, Fortran, Cobol, Pascal
+     ou encore à des scripts Python. Bien qu'il s'agisse du 1er paradigme de programmation inventé, il est encore très utilisé dans le cadre de scripts devant effectuer
+      une tâche précise, car il est simple et rapide à mettre en oeuvre.</p>
+
+<p>Typiquement, c'est le paradigme qu'on utilise en mathématiques ou en sciences pour trouver un résultat.</p>
+
+<p>Par exemple, pour convertir un nombre décimal en nombre binaire, on pourrait utiliser le code suivant en programmation impérative :</p>
+
+<pre><code class="language-python">def decimalToBinaire(decimal):
+    binaire = ''
+
+    while decimal > 0:
+        # decimal%2 doit etre transformé en string avant d'être concaténé
+        binaire = str(decimal % 2) + binaire
+        decimal = decimal // 2
+
+    return binaire</code></pre>
+
+
+<!-- LE PARADIGME EVENEMENTIEL -->
+
+<p class="invisible" id="evenementiel">ancre</p>
+
+<h3>Le paradigme événementiel</h3>
+
+<p>Le paradigme événementiel est construit à partir de Listeners qui attendent un événement tel qu'un clic de souris pour 
+    s'exécuter. Les programmes de ce type sont donc en attente permanente et consomment nécessairement de la batterie.
+     Ce paradigme est très utilisé dans la création d'apps pour smartphones ou tablettes. On le retrouve par exemple avec la librairie Swing de Java ou avec Node.js.</p>
+
+
+<!-- LE PARADIGME FONCTIONNEL -->
+
+<p class="invisible" id="fonctionnel">ancre</p>
+
+<h3>Le paradigme fonctionnel</h3>
+
 <p>Le paradigme fonctionnel utilise des blocs de fonctions pour produire des données à partir de données. Contrairement à la 
     programmation impérative où l'on affecte différentes valeurs successives à une variable, en programmation fonctionnelle on crée 
     d'autres expressions. Par exemple, le code peut s'appeller lui-même et les modifications se font souvent au niveau des 
-    paramètres des fonctions. Cela correspond par exemple aux langages Lisp, Haskell, Logo...</p> 
+    paramètres des fonctions. On parle dans ce cas de récursivité. Les boucles ne sont plus nécessaires dans ce paradigme qui intègre directement dans la structure 
+    d'une fonction la répétition jusqu'à ce qu'une condition soit vérifiée. Ce type de programmation correspond aux langages Lisp, Haskell, Logo,...</p>
 
 
-<!-- RECURSIVITE -->
-<p class="invisible" id="recursif">ancre</p>
+<!-- LE PARADIGME ORIENTE OBJET -->
 
-<h3>La récursivité</h3>
+<p class="invisible" id="poo">ancre</p>
 
-<p>Dans ce cas, le code s'appelle lui-même en utilisant une complexité moindre, jusqu'à obtenir un problème élémentaire qu'il sait résoudre. 
-    Les modifications se font souvent au niveau des paramètres des fonctions, et il est nécessaire de définir un point d'arrêt pour éviter une boucle infinie.
- La récursivité s'utilise essentiellement à la place de boucles while.</p>
+<h3>Le paradigme orienté objet</h3>
 
-<p>La notion de récursivité est proche du concept mathématique de récurrence, utilisé par exemple dans les suites de nombres.</p>
+<p>Le paradigme orienté objet identifie les principaux éléments qui interviennent dans un programme. Ces éléments sont regroupés en 
+    catégories appelées possédant des caractéristiques communes, appelées attributs. Le code se base ensuite
+    sur les échanges de messages entre ces éléments, appelés méthodes, pour en modifier le comportement.  
+    Les programmes orientés objets offrent une meilleure protection des données, 
+    sont facilement modifiables et réutilisables. Par ailleurs, la conception objet est très proche de la réalité des 
+    situations courantes. Cela correspond par exemple aux langages Java ou C++.</p> 
 
+<p>Le principal avantage de la programmation objet réside dans sa modularité, c'est à dire le fait de décomposer le code en 
+    modules indépendants en expliquant les liens entre ces modules et en donnant une structure à l'ensemble du code. Cette modularité permet de mieux comprendre les 
+    gros projets et permet d'augmenter plus facilement la taille de ces projets.</p>
 
-<p>L'exemple le plus classique est celui du calcul de la puissance d'un nombre.</p>
-
-<div class='exerciceApplication'>
-    <p><strong>A toi de jouer : </strong>sans utiliser la notion de récursivité, écrire une fonction 
-    appelée <code>factorielle()</code> qui calcule la factorielle d'un nombre entier passé en paramètre.
-On rappelle que la factorielle de 5 par exemple est définie par \(5\times4\times3\times2\times 1\) et que par 
-convention la factorielle de 0 vaut 1.</p>
-
-
-<pre><code class='language-python'>def factorielle(n):
-    resultat = 1
-    for i in range(2, n + 1):
-        resultat = resultat * i
-    return resultat</code></pre>
-</div>
-
-<p>Voici maintenant la même fonction écrite en utilisant cette fois la récursivité :</p>
-
-<pre><code class='language-python'>def factorielle(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorielle(n - 1)</code></pre>
-
-<p>On remarque qu'à l'intérieur de la fonction <code>factorielle(n)</code> est exécutée la fonction 
-<code>factorielle(n-1)</code>. Ainsi le calcul de <code>factorielle(7)</code> va entraîner le calcul 
-de <code>factorielle(6)</code>, qui lui-même va entraîner le calcul de <code>factorielle(5)</code>, etc...</p>
-
-
-<p>Pour bien comprendre le fonctionnement d'une fonction qui s'appelle elle-même, analysons le code suivant :</p>
-
-<pre><code class="language-python">def fonctionRecursive(valeur):
-    if valeur &lt 5:
-        fonctionRecursive(valeur + 1)
-    print(valeur)
-
-valeur = 0
-fonctionRecursive(valeur)</code></pre>
-
-<p>Lors de son exécution, il fournit le résultat suivant :</p>
-
-<pre><code class="language-python">5
-4
-3
-2
-1
-0</code></pre>
-
-<p>On remarque que là encore la fonction s'appelle elle-même en modifiant la valeur du paramètre. Le reste des instructions de la fonction, 
-    à savoir print(valeur), ne peut pas s'exécuter tant que la fonction appelée dans la fonction n'a pas été exécutée. Ainsi la fonction recommence son exécution
-    tant que valeur est inférieur à 1. Lorsque cette condition n'est plus remplie, la dernière fonction est exécutée en premier et print(valeur) peut enfin s'exécuter.
-    Cela explique que la première valeur affichée soit la dernière obtenue, c'est à dire 5.</p>
-
-<p>Résumons ce qui se passe dans un ordre chronologique :</p>
-
-<pre><code class="language-svg">valeur = 0
-fonctionRecursive(0) : 
-0&lt5
-donc execution fonctionRecursive(1) # blocage fonctionRecursive(0), print(0) en attente :
-    1&lt5 
-    donc fonctionRecursive(2) # blocage fonctionRecursive(1), print(1) en attente :
-        2&lt5 
-        donc fonctionRecursive(3) # blocage fonctionRecursive(2), print(2) en attente : 
-            3&lt5 
-            donc fonctionRecursive(4) # blocage fonctionRecursive(3), print(3) en attente : 
-                4&lt5 
-                donc fonctionRecursive(5) # blocage fonctionRecursive(4), print(4) en attente :
-                    5 n'est pas inferieur a 5
-                    on execute print(5)
-                print(4) en attente est execute # déblocage fonctionRecursive(4)
-            print(3) en attente est execute # déblocage fonctionRecursive(3)
-        print(2) en attente est execute # déblocage fonctionRecursive(2) 
-    print(1) en attente est execute # déblocage fonctionRecursive(1)
-print(0) en attente est execute # déblocage fonctionRecursive(0)</code></pre>
-
-<p>Ainsi, les différents résultats sont bloqués, stockés en mémoire dans une pile, puis par dépilages successifs 
-    on obtient d'abord le résultat du problème élémentaire puis le résultat souhaité. La récursivité est une technique 
-    très rapide, mais elle consomme énormément d'espace mémoire, vu qu'elle empile tous les appels successifs.</p>
-
-<div class="exerciceApplication"><p><strong>A toi de jouer : </strong>que se passe-t-il lorsqu'on remplace print(valeur) par 
-return valeur ?</p>
-</div>
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>écrire une fonction exponentielle(n) qui utilise la notion de récursivité pour 
-        calculer l'exponentielle de base a de n. On rappelle que l'exponentielle de base a de n est définie par \(exp(a, 0)=1\) 
-    et \(exp(a, n)=a\times exp(a, n - 1)\)</p>
-</div>
-
-
-<!-- RECURSIVITE CROISEE -->
-<p class="invisible" id="croisee">ancre</p>
-
-<h3>La récursivité croisée</h3>
-
-<p>Il s'agit d'un cas particulier de récursivité dans laquelle une fonction appelle une autre fonction qui appelle elle-même la première fonction.</p>
-
-<p>Par exemple les fonctions suivantes permettent de tester si un nombre est pair ou impair :</p>
-
-<pre><code class="language-python">def pair(n):
-    if n == 0:
-        return True
-    else:
-        return impair(n-1)
-
-def impair(n):
-    if n == 0:
-        return False
-    else:
-        return pair(n-1)
-
-# on affiche la parité de 3
-print(pair(3))
-
-# on affiche la parité de 4
-print(pair(4))</code></pre>
-
-<p>Reprenons ensemble le travail fait par l'interpréteur à l'exécution du code pair(3) :</p>
-
-<pre><code class="language-python"># exécution de pair(3)
-# n différent de 0 donc renvoie impair(2)
-
-# exécution de impair(2)
-# n différent de 0 donc renvoie pair(1)
-
-# exécution de pair(1)
-# n différent de 0 donc renvoie impair(0)
-
-# exécution de impair(0)
-# n égal à 0 donc renvoie False</code></pre>
-
-<p>A noter qu'on pourrait également exécuter le code impair(3) pour obtenir le même résultat.</p>
-
-<p>Par ailleurs, il est tentant de construire la fonction <code>impair()</code> de la façon suivante :</p>
-
-<pre><code class="language-python">def impair(n):
-    if n == 1:
-        return True # code maladroit
-    else:
-        return pair(n-1)</code></pre>
-
-<p>Toutefois, il est nécessaire que le code puisse renvoyer False, car sinon il renvoie True dans tous les cas et la 
-    profondeur maximale de récursivité est atteinte, ce qui plante le programme.</p>
-
-
-<!-- MEMOISATION -->
-<h3>Récursivité avec mémoisation</h3>
-
-<p>La suite de Fibonacci est à l'origine du nombre d'Or en mathématiques et de certaines oeuvres d'art de Léonardo 
-    da Vinci. Elle est définie de la façon suivante :</p>
-
-<pre><code class="language-python">def fibonacci(n):
-    if n < 2:
-        return n
-    else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
-</code></pre>
-
-<p>On remarque également l'utilisation de la valeur butoir 1, pour que le calcul de proche en proche pour 
-    des valeurs de n de plus en plus petites finisse par renvoyer une valeur, qui sera utilisée pour trouver 
-    toutes les factorielles.</p>
-    
-<pre><code class='language-python'>def creer_binome(nbre):
-    """Renvoie les coefficients du binôme de Newton sous forme de string.
-
-    Parameters:
-        nbre (int): correspond au nombre jusqu'auquel le programme effectue la
-        recherche des coefficients.
-
-    Results:
-        resultat (str): renvoie les coefficients du binôme suivant une structure
-        pyramidale.
-
-    La fonction travaille sous forme de liste de listes de nombres, puis
-    transforme à la fin la liste obtenue en résultat sous forme de string.
-    La fonction accepte comme valeurs de départ la liste [[1], [1, 1]] appelée
-    binome. A chaque tour, la fonction analyse une liste qui correspond à
-    l'élément d'indice j de binome et commence par créer une liste vide comme
-    élément d'indice j+1, puis rajoute 1 à cette liste et les sommes de 2 nombres
-     de la liste d'indice j. Pour calculer les sommes des 2 nombres, la fonction
-     crée à l'indice j une liste glissante comprenant uniquement 2 éléments et
-     parcourant la liste à l'indice j. La somme des éléments de cette liste
-     glissante correspond ainsi à une somme de 2 nombres. Finalement, on rajoute
-     1 à la liste d'indice j+1.
-
-    La liste binome est transformée en string dans la variable resultat qui est
-    structurée sous forme de pyramide."""
-    resultat = ""
-    binome = [[1], [1, 1]]
-
-    for j in range(1, nbre):
-        binome.append([])
-        binome[j + 1].append(1)
-        for i in range(0, j):
-            liste_glissante = binome[j][i:i+2]
-            somme_glissante = sum(liste_glissante)
-            binome[j + 1].append(somme_glissante)
-        binome[j + 1].append(1)
-
-    for elt in binome:
-        for val in elt:
-            resultat += " " + str(val)
-        resultat += "\n"
-    return resultat</code></pre>
-
-
-<!-- ENTRAINEMENT -->
-<h3>Entrainement</h3>
-
-<div class="exerciceApplication">
-    <p><strong>Exercice 1 : </strong>reprenons notre exemple de conversion d'un nombre décimal en nombre binaire. 
-        Ré-écrire la fonction précédente en respectant les concepts de programmation fonctionnelle : </p>
-    <p>Solution</p>
-    <pre><code class="language-python">def decimalToBinaire(decimal):
-        if decimal &gt 0:
-            decimalToBinaire(decimal // 2)
-        print(decimal % 2, end = '')</code></pre>
-    
-    <p>On remarque la particularité de ce code avec une fonction decimalToBinaire() qui s'appelle elle-même. La condition
-        decimal &gt 0 est essentielle pour arrêter l'appel en cascade de cette fonction.
-    </p>
-</div>
-
-<p class="separateur"></p>
-
-<div class="exerciceApplication">
-    <p><strong>Exercice 2 : </strong>écrire une fonction récursive d'argument n qui génère la liste [n, n - 1, ..., 0]</p>
-</div>
-
-<p class="separateur"></p>
-
-<div class="exerciceApplication">
-    <p><strong>Exercice 3 : </strong>on considère les fonctions suivantes :</p>
-    <pre><code class="language-python">def f(x):
-    if x == 0:
-        return True 
-    return g(x - 1)
-
-def g(y):
-    if y == 0:
-        return False
-    return f(y - 1)</code></pre>
-<p>Que calcule la fonction g(y)</p>
-</div>
-
-<p class="separateur"></p>
-
-<div class="exerciceApplication">
-    <p><strong>Exercice 4 : </strong>l'exponentielle rapide permet de calculer le nombre \(a^n\) en utilisant les expressions 
-        suivantes : \(a^0=1\), si \(n\) est pair \(a^n=(a\times a)^{n/2}\), sinon \(a^n=a\times(a\times a)^{(n-1)/2}\). 
-    Ecrire le script d'une fonction récursive qui calcule l'exponentielle d'un nombre n.</p>
-</div>
-
+<p>Par exemple, la plupart des voitures ont les mêmes propriétés, consommation, vitesse maximale, puissance du moteur, couleur de carrosserie, ... 
+    Un développeur peut donc regrouper tous ces objets dans une classe appelée Voiture, et créer une Mercedes E300 ou une Toyota Corolla à 
+    partir de ces propriétés. Un autre programmeur pourra regrouper des objets représentant des camions dans une classe Camion, 
+    avec comme caractéristiques la consommation, la vitesse maximale, la puissance du moteur, la couleur de carrosserie, le poids total 
+    autorisé, la limite de chargement, ... Un chef de projet pourra maintenant facilement regrouper le travail des deux développeurs en
+    l'intégrant dans une classe appelée Vehicule qui est le parent des classes Voiture et Camion. Ainsi, le chef de projet est en 
+    mesure de faire fonctionner son programme global sans modifier le travail des deux développeurs. Efficace !</p>
 
 {% endblock cours %}

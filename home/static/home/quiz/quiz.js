@@ -14,7 +14,7 @@ function displayQuestion(index) {
     
     nmrQuestionElement.innerHTML = `Question ${index + 1}`;
     const currentQuestion = questionsData[index];
-    questionElement.textContent = currentQuestion.question;
+    questionElement.innerHTML = currentQuestion.question;
     optionsForm.innerHTML = '';
     commentaireElement.innerHTML = '';
 
@@ -31,7 +31,6 @@ function displayQuestion(index) {
         optionsForm.appendChild(input);
         optionsForm.appendChild(label);
         optionsForm.appendChild(lineBreak);
-
     });
 
     submitButton.disabled = false;

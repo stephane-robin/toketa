@@ -3,12 +3,11 @@
 
 {% block contenu %}
 <ul>
-    <li>la cybercriminalité peut prendre différentes formes</li>
-	<li>le phishing</li>
-	<li>les virus</li>
-	<li>le déni de service</li>
-	<li>la publicité malveillante</li>
-	<li>l'exploitation de vulnérabilités</li>
+    <li>les moteurs de recherche</li>
+	<li>les méta-moteurs</li>
+	<li>des robots qui parcourent le Web</li>
+	<li>le référencement naturel</li>
+	<li>le deep Web</li>
 </ul>
 {% endblock contenu %}
 
@@ -16,169 +15,86 @@
 
 <h3>Introduction</h3>
 
+<p>Pour commencer, une question simple, mais pas si simple : </p>
 <div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>la plupart des risques encourus sur Internet sont liés aux utilisateurs. 
-		expliquez dans le détail comment il est possible de se faire piéger en se rendant sur un site, en répondant 
-	à un email, en consultant son smartphone, ... Quels sont donc les comportements à risque à éviter ?</p>
+	<p><strong>A vous de jouer : </strong>Google est une société qui développe de multiples applications et 
+		solutions informatiques. Mais lorsqu'on se rend sur le Web pour utiliser Google, s'agit-il d'un moteur de 
+		recherche ou d'un navigateur ? Et qu'en est-il de Chrome ? Faites-vous bien la différence ?</p>
 </div>
 
+<h3>Les moteurs de recherche</h3>
 
-<!-- LA CYBERCRIMINALITE PEUT PRENDRE DIFFERENTES FORMES -->
-<h3>La cybercriminalité peut prendre différentes formes</h3>
+<p>Un moteur de recherche est une application qui permet d'effectuer des recherches sur Internet à partir de mots clés. 
+	Un navigateur facilite l'utilisation du Web et fournit des services pour enregistrer dans les favoris, retrouver l'historique, 
+	télécharger une page, ... Un navigateur utilise bien évidemment le serveur DNS pour traduire les adresses URL en adresses IP, 
+	et le protocole HTTP pour accéder au Web. Rappel, le protocole HTTPS est la version sécurisée du protocole HTTP, utilisée par 
+	exemple lors de transactions sur le Web.</p>
 
-<p>Les principales menaces en cybercriminalité sont les suivantes :</p>
-	<ul>
-		<li>vol d’information, et parfois usurpation d’identité</li>
-		<li>destruction des données ou des ordinateurs, smartphones</li>
-		<li>défiguration de site Web (defacement)</li>
-		<li>modification d’information par un utilisateur non autorisé</li>
-		<li>déni de service DoS</li>
-		<li>publicité indésirable</li>
-		<li>escroquerie</li>
-	</ul>
-
-<p>Le mot malware est un terme général qui fait référence à un logiciel malveillant.</p>
-
-
-
-<h3>Le phishing</h3>
-
-<p>Il consiste à se faire passer pour une personne, un organisme ou une entreprise de confiance afin de 
-	demander des informations confidentielles à un victime. Celle-ci est amenée à cliquer sur un lien envoyé 
-	par email lui donnant accès à un site web ressemblant au site officiel, faisant ainsi croire à 
-	l’utilisateur qu’il navigue sur un site de confiance. Lorsque l'utilisateur tape ses informations 
-	confidentielles, celles-ci sont dérobées à son insu.</p>
-
-<p><em>Précautions à prendre : </em></p>
-<ul>
-	<li>vérifier l'adresse d'origine de l'email, il est facile de confondre tresor-public@administration.fr et
-		tresor-public@adrninistration.fr</li>
-	<li>ne pas cliquer sur des liens dont la provenance n'est pas certifiée,</li>
-	<li>le cas échéant vérifier l'adresse du site sur lequel le lien nous a renvoyé,</li>
-	<li>vérifier l'orthogaphe dans le texte de l'email, il est fréquent que les emails frauduleux comportent 
-		de nombreuses fautes d'orthographes.</li>
-</ul>
-
-
-<h3>Les virus</h3>
-
-<p>Il s'agit de logiciels malveillants installés sur l'ordinateur ou le smartphone d'une victime, le serveur 
-	d'un site Web ou d'une entreprise pour voler des informations, détruire le fonctionnement d'une machine 
-	ou d'un serveur et fournir un prétexte pour une rançon.</p>
-<p>Les différentes contaminations possibles sont les suivantes :</p>
-<ul>
-<li>par les supports amovibles (clés USB)</li>
-<li>par les pièces jointes des emails</li>
-<li>par les fichiers exécutables (extensions .EXE sur Windows, .PY s'il s'agit d'un script Python)</li>
-<li>par les fichiers multimedia .MP3, .MP4, .AVI, …</li>
-</ul>
-
-<p><em>Précautions à prendre : </em></p>
-<ul>
-	<li>ne pas télécharger des applications dont on ne connaît pas la réputation,</li>
-	<li>télécharger des applications à partir de la page officielle de la société qui la développe,</li>
-	<li>installer un antivirus sur son smartphone, sa tablette et son ordinateur,</li>
-	<li>"les Mac et les Iphones sont protégés naturellement des virus" est une légende urbaine,</li>
-	<li>scanner les supports amovibles à l'aide d'un anti-virus avant de les utiliser.</li>
-</ul>
-
-<h4>Les worms</h4>
-
-<p>Il s'agit d'un type d'attaque particulier qui utilise un carnet d'adresse pour se propager. 
-	Lorsque le hacker a obtenu l'accès au carnet d'adresse d'un compte WhatsApp, Google, Outlook, ..., 
-	il infecte les autres membres du réseau, sans se dévoiler ou en se faisant passer pour un ami au sein 
-	du réseau.</p>
-
-<h4>Les trojans</h4>
-
-<p>Il s'agit d'un certain type de virus qui s'insèrent dans une machine puis donnent accès aux ressources 
-	de cette machine à l'insu de son propriétaire.</p>
-
-<h4>Les spywares</h4>
-
-<p>Il s'agit d'un terme général relatif à un malware qui espionne les actions d'un utilisateur sur son 
-	ordinateur ou son smartphone, pour récupèrer des informations à partir d'une machine infectée. Ce vol 
-d'information peut ensuite être utilisé pour usurper l'identité de quelqu'un afin de créer des abonnements 
-ou de faire des achats au nom d'un autre, d'ouvrir des prêts bancaires. On parle dans ce cas de spoofing.</p>
-
-<h4>Les botnets</h4>
-
-<p>Il s'agit d'un ensemble de robots informatiques qui se déploient sur de grandes quantités de machines 
-	pour les utiliser comme relais d'attaques ou de spams. On parle également de réseaux zombies.</p>
-	
-
-<h3>Le déni de service</h3>
-
-<p>Il consiste à paralyser un réseau, un serveur ou un site Web pour que les utilisateurs ne puissent plus
-	en obtenir l'accès. D'innombrables requêtes sont transmises en même temps à un serveur pour le saturer. 
-	Le déni de service distribué utilise plusieurs machines relais à partir d'une seule machine pour saturer 
-	un système.</p>
-
-<p>Il arrive que parfois le déni de service n'entraîne qu'un ralentissement du système. On parle dans ce 
-	cas de downtime.</p>
-
-<p>Le déni de service s'accompagne généralement d'une demande de rançon.</p>
-
-
-
-
-<h3>La publicité malveillante</h3>
-
-<h4>Les Spams</h4>
-
-<p>Il s'agit d'une technique de marketing consistant à diffuser massivement par email de la publicité non sollicitée par les utilisateurs.</p>
-
-
-<h4>Les adware</h4>
-
-<p>Il s'agit d'un logiciel qui présente des publicités non sollicités, souvent sous forme de fenêtre pop-up.</p>
-
-<p><em>Précautions à prendre : </em></p>
-
-<ul><li>utiliser un ad-blocker</li></ul>
-
-<h4>Les browser-hijackers</h4>
-
-<p>Il s’agit de modifications du navigateur sans la permission de l’utilisateur pour afficher des publicités
-	 ou enregistrer l’activité de l’utilisateur. Un browser-hijacker peut par exemple être utilisé pour 
-	 générer de fausses alertes de sécurité afin d'inciter à acheter un anti-virus.</p>
-
-
-<h3>Le Scam</h3>
-
-<p>Il s'agit d'une forme d'escroquerie qui utilise les technologies modernes pour exploiter 
-	la naïveté des utilisateurs afin qu'ils fournissent de leur plein gré des données confidentielles ou 
-	de l'argent. Le hacker peut se faire passer pour un agent de l'état, un membre de l'organisation ou 
-l'entreprise pour laquelle il travail, un membre de sa famille, une personne en détresse, ...</p>
-
-
-
-
-
-
-<h3>Exploitation de vulnérabilités</h3>
-
-<p>L’exploitation de vulnérabilité consiste à abuser de failles connues dans les navigateurs, les applications web, les réseaux, les systèmes d'exploitation et les applications de la machine.</p>
-
-<p>L'une des techniques d'exploitation de vulnérabilité les plus utilisées sur le Web est l'injection SQL, qui consiste à insérer dans un formulaire non protégé du code SQL capable d'altérer ou de détruire la base de données sur laquelle évolue le site Web attaqué.</p> 
-
-<p>Une autre technique de hacking sur le Web très utilisée est le Cross Site Scripting XSS, qui injecte du code côté client sur les pages Web visitées par d'autres utilisateurs, et permet de se connecter en tant qu'un autre utilisateur sans connaître le mot de passe de cet utilisateur.</p>
-
-<p>Toutes les vulnérabilités recensées sont enregistrées dans le répertoire du CVE afin d'en conserver l'historique et le mode opératoire. Tout individu peut contribuer à cette base de données en publiant une nouvelle vulnérabilité.</p>
-
-<h4>Exemple d'analyse de vulnérabilié</h4>
-
-<div class="row">
-    <div class="col-12">
-		<iframe src="{% static 'home/documents/Analyse_cross_site_scripting.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
+	<div class="exerciceApplication">
+		<p><strong>A vous de jouer : </strong>trouvez au moins trois navigateurs de marque différente et trois moteurs de 
+		recherche de marque différente.</p>
 	</div>
-</div>
 
-<h3>Se tester</h3>
+
+<h3>Les méta-moteurs</h3>
+
+<p>Les méta-moteurs sont des logiciels qui utilisent plusieurs moteurs de recherche généralistes pour afficher un classement des informations suite à une requête. Un méta-moteur permet ainsi de gagner du temps lors d'une requête en évitant à l'utilisateur d'effectuer ses recherches auprès de plusieurs moteurs de recherche séparément.</p>
+
+
+<h3>Des robots parcourent le Web</h3>
+
+<p>Des programmes appelés robots parcourent le Web, indexent les pages dans des bases de données à partir des 
+	mots qu'elles contiennent et suivent chaque lien qu'ils rencontrent. Cela permet aux moteurs de recherche 
+	de gagner du temps lors d'une requête. Cela permet également à certaines agences (nationales ou commerciales) 
+	d'effectuer efficacement des recherches sur Internet, en laissant tourner en permanence ces programmes. 
+	Attention donc, il ne s'agit pas de robots tels qu'on peut les imaginer avec une ossature métallique. </p> 
+
+<h3>Le référencement naturel</h3>
+
+<p>	Il est souvent évoqué la neutralité d'Internet comme principe garantissant l'égalité de traitement des informations. En fait cette neutralité s'applique aux FAI (Fournisseurs d'Accès Internet) qui ne doivent pas examiner ou altérer le contenu d'une page ou en limiter l'accès en fonction du profil de ses utilisateurs. Toutefois, cette neutralité ne s'applique plus au niveau des moteurs de recherche, des sites ou encore des réseaux sociaux.</p>
+
+<p>En ce qui concerne les moteurs de recherche, ceux-ci sont affectés à la fois par le référencement naturel, le profil de l'utilisateur qu'ils ont préalablement mémorisés, et les contrats publicitaires qui ont pu être passés.</p>
+
+<p>Le principe du référencement naturel repose sur le fait que plus un site est cité par d'autres sites, plus il est pertinent sur le Web.</p>  
+
+<div class="exerciceType">
+	<p><strong>Exercice type : </strong>calculer le référencement naturel de chacun des sites Web ci-dessous, sachant qu'une flèche partant du site A vers le site B représente un lien présent dans une page du site A, quoi pointe vers le site B.</p>
+<img src="{% static 'home/images/nsi/referencement_sujet.png' %}" alt="référencement naturel" width=35%>
+
+	<p>Solution : <br/>
+		<em>Etape 1 - calculer le point de chacun des liens</em><br/>
+		au départ chaque site possède un score de 1.<br/>
+		Le site A pointe vers 3 sites, donc chacun de ses liens a une valeur de \(\frac{1}{3}\).<br/>
+		Le site B pointe vers 1 seulu site, donc son lien a une valeur de 1.<br/>
+		Le site C pointe vers 2 autres sites, donc chacun de ses liens a une valeur de \(\frac{1}{2}\).<br/>
+		Le site D pointe vers 3 sites, donc chacun de ses liens a une valeur de \(\frac{1}{3}\).<br/>
+	</p>
+
+		<img src="{% static 'home/images/nsi/referencement_correction.png' %}" alt="référencement naturel" width=35%>
+		<p><em>Etape 2 - pour chaque site rajouter à son poids initial de 1 les valeurs des liens dont il est destinataire</em><br/>
+		Le site A obtient un référencement naturel de \(1 + 1 + \frac{1}{2} + \frac{1}{3} = 2,83\).<br/>
+		Le site B obtient un référencement naturel de \(1 + \frac{1}{3} + \frac{1}{3} = 1,67\).<br/>
+		Le site C obtient un référencement naturel de \(1 + \frac{1}{3} + \frac{1}{3} = 1,67\).</br>
+		Le site D obtient un référencement naturel de \(1 + \frac{1}{2} + \frac{1}{3} = 1,83\).
+	<p>
+</div> 
 
 <div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>testez vos connaissances en matière de sécurité avec le quizz de Swisscom : 
-	<a href='https://www.swisscom.ch/fr/b2bmag/securite/quiz-securite-it-pme/' target="_blank">https://www.swisscom.ch/fr/b2bmag/securite/quiz-securite-it-pme/</a></p>
+	<p><strong>A vous de jouer : </strong> Calculer le référencement naturel de chacun des sites suivants :</p>
+	<img src="{% static 'home/images/nsi/referencement_exercice.png' %}" alt="référencement naturel" width=35%>
 </div>
+
+<p>Google propose un module <em>Analytics</em> pour connaître le trafic et les différentes statistiques liées au site Web que vous avez créé. Il est possible d'améliorer le référencement final de votre site, par rapport à son référencement naturel.</p>
+
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>comment améliorer le référencement de votre site Web ?</p>
+</div>
+
+<h3>Le Deep Web</h3>
+
+<p>Le moteur de rechercher Google fournit un classement par pages de sites référencés, suite à la requête d'un utilisateur. Toutefois, toutes les pages Web ne sont pas référencées par les moteurs de recherche traditionnels comme Google, Yahoo, DuckDuckGo,... car elles en ont été volontairement exclues lors de leur création. Ces pages appartiennent au Deep Web, leurs interfaces graphiques sont souvent rudimentaires, proches de celles d'un moteur de recherche. Elles peuvent par exemple contenir les ressources volumineuses d'un serveur, des bases de données privées, des réseaux internes d'entreprises Intranet, et sont accessibles par mot de passe, parfois même payantes. Elles représentent la plus grande partie du Web (90 à 96%). Ce que nous consultons tous les jours s'appelle en fait le Web visible, et ne constitue donc qu'une petite partie des ressources du Web.</p>
+
+<p>Le Dark Web appartient au Deep Web, dont il représente une faible proportion. D'après l'entreprise de sécurité informatique <em>Kapersky</em>, "la réputation du Dark Web a souvent été liée à des intentions criminelles ou à des contenus illégaux et à des sites marchands où les utilisateurs peuvent acheter des biens ou des services illicites". Ainsi, le Dark Web fait référence à des sites non indexés, auxquels on ne peut pas accéder avec des navigateurs grand public. Il nécessite l'utilisation d'un VPN et d'un navigateur spécialisé comme Tor, et son accès n'est pas recommandé au regard des risques potentiels encourus. Toujours d'après l'entreprise <em>Kapersky</em> "les utilisateurs peuvent emprunter des chemins assez sinueux et se retrouver sur un site de piratage ou un forum extrémiste sur le plan politique, ou encore tomber sur des contenus d'une violence inquiétante."</p>
 
 {% endblock cours %}
+    

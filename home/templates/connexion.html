@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<!-- TITRE -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <h2 id="hautPage">{% block titre %} Connexion {% endblock titre %}</h2>
+    </div>
+</section>
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        
+        <div class="row gx-0 gy-2 gy-md-0">
+            <div class="col-12 col-md-6">
+                <h4 class="py-3">Se connecter à son compte</h4>
+                <form action='' method='post'>
+                    <input type='text' id='pseudo_login' name='pseudo_login' class="py-2" value="En construction">
+                    <label for='pseudo_login' class="py-2">identifiant</label><br/>
+                    <input type='password' id='pw_login' name='pw_login' class="py-2">
+                    <label for='pw_login' class="py-2">mot de passe</label><br/>
+                    <button class='bouton my-2' type='submit' value='connexion_login'>Se connecter</button>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">  
+                <h4 class="py-3">Nouveau compte</h4>
+                <form action='' method='post'>
+                    <input type='text' id='prenom' name='prenom' class="py-2" value="En construction">
+                    <label for='prenom' class="py-2">prénom</label><br/>
+                    <input type='text' id='nom' name='nom' class="py-2">
+                    <label for='nom' class="py-2">nom</label><br/>
+                    <input type='text' id='classe' name='classe' class="py-2">
+                    <label for='classe' class="py-2">classe</label><br/>
+                    <input type='email' id='email' name='email' class="py-2">
+                    <label for='email' class="py-2">email</label><br/>
+                    <input type='text' id='pseudo' name='pseudo' class="py-2">
+                    <label for='pseudo' class="py-2">identifiant</label><br/>
+                    <input type='password' id='pw' name='pw' class="py-2">
+                    <label for='pw' class="py-2">mot de passe (fourni par votre enseignant)</label><br/>
+                    <button class='bouton my-2' type='submit' value='connexion'>Créer un compte</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!--
+if(isset($_POST['pseudo'])){
+    $pseudo = valider_saisie($_POST['pseudo']);
+}
+else{
+    $pseudo = NULL;
+}
+
+if(isset($_POST['pw'])){
+    $pw = valider_saisie($_POST['pw']);
+}
+else{
+    $pw = NULL;
+}
+
+
+$resultat = "";
+if (isset($_POST['pseudo']) and isset($_POST['pw'])){
+    if($pseudo == "stephane" and $pw == "chomolum1"){
+        $_SESSION['utilisateur'] = "enseignant";
+        $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['pw'] = $pw;
+    echo "<p>Bienvenue ".$pseudo."</p>";
+    }
+    else{-->
+
+        
+
+
+
+<!--
+<p style='margin-left:20%;'><a href="">Je m'inscris...</a></p>
+-->
+
+{% endblock principal %}

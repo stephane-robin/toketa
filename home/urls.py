@@ -6,5 +6,7 @@ urlpatterns = [
   path('afficherPage/<str:niveau>/<str:chapitre>/<int:id>', views.afficherPage, name='afficherPage'),
   path('afficherPresentation/<str:niveau>', views.afficherPresentation, name='afficherPresentation'),
   path('testNotebook', views.testNotebook, name='testNotebook'),
-  path('afficherModeleQuiz/<str:niveau>/<str:chapitre>/<int:id>', views.afficherModeleQuiz, name='afficherModeleQuiz')
+  path('afficherModeleQuiz/<str:niveau>/<str:chapitre>/<int:id>', views.afficherModeleQuiz, name='afficherModeleQuiz'),
+  path('afficherPartage', views.afficherPartage, name='afficherPartage'),
+  path('afficherConnexion', views.afficherConnexion, name='afficherConnexion')
 ]

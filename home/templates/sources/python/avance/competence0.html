@@ -3,99 +3,135 @@
 
 {% block contenu %}
 <ul>
-<li><a href="#imperatif">comprendre le paradigme impératif</a></li>
-<li><a href="#evenementiel">comprendre le paradigme événementiel</a></li>
-<li><a href="#fonctionnel">comprendre le paradigme fonctionnel</a></li>
-<li><a href="#poo">comprendre le paradigme orienté objet</a></li>
-</ul>
- {% endblock contenu %}
+    <li>savoir donner une structure fiable à un projet</li>
+</ul> 
+{% endblock contenu %}
 
 {% block cours %}
 
-<p>Un paradigme de programmation correspond à un certain état d'esprit qui va être utilisé pour construire le code.</p>
+<h3>La structure d'un projet Python</h3>
+
+<p>Jusqu'à présent, nous avons appris à construire notre programme dans une seule page. La notion de modularité 
+    offre une architecture différente pour notre projet. Celui-ci sera plus facile à comprendre, à modifier
+    puis éventuellement à agrandir.</p>
+
+<p>Un module en Python est en fait un fichier, une librairie ou un package. Pour bien comprendre la structure 
+    d'un projet, il est nécessaire que celle-ci suive un protocole connu et efficace, où chaque module se trouve 
+    à un emplacement prédéfini, comme par exemple le design pattern MVT Model View Template de Django. Cela 
+    permet par exemple à tout développeur qui reprend le travail d'un autre d'être immédiatement efficace, ou 
+    encore de travailler plus facilement en groupe, puisque chacun sait dans quel dossier il doit travailler. 
+    Par ailleurs, cela limite les conflits lors des commits (enregistrements sur un dépôt) de modifications 
+    de code, puisque chaque développeur n'a travaillé que sur sa partie de code.</p>
+
+<p>La structure de modules la plus simple est la suivante :</p>
+<ul>
+    <li>un module principal souvent appelé __main__.py</li>
+    <li>un module contenant les fonctions nécessaires au programme</li>
+    <li>un module contenant la base de données, par exemple au format .JSON</li>
+</ul>
+
+<p>Nous avons déjà travaillé sur des bases de données distantes comme .CSV ou .JSON. Nous n'allons donc pas revenir 
+    dessus. En revanche, le module principal sera construit comme dans l'exemple ci-dessous où le code appelle 
+    une fonction bonjour() :</p>
+
+<pre><code class="language-python">import fonctions as f 
+
+if __name__ == "__main__":
+    print(f.bonjour("rachel"))</code></pre>
+
+<p>On constate qu'il faut importer le module fonctions contenant les fonctions du projet, comme 
+    n'importe quelle librairie. Attention, fonctions est considéré comme un module et non plus comme 
+    un fichier Python. Il ne faut donc pas lui donner l'extension .PY au moment de l'importation.</p>
+
+<p>Par la suite, toutes les fonctions importées devront être précédées du préfixe f qu'on vient de définir 
+    comme représentant le module fonctions. f.bonjour() est alors reconnue comme si la fonction avait été 
+    définie dans notre fichier.</p>
+
+<p>On constate également qu'il faut utiliser l'instruction if __name__ == "__main__" qui empêche les 
+    modules autres que le module principal d'être exécutées au moment où ils sont importées. C'est en 
+    quelque sorte une sécurité pour s'assurer que seul le module principal s'exécute, les autres 
+    modules étant réduits à des supports pour le module principal.</p>
+
+<p>Le fichier fonctions.py (ou module fonctions) contient bien évidemment la définition de la fonction 
+    bonjour() :</p>
+
+<pre><code class="language-python">def bonjour(nom):
+    return "hello " + nom</code></pre>
+
+
+<h3>Rappels sur l'importation d'une librairie ou d'un module</h3>
+
+
+<p>Il est parfois très utile de savoir importer une bibliothèque, par exemple 
+    lorsqu'on veut introduire un paramètre de fatalité dans certains jeux, lorsqu'on veut utiliser la 
+    fonction racine carrée ou sinus en mathématiques, lorsqu'on veut créer un modèle spécifique
+    en intelligence artificielle. Une bibliothèque est un ensemble de fonctionnalités et de méthodes qui permettent de fournir certains résultats aux 
+    questions que d'autres développeurs se sont déjà posées. Schématiquement, il s'agit d'un ensemble de fonctions qui 
+    vous permettent d'éviter de reconstruire ce qui existe déjà.</p>
+
+<p>Les bibliothèques représentent donc un gain de temps précieux pour vous, et il est astucieux de s'en servir à profusion, 
+    d'autant plus qu'il existe probablement une bibliothèque répondant aux questions de vous vous posez lorsque vous créez 
+    un programme.</p>
+    
+<p>Vous devez vous demander "pourquoi faut-il les installées si elles sont si importantes ?" Tout simplement pour ne pas 
+    encombrer la mémoire occupée par votre programme avec des bibliothèques inutiles. Par exemple, à quoi cela sert-il de pouvoir utiliser  
+    la fonction tangente lorsqu'on crée un jeu vidéo ? Dans ce cas la bibliothèque math ne semble pas très utile.</p>
 
 <div class="fieldsetDefinition">
     <h4>A RETENIR ...</h4>
-<p>Un paradigme de programmation est un style de programmation répondant à certains critères et respectant certains processus.</p>
+    <p>Le fait d'importer certains modules, uniquement lorsque nous en avons besoin, permet au langage de préserver de la mémoire.</p>
 </div>
 
-<p>Le choix du paradigme de programmation à adopter dépend donc de la nature du programme à construire. Par exemple un projet sccientifique 
-    sera souvent codé à l'aide d'un script en mode impératif, une application de bureau se prêtera volontiers à de la programmation 
-    objet alors qu'une appli pour smartphone utilisera de la programmation événementielle.</p>
+    <p>Apprenons maintenant à importer une bibliothèque. Les bibliothèques Python sont téléchargées et installées 
+        sur votre ordinateur automatiquement par votre environnement de développement, 
+        ou manuellement si vous souhaitez les installer vous-même à un emplacement spécifique.</p>
+
+<p>Importer une bibliothèque ne consiste pas à la télécharger sur Internet et à l'installer, mais à la récupérer 
+    à partir de son emplacement d'installation afin de la rendre disponible pour votre programme. Pour cela, rien 
+de plus simple, il suffit d'utiliser en début de programme l'instruction <strong>import</strong>.</p>
+
+<p>Il existe 4 façons de procéder, toutes valides. Prenons pour exemple la bibliothèque 
+    math afin de calculer \(\sqrt{3}\). Dans le premier cas, on importe toute la bibliothèque 
+et on doit l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
+
+<pre><code class="language-python">import math
+
+print(math.sqrt(3))</code></pre>
+
+<p>Dans le deuxième cas, on importe la bibliothèque math en lui donnant un pseudo plus rapide 
+    à écrire, qu'on doit utiliser devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
+
+    <pre><code class="language-python">import math as m
+
+print(m.sqrt(3))</code></pre>
+
+<p>Dans le troisième cas, on importe la bibliothèque math sans lui donner de pseudo, mais
+    il n'est pas nécessaire de l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.
+C'est très pratique mais cela peut entraîner des confusions si on utilise deux fonctions portant le 
+même nom mais appartenant à des bibliothèques différentes.</p>
+
+    <pre><code class="language-python">from math import *
+
+print(sqrt(3))</code></pre>
+
+<p>Dans le quatrième cas, on importe uniquement la fonction sqrt() de la bibliothèque 
+math et on ne peut donc utiliser aucune autre fonction de cette bibliothèque. Il n'est pas non plus 
+nécessaire d'utiliser le nom de la bibliothèque devant la fonction sqrt().</p>
+
+<pre><code class="language-python">from math import sqrt
+
+print(sqrt(3))</code></pre>
 
 
-<!-- LE PARADIGME IMPERATIF -->
+<p>Python est un langage de programmation permettant des calculs scientifiques poussés et des représentations graphiques élaborées, grâce à l'utilisation de bibliothèques conçues à cet effet.</p>
 
-<p class="invisible" id="imperatif">ancre</p>
+<p>En mathématiques, nous utiliserons souvent le module <strong>math</strong> pour accéder à certaines fonctions, et le module <strong>Random</strong> pour fournir des résultats aléatoires en probabilité. Nous utiliserons plus rarement le module <strong>numpy</strong> pour accéder à certaines fonctionnalités de calcul.</p>
 
-<h3>Le paradigme impératif</h3>
+<p>Nous commencerons donc souvent notre code par :</p>
 
-<p>Dans le cas du paradigme impératif, le code est construit suivant une exécution étape par étape, de haut en bas. On parle également de programmation linéaire. Il correspond par exemple aux langages C, Fortran, Cobol, Pascal
-     ou encore à des scripts Python. Bien qu'il s'agisse du 1er paradigme de programmation inventé, il est encore très utilisé dans le cadre de scripts devant effectuer
-      une tâche précise, car il est simple et rapide à mettre en oeuvre.</p>
+<pre><code class="language-python">from math import *
+from Random import *
+from numpy import *</code></pre>
 
-<p>Typiquement, c'est le paradigme qu'on utilise en mathématiques ou en sciences pour trouver un résultat.</p>
-
-<p>Par exemple, pour convertir un nombre décimal en nombre binaire, on pourrait utiliser le code suivant en programmation impérative :</p>
-
-<pre><code class="language-python">def decimalToBinaire(decimal):
-    binaire = ''
-
-    while decimal > 0:
-        # decimal%2 doit etre transformé en string avant d'être concaténé
-        binaire = str(decimal % 2) + binaire
-        decimal = decimal // 2
-
-    return binaire</code></pre>
-
-
-<!-- LE PARADIGME EVENEMENTIEL -->
-
-<p class="invisible" id="evenementiel">ancre</p>
-
-<h3>Le paradigme événementiel</h3>
-
-<p>Le paradigme événementiel est construit à partir de Listeners qui attendent un événement tel qu'un clic de souris pour 
-    s'exécuter. Les programmes de ce type sont donc en attente permanente et consomment nécessairement de la batterie.
-     Ce paradigme est très utilisé dans la création d'apps pour smartphones ou tablettes. On le retrouve par exemple avec la librairie Swing de Java ou avec Node.js.</p>
-
-
-<!-- LE PARADIGME FONCTIONNEL -->
-
-<p class="invisible" id="fonctionnel">ancre</p>
-
-<h3>Le paradigme fonctionnel</h3>
-
-<p>Le paradigme fonctionnel utilise des blocs de fonctions pour produire des données à partir de données. Contrairement à la 
-    programmation impérative où l'on affecte différentes valeurs successives à une variable, en programmation fonctionnelle on crée 
-    d'autres expressions. Par exemple, le code peut s'appeller lui-même et les modifications se font souvent au niveau des 
-    paramètres des fonctions. On parle dans ce cas de récursivité. Les boucles ne sont plus nécessaires dans ce paradigme qui intègre directement dans la structure 
-    d'une fonction la répétition jusqu'à ce qu'une condition soit vérifiée. Ce type de programmation correspond aux langages Lisp, Haskell, Logo,...</p>
-
-
-<!-- LE PARADIGME ORIENTE OBJET -->
-
-<p class="invisible" id="poo">ancre</p>
-
-<h3>Le paradigme orienté objet</h3>
-
-<p>Le paradigme orienté objet identifie les principaux éléments qui interviennent dans un programme. Ces éléments sont regroupés en 
-    catégories appelées possédant des caractéristiques communes, appelées attributs. Le code se base ensuite
-    sur les échanges de messages entre ces éléments, appelés méthodes, pour en modifier le comportement.  
-    Les programmes orientés objets offrent une meilleure protection des données, 
-    sont facilement modifiables et réutilisables. Par ailleurs, la conception objet est très proche de la réalité des 
-    situations courantes. Cela correspond par exemple aux langages Java ou C++.</p> 
-
-<p>Le principal avantage de la programmation objet réside dans sa modularité, c'est à dire le fait de décomposer le code en 
-    modules indépendants en expliquant les liens entre ces modules et en donnant une structure à l'ensemble du code. Cette modularité permet de mieux comprendre les 
-    gros projets et permet d'augmenter plus facilement la taille de ces projets.</p>
-
-<p>Par exemple, la plupart des voitures ont les mêmes propriétés, consommation, vitesse maximale, puissance du moteur, couleur de carrosserie, ... 
-    Un développeur peut donc regrouper tous ces objets dans une classe appelée Voiture, et créer une Mercedes E300 ou une Toyota Corolla à 
-    partir de ces propriétés. Un autre programmeur pourra regrouper des objets représentant des camions dans une classe Camion, 
-    avec comme caractéristiques la consommation, la vitesse maximale, la puissance du moteur, la couleur de carrosserie, le poids total 
-    autorisé, la limite de chargement, ... Un chef de projet pourra maintenant facilement regrouper le travail des deux développeurs en
-    l'intégrant dans une classe appelée Vehicule qui est le parent des classes Voiture et Camion. Ainsi, le chef de projet est en 
-    mesure de faire fonctionner son programme global sans modifier le travail des deux développeurs. Efficace !</p>
 
 {% endblock cours %}

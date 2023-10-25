@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<!-- TITRE -->
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <h2 id="hautPage">{% block titre %} Documents partagés {% endblock titre %}</h2>
+    </div>
+</section>
+
+<section class="px-5 py-5 bg-white">
+    <div class="container">
+        <p>&#128218; <a href="{% static 'home/documents/compliance.pdf' %}" target="_blank">Compliance normale et contact sans frottement - Stephane Robin</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/Analyse_cross_site_scripting.pdf' %}" target="_blank">Analyse de vulnérabilité Cross Site Scripting - Stephane Robin</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/package_crisprbuilder_tb.pdf' %}" target="_blank">Publication du package crisprbuilder_tb - Stephane Robin</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/fonctionsHarmoniques.pdf' %}" target="_blank">Représentation locale des fonctions harmoniques - Stephane Robin</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/mitic6eme.pdf' %}" target="_blank">Livret mitic 6ème - Stephane Robin, Nikolaï Samarine</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/mitic5eme.pdf' %}" target="_blank">Livret mitic 5ème - Stephane Robin, Nikolaï Samarine</a></p>
+        <p>&#128218; <a href="{% static 'home/documents/mitic4eme.pdf' %}" target="_blank">Livret mitic 4ème - Stephane Robin, Nikolaï Samarine</a></p>
+    </div>
+</section>
+
+{% endblock principal %}

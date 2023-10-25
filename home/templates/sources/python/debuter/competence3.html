@@ -15,6 +15,106 @@
 
 {% block cours %}
 
+
+<!-- A PLACER EN DEBUT DE FICHIER -->
+<!-- script for pyodide python sandbox -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!-- import codemirror stylings -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
+<!-- install codemirror.js version /5.63.3 from cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
+integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- install codemirror python language support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/python/python.min.js"
+integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- import codemirror dracula theme styles from cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/dracula.css" />
+</head>  
+
+
+<style>
+  /* set codemirror ide height to 100% of the textarea */
+  .CodeMirror {
+    height: 150px;
+    overflow: hidden;
+  }
+</style>
+
+
+<!-- Common function to initialize a sandbox -->
+<script>
+    const sandboxes = {};
+  
+    function initializeSandbox(sandboxId) {
+      const outputElement = document.getElementById(`output${sandboxId}`);
+      const codeElement = document.getElementById(`code${sandboxId}`);
+  
+      const editor = CodeMirror.fromTextArea(codeElement, {
+        mode: {
+          name: "python",
+          version: 3,
+          singleLineStringErrors: false,
+        },
+        theme: "dracula",
+        lineNumbers: true,
+        indentUnit: 4,
+        matchBrackets: true,
+      });
+  
+      editor.setValue("# type your code here");
+      outputElement.value = "Initializing...\n";
+  
+      const sandbox = {
+        pyodide: null,
+        editor,
+        outputElement,
+      };
+  
+      sandboxes[sandboxId] = sandbox;
+  
+      async function main() {
+        sandbox.pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
+        });
+  
+        sandbox.outputElement.value = sandbox.pyodide.runPython(`
+          import sys
+          sys.version
+        `);
+  
+        sandbox.outputElement.value += "\n>>>\n";
+      }
+  
+      main();
+    }
+  
+    function executePython(sandboxId) {
+      const sandbox = sandboxes[sandboxId];
+  
+      try {
+        sandbox.pyodide.runPython(`
+          import io
+          sys.stdout = io.StringIO()
+        `);
+  
+        const result = sandbox.pyodide.runPython(sandbox.editor.getValue());
+        const stdout = sandbox.pyodide.runPython("sys.stdout.getvalue()");
+        sandbox.outputElement.value += stdout + "\n";
+      } catch (err) {
+        sandbox.outputElement.value += "Error: " + err + "\n";
+      }
+    }
+  
+    function clearHistory(sandboxId) {
+      const sandbox = sandboxes[sandboxId];
+      sandbox.outputElement.value = "";
+      console.log(sandboxId);
+    }
+  </script>
+
+
 <p>Les conditions permettent au programme de prendre des décisions en fonction des situations qu'il rencontre. Elles sont donc
  essentielles à tout programme.</p>
 
@@ -48,9 +148,14 @@ else:
     <p><strong>A toi de jouer : </strong>exécute le code ci-dessus pour voir ce qui s'affiche,
         puis modifie la variable <strong>nom</strong> en lui donnant la valeur "Camille".
         Exécute à nouveau votre code pour constater la différence d'affichage.</p>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 1 -->
+{% include '../../../sandbox.html' with nmr='1' %}
+</div>
+<script>
+    initializeSandbox(1);
+</script>
 
 
 <p>Vous avez peut-être découvert la programmation avec Scratch. Dans ce cas, le code Python ci-dessus correspond en Scratch au script suivant :</p>
@@ -88,9 +193,13 @@ if mois &lt 7:
 else:
     print("2ème semestre")</code></pre>
 </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- SANDBOX 2 -->
+{% include '../../../sandbox.html' with nmr='2' %}
+</div>
+<script>
+    initializeSandbox(2);
+</script>
 
 
 
@@ -153,9 +262,14 @@ if reponse == "Homère":
 else:
     note = note - 1</code></pre>
 </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 3 -->
+{% include '../../../sandbox.html' with nmr='3' %}
+</div>
+<script>
+    initializeSandbox(3);
+</script>
 
 
 <p>Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
@@ -216,9 +330,14 @@ print(nom == "Bob")  # affiche False
 print(12 &lt 5)  # affiche False
 print(7 &lt 10)  # affiche True</code></pre>
 
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 4 -->
+{% include '../../../sandbox.html' with nmr='4' %}
+</div>
+<script>
+    initializeSandbox(4);
+</script>
 
 
 
@@ -244,9 +363,14 @@ print(7 &lt 10)  # affiche True</code></pre>
     <pre><code class="language-python">nom = "Alice"
 print(nom == "Alice")
 print(nom != "Bob")</code></pre>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 5 -->
+{% include '../../../sandbox.html' with nmr='5' %}
+</div>
+<script>
+    initializeSandbox(5);
+</script>
 
 
 <div class="exerciceApplication">
@@ -286,9 +410,13 @@ print("le maximum est" + maximum)</code></pre>
             y > x n'est pas vérifiée.</p>
     </div>
 
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- SANDBOX 6 -->
+{% include '../../../sandbox.html' with nmr='6' %}
+</div>
+<script>
+    initializeSandbox(6);
+</script>
 
 
 <h4>Les opérateurs and / or</h4>
@@ -351,10 +479,14 @@ print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
             <li>indentez la dernière ligne avec la touche de tabulation avant d'exécuter le code pour constater 
                 la différence d'affichage.</li>
         </ul>
+
+
+<!-- SANDBOX 7 -->
+{% include '../../../sandbox.html' with nmr='7' %}
 </div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-
+<script>
+    initializeSandbox(7);
+</script>
 
 <div class=fieldsetDefinition>
     <h4>A RETENIR ...</h4>
@@ -436,9 +568,14 @@ elif a > b:
 else:
     print("a est égal à b")</code></pre>
     </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 8 -->
+{% include '../../../sandbox.html' with nmr='8' %}
+</div>
+<script>
+    initializeSandbox(8);
+</script>
 
 
 <p>Les conditions imbriquées sont très fréquentes dans les programmes car elles représentent les situations complexes
@@ -471,9 +608,14 @@ else:
     print("plein tarif")</code></pre>
 
 </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 9 -->
+{% include '../../../sandbox.html' with nmr='9' %}
+</div>
+<script>
+    initializeSandbox(9);
+</script>
 
 
 <!-- BIEN COMPRENDRE LA STRUCTURE D'UNE CONDITION -->
@@ -523,9 +665,14 @@ Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout". Du coup on 
 
 <p>Si les cheveux sont bruns, le programme exécute la ligne 4, puis si les yeux sont bleus, le programme
 exécute la ligne 8. Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout".</p>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<!-- SANDBOX 10 -->
+{% include '../../../sandbox.html' with nmr='10' %}
+</div>
+<script>
+    initializeSandbox(10);
+</script>
 
 
 <div class="exerciceApplication">
@@ -559,9 +706,13 @@ elif 14 &lt= moyenne &lt 16:
 else:
     print("mention très bien")</code></pre>
     </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- SANDBOX 11 -->
+{% include '../../../sandbox.html' with nmr='11' %}
+</div>
+<script>
+    initializeSandbox(11);
+</script>
 
 
 <p>On va maintenant essayer de comprendre les décisions prises par un programme en suivant les

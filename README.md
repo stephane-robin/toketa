@@ -1,4 +1,4 @@
-# TOKETA 20230907
+# TOKETA 20230908
 
 Application destinée aux élèves et aux enseignants comme support de cours.
 
@@ -15,7 +15,7 @@ typing_extensions==4.6.3
 2. résoudre problèmes avec mathjax
 3. ~~résoudre problème avec vidéos trop petites~~
 4. ~~ résoudre problème avec pdf trop petits~~
-5. enlever my-5 des ancres pour chaque section
+5. ~~enlever my-5 des ancres pour chaque section~~
 
 ## quiz en js
 1. quiz par page + questionnaire global
@@ -27,7 +27,7 @@ typing_extensions==4.6.3
 
 ## menus des chapitres
 1. ~~créer les menus~~
-2. créer les liens de menus -> fait pour python
+2. créer les liens de menus
 
 ## ~~construire les gabarits~~
 ## ~~trouver hébergeur~~
@@ -45,11 +45,16 @@ typing_extensions==4.6.3
 ## rajouter bumber
 ...
 
+## reorganiser le site
+...
+
+## rendre le site interactif et pedagogique
+...
+
 ## rajouter module de recherche de mots cles
 ...
 
-## rajouter partage
-...
+## ~~rajouter partage~~
 
 ## rajouter calendrier et taches
 ...
@@ -60,8 +65,7 @@ typing_extensions==4.6.3
 ## basculer en mode securise sur pythonanywhere
 ...
 
-## remplacer les trinkets par du js
-
+## ~~remplacer les trinkets par du js~~
 ## ~~intégrer des trinkets~~
 ## ~~faire la page python/debuter/0~~
 
@@ -73,6 +77,6 @@ typing_extensions==4.6.3
 ## ~~nsi/architecture comprend 17 items et seulement 15 fichiers html~~
 ## ~~latex n'est pas reconnu sur la page maths/calcul/7 (il faut réactiver le serveur Django)~~
 ## ~~les quiz par section ont des reponses fausses~~
-## le menu bootstrap ne fonctionne pas sur smartphone
-## affichage du code HTML dans les questions du quiz
+## ~~le menu bootstrap ne fonctionne pas sur smartphone~~
+## ~~affichage du code HTML dans les questions du quiz~~
 

@@ -3,98 +3,126 @@
 
 {% block contenu %}
 <ul>
-    <li><a href="#structure">comprendre la structure des blocs de code Python</a></li>
-    <li><a href="#decouvrir">découvrir les variables</a></li>
-    <li><a href="#type">connaître le type d'une variable</a></li>
-    <li><a href="#notation">respecter les conventions de notation</a></li>
-    <li><a href="#operateur">connaître les opérateurs</a></li>
+    <li><a href="#definir">comment définir une variable</a></li>
+    <li><a href="#notation">comment nommer une variable</a></li>
+    <li><a href="#operateur">comment utiliser une variable</a></li>
+    <li><a href="#type">les différents types de variables</a></li>
     <li><a href="#manipuler">comment manipuler les variables</a></li>
     <li><a href="#afficher">comment afficher les variables à l'écran</a></li>
-    <li><a href="#biblio">comment importer une bibliothèque</a></li>
+    <li><a href="#demander">comment saisir une variable au clavier</a></li>
+    <li><a href="#saisie">quel est le type par défaut saisi au clavier ?</a></li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
-<!-- STRUCTURE DU CODE -->
-<p class="invisible" id="structure">ancre</p>
 
-<h3>La structure des blocs de code Python</h3>
-
-<p>Chaque programme est composé d'instructions, qui sont comme des phrases avec leur propre syntaxe, 
-    leur orthographe et leur grammaire. Contrairement à la langue française, le nombre de mots est très limité, 
-et la syntaxe est toujours la même. Elle peut paraître compliquée au début mais le meilleur moyen de bien la connaître 
- est de pratiquer en s'aidant des commentaires de l'ordinateur pour effectuer les corrections. Il faut par ailleurs 
-toujours garder à l'esprit que l'ordinateur exécute à la lettre ce qu'on lui demande de faire, ligne après ligne et 
-de haut en bas.</p>
-
-<p>Les phrases composent des paragraphes, qui eux-même composent des chapitres qui composent un livre. 
-    En suivant cette analogie, une ligne de code serait une phrase, un bloc ou ensemble d'instructions 
-    regroupées entre elles serait un paragaphe, un module serait un chapitre et un projet serait un livre.</p>
-
-<p>Le langage Python a la particularité de ne pas séparer les blocs de code par des accolades. 
-    Il utilise plutôt un niveau de décalage à droite (appelé indentation) représentatif de chaque bloc.</p>
-
-<p>Par exemple, au lieu d'avoir un code structuré ainsi :</p>
-
-<pre><code class="language-svg">{
-instruction du bloc 1
-instruction du bloc 1
-{
-instruction du bloc 2
-instruction du bloc 2
-}
-instruction du bloc 1
-}</code></pre>
-
-<p>le même code en Python serait</p>
-
-<pre><code class="language-svg">instruction du bloc 1
-instruction du bloc 1
-    instruction du bloc 2
-    instruction du bloc 2
-instruction du bloc 1</code></pre>
-
-<p>On remarque tout de suite que le code Python est plus court et plus lisible. En revanche, 
-    il est impératif de penser à décaler les instructions du bloc 2, sinon elles appartiendraient 
-    au bloc 1 et cela changerait le code.</p>
-
-<p>La fin d'une ligne symbolise la fin d'une instruction. Il n'est pas nécessaire en Python 
-    d'utiliser des points-virgules pour symboliser la fin d'une instruction.</p>
-
-<p>Par ailleurs, les programmes comprennent des fonctions qu'on appelle autant de fois que nécessaire pour éviter de 
-    répéter les mêmes lignes de code.</p>
-
-<p>Il est possible et même très important d'écrire des commentaires dans un programme. Ces portions de code ne
-    sont pas exécutées par l'interpréteur Python et ont pour but de faciliter la compréhension du code, pour le 
-    lecteur du code comme pour le développeur (car parfois les codes sont compliqués). Les commentaires d'une ligne 
-commencent toujours par le symbole #, alors que les commentaires de plusieurs lignes sont entourés des symboles """, 
-comme dans l'exemple ci-dessous.</p>
-
-<pre><code class="language-python"># ceci est un commentaire d'une ligne
-
-"""
-ceci est un commentaire
-sur plusieurs lignes
-"""</code></pre>
-
-<p>Il faut prendre l'habitude d'écrire les commentaires en anglais car Python est écrit en anglais.</p>
-
-<div class="exerciceType">
-<p>En résumé</p>
-
-<ul>
-    <li>les codes Python sont composés de blocs qu'on repère grâce à leur décalage par rapport au bord gauche de la page.</li>
-    <li>les commentaires sont destinés aux développeurs et permettent de mieux comprendre le code</li>
-    <li>les fonctions permettent d'éviter de répéter le code</li>
-</ul>
-</div>
+<!-- A PLACER EN DEBUT DE FICHIER -->
+<!-- script for pyodide python sandbox -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!-- import codemirror stylings -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
+<!-- install codemirror.js version /5.63.3 from cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
+integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- install codemirror python language support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/python/python.min.js"
+integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- import codemirror dracula theme styles from cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/dracula.css" />
+</head>  
 
 
-<!-- DECOUVRIR LES VARIABLES  -->
-<p class="invisible" id="decouvrir">ancre</p>
+<style>
+  /* set codemirror ide height to 100% of the textarea */
+  .CodeMirror {
+    height: 150px;
+    overflow: hidden;
+  }
+</style>
 
-    <h3>Découvrir les variables</h3>
+
+<!-- Common function to initialize a sandbox -->
+<script>
+    const sandboxes = {};
+  
+    function initializeSandbox(sandboxId) {
+      const outputElement = document.getElementById(`output${sandboxId}`);
+      const codeElement = document.getElementById(`code${sandboxId}`);
+  
+      const editor = CodeMirror.fromTextArea(codeElement, {
+        mode: {
+          name: "python",
+          version: 3,
+          singleLineStringErrors: false,
+        },
+        theme: "dracula",
+        lineNumbers: true,
+        indentUnit: 4,
+        matchBrackets: true,
+      });
+  
+      editor.setValue("# type your code here");
+      outputElement.value = "Initializing...\n";
+  
+      const sandbox = {
+        pyodide: null,
+        editor,
+        outputElement,
+      };
+  
+      sandboxes[sandboxId] = sandbox;
+  
+      async function main() {
+        sandbox.pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
+        });
+  
+        sandbox.outputElement.value = sandbox.pyodide.runPython(`
+          import sys
+          sys.version
+        `);
+  
+        sandbox.outputElement.value += "\n>>>\n";
+      }
+  
+      main();
+    }
+  
+    function executePython(sandboxId) {
+      const sandbox = sandboxes[sandboxId];
+  
+      try {
+        sandbox.pyodide.runPython(`
+          import io
+          sys.stdout = io.StringIO()
+        `);
+  
+        const result = sandbox.pyodide.runPython(sandbox.editor.getValue());
+        const stdout = sandbox.pyodide.runPython("sys.stdout.getvalue()");
+        sandbox.outputElement.value += stdout + "\n";
+      } catch (err) {
+        sandbox.outputElement.value += "Error: " + err + "\n";
+      }
+    }
+  
+    function clearHistory(sandboxId) {
+      const sandbox = sandboxes[sandboxId];
+      sandbox.outputElement.value = "";
+      console.log(sandboxId);
+    }
+  </script>
+
+
+<!-- INTRODUCTION -->
+<p class="invisible" id="intro">ancre</p>
+<h3>Découvrir les variables par la pratique</h3>
+
+<p>Ecoute la vidéo ci-dessous puis télécharge et complète le Jupyter Notebook suivant pour 
+    découvrir les bases des variables en Python. Rappel, il est possible d'ouvrir un Jupyter Notebook 
+sur le site <a href="https://notebook.basthon.fr/" target="_blank">basthon.fr</a>.</p>
 
 <div class="col-12 col-md-8 my-5">
     <iframe src="https://www.youtube.com/embed/p2M999meN2Y"
@@ -103,56 +131,166 @@ sur plusieurs lignes
     <figcaption>Les variables</figcaption>
 </div>
 
+<a href="{% static 'home/documents/variables.ipynb' %}" download><button class="bouton2 bi bi-download"> Notebook sur les variables</button></a>
+
+
+
+<!-- L'ESSENTIEL -->
+<h3>L'essentiel à connaître</h3>
+
+<div class="my-3 essentiel">
+
+<h4 class="font-weight-bold">Qu'est-ce qu'une variable ?</h4>
+
+<p>Une variable est un objet informatique composé d'un nom, d'une valeur, d'une adresse et d'un type.</p>
+<ul>
+    <li>le nom doit être explicite, ne peut pas être composé d'une instruction Python, ne peut pas commencer par un chiffre</li>
+    <li>la valeur d'une variable est amenée à changer au cours de l'exécution d'un programme</li>
+    <li>l'adresse de la variable permet de la retrouver en mémoire</li>
+    <li>le type correspond à la famille de cette variable et permet de lui fournir une structure qui répond à ses besoins</li>
+</ul>
+
+<h4>Comment définir une variable ?</h4>
+
+<p>On définit la valeur d'une variable avec un signe = comme dans l'exemple ci-dessous :</p>
+<pre><code class="language-python">age = 16</code></pre>
+<p>On pourra par la suite lui donner de nouvelles valeurs autant de fois que nécessaire.</p>
+
+<h4>Comment utiliser une variable ?</h4>
+
+<p>On utilise une variable en l'appelant par son nom et le programme remplacera ce nom par sa valeur, 
+    comme dans l'exemple ci-dessous où identite prend la valeur Antoine - Robert :</p>
+<pre><code class="language-python">prenom = "Antoine"
+nom = "Robert"
+identite = nom + " - " + prenom</code></pre>
+
+<h4>Les principales opérations</h4>
+
+<ul>
+    <li>+ pour l'addition</li>
+    <li>- pour la soustraction</li>
+    <li>* pour la multiplication</li>
+    <li>** pour la puissance</li>
+    <li>/ pour la division</li>
+    <li>// pour le quotient de division</li>
+    <li>% pour le reste de division</li>
+</ul>
+
+<h4>Comment afficher une variable ?</h4>
+
+<p>On utilise l'instruction print() et le nom de la variable. Par exemple, le code suivant affiche 
+    Hervé a 17 ans :</p>
+    <pre><code class="language-python">prenom = "Hervé"
+age = "17"
+print(prenom + " a " + age + " ans")</code></pre>
+
+<h4>Comment saisir la valeur d'une variable au clavier</h4>
+
+<p>On utilise l'instruction input() et on stocke la valeur saisie dans une variable, comme dans 
+    l'exemple ci-dessous qui affiche Quel est ton nom ? et attend une réponse avant de la stocker 
+    dans la variable nom :</p>
+<pre><code class="language-python">nom = input("Quel est ton nom ? ")</code></pre>
+
+</div>
+
+<p>Tu trouveras ci-dessous la fiche mémo téléchargeable au format PDF.</p>
+
+<a href="{% static 'home/documents/memoVariables.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo - variables.pdf</button></a>
+
+
+<!-- DEFINIR UNE VARIABLE  -->
+<p class="invisible" id="definir">ancre</p>
+
+    <h3>Comment définir une variable</h3>
+
     <p>Une variable est un peu comme un carton de rangement. On a besoin d'un nom pour savoir ce qu'il contient, 
 et bien sûr on doit pouvoir accéder à son contenu quand on en a besoin. On doit même pouvoir retirer une affaire 
-du carton, rajouter une affaire ou en modifier totalement le contenu. Afin de pouvoir le retrouver facilement, 
-on a besoin de savoir à quelle famille il appartient, par exemple de taille moyenne et de couleur rouge. Il est 
+du carton, rajouter une affaire ou en modifier totalement le contenu. Afin d'utiliser la taille de carton la 
+plus appropriée à son contenu, on a besoin de connaître le type de carton nécessaire. Il est 
 également important de connaître son emplacement dans la maison lorsqu'on a besoin d'y accéder. Une variable est 
-construite suivant le même principe qu'un carton, et dispose des mêmes caractéristiques : nom, contenu, emplacement, 
-famille.</p>
+construite suivant le même principe qu'un carton, et dispose des mêmes caractéristiques : un nom, une valeur, un type et
+ une adresse mémoire.</p>
 
-<img src="{% static 'home/images/python/carton.png' %}" width="150px">
+<img src="{% static 'home/images/python/carton.png' %}" width="150px" class="my-3">
 
 <p>Une variable permet de stocker une donnée du code. Par exemple dans un jeu, on a besoin de garder en 
     mémoire le score du joueur, sur un site internet on a besoin de garder en mémoire le pseudo de l'utilisateur 
-    lorsqu'il est identifié. On comprend bien que les variables sont les briques les plus essentielles de tout 
-    programme.</p>
+    lorsqu'il est identifié. On comprend bien que les variables sont les briques les plus essentielles au 
+    fonctionnement de nos programmes.</p>
+
+<p>En Python, on ne s'occupera que du nom de la variable, de sa valeur et de son type. La gestion de la mémoire n'est 
+    pas du ressort du programmeur, contrairement au langage C. Elle est automatisée en Python par un garbage collector. 
+    Cela facilite le travail du développeur mais n'optimise pas l'utilisation de la mémoire et ralentit l'exécution du code.</p>
+
+
+    <p>Voici un premier exemple où le nom de la variable est <strong>age</strong> :</p>
+
+    <pre><code class="language-python">age = 18</code></pre>
     
-<p>Une variable est constituée d'un nom, d'une valeur, d'un emplacement en mémoire et 
-    d'un type. En Python, on ne s'occupera que du nom de la variable, de sa valeur et de son type.</p>
-
-<p>A noter que le nom d'une variable ne peut pas commencer par un chiffre, ne peut pas contenir d'espace et ne peut 
-    pas être un mot réservé, c'est à dire une instruction Python. Voici un premier exemple où
-    le nom de la variable est <strong>age</strong> :</p>
-
-<pre><code class="language-python">age = 18</code></pre>
-
-<p>On utilise le signe <strong>"="</strong> pour donner la valeur <strong>18</strong> à la variable appelée 
-    <strong>age</strong>. On peut maintenant changer la valeur de <strong>age</strong> autant de fois que l'on 
-     souhaite. Celle-ci est stockée en mémoire sous le nom <strong>age</strong>. C'est parce qu'on peut en changer 
-     la valeur autant de fois que l'on veut, qu'on parle de "variable".</p>
-
-<p>&#9889; <em>Attention</em>, en mathématiques le signe <strong>"="</strong> est réversible, c'est à
-dire qu'on peut l'utiliser dans les deux sens et on peut également résoudre une équation pour obtenir la valeur 
-d'une inconnue x par exemple. En informatique, c'est beaucoup plus simple, le signe <strong>"="</strong> signifie 
-uniquement qu'on donne une valeur à une variable. Il n'y a pas de notion d'égalité. Pour mieux comprendre, analysons le code ci-dessous :</p>
-
-<pre><code class="language-python">x = 12 # x prend la valeur 12
+    <p>On utilise le signe <strong>"="</strong> pour donner la valeur <strong>18</strong> à la variable appelée 
+        <strong>age</strong>. On peut maintenant changer la valeur de <strong>age</strong> autant de fois que l'on 
+         souhaite. Celle-ci est stockée en mémoire sous le nom <strong>age</strong>. On parle de variable justement 
+         parce qu'on peut en changer la valeur autant de fois que nécessaire.</p>
+    
+    <p>&#9889; <em>Attention</em>, en mathématiques le signe <strong>"="</strong> est réversible, c'est à
+    dire qu'on peut l'utiliser dans les deux sens et on peut également résoudre une équation pour obtenir la valeur 
+    d'une inconnue x par exemple. En informatique, c'est beaucoup plus simple, le signe <strong>"="</strong> signifie 
+    uniquement qu'on donne une valeur à une variable. Il n'y a pas de notion d'égalité. Pour mieux comprendre, analysons le code ci-dessous :</p>
+    
+    <pre><code class="language-python">x = 12
 y = x
 x = 44</code></pre>
+    
+    <p>Un programme se lit et s'exécute ligne par ligne. Dans ce cas,</p>
+    <ul>
+        <li>x prend la valeur 12</li>
+        <li>y prend la valeur de x c'est à dire 12</li>
+        <li>x prend la valeur 44 et y conserve sa valeur 12. Bien qu'à la ligne précédent il était écrit y = x, les 
+            deux variables n'ont pas la même valeur à la fin du code. IL NE S'AGIT PAS D'UNE EGALITE MAIS DE 
+            L'AFFECTATION DE VALEURS A DES VARIABLES.</li>
+    </ul>
+    
+    <div class="fieldsetDefinition">
+        <p>A RETENIR ...</p>
+        <p>Le signe = ne symbolise pas une égalité en Python, mais l'affectation d'une valeur à une variable.</p>
+    </div>
 
-<p>Un programme se lit et s'exécute ligne par ligne. Ici, x prend la valeur 12, puis y prend la valeur de x 
-    c'est à dire 12, finalement x prend la valeur 44. C'est juste un exemple sans intérêt, si ce n'est pour bien comprendre 
-    qu'à la fin x vaut 44 et y vaut 12 alors qu'il était écrit y = x. IL NE S'AGIT PAS D'UNE EGALITE MAIS DE 
-    L'AFFECTATION DE VALEURS A DES VARIABLES.</p>
 
-<div class="fieldsetDefinition">
-    <p>A RETENIR ...</p>
-    <p>Le signe = ne symbolise pas une égalité en Python, mais l'affectation d'une valeur à une variable.</p>
+<!-- QUESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
+
+<script>
+var questionsData1 = 
+    {
+        question: "Quelle affirmation est vraie ...",
+        options:["une variable peut prendre plusieurs valeurs en même temps", "une variable ne change pas de valeur", "une variable ne change pas de nom"],
+        correctIndex: 2,
+        commentaire: "Seule le nom d'une variable reste inchangé."
+    };
+questionnaireUnique(1, questionsData1);
+</script>
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    
+    <ul>
+        <li>les variables stockent des données en mémoire durant l'exécution d'un programme</li>
+        <li>une variable est constituée d'un nom, d'une valeur, d'un type et d'une adresse mémoire</li>
+        <li>on définit une variable en affectant une valeur à un nom grâce au signe =</li>
+    </ul>
 </div>
 
-<p>Voici une liste non exhaustive de mots-clés qu'il n'est donc pas possible d'utiliser comme nom de variable :
-    <em>print, input, if, while, for, range, list, str, float, int, def, match, else, elif</em></p>
+
+<!-- LES CONVENTIONS DE NOTATION -->
+<p class="invisible" id="notation">ancre</p>
+<h3>Comment nommer une variable</h3>
+
+<p>Le nom d'une variable ne peut pas commencer par un chiffre, ne peut pas contenir d'espace, ne peut pas contenir de 
+    caractère spécial (#!.;()][/\&lt;>) et ne peut pas être un mot-clé du langage Python comme par exemple <em>print,
+         if, else, while, def, int, str, float, bool, for, range, and, or, elif, input, match, not, chr, ord, list, ...</em>.</p>
+
 
 <div class="exerciceApplication">
     <p><strong>A toi de jouer : </strong>parmi les noms suivants, choisir ceux qu'on peut utiliser comme noms de variables 
@@ -169,171 +307,9 @@ x = 44</code></pre>
         </ul>
 </div>
 
-<p>Pour afficher la valeur d'une variable, il suffit d'utiliser l'instruction <strong>print</strong> avec le nom de cette variable :</p>
 
-<pre><code class="language-python">print(age)</code></pre>
-
-<p>affichera <strong>18</strong>.</p>
-
-<p><em>Attention</em>, vous avez déjà exécuté l'instruction suivante pour tester Python :</p>
-
-<pre><code class="language-python">print("Hello world")</code></pre>
-
-<p>Note l'importance des <strong>""</strong> dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. 
-    L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les guillemets 
-    <strong>""</strong> permettent simplement d'afficher du texte et non pas la valeur d'une variable.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>pour comprendre l'utilité des guillemets "", donne la valeur "Antoine" à la variable <strong>prenom</strong> :</p>
-    <pre><code class="language-python">prenom = "Antoine"</code></pre>
-    <p>puis exécute le code suivant :</p>
-    <pre><code class="language-python">print("prenom")
-print(prenom)</code></pre>
-    <p>Votre code devra afficher<br/><strong>prenom<br/>Antoine</strong></p>
-</div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-
-
-<p>Pour afficher les valeurs de plusieurs variables successives, il suffit de les séparer avec le signe "+" dans l'instruction <strong>print</strong></p>
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>affecte ton prénom à la variable <strong>prenom</strong>, puis ton nom à la variable <strong>nom</strong>, comme ceci :</p>
-    <pre><code class="language-python">prenom = "Antoine"
-nom = "Legendre"</code></pre>
-        <p>Affichez ensuite à l'écran votre nom suivi de votre prénom en utilisant
-        les deux variables que vous venez de créer.</p>
-
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution1" style="display:none;">
-    <pre><code class="language-python">prenom = "Antoine"
-nom = "Legendre"
-print(nom + prenom)</code></pre>
-    </div>
-</div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-
-
-
-
-<!-- QESTIONNAIRE -->
-<h4>As-tu bien compris ?</h4>
-
-{% include '../../../questionnaireUnique.html' with nmr='1' %}
-
-<script>
-var questionsData1 = 
-    {
-        question: "Quelle affirmation est vraie ...",
-        options:["une variable peut prendre plusieurs valeurs en même temps", "une variable ne change pas de valeur", "une variable ne change pas de nom"],
-        correctIndex: 2,
-        commentaire: "Seule le nom d'une variable reste inchangé."
-    };
-questionnaireUnique(1, questionsData1);
-</script>
-
-
-<div class="mt-5 exerciceType">
-    <p>En résumé</p>
-    
-    <ul>
-        <li>les variables stockent des données en mémoire durant l'exécution d'un programme</li>
-        <li>les variables sont composées d'un nom, d'une valeur et d'un type</li>
-    </ul>
-</div>
-
-
-<!-- LES TYPES -->
-
-<p class="invisible" id="type">ancre</p>
-
-<h3>Les différents types de variables</h3>
-
-<p>Chaque variable appartient à une famille particulière relative à la valeur de cette variable :</p>
-<ul>
-    <li>les nombres entiers sont stockés dans des variables de type <strong>int</strong> pour integer</li>
-    <li>les nombres réels sont stockés dans des variables de type <strong>float</strong> pour nombres à virgules flottantes</li>
-    <li>les textes (chaînes de caractères) sont stockés dans des variables de type <strong>str</strong> pour string</li>
-    <li>les valeurs <strong>True</strong> et <strong>False</strong> sont stockées dans des variables de type <strong>bool</strong> pour booléens.</li>
-</ul>
-
-<p>A noter que la place qu'occupe une variable en mémoire dépend fortement du type de cette variable. C'est la raison pour laquelle il est parfois
-préférable de travailler avec un type de variable plutôt qu'un autre.</p>
-
-<p>On peut afficher le type d'une variable avec l'instruction <strong>type()</strong> et le nom de la variable. Par exemple :
-
-    <pre><code class="language-python">print(type(age))</code></pre>
-
-    <p>affichera <strong>int</strong>.</p>
-
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>dans un jeu vidéo, le niveau peut varier de <em>beginner</em> à 
-        <em>master</em>. Donne la valeur "beginner" à une variable que vous appelerez 
-        <strong>utilisateur</strong>, puis à la ligne suivante la valeur "master" à cette même variable.
-         Affiche ensuite le type de la variable <strong>utilisateur</strong>.</p>
-
-    <div>
-        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
-    </div>
-
-    <div id="solution7" style="display:none;">
-        <p>Solution : </p>
-        <pre><code class="language-python">utilisateur = "beginner"
-utilisateur = "master"
-print(type(utilisateur))</code></pre>
-    </div>
-</div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>on écrit le code suivant qui permet d'effectuer certains calculs :</p>
-<pre><code class="language-python">compteur_tours = 7
-compteur_ravitaillement = compteur_tours * 2
-quantite_nourriture = 3500 - 64 * compteur_ravitaillement</code></pre>
-<p>Quelle est la valeur de la variable <strong>quantite_nourriture</strong> lors de l'exécution du code ? (travail sans ordinateur)</p>
-</div>
-
-
-<!-- QESTIONNAIRE -->
-<h4>As-tu bien compris ?</h4>
-
-{% include '../../../questionnaireUnique.html' with nmr='2' %}
-
-<script>
-var questionsData2 = 
-    {
-        question: "Quelle affirmation est vraie ...",
-        options:["le type d'une variable définit sa famille d'appartenance", "le type d'une variable est immuable", "on accède au type de la variable x en écrivant x.type()"],
-        correctIndex: 0,
-        commentaire: "Le type d'une variable définit à quel groupe elle appartient."
-    };
-questionnaireUnique(2, questionsData2);
-</script>
-
-
-<div class="mt-5 exerciceType">
-    <p>En résumé</p>
-    
-    <ul>
-        <li>les types de base des variables sont int, float, str, bool</li>
-    </ul>
-</div>
-
-
-<!-- CONVENTIONS DE NOTATION -->
-
-<p class="invisible" id="notation">ancre</p>
-
-<h3>Les conventions de notation</h3>
-
-<p>Les noms de variables doivent avoir un sens et s'écrivent très souvent d'une des deux manières suivantes :</p>
+<p>Les noms de variables doivent avoir un sens et ne peuvent pas contenir d'espace. Pour cela, ils s'écrivent 
+    très souvent d'une des deux manières suivantes :</p>
 <pre><code class="language-python">nomUtilisateur = "Antoine"
 nom_utilisateur = "Antoine"</code></pre>
 
@@ -342,13 +318,9 @@ nom_utilisateur = "Antoine"</code></pre>
 
 <pre><code class="language-python">PI = 3.14</code></pre>
 
-<p>Rappel, le nom d'une variable ne commence pas par un chiffre et ne peut pas être un mot-clé du langage Python, 
-    comme par exemple <em>print, if, else, while, def, int, str, float, bool, for, range, not, chr, ord, list, ...</em>
-Par ailleurs, les virgules sont représentées par des points en anglais et donc également en Python, comme dans l'exemple 
-précédent de PI.</p>
 
 
-<!-- QESTIONNAIRE -->
+<!-- QUESTIONNAIRE -->
 <h4>As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='3' %}
@@ -365,13 +337,27 @@ questionnaireUnique(3, questionsData3);
 </script>
 
 
-<!-- OPERATIONS -->
 
+<!-- COMMENT UTILISER UNE VARIABLE -->
 <p class="invisible" id="operateur">ancre</p>
+<h3>Comment utiliser une variable</h3>
 
-<h3>Les principaux opérateurs</h3>
+<p>On utilise une variable en se servant de son nom à l'intérieur d'instructions Python.</p>
+<p>Il est par exemple possible de faire des calculs en utilisant des opérations qui servent à modifier la 
+    valeur des variables. Les virgules servent de séparateurs en Python et il faut 
+    utiliser un point pour séparer la valeur entière de la valeur décimale dans un nombre réel, exactement comme dans la 
+    langue anglaise. Par exemple, pour affecter la valeur 17,2 à la variable <strong>x</strong>, on écrit</p>
+    
+    <pre><code class="language-python">x = 17.2</code></pre>
 
-<p>Les opérateurs servent à modifier la valeur des variables. Pour les nombres entiers (<strong>int</strong>) et les nombres réels (<strong>float</strong>), on peut utiliser les opérations suivantes :</p>
+    <p>Pour afficher la valeur de x, il suffit maintenant d'utiliser l'instruction :</p>
+    
+    <pre><code class="language-python">print(x)</code></pre>
+    
+    <p>qui affichera <strong>17.2</strong>.</p>
+
+<p>Pour les nombres entiers (<strong>int</strong>) et les 
+    nombres réels (<strong>float</strong>), on peut utiliser les opérations suivantes :</p>
 
     <h4>+ pour l'addition</h4>
     <p>L'instruction ci-dessous donne la valeur 8 à la variable x.</p>
@@ -396,7 +382,7 @@ questionnaireUnique(3, questionsData3);
     <h4>// pour le quotient d'une division</h4>
 
 <p>Il est également possible d'effectuer une division euclidienne. Par exemple, on sait que 
-    \(7 = 1 \times 5 + 2\).</p>
+    \(7 = 1 \times 5 + 2\), donc le quotient de cette opération vaut 1 et le reste vaut 2.</p>
     <p>L'instruction ci-dessous donne la valeur 1 à la variable x.</p>
     <pre><code class="language-python">x = 7 // 5</code></pre>
 
@@ -411,10 +397,11 @@ questionnaireUnique(3, questionsData3);
         peut être regroupée en blocs de 8 éléments.</p>
         <pre><code class="language-python">x = 7 % 5</code></pre>
 
-        <div class="exerciceApplication">
-            <p><strong>A toi de jouer : </strong>donne les valeurs 3, 8 et 9 aux variables <strong>x</strong>, <strong>y</strong>, <strong>z</strong>, 
-                puis affiche le résultat des opérations
-             \(x + y \times z\) et \((x + y) \times z\). Les parenthèses jouent le même rôle en Python qu'en mathématiques.</p>
+        
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>donne les valeurs 3, 8 et 9 aux variables <strong>x</strong>, <strong>y</strong>, <strong>z</strong>, 
+        puis affiche le résultat des opérations
+        \(x + y \times z\) et \((x + y) \times z\). Les parenthèses jouent le même rôle en Python qu'en mathématiques.</p>        
 
             <div>
                 <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
@@ -422,38 +409,62 @@ questionnaireUnique(3, questionsData3);
         
             <div id="solution3" style="display:none;">
                 <pre><code class="language-python">x = 3
-        y = 8
-        z = 9
-        
-        print(x + y * z)
-        print((x + y) * z)</code></pre>
+y = 8
+z = 9
+
+print(x + y * z)
+print((x + y) * z)</code></pre>
         </div>
-        </div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 
-<p>En mathématiques, on utilise essentiellement des variables de type <strong>int</strong> 
-    (nombres entiers naturels) et <strong>float</strong> (nombres réels). Par exemple, 
-    pour affecter la valeur 17.2 à la variable <strong>x</strong></p>
+<!-- SANDBOX 1 -->
+{% include '../../../sandbox.html' with nmr='1' %}
+</div>
+<script>
+    initializeSandbox(1);
+</script>
 
-<pre><code class="language-python">x = 17.2</code></pre>
 
-<p>On remarque l'utilisation du point à la place de la virgule suivant 
-    la norme anglaise.</p>
-
-<p>Pour afficher la valeur de x, il suffit ainsi d'utiliser l'instruction :</p>
-
-<pre><code class="language-python">print(x)</code></pre>
-
-<p>qui affichera <strong>17.2</strong>.</p>
+<h4>== pour la comparaison</h4>
     
-    <p>Attention, le signe <strong>==</strong> sert à comparer 2 valeurs et non pas affecter une valeur à une variable.
-    Essayez le code ci-dessous pour mieux comprendre :</p>
+    <p>Attention, le signe <strong>==</strong> sert à comparer 2 valeurs et non pas affecter une valeur à une variable.</p>
 
-<pre><code class="language-python">print(x == 17.2)</code></pre>
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x == 17.2</strong></p>
+    <pre><code class="language-python">x = 17.2
+print(x == 17.2)</code></pre>
+</div>
 
 <p>Ce code affiche True car x a été défini avec la valeur 17.2, donc la comparaison de x et de 17.2 renvoie True.</p>
+
+
+<h4>!= pour la différence</h4>
+
+<p>Le signe <strong>!=</strong> sert à tester que deux variables ont des valeurs différentes.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x != 17.2</strong></p>
+    <pre><code class="language-python">x = 10
+print(x != 17.2)</code></pre>
+</div>
+
+
+<h4>Exemple d'opérations</h4>
+
+<p>Voici un exemple simple d'opérations :</p>
+
+<pre><code class="language-python">x = 3
+x = 2 * x - 2</code></pre>
+
+<p>Un mathématicien aurait tendance à vouloir résoudre l'équation \(x=2x-2\) et trouverait \(x=2\), ce qui ne correspond pas 
+    à la valeur de x donnée au départ. Attention, il ne s'agit pas d'une égalité et il n'est jamais demandé de la résoudre 
+    en tant que telle. Il faut juste affecter de nouvelles valeurs à la variable x. Ainsi dans ce cas :</p>
+
+<ul>
+    <li>x prend la valeur 3</li>
+    <li>x prend la valeur 2 fois x moins 2, c'est à dire \(2\times 3-2\) donc 4</li>
+</ul>
+
 
 <div class="exerciceApplication">
     <p><strong>A toi de jouer : </strong>quel est l'affichage du code suivant ? (travail sans ordinateur)</p>
@@ -464,6 +475,18 @@ a = b
 print(a)</code></pre>
 </div>
         
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>on écrit le code suivant qui permet d'effectuer certains calculs :</p>
+<pre><code class="language-python">compteur_tours = 7
+compteur_ravitaillement = compteur_tours * 2
+quantite_nourriture = 350 - 10 * compteur_ravitaillement</code></pre>
+<p>Quelle est la valeur de la variable <strong>quantite_nourriture</strong> lors de l'exécution du code ? (travail sans ordinateur)</p>
+</div>
+
+<p class="separateur"></p>
+
     <div class="exerciceApplication">
 <p><strong>A toi de jouer : </strong>certes on peut additionner et multiplier des nombres, mais en Python on peut également additionner et 
             multiplier du texte. Essaye par exemple le code suivant pour comprendre ce qu'il fait :</p>
@@ -476,47 +499,55 @@ repetition = 3 * instrument
 print(repetition)</code></pre>
 
 <p>Dans le cas d'un texte, l'addition s'appelle concaténation et la multiplication s'appelle duplication.</p>
+
+<!-- SANDBOX 2 -->
+{% include '../../../sandbox.html' with nmr='2' %}
 </div>
+<script>
+    initializeSandbox(2);
+</script>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-
-    
+<p class="separateur"></p>
 
     <div class="exerciceApplication">
         <p><strong>A toi de jouer :</strong> stocke ton prénom dans une variable appelée <strong>prenom</strong>, puis affiche 3 fois ton prénom sur une
             même ligne.</p>
         
-
             <div>
                 <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
             </div>
         
             <div id="solution9" style="display:none;">
-                
-        
-        
+                     
             <pre><code class="language-python">prenom = "Jade"
 print(3 * prenom)</code></pre>
         
                 <p>A noter que dans ce cas, on n'a pas géré l'espace se trouvant entre les prénoms et on obtient l'affichage suivant :</p>
-                <pre><code class="language-python">JadeJadeJade</code></pre>
-        
-        </div>
+                <pre><code class="language-python">JadeJadeJade</code></pre>     
         </div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- SANDBOX 3 -->
+{% include '../../../sandbox.html' with nmr='3' %}
+</div>
+<script>
+    initializeSandbox(3);
+</script>
 
+<p class="separateur"></p>
 
 <div class="exerciceApplication">
     <p><strong>A toi de jouer : </strong>l'utilisateur d'un site donne son nom qui est enregistré dans une 
-    variable appelée <strong>nom</strong>, puis un code non secret de 4 chiffres enregistré dans une variable 
-appelée <strong>nombre</strong>. A partir de ces deux variables, créer une variable appelée <strong>pseudo</strong> 
-qui sera en permanence affichée en haut du site, composée du nom rattaché au code à 4 chiffres. Affiche ensuite 
-la valeur de <strong>pseudo</strong> à l'écran.</p>
+    variable appelée <strong>nom</strong>, puis un code de 4 chiffres enregistré dans une variable 
+appelée <strong>nombre</strong>. Crée ces deux variables en leur donnant des valeurs que tu choisiras, puis
+à partir de ces deux variables, crée une variable appelée <strong>pseudo</strong> composée du nom rattaché 
+au code à 4 chiffres. Affiche ensuite la valeur de <strong>pseudo</strong> à l'écran.</p>
 
+<!-- SANDBOX 4 -->
+{% include '../../../sandbox.html' with nmr='4' %}
 </div>
-
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<script>
+    initializeSandbox(4);
+</script>
 
 
 <!-- QESTIONNAIRE -->
@@ -536,11 +567,100 @@ questionnaireUnique(6, questionsData6);
 </script>
 
 
+<!-- LES TYPES -->
+
+<p class="invisible" id="type">ancre</p>
+
+<h3>Les différents types de variables</h3>
+
+<p>Chaque variable appartient à une famille particulière relative à la valeur de cette variable, appelée type. Les 
+    types primaires en Python sont les suivants:</p>
+<ul>
+    <li>les nombres entiers sont stockés dans des variables de type <strong>int</strong> pour integer</li>
+    <li>les nombres réels sont stockés dans des variables de type <strong>float</strong> pour nombres à virgules flottantes</li>
+    <li>les textes (chaînes de caractères) sont stockés dans des variables de type <strong>str</strong> pour string</li>
+    <li>les valeurs <strong>True</strong> et <strong>False</strong> sont stockées dans des variables de type <strong>bool</strong> pour booléens.</li>
+</ul>
+
+<p>La taille de l'espace occupé par une variable en mémoire dépend fortement du type de cette variable. C'est la raison pour laquelle il est parfois
+préférable de travailler avec un type de variable plutôt qu'un autre. Par exemple les entiers occupent moins de place 
+que les nombres réels qui nécessitent un espace mémoire avant la virgule et un espace mémoire après la virgule.</p>
+
+<p>On peut afficher le type d'une variable avec l'instruction <strong>type()</strong> et le nom de la variable. Par exemple :
+
+    <pre><code class="language-python">print(type(age))</code></pre>
+
+    <p>affichera <strong>int</strong>.</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>dans un jeu vidéo, le niveau peut varier de <em>beginner</em> à 
+        <em>master</em>. Donne la valeur "beginner" à une variable que tu appeleras
+        <strong>utilisateur</strong>, puis à la ligne suivante la valeur "master" à cette même variable.
+         Affiche ensuite le type de la variable <strong>utilisateur</strong>.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution7" style="display:none;">
+        <p>Solution : </p>
+        <pre><code class="language-python">utilisateur = "beginner"
+utilisateur = "master"
+print(type(utilisateur))</code></pre>
+    </div>
+
+
+<!-- SANDBOX 5 -->
+{% include '../../../sandbox.html' with nmr='5' %}
+</div>
+<script>
+    initializeSandbox(5);
+</script>
+
+
+
+<h4>Changer le type d'une variable</h4>
+
+<p>Dans certains cas, il est possible de changer le type des variables pour les besoins futurs du
+    programme. On parle dans ce cas de caster une variable. Par exemple, on peut être amené à 
+    fournir des résultats sous forme de nombres réels alors que les calculs ont été faits avec 
+    des nombres entiers, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">nbre1 = 5
+nbre2 = 3
+nbre3 = 6
+resultat = float(5 / 3 + 2)</code></pre>
+
+<!-- QESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+
+<script>
+var questionsData2 = 
+    {
+        question: "Quelle affirmation est vraie ...",
+        options:["le type d'une variable définit sa famille d'appartenance", "le type d'une variable est immuable", "on accède au type de la variable x en écrivant x.type()"],
+        correctIndex: 0,
+        commentaire: "Le type d'une variable définit à quel groupe elle appartient."
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+
+<div class="mt-5 exerciceType">
+    <p>En résumé</p>
+    
+    <ul>
+        <li>les types primaires des variables en Python sont int, float, str, bool</li>
+    </ul>
+</div>
+
+
+
 <!-- MANIPULER LES VARIABLES -->
-
 <p class="invisible" id="manipuler">ancre</p>
-
-<h3>Manipuler les variables</h3>
+<h3>Comment manipuler les variables</h3>
 
 <h4>Inverser deux variables</h4>
 
@@ -604,9 +724,13 @@ print("y = ", y)</code></pre>
 print("x = ", x)
 print("y = ", y)</code></pre>
     </div>
-</div>
 
-<iframe src="https://trinket.io/embed/python/14ddd142a7" width="100%" height="230" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- SANDBOX 6 -->
+{% include '../../../sandbox.html' with nmr='6' %}
+</div>
+<script>
+    initializeSandbox(6);
+</script>
 
 
 <h4>Effectuer des calculs avec des variables</h4>
@@ -656,23 +780,9 @@ print(vitesse_moyenne)</code></pre>
     </div>
 </div>
 
-<p>Il peut parfois être utile de connaître la durée d'exécution d'une instruction. Pour cela, on
-utilise la bibliothèque <strong>time</strong>. L'instruction <strong>time()</strong> renvoie le
-    temps en secondes depuis le 1er janvier 1970 (big bang de l'informatique). L'instruction <strong>sleep()</strong>
-    permet de suspendre l'exécution d'une partie d'un programme pendant un certain nombre de secondes. Le code suivant
-permet par exemple de se rendre compte du temps nécessaire à Python pour compter jusqu'à 100 000 :</p>
-<pre><code class="language-python">import time
-
-print(time.time())
-
-compteur = 0
-for i in range(100000):
-    compteur = compteur + 1
-
-print(time.time())</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A vous de jouer : </strong>écrire un script qui convertit un nombre de secondes en son équivalent en heures, minutes et secondes,
+    <p><strong>A toi de jouer : </strong>écrire un script qui convertit un nombre de secondes en son équivalent en heures, minutes et secondes,
         puis affiche le résultat.</p>
         <pre><code class="language-python">nbre_initial = 324457
 
@@ -702,10 +812,66 @@ print(str(nbre_heures) + " heures, " + str(nbre_minutes) + " minutes, " + str(nb
 
 
 <!-- AFFICHAGE A L'ECRAN -->
-
 <p class="invisible" id="afficher">ancre</p>
+<h3>Comment afficher les variables à l'écran</h3>
 
-<h3>Afficher les variables à l'écran</h3>
+<p>Pour afficher la valeur d'une variable, il suffit d'utiliser l'instruction <strong>print</strong> avec le nom de cette variable :</p>
+
+<pre><code class="language-python">print(age)</code></pre>
+
+<p>affichera <strong>18</strong>.</p>
+
+<p>On a déjà exécuté l'instruction suivante pour tester Python :</p>
+
+<pre><code class="language-python">print("Hello world")</code></pre>
+
+<p>Attention, les guillemets <strong>""</strong> sont importants dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. 
+    L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les guillemets 
+    <strong>""</strong> permettent en fait d'afficher du texte et non pas la valeur d'une variable.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>pour comprendre l'utilité des guillemets "", donne la valeur "Antoine" à la variable <strong>prenom</strong> :</p>
+    <pre><code class="language-python">prenom = "Antoine"</code></pre>
+    <p>puis exécute le code suivant :</p>
+    <pre><code class="language-python">print("prenom")
+print(prenom)</code></pre>
+    <p>Ton code doit afficher<br/><strong>prenom<br/>Antoine</strong></p>
+
+<!-- SANDBOX 7 -->
+{% include '../../../sandbox.html' with nmr='7' %}
+</div>
+<script>
+    initializeSandbox(7);
+</script>
+
+<p>Pour afficher les valeurs de plusieurs variables successives, il suffit de les séparer avec le signe "+" dans l'instruction <strong>print</strong></p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>affecte ton prénom à la variable <strong>prenom</strong>, puis ton nom à la variable 
+        <strong>nom</strong>, comme dans l'exemple ci-dessous :</p>
+    <pre><code class="language-python">prenom = "Antoine"
+nom = "Legendre"</code></pre>
+        <p>Affiche ensuite à l'écran ton nom suivi de ton prénom en utilisant
+        les deux variables que tu viens de créer.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+    <pre><code class="language-python">prenom = "Antoine"
+nom = "Legendre"
+print(nom + prenom)</code></pre>
+    </div>
+
+<!-- SANDBOX 8 -->
+{% include '../../../sandbox.html' with nmr='8' %}
+</div>
+<script>
+    initializeSandbox(8);
+</script>
+
+
+<h4>Affichage de variables dans un texte</h4>
 
 <p>Nous allons voir comment afficher les valeurs de plusieurs variables, ou la valeur d'une variable au sein d'un texte.</p>
 
@@ -758,6 +924,34 @@ nom_restaurant = "Chaîne d'or"</code></pre>
 </div>
 
 
+<h4>Affichage d'une variable de type différent de str</h4>
+
+<p>Imaginons qu'on veuille afficher le score d'un joueur à la fin d'une partie. En imaginant qu'il ait obtenu le score de 
+    147 et qu'il s'appelle "Bastien", on serait tempté d'écrire :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print("Le joueur " + prenom + " a obtenu le score de " + score)</code></pre>
+
+<p>Si tu exécutes ce code, tu te rendras vite compte qu'il déclenche une erreur, car prenom est une chaine de caractères 
+    et s'intègre donc parfaitement au reste du texte, mais score est un entier et ne sait pas comment faire pour compléter 
+    un texte. Il faut donc le transformer en chaîne de caractères avec l'instruction str et modifier notre code comme ceci :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print("Le joeur " + prenom + " a obtenu le score de " + str(score))</code></pre>
+
+<p>Il est également possible d'utiliser l'affichage formaté qui est tout à fait adapté à l'affichage de nombres :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print(f"Le joueur {prenom} a obtenu le score de {score})</code></pre>
+
+
+
 <h4>Affichage respectant la structure donnée</h4>
 
 <p>Il est possible d'afficher un texte en respectant les sauts de ligne et les espaces comme dans le texte d'origine. 
@@ -805,82 +999,50 @@ questionnaireUnique(4, questionsData4);
 </script>
 
 
-<!-- IMPORTER UNE BIBLIOTHEQUE -->
 
-<p class="invisible" id="biblio">ancre</p>
+<!-- DEMANDER UNE SAISIE CLAVIER -->
 
-<h3>Importer une bibliothèque</h3>
+<p class="invisible" id="demander">ancre</p>
 
-<p>Il est parfois très utile de savoir importer une bibliothèque, par exemple 
-    lorsqu'on veut introduire un paramètre de fatalité dans certains jeux, lorsqu'on veut utiliser la 
-    fonction racine carrée ou sinus en mathématiques, lorsqu'on veut créer un modèle spécifique
-    en intelligence artificielle. Une bibliothèque est un ensemble de fonctionnalités et de méthodes qui permettent de fournir certains résultats aux 
-    questions que d'autres développeurs se sont déjà posées. Schématiquement, il s'agit d'un ensemble de fonctions qui 
-    vous permettent d'éviter de reconstruire ce qui existe déjà.</p>
+<h3>Comment saisir une variable au clavier</h3>
 
-<p>Les bibliothèques représentent donc un gain de temps précieux pour vous, et il est astucieux de s'en servir à profusion, 
-    d'autant plus qu'il existe probablement une bibliothèque répondant aux questions de vous vous posez lorsque vous créez 
-    un programme.</p>
+<p>Il est important de pouvoir communiquer avec l'ordinateur, pour lire des résultats ou donner des informations au programme.
+    Par exemple lorsque vous jouez à votre jeu préféré sur votre smartphone, vous effectuez cliquez sur votre écran pour indiquer 
+    au programme vos choix, vous saisissez également votre identifiant au clavier, puis vous observez à l'écran les progrès de 
+    votre personnage.</p>
     
-<p>Vous devez vous demander "pourquoi faut-il les installées si elles sont si importantes ?" Tout simplement pour ne pas 
-    encombrer la mémoire occupée par votre programme avec des bibliothèques inutiles. Par exemple, à quoi cela sert-il de pouvoir utiliser  
-    la fonction tangente lorsqu'on crée un jeu vidéo ? Dans ce cas la bibliothèque math ne semble pas très utile.</p>
+<p>Afin que le programme puisse tenir compte des données de l'utilisateur, il est nécessaire de pouvoir récupérer ce que celui-ci tape au clavier. Une question posée à l'utilisateur et qui appelle une réponse de sa part, doit être insérée dans une instruction <strong>input</strong>. Il est inutile dans ce cas d'utiliser l'affichage de la question avec <strong>print</strong>. Ainsi, le code suivant affiche la question <em>Comment vous appelez-vous  ?</em> et attend une réponse : </p>
 
-<div class="fieldsetDefinition">
-    <h4>A RETENIR ...</h4>
-    <p>Le fait d'importer certains modules, uniquement lorsque nous en avons besoin, permet au langage de préserver de la mémoire.</p>
+    <pre><code class="language-python">input("Comment vous appelez-vous ?")</code></pre>
+
+<p>L'interpréteur Python est maintenant en pause jusqu'à ce que l'utilisateur saisisse au clavier sa réponse puis valide avec la touche <em>Entrée</em>.</p>
+
+<p>Attention, cette réponse est perdue si elle n'est pas affectée à une variable. Ainsi, le code ci-dessus doit être modifié de la façon suivante pour être utile :</p>
+
+<pre><code class="language-python">nom = input("Comment vous appelez-vous ?")</code></pre>
+
+<p>Maintenant seulement, la valeur saisie au clavier par l'utilisateur sera réutilisable lorsqu'on appelle la variable <strong>nom</strong>, commme par exemple avec le code ci-dessous :</p>
+
+<pre><code class="language-python">print(nom)</code></pre>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer :</strong> demande à l'utilisateur son âge puis affichez la valeur saisie en utilisant une variable <strong>age</strong>.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+        <pre><code class="language-python">age = input("quel est votre âge ?")
+print(age)</code></pre>
 </div>
 
-    <p>Apprenons maintenant à importer une bibliothèque. Les bibliothèques Python sont téléchargées et installées 
-        sur votre ordinateur automatiquement par votre environnement de développement, 
-        ou manuellement si vous souhaitez les installer vous-même à un emplacement spécifique.</p>
 
-<p>Importer une bibliothèque ne consiste pas à la télécharger sur Internet et à l'installer, mais à la récupérer 
-    à partir de son emplacement d'installation afin de la rendre disponible pour votre programme. Pour cela, rien 
-de plus simple, il suffit d'utiliser en début de programme l'instruction <strong>import</strong>.</p>
-
-<p>Il existe 4 façons de procéder, toutes valides. Prenons pour exemple la bibliothèque 
-    math afin de calculer \(\sqrt{3}\). Dans le premier cas, on importe toute la bibliothèque 
-et on doit l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
-
-<pre><code class="language-python">import math
-
-print(math.sqrt(3))</code></pre>
-
-<p>Dans le deuxième cas, on importe la bibliothèque math en lui donnant un pseudo plus rapide 
-    à écrire, qu'on doit utiliser devant la fonction sqrt() à chaque fois qu'on l'utilise.</p>
-
-    <pre><code class="language-python">import math as m
-
-print(m.sqrt(3))</code></pre>
-
-<p>Dans le troisième cas, on importe la bibliothèque math sans lui donner de pseudo, mais
-    il n'est pas nécessaire de l'appeler devant la fonction sqrt() à chaque fois qu'on l'utilise.
-C'est très pratique mais cela peut entraîner des confusions si on utilise deux fonctions portant le 
-même nom mais appartenant à des bibliothèques différentes.</p>
-
-    <pre><code class="language-python">from math import *
-
-print(sqrt(3))</code></pre>
-
-<p>Dans le quatrième cas, on importe uniquement la fonction sqrt() de la bibliothèque 
-math et on ne peut donc utiliser aucune autre fonction de cette bibliothèque. Il n'est pas non plus 
-nécessaire d'utiliser le nom de la bibliothèque devant la fonction sqrt().</p>
-
-<pre><code class="language-python">from math import sqrt
-
-print(sqrt(3))</code></pre>
-
-
-<p>Python est un langage de programmation permettant des calculs scientifiques poussés et des représentations graphiques élaborées, grâce à l'utilisation de bibliothèques conçues à cet effet.</p>
-
-<p>En mathématiques, nous utiliserons souvent le module <strong>math</strong> pour accéder à certaines fonctions, et le module <strong>Random</strong> pour fournir des résultats aléatoires en probabilité. Nous utiliserons plus rarement le module <strong>numpy</strong> pour accéder à certaines fonctionnalités de calcul.</p>
-
-<p>Nous commencerons donc souvent notre code par :</p>
-
-<pre><code class="language-python">from math import *
-from Random import *
-from numpy import *</code></pre>
+<!-- SANDBOX 9 -->
+{% include '../../../sandbox.html' with nmr='9' %}
+</div>
+<script>
+    initializeSandbox(9);
+</script>
 
 
 <!-- QESTIONNAIRE -->
@@ -891,23 +1053,132 @@ from numpy import *</code></pre>
 <script>
 var questionsData5 = 
     {
-        question: "si on écrit au début d'un programme 'import math', on doit exécuter le code suivant pour calculer le pgcd de 18 et 24 ...",
-        options:["gcd(18, 24)", "m.gcd(18, 24)", "math.gcd(18, 24)"],
-        correctIndex: 2,
-        commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
+        question: "Pour récupérer le pseudo d'un utilisateur, il faut exécuter ...",
+        options:['pseudo = input("quel est ton pseudo ?")', 'input("quel est ton pseudo ?")', 'pseudo = print("quel est ton pseudo ?")'],
+        correctIndex: 0,
+        commentaire: "Il faut stocker la valeur saisie par une instruction input dans une variable."
     };
 questionnaireUnique(5, questionsData5);
 </script>
 
-<div class="mt-5 exerciceType">
-    <p>En résumé</p>
-    <p>On peut importer la bibliothèque random en utilisant au choix l'une des instructions suivantes :</p>
-    <ul>
-        <li>import random</li>
-        <li>from random import *</li>
-        <li>import random as rd</li>
-    </ul>
+
+<!-- LE TYPE PAR DEFAUT SAISI AU CLAVIER -->
+<p class="my-5 invisible" id="saisie">ancre</p>
+
+<h3>Quel est le type par défaut saisi au clavier ?</h3>
+
+<p>Tout ce que saisit l'utilisateur au clavier est enregistré à l'aide de l'instruction <strong>input</strong> en tant que chaîne de caractères (texte), même un nombre. Essayez pour vous en convaincre le script suivant :</p>
+
+<pre><code class="language-python">age = input("quel est ton âge ? ")
+print(type(age))</code></pre>
+
+<p>Dans le script ci-dessus la variable <strong>age</strong> est de type <em>class 'str'</em>, c'est à dire chaîne de caractères. L'ordinateur considère
+que le nombre saisi est en fait du texte.</p>
+
+<p>Mais alors comment faire des calculs avec du texte ? &#128531;</p>
+
+<p>Afin de pouvoir faire subir des opérations à une variable, il faut que celle-ci soit un nombre,
+    donc principalement de type <strong>int</strong> (entier) ou de type <strong>float</strong> (réel).
+    Or, lorsqu'un utilisateur saisit un nombre au clavier, celui-ci est conservé en tant que <strong>str</strong> (chaîne de caractères).
+    Il faut donc auparavant le transformer en nombre pour pouvoir l'utiliser. On parle de caster
+    une variable pour dire qu'on lui change de type. Pour cela, il suffit d'utiliser devant l'instruction <strong>input</strong>,
+l'instruction <strong>int()</strong> ou <strong>float()</strong>, comme dans le code suivant :</p>
+
+<pre><code class="language-python">age = int(input("quel est ton âge ? "))
+print(type(age))</code></pre>
+
+<p>Attention toutefois, on ne peut transformer une chaîne de caractères en nombres que si celle-ci est composée exclusivement de nombres. 
+    Ainsi, l'instruction <strong>int("bonjour")</strong> entraînera une erreur et ne sera pas transformé en entier. De même, 
+    l'instruction <strong>int("12Hervé")</strong> entraînera une erreur et ne sera pas transformé en entier.</p>
+
+<div class=fieldsetDefinition>
+<h4>A RETENIR ...</h4> 
+<p>"2" est une chaîne de caractères composée du symbole <em>deux</em> qu'on ne peut pas soustraire, ou additionner, ... En revanche 2 est un 
+    nombre auquel on peut faire subir des opérations. Pour s'en convaincre, essayez l'instruction suivante.</p>
+
+<pre><code class="language-python">print("2"+"1") # affiche 21
+print(2+1) # affiche 3</code></pre>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>imaginons que le programme souhaite connaître l'âge de l'utilisateur puis que plus tard, il souhaite lui rajouter un an (lors de son anniversaire).
+        Ecrire le programme qui effectue ces instructions.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
     </div>
+
+    <div id="solution3" style="display:none;">
+
+        <p>L'instruction suivante ne renverrai aucune erreur
+            mais conduirait à un résultat absurde :</p>
+
+        <pre><code class="language-python">age = input("quel est votre âge ?")
+age = age + 1
+print(age)</code></pre>
+
+        <p>qui affiche si l'utilisateur saisit la valeur 18 en réponse</p>
+
+        <pre><code class="language-python">>>> 181</code></pre>
+
+        <p>Dans ce cas, la valeur 18 saisie possède par défaut le type str et lorsqu'on lui rajoute 1,
+            ce dernier se place à la suite de 18 et n'effectue aucun calcul. On parle de concaténation.</p>
+
+        <p>Pour corriger ce problème et effectuer une addition, il faut utiliser le code suivant :</p>
+
+        <pre><code class="language-python">age = int(input("quel est votre âge ?"))
+age = age + 1
+print(age)</code></pre>
+
+        <p>qui fournit le résultat escompté, à savoir :</p>
+
+        <pre><code class="language-python">>>> 19</code></pre>
+    </div>
+
+
+<!-- SANDBOX 10 -->
+{% include '../../../sandbox.html' with nmr='10' %}
+</div>
+<script>
+    initializeSandbox(10);
+</script>
+
+<p>Il existe en Python un moyen de vérifier qu'une valeur saisie peut être transformée en entier, à l'aide de
+l'instruction <strong>isnumeric()</strong>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>essaie le code ci-dessous pour bien comprendre ce que teste l'instruction <strong>isnumeric()</strong>.</p>
+
+<pre><code class="language-python">print("22".isnumeric()) # affiche True
+print("bonjour".isnumeric()) # affiche False, bonjour est une chaîne de caractères
+print("2.45".isnumeric()) # affiche False, 2.45 est un nombre réel
+print("-3".isnumeric()) # affiche False, -3 est un nombre entier négatif</code></pre>
+
+
+<!-- SANDBOX 11 -->
+{% include '../../../sandbox.html' with nmr='11' %}
+</div>
+<script>
+    initializeSandbox(11);
+</script>
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='7' %}
+
+<script>
+var questionsData7 = 
+    {
+        question: '<p>Dans le code suivant : </p><pre><code class="language-python">poids = input("combien pèse le vélo ?")</code></pre><p>quel est le type de la variable poids ...</p>',
+        options:["int car le poids est un nombre entier", "float car il s'agit en fait d'un nombre à virgule", "str car il est stocké ainsi"],
+        correctIndex: 2,
+        commentaire: "Toute saisie clavier est stockée par défaut en tant que str."
+    };
+questionnaireUnique(7, questionsData7);
+</script>
+
 
 
 <!-- ENTRAINEMENT -->
@@ -948,7 +1219,7 @@ print(b)</code></pre>
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 4 : </strong>quelle est la valeur de la variable nom lors de l'exécution du code suivant ? (travail sans ordinateur)</p>
+    <p><strong>Exercice 4 : </strong>que vaut la variable nom à la fin de ce script ? (travail sans ordinateur)</p>
 
     <pre><code class="language-python">nom = "Revard"
 prenom = "Antoine"
@@ -958,7 +1229,7 @@ nom = nom + prenom</code></pre>
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 5 : </strong>quelle est la valeur de la variable x lors de l'exécution du code suivant ? (travail sans ordinateur)</p>
+    <p><strong>Exercice 5 : </strong>que vaut la variable x à la fin de ce script ? (travail sans ordinateur)</p>
 
     <pre><code class="language-python">a = 12
 b = 5
@@ -980,9 +1251,9 @@ a = a - b + 13</code></pre>
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 7 : </strong>écrire un programme qui affiche le score d'un joueur lorsque les variables 
-    score = 152 et pseudo="bestPlayer" sont connues. Dans ce cas, le programme devra utiliser les variables score 
-    et pseudo pour afficher 'bestPlayer, vous avez obtenu 152 points.'</p>
+    <p><strong>Exercice 7 : </strong>écrire un programme qui affiche une phrase pour annoncer le score d'un joueur, 
+sachant que la variable score vaut 152 et la variable pseudo vaut brawlPlayer. Le programme devra donc 
+afficher 'bestPlayer, vous avez obtenu 152 points.' en utilisant les variables score et pseudo.</p>
 </div>
 
 <p class="separateur"></p>
@@ -991,14 +1262,43 @@ a = a - b + 13</code></pre>
     <p><strong>Exercice 8 : </strong>corriger le code ci-dessous pour qu'il affiche <em>Tu joues un mi au 2ème octave</em> 
         en utilisant les variables note et octave.</p>
     <pre><code class="language-python">note = "mi"
-octave = 2
-print("Tu joues un " note " du " octave ème octave")</code></pre>
+hauteur = 2
+print("Tu joues un " note " du " hauteur ème octave")</code></pre>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 9 : </strong>corriger le code ci-dessous qui demande son nom à un utilisateur et 
+    <p><strong>Exercice 9 : </strong>un élève effectue chaque jour 3 aller-retour pour se rendre dans la cour et 5 aller-retours 
+        pour changer de classe. En moyenne chaque changement de classe lui fait parcourir 150 mètres et chaque déplacement 
+        vers la cour lui fait parcourir 100 mètres. Ecrire un programme qui calcule la distance parcourue par un élève en 
+        une semaine et l'affiche. On tiendra compte des variables suivantes :</p>
+
+    <pre><code class="language-python">deplacementCour = ???
+changementClasse = ???
+# LE SCRIPT CONTINUE ICI</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>écrire un programme qui contient les variables nom, prenom et nmrTelephone, et doit 
+        afficher "Le numéro de téléphone de Diane Autissier est 0612322112" lorsque les variables ci-dessus valent respectivement 
+    Autissier, Diane et 0612322112.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 11 : </strong>une ville comporte 12345 habitants. Sa population augmente chaque année de 3,5%. 
+        Cela signifie qu'à la fin de la 1ère année la population initiale est multipliée par 1,035, puis à la fin de 
+        la 2ème année la population est encore multipliée par 1,035, etc ... Ecrire un programme qui calcule et affiche l'estimation de la population dans 5 ans.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 12 : </strong>corriger le code ci-dessous qui demande son nom à un utilisateur et 
         lui dit bonjour en utilisant le nom saisi par l'utilisateur.</p>
     <pre><code class="language-python">input("Quel est ton nom ?)
 print("Bonjour + nom")</code></pre>
@@ -1007,29 +1307,87 @@ print("Bonjour + nom")</code></pre>
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 10 : </strong>un élève effectue chaque jour 3 aller-retour pour se rendre dans la cour et 5 aller-retours 
-        pour changer de classe. En moyenne chaque changement de classe lui fait parcourir 150 mètres et chaque déplacement 
-        vers la cour lui fait parcourir 100 mètres. Ecrire un programme qui calcule la distance parcourue par un élève en 
-        une semaine et l'affiche. On tiendra compte des variables suivantes :</p>
-
-    <pre><code class="language-python">deplacementCour = ???
-changementClasse = ???</code></pre>
+    <p><strong>Exercice 13 : </strong>écrire un programme qui demande à l'utilisateur une 
+    température en degrés Celsius (indication pensez à <strong>input</strong>) et la convertit en Fahrenheit avant de l'afficher, connaissant la formule F = 1.8 * C + 32 
+où F représente la température en Fahrenheit et C la température en Celsius.</p>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 11 : </strong>écrire un programme qui contient les variables nom, prenom et nmrTelephone, et doit 
-        afficher "Le numéro de téléphone de Diane Autissier est 0612322112" lorsque les variables ci-dessus valent respectivement 
-    Autissier, Diane et 0612322112.</p>
+    <p><strong>Exercice 14 : </strong>on reprend la formule ci-dessus, mais cette fois, on veut écrire un 
+        programme qui demande à l'utilisateur une température en Fahrenheit et la convertit en degrés Celsius 
+        avant de l'afficher.</p>
 </div>
 
 <p class="separateur"></p>
 
 <div class="exerciceApplication">
-    <p><strong>Exercice 12 : </strong>une ville comporte 12345 habitants. Sa population augmente chaque année de 3,5%. 
-        Cela signifie qu'à la fin de la 1ère année la population initiale est multipliée par 1,035, puis à la fin de 
-        la 2ème année la population est encore multipliée par 1,035, etc ... Ecrire un programme qui calcule et affiche l'estimation de la population dans 5 ans.</p>
+    <p><strong>Exercice 15 : </strong>écrire un programme qui demande à l'utilisateur de saisir 5 notes au clavier et 
+    qui calcule puis affiche la moyenne obtenue.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 16 : </strong>écrire un programme qui demande à l'utilisateur de saisir 
+    un rayon en centimètres, puis affiche la surface du disque ayant ce rayon en centimètres carrés.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 17 : </strong>écrire un programme qui calcule pour le boulanger les sommes que doivent 
+    payer ses clients lorsqu'ils achètent une baguette à 2,30 €, un croissant à 2,10 € ou une chocolatine à 2,45 €. 
+    Le programme demande au client de nombre de baguettes, de croissants et de chocolatines qu'il veut acheter avant de donner le montant total 
+à payer.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 18 :</strong> écrire un programme qui demande un nombre à l’utilisateur, puis
+        affiche si le terme saisi par l'utilisateur peut être transformé en entier (l'affichage sera uniquement <strong>True</strong> ou <strong>False</strong>, indication, pensez à <strong>isnumeric()</strong>).
+        Finalement, le code affiche "[nombre] fois 4 est égal à " (où [nombre] représente la valeur du nombre saisi), suivi du résultat de
+        cette multiplication. Par exemple si la valeur saisie est 3, le code affichera "True" puis "3 fois 4 est égal à 12".</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution10" style="display:none;">
+        <pre><code class="language-python">nombre = input("veuillez saisir un nombre : ")
+print(nombre.isnumeric())
+
+# on transforme la valeur saisie en entier afin d'effectuer le calcul
+nombre = int(nombre)
+print(nombre + " fois 4 est égal à " + nombre * 4)</code></pre>
+    </div>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 19 : </strong>en musique on dispose des notes suivantes do-ré-mi-fa-sol-la-si-do.
+     On peut attribuer une valeur numérique pour chacune de ces notes, qui correspond à sa fréquence à 
+    l'octave 1. On obtient dans ce cas le tableau suivant :</p>
+    <table>
+        <tr><th>note</th><th>fréquence (Hz)</th></tr>
+        <tr><td>do</td><td>65</td></tr>
+        <tr><td>ré</td><td>74</td></tr>
+        <tr><td>mi</td><td>83</td></tr>
+        <tr><td>fa</td><td>87</td></tr>
+        <tr><td>sol</td><td>98</td></tr>
+        <tr><td>la</td><td>110</td></tr>
+        <tr><td>si</td><td>123</td></tr>
+    </table>
+    <p>On remarque au passage que l'écart entre mi-fa est faible comparativement aux autres notes. 
+        Ceci s'explique par le fait qu'il n'existe qu'un demi-ton entre le mi et le fa, alors qu'il existe 
+        un ton d'écart entre les autres notes du même octave.</p>
+    <p>Un compositeur joue les 6 notes suivantes sur son clavier : mi-sol-la-si-mi-do et veut utiliser un 
+        logiciel pour calculer la tonalité principale de son air.</p>
+    <p>Ecrire un programme qui demande à l'utilisateur de saisir 6 notes, puis calcule la moyenne de ces 
+        notes pour afficher la fréquence moyenne à l'écran.</p>
+    <p>De quoi aurions-nous besoin si on voulait que le résultat affiché soit une note plutôt qu'une fréquence ?</p>
 </div>
 
 

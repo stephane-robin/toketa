@@ -1,0 +1,19 @@
+
+
+<!-- Sandbox -->
+<div>
+  <div class="border-dashed border-2 border-slate-500 mx-2">
+    <!-- code editor, where codemirror renders its display -->
+    <textarea id="code{{nmr}}" name="code{{nmr}}" class="w-100" style="height:150px;"></textarea>
+  </div>
+  <div class="border-dashed border-2 border-slate-500 mx-2">
+    <!-- output area of the python execution -->
+    <textarea readonly class="p-8 text-slate-200 bg-slate-900 w-100" id="output{{nmr}}" name="output{{nmr}}" style="height:80px;"></textarea>
+  </div>
+</div>
+<!-- run button to pass the code to pyodide.runPython() -->
+<button onclick="executePython('{{nmr}}')" type="button" class="bouton mx-2">Exécuter Python</button>
+<!-- clean the output section -->
+<button onclick="clearHistory('{{nmr}}')" type="button" class="bouton mx-2">Effacer</button>
+
+
