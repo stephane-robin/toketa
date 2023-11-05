@@ -3,15 +3,21 @@
 
 {% block contenu %}
 <ul>
-    
+    <li>apprendre à utiliser le Terminal</li>
+    <li>découvrir le parcours d'un paquet sur Internet</li>
 </ul>
 {% endblock contenu %}
+
+{% block tampon %}
+<p class="tampon">TRAVAIL<br/>PRATIQUE</p>
+{% endblock tampon %}
 
 {% block cours %}
 
 <div class="row">
     <div class="col-12">
         <p><em>Travail Pratique proposé par T. Morel.</em></p>
+        <p>Il est nécessaire de pouvoir utiliser le Terminal pour effectuer ce travail pratique.</p>
         <iframe src="{% static 'home/documents/TP_adresseIP.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
     </div>
 </div>

@@ -294,4 +294,25 @@ git merge nomBranche</code></pre>
   <p>Pour supprimer une branche dont les modifications n'ont pas été incorporées à la branche master, parce que par exemple le travail réalisé n'est pas concluant :</p>
     <pre><code class="language-svg">git branch -D nomBranche</code></pre>
   
+<h3>Création de token</h3>
+
+<p>Le recours aux tokens permet de créer des mots de passes validés par GitHub et utilisables durant une période définie à 
+  l'avance, tout en s'assurant que c'est bien le propriétaire du compte qui est à l'origine de chaque token. Il est donc 
+  nécessaire de s'identifier sur son compte GitHub et de se rendre dans les Settings pour créer des tokens.</p>
+
+<p>Une fois créés, les tokens s'utilisent comme des mots de passe. Attention, il n'est pas possible de les retrouver sur 
+  GitHub une fois la fenêtre de création de tokens fermée.</p>
+
+<p>Pour créer un token, il faut donc se rendre sur son compte <a href="https://github.com/" target="_blank">github.com</a>, 
+puis sous l'icône représentative de son nom, choisir <i>Settings dans le menu déroulant</i>. Ensuite un autre menu 
+déroulant propose <i>Developer settings</i>, qui donne accès au menu contenant <i>Personal access tokens</i>. Choisir 
+<i>Tokens (classic)</i>, puis dans <i>Generate new token</i> choisir <i>Generate new token (classic)</i>.</p>
+
+<p>Ces choix donnent maintenant accès à une page qu'il faudra remplir. Le champ sous la rubrique <i>Note</i> permet 
+  de donner un nom au token. Cela permet de le retrouver dans la liste de tous les tokens pour connaître sa 
+  date d'expiration et sa portée. Il faut ensuite choisir la portée du token, c'est à dire dans quel cadre il 
+  sera utilisé (settings, administration du compte, mise à jours, commits, ...).</p>
+
+<p>Il suffit maintenant de finaliser le travail en appuyant sur <i>Generate token</i></p>
+
 {% endblock cours %}

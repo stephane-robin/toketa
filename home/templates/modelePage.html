@@ -3,11 +3,9 @@
 
 {% block principal %}
 
-
-
 <!-- TITRE -->
 
-<section class="px-5 py-5 bg-white">
+<section class="py-5 bg-white">
     <div class="container">
         <h2 id="hautPage">{% block titre %} {{titre}} {% endblock titre %}</h2>
     </div>
@@ -16,31 +14,34 @@
 
 <!-- COMPETENCES -->
 
-<section class="px-5 py-5 bg-white">
+<section class="py-5 bg-white">
     <div class="container">
-        <p>Contenu :</p>
-        {% block contenu %} {% endblock contenu %}
-        <a href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank'>
-        <img src="{% static 'home/images/general/youtubetoketa.png' %}" alt='youtube' width='15%'' style='margin-top:1%;border-radius:5px;'>
-    </a>       
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <p>Contenu :</p>
+                {% block contenu %} {% endblock contenu %} 
+            </div>
+            <div class="col-12 col-md-4">
+                {% block tampon %} {% endblock tampon %}
+            </div>
+        </div>
     </div>
 </section>
 
 
 <!-- COURS -->
 
-<section class="px-5 py-5 bg-white">
+<section class="py-5 bg-white">
     <div class="container">
         {% block cours %} {% endblock cours %}
         <img src="{% static 'home/images/general/toketa.gif' %}" width="300px" class="center">
-
     </div>
 </section>
 
 
 <!-- PAGES PRECEDENTE SUIVANTE -->
 
-<section class="px-5 py-5 bg-white">
+<section class="py-5 bg-white">
     <div class="container">
         <div class="row">
             {% if id != 0 %}

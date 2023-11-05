@@ -3,607 +3,182 @@
 
 {% block contenu %}
 <ul>
-    
+    <li>la cybercriminalité peut prendre différentes formes</li>
+	<li>le phishing</li>
+	<li>les virus</li>
+	<li>le déni de service</li>
+	<li>la publicité malveillante</li>
+	<li>l'exploitation de vulnérabilités</li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}
 
-<p><em>Prérequis :</em> de bonnes connaissances en HTML</p>
+<h3>Introduction</h3>
 
-<h3>Structure du code</h3>
-
-
-<p>JavaScript est un langage interprété qui se veut simple et dont le but initial était de rendre dynamiques et interactives les pages Web.</p>
-    
-<img src="{% static 'home/images/memento/javascript.png' %}" width="80px" height="80px">
-
-
-
-
-<!-- ===== GENERALITES ===== -->
-
-  <p>Les commentaires sont indiqués à l'aide de <strong>//</strong> pour les commentaires simples 
-    et <strong>/*  */</strong> pour les commentaires sur plusieurs lignes.</p>
-
-<p>Comme beaucoup de langages, JavaScript utilise un 
-    <strong>;</strong>  à la fin de chaque instruction.</p>
-
-  <p>Dans une page HTML, il est préférable d'appeler un fichier JavaScript à la fin d'un document 
-    (avant la balise <strong>&lt/body&gt</strong>) pour éviter de ralentir le chargement de la page.</p>
-  
-    <pre><code class="language-javascript">&lt!DOCTYPE html&gt
-&lthtml&gt
-&lthead&gt
-  &ltmeta charset="utf-8"&gt
-  &lttitle>Ma page web&lt/title&gt
-&lt/head&gt
-
-&ltbody&gt
-
-&lt!-- corps du document --&gt
-
-&ltscript src="fichierJavaScript.js"&gt&lt/script&gt
-
-&lt/body&gt
-&lt/html&gt</code></pre>
-
-  <!-- ===== HELLO WORLD ===== -->
-
-  <h3 id="hello">Hello world</h3>
-
-  <p>Commençons par le traditionnel "Hello world". Créer un fichier minimaliste <strong>testJS.html</strong> comme 
-    ci-dessous : </p>
-
-    <pre><code class="language-javascript">&lt!DOCTYPE html&gt
-&lthtml&gt
-&lthead&gt
-  &ltmeta charset="utf-8"&gt
-  &lttitle>Ma page web&lt/title&gt
-&lt/head&gt
-
-&ltbody&gt
-
-&ltscript src="testJS.js"&gt&lt/script&gt
-
-&lt/body&gt
-&lt/html&gt</code></pre>
-    
-    
-    
-<p>Dans un fichier <strong>testJS.js</strong> placé dans le même dossier que <strong>testJS.html</strong>, 
-  écrire le code suivant :</p>
-
-  <pre><code class="language-javascript">alert("Hello world");</code></pre>
-
-<p>L'exécution du code se fait directement lors de la lecture du fichier <strong>page.html</strong> par le 
-navigateur Web Chrome, Edge, Opera, Safari, ...</p>
-
-  <p>Ici, le message apparaît à l'intérieur d'une fenêtre pop-up.</p>
-
-<p>Il est possible de visualiser le résultat dans la console du navigateur. Pour cela, il faut ouvrir 
-  dans le navigateur l'onglet <em>Outil de Développement</em>, puis l'onglet <em>Console</em>. 
- Il faut également modifier le script dans le fichier <strong>testJS.js</strong> en écrivant cette fois :</p>
-
- <pre><code class="language-javascript">console.log("Hello world");</code></pre>
-
-
-
-
-   <!-- ===== LES VARIABLES ===== -->
-  <h3>Les variables</h3>
-  
-    <h4> Types </h4>
-  
-    <p>JavaScrpt est un langage à typage dynamique, i.e. qu'il identifie lui-même les types de variables et 
-      autorise les changements de type. La déclaration des variables n'est donc pas nécessaire.</p> 
-
-    <p>Par ailleurs, JavaScript est un langage faiblement typé, car il convertit automatiquement les types de variables. Ainsi, la concaténation d'un <em>String</em> avec un nombre transforme implicitement la variable obtenue en <em>String</em>. Pour éviter tout changement intempestif pouvant conduire à une erreur, il faut donc systématiquement tester le type des variables avant de les utiliser.</p>
-  
-<p>Les principaux types de variables sont : number pour les nombres (entiers ou réels, positifs ou négatifs), string pour les chaînes 
-  de caractères, boolean composés de true et false (sans majuscule), Null et undefined.</p>
-
-<p>Pour tester le type d'une variable, on utilise l'instruction</p>
-  <pre><code class="language-javascript">typeof maVariable</code></pre> 
-  <p>Si cette instruction renvoie <em>undefined</em>, c'est que la variable n'existe pas (elle n'a pas été 
-  déclarée).</p>
-
-<p>Il est tout à fait possible de caster une variable. L'instruction <strong>parseInt(chaine)</strong> permet de transformer un <em>String</em> en nombre <em>si cela est possible</em> alors que l'instruction <strong>toString(nombre)</strong> permet de transformer un nombre en <em>String</em>.</p>
-<p>L'instuction <strong>Number(x)</strong> permet également de transformer un String en Number lorsque cela est 
-possible, et inversement l'instruction <strong>String(x)</strong> permet de transformer un nombre en chaîne de 
-caractères.</p>
-
-<h4>Affectation d'une valeur</h4>
-
-<p>Pour affecter une valeur à une variable, on utilise préférentiellement le mot-clé 
-  <code class="language-javascript">let</code> plutôt que <code class="language-javascript">var</code> 
-  qui désigne une variable locale, et s'utilisait essentiellement avec les anciennes versions de JavaScript.</p>
-
-    <pre><code class="language-javascript">let maVarible = 12;</code></pre>
-
-<p>Notons que JavaScript est sensible à la casse des caractères.</p>
-  
-    <h4> Les principales opérations </h4>
-  
-    <table>
-      <tr><th>Opérations</th><th>Symboles</th></tr>
-      <tr><td>addition</td><td>+</td></tr>
-      <tr><td>soustraction</td><td>-</td></tr>
-      <tr><td>multiplication</td><td>*</td></tr>
-      <tr><td>division</td><td>/</td></tr>
-      <tr><td>modulo</td><td>%</td></tr>
-      <tr><td>concaténation</td><td>+</td></tr>
-      <tr><td>affectation</td><td>=</td></tr>
-      <tr><td>égalité</td><td>==</td></tr>
-      <tr><td>incrémentation</td><td>++</td></tr>
-      <tr><td>décrémentation</td><td>--</td></tr>
-      <tr><td>ET logique</td><td>&&</td></tr>
-      <tr><td>OU logique</td><td>||</td></tr>
-      <tr><td>NON logique</td><td>!</td></tr>
-    </table>
-  
-    <h4>Les opérateurs de comparaison</h4>
-  
-    <table>
-      <tr><th>Signification</th><th>Opérateurs</th></tr>
-      <tr><td>égalité (uniquement valeur)</td><td>==</td></tr>
-      <tr><td>égalité (valeur et type)</td><td>===</td></tr>
-      <tr><td>différent</td><td>!=</td></tr>
-      <tr><td>inférieur</td><td><</td></tr>
-      <tr><td>inférieur ou égal</td><td><=</td></tr>
-      <tr><td>supérieur</td><td>></td></tr>
-      <tr><td>supérieur ou égal</td><td>>=</td></tr>
-    </table>
-  
-    <h4>Les constantes</h4>
-  
-    <p>On définit une constante avec le mot-clé <strong>const</strong> au lieu de <strong>let</strong>.</p>
-  
-  
-    <h4>La portée des variables</h4>
-
-<p>Les variables définies avec le mot-clé <strong>let</strong> ont une portée (un scope) sur le bloc dans 
-lequel elles ont été définies, et non pas une portée globale. Par exemple, le code suivant génère une erreur 
-car la variable <strong></strong> n'est pas définie que dans la condition <strong>if</strong> et non pas 
-pour le programme principal.</p>
-
-<pre><code class="language-javascript">let estConnecte = true;
-
-if (estConnecte){
-  let message = "bienvenue";
-}
-else{
-  let message = "vous n'êtes pas connecté"
-}
-console.log(message); # renvoie une erreur ici</code></pre>
-
-<p>Pour reprendre l'exemple précédent, il faut donc déclarer la variable <strong>message</strong> de 
-façon globale comme dans le code ci-dessous :</p>
-<pre><code class="language-javascript">let estConnecte = true;
-let message = "";
-
-if (estConnecte){
-  message = "bienvenue";
-}
-else{
-  message = "vous n'êtes pas connecté"
-}
-console.log(message); # ne renvoie pas d'erreur dans ce cas</code></pre>
-
-
-<!-- ===== SAISIE D'UNE VALEUR PAR L'UTILISATEUR ===== -->
-<h3 id="saisie">Saisie d'une valeur par l'utilisateur</h3>
-
-<p>On peut utiliser indifféremment :</p>
-
-<pre><code class="language-javascript">let nom = prompt("Quel est votre nom ?");
-alert("Hello world " + nom);</code></pre>
-
-<p>ou</p>
-<pre><code class="language-javascript">let nom = prompt("Quel est votre nom ?");
-alert(`Hello world ${nom}`);</code></pre>
-
-<p>Attention toutefois avec la deuxième structure (template litteral) qui n'utilise plus des guillemets classiques mais des 
-  `.</p>
-
-
-<div class="fieldsetDefinition"><h4>BON A SAVOIR </h4>
-  <p><em>Attention</em>, la valeur saisie au clavier est systématiquement de type <em>String</em>. Il convient donc de la transformer en nombre le cas échéant.</p>
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>la plupart des risques encourus sur Internet sont liés aux utilisateurs. 
+		expliquez dans le détail comment il est possible de se faire piéger en se rendant sur un site, en répondant 
+	à un email, en consultant son smartphone, ... Quels sont donc les comportements à risque à éviter ?</p>
 </div>
 
-<p>Remarquons que les instructions <strong>prompt()</strong> et <strong>alert()</strong> ne sont pas supportées 
-par Node.js</p>
-  
 
-  <h3>Les chaînes de caractères</h3>
+<!-- LA CYBERCRIMINALITE PEUT PRENDRE DIFFERENTES FORMES -->
+<h3>La cybercriminalité peut prendre différentes formes</h3>
 
-  <!-- ===== MANIPULER DES CHAINES DE CARACTERES ===== -->
-  <h4>Manipuler les chaînes de caractères</h4>
-  
-    <p> Pour échapper une apostrophe ou un guillemet, on utilise le signe <strong>\</strong>. 
-      L'indice du 1er caractère d'une chaîne est 0.</p>
-  
-    <table>
-      <tr><th>Propriétés</th><th>Codes</th></tr>
-      <tr><td>taille</td><td><pre>chaine.length</pre></td></tr>
-      <tr><td>élément d'indice i</td><td><pre>chaine[i]</pre></td></tr>
-      <tr><td>convertir en minuscules</td><td><pre>chaine.toLowerCase()</pre></td></tr>
-      <tr><td>convertir en majuscules</td><td><pre>chaine.toUpperCase()</pre></td></tr>
-      <tr><td>comparaison</td><td>===</td></tr>
-      <tr><td>concaténation</td><td>+</td></tr>
-      <tr><td>retour à la ligne</td><td>\n</td></tr>
-      <tr><td>tabulation</td><td>\t</td></tr>
-      <tr><td>transformer une chaîne en tableau élément par élément</td><td><pre>let tab = Array.from(chaine);</pre></td></tr>
-      <tr><td>transformer une chaîne comprenant le séparateur - en tableau</td><td><pre>let tab = chaine.split("-");</pre></td></tr>
-      <tr><td>transformer un tableau en chaîne contenant le séparateur - </td><td><pre>let chaine = tab.join("-")</pre></td></tr>
-      <tr><td>recherche de "non" dans une chaine</td><td><pre>chaine.indexOf("non");</pre></td></tr>
-    </table>
-  
-    <p>Notons que l'instruction <strong>indexOf</strong> renvoie -1  si le caractère recherché ne se trouve pas dans la chaîne.</p>
-  
-    <h4>Parcourir une chaîne de caractères élément par élément</h4>
-  
-    <pre><code class="language-javascript">for(let i=0; i&lt chaine.length; i++){
-    chaine[i];
-  }</code></pre>
-  
-    <h4>Template literal</h4>
-  
-    <p>JavaScript permet d'inclure des expressions dans une chaîne de caractères appelées <em>template literal</em>. Pour cela, il faut délimiter la chaîne avec <strong>`</strong> à la place de <strong>"</strong> et utiliser <strong>${expression}</strong>.</p>
-    <pre><code class="language-javascript">let nom = "Fabien";
-console.log(`Je m'appelle ${nom}`);</code></pre>
-  
+<p>Les principales menaces en cybercriminalité sont les suivantes :</p>
+	<ul>
+		<li>vol d’information, et parfois usurpation d’identité</li>
+		<li>destruction des données ou des ordinateurs, smartphones</li>
+		<li>défiguration de site Web (defacement)</li>
+		<li>modification d’information par un utilisateur non autorisé</li>
+		<li>déni de service DoS</li>
+		<li>publicité indésirable</li>
+		<li>escroquerie</li>
+	</ul>
 
-  <!-- ===== LES TABLEAUX ===== -->
-  <h3>Les listes</h3>
-  
-  <p>Nous utiliserons la dénomination suivante, qui est un abus de langage. Nous appelerons liste une structure de 
-    données dont la taille peut être amenée à changer et tableau une structure de taille fixe. Dans ce dernier cas, 
-    les éléments d'un tableau ne sont pas censés être modifiables.</p>
+<p>Le mot malware est un terme général qui fait référence à un logiciel malveillant.</p>
 
-    <p>On peut créer une liste (ou un tableau) de la manière suivante :</p>
-  
-    <pre><code class="language-javascript">let tab = [element1, element2, element3];</code></pre>
-  
-    <p>L'indice du 1er élément d'une liste est 0.</p>
-  
-    <h4>Propriétés d'une liste ou d'un tableau</h4>
-  
-    <table>
-      <tr><th>Propriétés</th><th>Codes</th></tr>
-      <tr><td>taille</td><td><pre>tab.length</pre></td></tr>
-      <tr><td>élément d'indice i</td><td><pre>tab[i]</pre></td></tr>
-      <tr><td>ajout d'un élément à la dernière ligne</td><td><pre>tab.push(element)</pre></td></tr>
-      <tr><td>ajout d'un élément au début du tableau</td><td><pre>tab.unshift(element)</pre></td></tr>
-      <tr><td>suppression du dernier élément</td><td><pre>tab.pop()</pre></td></tr>
-      <tr><td>suppression du 1er élément</td><td><pre>tab.shift()</pre></td></tr>
-      <tr><td>suppression de 3 éléments à partir du 5ème inclus</td><td><pre>tab.splice(5,3)</pre></td></tr>
-    </table>
-  
-    <p>Remarquons qu'une liste vide a pour taille 0, ce qui peut permettre de tester si une liste est vide.</p>
-  
-    <h4>Parcourir une liste</h4>
-  
-    <p>On peut toujours utiliser la technique classique suivante :</p>
-  
-    <pre><code class="language-javascript">for(let i=0; i&l tab.length; i++){
-    console.log(tab[i]);
-  }</code></pre>
-  
-    <p>mais il est inutile de demander à l'interpréteur d'évaluer systématiquement <strong>tab.length</strong>. 
-      On préfèrera donc utiliser l'instruction suivante qui incorpore une nouvelle variable dans le scope des éléments 
-      à parcourir :</p>
-    <pre><code class="language-javascript">for(let i=0, c=tab.length; i&ltc; i++){
-    console.log(tab[i]);
-  }</code></pre>
-  
-    <p>On peut également utiliser l'instruction <strong>forEach</strong> comme dans d'autres langages. Dans ce cas, on 
-      utilise une fonction lambda, qu'on peut écrire de deux façons différentes :</p>
-  
-    <pre><code class="language-javascript">tab.forEach(function(value){
-    console.log(value);
-    });</code></pre>
-  
-    <p>ou</p>
-    <pre><code class="language-javascript">tab.forEach(value => {console.log(value);});</code></pre>
 
-    <p>Il est également possible d'utiliser le mot-clé <strong>in</strong>, mais attention dans ce cas, contrairement 
-     à Python, on n'itère pas les éléments de la liste les uns après les autres, mais on crée un indice 
-    semblable à i, pour lequel il n'est pas nécessaire de définir de valeur de départ et de valeur de fin. 
-Afin de mieux comprendre, analysez l'exemple ci-dessous :</p>
 
-  <pre><code class="language-javascript">let prenoms = ["Alexandre", "Sarah", "Pierre"]
+<h3>Le phishing</h3>
 
-for (let i in prenoms) {
-   console.log(prenoms[i]);
-}</code></pre>
+<p>Il consiste à se faire passer pour une personne, un organisme ou une entreprise de confiance afin de 
+	demander des informations confidentielles à un victime. Celle-ci est amenée à cliquer sur un lien envoyé 
+	par email lui donnant accès à un site web ressemblant au site officiel, faisant ainsi croire à 
+	l’utilisateur qu’il navigue sur un site de confiance. Lorsque l'utilisateur tape ses informations 
+	confidentielles, celles-ci sont dérobées à son insu.</p>
 
-<p>qui affiche : <br/>Alexandre<br/>Sarah<br/>Pierre.</p>
+<p><em>Précautions à prendre : </em></p>
+<ul>
+	<li>vérifier l'adresse d'origine de l'email, il est facile de confondre tresor-public@administration.fr et
+		tresor-public@adrninistration.fr</li>
+	<li>ne pas cliquer sur des liens dont la provenance n'est pas certifiée,</li>
+	<li>le cas échéant vérifier l'adresse du site sur lequel le lien nous a renvoyé,</li>
+	<li>vérifier l'orthogaphe dans le texte de l'email, il est fréquent que les emails frauduleux comportent 
+		de nombreuses fautes d'orthographes.</li>
+</ul>
 
-<p>Si on utilisait maintenant la structure classique telle qu'elle existe en Python, il faudrait écrire </p>
 
-<pre><code class="language-javascript">let prenoms = ["Alexandre", "Sarah", "Pierre"]
+<h3>Les virus</h3>
 
-  for (let elt in prenoms) {
-     console.log(elt);
-  }</code></pre>
+<p>Il s'agit de logiciels malveillants installés sur l'ordinateur ou le smartphone d'une victime, le serveur 
+	d'un site Web ou d'une entreprise pour voler des informations, détruire le fonctionnement d'une machine 
+	ou d'un serveur et fournir un prétexte pour une rançon.</p>
+<p>Les différentes contaminations possibles sont les suivantes :</p>
+<ul>
+<li>par les supports amovibles (clés USB)</li>
+<li>par les pièces jointes des emails</li>
+<li>par les fichiers exécutables (extensions .EXE sur Windows, .PY s'il s'agit d'un script Python)</li>
+<li>par les fichiers multimedia .MP3, .MP4, .AVI, …</li>
+</ul>
 
-  <p>qui affiche <br/>0<br/>1<br/>2.</p>
+<p><em>Précautions à prendre : </em></p>
+<ul>
+	<li>ne pas télécharger des applications dont on ne connaît pas la réputation,</li>
+	<li>télécharger des applications à partir de la page officielle de la société qui la développe,</li>
+	<li>installer un antivirus sur son smartphone, sa tablette et son ordinateur,</li>
+	<li>"les Mac et les Iphones sont protégés naturellement des virus" est une légende urbaine,</li>
+	<li>scanner les supports amovibles à l'aide d'un anti-virus avant de les utiliser.</li>
+</ul>
 
-  <p>Dans ce cas, <strong>elt</strong> n'est pas un élément de la liste <strong>prenoms</strong>, mais bien 
-  un indice créé en fonction de la taille de cette liste. Attention donc à l'utilisation de <strong>in</strong> en JavaScript, qui se comporte différemment de 
-  ce qu'on peut penser. </p>
+<h4>Les worms</h4>
 
-  <p>En fait, l'équivalent de <strong>for ... in</strong> en Python, se traite en JavaScript avec une boucle 
-  <strong>for ... of</strong>, comme dans l'exemple ci-dessous :</p>
+<p>Il s'agit d'un type d'attaque particulier qui utilise un carnet d'adresse pour se propager. 
+	Lorsque le hacker a obtenu l'accès au carnet d'adresse d'un compte WhatsApp, Google, Outlook, ..., 
+	il infecte les autres membres du réseau, sans se dévoiler ou en se faisant passer pour un ami au sein 
+	du réseau.</p>
 
-  <pre><code class="language-javascript">for (let elt of prenoms){
-    console.log(elt);
-  }</code></pre>
+<h4>Les trojans</h4>
 
-  <p>qui affiche bien : <br/>Alexandre<br/>Sarah<br/>Pierre.</p>
+<p>Il s'agit d'un certain type de virus qui s'insèrent dans une machine puis donnent accès aux ressources 
+	de cette machine à l'insu de son propriétaire.</p>
+
+<h4>Les spywares</h4>
+
+<p>Il s'agit d'un terme général relatif à un malware qui espionne les actions d'un utilisateur sur son 
+	ordinateur ou son smartphone, pour récupèrer des informations à partir d'une machine infectée. Ce vol 
+d'information peut ensuite être utilisé pour usurper l'identité de quelqu'un afin de créer des abonnements 
+ou de faire des achats au nom d'un autre, d'ouvrir des prêts bancaires. On parle dans ce cas de spoofing.</p>
+
+<h4>Les botnets</h4>
+
+<p>Il s'agit d'un ensemble de robots informatiques qui se déploient sur de grandes quantités de machines 
+	pour les utiliser comme relais d'attaques ou de spams. On parle également de réseaux zombies.</p>
+	
+
+<h3>Le déni de service</h3>
+
+<p>Il consiste à paralyser un réseau, un serveur ou un site Web pour que les utilisateurs ne puissent plus
+	en obtenir l'accès. D'innombrables requêtes sont transmises en même temps à un serveur pour le saturer. 
+	Le déni de service distribué utilise plusieurs machines relais à partir d'une seule machine pour saturer 
+	un système.</p>
+
+<p>Il arrive que parfois le déni de service n'entraîne qu'un ralentissement du système. On parle dans ce 
+	cas de downtime.</p>
+
+<p>Le déni de service s'accompagne généralement d'une demande de rançon.</p>
+
+
+
+
+<h3>La publicité malveillante</h3>
+
+<h4>Les Spams</h4>
+
+<p>Il s'agit d'une technique de marketing consistant à diffuser massivement par email de la publicité non sollicitée par les utilisateurs.</p>
+
+
+<h4>Les adware</h4>
+
+<p>Il s'agit d'un logiciel qui présente des publicités non sollicités, souvent sous forme de fenêtre pop-up.</p>
+
+<p><em>Précautions à prendre : </em></p>
+
+<ul><li>utiliser un ad-blocker</li></ul>
+
+<h4>Les browser-hijackers</h4>
+
+<p>Il s’agit de modifications du navigateur sans la permission de l’utilisateur pour afficher des publicités
+	 ou enregistrer l’activité de l’utilisateur. Un browser-hijacker peut par exemple être utilisé pour 
+	 générer de fausses alertes de sécurité afin d'inciter à acheter un anti-virus.</p>
+
+
+<h3>Le Scam</h3>
+
+<p>Il s'agit d'une forme d'escroquerie qui utilise les technologies modernes pour exploiter 
+	la naïveté des utilisateurs afin qu'ils fournissent de leur plein gré des données confidentielles ou 
+	de l'argent. Le hacker peut se faire passer pour un agent de l'état, un membre de l'organisation ou 
+l'entreprise pour laquelle il travail, un membre de sa famille, une personne en détresse, ...</p>
 
 
 
 
 
 
-  
-    <h4>Particularités des listes en JavaScript</h4>
-  
-    <p>En JavaScript on peut stocker des éléments de différents types dans une liste.</p>
-    <pre><code class="language-javascript">let tab = ["Antoine", 12, false];</code></pre>
-  
-    <p>En JavaScript, l'appel à un indice ne figurant pas dans le tableau ne conduit pas à une exception du type 
-      IndexOutOfRange mais renvoie la valeur <em>undefined</em>.</p>
-  
+<h3>Exploitation de vulnérabilités</h3>
 
-<h4>Copie de liste</h4>
+<p>L’exploitation de vulnérabilité consiste à abuser de failles connues dans les navigateurs, les applications web, les réseaux, les systèmes d'exploitation et les applications de la machine.</p>
 
-<p>On peut copier la liste L dans une nouvelle liste appelée newL en utilisant l'instruction :</p>
+<p>L'une des techniques d'exploitation de vulnérabilité les plus utilisées sur le Web est l'injection SQL, qui consiste à insérer dans un formulaire non protégé du code SQL capable d'altérer ou de détruire la base de données sur laquelle évolue le site Web attaqué.</p> 
 
-<pre><code class="language-javascript">let newL = [L];</code></pre>
+<p>Une autre technique de hacking sur le Web très utilisée est le Cross Site Scripting XSS, qui injecte du code côté client sur les pages Web visitées par d'autres utilisateurs, et permet de se connecter en tant qu'un autre utilisateur sans connaître le mot de passe de cet utilisateur.</p>
 
-<p><em>Attention</em>, en JavaScript les listes sont copiées par référence et non par valeur comme pour les types 
-primitifs (string, number, bool). De ce fait, toute modification de L entraîne une modification de newL et 
-inversement.</p>
+<p>Toutes les vulnérabilités recensées sont enregistrées dans le répertoire du CVE afin d'en conserver l'historique et le mode opératoire. Tout individu peut contribuer à cette base de données en publiant une nouvelle vulnérabilité.</p>
 
-<!-- LES DICTIONNAIRES -->
-<h3>Les dictionnaires</h3>
-  
-    <p>Ils se construisent avec des accolades à la place des crochets et des virgules entre les éléments. Ils sont parfois 
-      appelés tableaux associatifs.</p>
-    <pre><code class="language-javascript">let dico ={
-    nom: "Antoine",
-    prenom: "Hervé"
-  };</code></pre>
-  
-    <p>Pour accéder à un élément du dictionnaire, il ne faut plus appeler son indice qui n'existe pas mais appeler la clé de la façon suivante :</p>
-  
-    <pre><code class="language-javascript">dico.nom</code></pre>
-    <p>On remarque donc qu'un dictionnaire n'est autre qu'un objet dans lequel les clés sont des attributs qui possèdent 
-      des valeurs.</p>
-  
-    <p>Dans certains cas, on préfèrera appeler l'élément du dictionnaire de la manière suivante :</p>
-    <pre><code class="language-javascript">dico["nom"]</code></pre>
-  
-    <p>Pour ajouter un élément à la fin d'un dictionnaire, il suffit de créer cet élément, car il n'existe pas de fin pour 
-      un dictionnaire, qui est structuré comme un ensemble non ordonné :</p>
-    <pre><code class="language-javascript">dico["lieuNaissance"] = "Lausanne";</code></pre>
-  
-    <p>ou encore</p>
-    <pre><code class="language-javascript">dico.lieuNaissance = "Lausanne";</code></pre>
-  
-    <h4>Parcourir un dictionnaire</h4>
-  
-    <pre><code class="language-javascript">for(let cle in dico){
-      console.log(`${cle} : ${dico[cle]}`);
-    }</code></pre>
-  
+<h4>Exemple d'analyse de vulnérabilié</h4>
 
-
-
-  <!-- ===== BRANCHEMENT CONDITIONNEL ===== -->
-    <h3>Les conditions</h3>
-
-    <pre><code class="language-javascript">if(condition){
-  instructions;
-}else{
-  instructions;
-}</code></pre>
-
-    <h4>Particularité de JavaScript</h4>
-
-    <p>La fonction <strong>confirm()</strong> renvoie <em>true</em> lorsqu'on clique sur <em>Ok</em> dans une fenêtre pop-up et <em>false</em> lorsqu'on clique sur <em>Annuler</em>.</p>
-    <pre><code class="language-javascript">if(confirm("Voulez-vous continuer ?")){
-  alert("Vous avez choisi de continuer")
-}</code></pre>
-
-    <h4>L'instruction switch</h4>
-
-    <pre><code class="language-javascript">switch(maVariable){
-  case valeur1:
-    instruction;
-    break;
-  case valeur2:
-    instruction;
-    break;
-  case valeur3:
-    instruction;
-    break;
-  default:
-    instruction;
-}</code></pre>
-
-
-
-  <!-- ===== LES BOUCLES ===== -->
-  <h3 id="boucle"> Les boucles </h3>
-
-    <h4>La boucle while</h4>
-
-    <pre><code class="language-javascript">while(condition){
-  instructions;
-}</code></pre>
-
-    <h4>La boucle for</h4>
-
-    <pre><code class="language-javascript">for(let i=0; i&lt5; i++){
-  instructions;
-}</code></pre>
-
-
-  <!-- ===== LES FONCTIONS ===== -->
-
-  <h3 id="fonction"> Les fonctions </h3>
-
-  <p>La déclaration d'une fonction se réalise de la manière suivante :</p>
-  <pre><code class="language-javascript">function nomFonction(parametre){
-  instructions;
-  return valeur;
-}</code></pre>
-
-<div class="fieldsetDefinition"><h4>BON A SAVOIR </h4>
-  <p><em>Attention</em>, en JavaScript le type de retour de la fonction et le type des arguments ne sont pas spécifiés lors de la déclaration. Il est donc impossible de surcharger une fonction en JavaScript.</p>
+<div class="row">
+    <div class="col-12">
+		<iframe src="{% static 'home/documents/Analyse_cross_site_scripting.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
+	</div>
 </div>
 
-  <p>L'appel de la fonction se fait de la façon suivante :</p>
-  <pre><code class="language-javascript">let valeur = nomFonction(12);</code></pre>
+<h3>Se tester</h3>
 
-  <p>Lorsqu'il n'y a pas de valeur de retour, on parle de procédure :</p>
-  <pre><code class="language-javascript">function nomProcedure(parametre){
-  instructions;
-}</code></pre>
-
-  <p>L'appel de la procédure se fait de la façon suivante :</p>
-  <pre><code class="language-javascript">nomProcedure("Herve");</code></pre>
-
-    <h4>Documenter une fonction avec des docstring</h4>
-<p>Il est possible d'utiliser la structure suivante pour les docstring :</p>
-
-<pre><code class="language-javascript">/**
- * Cette fonction prend un nom en parametre et renvoie un pseudo. 
- * 
- * @param {string} nom: le nom de l'utilisateur
- *
- * @return {string} pseudo: le pseudo renvoye
- */</code></pre>
-
-
-    <h4>Fonction lambda</h4>
-
-    <p>Le principe de fonction lanbda (anonyme) utilise toujours le mot-clé <strong>function</strong> mais ne spécifie aucun nom pour la fonction créée.</p>
-    <pre><code class="language-javascript">let maVariable = function(parametre){
-  let message = "Bonjour " + parametre;
-  return message;
-}
-
-console.log(maVariable("Hervé"));</code></pre>
-
-  <p>qu'on peut également écrire :</p>
-
-  <pre><code class="language-javascript">let maVariable = (parametre) =>{
-  let message = "Bonjour " + parametre;
-  return message;
-}
-
-console.log(maVariable("Hervé"));</code></pre>
-
-  <p>On remarque qu'une fonction lambda utilise une construction particuliére et transforme la variable <em>maVariable</em> en fonction.</p>
-
-    <h4>Fonctions prédéfinies </h4>
-
-    <table>
-      <tr><th>Fonctions</th><th>Actions</th></tr>
-      <tr><td>Math.cos(x)</td><td>renvoie le cosinus de x</td></tr>
-      <tr><td>Math.exp(x)</td><td>renvoie l'exponentielle de x</td></tr>
-      <tr><td>Math.floor(x)</td><td>renvoie le plus grand entier inférieur ou égal à x</td></tr>
-      <tr><td>Math.ceil(x)</td><td>renvoie le plus petit entier supérieur ou égal à x</td></tr>
-      <tr><td>Math.abs(x)</td><td>renvoie la valeur absolue de x</td></tr>
-      <tr><td>Math.round(x)</td><td>renvoie l'arrondi de x sous forme de l'entier le plus proche</td></tr>
-      <tr><td>Math.log2(x)</td><td>renvoie le logarithme en base 2 de x</td></tr>
-      <tr><td>Math.max(L)</td><td>renvoie le plus grand élément d'une liste L</td></tr>
-      <tr><td>Math.pow(x, y)</td><td>renvoie x à la puissance y</td></tr>
-      <tr><td>Math.sqrt(x)</td><td>renvoie la racine carrée de x</td></tr>
-      <tr><td>Math.trunc(x)</td><td>renvoie la partie entière de x</td></tr>
-      <tr><td>Math.min(L)</td><td>donne le minimum des paramètres passés en arguments</td></tr>
-      <tr><td>Math.random()</td><td>génère un nombre aléatoire entre 0 et 1</td></tr>
-
-    </table>
-
-
-
- 
-
-
-    <!-- ===== LES OBJETS EN JAVASCRIPT ===== -->
-    <h3>Programmation objet</h3>
-  
-      <p>La création d'une classe requiert les mot-clés <strong>class</strong> et <strong>constructor()</strong>.</p>
-      <pre><code class="language-javascript">class MaClasse{
-    
-    constructor(nom, prenom){
-      this.nom = nom;
-      this.prenom = prenom;
-    }
-  
-    uneMethode(parametre){
-      instructions;
-    }
-  }</code></pre>
-  
-    <p>L'instanciation d'un objet se fait de façon classique :</p>
-    <pre><code class="language-javascript">let monObjet = new MaClasse("Charles", "Hervé");</code></pre>
-  
-<p>Il existe également des méthodes statiques qui ne sont pas définies pour un objet mais pour une classe toute 
-  entière. Il n'est donc pas nécessaire de créer un objet pour les utiliser. Par exemple </p>
-
-  <pre><code class="language-javascript">class MaClasse{
-
-    constructor(nom, prenom){
-      this.nom = nom;
-      this.prenom = prenom;
-    }
-
-    static uneMethodeStatique(parametre){
-      instructions;
-    }
-}
-
-let monObjet = new MaClasse("Charles", "Hervé");
-monObjet.uneMethode(parametre)
-maClasse.uneMethodeStatique(parametre)</code></pre>
-
-
-    <h4>Particularité de JavaScript</h4>
-  
-    <p>JavaScript utilise des prototypes qui sont des liens vers d'autres objets pris en référence.</p>
-    <pre><code class="language-javascript">let monObjet = new MaClasse(nom, prenom);
-let unAutreObjet = Object.create(monObjet);</code></pre>
-  
-    <p>Dans l'exemple ci-dessus, l'objet <em>unAutreObjet</em> utilise le modèle de <em>monObjet</em> pour se construire qui lui-même est une instanciation de <em>maClasse</em>.</p>
-  
-
-
-
-    <h3>La gestion des exceptions</h3>
-
-<p>On distingue souvent 3 catégories d'erreurs : les erreurs de syntaxe, les erreurs de logique et les 
-  erreurs d'exécution.</p>
-
-<p>En JavaScript il est possible de traiter activement une erreur potentielle à l'aide d'une condition 
-  <strong>if ... else</strong>. Il est également possible de gérer les exceptions à l'aide de l'instruction :</p>
-
-<pre><code class="language-javascript">try{
-  // code susceptible de fournir un message d'erreur
-}catch (error){
-  // instructions à suivre en cas d'erreur
-}</code></pre>
-
-<p>Ici <strong>error</strong> peut être remplacé par le libellé exact du code d'erreur.</p>
-
-    <p>Pour aller plus loin, l'excellent ouvrage <a href="https://eloquentjavascript.net/index.html" target="_blank"><em>Eloquent JavaScript</em></a>, from Marijn Haverbeke.</p>
-    <p>Pour tester les codes sans recourir à un éditeur, le site bien pensé <a href="https://jsfiddle.net/" target="_blank">jsFiddle</a>.</p>
+<div class="exerciceApplication">
+	<p><strong>A vous de jouer : </strong>testez vos connaissances en matière de sécurité avec le quizz de Swisscom : 
+	<a href='https://www.swisscom.ch/fr/b2bmag/securite/quiz-securite-it-pme/' target="_blank">https://www.swisscom.ch/fr/b2bmag/securite/quiz-securite-it-pme/</a></p>
+</div>
 
 {% endblock cours %}
-

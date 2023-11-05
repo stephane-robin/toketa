@@ -3,197 +3,636 @@
 
 {% block contenu %}
 <ul>
-    
+    <li>structure du code</li>
+    <li>les variables</li>
+    <li>saisie d'une valeur par l'utilisateur</li>
+    <li>les chaînes de caractères</li>
+    <li>les listes</li>
+    <li>les dictionnaires</li>
+    <li>les conditions</li>
+    <li>les boucles</li>
+    <li>les fonctions</li>
+    <li>programmation objet</li>
+    <li>la gestion des exceptions</li>
 </ul>
 {% endblock contenu %}
 
+{% block tampon %}
+<p class="tampon">AIDE<br/>MEMOIRE</p>
+{% endblock tampon %}
+
 {% block cours %}
 
-<h3>Introduction</h3>
+<p><em>Prérequis :</em> de bonnes connaissances en HTML</p>
 
-<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube détaille la représentation des réseaux sociaux : <br/>
-    <a href="https://www.youtube.com/watch?v=nn1mIqW9oYQ&feature=emb_logo" target="_blank">&#127911; vidéo Fun Mooc réseaux sociaux - YouTube</a></p>
+<h3>Structure du code</h3>
 
-<h3>Modéliser les réseaux sociaux avec un graphe</h3>
 
-<p>Si on cherche à modéliser les réseaux sociaux, on s'aperçoit tout naturellement qu'ils sont composés de sommets ou noeuds représentés par des individus mis en relation par le biais d'un média. L'ensemble forme une structure qu'on appelle un graphe. Chaque personne du réseau dans les <em>Contacts</em> des autres personnes. Dans le langage des réseaux sociaux, on parle de <em>friends</em>.</p>
-
-<p>La page suivante publiée par <em>Numworks</em> explique comment modéliser simplement un réseau social :<br/>
-<a href="https://www.numworks.com/fr/ressources/snt/modelisation-reseau-social/" target="_blank">&#128211; lecture modéliser les réseaux sociaux - Numworks</a></p>
+<p>JavaScript est un langage interprété qui se veut simple et dont le but initial était de rendre dynamiques et 
+  interactives les pages Web.</p>
+    
+<img src="{% static 'home/images/memento/javascript.png' %}" width="80px" height="80px">
 
 
 
-<div class=fieldsetDefinition>
-<h4>VOCABULAIRE ...</h4> 
-<p>La <strong>distance entre 2 sommets</strong> est définie par la longueur d'un plus court chemin entre ces 2 sommets.<p>
-<p>Le <strong>diamètre d'un graphe</strong> est la plus grande distance possible qui puisse exister entre 2 quelconques de ses sommets.</p>
-<p>Le <strong>centre d'un graphe</strong> est le ou les sommets dont la distance aux autres sommets est minimale.</p>
-<p>Le <strong>rayon d'un graphe</strong> est la distance entre le ou les centres du graphe et le sommet le plus éloigné.</p>  
+
+<!-- ===== GENERALITES ===== -->
+
+  <p>Les commentaires sont indiqués à l'aide de <strong>//</strong> pour les commentaires simples 
+    et <strong>/*  */</strong> pour les commentaires sur plusieurs lignes.</p>
+
+<p>Comme beaucoup de langages, JavaScript utilise un point virgule
+    <strong>;</strong>  à la fin de chaque instruction.</p>
+
+  <p>Dans une page HTML, il est préférable d'appeler un fichier JavaScript à la fin d'un document 
+    (avant la balise <strong>&lt/body&gt</strong>) pour éviter de ralentir le chargement de la page.</p>
+  
+    <pre><code class="language-javascript">&lt!DOCTYPE html&gt
+&lthtml&gt
+&lthead&gt
+  &ltmeta charset="utf-8"&gt
+  &lttitle>Ma page web&lt/title&gt
+&lt/head&gt
+
+&ltbody&gt
+
+&lt!-- corps du document --&gt
+
+&ltscript src="fichierJavaScript.js"&gt&lt/script&gt
+
+&lt/body&gt
+&lt/html&gt</code></pre>
+
+  <!-- ===== HELLO WORLD ===== -->
+
+  <h3 id="hello">Hello world</h3>
+
+  <p>Commençons par le traditionnel "Hello world". Créer un fichier minimaliste <strong>testJS.html</strong> comme 
+    ci-dessous : </p>
+
+    <pre><code class="language-javascript">&lt!DOCTYPE html&gt
+&lthtml&gt
+&lthead&gt
+  &ltmeta charset="utf-8"&gt
+  &lttitle>Ma page web&lt/title&gt
+&lt/head&gt
+
+&ltbody&gt
+
+&ltscript src="testJS.js"&gt&lt/script&gt
+
+&lt/body&gt
+&lt/html&gt</code></pre>
+    
+    
+    
+<p>Dans un fichier <strong>testJS.js</strong> placé dans le même dossier que <strong>testJS.html</strong>, 
+  écrire le code suivant :</p>
+
+  <pre><code class="language-javascript">alert("Hello world");</code></pre>
+
+<p>L'exécution du code se fait directement lors de la lecture du fichier <strong>page.html</strong> par le 
+navigateur Web Chrome, Edge, Opera, Safari, ...</p>
+
+  <p>Ici, le message apparaît à l'intérieur d'une fenêtre pop-up.</p>
+
+<p>Il est possible de visualiser le résultat dans la console du navigateur. Pour cela, il faut ouvrir 
+  dans le navigateur l'onglet <em>Outil de Développement</em>, puis l'onglet <em>Console</em>. 
+ Il faut également modifier le script dans le fichier <strong>testJS.js</strong> en écrivant cette fois :</p>
+
+ <pre><code class="language-javascript">console.log("Hello world");</code></pre>
+
+
+
+
+   <!-- ===== LES VARIABLES ===== -->
+  <h3>Les variables</h3>
+  
+    <h4> Types </h4>
+  
+    <p>JavaScrpt est un langage à typage dynamique, i.e. qu'il identifie lui-même les types de variables et 
+      autorise les changements de type. La déclaration des variables n'est donc pas nécessaire.</p> 
+
+    <p>Par ailleurs, JavaScript est un langage faiblement typé, car il convertit automatiquement les types de variables. Ainsi, la concaténation d'un <em>String</em> avec un nombre transforme implicitement la variable obtenue en <em>String</em>. Pour éviter tout changement intempestif pouvant conduire à une erreur, il faut donc systématiquement tester le type des variables avant de les utiliser.</p>
+  
+<p>Les principaux types de variables sont : number pour les nombres (entiers ou réels, positifs ou négatifs), string pour les chaînes 
+  de caractères, boolean composés de true et false (sans majuscule), Null et undefined.</p>
+
+<p>Pour tester le type d'une variable, on utilise l'instruction</p>
+  <pre><code class="language-javascript">typeof maVariable</code></pre> 
+  <p>Si cette instruction renvoie <em>undefined</em>, c'est que la variable n'existe pas (elle n'a pas été 
+  déclarée).</p>
+
+<p>Il est tout à fait possible de caster une variable. L'instruction <strong>parseInt(chaine)</strong> permet de transformer un <em>String</em> en nombre <em>si cela est possible</em> alors que l'instruction <strong>toString(nombre)</strong> permet de transformer un nombre en <em>String</em>.</p>
+<p>L'instuction <strong>Number(x)</strong> permet également de transformer un String en Number lorsque cela est 
+possible, et inversement l'instruction <strong>String(x)</strong> permet de transformer un nombre en chaîne de 
+caractères.</p>
+
+<h4>Affectation d'une valeur</h4>
+
+<p>Pour affecter une valeur à une variable, on utilise préférentiellement le mot-clé 
+  <code class="language-javascript">let</code> plutôt que <code class="language-javascript">var</code> 
+  qui désigne une variable locale, et s'utilisait essentiellement avec les anciennes versions de JavaScript.</p>
+
+    <pre><code class="language-javascript">let maVarible = 12;</code></pre>
+
+<p>Notons que JavaScript est sensible à la casse des caractères.</p>
+  
+    <h4> Les principales opérations </h4>
+  
+    <table>
+      <tr><th>Opérations</th><th>Symboles</th></tr>
+      <tr><td>addition</td><td>+</td></tr>
+      <tr><td>soustraction</td><td>-</td></tr>
+      <tr><td>multiplication</td><td>*</td></tr>
+      <tr><td>division</td><td>/</td></tr>
+      <tr><td>modulo</td><td>%</td></tr>
+      <tr><td>concaténation</td><td>+</td></tr>
+      <tr><td>affectation</td><td>=</td></tr>
+      <tr><td>égalité</td><td>==</td></tr>
+      <tr><td>incrémentation</td><td>++</td></tr>
+      <tr><td>décrémentation</td><td>--</td></tr>
+      <tr><td>ET logique</td><td>&&</td></tr>
+      <tr><td>OU logique</td><td>||</td></tr>
+      <tr><td>NON logique</td><td>!</td></tr>
+    </table>
+  
+    <h4>Les opérateurs de comparaison</h4>
+  
+    <table>
+      <tr><th>Signification</th><th>Opérateurs</th></tr>
+      <tr><td>égalité (uniquement valeur)</td><td>==</td></tr>
+      <tr><td>égalité (valeur et type)</td><td>===</td></tr>
+      <tr><td>différent</td><td>!=</td></tr>
+      <tr><td>inférieur</td><td><</td></tr>
+      <tr><td>inférieur ou égal</td><td><=</td></tr>
+      <tr><td>supérieur</td><td>></td></tr>
+      <tr><td>supérieur ou égal</td><td>>=</td></tr>
+    </table>
+  
+    <h4>Les constantes</h4>
+  
+    <p>On définit une constante avec le mot-clé <strong>const</strong> au lieu de <strong>let</strong>.</p>
+  
+  
+    <h4>La portée des variables</h4>
+
+<p>Les variables définies avec le mot-clé <strong>let</strong> ont une portée (un scope) sur le bloc dans 
+lequel elles ont été définies, et non pas une portée globale. Par exemple, le code suivant génère une erreur 
+car la variable <strong></strong> n'est pas définie que dans la condition <strong>if</strong> et non pas 
+pour le programme principal.</p>
+
+<pre><code class="language-javascript">let estConnecte = true;
+
+if (estConnecte){
+  let message = "bienvenue";
+}
+else{
+  let message = "vous n'êtes pas connecté"
+}
+console.log(message); # renvoie une erreur ici</code></pre>
+
+<p>Pour reprendre l'exemple précédent, il faut donc déclarer la variable <strong>message</strong> de 
+façon globale comme dans le code ci-dessous :</p>
+<pre><code class="language-javascript">let estConnecte = true;
+let message = "";
+
+if (estConnecte){
+  message = "bienvenue";
+}
+else{
+  message = "vous n'êtes pas connecté"
+}
+console.log(message); # ne renvoie pas d'erreur dans ce cas</code></pre>
+
+
+<!-- ===== SAISIE D'UNE VALEUR PAR L'UTILISATEUR ===== -->
+<h3 id="saisie">Saisie d'une valeur par l'utilisateur</h3>
+
+<p>On peut utiliser indifféremment :</p>
+
+<pre><code class="language-javascript">let nom = prompt("Quel est votre nom ?");
+alert("Hello world " + nom);</code></pre>
+
+<p>ou</p>
+<pre><code class="language-javascript">let nom = prompt("Quel est votre nom ?");
+alert(`Hello world ${nom}`);</code></pre>
+
+<p>Attention toutefois avec la deuxième structure (template litteral) qui n'utilise plus des guillemets classiques mais des 
+  `.</p>
+
+
+<div class="fieldsetDefinition"><h4>BON A SAVOIR </h4>
+  <p><em>Attention</em>, la valeur saisie au clavier est systématiquement de type <em>String</em>. Il convient donc de la transformer en nombre le cas échéant.</p>
 </div>
 
+<p>Remarquons que les instructions <strong>prompt()</strong> et <strong>alert()</strong> ne sont pas supportées 
+par Node.js</p>
+  
+
+  <h3>Les chaînes de caractères</h3>
+
+  <!-- ===== MANIPULER DES CHAINES DE CARACTERES ===== -->
+  <h4>Manipuler les chaînes de caractères</h4>
+  
+    <p> Pour échapper une apostrophe ou un guillemet, on utilise le signe <strong>\</strong>. 
+      L'indice du 1er caractère d'une chaîne est 0.</p>
+  
+    <table>
+      <tr><th>Propriétés</th><th>Codes</th></tr>
+      <tr><td>taille</td><td><pre>chaine.length</pre></td></tr>
+      <tr><td>élément d'indice i</td><td><pre>chaine[i]</pre></td></tr>
+      <tr><td>convertir en minuscules</td><td><pre>chaine.toLowerCase()</pre></td></tr>
+      <tr><td>convertir en majuscules</td><td><pre>chaine.toUpperCase()</pre></td></tr>
+      <tr><td>comparaison</td><td>===</td></tr>
+      <tr><td>concaténation</td><td>+</td></tr>
+      <tr><td>retour à la ligne</td><td>\n</td></tr>
+      <tr><td>tabulation</td><td>\t</td></tr>
+      <tr><td>transformer une chaîne en tableau élément par élément</td><td><pre>let tab = Array.from(chaine);</pre></td></tr>
+      <tr><td>transformer une chaîne comprenant le séparateur - en tableau</td><td><pre>let tab = chaine.split("-");</pre></td></tr>
+      <tr><td>transformer un tableau en chaîne contenant le séparateur - </td><td><pre>let chaine = tab.join("-")</pre></td></tr>
+      <tr><td>recherche de "non" dans une chaine</td><td><pre>chaine.indexOf("non");</pre></td></tr>
+    </table>
+  
+    <p>Notons que l'instruction <strong>indexOf</strong> renvoie -1  si le caractère recherché ne se trouve pas dans la chaîne.</p>
+  
+    <h4>Parcourir une chaîne de caractères élément par élément</h4>
+  
+    <pre><code class="language-javascript">for(let i=0; i&lt chaine.length; i++){
+    chaine[i];
+  }</code></pre>
+  
+    <h4>Template literal</h4>
+  
+    <p>JavaScript permet d'inclure des expressions dans une chaîne de caractères appelées <em>template literal</em>. Pour cela, il faut délimiter la chaîne avec <strong>`</strong> à la place de <strong>"</strong> et utiliser <strong>${expression}</strong>.</p>
+    <pre><code class="language-javascript">let nom = "Fabien";
+console.log(`Je m'appelle ${nom}`);</code></pre>
+  
+
+  <!-- ===== LES TABLEAUX ===== -->
+  <h3>Les listes</h3>
+  
+  <p>Nous utiliserons la dénomination suivante, qui est un abus de langage. Nous appelerons liste une structure de 
+    données dont la taille peut être amenée à changer et tableau une structure de taille fixe. Dans ce dernier cas, 
+    les éléments d'un tableau ne sont pas censés être modifiables.</p>
+
+    <p>On peut créer une liste (ou un tableau) de la manière suivante :</p>
+  
+    <pre><code class="language-javascript">let tab = [element1, element2, element3];</code></pre>
+  
+    <p>L'indice du 1er élément d'une liste est 0.</p>
+  
+    <h4>Propriétés d'une liste ou d'un tableau</h4>
+  
+    <table>
+      <tr><th>Propriétés</th><th>Codes</th></tr>
+      <tr><td>taille</td><td><pre>tab.length</pre></td></tr>
+      <tr><td>élément d'indice i</td><td><pre>tab[i]</pre></td></tr>
+      <tr><td>ajout d'un élément à la dernière ligne</td><td><pre>tab.push(element)</pre></td></tr>
+      <tr><td>ajout d'un élément au début du tableau</td><td><pre>tab.unshift(element)</pre></td></tr>
+      <tr><td>suppression du dernier élément</td><td><pre>tab.pop()</pre></td></tr>
+      <tr><td>suppression du 1er élément</td><td><pre>tab.shift()</pre></td></tr>
+      <tr><td>suppression de 3 éléments à partir du 5ème inclus</td><td><pre>tab.splice(5,3)</pre></td></tr>
+    </table>
+  
+    <p>Remarquons qu'une liste vide a pour taille 0, ce qui peut permettre de tester si une liste est vide.</p>
+  
+    <h4>Parcourir une liste</h4>
+  
+    <p>On peut toujours utiliser la technique classique suivante :</p>
+  
+    <pre><code class="language-javascript">for(let i=0; i&l tab.length; i++){
+    console.log(tab[i]);
+  }</code></pre>
+  
+    <p>mais il est inutile de demander à l'interpréteur d'évaluer systématiquement <strong>tab.length</strong>. 
+      On préfèrera donc utiliser l'instruction suivante qui incorpore une nouvelle variable dans le scope des éléments 
+      à parcourir :</p>
+    <pre><code class="language-javascript">for(let i=0, c=tab.length; i&ltc; i++){
+    console.log(tab[i]);
+  }</code></pre>
+  
+    <p>On peut également utiliser l'instruction <strong>forEach</strong> comme dans d'autres langages. Dans ce cas, on 
+      utilise une fonction lambda, qu'on peut écrire de deux façons différentes :</p>
+  
+    <pre><code class="language-javascript">tab.forEach(function(value){
+    console.log(value);
+    });</code></pre>
+  
+    <p>ou</p>
+    <pre><code class="language-javascript">tab.forEach(value => {console.log(value);});</code></pre>
+
+    <p>Il est également possible d'utiliser le mot-clé <strong>in</strong>, mais attention dans ce cas, contrairement 
+     à Python, on n'itère pas les éléments de la liste les uns après les autres, mais on crée un indice 
+    semblable à i, pour lequel il n'est pas nécessaire de définir de valeur de départ et de valeur de fin. 
+Afin de mieux comprendre, analysez l'exemple ci-dessous :</p>
+
+  <pre><code class="language-javascript">let prenoms = ["Alexandre", "Sarah", "Pierre"]
+
+for (let i in prenoms) {
+   console.log(prenoms[i]);
+}</code></pre>
+
+<p>qui affiche : <br/>Alexandre<br/>Sarah<br/>Pierre.</p>
+
+<p>Si on utilisait maintenant la structure classique telle qu'elle existe en Python, il faudrait écrire </p>
+
+<pre><code class="language-javascript">let prenoms = ["Alexandre", "Sarah", "Pierre"]
+
+  for (let elt in prenoms) {
+     console.log(elt);
+  }</code></pre>
+
+  <p>qui affiche <br/>0<br/>1<br/>2.</p>
+
+  <p>Dans ce cas, <strong>elt</strong> n'est pas un élément de la liste <strong>prenoms</strong>, mais bien 
+  un indice créé en fonction de la taille de cette liste. Attention donc à l'utilisation de <strong>in</strong> en JavaScript, qui se comporte différemment de 
+  ce qu'on peut penser. </p>
+
+  <p>En fait, l'équivalent de <strong>for ... in</strong> en Python, se traite en JavaScript avec une boucle 
+  <strong>for ... of</strong>, comme dans l'exemple ci-dessous :</p>
+
+  <pre><code class="language-javascript">for (let elt of prenoms){
+    console.log(elt);
+  }</code></pre>
+
+  <p>qui affiche bien : <br/>Alexandre<br/>Sarah<br/>Pierre.</p>
 
 
 
-<div class="exerciceType">
-    <p><strong>Exercice type : </strong>Trouve le diamètre, le centre et le rayon d’un graphe correspondant au réseau suivant :
-<ul>
-<li>Anatole est ami avec Ethan, Daniel et Gérard</li>
-<li>Barnabé est ami avec François et Kevin</li>
-<li>Kevin est ami avec Barnabé, Charlie, Daniel et Ethan</li>
-<li>François est ami avec Barnabé et Gérard</li>
-</ul></p>
-
-<p>Solution :</p>
-<p>Il faut commencer par tracer le graphe correspondant à l'énoncé.</p>
-
-<img src="../../images/nsi/graphe.png" alt="graphes" width=40%>
-
-<p>Il faut ensuite construire un tableau dans lequel apparaissent les distances minimales entre chacun des sommets, et la plus grande de ces distances pour chacun des somments :</p>
-
-<table>
-    <tr><th></th><th>A.</th><th>G.</th><th>D.</th><th>K.</th><th>B.</th><th>F.</th><th>E.</th><th>C.</th><th>max</th></tr>
-    <tr><td><strong>A.</strong></td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>2</td><td>1</td><td>3</td><td>3</td><tr>
-    <tr><td><strong>G.</strong></td><td>1</td><td>0</td><td>2</td><td>3</td><td>2</td><td>1</td><td>2</td><td>4</td><td>4</td><tr>
-    <tr><td><strong>D.</strong></td><td>1</td><td>2</td><td>0</td><td>1</td><td>2</td><td>3</td><td>2</td><td>2</td><td>3</td><tr>
-    <tr><td><strong>K.</strong></td><td>2</td><td>3</td><td>1</td><td>0</td><td>1</td><td>2</td><td>1</td><td>1</td><td>3</td><tr>
-    <tr><td><strong>B.</strong></td><td>3</td><td>2</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td><td>2</td><td>3</td><tr>
-    <tr><td><strong>F.</strong></td><td>2</td><td>1</td><td>3</td><td>2</td><td>1</td><td>0</td><td>3</td><td>3</td><td>3</td><tr>
-    <tr><td><strong>E.</strong></td><td>1</td><td>2</td><td>2</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>3</td><tr>
-    <tr><td><strong>C.</strong></td><td>3</td><td>4</td><td>2</td><td>1</td><td>2</td><td>3</td><td>2</td><td>0</td><td>4</td><tr>
-</table>
-
-<p>Dans la dernière colonne, la plus grande distance relevée vaut 4 entre Gérard et Charlie. Elle correspond au diamètre. La plus petite distance relevée vaut 3. Elle correspond au rayon. Attention, dans un graphe le rayon n'est pas défini comme la moitié du diamètre. Tous les sommets pour lesquels cette distance vaut 3 sont les centres du graphe. Ainsi, Anatole, Daniel, Kevin, Barnabé, François et Ethan sont des centres du graphe. Il n'existe donc pas un unique centre, mais plusieurs centres qui correspondent aux sommets dont la distance aux autres sommets est minimale.</p>
-
-</div>
-
-<div class="exerciceApplication">
-    <p><strong>A vous de jouer :</strong> trouver le diamètre, le rayon et le ou les centres du graphe représentant les relations suivantes:
-        <ul>
-            <li>Antoine est en relation avec Bénédicte et Corinne</li>
-            <li>Bénédicte est en relation avec Antoine et Daniel</li>
-            <li>Corinne est en relation avec Antoine, Daniel et Franck</li>
-            <li>Franck est en relation avec Emin, Corinne et Henri</li>
-        </ul>
-    </p>
-</div>
 
 
-<h3>Modéliser les réseaux sociaux en Python</h3>
 
-<p>A partir du graphe présenté dans l'exemple ci-dessus, on peut relier les différents amis du réseaux en 
-    utilisant une structure de listes ou une structure de dictionnaires Python.</p>
+  
+    <h4>Particularités des listes en JavaScript</h4>
+  
+    <p>En JavaScript on peut stocker des éléments de différents types dans une liste.</p>
+    <pre><code class="language-javascript">let tab = ["Antoine", 12, false];</code></pre>
+  
+    <p>En JavaScript, l'appel à un indice ne figurant pas dans le tableau ne conduit pas à une exception du type 
+      IndexOutOfRange mais renvoie la valeur <em>undefined</em>.</p>
+  
 
-<p>Par exemple, en utilisant une liste de listes (appelée matrice), on peut écrire :</p>
+<h4>Copie de liste</h4>
 
-<pre><code class="language-python">reseau = [
-    ['Gérard', 'Daniel', 'Ethan'],
-    ['François', 'Kevin'],
-    ['Kevin'],
-    ['Anatole', 'Kevin'],
-    ['Anatole', 'Kevin'],
-    ['Barnabé', 'Gérard'],
-    ['Anatole', 'François'],
-    ['Ethan', 'Barnabé', 'Daniel', 'Charlie']
-]</code></pre>
+<p>On peut copier la liste L dans une nouvelle liste appelée newL en utilisant l'instruction :</p>
 
-<p>où la 1ère liste représente les liens d'Anatole, la 2ème liste représente les liens de Barnabé, 
-    la 3ème liste les liens de Charlie, la 4ème liste les liens de Daniel, la 5ème liste les liens 
-    de Ethan, la 6ème liste les liens de François, la 7ème liste des liens de Gérard, la 8ème liste 
-    les liens de Kevin.</p>
+<pre><code class="language-javascript">let newL = [L];</code></pre>
 
-<p>En utilisant un dictionnaire de listes, on peut écrire :</p>
+<p><em>Attention</em>, en JavaScript les listes sont copiées par référence et non par valeur comme pour les types 
+primitifs (string, number, bool). De ce fait, toute modification de L entraîne une modification de newL et 
+inversement.</p>
 
-<pre><code class="language-python">reseau = {
-    'Anatole': ['Gérard', 'Daniel', 'Ethan'],
-    'Barnabé': ['François', 'Kevin'],
-    'Charlie': ['Kevin'],
-    'Daniel': ['Anatole', 'Kevin'],
-    'Ethan': ['Anatole', 'Kevin'],
-    'François': ['Barnabé', 'Gérard'],
-    'Gérard': ['Anatole', 'François'],
-    'Kevin': ['Ethan', 'Barnabé', 'Daniel', 'Charlie']
+<!-- LES DICTIONNAIRES -->
+<h3>Les dictionnaires</h3>
+  
+    <p>Ils se construisent avec des accolades à la place des crochets et des virgules entre les éléments. Ils sont parfois 
+      appelés tableaux associatifs.</p>
+    <pre><code class="language-javascript">let dico ={
+    nom: "Antoine",
+    prenom: "Hervé"
+  };</code></pre>
+  
+    <p>Pour accéder à un élément du dictionnaire, il ne faut plus appeler son indice qui n'existe pas mais appeler la clé de la façon suivante :</p>
+  
+    <pre><code class="language-javascript">dico.nom</code></pre>
+    <p>On remarque donc qu'un dictionnaire n'est autre qu'un objet dans lequel les clés sont des attributs qui possèdent 
+      des valeurs.</p>
+  
+    <p>Dans certains cas, on préfèrera appeler l'élément du dictionnaire de la manière suivante :</p>
+    <pre><code class="language-javascript">dico["nom"]</code></pre>
+  
+    <p>Pour ajouter un élément à la fin d'un dictionnaire, il suffit de créer cet élément, car il n'existe pas de fin pour 
+      un dictionnaire, qui est structuré comme un ensemble non ordonné :</p>
+    <pre><code class="language-javascript">dico["lieuNaissance"] = "Lausanne";</code></pre>
+  
+    <p>ou encore</p>
+    <pre><code class="language-javascript">dico.lieuNaissance = "Lausanne";</code></pre>
+  
+    <h4>Parcourir un dictionnaire</h4>
+  
+    <pre><code class="language-javascript">for(let cle in dico){
+      console.log(`${cle} : ${dico[cle]}`);
+    }</code></pre>
+  
+
+
+
+  <!-- ===== BRANCHEMENT CONDITIONNEL ===== -->
+    <h3>Les conditions</h3>
+
+    <pre><code class="language-javascript">if(condition){
+  instructions;
+}else{
+  instructions;
+}</code></pre>
+
+    <h4>Particularité de JavaScript</h4>
+
+    <p>La fonction <strong>confirm()</strong> renvoie <em>true</em> lorsqu'on clique sur <em>Ok</em> dans une fenêtre pop-up et <em>false</em> lorsqu'on clique sur <em>Annuler</em>.</p>
+    <pre><code class="language-javascript">if(confirm("Voulez-vous continuer ?")){
+  alert("Vous avez choisi de continuer")
+}</code></pre>
+
+    <h4>L'instruction switch</h4>
+
+    <pre><code class="language-javascript">switch(maVariable){
+  case valeur1:
+    instruction;
+    break;
+  case valeur2:
+    instruction;
+    break;
+  case valeur3:
+    instruction;
+    break;
+  default:
+    instruction;
 }</code></pre>
 
 
-<h3>Matrice d'adjacence</h3>
 
-<p>Il est également possible de représenter un réseau social à travers une sorte de tableau à double entrée 
-    appelé matrice d'adjacence. Le principe est simple, si il existe un lien entre les personnes A et B alors 
-on inscrit le chiffre 1 dans la matrice dans la zone faisant correspondre A et B. Dans le cas contraire on 
-inscrit 0 dans la matrice.</p>
+  <!-- ===== LES BOUCLES ===== -->
+  <h3 id="boucle"> Les boucles </h3>
 
-<p>Cette notion de matrice d'adjacence existe également dans un cadre plus général que celui des réseaux sociaux, comme
-    par exemple dans un réseau informatique ou un réseau routier. On peut alors inscrire à la place du chiffre 1 une valeur
-     plus précise représentant les kilomètres, le temps de parcours ou le débit binaire.</p>
+    <h4>La boucle while</h4>
 
-<p>Reprenons l'exemple ci-dessus. La matrice d'adjacence est :</p>
+    <pre><code class="language-javascript">while(condition){
+  instructions;
+}</code></pre>
 
-<p>0 0 0 1 1 0 1 0<br/>
-   0 0 0 0 0 1 0 1<br/>
-   0 0 0 0 0 0 0 1<br/>
-   1 0 0 0 0 0 0 1<br/>
-   1 0 0 0 0 0 0 1<br/>
-   0 1 0 0 0 0 1 0<br/>
-   1 0 0 0 0 1 0 0<br/>
-   0 1 1 1 1 0 0 0</p>
+    <h4>La boucle for</h4>
 
-<p>On peut traduire cette matrice d'adjacence en Python à l'aide d'une liste de listes, mais cette fois 
-    il n'est pas nécessaire d'utiliser les prénoms des membres du réseau Anatole, Barnabé, Charlie, ... .
-    La 1ère ligne représente Anatole, la 2ème ligne représente Barnabé, la 3ème ligne représente Charlie, ..., 
-    la 1ère colonne représente Anatole, la 2ème colonne représente Barnabé, la 3ème colonne représente 
-    Charlie, ... . On obtient ainsi :</p>
-
-<pre><code class="language-python">reseau = [
-    [0, 0, 0, 1, 1, 0, 1, 0],
-    [0, 0, 0, 0, 0, 1, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [0, 1, 0, 0, 0, 0, 1, 0],
-    [1, 0, 0, 0, 0, 1, 0, 0],
-    [0, 1, 1, 1, 1, 0, 0, 0]
-]</code></pre>
-
-<p>ou encore, en ne tenant compte que des indices des membres du réseau qui sont en relation :</p>
-
-<pre><code class="language-python">reseau = [
-    [3, 4, 6],
-    [5, 7],
-    [7],
-    [0, 7],
-    [0, 7],
-    [1, 6],
-    [0, 5],
-    [1, 2, 3, 4]
-]</code></pre>
+    <pre><code class="language-javascript">for(let i=0; i&lt5; i++){
+  instructions;
+}</code></pre>
 
 
-     <div class="exerciceApplication">
-        <p><strong>A vous de jouer :</strong> Soient sept personnes, André, Béatrice, Clyde, Dona, Emin, 
-            Françoise et Gérard. On connaît les liens suivants entre elles :</p>
-            <ul>
-                <li>André est ami avec Françoise et Dona.</li>
-                <li>Béatrice est amie avec Clyde et Dona.</li>
-                <li>Clyde est ami avec Gérard.</li>
-                <li>Dona est amie avec Emin.</li>
-                <li>Emin est ami avec Gérard.</li>
-                <li>Françoise est amie avec Béatrice.</li>
-            </ul>
-            <p>a) Dessinez le réseau de ces sept personnes.<br/>
-            b) Représentez la matrice d’adjacence de ce réseau.<br/>   
-            c) Quel est le diamètre de ce réseau ?<br/>   
-            d) Quel serait le diamètre de ce réseau si Gérard et Béatrice devenaient amis ?<br/>   
-            e) Quel serait le diamètre de ce réseau si Françoise et Emin étaient amis ?</p>
-    </div>
+  <!-- ===== LES FONCTIONS ===== -->
 
+  <h3 id="fonction"> Les fonctions </h3>
 
-<!-- FICHE MEMO -->
-<h3>Fiche mémo</h3>
+  <p>La déclaration d'une fonction se réalise de la manière suivante :</p>
+  <pre><code class="language-javascript">function nomFonction(parametre){
+  instructions;
+  return valeur;
+}</code></pre>
 
-<div class="row">
-    <div class="col-12">
-        <iframe src="{% static 'home/documents/memo_reseaux_sociaux.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
-    </div>
+<div class="fieldsetDefinition"><h4>BON A SAVOIR </h4>
+  <p><em>Attention</em>, en JavaScript le type de retour de la fonction et le type des arguments ne sont pas spécifiés lors de la déclaration. Il est donc impossible de surcharger une fonction en JavaScript.</p>
 </div>
 
+  <p>L'appel de la fonction se fait de la façon suivante :</p>
+  <pre><code class="language-javascript">let valeur = nomFonction(12);</code></pre>
+
+  <p>Lorsqu'il n'y a pas de valeur de retour, on parle de procédure :</p>
+  <pre><code class="language-javascript">function nomProcedure(parametre){
+  instructions;
+}</code></pre>
+
+  <p>L'appel de la procédure se fait de la façon suivante :</p>
+  <pre><code class="language-javascript">nomProcedure("Herve");</code></pre>
+
+    <h4>Documenter une fonction avec des docstring</h4>
+<p>Il est possible d'utiliser la structure suivante pour les docstring :</p>
+
+<pre><code class="language-javascript">/**
+ * Cette fonction prend un nom en parametre et renvoie un pseudo. 
+ * 
+ * @param {string} nom: le nom de l'utilisateur
+ *
+ * @return {string} pseudo: le pseudo renvoye
+ */</code></pre>
+
+
+    <h4>Fonction lambda</h4>
+
+    <p>Le principe de fonction lanbda (anonyme) utilise toujours le mot-clé <strong>function</strong> mais ne spécifie aucun nom pour la fonction créée.</p>
+    <pre><code class="language-javascript">let maVariable = function(parametre){
+  let message = "Bonjour " + parametre;
+  return message;
+}
+
+console.log(maVariable("Hervé"));</code></pre>
+
+  <p>qu'on peut également écrire :</p>
+
+  <pre><code class="language-javascript">let maVariable = (parametre) =>{
+  let message = "Bonjour " + parametre;
+  return message;
+}
+
+console.log(maVariable("Hervé"));</code></pre>
+
+  <p>On remarque qu'une fonction lambda utilise une construction particuliére et transforme la variable <em>maVariable</em> en fonction.</p>
+
+    <h4>Fonctions prédéfinies </h4>
+
+    <table>
+      <tr><th>Fonctions</th><th>Actions</th></tr>
+      <tr><td>Math.cos(x)</td><td>renvoie le cosinus de x</td></tr>
+      <tr><td>Math.exp(x)</td><td>renvoie l'exponentielle de x</td></tr>
+      <tr><td>Math.floor(x)</td><td>renvoie le plus grand entier inférieur ou égal à x</td></tr>
+      <tr><td>Math.ceil(x)</td><td>renvoie le plus petit entier supérieur ou égal à x</td></tr>
+      <tr><td>Math.abs(x)</td><td>renvoie la valeur absolue de x</td></tr>
+      <tr><td>Math.round(x)</td><td>renvoie l'arrondi de x sous forme de l'entier le plus proche</td></tr>
+      <tr><td>Math.log2(x)</td><td>renvoie le logarithme en base 2 de x</td></tr>
+      <tr><td>Math.max(L)</td><td>renvoie le plus grand élément d'une liste L</td></tr>
+      <tr><td>Math.pow(x, y)</td><td>renvoie x à la puissance y</td></tr>
+      <tr><td>Math.sqrt(x)</td><td>renvoie la racine carrée de x</td></tr>
+      <tr><td>Math.trunc(x)</td><td>renvoie la partie entière de x</td></tr>
+      <tr><td>Math.min(L)</td><td>donne le minimum des paramètres passés en arguments</td></tr>
+      <tr><td>Math.random()</td><td>génère un nombre aléatoire entre 0 et 1</td></tr>
+
+    </table>
+
+
+
+ 
+
+
+    <!-- ===== LES OBJETS EN JAVASCRIPT ===== -->
+    <h3>Programmation objet</h3>
+  
+      <p>La création d'une classe requiert les mot-clés <strong>class</strong> et <strong>constructor()</strong>.</p>
+      <pre><code class="language-javascript">class MaClasse{
+    
+    constructor(nom, prenom){
+      this.nom = nom;
+      this.prenom = prenom;
+    }
+  
+    uneMethode(parametre){
+      instructions;
+    }
+  }</code></pre>
+  
+    <p>L'instanciation d'un objet se fait de façon classique :</p>
+    <pre><code class="language-javascript">let monObjet = new MaClasse("Charles", "Hervé");</code></pre>
+  
+<p>Il existe également des méthodes statiques qui ne sont pas définies pour un objet mais pour une classe toute 
+  entière. Il n'est donc pas nécessaire de créer un objet pour les utiliser. Par exemple </p>
+
+  <pre><code class="language-javascript">class MaClasse{
+
+    constructor(nom, prenom){
+      this.nom = nom;
+      this.prenom = prenom;
+    }
+
+    static uneMethodeStatique(parametre){
+      instructions;
+    }
+}
+
+let monObjet = new MaClasse("Charles", "Hervé");
+monObjet.uneMethode(parametre)
+maClasse.uneMethodeStatique(parametre)</code></pre>
+
+
+    <h4>Particularité de JavaScript</h4>
+  
+    <p>JavaScript utilise des prototypes qui sont des liens vers d'autres objets pris en référence.</p>
+    <pre><code class="language-javascript">let monObjet = new MaClasse(nom, prenom);
+let unAutreObjet = Object.create(monObjet);</code></pre>
+  
+    <p>Dans l'exemple ci-dessus, l'objet <em>unAutreObjet</em> utilise le modèle de <em>monObjet</em> pour se construire qui lui-même est une instanciation de <em>maClasse</em>.</p>
+  
+
+
+
+    <h3>La gestion des exceptions</h3>
+
+<p>On distingue souvent 3 catégories d'erreurs : les erreurs de syntaxe, les erreurs de logique et les 
+  erreurs d'exécution.</p>
+
+<p>En JavaScript il est possible de traiter activement une erreur potentielle à l'aide d'une condition 
+  <strong>if ... else</strong>. Il est également possible de gérer les exceptions à l'aide de l'instruction :</p>
+
+<pre><code class="language-javascript">try{
+  // code susceptible de fournir un message d'erreur
+}catch (error){
+  // instructions à suivre en cas d'erreur
+}</code></pre>
+
+<p>Ici <strong>error</strong> peut être remplacé par le libellé exact du code d'erreur.</p>
+
+
+<h3>La gestion du DOM</h3>
+
+<p>Pour créer un objet en relation avec un bloc HTML représenté par l'identifiant <code>cible</code>, puis afficher 
+  la valeur de la variable <code>resultat</code> à l'emplacement de ce bloc :</p>
+
+<pre><code class="language-javascript">&lt;p id="cible">&lt;/p>
+
+&lt;script>
+cible = document.getElementById("cible");
+cible.innerHTML = resultat;
+&lt;/script></code></pre>
+
+  <p>Pour aller plus loin, l'excellent ouvrage <a href="https://eloquentjavascript.net/index.html" target="_blank"><em>Eloquent JavaScript</em></a>, from Marijn Haverbeke.</p>
+  <p>Pour tester les codes sans recourir à un éditeur, le site bien pensé <a href="https://jsfiddle.net/" target="_blank">jsFiddle</a>.</p>
+
+
 {% endblock cours %}
+

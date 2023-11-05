@@ -12,6 +12,18 @@ target: all pages */
   --couleur_4: #ba3b46;
 }
 
+.tampon{
+  border-radius: 10px;
+  border: 3px solid var(--couleur_retenir);
+  background-color:white;
+  padding:2%;
+  font-size:1.7em;
+  font-weight:bold;
+  rotate:-40deg;
+  color:var(--couleur_retenir);
+  width:40%;
+}
+
 .separateur{
   border-bottom:2px solid lightgray;
   margin-top:2%;
@@ -22,6 +34,7 @@ target: all pages */
   visibility:hidden !important;
   padding-top:7%;
 }
+
 .img_ombre{
   width:100%;
   border-radius:10px;
@@ -72,6 +85,13 @@ strong{
   display: inline;
 }
 
+/* essai */
+textarea {
+  min-height: 60px;
+  overflow-y: auto;
+  word-wrap:break-word
+}
+
 /* paragraphes 
 target: all pages */
 p{
@@ -86,6 +106,7 @@ iframe{
   width:100%;
   aspect-ratio:16/9;
 }
+
 .p3_index{
   font-size:1.5em;
 }
@@ -133,18 +154,20 @@ h2{
   margin-top: 10%;
   margin-bottom: 3%;
 }
+
 .toketa{
   background: -webkit-linear-gradient(45deg, var(--couleur_titre), var(--couleur_retenir) 30%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 h3{
   /* primary color */
   color:var(--couleur_titre);
   font-family: Arial, Cambria;
   font-size: 1.5em;
   font-weight:bold;
-  margin-top: 3%;
+  margin-top: 5%;
   /* comptage titre h3 */
   counter-increment: section;
   counter-reset: subsection;
@@ -167,6 +190,10 @@ h4{
 target: toutes les pages*/ 
 pre{
   color: black;
+}
+
+code{
+  color:slategray;
 }
 
 /* photo qui s'eloigne 
@@ -212,14 +239,12 @@ a{
     color: lightslategray;
     font-family: Arial, Cambria;
     font-size:1.1em;
-    text-decoration: none;
 }
 
 a:hover{
-    color: var(--couleur_important);
+    color: var(--couleur_retenir);
+    text-decoration: none;
 }
-
-
 
 /* tables */
 table{
@@ -254,22 +279,15 @@ th{/* descripteurs */
 ul{
   color:black;
 }
+
 /* listes
 target: toutes les pages */
 li{
   list-style-type: disc;
-  font-family: Arial, Cambria;
-  font-size: 1.2em;
-  color: black;
 }
 
-.fieldsetDefinition > ul{
-  color: var(--couleur_retenir);
-}
 
-.fieldsetDefinition > ul > li{
-  color: var(--couleur_important);
-}
+
 
 /* section 'A vous de jouer'
 target: toutes les pages */
@@ -290,6 +308,30 @@ target: toutes les pages de maths */
   margin-bottom: 1%;
 }
 
+/* section resume a la fin de chaque section
+target: toutes les pages de python */
+.resume{
+  background-color: var(--couleur_fond);
+  padding:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius:10px;
+}
+
+.resume > h4{
+  margin-top:1%;
+}
+
+/* section quiz a la fin de chaque questionnaire unique
+target: toutes les pages de python */
+.quizUnique{
+  background-color: lightgray;
+  padding:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius:10px;
+}
+
 .essentiel{
   border: 4px var(--couleur_titre) dashed;
   background-color: var(--couleur_fond);
@@ -305,17 +347,23 @@ target: toutes les pages */
 }
 
 .fieldsetDefinition > h4{
-  color: var(--couleur_4);
+  color: var(--couleur_retenir);
   margin-top: 0%;
 }
 
 .fieldsetDefinition > p{
-  color: var(--couleur_4);
+  color: var(--couleur_retenir);
 } 
 
-.fieldsetDefinition > li{
-  color: var(--couleur_4);
+.fieldsetDefinition > ul > li > p{
+  color: var(--couleur_retenir);
+  font-size:1em;
 }
+
+.fieldsetDefinition > ul > li{
+  color:var(--couleur_retenir);
+}
+
 
 /* images
 target: toutes les pages */
@@ -403,6 +451,36 @@ target: all pages */
     cursor: grab;
 }
 
+/* bouton vocabulaire */
+.btn_vocabulaire{
+  line-height: 2;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1em;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px dashed var(--couleur_retenir);
+  font-family: Arial, Cambria;
+  cursor: pointer;
+  transition: border 500ms;
+}
+
+.btn_vocabulaire:hover{
+  border: 3px solid var(--couleur_retenir);
+  cursor: grab;
+}
+
+/* affichage du vocabulaire */
+.vocabulaire{
+  margin-left:5%;
+  margin-top:-2%;
+  padding:1%;
+  background-color:var(--couleur_3);
+  border-radius:10px;
+}
+
 /* bouton 
 target: all pages */
 .bouton2{
@@ -425,6 +503,25 @@ target: all pages */
 .bouton2:hover{
   color: var(--couleur_2);
   border-color: var(--couleur_2);
+  cursor: grab;
+}
+
+.bouton3{
+  line-height: 2;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border:0;
+  text-decoration: underline;
+  font-size: 1em;
+  background-color:white;
+  color: lightslategray;
+  font-family: Arial, Cambria;
+  cursor: pointer;
+  transition: background-color 500ms;
+}
+
+.bouton3:hover{
+  color: var(--couleur_retenir);
   cursor: grab;
 }
 
@@ -501,6 +598,10 @@ target: pages tables de matieres */
   margin-left:10%;
   font-weight:bold;
   font-size:2em;
+}
+/* target sandboxes */
+textarea{
+  border:none;
 }
 
 /* -------------------------------------------------

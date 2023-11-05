@@ -5,7 +5,7 @@
 <!-- HEAD -->
 
 <head>
-    <title> ToKeTa </title>
+    <title> ToKeta </title>
      
     <!-- framework bootstrap5
          bibliotheque d'icones bootstrap
@@ -15,16 +15,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel='stylesheet' href="{% static 'home/styles/style54.css' %}">  
+    <link rel='stylesheet' href="{% static 'home/styles/style60.css' %}">  
     <link rel='stylesheet' href="{% static 'home/styles/prism.css' %}">  
     <link rel='icon' type='image/png' href="{% static 'home/images/general/symbole_circulaire.png' %}">
    
     <!-- utilisation des accents francais -->
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+</head>
     
-
 <body>
 
 <!-- HEADER  -->
@@ -46,7 +45,10 @@
                     <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' niveau='nsi' %}" style="font-size:1.3em;color:var(--couleur_titre);">Sciences<br/>numériques</a>
                     <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' niveau='maths' %}" style="font-size:1.3em;color:var(--couleur_titre);">Calcul<br/>numérique</a>
                 </div>
-                <button class="bouton me-2 fw-bold" type="button">Connexion</button>
+                <a href="{% url 'afficherConnexion' %}"><button class="bouton me-2 fw-bold" type="button">Connexion</button></a>
+                <a href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank'>
+                <img src="{% static 'home/images/general/youtubetoketa.png' %}" alt='youtube' width='30%' style='margin-left:1%;border-radius:5px;'>
+                </a> 
             </div>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="mot-clé (en construction)" aria-label="Search">
@@ -65,10 +67,10 @@
 <!-- FOOTER -->
 
 <footer>
-    <section class="my-5 py-5 px-5 bg-white">
+    <section class="my-5 py-5 bg-white">
         <div class="container">
             <div class="row">
-            <p class="bi bi-badge-cc"> ToKeTa 2020 Stephane R.</p>
+            <p class="bi bi-badge-cc"> ToKeTa 2021 S. Robin</p>
             <a class="bi bi-linkedin  col-md-2" href="" target="_blank"> LinkedIn</a>
             <a class="bi bi-facebook  col-md-2" href="" target="_blank"> Facebook</a>
             <a class="bi bi-youtube  col-md-2" href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target="_blank"> YouTube</a>
@@ -87,29 +89,13 @@
 </footer>
 
 
-<!-- JS SCRIPTS -->
-
-<!-- script for latex mathjax -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      extensions: ["tex2jax.js"],
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [ ["\\(","\\)"] ],
-        displayMath: [ ["\\[","\\]"] ],
-        processEscapes: true
-      },
-      "HTML-CSS": { availableFonts: ["TeX"] }
-    });
-</script>
-<script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-
 <!-- script for code coloring -->
 <script defer src="{% static 'home/styles/prism.js' %}"></script>
 
 <!-- script for other functions -->
-<script src="{% static 'home/general/fonctionsJS.js' %}"></script>
+<script src="{% static 'home/general/scripts.js' %}"></script>
+
+<!-- script for mathjax only in the related pages because mathjax slows down the website -->
 
 </body>
 </html>

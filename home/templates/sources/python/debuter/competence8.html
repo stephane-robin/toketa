@@ -3,124 +3,111 @@
 
 {% block contenu %}
 <ul>
-    
+    <li>utilisation de variables</li>
+    <li>utilisation de conditions</li>
+    <li>utilisation de boucles</li>
+    <li>pratique de la construction de code</li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}  
 
-<!-- A PLACER EN DEBUT DE FICHIER -->
-<!-- script for pyodide python sandbox -->
--<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-<!-- import codemirror stylings -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
-<!-- install codemirror.js version /5.63.3 from cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
-integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- install codemirror python language support -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/python/python.min.js"
-integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- import codemirror dracula theme styles from cdn -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/dracula.css" />
-</head>  
+<h3>La bibliothèque random</h3>
+
+<p>Dès qu'il est question de jeu, le hasard peut intervenir à tout moment, et il est utile pour le programmeur de savoir 
+    utiliser la bibliothèque random et la bibliothèque time.</p>
+
+<p>La bibliothèque random permet de tirer un nombre au hasard ou de choisir un ou plusieurs éléments au hasard dans 
+    une liste.</p>
+
+<p>Pour tirer un nombre au hasard compris entre 1 et 10 :</p>
+<pre><code class="language-python">import random
+nbre = random.randint(1, 10)</code></pre>
+
+<p>Pour tirer un élément au hasard parmi une liste :</p>
+<pre><code class="language-python">import random
+semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+jour = random.choices(semaine)</code></pre>
+
+<p>Pour tirer 3 éléments au hasard parmi une liste (attention chacun des éléments choisi peut se répéter) :</p>
+<pre><code class="language-python">import random 
+semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+liste_choix = random.choices(semaine, k=3)</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>Cette fois, on ne veut pas répéter le nom des personnes tirées au sort, ni au sein 
+    d'une équipe ni entre plusieurs équipes. Que faut-il faire pour créer 3 équipes de 3 personnes au hasard à partir d'une 
+liste de personnes ?</p>
+
+<p>Solution</p>
+<pre><code class="language-python">import random 
+
+deck = ["Antoine", "Hervé", "Chloé", "Yvonne", "Noémie", "Pierre", "Noam", "Aylin", "Audrey"]
+equipe = deck.copy()
+
+def retirerGroupe(groupe):
+    """retire groupe de la liste effectifs"""
+    global equipe
+    for elt in groupe:
+        equipe.remove(elt)
+
+equipe1 = random.sample(deck, k=3)
+retirerGroupe(equipe1)
+
+equipe2 = random.sample(deck, k=3)
+retirerGroupe(equipe2)
+
+equipe3 = equipe
+
+print(equipe1)
+print(equipe2)
+print(equipe3)</code></pre>
+</div>
 
 
-<style>
-  /* set codemirror ide height to 100% of the textarea */
-  .CodeMirror {
-    height: 150px;
-    overflow: hidden;
-  }
-</style>
+<h3>La bibliothèque time</h3>
+
+<p>Pour connaître le temps écoulé en secondes depuis la création de l'informatique (1er janvier 1970) :</p>
+
+<pre><code class="language-python">import time
+temps = time.time()</code></pre>
+
+<p>Cela permet notamment de connaître le temps d'exécution d'un bloc d'instructions en mesurant le temps 
+    avant l'exécution puis le temps après l'exécution :</p>
+
+<pre><code class="language-python">import time
+debut = time.time()
+i = 0
+while i < 100000:
+    i += 1
+print(i)
+fin = time.time()
+
+duree = fin - debut</code></pre>
+
+<p>Pour mettre en pause l'exécution d'un programme pendant 10 secondes :</p>
+<pre><code class="language-python">import time
+print("Première phrase")
+time.sleep(10)
+print("Deuxième phrase après la pause")</code></pre>
 
 
-<!-- Common function to initialize a sandbox -->
-<script>
-    const sandboxes = {};
-  
-    function initializeSandbox(sandboxId) {
-      const outputElement = document.getElementById(`output${sandboxId}`);
-      const codeElement = document.getElementById(`code${sandboxId}`);
-  
-      const editor = CodeMirror.fromTextArea(codeElement, {
-        mode: {
-          name: "python",
-          version: 3,
-          singleLineStringErrors: false,
-        },
-        theme: "dracula",
-        lineNumbers: true,
-        indentUnit: 4,
-        matchBrackets: true,
-      });
-  
-      editor.setValue("");
-      outputElement.value = "Initializing...\n";
-  
-      const sandbox = {
-        pyodide: null,
-        editor,
-        outputElement,
-      };
-  
-      sandboxes[sandboxId] = sandbox;
-  
-      async function main() {
-        sandbox.pyodide = await loadPyodide({
-          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
-        });
-  
-        sandbox.outputElement.value = sandbox.pyodide.runPython(`
-          import sys
-          sys.version
-        `);
-  
-        sandbox.outputElement.value += "\nPython Ready!\n";
-      }
-  
-      main();
-    }
-  
-    function executePython(sandboxId) {
-      const sandbox = sandboxes[sandboxId];
-  
-      try {
-        sandbox.pyodide.runPython(`
-          import io
-          sys.stdout = io.StringIO()
-        `);
-  
-        const result = sandbox.pyodide.runPython(sandbox.editor.getValue());
-        const stdout = sandbox.pyodide.runPython("sys.stdout.getvalue()");
-        sandbox.outputElement.value += ">>> \n" + stdout + "\n";
-      } catch (err) {
-        sandbox.outputElement.value += ">>> Error: \n" + err + "\n";
-      }
-    }
-  
-    function clearHistory(sandboxId) {
-      const sandbox = sandboxes[sandboxId];
-      sandbox.outputElement.value = "";
-      console.log(sandboxId);
-    }
-  </script>
+<h3>Sujet du projet</h3>
 
-{% include '../../../sandbox.html' with nmr='1' %}
+<p>Ce projet est l'occasion d'un travail en binôme. Il vous est demandé de construire un jeu de pendu simple 
+    mais fonctionnel, sans interface graphique. Vous n'utiliserez donc pas la bibliothèque turtle. Vous 
+    afficherez sur la console des tirets à la place du mot à trouver, puis les lettres correctes trouvées 
+    par le joueur aux emplacements correspondant dans ce mot. Vous afficherez également toutes les lettres 
+    proposées par le joueur. La saisie des lettres se fera directement à la console.</p>
 
-  
+<p>Le joueur dispose de 5 tentatives pour gagner. A la 6ème tentative, le joueur perd la partie.</p>
 
-<script>
-    initializeSandbox(1);
-</script>
+<p>Vous afficherez finalement à la console si le joueur a perdu ou gagné, et dans ce cas vous rajouterez 
+    son score en pourcentage.</p>
 
-{% include '../../../sandbox.html' with nmr='2' %}
 
-<script>
-        initializeSandbox(2);
+<p>Une solution possible :</p>
 
-</script>
-
+<pre><code class="language-python"></code></pre>
 
 {% endblock cours %}

@@ -27,8 +27,7 @@ titres = {
             'Résoudre une inéquation de degré 1',
             'Equation/inéquation avec valeur absolue',
             'Comprendre la différence entre images et antécédents',
-            'Fonctions affines',
-            'Tracer des courbes avec Python'
+            'Fonctions affines'
             ],
         'statistiques': [
             'Découvrir les statistiques sur un exemple',
@@ -43,21 +42,21 @@ titres = {
     'nsi': {
         'internet': [
             'Internet un modèle en couches',
-            'TP - Un réseau mondial',
-            'TP - Adresse IP',
-            'TP - Liens hypertextes',
-            'TP - Le DNS',
+            'Un réseau mondial',
+            'Adresse IP',
+            'Le DNS',
+            'Liens hypertextes',
             'Comprendre le Web',
             'Structure des pages Web',
-            'TP - Créer un site Web avec HTML/CSS',
-            'Bootstrap',
-            'Structure d\'un script',
             'Réseaux peer-to-peer',
             'Moteurs de recherche',
             'Sécurité sur le Web',
             'Les dangers des réseaux sociaux',
-            'TP - Les traces numériques',
-            'Représenter les réseaux sociaux avec des graphes',
+            'Les traces numériques',
+            'Modéliser les réseaux sociaux en Python',
+            'Créer un site Web avec HTML/CSS',
+            'Bootstrap',
+            'Découvrir JavaScript'
             ],
         'architecture': [
             'Architecture de Von Neumann',
@@ -97,29 +96,31 @@ titres = {
     'python': {
         'debuter' : [
             'Découvrir Python',
-            'Les variables',
-            'Les chaînes de caractères',
-            'Les conditions',
-            'La boucle while / retour sur les chaînes',
-            'Les fonctions',
+            'Découvrir les variables',
+            'Les variables en détail',
+            'Les chaînes de caractères en détail',
+            'Les conditions en détail',
+            'Les boucles en détail',
+            'Les fonctions en détail',
             'TP - Dessiner avec Python',
             'TP - Jeu du pendu, niveau 1',
             'test'
             ],
         'progresser': [
+            'Environnement de développement',
             'Construire un code propre',
-            'La boucle for',
             'Les listes',
             'Les dictionnaires',
             'La portée des variables',
-            'TP - quiz',
-            'TP - jeu de devinette',
-            'TP - Mot de passe',
-            'TP - Les fonctions',
-            'TP - Convertisseur binaire',
-            'TP - Jeu de morpion',
-            'TP - Bataille navale',
-            'TP - Jeu du pendu, niveau 2'
+            'Créer un quiz',
+            'Un jeu de devinette',
+            'Gérer un accès avec mot de passe',
+            'Tracer des courbes avec Python',
+            'Exercice',
+            'Convertisseur binaire',
+            'Jeu de morpion',
+            'Bataille navale',
+            'Jeu du pendu, niveau 2'
             ],
         'avance': [
             'La modularité dans les projets',

@@ -3,232 +3,367 @@
 
 {% block contenu %}
 <ul>
-    <li>Internet comme un ensemble d'infrastructures</li>
-	<li>les protocoles</li>
-	<li>un modèle en couches</li>
-	<li>une fiche mémo sur Internet</li>
+	<li><a href="#infrastructure">un ensemble d'infrastructures</a></li>
+	<li><a href="#protocole">les protocoles</a></li>
+	<li><a href="#couches">un modèle en couches</a></li>
 </ul>
+<a href="{% static 'home/documents/memo_internet.pdf' %}" download class="bi bi-download"> Fiche mémo Internet</a><br/>
 {% endblock contenu %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
 
 {% block cours %}
 
 <h3>Introduction</h3>
 
-<p>La vidéo suivante publiée par <em>Fun Mooc</em> sur YouTube explique le fonctionnement du protocole TCP/IP :
+<p>Merci Guillaume pour cette vidéo publiée par <em>Fun Mooc</em> qui explique le fonctionnement du protocole TCP/IP :
 
-	<a href="https://www.youtube.com/watch?time_continue=8&v=aX3z3JoVEdE&feature=emb_logo" target="_blank">&#127911; vidéo Fun Mooc TCP/IP - YouTube</a></p>
-
-<p>La vidéo suivante publiée par <em>Lesics</em> sur YouTube détaille l'infrastruture d'Internet :
-
-	<a href="https://www.youtube.com/watch?time_continue=2&v=x3c1ih2NJEg&feature=emb_logo" target="_blank">&#127911; vidéo Lesics Infrastructure Internet - YouTube</a></p>
+<a href="https://www.youtube.com/watch?time_continue=8&v=aX3z3JoVEdE&feature=emb_logo" target="_blank">&#127911; vidéo Fun Mooc TCP/IP - YouTube</a></p>
 
 
+<!-- UN ENSEMBLE D'INFRASTRUCTURES -->
+<h3 id="infrastructure">Un ensemble d'infrastructures</h3>
 
-<h3>Un ensemble d'infrastructures</h3>
+<p>Internet (INTERnconnected NETwork) est une infrastructure physique composée de réseaux interconnectés. Il s'agit d'un
+	 réseau informatique mondial qui rend accessible des services de publication (le Web), 
+	 de messagerie (les e-mails), de messagerie instantanée (le chat) et de transfert de fichiers 
+	 (téléchargements, consultation de bases de données).</p>
 
-<p>Internet est un réseau informatique mondial qui rend accessible des services de publication (le Web), de messagerie (les e-mails), de messagerie instantanée (le chat) et de transfert de fichiers.</p>
-
-<div class=fieldsetDefinition>
-	<h4>A RETENIR ...</h4> 
-	<p>Internet est un réseau physique alors que le Web est un service d'Internet.</p>
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Internet est un réseau physique alors que le Web est un service de publication de contenu qui 
+			utilise l'infrastructure d'Internet.</p>
+	</div>
 </div>
 
 <p>Internet repose sur plusieurs types d'infrastructures pour fonctionner :</p>
 	<ul>
-		<li>au niveau mondial, câbles sous-marins pour traverser d'un continent à un autre, et à une moindre échelle satellites</li>
-		<li>à l'échelle locale, réseaux téléphoniques, réseaux câblés, fibre optique, antennes relais</li>
-		<li>dans chaque foyer ou entreprise, ADSL, câble, fibre optique, WiFi, 4G, 5G</li>
+		<li><p>au niveau mondial, câbles sous-marins pour traverser d'un continent à un autre, et à une moindre échelle satellites</p></li>
+		<li><p>à l'échelle locale, réseaux téléphoniques, réseaux câblés, fibre optique, antennes relais</p></li>
+		<li><p>dans chaque foyer ou entreprise, ADSL, câble, fibre optique, WiFi, 4G, 5G</p></li>
 	</ul>
 
-<p>Chacune de ces infrastructures a un débit différent. Du plus haut débit au plus bas débit, on répertorie les 
+<p>Chacune de ces infrastructures a un débit binaire différent, c'est à dire une quantité d'information capable 
+	d'être transférée à travers une section donnée. Du plus haut débit au plus bas débit, on répertorie les 
 	infrastructures suivantes : fibre optique, 5G, 4G, ADSL (haut débit), réseaux câblés, satellites.</p>
 
-<div class=fieldsetDefinition>
-	<h4>VOCABULAIRE ...</h4> 
-	<p>La <strong>bande passante</strong> est le débit binaire pouvant être transmis simultanément sur le réseau.</p>
+<!-- vocabulaire -->
+<div>
+	<button class="btn_vocabulaire bi bi-hand-index" type="submit" onclick="affichageVocabulaire(this,'vocabulaire2');"> VOCABULAIRE ...</button>
 </div>
+<div id="vocabulaire2" class="vocabulaire">	
+	<p style="padding-top:2%;">la <strong>bande passante</strong> est le débit binaire pouvant être transmis simultanément sur le réseau.</p>
+</div>
+
+<p>La vidéo suivante publiée par <em>Lesics</em> sur YouTube détaille l'infrastruture d'Internet :
+
+<a href="https://www.youtube.com/watch?time_continue=2&v=x3c1ih2NJEg&feature=emb_logo" target="_blank">&#127911; vidéo Lesics Infrastructure Internet - YouTube</a></p>
 
 
 <div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>en recherchant dans votre livre ou sur le Web, retrouvez et commentez l'historique de la création d'Internet.</p>
-	
-	<div>
-		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
-	</div>
-	
-	<div id="solution1" style="display:none;">
-
-		<p>Les principaux moments clés d'Internet sont les suivants :
-			<ul>
-				<li>années 60 : création en tant que projet militaire</li>
-				<li>années 70 : utilisation entre les universités américaines pour faciliter l'échange des connaissances, création du protocole TCP/IP sous ArpaNet</li>
-				<li>années 90 : essor du commerce en ligne, création du World Wide Web</li>
-				<li>années 2000 : essor des réseaux sociaux</li> 
-			</ul>
-		</p>
-	</div>
-</div>
-
-<div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>en recherchant dans votre livre ou sur le Web, déterminez ce qui occupe 
-		la plus grande partie du trafic mondial sur Internet.</p>
-	
-	<div>
-		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
-	</div>
-	
-	<div id="solution2" style="display:none;">
-
-		<p>La plus grande partie du trafic mondial sur Internet est occupée par le streaming et les échanges de médias.</p>
-
+	<p><strong>A vous de jouer : </strong></p>
+	<ul>
+		<li>
+			<p>En recherchant dans votre livre ou sur le Web, retrouvez et commentez l'historique de la création d'Internet.</p>
+			<div>
+				<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+			</div>
+			<div id="solution1" style="display:none;">	
+				<p>Les principaux moments clés d'Internet sont les suivants :</p>
+					<ul>
+						<li><p>années 60 : création en tant que projet militaire</p></li>
+						<li><p>années 70 : utilisation entre les universités américaines pour faciliter l'échange des connaissances, création du protocole TCP/IP sous ArpaNet</p></li>
+						<li><p>années 90 : essor du commerce en ligne, création du World Wide Web</p></li>
+						<li><p>années 2000 : essor des réseaux sociaux</p></li> 
+					</ul>
+			</div>
+		</li>
+		<li>
+			<p>En recherchant dans votre livre ou sur le Web, déterminez ce qui occupe la plus grande partie 
+			du trafic mondial sur Internet.</p>
+			<div>
+				<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+			</div>
+			<div id="solution2" style="display:none;">
+		
+				<p>La plus grande partie du trafic mondial sur Internet est occupée par le streaming et les échanges de médias.</p>
+		
+			</div>
+		</li>
+		<li>
+			<p>Quels sont les principaux avantages et inconvénients des infrastructures suivantes : ADSL, fibre optique, 4G, 5G, réseaux câblés ?</p>
+			<div>
+				<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+			</div>
+			
+			<div id="solution3" style="display:none;">
+		
+		<p>Avantages de la 5G : la connexion est très rapide. C'est pratique car on n'a pas besoin de borne Wifi.
+			On peut partager la connexion avec un hotspot.</p>
+			<p>Inconvénients de la 5G : il y a encore peu de bornes 5G, la portée des bornes 5G est beaucoup plus 
+			petite que celle des bornes 4G, il faut donc beaucoup de bornes 5G pour assurer son fonctionnement 
+			(ce qui peut constituer un problème envionnemental ou de santé publique).</p>
+		
+		<p>Avantages de la 4G : coût plus faible que la 5G, le réseau 4G est très développé
+			donc accessible à de nombreux endroits.</p>
+			<p>Inconvénients de la 4G : il existe de nombreuses zones d'ombre pour la 4G (ascenseurs, 
+			caves, zones montagneuses à l'exception des stations). La 4G traverse difficilement les immeubles, 
+			le débit est variable et moins fort que celui de la 5G </p>
+		
+		<p>Inconvénients de l'ADSL : débit relativement faible, technologie non mobile qui nécessite une borne Wifi, 
+			technologie dépassée à l'heure actuelle qui pousse les opérateurs à surfacturer le service pour que leurs 
+			liens passent à la fibre.</p> 
+		
+		<p>Avantages de la fibre optique : très fort débit, à un coût raisonnable.</p>
+			<p>Inconvénients de la fibre optique : l'installation peut prendre du temps au niveau local 
+			et nécessite pour l'utilisateur d'avoir la fibre au pied de son logement. </p>
 		</div>
+		</li>
+	</ul>
 </div>
 
-<div class="exerciceApplication">
-	<p><strong>A vous de jouer : </strong>quels sont les principaux avantages et inconvénients des infrastructures suivantes : ADSL, fibre optique, 4G, 5G, réseaux câblés ?</p>
-
-	
-	<div>
-		<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
-	</div>
-	
-	<div id="solution3" style="display:none;">
-
-<p>Avantages de la 5G : la connexion est très rapide. C'est pratique car on n'a pas besoin de borne Wifi.
-	On peut partager la connexion avec un hotspot.</p>
-	<p>Inconvénients de la 5G : il y a encore peu de bornes 5G, la portée des bornes 5G est beaucoup plus 
-	petite que celle des bornes 4G, il faut donc beaucoup de bornes 5G pour assurer son fonctionnement 
-	(ce qui peut constituer un problème envionnemental ou de santé publique).</p>
-
-<p>Avantages de la 4G : coût plus faible que la 5G, le réseau 4G est très développé
-	donc accessible à de nombreux endroits.</p>
-	<p>Inconvénients de la 4G : il existe de nombreuses zones d'ombre pour la 4G (ascenseurs, 
-	caves, zones montagneuses à l'exception des stations). La 4G traverse difficilement les immeubles, 
-	le débit est variable et moins fort que celui de la 5G </p>
-
-<p>Inconvénients de l'ADSL : débit relativement faible, technologie non mobile qui nécessite une borne Wifi, 
-	technologie dépassée à l'heure actuelle qui pousse les opérateurs à surfacturer le service pour que leurs 
-	liens passent à la fibre.</p> 
-
-<p>Avantages de la fibre optique : très fort débit, à un coût raisonnable.</p>
-	<p>Inconvénients de la fibre optique : l'installation peut prendre du temps au niveau local 
-	et nécessite pour l'utilisateur d'avoir la fibre au pied de son logement. </p>
-</div>
+<!-- resume -->
+<div class="mt-5 resume">
+    <h4>En résumé</h4>
+    <ul>
+        <li><p>Internet est une infrastructure physique composée de réseaux interconnectés.</p></li>
+		<li><p>le Web est un service de publication de contenu utilisant le réseau Internet</p></li>
+    </ul>
 </div>
 
 
+<!-- LES PROTOCOLES -->
+<h3 id="protocole">Les protocoles</h3>
 
-<h3>Les protocoles</h3>
-
-<div class="fieldsetDefinition">
-	<h4>VOCABULAIRE ...</h4>
-<p>Un <strong>protocole</strong> est un ensemble de règles permettant d'établir des échanges de données entre deux objets connectés à un réseau.</p>
+<div>
+	<button class="btn_vocabulaire bi bi-hand-index" type="submit" onclick="affichageVocabulaire(this,'vocabulaire1');"> VOCABULAIRE ...</button>
+</div>
+<div id="vocabulaire1" class="vocabulaire">	
+	<p style="padding-top:2%;">Un <strong>protocole</strong> est un ensemble de règles permettant d'établir des échanges de données entre deux objets connectés à un réseau.</p>
 </div>
 
 <p>Pour que l'information circule d'un serveur vers un client, les données doivent s'astreindre à de nombreux protocoles afin que des systèmes différents puissent communiquer ensemble.</p>
 
-<div class=fieldsetDefinition>
-	<h4>VOCABULAIRE ...</h4> 
-	<p>Un <strong>paquet</strong> est une unité élémentaire de données qui circule sur un réseau, et composée de plusieurs octets.</p>
-	</div>
+<p>Voyons brièvement ce qui se produit lorsqu'une page Web est transmise d'un serveur vers un utilisateur. 
+	Cette page Web est composée de texte et d'images. Les images sont numérisées (stockées suivant un 
+	format binaire) et le texte composé de caractères est transformé en une liste de nombres entiers (via 
+	la table ASCII) puis en une liste de nombres binaires.</p>
 
-<h3>Un modèle en couches</h3>
+<p>Ces valeurs binaires sont acheminées par fibre optique en associant un flash lumineux pour la valeur 1 
+	et aucun flash lumineux pour la valeur 0.</p>
 
-<p>L'échange de données sur Internet est construit sous forme de couches successives qui effectuent 
-	chacune leur travail avant d'activer la couche suivante. Chaque couche utilise un protocole spécifique. 
-	Il existe plusieurs modèles de couches plus ou moins détaillés. Le plus simple est le modèle à 4 couches,
-	qui accède au réseau physique, trouve le bon chemin pour obtenir l'information, découpe cette information
-	 en paquets, et utilise différentes applications pour la recherche / navigation.</p>
+<p>Vu que la quantité de flash lumineux est très importante, l'ensemble des données est décomposée en 
+	paquets capables d'être reconstitués à l'arrivée (suivant le protocole TCP). Les paquets suivent 
+	des chemins différents pour éviter l'engorgement de l'information. Le meilleur chemin pour chaque 
+	paquet est décidé de serveur en serveur (suivant le protocole IP).</p>
 
-	<p>Par exemple, si un utilisateur souhaite accéder à Wikipedia, il utilise la couche d'accès réseau pour se 
-		connecter, puis sa requête est 
-	</p>
+<p>On remarque donc que de nombreux protocoles sont mis en oeuvre pour assurer le cheminement de l'information.</p>
+
+<div>
+	<button class="btn_vocabulaire bi bi-hand-index" type="submit" onclick="affichageVocabulaire(this,'vocabulaire3');"> VOCABULAIRE ...</button>
+</div>
+<div id="vocabulaire3" class="vocabulaire">	
+	<p style="padding-top:2%;">Un <strong>paquet ou datagramme</strong> est une unité élémentaire de données qui circule sur un réseau, et composée de plusieurs octets.</p>
+</div>
+
+<!-- questionnaire -->
+<div class="quizUnique">
+	<h4 class="mt-0">As-tu bien compris ?</h4>
 	
-	
-	qui prend en compte la demande de l'utilisateur souhaitant accéder au Web, découpe la requête émise en paquets 
-	avant de trouver le bon chemin d'acheminement 
-	 qui accède au réseau avant de trouver le bon chemin pour acheminer l'information, découper les paquets et 
-	 finalement afficher le résultat pour l'utilisateur qui en a fait la demande :
-	<ul>
-		<li>la couche application, qui interprète l'information provenant du Web et utilise un logiciel comme le navigateur pour afficher le résultat à l'écran</li>
-		<li>la couche transport, qui découpe l'information en paquets et la reconstruit</li>
-		<li>la couche réseau, qui détermine les chemins possibles à partir des adresses IP de l'expéditeur et du destinataire</li>
-		<li>la couche physique, qui sert d'interface entre une machine et son réseau local</li>
-	</ul>
-</p>
+	{% include '../../../questionnaireUnique.html' with nmr='1' %}
+</div>
+<script>
+var questionsData1 = 
+	{
+		question: "Un paquet est un protocole particulier ...",
+		options:["vrai", "faux", "uniquement dans certains cas"],
+		correctIndex: 1,
+		commentaire: "Un paquet est une unité de données alors qu'un protocole est un ensemble de règles."
+	};
+questionnaireUnique(1, questionsData1);
+</script>
 
-
-<img src="{% static 'home/images/nsi/couchesInternet.png' %}" alt="couches Internet" width=30%>
-
-<h4>Couche physique</h4>
-
-<p>Pour se connecter à Internet, votre ordinateur doit tout d'abord accéder à son réseau local (réseau d'entreprise, d'école, ou simplement réseau domestique avec une Box). Ensuite l'information va circuler de routeurs en routeurs.</p>
-
-<p>Dans le réseau local, votre ordinateur est reconnu grâce à l'adresse physique de sa carte réseau, qui constitue un identifiant unique. Il s'agit de son adresse MAC (attention rien à voir avec la marque Apple). Une adresse MAC ressemble à ceci : 582D8FCAA6CB.</p>
-
-<p>Le protocole Ethernet permet aux ordinateurs d'un même réseau local d'échanger des informations, et il utilise cette adresse MAC. Une trame Ethernet (portion d'information) est composée des éléments suivants :
-    <ul><li>adresse MAC du destinataire</li>
-        <li>adresse MAC de l'émetteur</li>
-        <li>code de fragmentation des données durant le transport</li>
-        <li>données à transmettre</li>
-        <li>code de détection en cas d'erreur</li>
-    </ul></p>
-
-<div class="fieldsetDefinition">
-	<h4>A RETENIR ...</h4>
-	<p>Le protocole Ethernet permet aux ordinateurs d'un même réseau local d'échanger des informations. Il utilise les adresses MAC
-		de chaque ordinateur, qu'il entre dans une table de routage.</p>
+<!-- resume -->
+<div class="mt-5 resume">
+    <h4>En résumé</h4>
+    <ul>
+        <li><p>un protocole est un ensemble de règles permettant d'établir des échanges de données dans un réseau.</p></li>
+		<li><p>un paquet est une unité élémentaire de données qui circule sur un réseau.</p></li>
+    </ul>
 </div>
 
 
-<h4>Couche réseau</h4>
+<!-- UN MODELE EN COUCHES-->
+<h3 id="couches">Un modèle en couches</h3>
 
-<p>Dès qu'un ordinateur, smartphone ou tablette se connecte à Internet, il se voit attribuer une adresse IP qui constitue un identifiant unique sur Internet. Cette adresse IPv6 est écrite en hexadécimal et ressemble à ceci :<br/> 2001:0DB8:AC10:FE01:0000:0000:0000:0000.</p>
+<p>L'échange de données sur Internet est construit sous forme de couches successives qui effectuent 
+	chacune leur travail avant d'activer la couche suivante. Chaque couche utilise un protocole spécifique.</p>
+
+<p>Il existe plusieurs modèles de couches plus ou moins détaillés. Le modèle le plus simple est celui à 4 couches,
+	que nous expliquons ici.</p>
+
+<p>Par exemple, si un utilisateur souhaite accéder à un site Web, il utilise la couche physique pour se 
+	connecter au réseau, puis la couche réseau pour déterminer les chemins possibles de transmission de 
+	la requête, la couche de transport pour découper l'information et finalement la couche application 
+	pour interpréter la requête à l'aide d'un logiciel spécialisé.</p>
+
+<p>Dans le sens inverse, les mêmes couches sont utilisées pour acheminer l'information du serveur 
+	au client.</p>
+
+<p>Aux 4 différentes couches correspondent les protocoles suivants :</p>
+
+<img src="{% static 'home/images/nsi/couchesInternet.png' %}" alt="couches Internet" width=30%>
+
+
+<h4>La couche physique</h4>
+
+<p>Pour se connecter à Internet, votre ordinateur doit tout d'abord accéder à son réseau local (réseau 
+	d'entreprise, intranet, réseau d'école, ou simplement réseau domestique avec une Box). L'information 
+	pourra ensuite circuler de routeurs en routeurs.</p>
+
+<p>Dans le réseau local, un ordinateur est reconnu grâce à l'adresse physique de sa carte réseau, qui 
+	constitue un identifiant unique. Il s'agit de son adresse MAC (attention rien à voir avec la marque 
+	Apple). Une adresse MAC ressemble à ceci : 582D8FCAA6CB.</p>
+
+<p>Le protocole de connection à un réseau local s'appelle Ethernet. Il permet notamment aux 
+	ordinateurs d'un même réseau local d'échanger des informations en utilisant leurs adresses MAC et 
+	des trames Ethernet.</p>
+	
+<p>Une trame Ethernet est une portion d'information composée des éléments suivants :</p>
+    
+	<table>
+		<tr>
+			<td>adresse<br/>MAC<br/>destinataire</td>
+			<td>adresse<br/>MAC<br/>émetteur</td>
+			<td>code<br/>fragmentation<br/>données</td>
+			<td>données à<br/>transmettre</td>
+			<td>code<br/>détection<br/>d'erreur</td>
+		</tr>
+	</table>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Le protocole Ethernet permet aux ordinateurs d'un même réseau local d'échanger des informations. Il utilise les adresses MAC
+			de chaque ordinateur, qu'il entre dans une table de routage.</p>
+	</div>
+</div>
+
+
+<h4>La couche réseau</h4>
+
+<p>Dès qu'un ordinateur, smartphone ou tablette se connecte à Internet, il se voit attribuer une adresse IP qui constitue un identifiant unique sur Internet.</p>
+<p>Cette adresse IPv6 est écrite en hexadécimal et ressemble à ceci : 2001:0DB8:AC10:FE01:0000:0000:0000:0000.</p>
 <p>Elle remplace l'ancienne adresse IPv4 composée de 4 octets, encore présente sur Internet qui resemblait à ceci : 172.16.254.1. Chacun des nombres reste compris entre 0 et 255. Pourquoi ? indication : les différentes combinaisons possibles pour 2 bits sont 00, 01, 10, 11 et pour 4 bits 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111.</p>
 
 <div class="exerciceApplication">
 	<p><strong>A vous de jouer : </strong>comment trouver l'adresse IP avec laquelle votre ordinateur est connecté à Internet ? Il existe plusieurs méthodes...</p>
 </div>
 
-<div class="fieldsetDefinition">
-	<h4>A RETENIR ...</h4>
-<p>Le protocole IP <em>Internet Protocol</em>:
-    <ul>
-        <li>attribue une adresse IP à tout poste qui se connecte sur Internet</li>
-        <li>décide du routage, c'est à dire de l'itinéraire suivis par les paquets</li>
-    </ul>
-</p>
+<p>La couche réseau utilise également l'ancien protocole RIP ou le plus récent protocole OSPF associé à 
+	l'algorithme de Dijkstra pour déterminer le meilleur chemin pour chaque paquet transmis.</p>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Le protocole IP <em>Internet Protocol</em>:</p>
+			<ul>
+				<li><p>attribue une adresse IP à tout poste qui se connecte sur Internet</p></li>
+				<li><p>décide du routage, c'est à dire de l'itinéraire suivis par les paquets</p></li>
+			</ul>
+	</div>
 </div>
 
-<h4>Couche transport</h4>
 
-<div class="fieldsetDefinition">
-	<h4>A RETENIR ...</h4>
-<p>Le protocole TCP <em>Transmission Control Protocol</em>:
-    <ul>
-        <li>vérifie que le destinataire est prêt à recevoir</li>
-        <li>découpe les données en paquets</li>
-        <li>rassemble les paquets à l'arrivée</li>
-        <li>vérifie que les paquets sont bien arrivés</li>
-    </ul>
-</p>
+<h4>La couche transport</h4>
+
+<p>La couche de transport est responsable de l'acheminement de l'information, non pas en terme de choix de 
+	parcours mais en terme de moyen de transmission.</p>
+
+<p>Pour mieux comprendre, on pourrait utiliser l'analogie suivante. Vous devez voyager en famille de Genève à Rome 
+	avec de nombreux bagages. La couche de transport décide quel moyen de locomotion est préférable, l'avion, le train, 
+	la voiture, s'il vous faut voyager séparément de vos bagages, et à quel moment. La couche de transport est 
+	donc responsable de la logistique. La couche réseau décide du meilleur itinéraire une fois que le moyen de transport 
+	a été choisi. Ainsi la couche réseau pourrait s'apparenter à Google Maps dans cet exemple si on utilisait une voiture.</p>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Le protocole TCP <em>Transmission Control Protocol</em>:</p>
+			<ul>
+				<li><p>vérifie que le destinataire est prêt à recevoir</p></li>
+				<li><p>découpe les données en paquets</p></li>
+				<li><p>rassemble les paquets à l'arrivée</p></li>
+				<li><p>vérifie que les paquets sont bien arrivés</p></li>
+			</ul>
+	</div>
 </div>
 
 <p>Dans la pratique, on parle souvent du protocole TCP/IP qui permet l'échange de données sur Internet.</p>
 
 
+<h4>La couche application</h4>
 
-<h4>Couche application</h4>
+<p>Côté utilisateur, il s'agit de votre navigateur qui interprète les données qu'il reçoit 
+	en provenance d'Internet, et notamment les fichiers HTML, CSS et les programmes JavaScript.</p>
 
-<p>Il s'agit de votre navigateur qui interprète les données qu'il reçoit en provenance d'Internet, et notamment les fichiers HTML, CSS et les programmes JavaScript.</p>
+<p>Côté serveur, il s'agit d'un logiciel qui interprète la requête formulée et gère la structure de la base de 
+	données où sont stockées les informations </p>
 
-<div class="fieldsetDefinition">
-	<h4>A RETENIR ...</h4>
-	<p>Le protocole HTTP <em>HyperText Transfer Protocol</em> permet l'accès au Web et permet notamment d'interpréter les fichiers HTML, CSS et les commandes JavaScript.</p>
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Le protocole HTTP <em>HyperText Transfer Protocol</em> permet l'accès au Web et permet notamment 
+			d'interpréter les fichiers HTML, CSS et les commandes JavaScript.</p>
+	</div>
 </div>
 
-<h3>Fiche mémo</h3>
+<!-- questionnaire -->
+<div class="quizUnique">
+	<h4 class="mt-0">As-tu bien compris ?</h4>
+	
+	{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+<script>
+var questionsData2 = 
+	{
+		question: "Le protocole HTTP permet de ...",
+		options:["choisir le meilleur itiniraire pour l'information", "se connecter au réseau local", "se connecter au Web"],
+		correctIndex: 2,
+		commentaire: "HTTP permet l'accès au Web."
+	};
+questionnaireUnique(2, questionsData2);
+</script>
 
-<iframe src="{% static 'home/documents/memo_internet.pdf' %}" height='1200px' type='application/pdf'></iframe>
+<!-- resume -->
+<div class="mt-5 resume">
+    <h4>En résumé</h4>
+    
+	<p>Le modèle d'Internet suivant 4 couches est le suivant :</p>
+    <ul>
+		<li><p>la couche application interprète l'information provenant du Web et utilise un logiciel comme le navigateur pour afficher le résultat à l'écran</p></li>
+		<li><p>la couche transport découpe l'information en paquets et la reconstruit</p></li>
+		<li><p>la couche réseau détermine les chemins possibles à partir des adresses IP de l'expéditeur et du destinataire</p></li>
+		<li><p>la couche physique sert d'interface entre une machine et son réseau local</p></li>
+	</ul>
+</div>
 
 {% endblock cours %}

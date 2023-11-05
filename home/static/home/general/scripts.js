@@ -69,8 +69,7 @@ function start_session($minutesRestantes){
 }
 
 
-/* SCRIPT FOR HIDING A SECTION */
-
+/* script foro hiding a section */
 function affichageConditionnel(bouton, id) {
     var div = document.getElementById(id);
     // si le div est masqué, on l'affiche et on change le contenu du bouton
@@ -80,26 +79,20 @@ function affichageConditionnel(bouton, id) {
     // s'il est visible, on le masque et on change le contenu du bouton
     } else {
         div.style.display = "none";
-        bouton.innerHTML = "Voir la solution";
+        bouton.innerHTML = "Voir une solution";
     }
 }
 
-
-/* SCRIPT FOR SLIDE SHOW */ 
-
-function showSlides() {
-  let slideIndex = 0;
-
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+/* script for showing vocabulary */
+function affichageVocabulaire(bouton, id) {
+  let div = document.getElementById(id);
+  // si le div est masqué, on l'affiche et on change le contenu du bouton
+  if(div.style.display=="none") {
+      div.style.display = "block";
+  // s'il est visible, on le masque et on change le contenu du bouton
+  } else {
+      div.style.display = "none";
   }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  
-  slides[slideIndex-1].style.display = "block";  
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
 }
 
 
@@ -164,10 +157,6 @@ function questionnaireUnique(question_nmr, options_nmr, commentaire_nmr, submit_
 
   submitButton.addEventListener('click', validateAnswer);
   displayQuestion();
-}
-
-function testJS(){
-  console.log('TEST');
 }
 
 

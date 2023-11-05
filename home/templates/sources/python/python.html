@@ -28,14 +28,15 @@
         </div>
         <div class="row my-2 gx-5 gy-4">
             <div class="col-12 col-md-4">
+                <p>
                 {% for elt in debuter %}
-                <a href="{% url 'afficherPage' niveau='python' chapitre='debuter' id=forloop.counter0 %}">&#128215; {{ elt }}</a><br/>
-                {% endfor %} 
+                &#128215; <a href="{% url 'afficherPage' niveau='python' chapitre='debuter' id=forloop.counter0 %}">{{ elt }}</a><br/>
+                {% endfor %}
+                </p> 
             </div>
             <div class="col-12 col-md-4">
                 <img src="{% static 'home/images/general/download.png' %}" alt="downloads" width="40%"><br/>
                 <a href="{% static 'home/documents/ficheMemoPython.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Python </button></a><br/>
-                <a href="{% static 'home/documents/memoVariables.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Variables </button></a><br/>
                 <a href="{% static 'home/documents/SNT_exercice.pdf' %}" download><button class="bouton2 bi bi-download"> Exercices SNT 2ème </button></a><br/>
                 <a href="{% static 'home/documents/evaluationPython.pdf' %}" download><button class="bouton2 bi bi-download"> Evaluation SNT 2ème </button></a>
             </div>
@@ -64,9 +65,11 @@
         </div>
         <div class="row my-2 gx-5 gy-4">
             <div class="col-12 col-md-4">
+                <p>
                 {% for elt in progresser %}
-                <a href="{% url 'afficherPage' niveau='python' chapitre='progresser' id=forloop.counter0 %}">&#128215; {{ elt }}</a><br/>
+                &#128215; <a href="{% url 'afficherPage' niveau='python' chapitre='progresser' id=forloop.counter0 %}">{{ elt }}</a><br/>
                 {% endfor %}
+                </p>
             </div>
             <div class="col-12 col-md-4">
                 <img src="{% static 'home/images/general/download.png' %}" alt="downloads" width="40%"><br/>
@@ -102,9 +105,11 @@
         </div>
         <div class="row my-2 gx-5 gy-4">
             <div class="col-12 col-md-4">
+                <p>
                 {% for elt in avance %}
-                <a href="{% url 'afficherPage' niveau='python' chapitre='avance' id=forloop.counter0 %}">&#128215; {{ elt }}</a><br/>
+                &#128215; <a href="{% url 'afficherPage' niveau='python' chapitre='avance' id=forloop.counter0 %}">{{ elt }}</a><br/>
                 {% endfor %}
+                </p>
             </div>
             <div class="col-12 col-md-4">
                 <img src="{% static 'home/images/general/download.png' %}" alt="downloads" width="40%"><br/>

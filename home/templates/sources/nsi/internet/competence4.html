@@ -3,17 +3,23 @@
 
 {% block contenu %}
 <ul>
-    
+    <li>comprendre l'utilité des liens hypertexte</li>
+    <li>apprendre à différencier protocole HTTP et URL</li>
 </ul>
 {% endblock contenu %}
+
+{% block tampon %}
+<p class="tampon">TRAVAIL<br/>PRATIQUE</p>
+{% endblock tampon %}
 
 {% block cours %}
 
 <div class="row">
     <div class="col-12">
         <p><em>Travail Pratique proposé par T. Morel.</em></p>
-        <iframe src="{% static 'home/documents/TP_DNS.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
+        <iframe src="{% static 'home/documents/TP_lienHypertext.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
     </div>
 </div>
 
 {% endblock cours %}
+

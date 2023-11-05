@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block contenu %}
-<ul>
-    
-</ul>
+<ul><li>découvrir le réseau Internet en cherchant dans le manuel</li></ul>
 {% endblock contenu %}
+
+{% block tampon %}
+<p class="tampon">TRAVAIL<br/>PRATIQUE</p>
+{% endblock tampon %}
 
 {% block cours %}
 
 <div class="row">
     <div class="col-12">
         <p><em>Travail Pratique proposé par T. Morel.</em></p>
+        <p>Il est tout à fait possible de répondre aux questions en se rendant sur le Web.</p>
         <iframe src="{% static 'home/documents/TP_internetReseau.pdf' %}" height='1200px' width='1100px' type='application/pdf'></iframe>
     </div>
 </div>

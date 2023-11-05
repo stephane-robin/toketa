@@ -4,110 +4,337 @@
 {% block contenu %}
 <ul>
     <li>utilisation de variables</li>
-    <li>utilisation de conditions</li>
     <li>utilisation de boucles</li>
-    <li>pratique de la construction de code</li>
+    <li>utilisation de fonctions</li>
+    <li>pratique de la création de code</li>
 </ul>
 {% endblock contenu %}
 
 {% block cours %}  
 
-<h3>La bibliothèque random</h3>
+<p>La bibliothèque <strong>turtle</strong> permet de dessiner en utilisant le langage Python. Pour ceux qui sont familiers avec le langage <em>Scratch</em>, les méthodes utilisées sont 
+assez semblables. Il faut avec <strong>turtle</strong> écrire du code au lieu de déplacer des blocs <em>Scratch</em>.</p>
 
-<p>Dès qu'il est question de jeu, le hasard peut intervenir à tout moment, et il est utile pour le programmeur de savoir 
-    utiliser la bibliothèque random et la bibliothèque time.</p>
+<p>Les principales commandes à connaître sont les suivantes :</p>
 
-<p>La bibliothèque random permet de tirer un nombre au hasard ou de choisir un ou plusieurs éléments au hasard dans 
-    une liste.</p>
+<p>- pour la fenêtre de travail</p>
+<pre><code class="language-python">import turtle as tu  # il faut importer la bibliothèque turtle
+t = tu.Turtle()  # on crée un objet Turtle qui ouvre une fenêtre de travail
+tu.title("mon titre")  # définit le titre de la fenêtre
+tu.setup()  # définit la position et les dimensions de la fenêtre
+tu.bgcolor("blue")  # définit la couleur de fond de la fenêtre en bleu
+tu.bgpic("monImage.png")  # définit l'image de fond de la fenêtre
+tu.exitonclick()  # ferme la fenêtre en cliquant
+tu.hideturtle()  # enlève le curseur de dessin
+tu.showturtle()  # montre le curseur de dessin</code></pre>
 
-<p>Pour tirer un nombre au hasard compris entre 1 et 10 :</p>
-<pre><code class="language-python">import random
-nbre = random.randint(1, 10)</code></pre>
+<p>- pour la position de l'objet dans la fenêtre, la position (0, 0) est placée au centre de la fenêtre</p>
+<pre><code class="language-python">tu.setposition(50, 80)  # place l'objet à la position 50 pixels (abscisse), 80 pixels (ordonnée)
+tu.forward(50)  # avance de 50 pixels
+tu.backward(50)  # recule de 50 pixels</code></pre>
 
-<p>Pour tirer un élément au hasard parmi une liste :</p>
-<pre><code class="language-python">import random
-semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
-jour = random.choices(semaine)</code></pre>
+<p>- pour l'orientation de l'objet, par défaut il se trouve orienté vers la droite et l'angle croît dans le sens anti-horaire 
+    (inverse des aiguilles d'une montre)</p>
+<pre><code class="language-python">tu.setheading(30)  # oriente l'objet à 30 degrés
+tu.left(30)  # oriente l'objet de 30 degrés vers la gauche de sa position
+tu.right(30)  # oriente l'objet de 30 degrés vers la droite de sa position</code></pre>
+<p>Les principales orientations de <strong>setheading()</strong> sont 0 pour East, 90 pour North, 
+180 pour West et 270 pour South.</p>
 
-<p>Pour tirer 3 éléments au hasard parmi une liste (attention chacun des éléments choisi peut se répéter) :</p>
-<pre><code class="language-python">import random 
-semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
-liste_choix = random.choices(semaine, k=3)</code></pre>
+<p>- pour tracer un dessin</p>
+<pre><code class="language-python">tu.penup()  # lève le stylo
+tu.pendown()  # baisse le stylo pour écrire
+tu.pencolor("yellow")  # choisit la couleur jaune pour le stylo
+tu.pensize(2)  # définit l'épaisseur des traits à 2 pixels
+tu.fillcolor("red")  # définit la couleur de remplissage d'une forme en rouge
+tu.begin_fill()  # commence à remplir une forme
+tu.end_fill()  # s'arrête de remplir une forme
+tu.circle(20)  # trace un cercle de rayon 20 pixels</code></pre>
 
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>Cette fois, on ne veut pas répéter le nom des personnes tirées au sort, ni au sein 
-    d'une équipe ni entre plusieurs équipes. Que faut-il faire pour créer 3 équipes de 3 personnes au hasard à partir d'une 
-liste de personnes ?</p>
+<p>Les principales couleurs sont les suivantes : black, white, grey, red, orange, green, 
+    blue, navy, yellow, gold, tan, brown, sienna, wheat, cyan, pink, salmon, violet, purple. 
+Il est possible d'utiliser une palette entière de couleurs, qu'on retrouve par exemple sur le site 
+<a href="https://trinket.io/docs/colors" target="_blank">trinket</a>.</p>
 
-<p>Solution</p>
-<pre><code class="language-python">import random 
 
-deck = ["Antoine", "Hervé", "Chloé", "Yvonne", "Noémie", "Pierre", "Noam", "Aylin", "Audrey"]
-equipe = deck.copy()
+<!-- LES TRIANGLES -->
+<h3>Les formes à base de triangles</h3>
 
-def retirerGroupe(groupe):
-    """retire groupe de la liste effectifs"""
-    global equipe
-    for elt in groupe:
-        equipe.remove(elt)
+<h4>Etape 1</h4>
 
-equipe1 = random.sample(deck, k=3)
-retirerGroupe(equipe1)
+<p>Pour commencer, dessinez un triangle équilatéral de 50 pixels de côté, comme celui-proposé ci-dessous à l'aide de la bibliothèque <em>turtle</em>.</p>
 
-equipe2 = random.sample(deck, k=3)
-retirerGroupe(equipe2)
+<img src="{% static 'home/images/python/triangle1.png' %}" width="10%" alt="triangle">
 
-equipe3 = equipe
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
 
-print(equipe1)
-print(equipe2)
-print(equipe3)</code></pre>
+    <div id="solution1" style="display:none;">
+
+        <pre><code class="language-python">import turtle as tu
+
+t = tu.Turtle()
+tu.title("TP turtle")
+
+tu.fillcolor("sienna")
+tu.begin_fill()
+tu.pencolor("navy")
+tu.pensize(2)
+tu.pendown()
+tu.forward(50)
+tu.left(120)
+tu.forward(50)
+tu.tu.left(120)
+tu.forward(50)
+tu.end_fill()
+
+tu.exitonclick()</code></pre>
+
+</div>
+
+<p>Ecrire ensuite le code de ce triangle dans une fonction qu'on appellera <strong>triangle()</strong>, qui 
+prend comme paramètre la longueur du côté du triangle</p>
+
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+    <div id="solution2" style="display:none;">
+
+<pre><code class="language-python">def triangle(cote):
+    tu.fillcolor("sienna")
+    tu.begin_fill()
+    tu.pencolor("navy")
+    tu.pensize(2)
+    tu.pendown()
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.end_fill()</code></pre>
+
+</div>
+
+<h4>Etape 2</h4>
+
+<p>Pour dessiner la forme présentée ci-dessous, il faut répéter 3 fois la construction du triangle précédent. A vous de jouer.</p>
+
+<img src="{% static 'home/images/python/triangle2.png' %}" width="10%" alt="triangle">
+
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+
+    <div id="solution3" style="display:none;">
+
+        <pre><code class="language-python">import turtle as tu
+
+t = tu.Turtle()
+tu.title("TP turtle")
+            
+def triangle(cote):
+    tu.fillcolor("sienna")
+    tu.begin_fill()
+    tu.pencolor("navy")
+    tu.pensize(2)
+    tu.pendown()
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.end_fill()
+            
+for i in range(3):
+    triangle(50)
+            
+tu.forward(50)
+tu.left(90)
+tu.circle(50)
+            
+tu.exitonclick()</code></pre>
+
+    </div>
+
+<h4>Etape 3</h4>
+
+<p>Pour dessiner la forme présentée ci-dessous, il faut répéter plusieurs 41 fois la construction 
+    du triangle dont la longueur des côtés varie de 20 à 60. A chaque tour de boucle il faut avancer de 
+20 pixels et s'orienter de 100 degrés vers la droite. A vous de joeur.</p>
+
+<img src="{% static 'home/images/python/triangle3.png' %}" width="10%" alt="triangle">
+
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+
+    <div id="solution4" style="display:none;">
+
+<pre><code class="language-python">import turtle as tu
+
+t = tu.Turtle()
+tu.title("TP turtle")
+    
+def triangle(cote):
+    tu.fillcolor("sienna")
+    tu.begin_fill()
+    tu.pencolor("navy")
+    tu.pensize(2)
+    tu.pendown()
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.left(120)
+    tu.forward(cote)
+    tu.end_fill()
+    
+for i in range(20, 61):
+    triangle(i)
+    tu.forward(20)
+    tu.right(100)
+    
+tu.exitonclick()</code></pre>
+
 </div>
 
 
-<h3>La bibliothèque time</h3>
+<!-- ETOILES -->
+<h3>Les formes à base d'étoiles</h3>
 
-<p>Pour connaître le temps écoulé en secondes depuis la création de l'informatique (1er janvier 1970) :</p>
+<h4>Etape 1</h4>
 
-<pre><code class="language-python">import time
-temps = time.time()</code></pre>
+<p>Pour commencer, dessinez une étoile de 50 pixels de côté, comme celle proposée ci-dessous.</p>
 
-<p>Cela permet notamment de connaître le temps d'exécution d'un bloc d'instructions en mesurant le temps 
-    avant l'exécution puis le temps après l'exécution :</p>
+<img src="{% static 'home/images/python/etoile1.png' %}" width="10%" alt="triangle">
 
-<pre><code class="language-python">import time
-debut = time.time()
-i = 0
-while i < 100000:
-    i += 1
-print(i)
-fin = time.time()
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
 
-duree = fin - debut</code></pre>
+    <div id="solution5" style="display:none;">
 
-<p>Pour mettre en pause l'exécution d'un programme pendant 10 secondes :</p>
-<pre><code class="language-python">import time
-print("Première phrase")
-time.sleep(10)
-print("Deuxième phrase après la pause")</code></pre>
+<pre><code class="language-python">import turtle as tu
+
+t = tu.Turtle()
+tu.title("TP turtle")
+    
+tu.pencolor("red")
+tu.pensize(3)
+    
+for i in range(5):
+    tu.forward(50)
+    tu.left(216)
+    
+tu.exitonclick()</code></pre>
+
+</div>
+
+<p>La bibliothèque <code>random</code> est importante dans les jeux. Elle permet en effet de tirer au sort un nombre.
+    Par exemple pour tirer au sort un nombre compris entre 1 et 12 inclus, il faut écrire :</p>
+   
+    <pre><code class="language-python">import random as rd
+   nombre = rd.randint(1, 12)</code></pre>
+
+<p>Ecrire maintenant le code de cette étoile dans une fonction qu'on appellera <strong>etoile</strong>, 
+ qui prend comme paramètre la longueur du côté de l'étoile, et choisit au hasard la couleur du dessin 
+ parmi une liste des principales couleurs. On utilisera la bibliothèque <strong>random</strong> pour choisir au 
+hasard.</p>
+
+ <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+
+    <div id="solution6" style="display:none;">
+
+<pre><code class="language-python">liste_couleurs = ['black', 'grey', 'red', 'orange', 'green', 'blue', 'navy',
+    'yellow', 'gold', 'tan', 'brown', 'sienna', 'wheat', 'cyan',
+    'pink', 'salmon', 'violet', 'purple']
+
+def etoile(cote):
+    indice = rd.randint(0, 17)
+    tu.pencolor(liste_couleurs[indice])
+    tu.pensize(3)
+
+    for i in range(5):
+        tu.forward(cote)
+        tu.left(216)</code></pre>
+
+</div>
+
+<h4>Etape 2</h4>
+
+<p>Pour dessiner la forme ci-dessous, il faut dessiner plusieurs fois l'étoile, diminuer à chaque tour la longueur
+    du côté de l'étoile, décaler légèrement la nouvelle étoile à chaque tour, et légèrement 
+    modifier l'angle de construction de l'étoile à chaque tour.</p>
+
+<img src="{% static 'home/images/python/etoile2.png' %}" width="15%" alt="triangle">
+
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+
+<div id="solution7" style="display:none;">
+
+<pre><code class="language-python">import turtle as tu
+import random as rd
+    
+t = tu.Turtle()
+tu.title("TP turtle")
+    
+liste_couleurs = ['black', 'grey', 'red', 'orange', 'green', 'blue', 'navy',
+                    'yellow', 'gold', 'tan', 'brown', 'sienna', 'wheat', 'cyan',
+                    'pink', 'salmon', 'violet', 'purple']
+    
+def etoile(cote):
+    indice = rd.randint(0, 17)
+    tu.pencolor(liste_couleurs[indice])
+    tu.pensize(3)
+    
+    for i in range(5):
+        tu.forward(cote)
+        tu.left(216)
+    
+for i in range(25):
+    etoile(50 - i)
+    tu.forward(30 - i)
+    tu.left(12)
+    
+tu.exitonclick()</code></pre>
+
+</div>
+
+<h3>Défi</h3>
+
+<p>Dessinez le drapeau de la suisse en utilisant la bibliothèque <em>turtle</em>.</p>
+<img src="{% static 'home/images/python/drapeau_suisse.png' %}" width="15%" alt="triangle">
 
 
-<h3>Sujet du projet</h3>
+<p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
 
-<p>Ce projet est l'occasion d'un travail en binôme. Il vous est demandé de construire un jeu de pendu simple 
-    mais fonctionnel, sans interface graphique. Vous n'utiliserez donc pas la bibliothèque turtle. Vous 
-    afficherez sur la console des tirets à la place du mot à trouver, puis les lettres correctes trouvées 
-    par le joueur aux emplacements correspondant dans ce mot. Vous afficherez également toutes les lettres 
-    proposées par le joueur. La saisie des lettres se fera directement à la console.</p>
+<div id="solution8" style="display:none;">
 
-<p>Le joueur dispose de 5 tentatives pour gagner. A la 6ème tentative, le joueur perd la partie.</p>
+<pre><code class="language-python">import turtle as tu
 
-<p>Vous afficherez finalement à la console si le joueur a perdu ou gagné, et dans ce cas vous rajouterez 
-    son score en pourcentage.</p>
-
-
-<p>Une solution possible :</p>
-
-<pre><code class="language-python"></code></pre>
+t = tu.Turtle()
+tu.title("drapeau suisse")
+    
+def rectangle(couleur, longueur_horizontale, longueur_verticale):
+    tu.fillcolor(couleur)
+    tu.begin_fill()
+    tu.pencolor(couleur)
+    tu.pendown()
+    
+    for i in range(4):
+        tu.setheading(i * 90)  # les orientations successives seront 0, 90, 180, 270
+        if i % 2 == 0:  # on trace longueur_horizontale lorsque l'indice est pair
+            tu.forward(longueur_horizontale)  # l'ordre dans lequel on trace est important
+        else:  # on trace longueur_verticale lorsque l'indice est impair
+            tu.forward(longueur_verticale)
+    
+    tu.end_fill()
+    
+# construction du fond rouge
+rectangle("red", 250, 150)
+    
+# construction du rectangle blanc vertical
+tu.setposition(110, 25)
+rectangle("white", 25, 100)
+    
+# construction du rectangle blanc horizontal
+tu.penup()
+tu.setposition(75, 65)
+rectangle("white", 100, 25)
+    
+tu.hideturtle()
+tu.exitonclick()</code></pre>
+</div>
 
 {% endblock cours %}

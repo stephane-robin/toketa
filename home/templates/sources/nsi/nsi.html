@@ -24,9 +24,11 @@ réseaux peer-to-peer.
 {% endblock intro1 %}
 
 {% block activites1 %}
+    <p>
     {% for elt in internet %}
-    <a href="{% url 'afficherPage' niveau='nsi' chapitre='internet' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='internet' id=forloop.counter0 %}">{{ elt }}</a><br/>
     {% endfor %}
+    </p>
 {% endblock activites1 %}
 
 {% block exercices1 %}
@@ -60,9 +62,11 @@ les environnements scientifiques, pour la manipulation de données et en intelli
 {% endblock intro2 %}
 
 {% block activites2 %}
+    <p>    
     {% for elt in donnees_structurees %}
-    <a href="{% url 'afficherPage' niveau='nsi' chapitre='donnees_structurees' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='donnees_structurees' id=forloop.counter0 %}">{{ elt }}</a><br/>
     {% endfor %}
+    </p>
 {% endblock activites2 %}
 
 {% block exercices2 %} {% endblock exercices2 %}
@@ -91,9 +95,11 @@ un accès Internet permanent et la programmation d'applications dédiés à leur
 {% endblock intro3 %}
 
 {% block activites3 %}
+    <p>
     {% for elt in architecture %}
-    <a href="{% url 'afficherPage' niveau='nsi' chapitre='architecture' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
+    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='architecture' id=forloop.counter0 %}">{{ elt }}</a><br/>
     {% endfor %}
+    </p>
 {% endblock activites3 %}
 
 {% block exercices3 %}

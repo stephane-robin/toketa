@@ -34,8 +34,10 @@ typing_extensions==4.6.3
 ## ~~descendre les ancres des pages pour lesquelles on ne voit pas les titres~~
 
 ## techniques
-1. comment intégrer une fonction qui affiche un résultat localement dans une page ?
-2. comment intégrer une fonction qui affiche du html ?
+1. ~~comment intégrer une fonction qui affiche un résultat localement dans une page ?~~
+2. ~~comment intégrer une fonction qui affiche du html ?~~
+3. pyodide stdin handler
+4. code python qui agit sur un objet js affiché à l'écran
 
 ## ~~relecture des pages~~
 1. ~~images~~
