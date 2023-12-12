@@ -1,0 +1,136 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- TP AVEC LA METHODE REPLACE -->
+
+<p>Essayons autre chose de plus compliqué. Par exemple imaginons qu'on veuille changer les "o" en "a" dans un texte. On ne va pas le faire
+manuellement car cela pourrait être très long et fastidieux avec un texte de 1000 lignes &#128531; 
+Il faut donc créer un programme qui soit capable de le faire pour nous.</p>
+
+<p>Nous savons déjà que pour changer une lettre en une autre lettre à l'intérieur d'un mot, il existe
+ la méthode <code>mot.replace("o", "a")</code></p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécutez le code ci-dessus et affichez la valeur
+        de <code>nouveau_mot</code>, puis comparez le résultat obtenu
+    en exécutant le code suivant :</p>
+    <pre><code class="language-python">mot = "bonjour"
+nouveau_mot = mot.replace("o", "a")
+print(mot)
+print(nouveau_mot)</code></pre>
+<p>Notez que la méthode <code>replace()</code> ne modifie pas la variable initiale <code>mot</code>,
+    mais elle crée, à partir de cette variable <code>mot</code>, une valeur qui sera stockée dans une 
+    autre variable <code>nouveau_mot</code>.</p></div>
+
+
+<p>Commençons notre travail petit à petit avec un seul mot plutôt qu'un long texte. Pour cela, 
+    définissons la variable <code>mot = "bonjour"</code>.
+    Les chaînes de caractères n'acceptent pas le
+    changement facilement. Il faut soit changer tout le texte en une seule fois,
+    soit reconstruire le nouveau mot étape par étape, c'est à dire
+    caractère par caractère. On pourrait écrire <code>mot = "banjaur"</code>, mais dans ce cas, c'est nous qui ferions tout le travail
+    et non pas le programme.</p>
+<p>Puisque dans le mot "bonjour", les "o" ont pour indice 1 et 4 (car l'indice du 1er caractère
+vaut 0), on sait que <code>mot[1]</code> et <code>mot[4]</code> valent "o".
+En théorie, il suffirait donc d'écrire <code>mot[1] = "a"</code> et <code>mot[4] = "a"</code>
+pour obtenir satisfaction. Et naturellement on a envie d'écrire le code suivant :</p>
+
+<pre><code class="language-python">mot = "bonjour"
+mot[1] = "a" # erreur
+mot[4] = "a" # erreur
+print(mot)</code></pre>
+
+<p>Malheureusement, ce n'est pas possible car <code>mot[1]</code> et <code>mot[4]</code> ne sont
+    pas des variables autonomes. Le code ci-dessus déclenche donc une erreur.</p>
+    <p>Il faut en fait reconstruire tout 
+    le mot en rajoutant chaque caractère un à un. On utilise ce qu'on appelle la concaténation pour placer un "a" 
+    lorsque le caractère testé est un "o" et ne rien changer pour les autres lettres.</p>
+        
+        <pre><code class="language-python">mot = "bonjour"
+nouveau_mot = ""
+i = 0
+
+while i &lt len(mot):
+    if mot[i] == "o":
+        nouveau_mot = nouveau_mot + "a"
+    else:
+        nouveau_mot = nouveau_mot + mot[i]
+    i = i + 1
+    
+print(nouveau_mot)</code></pre>
+        
+        <p>Que fait notre code ci-dessus ?</p>
+        <p>On crée tout d'abord une chaîne de caractères vide qui s'appelle <code>nouveau_mot</code>,
+            et qui va contenir notre mot modifié. Retenons que pour créer une chaîne de caractères vide, il faut
+        utiliser l'instruction <code>nouveau_mot = ""</code>.</p>
+        
+        <p>On parcourt ensuite notre mot caractère par caractère avec une boucle <code>while</code>, puis à l'aide 
+        d'une condition <code>if</code>, on rajoute "a" lorsque le caractère lu est "o", on rajoute la lettre 
+        normalement prévue sinon.</p>
+        
+        <p>Retenez donc cette stratégie, qui est utile chaque fois qu'on cherche à modifier
+        la valeur d'un mot.</p>
+        
+
+        <div class='exerciceApplication'>
+            <p><strong>A vous de jouer : </strong>écrire un script, qui teste si le caractere 'e' appartient à une chaîne 
+            de caractères <code>chaine</code>, puis affiche le nombre de fois qu'apparaît 'e'
+            dans la chaîne et -1 si il n'apparaît pas. En fait, il vous faut reconstruire la méthode 
+        <code>chaine.count('e')</code> qui existe nativement dans le langage.</p>
+        
+        <div>
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+        </div>
+        
+        <div id="solution9" style="display:none;">
+<pre><code class='language-python'>chaine = 'comment allez-vous ?'
+compteur = 0
+i = 0
+
+# on parcourt la chaine et on compare chaque element avec 'e'
+# on rajoute un point a compteur lorsqu'on trouve 'e'
+while i &lt (len(chaine)):
+    if chaine[i] == 'e':
+        compteur = compteur + 1
+    i = i + 1
+
+# si 'e' n'apparait pas dans chaine on affiche -1
+if compteur == 0:
+    print(-1)
+else:
+    print(compteur)</code></pre>
+        </div>
+        </div>
+        
+        <div class="exerciceApplication">
+            <p><strong>A vous de jouer : </strong>écrire un script qui inverse les lettres d'un mot contenu dans une variable et les stocke dans une autre variable.</p>
+        
+            <div>
+                <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+            </div>
+        
+            <div id="solution7" style="display:none;">
+<pre><code class="language-python">mot = "bonjour"
+motInverse =""
+i = len(mot) - 1
+
+while i &gt -1:
+    motInverse = motInverse + mot[i]
+    i = i - 1</code></pre>
+
+        <p>A noter qu'il existe cette possibilité surprenante :</p>
+
+        <pre><code class="language-python">motInverse = mot[::-1]</code></pre>
+
+        <p>On peut maintenant inverser tout un texte. Essayez le code suivant pour vous en
+            convaincre :</p>
+
+        <pre><code class="language-python">texte = "Les sanglots longs des violons de l'automne blessent mon coeur d'une langueur monotone"
+print(texte.[::-1])</code></pre>
+        
+            </div>
+        </div>
+
+{% endblock cours %}

@@ -1,0 +1,70 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- DECOUVRIR LA BOUCLE WHILE -->
+
+<p>La boucle while permet de répéter un bloc d'instructions tant qu'une condition est remplie. On utilise donc 
+    la boucle <code>while</code> lorsqu'on ne connaît pas le nombre de répétitions à effectuer et que 
+    celui-ci dépend de l'évolution de la situation (par exemple on continue de jouer tant que le nombre de vies 
+    d'un joueur n'est pas nul). Dans le cas où l'on connaît à l'avance le nombre de répétitions  à effectuer, 
+on utilise préférentiellement une boucle <code>for</code>, qui sera étudiée plus tard.</p>
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/dp4DcBHl6Dc"
+            title="Structure de la boucle while en Python - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Structure de la boucle while en Python</figcaption>
+</div>
+
+
+<p>On peut répéter <i>Continuez de jouer</i> tant que la variable <code>nbreVies</code> est positive</p>
+
+<pre><code class="language-python">nbreVies = 3
+while nbreVies > 0:
+    print("Continuez de jouer")
+    nbreVies = nbreVies - 1
+print("Fin du jeu")</code></pre>
+
+<p>Si on détaille ce que fait le programme, on obtient ceci :</p>
+
+<pre><code class="language-svg">nbreVies prend la valeur 3
+3 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 2
+    }
+2 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 1
+    }
+1 est strictement positif, donc on exécute ce qui se trouve dans la boucle while {
+    on affiche "Continuez de jouer"
+    nbreVies prend la valeur 0
+    }
+0 n'est pas strictement positif, donc on n'exécute plus ce qui se trouve dans la boucle while 
+on continue l'exécution du reste du programme, donc on affiche "Fin du jeu"</code></pre>
+
+<p>Si vous avez déjà programmé en Scratch, le script ci-dessus correspond au code Scratch suivant :</p>
+
+<img src="{% static 'home/images/python/codeScratchWhile.png' %}" width="300px">
+
+
+<!-- QESTIONNAIRE -->
+
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
+
+<script>
+var questionsData1 = 
+    {
+        question: "La boucle while permet de répéter un bloc d'instructions ...",
+        options:["tant qu'une condition n'est pas vérifiée", "tant qu'une variable est positive", "tant qu'une condition est vérifiée"],
+        correctIndex: 2,
+        commentaire: "Une condition doit être vérifiée pour entrer dans la boucle."
+    };
+questionnaireUnique(1, questionsData1);
+</script>
+
+{% endblock cours %}

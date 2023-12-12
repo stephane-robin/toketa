@@ -1,0 +1,79 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- TEXTE COMPOSE DE CARACTERES -->
+
+<p>Un caractère peut être un nombre '8', une lettre 'a' ou un terme spécial '!'.</p>
+
+<p>Un texte est composé de caractères. En informatique, on utilise le terme chaîne de caractères à
+    la place de texte car tous les caractères sont liés par la position qu'ils occupent pour former une chaîne. 
+    Python associe à une chaîne de caractères le type <code>str</code> pour string, qui est structuré par des numéros 
+    appelés indices représentant l'emplacement des
+    caractères, qu'on numérote en partant de 0 et non de 1.</p>
+
+<p>Par exemple, dans le mot 'Marc', le 'M' a pour indice 0,
+    le 'a' a pour indice 1, le 'r' a pour indice 2 et le 'c' a pour indice 3.</p>
+
+<p>On remarque que l'indice le plus grand d'une chaîne de caractères est sa longueur - 1. En effet, si le 
+    premier indice était 1, son dernier indice serait la longueur de la chaîne. Mais comme le premier 
+    indice vaut 0, son dernier indice est nécessairement la longueur de la chaîne - 1.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>pour bien repérer la position de chaque caractère d'une 
+    chaîne grâce à son indice, copiez le code suivant qui parcourt le mot "bonjour" indice par indice,
+     puis exécutez-le dans une console Python.</p>
+
+<pre><code class="language-python">chaine = "bonjour"
+for i in range(7):
+    print(i, chaine[i])</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+        <p>Dans la chaîne de caractères <em>bonjour</em>, la lettre <em>b</em> a pour indice 0 et non pas 1, c'est à dire qu'elle se trouve à la position 0.</p>
+    </div>
+</div>
+
+
+<!-- GUILLEMETS -->
+<h3>Guillemets ou apostrophes ?</h3>
+
+<p>Les chaînes de caractères sont enregistrées dans le programme entre des guillements " ou des apostrophes ' indifféremment.
+    Cela permet d'utiliser des balises différentes lorsque Python collabore avec un autre langage comme HTML, JavaScript, SQL, C, ... Cette 
+situation est fréquente lorsqu'on programme des applications Web. Certains langages comme java sont bien moins 
+tolérants et différencient l'usage des apostrophes et des guillemets. Chance ! Python nous offre une certaine 
+flexibilité dans le code.</p>
+
+<p><i>Attention</i> toutefois, lorsqu'on utilise des apostrophes ' et que la chaîne contient une apostrophe, Python pourrait 
+    l'interpréter comme la fin de la chaine. Pour éviter cela, on utilise un antislash \ qui indique à Python que le caractère suivant 
+    appartient à la chaîne. Par exemple, les codes ci-dessous sont identiques :</p>
+
+<pre><code class="language-python">phrase = "Les pâtes viennent d'Italie"</code></pre>
+<pre><code class="language-python">phrase = 'Les pâtes viennent d\'Italie'</code></pre>
+
+
+<!-- ACCENTS -->
+<h3>Le problème des accents</h3>
+
+<p>Lorsqu'on utilise des accents dans un texte comme par exemple en français é, à, è, ù, etc... 
+    cela crée des difficultés d'affichage pour Python qui a été construit en anglais. Il faut dans ce cas 
+    rajouter dès la première ligne de code l'instruction suivante indiquant à Python que les accents 
+    et caractères spéciaux sont autorisés et qu'il pourra les trouver dans la table utf-8 :</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-</code></pre>
+
+
+
+{% endblock cours %}

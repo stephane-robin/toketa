@@ -1,0 +1,99 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">TRAVAIL<br/>PRATIQUE</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- PYTHON AVEC UNE COURSE D'ESCARGOTS -->
+<p>Nous allons découvrir VS Code en travaillant sur un code déjà construit, celui d'une course d'escargots.</p>
+<p>Voici le code d'un programme Python qui fait courir trois escargots jusqu'à une ligne d'arrivée et affiche 
+    vainqueur lorsque le premier escargot a terminé.</p>
+
+<pre><code class="language-python">from tkinter import *
+from time import sleep
+from random import randint
+
+def demarrer():
+    global x1, x2, x3
+    y = 1000
+    while x1 < 1040 and x2 < 1040 and x3 < 1040:
+        nbre_hasard = randint(1,3)
+        if nbre_hasard == 1:
+            x1 += 10
+            can.coords(esca1, x1, y1)
+            y = y1
+        elif nbre_hasard == 2:
+            x2 += 10
+            can.coords(esca2, x2, y2)
+            y = y2
+        else:
+            x3 += 10
+            can.coords(esca3, x3, y3)
+            y = y3
+        sleep(0.05)  
+        can.update()
+    can.coords(vainqueur, 500, y)
+
+
+def reinit():
+    global x1, x2, x3, y1, y2, y3
+    can.coords(esca1, x1, y1)
+    can.coords(esca2, x2, y2)
+    can.coords(esca3, x3, y3)
+    can.coords(vainqueur, 200, 800)
+
+x1, y1  = 130, 75
+x2, y2  = 130, 225
+x3, y3  = 130, 375
+
+fen = Tk()
+fen.title("Course d'escargots")
+can = Canvas(fen, width=1100, height=500, bg ='white')
+can.pack(side=TOP, padx=5, pady=5)
+b2 = Button(fen, text ='Départ de la course', width=15, command=demarrer)
+b2.pack(side=RIGHT)
+
+can.create_line(1080, 0, 1080, 500, width=5, fill="red")
+can.create_line(250, 0, 250, 500, width=5, fill="green")
+can.create_line(0, 150, 1100, 150, width=5, fill="black")
+can.create_line(0, 300, 1100, 300, width=5, fill="black")
+can.create_line(0, 450, 1100, 450, width=5, fill="black")
+
+photo1 = PhotoImage(file ='~/Documents/ecg1.png')
+esca1 = can.create_image(x1, y1, image=photo1)
+photo2 = PhotoImage(file ='~/Documents/ecg2.png')
+esca2 = can.create_image(x2, y2, image=photo2)
+photo3 = PhotoImage(file ='~/Documents/ecg3.png')
+esca3 = can.create_image(x3, y3, image=photo3)
+photo4 = PhotoImage(file ='~/Documents/vainqueur.png')
+vainqueur = can.create_image(200, 800, image=photo4) 
+
+fen.mainloop()
+fen.destroy()</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer :</strong> crée un fichier vierge à l'aide de Visual Studio Code. Copie-colle le programme 
+        ci-dessus dans ce nouveau fichier, donne un nom à ton fichier comme par exemple escargots.py. Télécharge ensuite les 
+        images ecg1.png, ecg2.png, ecg3.png et vainqueur.png, puis place ces images dans le même dossier que 
+        ton fichier escargot.py. Exécute ensuite le code pour jouer.</p>
+    <p>Il est possible que ton programme rencontre des difficultés pour trouver l'adresse des images. Tu peux 
+        dans ce cas placer ton fichier escargots.py ainsi que les images dans le dossier Documents et modifier 
+        les adresses du type 'ecg1.png' en adresses du type '~/Documents/ecg1.png'  </p>
+    <ul>
+        <li>Cherche sur Internet l'utilité des bibliothèques random, time et tkinter qui sont importées au début du programme</li>
+        <li>Les escargots se déplacent trop vite. Comment pourrait-on changer le code pour ralentir la progression 
+            des escargots et que cela ressemble plus à une course d'escargots.</li>
+        <li>Que représentent les nombres dans la ligne de code can.create_line(1080, 0, 1080, 500, width=5, fill="red") ?</li>
+        <li>Comment pourrait-on modifier le code en truquant le jeu pour que le 3ème escargot gagne systématiquement la course ?</li>
+    </ul>
+    
+<a href="{% static 'home/images/ecg1.png' %}" download><button class="bouton2 bi bi-download"> ecg1.png</button></a>
+<a href="{% static 'home/images/ecg2.png' %}" download><button class="bouton2 bi bi-download"> ecg2.png</button></a>
+<a href="{% static 'home/images/ecg3.png' %}" download><button class="bouton2 bi bi-download"> ecg3.png</button></a>
+<a href="{% static 'home/images/vainqueur.png' %}" download><button class="bouton2 bi bi-download"> vainqueur.png</button></a>
+</div>
+
+{% endblock cours %}

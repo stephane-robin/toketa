@@ -1,16 +1,233 @@
-<!-- sandbox to run python -->
-<div>
-  <!-- border-dashed border-2 border-slate-500  style="height:150px;"-->
-  <div class="mx-2">
-    <!-- code editor, where codemirror renders its display -->
-    <textarea id="code{{nmr}}" name="code{{nmr}}" class="w-100"></textarea>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block principal %}
+
+<!-- A PLACER EN DEBUT DE FICHIER -->
+<!-- script for pyodide python sandbox -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!-- import codemirror stylings -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
+<!-- install codemirror.js version /5.63.3 from cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
+integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- install codemirror python language support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/python/python.min.js"
+integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- import codemirror dracula theme styles from cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/elegant.css" />
+
+<style>
+    /* set codemirror ide height to 100% of the textarea */
+    .CodeMirror {
+      height: 450px;
+      overflow: hidden;
+    }
+</style>
+
+<section class="mt-5 py-5 me-5">
+  <div class="container-fluid">
+      <div class="row">
+          <!-- SECTIONS DU CHAPITRE -->
+          <div class="col-2">
+            
+        </div>
+        <div class="col-10">
+            <!-- TITRES -->
+          <h1>{% block titreChapitre %} Exécuter Python {% endblock titreChapitre %}</h1>
+          <div class="row mb-5">
+              <div class="col-8">
+                  <h2>{% block titre %} Une console Python {% endblock titre %}</h2>
+              </div>
+              <!-- TAMPON -->
+              <div class="col-4">
+                  {% block tampon %}
+                  <p class="tampon">Sandbox</p>
+                  {% endblock tampon %}
+              </div>
+          </div> 
+              <!-- COURS -->
+              {% block cours %} 
+
+                <div>
+                  <div>
+                    <!-- edteur de code, target de CodeMirror -->
+                    <textarea id="code" name="code" class="w-100"></textarea>
+                  </div>
+                  <!-- bouton pour executer pyodide -->
+                  <button onclick="executerPython()" type="button" class="bouton">Exécuter Python</button>
+                  <div>
+                    <!-- affichage du resultat lors de l'execution du code -->
+                    <textarea readonly class="p-8 text-slate-200 bg-slate-900 w-100" id="output" name="output" style="height:100px;"></textarea>
+                  </div>
+                  <!-- bouton pour effacer le contenu du resultat -->
+                  <button onclick="effacer()" type="button" class="bouton">Effacer</button>
+              </div>
+
+              {% endblock cours %}
+          </div>
+      </div>
   </div>
-  <!-- run button to pass the code to pyodide.runPython() -->
-<button onclick="executePython('{{nmr}}')" type="button" class="bouton mx-2">Exécuter Python</button>
-  <div class="mx-2">
-    <!-- output area of the python execution -->
-    <textarea readonly class="p-8 text-slate-200 bg-slate-900 w-100" id="output{{nmr}}" name="output{{nmr}}" style="height:100px;"></textarea>
-  </div>
+</section>
+
+
+
+
+
+
+<script>
+const codeObj = CodeMirror.fromTextArea(document.getElementById('code'),{
+    mode: {
+        name: "python",
+        version: 3,
+        singleLineStringErrors: false,
+        },
+    theme: "elegant",
+    lineNumbers: true,
+    indentUnit: 4,
+    matchBrackets: true,
+    }
+    );
+codeObj.setValue("# ecris ton code ici ...");
+
+const outputObj = document.getElementById('output');
+outputObj.value = "Initializing...\n";
+
+/**
+ * Efface le contenu du output ou le resultat est affiche
+ * */
+function effacer() {
+    outputObj.value = ">>>\n";
+    }
+
+/**
+ * Charge pyodide, rend l'editeur Python pret et renvoi un objet pyodide
+ */
+async function main() {
+    let pyodide = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
+    });
+
+    outputObj.value = pyodide.runPython(`
+        import sys
+        sys.version
+    `);
+
+    outputObj.value = ">>>\n";
+    return pyodide;
+    }
+  
+let pyodideObj = main();
+
+/**
+ * Permet d'executer Python dans la console
+ */
+async function executerPython() {
+    let pyodide = await pyodideObj;
+    try{
+        pyodide.runPython(`
+            import io
+            sys.stdout = io.StringIO()
+        `);
+        pyodide.runPython(codeObj.getValue());
+        let resultat = pyodide.runPython("sys.stdout.getvalue()");
+        outputObj.value += resultat + "\n";
+    } catch (erreur) {
+        outputObj.value += "Error: " + erreur + "\n";
+    }
+}
+</script>
+<!-- fin js sandbox -->
+
+
+<!-- HISTORY 
+<script>
+    var commentInitial = "# type your code here";
+    let texteInitial = "";
+    const sandboxes = {};
+  
+    function initializeSandbox(codeInitial, sandboxId) {
+      const outputElement = document.getElementById(`output${sandboxId}`);
+      const codeElement = document.getElementById(`code${sandboxId}`);
+  
+      const editor = CodeMirror.fromTextArea(codeElement, {
+        mode: {
+          name: "python",
+          version: 3,
+          singleLineStringErrors: false,
+        },
+        theme: "elegant",
+        lineNumbers: true,
+        indentUnit: 4,
+        matchBrackets: true,
+      });
+  
+      editor.setValue(codeInitial);
+      outputElement.value = "Initializing...\n";
+  
+      const sandbox = {
+        pyodide: null,
+        editor,
+        outputElement,
+      };
+  
+      sandboxes[sandboxId] = sandbox;
+  
+      async function main() {
+        sandbox.pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
+        });
+  
+        sandbox.pyodide.runPython(`
+          import sys
+          sys.version
+        `);
+  
+        sandbox.outputElement.value = ">>>\n";
+      }
+  
+      main();
+    }
+  
+    function executePython(sandboxId) {
+      const sandbox = sandboxes[sandboxId];
+  
+      try {
+        sandbox.pyodide.runPython(`
+          import io
+          sys.stdout = io.StringIO()
+        `);
+  
+        const result = sandbox.pyodide.runPython(sandbox.editor.getValue());
+        const stdout = sandbox.pyodide.runPython("sys.stdout.getvalue()");
+        sandbox.outputElement.value += stdout + "\n";
+      } catch (err) {
+        sandbox.outputElement.value += "Error: " + err + "\n";
+      }
+    }
+
+    function clearHistory(sandboxId) {
+        const sandbox = sandboxes[sandboxId];
+        sandbox.outputElement.value = ">>>\n";
+  }
+</script>
+<div>   
+    <div class="mx-2">      
+      <textarea id="code{{nmr}}" name="code{{nmr}}" class="w-100"></textarea>
+    </div>
+  <button onclick="executePython('{{nmr}}')" type="button" class="bouton mx-2">Exécuter Python</button>
+    <div class="mx-2">
+      <textarea readonly class="p-8 text-slate-200 bg-slate-900 w-100" id="output{{nmr}}" name="output{{nmr}}" style="height:100px;"></textarea>
+      <button onclick="clearHistory(nmr)" type="button" class="bouton mx-2">Effacer</button>
+    </div>
 </div>
+<script>
+    texteInitial = 'print("Diane code en Python")';
+    initializeSandbox(texteInitial, 0);
+</script>
+-->
 
-
+{% endblock principal %}
+  

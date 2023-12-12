@@ -1,0 +1,197 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- REPETER UNE ACTION AVEC UNE BOUCLE WHILE -->
+
+<p>Il est possible de répéter une action avec une boucle while, même si on préfère en général utiliser une boucle for 
+    dans ce cas, ce que nous étudierons plus tard. Pour cela, il faut créer un compteur qu'on fait varier,
+     et il faut comparer ce compteur à une certaine valeur pour savoir quand s'arrêter.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>testez le code suivant qui permet de compter jusqu'à 10 :</p>
+
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+    print(compteur)
+    compteur = compteur + 1</code></pre>
+
+</div>
+
+<p>On sait maintenant compter jusqu'à 10 en utilisant une boucle <code>while</code>. Mais
+    comment faire pour sauter un chiffre, par exemple pour ne pas afficher le chiffre 6 ?</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>essayez maintenant d'écrire un code utilisant un boucle <code>while</code>,
+        qui compte jusqu'à 10 en affichant ces nombres sur une même ligne, et sans afficher 6.</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+
+    <div id="solution6" style="display:none;">
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+
+    if compteur != 6:
+        print(compteur)
+
+    compteur = compteur + 1</code></pre>
+
+
+<p>Notons qu'on peut également utiliser l'instruction <code>continue</code>, qui
+permet de sauter un tour de boucle.</p>
+
+    <pre><code class="language-python">compteur = 1
+
+while compteur &lt 11:
+
+    if compteur == 6:
+        compteur = compteur + 1
+        continue
+
+    print(compteur, end=" ")
+    compteur = compteur + 1</code></pre>
+
+</div>
+
+</div>
+
+
+<p>Le risque avec une boucle while est que la condition d'arrêt ne soit jamais remplie, ce qui ne permet pas 
+    à la boucle de se terminer. On crée ainsi une boucle infinie qui bloque le programme. Par exemple :</p>
+
+<pre><code class="language-python">compteur = 10
+while compteur >= 0:
+    print("le compteur est positif")</code></pre>
+
+<p>N'exécutez pas le code ci-dessus car la variable <code>compteur</code> sera toujours
+supérieure à 0 (elle vaut 10) et le programme ne se terminera jamais. Certains langages comme PHP
+ne permettent pas de dépasser un certain nombre de tours, mais ce n'est pas le cas de Python
+qui continue à travailler tant qu'on ne l'arrête pas. Il faut dans ce cas appuyer sur la touche
+<i>Stop</i> de l'environnement de travail ou <i>Ctrl+C</i> au terminal pour arrêter manuellement
+l'exécution du programme.</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher 3 fois Bonjour les uns en dessous des autres en utilisant une boucle 
+    while. Il est important dans ce cas d'utiliser une boucle while plutôt que d'écrire 3 fois print("Bonjour"). 
+    En effet, comment pourrions-nous gérer l'affichage de 1000 Bonjour si c'était demandé ?</p>
+
+    <pre><code class="language-python">compteur = 0
+while ???
+# completer le code ...</code></pre>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher <i>Quel est votre nom ?</i> tant que l'utilisateur ne saisit pas un nom au clavier,
+        puis stocker la valeur saisie dans une variable <code>nom</code>.</p>
+
+<pre><code class="language-python">nom = ""
+while ???
+# completer le code en utilisant input ...</code></pre>
+
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+
+    <div id="solution1" style="display:none;">
+
+<pre><code class="language-python">nom = ""
+while len(nom) == 0:
+    nom = input("Quel est votre nom ?")</code></pre>
+
+<p>Python ne connaît pas de méthode <code>isEmpty()</code> comme d'autres langages. Il faut donc tester 
+    la longueur de la chaîne de caractères <code>nom</code> à la place.</p>
+</div>
+</div>
+
+    <p>On sait maintenant demander à l'utilisateur de saisir son nom, mais comment éviter qu'il se
+        contente de saisir un espace vide ?</p>
+
+<p>la fonction <strong>strip()</strong> supprime les espaces devant et derrière les caractères. Ainsi le code suivant
+    permet de mieux visualiser si des espaces se cachent autour d'un nom, ou si un nom est composé d'espaces :</p>
+
+<pre><code class="language-python">nom = " Antoine"
+print(len(nom))  # affiche 8
+print(len(nom.strip()))  # affiche 7
+
+nom = ""
+print(len(nom))  # affiche 0
+
+nom = " "
+print(len(nom))  # affiche 1
+print(len(nom.strip()))  # affiche 0</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un code qui affiche <i>Quel est votre nom ?</i>
+    tant que l'utilisateur ne saisit pas un nom au clavier, et qui n'accepte pas une réponse
+    vide ou un simple espace. La valeur saisie sera stockée dans une variable <code>nom</code>.</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+
+    <div id="solution2" style="display:none;">
+
+        <p>Il suffit de reprendre le code de la question précédente en
+        modifiant la condition de la boucle <strong>while</strong> comme suit :</p>
+
+        <pre><code class="language-python">nom = ""
+while len(nom.strip()) == 0:
+    nom = input("Quel est votre nom ?")</code></pre>
+    </div>
+</div>
+
+<p>Il est parfois utile de demander à l'utilisateur de saisir un nombre entier au clavier.
+On a déjà vu que, par défaut, ce nombre est stocké en mémoire sous forme de chaîne de caractères.
+Toutefois, afin d'effectuer des calculs avec ce nombre, il est essentiel de pouvoir le
+transformer en entier. La fonction <code>isnumeric()</code> assure la compatibilité de
+cette conversion. On peut donc être amené à écrire une boucle <code>while</code> qui demande à
+l'utilisateur de saisir un nombre entier et recommence tant que celui-ci saisit autre chose.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>afficher <i>Quel est votre âge ?</i> tant que l'utilisateur ne saisit pas un nombre entier au clavier.
+     <i>Indication : </i>utiliser la méthode <code>age.isnumeric()</code></p>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+
+    <div id="solution3" style="display:none;">
+        <pre><code class="language-python">age = ""
+while age.isnumeric() == False:
+    age = input("Quel est votre âge ?")</code></pre>
+
+        <p>Notons que <code>isnumeric()</code> s'applique à une chaîne de caractères.
+        C'est pour cette raison que la variable <code>age</code> est définie au départ
+        comme étant "" et non pas <code>None</code>.</p>
+    </div>
+</div>
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
+</div>
+
+<script>
+var questionsData3 = 
+    {
+        question: "On donne la valeur 0 à une variable compteur. Pour répéter 5 fois un bloc d'instructions, il faut utiliser ...",
+        options:["while compteur < 5:", "while compteur = 5:", "while compteur < 6:"],
+        correctIndex: 0,
+        commentaire: "On démarre de 0 pour aller jusqu'à 4 inclus, ce qui constitue 5 répétitions."
+    };
+questionnaireUnique(3, questionsData3);
+</script>
+
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=4 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

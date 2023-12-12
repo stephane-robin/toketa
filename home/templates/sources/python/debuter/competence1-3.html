@@ -1,0 +1,170 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<p>Chaque variable appartient à une famille particulière permettant de donner une structure connue à 
+    cette variable, appelée type. Les types primaires en Python sont les suivants:</p>
+<ul>
+    <li><p>les nombres entiers sont stockés dans des variables de type <code>int</code> pour integer</p></li>
+    <li><p>les nombres réels sont stockés dans des variables de type <code>float</code> pour nombres à virgules flottantes</p></li>
+    <li><p>les textes (chaînes de caractères) sont stockés dans des variables de type <code>str</code> pour string</p></li>
+    <li><p>les valeurs <code>True</code> et <code>False</code> sont stockées dans des variables de type <code>bool</code> pour booléens.</p></li>
+</ul>
+
+<p>La taille de l'espace occupé par une variable en mémoire dépend fortement de sa structure donc de son type. C'est la raison pour laquelle il est parfois
+préférable de travailler avec un type de variable plutôt qu'un autre. Par exemple les entiers occupent moins de place 
+que les nombres réels qui nécessitent un espace mémoire avant la virgule et un espace mémoire après la virgule.</p>
+
+<p>On peut afficher le type d'une variable avec l'instruction <code>print(type())</code> et le nom de la variable. Par exemple :
+
+    <pre><code class="language-python">print(type(age))</code></pre>
+
+    <p>affichera <code>int</code>.</p>
+
+<p>Le temps nécessaire pour effectuer des calculs peut également varier en fonction du type choisi pour 
+    une variable.</p>
+    
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>Pour vous en rendre compte, copiez puis exécutez le code suivant qui calcule les puissances 
+        successives de 335 lorsque la variable est enregistrée en tant qu'entier (<code>int</code>) puis en tant 
+        que nombre réel (<code>float</code>). On constate que le calcul est plus rapide avec des entiers.</p>
+
+        <p><i>Attention</i>, le code va prendre plusieurs secondes pour s'exécuter...</p>
+<pre><code class="language-python">import time
+
+entier = 335
+reel = 335.0
+resultatsEntier = []
+resultatsReel = []
+
+for _ in range(5):
+    debut = time.time()
+    for i in range(100):
+        print(entier ** i)
+    fin = time.time()
+    resultatsEntier.append(round(fin - debut, 2))
+
+for _ in range(5):
+    debut = time.time()
+    for i in range(100):
+        print(reel ** i)
+    fin = time.time()
+    resultatsReel.append(round(fin - debut, 2))
+
+
+print("temps de calcul pour un type int", numpy.mean(resultatsEntier))
+print("temps de calcul pour un type float", numpy.mean(resultatsReel))</code></pre>
+
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p>Par ailleurs, les opérations ne fournissent pas le même travail selon le type des variables.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>pour compredre cela, il suffit d'exécuter le code suivant, 
+    dont le résultat varie selon que les variables sont de type <code>int</code> ou <code>str</code> :</p>
+    <pre><code class="language-python">print(12 + 7) # affiche 19
+print("12" + "7") # affiche 127</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Le type d'une variable est plus important qu'il n'y paraît. Il définit la structure de la variable, et
+            autorise certaines opérations plutôt que d'autres.</p>
+	</div>
+</div>
+
+
+<!-- LANGAGE FAIBLEMENT TYPE -->
+<h3>Un langage faiblement typé</h3>
+
+<p>Python est un langage de programmation <i>faiblement typé</i>, c'est à dire qu'il n'est pas nécessaire 
+    de définir le type d'une variable avant de lui donner une valeur initiale. Il n'est pas non 
+    plus nécessaire d'indiquer dans les fonctions le type des paramètres et le type attendu 
+    en retour.</p>
+
+<p>On peut donc se contenter de définir directement une variable comme dans l'exemple ci-dessous, ce qui 
+    simplifie le code.</p>
+
+<pre><code class="language-python">nom = "Pierre"</code></pre>
+
+
+<!-- TYPAGE DYNAMIQUE -->
+<h3>Le typage dynamique</h3>
+
+<p>Python est un langage au typage dynamique, c'est à dire qu'il est capable de modifier automatiquement 
+    le type d'une variable au cours du programme pour rendre les calculs faisables. Dans l'exemple
+ci-dessous 5 / 3 est un nombre décimal mais on peut quand même l'additionner avec 2 qui est pourtant 
+un nombre entier, car 2 est automatiquement transformé en nombre décimal pour que le calcul puisse 
+s'effectuer. Cela nous paraît normal car nous ne réfléchissons pas à cela lorsque nous calculons 
+de tête, mais un programme quant à lui, a besoin d'utiliser la structure des données qu'on lui 
+fournit pour travailler, c'est à dire le type des données.</p>
+
+<pre><code class="language-python">nbre1 = 5
+nbre2 = 3
+nbre3 = 6
+resultat = float(5 / 3 + 2)</code></pre>
+
+<p>Ceci est bien pratique, mais peut conduire à des erreurs de logique difficiles 
+    à corriger si on pense qu'une variable est structurée suivant un certain type alors 
+    qu'elle ne l'est pas.</p>
+
+
+<!-- CHANGER LE TYPE D'UNE VARIABLE -->
+<h3>Changer le type d'une variable</h3>
+
+<p>Dans certains cas, il est possible de changer le type des variables pour les besoins futurs du
+    programme. On parle dans ce cas de caster une variable. Par exemple, on peut être amené à 
+    fournir des résultats sous forme de nombres réels alors que les calculs ont été faits avec 
+    des nombres entiers, comme dans l'exemple ci-dessous :</p>
+
+
+
+
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+<script>
+var questionsData2 = 
+    {
+        question: "Quelle affirmation est vraie ...",
+        options:["le type d'une variable définit sa famille d'appartenance", "le type d'une variable est immuable", "on accède au type de la variable x en écrivant x.type()"],
+        correctIndex: 0,
+        commentaire: "Le type d'une variable définit à quel groupe elle appartient."
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+
+<div class="mt-5 exerciceType">
+    <h4>En résumé</h4>
+    
+    <ul>
+        <li><p>les types primaires des variables en Python sont int, float, str, bool</p></li>
+    </ul>
+</div>
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=1 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

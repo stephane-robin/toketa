@@ -1,0 +1,63 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+      
+
+<!-- PHRASE GLISSANTE -->
+
+<p>On veut maintenant que l'utilisateur saisisse une phrase au clavier, puis que le programme affiche cette phrase, 
+    et à la ligne suivante retire la 1ère lettre 
+    de la phrase saisie pour l'afficher à la fin de la phrase, et ainsi de suite ligne après ligne jusqu'à 
+    afficher de nouveau la phrase initiale. Par exemple si l'utilisateur saisit 'il fait beau aujourd'hui', 
+    le programme va afficher</p>
+        
+<pre><code class='language-svg'>il fait beau aujourd'hui
+l fait beau aujourd'huii
+fait beau aujourd'huiil
+fait beau aujourd'huiil 
+ait beau aujourd'huiil f
+it beau aujourd'huiil fa
+t beau aujourd'huiil fai
+beau aujourd'huiil fait
+beau aujourd'huiil fait 
+eau aujourd'huiil fait b
+au aujourd'huiil fait be
+u aujourd'huiil fait bea
+aujourd'huiil fait beau
+aujourd'huiil fait beau 
+ujourd'huiil fait beau a
+jourd'huiil fait beau au
+ourd'huiil fait beau auj
+urd'huiil fait beau aujo
+rd'huiil fait beau aujou
+d'huiil fait beau aujour
+'huiil fait beau aujourd
+huiil fait beau aujourd'
+uiil fait beau aujourd'h
+iil fait beau aujourd'hu
+il fait beau aujourd'hui</code></pre>
+
+<p>Ce type d'écriture peut par exemple constituer un affichage dynamique d'une phrase sur une interface graphique 
+    comme <i>tkinter</i>. Dans ce cas, il faudrait afficher la phrase modifiée sur une même ligne au lieu 
+    de l'afficher à la ligne suivante, donnant ainsi l'impression que la phrase défile.</p>
+        
+        <div class='exerciceApplication'>
+            <p><strong>A toi de jouer : </strong>construire un programme qui effectue le travail ci-dessus à 
+                l'aide d'une boucle <code>while</code>.</p>
+            <div>
+                <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+            </div>
+        
+            <div id="solution8" style="display:none;">
+<pre><code class='language-python'>chaine = input("choisissez une phrase : ")
+i = 0
+
+while i &lt len(chaine):
+    print(chaine[i:] + chaine[:i])
+    i = i + 1</code></pre>
+            </div>
+        
+        </div>
+
+{% endblock cours %}

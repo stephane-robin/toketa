@@ -1,0 +1,60 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- REPETER AVEC LA BOUCLE FOR -->
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/vkEfGC-aYBM"
+            title="La boucle for en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+gyroscope; picture-in-picture" allowfullscreen> </iframe>
+    <figcaption> La boucle for, <em>ToKeTa</em> </figcaption>
+</div>
+
+<p>Python permet de répéter une instruction un certain nombre de fois. Lorsqu'on connaît le nombre de répétitions, on utilise la boucle <strong>for</strong>. Lorsqu'on ne connaît pas le nombre de répétitions et que celui-ci dépend de l'évolution de la situation (par exemple si le nombre de vies d'un joueur devient nul), alors dans ce cas on utilise la boucle <strong>while</strong>.</p>
+
+<p>Pour répéter <em>bonjour</em> 5 fois, il suffit simplement d'écrire</p>
+
+<pre><code class="language-python">for i in range(5):
+    print("bonjour")</code></pre>
+
+<p>A noter encore une fois l'indentation du code devant l'instruction <code>print("bonjour")</code> pour indiquer 
+    que cette instruction fait partie du bloc constitué par la boucle <code>for</code>.</p>
+
+<p>Si tu as déjà pratiqué la programmation avec Scratch, le script ci-dessus correspond en fait
+     au code Scratch suivant :</p>
+
+<img src="{% static 'home/images/python/codeScratchFor.png' %}" width="15%" alt="code scratch">
+
+<p>Dans l'instruction <code>for i in range(5):</code>, l'indice <code>i</code> va prendre les valeurs entières comprises entre 0 et 4.
+Il y aura de ce fait 5 répétitions de l'instruction <code>print("bonjour")</code>. En réalité, l'instruction
+<code>range(5)</code> crée une liste de 5 nombres allant de 0 à 4 dans laquelle va piocher l'indice <code>i</code>. 
+Mais tu n'as pas vraiment besoin de le savoir pour utiliser la boucle for.</p>
+
+<div class="row">
+    <div class="col-12 col-md-1">
+        <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+    <div class="fieldsetDefinition col-12 col-md-11">
+    <h4>REMARQUABLE ...</h4>
+    <p>L'indice <code>i</code> d'une boucle <code>for i in range(4)</code> commence par défaut à 0.
+    La dernière valeur prise par cet indice est l'entier strictement inférieur à 4.</p>
+    </div>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer :</strong> écrire un code permettant d'afficher la table de multiplication de 16</p>
+           
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+        <pre><code class="language-python">for i in range(11):
+    print("16 fois " + i + " = " + 16 * i)</code></pre>
+</div>
+</div>
+
+{% endblock cours %}

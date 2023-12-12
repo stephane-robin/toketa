@@ -1,0 +1,103 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- PARCOURIR UNE CHAINE -->
+<p>Pour parcourir une chaîne de caractères, il est nécessaire d'en connaître la taille. En effet, le programme 
+    a besoin de savoir quand s'arrêter dans son travail. Dans l'exemple ci-dessous, la chaîne est composée 
+    de 14 caractères (les espaces comptent également pour des caractères) :</p>
+<pre><code class="language-python">chaine = "C'est cela oui"</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire un code qui affiche séparément chaque caractère d'une
+    chaîne les uns en dessous des autres.</p>
+
+    <pre><code class="language-python">chaine = "C'est cela oui"
+
+# completer le code ...</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+    <pre><code class="language-python">chaine = "C'est cela oui"
+
+for i in range(7):
+    print(chaine[compteur])</code></pre>
+</div>
+</div>
+
+    <p>Dans le code ci-dessus on a compté le nombre de caractères de <code>chaine</code>
+    pour obtenir 14. Le programme parcourt donc la chaine de caractères en partant de l'indice 0, jusqu'à l'indice 
+    13 inclus, qui correspond à l'indice du dernier caractère. En fait, il faut laisser faire ce travail à l'ordinateur en utilisant
+    l'instruction <code>len(chaine)</code> qui renvoie la longueur de cette chaîne. 
+    Ainsi le code précédent peut être améliorer de la façon suivante :</p>
+
+    <pre><code class="language-python">chaine = "C'est cela oui"
+
+for i in range(len(chaine)):
+    print(chaine[compteur])</code></pre>
+
+
+<p>On sait maintenant récupérer tous les caractères d'une chaîne pour les afficher.</p>
+<p>Mais comment faire si on ne veut pas se contenter d'afficher un nouveau mot, mais si on veut
+    plutôt créer un nouveau mot à partir d'un ancien mot ?</p>
+    <p>On va maintenant chercher à écrire un nouveau mot 
+    à partir d'un mot en plaçant des - entre chaque lettre.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>demandez à l'utilisateur de saisir un mot puis affichez
+    ce mot avec des - entre chaque caractère.</p>
+
+<pre><code class="language-python">mot = input("veuillez saisir un mot : ")
+new_mot = ""
+
+# completer le code ...
+
+print(new_mot)</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution5" style="display:none;">
+
+        <pre><code class="language-python">mot = input("veuillez saisir un mot : ")
+new_mot = ""
+
+for i in range(len(mot)):
+    if i == 0:
+        new_mot = mot[0] 
+    else:
+        new_mot = new_mot + "-" + mot[i]
+
+print(new_mot)</code></pre>
+    </div>
+
+</div>
+
+<p>On constate que pour construire un nouveau mot à partir d'un mot déjà existant, il faut parcourir 
+    tous les caractères existants et construire le nouveau mot par concaténation. La concaténation (rajout 
+    d'un caractère à la suite de tous les autres caractères) est incontournable lorsqu'on construit 
+    une chaîne de caractères.</p>
+
+
+<!-- QESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
+
+<script>
+var questionsData4 = 
+    {
+        question: "Pour connaître la longueur d'une chaîne de caractères appelée phrase, on utilise ...",
+        options:["len(phrase)", "phrase.len", "phrase.len()"],
+        correctIndex: 0,
+        commentaire: ""
+    };
+questionnaireUnique(4, questionsData4);
+</script>
+
+{% endblock cours %}

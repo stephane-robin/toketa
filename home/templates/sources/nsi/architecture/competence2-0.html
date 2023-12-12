@@ -1,0 +1,101 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<p>Nous allons explorer le Terminal et apprendre à l'utiliser le bash en suivant des directives étape par étape.</p>
+<p>Toutes les instructions nécessaires à ce travail pratique se trouve dans le chapitre <i>Le système Linux</i>.</p>
+<p>Rappel, pour naviguer dans l'éditeur de texte nano, il faut comprendre Ctrl+O pour ^O et penser à confirmer 
+    les demandes avec la touche Entrée.</p>
+
+
+<!-- ACTIVITE 1 -->
+<h3>Activité 1</h3>
+
+<p><i>Astuce </i>: n'oubliez pas que la touche de tabulation utilisée dans le terminal permet l'autocomplétion 
+des instructions ou encore des noms de fichiers connus.</p>
+
+<ul>
+    <li><p>Ouvrir le Terminal puis se rendre dans le dossier Documents,</p></li>
+    <li><p>Afficher tous les fichiers et sous-dossiers présents dans Documents, avec les détails et les fichiers cachés.</p></li>
+    <li><p>Creer un sous dossier appelé Dossier_term</p></li>
+    <li><p>Se rendre dans Dossier_term, puis y créer un fichier vide appelé fichier1.txt</p></li>
+    <li><p>Ouvrir fichier1.txt avec nano, puis écrire dans ce fichier le texte "Les sanglots longs de 
+        l'automne blessent mon coeur d'une langueur monotomne."</p></li>
+    <li><p>Quitter nano, puis lire le contenu de fichier1.txt dans le Terminal</p></li>
+    <li><p>Copier fichier1.txt puis le coller dans Documents sous le nom fichier2.txt</p></li>
+    <li><p>Ouvrir fichier2.txt avec nano, puis en modifier le contenu pour que soit écrit 
+        print("Les sanglots longs de l'automne ...")</p></li>
+    <li><p>Renommer fichier2.txt en fichier3.py en respectant bien le changement d'extension.</p></li>
+</ul>
+
+
+<!-- ACTIVITE 2 -->
+<h3>Activité 2</h3>
+
+<p>Nous allons apprendre à utiliser simplement la boucle <code>for</code> en bash.</p>
+
+<ul>
+    <li><p>Ouvrir le Terminal puis se rendre dans le dossier Documents.</p></li>
+    <li><p>Pour comprendre l'utilisation de la boucle <code>for</code>, recopier puis exécuter le code suivant :</p>
+    <pre><code class="language-svg">for i in 0 1 2 3
+do
+echo "Hello $i"
+done</code></pre></li>
+    <li><p>En suivant l'exemple du code ci-dessous créer 5 fichiers appelés fichier1.txt, fichier2.txt, 
+fichier3.txt, fichier4.txt et fichier5.txt.</p></li>
+    <li><p>Modifier le nom de ces fichiers en utilisant toujours une boucle for, de sorte que fichier1.txt 
+        devienne fichier1-0.txt.</p></li>
+</ul>
+
+<p>Savoir modifier les noms d'un ensemble de fichiers à partir du bash est très utile et peut permettre de 
+    gagner énormément de temps lorsqu'on change la structure d'un grand projet.</p>
+
+
+<!-- ACTIVITE 3 -->
+<h3>Activité 3</h3>
+
+<p>Nous allons apprendre à exécuter un fichier Python à partir du Terminal. Cela peut être utile lorsqu'un 
+    programme s'exécute mal ou ne s'exécute pas avec notre environnement de développement (comme <i>VS Code</i> 
+    par exemple) alors qu'il devrait s'exécuter et qu'aucune erreur de code n'est détectée.</p>
+
+<p><i>Astuce : </i>n'oubliez pas que les flèches de navigation Haut, Bas permettent de retrouver les 
+dernières commandes exécutées sur le bash afin d'éviter de devoir les retaper.</p>
+
+<ul>
+    <li><p>Ouvrir le Terminal et se rendre dans le dossier Documents</p></li>
+    <li><p>Créer un fichier appelé essai.py</p></li>
+    <li><p>Ouvrir ce fichier à l'aide de nano puis taper le code suivant</p>
+    <pre><code class="language-python">for _ in range(3):
+    print("il connaît pas Raoul ce mec")</code></pre></li>
+    <li><p>Quitter nano et rester dans le dossier Documents</p></li>
+    <li><p>Exécutez votre fichier Python en tapant <code>python3 essai.py</code>. On peut donc facilement 
+    exécuter tout type de fichier Python dont on connaît l'emplacement dans l'ordinateur.</p></li>
+    <li><p>Retourner à la racine du Terminal puis taper simplement <code>python3</code> pour accéder 
+    à une console Python</p></li>
+    <li><p>Taper maintenant <code>print("Pas de chichi entre nous, appelez-moi Super")</code> puis exécutez 
+        avec la touche Entrée ou encore <code>3 + 2</code> puis exécutez avec la touche Entrée. Voilà, 
+    vous êtes capable d'exécuter une console Python sur votre Terminal.</p></li>
+    <li><p>Quittez maintenant la console Python pour revenir au bash du Terminal</p></li>
+    <li><p>Python n'est pas le seul langage connu de votre ordinateur. Bien souvent Java est déjà présent 
+        dans votre machine. Si c'est le cas, il suffit d'exécuter l'instruction <code>java --version</code> 
+        pour en obtenir la confirmation. Si java est présent sur votre ordinateur, vous pouvez ouvrir le fichier 
+        essai.py avec nano puis en modifier le contenu de la façon suivante :</p>
+    <pre><code class="language-java">class Test{
+public static void main(String[] args)
+{
+System.out.println("c'est cela oui")
+}
+}</code></pre>
+<p>Vous venez d'écrire votre premier code java qui se contente d'afficher une phrase.</p></li>
+<li><p>Quittez ensuite le fichier <strong>essai.py</strong> en enregistrant les modifications effectuées.</p></li>
+<li><p>Renommer le fichier <strong>essai.py</strong> en <strong>essai.java</strong> pour que l'ordinateur 
+comprenne que votre fichier est écrit en java.</p></li>
+<li><p>Il ne reste plus qu'à exécuter l'instruction <code>java essai.java</code> au Terminal pour exécuter du java. 
+On a donc simplement remplacé <code>python3</code> par <code>java</code>. Ceci est également valable pour 
+de nombreux autres langages de programmation.</p></li>
+</ul>
+
+
+
+{% endblock cours %}

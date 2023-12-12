@@ -1,0 +1,133 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">EXERCICES</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- ENTRAINEMENT -->
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>corriger le code ci-dessous qui demande son nom à un utilisateur et 
+        lui dit bonjour en utilisant le nom saisi par l'utilisateur.</p>
+    <pre><code class="language-python">input("Quel est ton nom ?)
+print("Bonjour + nom")</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 2 : </strong>écrire un programme qui demande à l'utilisateur une 
+    température en degrés Celsius (indication pensez à <strong>input</strong>) et la convertit en Fahrenheit avant de l'afficher, connaissant la formule F = 1.8 * C + 32 
+où F représente la température en Fahrenheit et C la température en Celsius.</p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>on reprend la formule ci-dessus, mais cette fois, on veut écrire un 
+        programme qui demande à l'utilisateur une température en Fahrenheit et la convertit en degrés Celsius 
+        avant de l'afficher.</p>
+        <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>écrire un programme qui demande à l'utilisateur de saisir 5 notes au clavier et 
+    qui calcule puis affiche la moyenne obtenue.</p>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>écrire un programme qui demande à l'utilisateur de saisir 
+    un rayon en centimètres, puis affiche la surface du disque ayant ce rayon en centimètres carrés.</p>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>écrire un programme qui calcule pour le boulanger les sommes que doivent 
+    payer ses clients lorsqu'ils achètent une baguette à 2,30 €, un croissant à 2,10 € ou une chocolatine à 2,45 €. 
+    Le programme demande au client de nombre de baguettes, de croissants et de chocolatines qu'il veut acheter avant de donner le montant total 
+à payer.</p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 :</strong> écrire un programme qui demande un nombre à l’utilisateur, puis
+        affiche si le terme saisi par l'utilisateur peut être transformé en entier (l'affichage sera uniquement <strong>True</strong> ou <strong>False</strong>, indication, pensez à <strong>isnumeric()</strong>).
+        Finalement, le code affiche "[nombre] fois 4 est égal à " (où [nombre] représente la valeur du nombre saisi), suivi du résultat de
+        cette multiplication. Par exemple si la valeur saisie est 3, le code affichera "True" puis "3 fois 4 est égal à 12".</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution10" style="display:none;">
+        <pre><code class="language-python">nombre = input("veuillez saisir un nombre : ")
+print(nombre.isnumeric())
+
+# on transforme la valeur saisie en entier afin d'effectuer le calcul
+nombre = int(nombre)
+print(nombre + " fois 4 est égal à " + nombre * 4)</code></pre>
+    </div>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>en musique on dispose des notes suivantes do-ré-mi-fa-sol-la-si-do.
+     On peut attribuer une valeur numérique pour chacune de ces notes, qui correspond à sa fréquence à 
+    l'octave 1. On obtient dans ce cas le tableau suivant :</p>
+    <table>
+        <tr><th>note</th><th>fréquence (Hz)</th></tr>
+        <tr><td>do</td><td>65</td></tr>
+        <tr><td>ré</td><td>74</td></tr>
+        <tr><td>mi</td><td>83</td></tr>
+        <tr><td>fa</td><td>87</td></tr>
+        <tr><td>sol</td><td>98</td></tr>
+        <tr><td>la</td><td>110</td></tr>
+        <tr><td>si</td><td>123</td></tr>
+    </table>
+    <p>On remarque au passage que l'écart entre mi-fa est faible comparativement aux autres notes. 
+        Ceci s'explique par le fait qu'il n'existe qu'un demi-ton entre le mi et le fa, alors qu'il existe 
+        un ton d'écart entre les autres notes du même octave.</p>
+    <p>Un compositeur joue les 6 notes suivantes sur son clavier : mi-sol-la-si-mi-do et veut utiliser un 
+        logiciel pour calculer la tonalité principale de son air.</p>
+    <p>Ecrire un programme qui demande à l'utilisateur de saisir 6 notes, puis calcule la moyenne de ces 
+        notes pour afficher la fréquence moyenne à l'écran.</p>
+    <p>De quoi aurions-nous besoin si on voulait que le résultat affiché soit une note plutôt qu'une fréquence ?</p>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=1 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

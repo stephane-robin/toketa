@@ -1,0 +1,85 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- TRANSFORMER DES CHAINES -->
+
+<p>On a parfois besoin de faire des opérations sur les chaînes de caractères, par exemple pour gérer les mots 
+    de passe dans lesquels il faut s'assurer de la présence d'une majuscule, d'un caractère spécial et d'au moins 8 caractères, etc... 
+Il existe pour cela des méthodes déjà construites permettant de transformer les chaînes.</p>
+
+<table>
+    <tr><th>méthode</th><th>signification</th></tr>
+    <tr><td><pre><code class="language-python">len(maChaine)</code></pre></td><td>renvoie le nombre de caractères de <code>maChaine</code></td></tr>
+    <tr><td><pre><code class="language-python">maChaine.find("a")</code></pre></td><td>renvoie la 1ère position de la lettre "a" dans <code>maChaine</code>, renvoie -1 si <code>maChaine</code> ne contient pas la lettre "a"</td></tr>
+    <tr><td><pre><code class="language-python">maChaine.upper()</code></pre></td><td>renvoie une chaîne correspondant à <code>maChaine</code> en majuscules, <i>attention</i> la variable <code>maChaine</code> n'est pas modifiée</td></tr>
+    <tr><td><pre><code class="language-python">maChaine.capitalize()</code></pre></td><td>renvoie une chaîne correspondant à <code>maChaine</code> en minuscules avec la 1ère lettre en majuscule, <i>attention</i> la variable <code>maChaine</code> n'est pas modifiée</td></tr>
+    <tr><td><pre><code class="language-python">maChaine.count("a")</code></pre></td><td>renvoie le nombre de fois que la lettre "a" apparaît dans <code>maChaine</code></td></tr>
+    <tr><td><pre><code class="language-python">maChaine.replace("a", "b")</code></pre></td><td>renvoie une chaîne correspondant à <code>maChaine</code> dans laquelle les "a" ont été remplacés par des "b", <i>attention</i> la variable <code>maChaine</code> n'est pas modifiée</td></tr>
+    <tr><td><pre><code class="language-python">maChaine.isnumeric()</code></pre></td><td>renvoie <code>True</code> si <code>maChaine</code> peut être transformée en nombre entier, <code>False</code> sinon</td></tr>
+</table>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer :</strong> utiliser les méthodes ci-dessus pour afficher à partir de la variable <code>maChaine = "la neige se transforme en névé l'été"</code>
+    <ul>
+        <li><p>lo neige se tronsforme en névé l'été</p></li>
+        <li><p>LA NEIGE SE TRANSFORME EN NEVE L'ETE</p></li>
+        <li><p>La neige se transforme en névé l'été</p></li>
+        <li><p>le nombre de lettres e dans maChaine</p></li>
+        <li><p>la 1ère position de la lettre s dans maChaine</p></li>
+        <li><p>la longueur de maChaine</p></li>
+    </ul>
+    </p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution5" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">maChaine = "la neige se transforme en névé l'été"
+print(maChaine.replace('a', 'o'))
+print(maChaine.upper())
+print(maChaine.capitalize())
+print(maChaine.count('e'))
+print(maChaine.find('s'))
+print(len(maChaine))</code></pre>
+    </div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p class="mt-3">Les méthodes ci-dessus ne modifient pas les chaînes de caractères, mais construisent une nouvelle 
+    chaîne à partir de la chaîne de départ. Ainsi, </p>
+    <pre><code class='language-python'>chaine = 'hello world'
+nouvelleChaine = chaine.capitalize()
+    
+print(chaine) # renvoie 'hello world'
+print(nouvelleChaine)  # renvoie 'Hello world'</code></pre>
+
+<p>Il est toutefois facile de modifier une chaîne de caractères en s'assurant de stocker le résultat 
+    obtenu dans la variable de départ, comme dans l'exemple ci-dessous :</p>
+
+    <pre><code class='language-python'>chaine = 'hello world'
+chaine = chaine.capitalize()
+        
+print(chaine) # renvoie 'Hello world'</code></pre>
+
+<div class="row my-5">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/interrogation.png' %}" class="w-100"> 
+	</div>
+	<div class="col-12 col-md-11">
+        <p>Pour quelle raison voit-on apparaître la valeur -1 dans l'instruction <code>maChaine.find('x')</code> alors que 0 
+            représente en général la valeur <code>False</code> en programmation ? Si cette instruction renvoyait la valeur 0 lorsque 'x' 
+            ne se trouve pas dans <code>maChaine</code>, on ne saurait pas si la valeur renvoyée signifie <code>False</code> ou si la lettre 'x' se 
+            situe à l'indice 0 de <code>maChaine</code>. Le choix de l'indice négatif -1 évite cette ambiguité.</p>
+    </div>
+</div>
+
+
+{% endblock cours %}

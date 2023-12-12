@@ -1,0 +1,93 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<h3>Comment inverser les valeurs de deux variables</h3>
+
+<p>Imaginons que la variable A prenne la valeur 3 et la variable B la valeur 7. Comment faire pour 
+    que le programme inverse ces deux valeurs de manière automatisée, sans que le développeur tape manuellement 
+    <code>B = 3</code> puis <code>A = 7</code> ?</p>
+
+<p>On peut imaginer les instructions successives suivantes :</p>
+
+<table>
+    <tr><td><pre><code class="language-python">B = A</code></pre></td><td>la variable B prend la valeur de A c'est à dire 3</td></tr>
+    <tr><td><pre><code class="language-python">A = B</code></pre></td><td>la variable A prend la valeur de B c'est à dire 3</td></tr>
+</table>
+
+<p>On constate qu'avec cette stratégie, les deux variables prennent la valeur 3 et qu'on a perdu en mémoire la valeur 7.</p>
+
+<p>Il s'agit en fait d'un problème simple mais classique en informatique. Pour comprendre la stratégie à aborder, 
+    il suffit d'imaginer deux fichiers Word appelés fichier1.docx et fichier2.docx. Si on veut changer
+    le nom de fichier1.docx en fichier2.docx, le système d'exploitation de la machine refuse cette modification car 
+    on ne peut pas avoir deux fichiers du même nom dans un même dossier.</p>
+
+<p>Si on bouge fichier2.docx dans un autre dossier, puis qu'on renomme fichier1.docx en fichier2.docx, cela va marcher mais on ne 
+    pourra plus faire revenir fichier2.docx dans son dossier initial, puisqu'on aurait dans ce cas deux fichiers 
+    du même nom.</p> 
+    
+<p>Il faut en fait utiliser un nom de fichier temporaire pour fichier1.docx, par exemple l'appeler temp.docx. 
+    On peut ensuite renommer fichier2.docx en l'appelant fichier1.docx. Finalement, il faut renommer temp.docx 
+    en fichier2.docx.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>si le principe vous échappe encore, il suffit de créer deux fichiers 
+        vides qu'on pourra appeler fichier1.docx et fichier2.docx, puis de suivre l'exemple ci-dessus 
+        en manipulant les fichiers proposés.</p>
+
+<p>Tous ces fichiers peuvent également contenir des instructions, mais le but est d'apprendre à interchanger les noms 
+    des fichiers, pas de modifier ce qu'ils contiennent.</p>
+</div>
+
+<p>Le principe est le même pour les noms de variables. On ne peut pas avoir deux noms de variables identiques 
+    dans un même programme. Pour inverser les noms des variables, il faut donc recourir à une variable temporaire, 
+    qui permettra de ne pas perdre la valeur d'une des variables.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>écrire un script qui permet d'inverser les valeurs de deux variables x et y.</p>
+    <pre><code class="language-python">A = 3
+B = 7
+# completer la suite ...</code></pre>
+  
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div class="mt-5">
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+    <pre><code class="language-python">A = 3
+B = 7
+print("A = ", A)
+print("B = ", B)
+
+temp = A # on conserve la valeur initiale de A en mémoire
+A = B # A prend la valeur de B
+B = temp # B prend la valeur initiale de A
+
+print("A = ", A)
+print("B = ", A)</code></pre>
+    <p>On utilise ici une variable temporaire temp afin de conserver en mémoire la valeur initiale de A.
+     A noter qu'en Python, il existe une méthode plus simple :</p>
+    <pre><code class="language-python">A = 3
+B = 7
+
+A, B = B, A
+
+print("A = ", A)
+print("B = ", B)</code></pre>
+</div>
+</div>
+
+<p><i>Remarque : </i>en Python, on peut définir plusieurs variables sur une même ligne, en les séparant par une virgule. Par exemple :</p>
+<pre><code class="language-python">nom, prenom = "Gulliver", "Cedric"</code></pre>
+
+<!-- script for latex mathjax -->
+{% include '../../../mathjax.html' %} 
+
+{% endblock cours %}

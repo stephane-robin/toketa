@@ -1,0 +1,177 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<!-- ENTRAINEMENT -->
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>quelle valeur sera affichée lors de l'exécution du code suivant ? (travail sans ordinateur)</p>
+            <pre><code class="language-python">x = 5
+x = x -3
+y = x * x
+print(x + y)</code></pre>
+    
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 2 : </strong>quelle valeur sera affichée lors de l'exécution du code suivant ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">a = 5
+b = 2 * a 
+c = a + b 
+print(b ** a)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>quelle valeur sera affichée lors de l'exécution du code suivant ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">a = 5
+a = 6 * a 
+b = a + 27 
+print(b)</code></pre>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>que vaut la variable nom à la fin de ce script ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">nom = "Revard"
+prenom = "Antoine"
+nom = nom + prenom</code></pre>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>que vaut la variable x à la fin de ce script ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">a = 12
+b = 5
+x = a % b</code></pre>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>que vaut la variable a à la fin de ce script ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">a = 5
+a = 2 * a 
+b = 2 * a
+a = a * a 
+a = a - b + 13</code></pre>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 : </strong>écrire un programme qui affiche une phrase pour annoncer le score d'un joueur, 
+sachant que la variable score vaut 152 et la variable pseudo vaut brawlPlayer. Le programme devra donc 
+afficher 'bestPlayer, vous avez obtenu 152 points.' en utilisant les variables score et pseudo.</p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>l'utilisateur d'un site donne son nom qui est enregistré dans une 
+    variable appelée <strong>nom</strong>, puis un code de 4 chiffres enregistré dans une variable 
+appelée <strong>nombre</strong>. Crée ces deux variables en leur donnant des valeurs que tu choisiras, puis
+à partir de ces deux variables, crée une variable appelée <strong>pseudo</strong> composée du nom rattaché 
+au code à 4 chiffres. Affiche ensuite la valeur de <strong>pseudo</strong> à l'écran.</p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 9 : </strong>corriger le code ci-dessous pour qu'il affiche <em>Tu joues un mi au 2ème octave</em> 
+        en utilisant les variables note et octave.</p>
+    <pre><code class="language-python">note = "mi"
+hauteur = 2
+print("Tu joues un " note " du " hauteur ème octave")</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>un élève effectue chaque jour 3 aller-retour pour se rendre dans la cour et 5 aller-retours 
+        pour changer de classe. En moyenne chaque changement de classe lui fait parcourir 150 mètres et chaque déplacement 
+        vers la cour lui fait parcourir 100 mètres. Ecrire un programme qui calcule la distance parcourue par un élève en 
+        une semaine et l'affiche. On tiendra compte des variables suivantes :</p>
+
+    <pre><code class="language-python">deplacementCour = ???
+changementClasse = ???
+# LE SCRIPT CONTINUE ICI</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 11 : </strong>écrire un programme qui contient les variables nom, prenom et nmrTelephone, et doit 
+        afficher "Le numéro de téléphone de Diane Autissier est 0612322112" lorsque les variables ci-dessus valent respectivement 
+    Autissier, Diane et 0612322112.</p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 12 : </strong>une ville comporte 12345 habitants. Sa population augmente chaque année de 3,5%. 
+        Cela signifie qu'à la fin de la 1ère année la population initiale est multipliée par 1,035, puis à la fin de 
+        la 2ème année la population est encore multipliée par 1,035, etc ... Ecrire un programme qui calcule et affiche l'estimation de la population dans 5 ans.</p>
+        <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 13 : </strong>écrire un script qui convertit un nombre de secondes en son équivalent en heures, minutes et secondes,
+        puis affiche le résultat.</p>
+        <pre><code class="language-python">nbre_initial = 324457
+
+minutes_temp = nbre_initial // 60
+nbre_secondes = ???
+# completer la suite ...</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution6" style="display:none;">
+        <pre><code class="language-python">nbre_initial = 324457
+
+minutes_temp = nbre_initial // 60
+nbre_secondes = nbre_initial % 60
+
+nbre_heures = minutes_temp // 60
+nbre_minutes = minutes_temp % 60
+
+print(str(nbre_heures) + " heures, " + str(nbre_minutes) + " minutes, " + str(nbre_secondes) + " secondes")</code></pre>
+
+<p>A noter qu'on ne peut pas additionner des nombres avec du texte. On choisit donc de transformer les nombres en texte en 
+    utilisant l'instruction str().</p>
+    </div>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+{% endblock cours %}

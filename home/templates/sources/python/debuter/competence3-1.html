@@ -1,0 +1,295 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<!-- PSEUDO CODE ET DIAGRAMMES -->
+
+<p>L'instruction <code>if</code> s'appelle en fait un branchement conditionnel, car elle permet d'orienter le programme 
+    dans une direction, une fois qu'une condition est vérifiée. Pour mieux comprendre la structure d'une 
+    instruction <code>if</code>, on peut utiliser du pseudo-code (langage naturel généraliste indifférencié d'un 
+    langage de programmation à un autre), ou encore un diagramme.</p>
+    
+<p>On peut traduire le code Python ci-dessus en pseudo-code de la façon suivante :</p>
+
+<pre><code class="language-svg">nom prend la valeur "Alice"
+si nom = "Alice"
+alors afficher "Bonjour Alice"
+sinon afficher "Désolé, accès refusé"</code></pre>
+
+<p>Voyons maintenant comment traduire le code Python ci-dessus à l'aide d'un diagramme :</p>
+
+<img src="{% static 'home/images/python/diagramme1.png' %}" alt="'diagramme" width="40%" style="margin-bottom:5%;">
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> poser la question suivante à un utilisateur "Comment 
+    s'appelle l'auteur de l'Odyssée ?" S'il répond <i>Homère</i>, rajouter deux points à sa note qui valait 10
+auparavant, sinon enlever-lui un point.</p>
+    <pre><code class="language-python">note = 10
+
+reponse = input(???)
+# completer la suite ...</code></pre>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+    <p>Solution :</p>
+    <pre><code class="language-python">note = 10
+reponse = input("Quel est l'auteur de l'Odyssée ? ")
+if reponse == "Homère":
+    note = note + 2
+else:
+    note = note - 1</code></pre>
+</div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p class="mt-3">Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
+    à respecter pour valider chaque question ...</p>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+
+<script>
+var questionsData2 = 
+    {
+        question: "Un pseudo-code sert à ...",
+        options:['traduire le code dans un langage humain afin de comprendre son fonctionnement', 'traduire le code dans un autre langage de programmation', 'créer un commentaire dans le code'],
+        correctIndex: 0,
+        commentaire: " "
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+
+<!-- L'INDENTATION -->
+<h3>L'indentation</h3>
+
+<p>L'indentation est le fait de décaler le code vers la droite (d'une tabulation ou de 4 espaces). C'est essentiel en Python qui n'utilise par d'accolades et choisit de commencer un bloc de code par une indentation et de rester dans ce bloc tant que le code est indenté. Par exemple dans le code suivant :</p>
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice.")
+    print("Comment allez-vous aujourd'hui ?")
+print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
+
+<p><i>Bonjour Alice. Comment allez-vous aujourd'hui ?</i> ne s'affichera que si le <code>nom</code> vaut "Alice".
+     Les deux phrases font partie du même bloc d'instructions. En revanche, <i>Aujourd'hui c'est journée portes 
+        ouvertes.</i> s'affichera tout le temps, même si <code>nom</code> ne vaut pas "Alice", car cette 
+        instruction est indépendante de l'instruction <code>if nom == "Alice":</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécuter le code ci-dessus pour voir ce qui s'affiche, puis 
+        pour bien comprendre le rôle de l'indentation :</p>
+        <ul>
+            <li><p>changez le nom 'Alice' en 'Bob' et exécutez de nouveau le code</p></li>
+            <li><p>indentez la dernière ligne avec la touche de tabulation avant d'exécuter le code pour constater 
+                la différence d'affichage.</p></li>
+        </ul>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-1">
+        <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+    <div class="fieldsetDefinition col-12 col-md-11">
+        <h4>REMARQUABLE ...</h4>         
+        <p>L'indentation est fondamentale en Python. Elle permet de délimiter les blocs de code,
+            et donc de déterminer quand les blocs de code commencent et quand ils se terminent. Sans indentation,
+            le programme est perdu. Il correspond dans d'autres langages à l'utilisation des { et }.</p>
+    </div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
+</div>
+
+<script>
+var questionsData4 = 
+    {
+        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
+print("Bravo")</code></pre>',
+        options:['il s\'affiche Bravo', 'les blocs sont correctement indentés', 'la 2ème ligne est mal indentée'],
+        correctIndex: 2,
+        commentaire: "Le bloc suivant une condition doit être indenté."
+    };
+questionnaireUnique(4, questionsData4);
+</script>
+
+
+<!-- BIEN COMPRENDRE LA STRUCTURE D'UNE CONDITION -->
+<h3>Bien comprendre la structure d'une instruction if</h3>
+
+<p>Exécutez le code suivant pour bien comprendre le cheminement suivi par le programme.</p>
+<pre><code class="language-python">1 | cheveux = "bruns"
+2 | yeux = "bleus"
+3 |
+4 | if cheveux == "bruns":
+5 |    print("May a les cheveux bruns")
+6 | else:
+7 |    if yeux == "bleus":
+8 |        print("May a les yeux bleus")
+9 |
+10| print("Voilà c'est tout")</code></pre>
+
+<p>Si les cheveux sont bruns, le programme exécute la ligne 4 mais n'entre jamais dans le bloc de la ligne 6.
+Il reprend ensuite à la ligne 10 pour afficher <i>Voilà c'est tout</i>. Du coup on ne saura jamais si les yeux de May sont bleus.</p>
+
+<p>A noter qu'en Python, l'instruction <code>else: if</code> peut se condenser en une instruction <code>elif</code>. 
+On peut donc ré-écrire le code précédent de la façon suivante :</p>
+<pre><code class="language-python">1 | cheveux = "bruns"
+2 | yeux = "bleus"
+3 |
+4 | if cheveux == "bruns":
+5 |    print("May a les cheveux bruns")
+6 | elif yeux == "bleus":
+7 |    print("May a les yeux bleus")
+8 |
+9 | print("Voilà c'est tout")</code></pre>
+
+<div class="row my-5">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/interrogation.png' %}" class="w-100"> 
+	</div>
+	<div class="col-12 col-md-11">
+        <p>Mais pourquoi utiliser l'instruction <code>elif</code> plutôt qu'une instruction <code>if</code> plus 
+            simple ? L'instruction <code>elif</code> est exclusive, c'est à dire que le programme testera si les 
+            yeux sont bleus uniquement si les cheveux ne sont pas bruns. Dans le cas d'une instruction <code>if</code>, 
+            le programme testera si les yeux sont bleus dans tous les cas, cheveux bruns ou pas.</p>
+    </div>
+</div>
+
+<div class="exerciceApplication">
+<p><strong>A vous de jouer : </strong>pour mieux comprendre, exécutez le code suivant dans lequel tous 
+    les blocs sont systématiquement exécutés :</p>
+
+<pre><code class="language-python">1 | cheveux = "bruns"
+2 | yeux = "bleus"
+3 |
+4 | if cheveux == "bruns":
+5 |    print("May a les cheveux bruns")
+6 |
+7 | if yeux == "bleus":
+8 |    print("May a les yeux bleus")
+9 |
+10| print("Voilà c'est tout")</code></pre>
+
+<p>Si les cheveux sont bruns, le programme exécute la ligne 4, puis si les yeux sont bleus, le programme
+exécute la ligne 8. Il reprend ensuite à la ligne 10 pour afficher <i>Voilà c'est tout</i>.</p>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>complèter le programme suivant qui demande à un élève
+    sa moyenne au 1er trimestre, au 2ème trimestre puis au 3ème trimestre et affiche la mention
+    obtenue par l'élève en fin d'année (examen à repasser en-dessous de 10, mention passable entre 10 et 12,
+    mention assez bien entre 12 et 14, mention bien entre 14 et 16, mention très bien entre 16 et 20).</p>
+
+    <pre><code class="language-python">noteSemestre1 = float(input("Moyenne au 1er trimestre : "))
+noteSemestre2 = float(input("Moyenne au 2ème trimestre : "))
+noteSemestre3 = float(input("moyenne au 3ème trimestre : "))
+moyenne = ???
+if moyenne &lt 10:
+# completer la suite ...</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">moyenne = (noteSemestre1 + noteSemestre2 + noteSemestre3) / 3
+if moyenne &lt 10:
+    print("examen à repasser")
+elif 10 &lt= moyenne &lt 12:
+    print("mention passable")
+elif 12 &lt= moyenne &lt 14:
+    print("mention assez bien")
+elif 14 &lt= moyenne &lt 16:
+    print("mention bien")
+else:
+    print("mention très bien")</code></pre>
+    </div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<p>On va maintenant mettre en application les notions abordées plus haut en détaillant les
+    valeurs prises par plusieurs variables.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>considérons le code suivant</p>
+<pre><code class="language-python">1 | x = 3
+2 | y = 2
+3 | t = x - y
+4 |
+5 | z = x
+6 | x = t + 3
+7 | y = y + 5
+8 |
+9 | if x > y: # si x est plus grand que y
+10|    z = 2 * x
+11| else: # sinon
+12|    y = 3 * z - t</code></pre>
+<p>quelles sont les valeurs des variables x, y, z et t à la ligne 4, à la ligne 8 et à la fin du code ? (travail sans ordinateur)</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution10" style="display:none;">
+    <pre><code class="language-python">1 | # x prend la valeur 3
+2 | # y prend la valeur 2
+3 | # t prend la valeur 3-2 = 1
+4 |
+5 | # z prend la valeur de x donc 3
+6 | # x prend la valeur 1+3 = 4
+7 | # y prend la valeur 2+5 = 7
+8 |
+9 | # x n'est pas plus grand que y
+10|
+11| # donc y prend la valeur 9-1 = 8
+12|</code></pre>
+   <p>Ainsi à la ligne 4 on obtient x=3, y=2, z non défini et t=1, à la ligne 8 on obtient x=4, y=4, z=3, t=1,
+   à la fin du code on obtient x=4, y=2, z=3, t=1.</p>
+        <p>On peut résumer cela dans un tableau : </p>
+        <table>
+            <tr><th>ligne</th><th>x</th><th>y</th><th>z</th><th>t</th></tr>
+            <tr><td>1</td><td>3</td><td>None</td><td>None</td><td>None</td></tr>
+            <tr><td>2</td><td>3</td><td>2</td><td>None</td><td>None</td></tr>
+            <tr><td>3</td><td>3</td><td>2</td><td>None</td><td>1</td></tr>
+            <tr><td>4</td><td>3</td><td>2</td><td>None</td><td>1</td></tr>
+            <tr><td>5</td><td>3</td><td>2</td><td>3</td><td>1</td></tr>
+            <tr><td>6</td><td>4</td><td>2</td><td>3</td><td>1</td></tr>
+            <tr><td>7</td><td>4</td><td>7</td><td>3</td><td>1</td></tr>
+            <tr><td>8</td><td>4</td><td>7</td><td>3</td><td>1</td></tr>
+            <tr><td>9</td><td>4</td><td>7</td><td>3</td><td>1</td></tr>
+            <tr><td>10</td><td>4</td><td>7</td><td>3</td><td>1</td></tr>
+            <tr><td>11</td><td>4</td><td>8</td><td>3</td><td>1</td></tr>
+            <tr><td>12</td><td>4</td><td>8</td><td>3</td><td>1</td></tr>
+
+        </table>
+    <p><i>Attention</i>, il ne s'agit pas d'égalité au sens mathématique mais de l'affectation
+     d'une valeur à une variable.</p></div>
+</div>
+
+{% endblock cours %}

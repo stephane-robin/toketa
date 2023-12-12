@@ -1,0 +1,317 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- ENTRAINEMENT -->
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?</p>
+    <pre><code class="language-python">compteur = 2
+while compteur > 0:
+    print(compteur)
+    compteur = compteur - 1</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 2 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?</p>
+    <pre><code class="language-python">compteur = 0
+while compteur &lt 10:
+    print(compteur + 1)
+    compteur = compteur + 2</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>qu'affiche le code suivant (travail sans ordinateur) ? 
+    Expliquez étape par étape ce que produit le code.</p>
+    <pre><code class="language-python">l = 0
+while l &lt 4:
+    c = 0
+    while c &lt 3:
+        if c == 1 and l == 2:
+            print("X")
+        else:
+            print("O")
+        c = c + 1
+    print("O")
+    l = l + 1</code></pre>
+<p>Pour visualiser le travail effectué par le programme, on pourra utiliser la console du site 
+    <a href="https://pythontutor.com" target="_blank">pythontutor.com</a></p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>qu'affiche le code suivant (travail sans ordinateur) ?
+     Expliquez étape par étape ce qui produit le code.</p>
+    <pre><code class="language-python">n = 0
+while n &lt 12:
+    n = n + 1
+    if n % 4 == 0:
+        continue
+    elif n % 7 == 0:
+        break
+    print(n)</code></pre>
+<p>Pour visualiser le travail effectué par le programme, on pourra utiliser la console du site 
+    <a href="https://pythontutor.com" target="_blank">pythontutor.com</a></p>
+<p>Indications : n % 4 calcule le reste de division par 4, 'continue' permet de sauter un tour de boucle, 
+    'break' permet de sortir de la boucle while.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>quelle est la valeur affichée par le programme suivant ? (travail sans ordinateur)</p>
+    <pre><code class="language-python">a = 22
+b = 9
+
+while a &gt b:
+    a = a - b 
+
+print(a)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>que fait le code suivant ? (travail sans ordinateur)</p>
+
+    <pre><code class="language-python">citation = "Les sanglots longs des violons de l'automne blessent mon coeur"
+mot = 0
+
+while mot &lt len(citation):
+    print(mot)
+    mot = mot + 1</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 : </strong>corrigez le programme suivant pour qu'il affiche tous les caractères d'une chaine.</p>
+
+    <pre><code class="language-python">chaine = "La neige fond en été
+i = 0
+
+while i &lt len(chaine) + 1:
+    print(chaine(i))</code></pre>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>écrire un programme qui calcule la somme 1 + 2 + ... + 99 + 100</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 9 : </strong>un placement bancaire rapporte 3 % par an. Sachant que Pierre a placé 2200 € 
+        en banque. Combien aura-t-il sur son compte au bout de 10 ans s'il ne retire pas son argent avant. 
+        Ecrire un programme Python qui calcule le résultat. On rappelle qu'au bout d'un an, le montant en 
+    banque sera de \(2200 \times 1,03\).</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>un placement bancaire rapporte 3 % par an. Sachant que Pierre a placé 2200 € 
+        en banque. Au bout de combien d'années aura-t-il 2500 € sur son compte s'il ne retire pas son argent avant ? 
+        Ecrire un programme Python qui calcule le résultat</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 11 : </strong>écrire un programme qui demande à l'utilisateur de saisir des notes au clavier tant
+        qu'il ne tape pas #. Lorsque l'utilisateur saisit #, le programme calcule la moyenne des notes rentrées et affiche 
+        le résultat. Il n'est pas demandé de gérer l'erreur occasionnée lorsque l'utilisateur saisit autre chose qu'un nombre.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 12 : </strong>écrire un programme qui cherche la fraction la plus proche de \(\pi\) en testant 
+    tous les numérateurs et dénominateurs possibles dont les valeurs sont comprises entre 1 et 99. Indication, la valeur 
+de \(\pi\) en Python est donnée par l'instruction math.pi après avoir importé la bibliothèque math.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 13 : </strong>écrire un programme qui affiche toutes les années bissextiles de 1 jusqu'à 2024, 
+    les unes sous les autres.</p>
+    <p>Une année est bissextile si elle est divisible par 4 et pas divisible par 100 ou si elle est divisible par 400.</p>
+    <p>Par exemple, 800 est divisible par 400 donc c'est une année bissextile. 888 est divisble par 4 et pas par 100 donc 
+        c'est une année bissextile.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 14 : </strong>écrire un programme qui affiche tous les diviseurs positifs d'un nombre 
+    entier, les uns sous les autres.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 15 : </strong>écrire un programme qui teste si un nombre est premier ou non puis affiche le 
+    résultat.</p>
+
+    <p>On rappelle qu'un nombre premier n'est divisible que par lui-même et par 1.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 16 : </strong>écrire un programme qui affiche tous les cas possibles permettant d'obtenir une 
+        valeur entre 2 et 12 lorsqu'on lance deux dés à six faces. Le programme demande d'abord à l'utilisateur de 
+        saisir une valeur entre 2 et 12, puis affiche toutes les possibilités. Pour simplifier le travail, 
+        on ne tient pas compte du cas où l'utilisateur saisit autre chose qu'une valeur entre 2 et 12.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 17 : </strong>écrire un programme qui affiche toutes les voyelles d'un mot donné, les unes 
+    en dessous des autres, et n'affiche pas les consommes.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 18 : </strong>écrire un programme qui échange le premier et le dernier caractère d'un 
+        mot donné et affiche le résultat.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 19 : </strong>écrire un programme qui demande à l'utilisateur de saisir un texte et affiche 
+    tous les mots de ce texte commençant par la lettre "p".</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 20 : </strong>écrire un programme qui demande à l'utilisateur de saisir un texte et affiche 
+    le nombre de caractères minuscules et le nombre de caractères majuscules de ce texte.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 21 : </strong>écrire un programme qui demande à l'utilisateur de saisir un mot et  
+    affiche le mot en remplaçant tous les caractères d'indice impair par "!" .</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 22 : </strong>une balle tombe d'une hauteur de 2 mètres et perd 10% de sa hauteur à chaque 
+    rebond. Le programme ci-dessous calcule le nombre de rebonds pour que la balle ne remonte plus au dessus de 1,5 mètre 
+de hauteur. Corrigez ce programme pour qu'il fournisse le résultat demandé :</p>
+
+    <pre><code class="language-python">hauteur = 2
+nbreRebonds = 0
+seuil = 1,5
+
+while Hauteur &gt seuil:
+nbreRebonds = nbreRebonds + 1
+hauteur = hauteur * 0.9
+        print(nbreRebonds)
+    </code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 23 : </strong>proposer un programme qui demande à l'utilisateur de saisir un nombre positif, 
+    et redemande à l'utilisateur tant que celui-ci ne fournit pas un nombre positif ou saisit une lettre. Finalement, 
+le programme affichera "merci" lorsque l'utilisateur saisit une donnée conforme aux attentes.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 24 : </strong>proposer un programme qui demande à l'utilisateur de saisir un code pin valide. Si 
+    l'utilisateur se trompe il dispose de 3 tentatives. Au bout de 3 échecs le programme affiche "Code pin non valide". 
+Si au contraire l'utilisateur fournit le bon code pin avant la fin de ses tentatives, le programme affiche "Bienvenue sur votre smartphone". 
+Le code pin valide est 1283.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 25 : </strong>écrire un programme Python qui trouve le plus petit entier n tel que 
+        \(n^3>10000\). Indication : le programme boucle en testant toutes les valeurs de n du plus petit au plus grand 
+    tant que \(n^3\) est inférieur ou égal à 10000. On sort ensuite de la boucle while lorsque \(n^3\) est supérieur  
+à 10000.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 26 : </strong>écrire un programme permettant de réviser les tables de multiplication en posant 
+    15 questions au joueur. Le programme choisit au hasard deux chiffres entre 2 et 9, les multiplie et demande au joueur 
+la réponse. Si celui-ci fait juste il marque 2 points, s'il se trompe, il perd 1 point. Le nombre de points total est 
+affiché à la fin de la partie avec un message d'encouragement.</p>
+
+<p>Pour tirer un nombre au hasard entre 2 et 9, et placer ce nombre dans la variable appelée <strong>hasard</strong>, 
+il faut écrire le code suivant :</p>
+<pre><code class="language-python">from random import *
+hasard = randint(2, 9)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 27 : </strong>créez un code qui demande à l'utilisateur son mot de
+    passe et tant que celui-ci n'est pas le bon, le programme affiche
+    "accès refusé". Le bon mot de passe est "qweryxc12". Lorsque le mot de passe est correct,
+    le programme affiche "Bienvenue sur votre compte".</p>
+
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution10');"> Voir la solution </button></p>
+
+    <div id="solution10" style="display:none;">
+<pre><code class="language-python">pw = "qweryxc12"
+
+saisie = ""
+
+while saisie != pw:
+    saisie = input('choisissez un mot de passe : ')
+
+    if saisie == pw:
+        print("Bienvenue sur votre compte")
+    else:
+        print("accès refusé")</code></pre>
+    </div>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 28 : </strong>programmer en Python un jeu où l'ordinateur choisit un entier entre 1 et 10 et vous devez
+    le deviner. L'ordinateur affichera le nombre de tentatives pour trouver cet entier. Indication : on pourra utiliser 
+la bibliothèque random pour générer des entiers aléatoires en mettant en 1ère ligne de code :</p>
+<pre><code class="language-python">from random import *</code></pre>
+<p>Détail des blocs de code nécessaires :</p>
+<ul>
+    <li>choix d'un entier au hasard par l'ordinateur</li>
+    <li>saisie d'un entier par le joueur</li>
+    <li>boucle while tant que l'entier cherché n'a pas été trouvé</li>
+    <li>compteur de tentatives qui sera affiché à la fin du jeu</li>
+</ul>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 29 : </strong>programmer en Python un jeu où l'ordinateur choisit un entier entre 1 et 10 et vous devez
+    le deviner. L'ordinateur affichera à chaque tentative 'trop grand', 'trop petit' ou 'gagné'. On pourra utiliser 
+    comme structure la structure du code de l'exercice précédent.</p>
+</div>
+
+{% endblock cours %}

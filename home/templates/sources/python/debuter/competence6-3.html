@@ -1,0 +1,215 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<!-- ENTRAINEMENT -->
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>quel est le résultat affiché lors de l'exécution du code ci-dessous ? (travail sans ordinateur)</p>
+    <pre><code class="language-python">def somme(x, y):
+    return x + y 
+
+def multiplication(x, y):
+    return x * y 
+
+def f(x, y):
+    a = somme(x, y)
+    return multiplication(a, y)
+
+print(f(3, 7))</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 2 : </strong>écrire une fonction <code>prixTTC()</code> qui prend un prix Hors taxe en paramètre 
+        et renvoie sa valeur TTC en tenant compte d'un taux de TVA de 20,6 %.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>écrire une fonction qui modélise le jeu du lièvre et de la tortue, dont on rappelle 
+        les règles. Un lièvre et une tortue sont alignés au départ d'une course. On lance un dé non truqué à 6 faces 
+        (penser à utiliser la bibliothèque <code>random</code>). Si le chiffre 6 ressort, le lièvre a gagné la partie et les deux 
+        adversaires reviennent au départ. Si un chiffre différent de 6 ressort, la tortue avance d'une case. 
+        Lorsque la tortue a avancé de 6 cases elle a gagné la partie. Le programme devra afficher le vainqueur.</p>
+
+        <p>Dans un second temps, répéter 10 000 fois ce jeu et comptabiliser le nombre de victoires du lièvre et le 
+            nombre de victoires de la tortue afin d'en afficher les résultats.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>écrire une fonction <code>factorielle()</code> qui prend en argument un nombre entier 
+        n et calcule sa factorielle puis renvoie la valeur obtenue.</p>
+
+    <p>Pour simplifier le travail, on ne tiendra pas compte du cas où l'utilisateur saisit au clavier 
+        autre chose qu'un nombre réel. On rappelle que la factorielle de 5 est donnée par 5 &times; 4 &times; 3 &times; 2 &times; 1</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>écrire une fonction <code>premier()</code> qui prend en argument un texte et renvoie 
+        le premier mot de ce texte.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>écrire une fonction <code>extension()</code> qui prend en argument un nom de fichier
+        (avec une extension comme par exemple tableau.docx) et renvoie l'extension de ce fichier.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 : </strong>écrire une fonction <code>nbreMots()</code> qui prend en argument un texte
+        et renvoie le nombre de mots de ce texte.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>écrire une fonction <code>indice()</code> qui ne prend aucun argument (il s'agit donc 
+    d'une procédure en fait). Cette fonction demande à l'utilisateur sa masse en kilos et sa taille en mètres, puis 
+affiche son indice de masse corporelle donné par IMC = masse / taille&sup2;.</p>
+
+<p>Pour simplifier le travail, on ne tiendra 
+pas compte du cas où l'utilisateur saisit au clavier autre chose que des nombres entiers.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 9 : </strong>écrire une fonction <code>trouver_bombe()</code> qui prend comme 
+        paramètres les coordonnées x et y 
+    d'un point sur un échiquier et renvoie la distance qui sépare ce point à une bombe cachée aux coordonnées (7, 3).
+Dans le cas où le point pris en paramètre correspond aux coordonnées de la bombe, la fonction renvoie -1.</p>
+
+<p>Les abscisses et ordonnées des points de l'échiquier sont comprises entre les valeurs 1 et 8.</p>
+
+<p>On rappelle que la distance euclidienne d'un point de coordonnes (x, y) à un point B de coordonnes \((xb, yb)\) 
+    est donnée par \(\sqrt{(x-xb)^2+(y-yb)^2}\)</p>
+
+<p>Dans un deuxième temps, on améliore le code qui doit proposer au hasard les coordonnées de la bombe, puis le joueur dispose de 5 essais pour 
+    trouver cette bombe. A chaque essai, il saisit au clavier des coordonnées et la fonction <code>trouver_bombe()</code> 
+lui fournit la distance qui le sépare de cette bombe pour lui donner une chance de trouver. S'il gagne le programme 
+affiche <i>Vous avez trouvé la bombe</i>, sinon il affiche <i>Boom</i>.</p>
+
+<p>Pour simplifier le travail, on ne tiendra pas compte du cas où le joueur saisit au clavier une lettre au lieu d'une valeur, 
+    ce qui crée une erreur et stoppe le programme prématurément.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>écrire une fonction <code>validerSequence()</code>, qui ne prend aucun argument, demande à l'utilisateur
+        de saisir une séquence de génôme, et affiche <i>Valide</i> si la séquence est valide, <i>Invalide</i> sinon.</p>
+
+    <p>Une séquence de génôme est valide si elle ne comporte pas d'espace et si elle est composée exclusivement des 
+        lettres A, T, G ou C.</p>
+
+    <p>Ecrire une fonction <code>testerSequence()</code>, qui prend en argument une séquence de génôme, teste le nombre 
+        d'apparitions du groupe "ATC" dans cette séquence et renvoie ce nombre d'apparitions ou la valeur -1 si
+         elle ne s'y trouve pas.</p>
+
+    <p>Ecrire une fonction <code>proportionTC()</code>, qui prend en argument une séquence de génômes, compte le nombre 
+        d'apparitions du groupe TC dans cette séquence et renvoie la proportion de TC dans le génôme. Pour cela, 
+        il faudra multiplier le nombre d'apparitions du groupe TC par 2 (car T et C comptent pour 2 éléments), puis 
+        le diviser par la taille du génôme.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 11 :</strong> on désire écrire un code qui
+        demande à l'utilisateur de saisir un texte et qui le réécrit en omettant les espaces.
+        Il ajoute ensuite à la fin un - suivi du nombre d'espaces retirés. L'utilisation de la fonction <code>strip()</code> n'est
+         pas suffisant, vu qu'elle n'enlève que les espaces au début et à la fin de la chaîne
+        de caractères. Voici un exemple de ce que donne ce code : Si le texte entré est
+        "Les sanglots longs des violons de l'automne", il affiche "Lessanglotslongsdesviolonsdel'automne-6".</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution9" style="display:none;">
+
+<pre><code class="language-python">texte = input("veuillez saisir un texte : ")
+nouveau_texte = ""
+compteur_espaces = 0
+i = 0
+
+while i &lt len(texte):
+
+    if texte[i] != " ":
+        nouveau_texte = nouveau_texte + texte[i]
+    else:
+        compteur_espaces = compteur_espaces + 1
+    i = i + 1
+
+print(nouveau_texte + "-" + str(compteur_espaces))</code></pre>
+
+    </div>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 12 : </strong>écrire une fonction <code>normer()</code>, qui prend en paramètre une chaîne de 
+    caractères et renvoie cette chaîne modifiée de la façon suivante : tous les espaces sont remplacés par des "_", 
+tous les caractères sont minuscules à l'exception de ceux qui suivent un "_" qui deviennent alors majuscules.</p>
+
+<p>Par exemple : </p>
+
+<pre><code class="language-python">chaine = "Les prénoms italiens"
+
+print(normer(chaine)) # renvoie les_Prénoms_Italiens</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 13 : </strong>écrire une fonction <code>lien()</code> qui prend en argument une adresse URL 
+    et le titre correspondant à cette adresse, puis renvoie le lien hypertexte correspondant.</p>
+
+    <p>On rappelle qu'un lien hypertexte est construit de la façon suivante :</p>
+    <pre><code class="language-html">&lta href="adresse"&gttitre&lt/a&gt</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 14 : </strong>écrire une fonction <code>grandMot()</code> qui prend en argument un texte
+        et renvoie le mot le plus long de ce texte.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 15 : </strong>une cuve peut contenir 1000 litres d'eau. En moyenne, la cuve se remplit de 
+1,5 litres par minute. Ecrire une fonction <code>remplir()</code> qui ne prend aucun argument, mais calcule puis affiche le temps 
+en minutes qu'il faut pour remplir la cuve.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 16 : </strong>un magasin propose une promotion sur les smartphones. Si le téléphone coûte moins de 
+    350 € la promotion est de 10% (cela signifie que le prix du téléphone est multiplié par 0,9), si le téléphone coûte 
+    350 € ou plus, la promotion est de 15% (cela signifie que le prix du téléphone est multiplié par 0,85). Ecrire une 
+    fonction <code>promotion()</code> qui prend comme argument le prix 
+initial du téléphone et renvoie le prix en tenant compte de la promotion.</p>
+<p>Ecrire ensuite une fonction <code>envoyer()</code> qui prend en argument le prix initial du téléphone, utilise la fonction 
+    <code>promotion()</code> pour calculer le prix remisé, puis rajoute 10 € de frais de port avant d'afficher le montant total de la 
+    facture pour le client.</p>
+</div>
+
+<!-- script for latex mathjax -->
+{% include '../../../mathjax.html' %}
+
+{% endblock cours %}

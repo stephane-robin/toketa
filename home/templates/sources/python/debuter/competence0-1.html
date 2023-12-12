@@ -1,0 +1,87 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- STRUCTURE DU CODE -->
+
+<p>Chaque programme est composé d'instructions, qui sont comme des phrases avec leur propre syntaxe, 
+    leur orthographe et leur grammaire. Ces instructions sont lues de haut en bas et de la gauche vers la droite. 
+    Contrairement à la langue française, le nombre de mots est très limité, 
+et la syntaxe est toujours la même. Le meilleur moyen de bien connaître cette syntaxe  
+ est de pratiquer le coding en s'aidant des commentaires fournis par l'interpréteur Python pour chaque erreur de code 
+ rencontrée. Ainsi chaque erreur est une opportunité pour améliorer sa façon de coder. Il faut par ailleurs 
+garder à l'esprit que l'ordinateur exécute toujours à la lettre ce qu'on lui demande de faire.</p>
+
+<p>Dans un livre, les phrases composent des paragraphes, qui eux-même composent des chapitres. 
+    En suivant cette analogie, une ligne de code serait une phrase, un ensemble d'instructions 
+    regroupées entre elles (ou bloc) serait un paragraphe, un fichier serait un chapitre et un projet serait un livre.</p>
+
+<p>Le langage Python a la particularité de ne pas séparer les blocs de code par des accolades. 
+    Il utilise plutôt un niveau de décalage à droite (appelé indentation) qui représente chaque bloc.</p>
+
+<p>Par exemple, au lieu d'avoir un code structuré ainsi :</p>
+
+<pre><code class="language-svg">{
+programme principal;
+programme principal;
+{
+instruction du bloc 1;
+instruction du bloc 1;
+}
+programme principal;
+}</code></pre>
+
+<p>le même code en Python serait structuré ainsi :</p>
+
+<pre><code class="language-svg">instruction du bloc 1
+programme principal
+programme principal
+    instruction du bloc 1
+    instruction du bloc 1
+programme principal</code></pre>
+
+<p>On remarque tout de suite que le code Python est plus court et plus lisible. En revanche, 
+    il est impératif de penser à décaler les instructions du bloc 2, sinon elles appartiendraient 
+    au bloc 1 et cela changerait forcément le résultat obtenu.</p>
+
+<p>La fin d'une ligne symbolise la fin d'une instruction. Il n'est pas nécessaire en Python 
+    d'utiliser des points-virgules pour symboliser la fin d'une instruction.</p>
+
+<p>Par ailleurs, les programmes comprennent des fonctions qu'on appelle autant de fois que nécessaire pour éviter de 
+    répéter les mêmes lignes de code.</p>
+
+<p>Il est possible et même très important d'écrire des commentaires dans un programme. Ces portions de code ne
+    sont pas exécutées par l'interpréteur Python et ont pour but de faciliter la compréhension du code pour le 
+    développeur, car parfois les codes sont compliqués. Les commentaires d'une ligne 
+commencent toujours par le symbole #, alors que les commentaires de plusieurs lignes sont entourés des symboles """, 
+comme dans l'exemple ci-dessous.</p>
+
+<pre><code class="language-python"># ceci est un commentaire d'une ligne
+
+"""
+ceci est un commentaire
+sur plusieurs lignes
+"""</code></pre>
+
+<p>Il faut prendre l'habitude d'écrire les commentaires en anglais car Python est écrit en anglais, au début de chaque 
+    fichier pour en expliquer le but, ainsi qu'au début de chaque fonction (on appelle ces commentaires des Docstrings dans 
+    ce cas).</p>
+
+<div class="exerciceType my-5">
+<p>En résumé</p>
+
+<ul>
+    <li><p>les codes Python sont composés de blocs qu'on repère grâce à leur décalage par rapport au bord gauche de la page.</p></li>
+    <li><p>les commentaires sont destinés aux développeurs et permettent de mieux comprendre le code</p></li>
+    <li><p>les fonctions permettent d'éviter de répéter le code</p></li>
+</ul>
+</div>
+
+
+
+{% endblock cours %}

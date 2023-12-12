@@ -1,0 +1,105 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block contenu %} 
+<ul>
+	<li><a href="#vonneumann">comprendre l'architecture de Von Neumann</a></li>
+</ul>
+{% endblock contenu %}
+
+{% block cours %}
+
+<!-- HISTORIQUE -->
+<h3>Historique</h3>
+
+<ul>
+	<li><p>1945 - ENIAC première machine de Turing complète qui prend en charge toute fonction calculable</p></li>
+	<li><p>1945 - l'architecture de Von Neumann est adoptée pour tout ordinateur</p></li>
+	<li><p>1953 - premier ordinateur à transistor</p></li>
+	<li><p>1958 - premier circuit intégré</p></li>
+	<li><p>1965 - loi de Moore, doublement de la capacité des circuits intégrés tous les 18 mois</p></li>
+	<li><p>1970 - premier micro-processeur Intel</p></li>
+	<li><p>1976 - Apple I</p></li>
+	<li><p>1981 - IBM PC</p></li>
+</ul>
+
+
+<!-- ARCHITECTURE VON NEUMANN -->
+<p class="invisible" id="vonneumann">ancre</p>
+
+<h3>Architecture de Von Neumann</h3>
+
+<p>Un ordinateur est une machine capable de traiter de l'information codée sous forme binaire, puis de la stocker 
+	en mémoire. Cette information est manipulée par un processeur qui suit des programmes écrits en 
+	langage assembleur ou en C.</p>
+	
+<p>Un ordinateur respecte la structure de Von Neumann, qui est composée des éléments suivants :</p>
+
+<ul>
+	<li><p>un processeur aussi appelé CPU Central Processing Unit</p></li>
+	<li><p>de la mémoire vive RAM et de la mémoire persistante ROM / SSD</p></li>
+	<li><p>des bus qui permettent la communication en le processeur et la mémoire</p></li>
+</ul>
+
+<p>Au sens de Von Neumann, un ordinateur peut se 
+	présenter sous différentes formes : PC, laptop, smartphones, tablettes et autres objets connectés.</p>
+
+<img src="{% static 'home/images/nsi/vonneumann.png' %}" alt="architecture Von Neumann" width="50%">
+
+
+
+<h4>Processeur</h4>
+
+<p>On trouve dans le processeur :</p>
+<ul>
+	<li><p>l'unité arithmétique et logique UAL, responsable des opérations élémentaires, qui contient un registre appelé 
+		accumulateur ACC</p></li>
+	<li><p>l'unité de contrôle UC, responsable des instructions à suivre, qui émet des codes d'opération CO et met à jour
+		 le compteur de programme CP</p></li>
+</ul>
+
+<p>La vitesse du processeur est donnée en GHz qui correspond au nombre de milliards de tâches élémentaires 
+	effectuées en 1 seconde. Les processeurs actuels sont multi-coeurs, c'est à dire qu'ils sont construits 
+	avec plusieurs unités autonomes de travail appelées coeurs, qui leur permettent d'effectuer des 
+	opérations simultanément.</p>
+
+
+
+<h4>Mémoire</h4>
+
+<p>Dans un ordinateur, on retrouve la mémoire sous différentes formes :
+
+<ul>
+	<li><p>le registre est une mémoire interne au processeur qui permet un gain de temps en stockant les résultats des opérations élémentaires.</p></li>
+	<li><p>la mémoire vive RAM dont le contenu est perdu lorsqu'on éteint l'ordinateur. Il s'agit essentiellement 
+		de la mémoire centrale et de la mémoire cache.  La mémoire centrale contient les résultats 
+	des programmes en cours. Sa taille est de l'ordre de plusieurs Go. La mémoire cache permet d'adapter la vitesse 
+du processeur à celle de la mémoire centrale. Il s'agit donc d'une mémoire intermédiaire et plus rapide qui contient 
+les données venant d'être utilisées.</p></li>
+<li><p>la mémoire de stockage de type SSD, ROM ou encore sous forme de disque dur. Elle contient les données importantes qui 
+	doivent être conservées pour le fonctionnement du système d'exploitation et des applications. Attention, 
+	ceci n'a rien à voir avec les données issues des applications et stockées dans des serveurs. Elle contient 
+également les données que l'utilisateur souhaite conserver sur un support en dehors du cloud.</p></li>
+</ul>
+
+
+<h4>Les bus</h4>
+
+<p>Le processeur communique avec la mémoire et les périphériques à l'aide de 3 bus :</p>
+<ul>
+	<li><p>le bus d'adresses fait le lien entre le processeur et l'adresse mémoire à laquelle accéder</p></li>
+	<li><p>le bus de données transporte les données vers le processeur ou vers la mémoire</p></li>
+	<li><p>le bus de contrôle, coordonne le fonctionnement du processeur et de la mémoire</p></li>
+</ul>
+
+
+<!-- FICHE MEMO -->
+<h3>Fiche mémo</h3>
+
+<div class="row">
+    <div class="col-12">
+		<iframe src="{% static 'home/documents/memo_architecture_materielle.pdf' %}" width='1200px' height='1100px' type='application/pdf'></iframe>
+	</div>
+</div>
+
+{% endblock cours %}

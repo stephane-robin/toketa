@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel='stylesheet' href="{% static 'home/styles/style60.css' %}">  
+    <link rel='stylesheet' href="{% static 'home/styles/style64.css' %}">  
     <link rel='stylesheet' href="{% static 'home/styles/prism.css' %}">  
     <link rel='icon' type='image/png' href="{% static 'home/images/general/symbole_circulaire.png' %}">
    
@@ -29,31 +29,24 @@
 <!-- HEADER  -->
 
 <header>
-    <nav class="navbar navbar-expand-md fixed-top" style="background-color:white;box-shadow: 0px 2px lightgray;">
+    <nav class="navbar navbar-expand-md fixed-top bg-white" style="box-shadow: 0px 2px lightgray;">
         <div class="container-fluid">
 
-            <a class="navbar-brand fw-bold" href="{% url 'creerIndex' %}">    
-                <img src="{% static 'home/images/general/toketa.png' %}" width="100px" class="center">
-            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse fw-bold" id="navbarNav">
 
             <div class="navbar-nav">
-                    <a class="nav-item nav-link active px-3" aria-current="page" href="{% url 'afficherPresentation' niveau='python' %}" style="font-size:1.3em;color:var(--couleur_titre);">Python<span class="sr-only"></span></a>
-                    <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' niveau='nsi' %}" style="font-size:1.3em;color:var(--couleur_titre);">Sciences<br/>numériques</a>
-                    <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' niveau='maths' %}" style="font-size:1.3em;color:var(--couleur_titre);">Calcul<br/>numérique</a>
-                </div>
-                <a href="{% url 'afficherConnexion' %}"><button class="bouton me-2 fw-bold" type="button">Connexion</button></a>
-                <a href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank'>
-                <img src="{% static 'home/images/general/youtubetoketa.png' %}" alt='youtube' width='30%' style='margin-left:1%;border-radius:5px;'>
-                </a> 
-            </div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="mot-clé (en construction)" aria-label="Search">
-                <button class="bouton fw-bold" type="submit">Recherche</button>
-            </form>
+                <a class="navbar-brand fw-bold" href="{% url 'creerIndex' %}">    
+                    <img src="{% static 'home/images/general/toketa.png' %}" width="100px" class="center">
+                </a>
+                    <a class="nav-item nav-link active px-3" aria-current="page" href="{% url 'afficherPresentation' cours='python' %}" style="color:var(--couleur_titre);">PYTHON<span class="sr-only"></span></a>
+                    <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' cours='nsi' %}" style="color:var(--couleur_titre);">NUM</a>
+                    <a class="nav-item nav-link px-3" href="{% url 'afficherPresentation' cours='maths' %}" style="color:var(--couleur_titre);">CALCUL</a>
+                </div>          
+        </div>
         </div>
     </nav>  
 </header>
@@ -70,13 +63,13 @@
     <section class="my-5 py-5 bg-white">
         <div class="container">
             <div class="row">
+                <a href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target='_blank' class="mb-5">
+                <img src="{% static 'home/images/general/youtubetoketa.png' %}" alt='youtube' width='15%' style='border-radius:5px;'>
+                </a>
             <p class="bi bi-badge-cc"> ToKeTa 2021 S. Robin</p>
-            <a class="bi bi-linkedin  col-md-2" href="" target="_blank"> LinkedIn</a>
-            <a class="bi bi-facebook  col-md-2" href="" target="_blank"> Facebook</a>
-            <a class="bi bi-youtube  col-md-2" href='https://www.youtube.com/channel/UCgCl1cAuhEa5RxCsV87cG4A/featured' target="_blank"> YouTube</a>
-            </div>
-            <div class="row py-4">
-                <p>LIENS UTILES</p>           
+            <a class="bi bi-linkedin" href="" target="_blank"> LinkedIn</a>
+            <a class="bi bi-facebook" href="" target="_blank"> Facebook</a>
+                <p class="pt-4">LIENS UTILES</p>           
                 <a href="https://realpython.com/" target="_blank">Real Python</a>
                 <a href="https://docs.python.org/3/" target="_blank">Doc python</a>
                 <a href="https://www.w3schools.com/" target="_blank">W3school</a>

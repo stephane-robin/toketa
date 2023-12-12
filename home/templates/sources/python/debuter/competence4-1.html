@@ -1,0 +1,74 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- CONCATENATION -->
+
+<p>Dans le cas d'une chaîne de caractères, l'opérateur <strong>+</strong> ne sert pas à additionner, mais à coller un texte à la suite d'un autre. 
+    On parle de concaténation pour cette opération. Par exemple </p>
+
+<pre><code class="language-python">print("Les oranges sont " + "des fruits")</code></pre>
+
+<p>affichera <em>Les oranges sont des fruits</em> sans procéder à aucun calcul.</p>
+
+
+    <div class="exerciceApplication">
+<p><strong>A toi de jouer : </strong></p>
+<p>Pour bien comprendre la différence entre l'addition et la concaténation, exécute le code suivant :</p>
+<pre><code class="language-python">a = 12
+b = 15
+print(a + b) # addition de nombres, affiche 27
+
+a = "12"
+b = "15"
+print(a + b) # concaténation de caractères, affiche "1215"</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
+</div>
+<script>
+var questionsData3 = 
+    {
+        question: "Si on a défini nom = 'Henri' et age = 17, qu'affiche l'exécution du code print(nom + age) ...",
+        options:["Henri17", "Henri 17", "un message d'erreur"],
+        correctIndex: 2,
+        commentaire: "On ne peut pas concaténer deux variables de types différents. Il est donc important de bien connaître les types des variables utilisées."
+    };
+questionnaireUnique(3, questionsData3);
+</script>
+
+
+<!-- DUPLICATION -->
+<h3>La duplication</h3>
+
+<p>Dans le cas d'une chaîne de caractères, l'opérateur <strong>*</strong> permet de répéter un texte, 
+comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">print("Les oranges sont des fruits" * 3)</code></pre>
+
+
+<!-- FSTRING -->
+<h3>Les f-string</h3>
+
+<p>Il s'agit d'un format particulier de string qui tient compte de la valeur des variables inclues 
+    dans la chaîne de caractères, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">resultat = f"Je m'appelle {nom} et j'ai {age} ans"</code></pre>
+
+<p>Les f-string sont particulièrement pratiques car il n'est pas nécessaire de modifier le type des 
+    variables inclues dans la chaîne de caractères pour assurer leur affichage. Dans l'exemple ci-dessus 
+il n'est pas nécessaire de transformer <code>age</code> en <code>str</code> en utilisant l'instruction 
+<code>str(age)</code>.</p>
+{% endblock cours %}

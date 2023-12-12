@@ -1,0 +1,202 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- AFFICHAGE A L'ECRAN -->
+
+<p>Pour afficher la valeur d'une variable, il suffit d'utiliser l'instruction <strong>print</strong> avec le nom de cette variable :</p>
+
+<pre><code class="language-python">print(age)</code></pre>
+
+<p>affichera <strong>18</strong>.</p>
+
+<p>On a déjà exécuté l'instruction suivante pour tester Python :</p>
+
+<pre><code class="language-python">print("Hello world")</code></pre>
+
+<p>Attention, les guillemets <strong>""</strong> sont importants dans le script ci-dessus. Essaie le même script sans les <strong>""</strong>. 
+    L'interpréteur Python pense dans ce cas que Hello est une variable dont il ne connaît pas la valeur. Les guillemets 
+    <strong>""</strong> permettent en fait d'afficher du texte et non pas la valeur d'une variable.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>pour comprendre l'utilité des guillemets "", exécute le code 
+        suivant qui différencie <i>"prenom"</i> et <i>prenom</i> :</p>
+<pre><code class="language-python">prenom = "Antoine"
+print("prenom")
+print(prenom)
+</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p>On utilise donc les guillemets pour afficher du texte qui se trouve à l'intérieur de ces guillements, 
+    alors que sans guillemet le code affiche la valeur de la variable <code>prenom</code>.</p>
+<p>Pour afficher les valeurs de plusieurs variables successives, il suffit de les séparer par le 
+    signe <code>+</code> dans l'instruction <code>print</code></p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>affecte ton prénom à la variable <code>prenom</code>, puis 
+        ton nom à la variable <code>nom</code>, comme dans l'exemple ci-dessous :</p>
+    <pre><code class="language-python">prenom = "Antoine"
+nom = "Legendre"</code></pre>
+        <p>Affiche ensuite à l'écran ton nom suivi de ton prénom en utilisant
+        les deux variables que tu viens de créer.</p>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
+
+<div id="solution1" style="display:none;">
+<pre><code class="language-python">prenom = "Antoine"
+nom = "Legendre"
+print(nom + prenom)</code></pre>
+</div>
+</div>
+
+
+<h3>Affichage de variables dans un texte</h3>
+
+<p>Nous allons voir comment afficher les valeurs de plusieurs variables, ou la valeur d'une variable au 
+    sein d'un texte.</p>
+
+<pre><code class="language-python">nom = "Parker"
+prenom = "Peter"
+print(prenom + nom) # affiche PeterParker
+print(prenom + " - " + nom) # affiche Peter - Parker
+print(prenom + "\t" + nom) # affiche Peter   Parker séparés par une tabulation
+print(prenom + "\n" + nom) # affiche Peter Parker l'un en dessous de l'autre
+</code></pre>
+
+<p>On remarque donc que l'instruction <code>print()</code> saute automatiquement la ligne, une fois
+    le travail effectué. Elle correspond en fait au <code>println()</code> qu'on retrouve dans d'autres
+   langages. Pour forcer l'écriture de texte sur la même ligne, il faut rajouter le mot-clé 
+<code>end=""</code>, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">nom = "Parker"
+prenom = "Peter"
+print(prenom, end="-")
+print(nom)</code></pre>
+
+<p>Ce code affiche <code>Peter-Parker</code> sur la même ligne, comme souhaité. Notons l'utilisation du 
+    séparateur "-" entre Peter et Parker qu'on peut modifier à souhait.</p>
+
+
+<h3>Affichage respectant un format</h3>
+
+<p>On a vu ensemble qu'on pouvait afficher la valeur d'une variable au milieu d'un texte, en construisant un texte qui 
+    contient cette variable. Par exemple le code suivant :</p>
+
+<pre><code class="language-python">prenom = "Antoine"
+date_naissance = "17-02-2008
+print(prenom + " est né le " + date_naissance)</code></pre>
+
+<p>affichera le résultat suivant :</p>
+
+<pre><code class="language-svg">Antoine est né le 17-02-2008</code></pre>
+
+<p>Il existe une façon plus efficace d'afficher le même résultat en utilisant l'instruction <code>print(f)</code> :</p>
+
+<pre><code class="language-python">prenom = "Antoine"
+date_naissance = "17-02-2008
+print(f"{prenom} est né le {date_naissance}")</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>à partir du code suivant</p>
+    <pre><code class="language-python">nombre_invites = 8
+nom_restaurant = "Chaîne d'or"</code></pre>
+    <p>et en utilisant l'instruction <code>print(f)</code>, écrire un code qui affiche "Demain nous serons 8 invités au restaurant
+     Chaîne d'or".</p>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+    <pre><code class="language-python">print(f"Demain nous serons {nombre_invites} invités au restaurant {nom_restaurant}")</code></pre>
+</div>
+</div>
+
+
+<h3>Affichage d'une variable de type différent de str</h3>
+
+<p>Imaginons qu'on veuille afficher le score d'un joueur à la fin d'une partie. En imaginant qu'il ait obtenu le score de 
+    147 et qu'il s'appelle "Bastien", on serait tempté d'écrire :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print("Le joueur " + prenom + " a obtenu le score de " + score)</code></pre>
+
+<p>Si tu exécutes ce code, tu te rendras vite compte qu'il déclenche une erreur, car prenom est une chaine de caractères 
+    et s'intègre donc parfaitement au reste du texte, mais score est un entier et ne sait pas comment faire pour compléter 
+    un texte. Il faut donc le transformer en chaîne de caractères avec l'instruction str et modifier notre code comme ceci :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print("Le joeur " + prenom + " a obtenu le score de " + str(score))</code></pre>
+
+<p>Il est également possible d'utiliser l'affichage formaté qui est tout à fait adapté à l'affichage de nombres :</p>
+
+<pre><code class="language-python">prenom = "Bastien"
+score = 147
+
+print(f"Le joueur {prenom} a obtenu le score de {score})</code></pre>
+
+
+
+<h3>Affichage respectant la structure donnée</h3>
+
+<p>Il est possible d'afficher un texte en respectant les sauts de ligne et les espaces comme dans le texte d'origine. 
+    Pour cela, il convient d'utiliser """, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">print("""Deux coeurs qui s'aiment,
+n'allez pas chercher plus loin la poésie;
+et deux baisers qui dialoguent,
+n'allez pas chercher plus loin la musique. (V. Hugo)""")</code></pre>
+
+<p>qui va afficher :</p>
+
+<pre><code class="language-svg">Deux coeurs qui s'aiment,
+n'allez pas chercher plus loin la poésie;
+et deux baisers qui dialoguent,
+n'allez pas chercher plus loin la musique. (V. Hugo)</code></pre>
+
+<p>Il est possible de couper les lignes de codes Python afin d'afficher toutes les instructions sur une même 
+page sans devoir bouger la souris pour lire le code, en utilisant un antislash \ qui indique à Python que le 
+code continue. En Effet, contrairement à d'autres langages où un point-virgule ; symbolise la fin d'une instruction, 
+en Python le saut de ligne ferme une instruction. Voici quelques exemples d'utilisation de l'antislash :</p>
+
+<pre><code class="language-python">print("Deux coeurs qui s'aiment,\
+n'allez pas chercher plus loin la poésie;\
+et deux baisers qui dialoguent,\
+n'allez pas chercher plus loin la musique. (V. Hugo)")
+
+moyenne = (trimestre1 + trimestre2 +\
+trimestre3) / 3</code></pre>
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
+</div>
+<script>
+var questionsData4 = 
+    {
+        question: "Pour afficher le nom suivi du prénom d'une personne en sautant la ligne entre les deux variables nom et prenom, il faut exécuter ...",
+        options:["print(nom + '\\n' + prenom)", "print(nom + '\\t' + prenom)", "print(nom + \\n + prenom)"],
+        correctIndex: 0,
+        commentaire: "'\n' lu comme une chaîne de caractères permet de sauter une ligne."
+    };
+questionnaireUnique(4, questionsData4);
+</script>
+
+{% endblock cours %}

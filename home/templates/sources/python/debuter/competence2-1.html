@@ -1,0 +1,180 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- DEMANDER UNE SAISIE CLAVIER -->
+
+<p>Il est important de pouvoir communiquer avec l'ordinateur, pour lire des résultats ou donner des informations au programme.
+    Par exemple lorsque vous jouez à votre jeu préféré sur votre smartphone, vous effectuez cliquez sur votre écran pour indiquer 
+    au programme vos choix, vous saisissez également votre identifiant au clavier, puis vous observez à l'écran les progrès de 
+    votre personnage.</p>
+    
+<p>Afin que le programme puisse tenir compte des données de l'utilisateur, il est nécessaire de pouvoir récupérer ce que celui-ci tape au clavier. Une question posée à l'utilisateur et qui appelle une réponse de sa part, doit être insérée dans une instruction <strong>input</strong>. Il est inutile dans ce cas d'utiliser l'affichage de la question avec <strong>print</strong>. Ainsi, le code suivant affiche la question <em>Comment vous appelez-vous  ?</em> et attend une réponse : </p>
+
+    <pre><code class="language-python">input("Comment vous appelez-vous ?")</code></pre>
+
+<p>L'interpréteur Python est maintenant en pause jusqu'à ce que l'utilisateur saisisse au clavier sa réponse puis valide avec la touche <em>Entrée</em>.</p>
+
+<p>Attention, cette réponse est perdue si elle n'est pas affectée à une variable. Ainsi, le code ci-dessus 
+    doit être modifié de la façon suivante pour être utile :</p>
+
+<pre><code class="language-python">nom = input("Comment vous appelez-vous ?")</code></pre>
+
+<p>Nous venons de capturer la valeur saisie par l'utilisateur pour l'affecter à la variable <code>nom</code>. 
+    La valeur saisie au clavier pourra maintenant être utilisée dès qu'on appelle la variable <code>nom</code>, 
+    commme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">print("Bonjour" + nom)</code></pre>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer :</strong> demande à l'utilisateur son âge puis affichez la valeur saisie en utilisant une variable <strong>age</strong>.</p>
+    
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
+
+<div id="solution1" style="display:none;">
+    <pre><code class="language-python">age = input("quel est votre âge ?")
+print(age)</code></pre>
+</div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='5' %}
+</div>
+<script>
+var questionsData5 = 
+    {
+        question: "Pour récupérer le pseudo d'un utilisateur, il faut exécuter ...",
+        options:['pseudo = input("quel est ton pseudo ?")', 'input("quel est ton pseudo ?")', 'pseudo = print("quel est ton pseudo ?")'],
+        correctIndex: 0,
+        commentaire: "Il faut stocker la valeur saisie par une instruction input dans une variable."
+    };
+questionnaireUnique(5, questionsData5);
+</script>
+
+
+<!-- LE TYPE PAR DEFAUT SAISI AU CLAVIER -->
+<h3 id="saisie">Quel est le type par défaut saisi au clavier ?</h3>
+
+<p>Tout ce que saisit l'utilisateur au clavier est enregistré à l'aide de l'instruction <strong>input</strong> en tant que chaîne de caractères (texte), même un nombre. Essayez pour vous en convaincre le script suivant :</p>
+
+<pre><code class="language-python">age = input("quel est ton âge ? ")
+print(type(age))</code></pre>
+
+<p>Dans le script ci-dessus la variable <strong>age</strong> est de type <em>class 'str'</em>, c'est à dire chaîne de caractères. L'ordinateur considère
+que le nombre saisi est en fait du texte.</p>
+
+<p>Mais alors comment faire des calculs avec du texte ? &#128531;</p>
+
+<p>Afin de pouvoir faire subir des opérations à une variable, il faut que celle-ci soit un nombre,
+    donc principalement de type <strong>int</strong> (entier) ou de type <strong>float</strong> (réel).
+    Or, lorsqu'un utilisateur saisit un nombre au clavier, celui-ci est conservé en tant que <strong>str</strong> (chaîne de caractères).
+    Il faut donc auparavant le transformer en nombre pour pouvoir l'utiliser. On parle de caster
+    une variable pour dire qu'on lui change de type. Pour cela, il suffit d'utiliser devant l'instruction <strong>input</strong>,
+l'instruction <strong>int()</strong> ou <strong>float()</strong>, comme dans le code suivant :</p>
+
+<pre><code class="language-python">age = int(input("quel est ton âge ? "))
+print(type(age))</code></pre>
+
+<p>Attention toutefois, on ne peut transformer une chaîne de caractères en nombres que si celle-ci est composée exclusivement de nombres. 
+    Ainsi, l'instruction <strong>int("bonjour")</strong> entraînera une erreur et ne sera pas transformé en entier. De même, 
+    l'instruction <strong>int("12Hervé")</strong> entraînera une erreur et ne sera pas transformé en entier.</p>
+
+<div class="row">
+    <div class="col-12 col-md-1">
+    <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+        <div class="fieldsetDefinition col-12 col-md-11">
+<h4>ATTENTION ...</h4> 
+<p>"2" est une chaîne de caractères composée du symbole <em>deux</em> qu'on ne peut pas soustraire, ou additionner, ... En revanche 2 est un 
+    nombre auquel on peut faire subir des opérations. Pour s'en convaincre, essayez l'instruction suivante.</p>
+
+<pre><code class="language-python">print("2"+"1") # affiche 21
+print(2+1) # affiche 3</code></pre>
+</div>
+</div>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>imaginons que le programme souhaite connaître l'âge de l'utilisateur puis que plus tard, il souhaite lui rajouter un an (lors de son anniversaire).
+        Ecrire le programme qui effectue ces instructions.</p>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+</div>
+
+<div id="solution3" style="display:none;">
+
+    <p>L'instruction suivante ne renverrai aucune erreur
+        mais conduirait à un résultat absurde :</p>
+
+    <pre><code class="language-python">age = input("quel est votre âge ?")
+age = age + 1
+print(age)</code></pre>
+
+    <p>qui affiche si l'utilisateur saisit la valeur 18 en réponse</p>
+
+    <pre><code class="language-python">>>> 181</code></pre>
+
+    <p>Dans ce cas, la valeur 18 saisie possède par défaut le type str et lorsqu'on lui rajoute 1,
+        ce dernier se place à la suite de 18 et n'effectue aucun calcul. On parle de concaténation.</p>
+
+    <p>Pour corriger ce problème et effectuer une addition, il faut utiliser le code suivant :</p>
+
+    <pre><code class="language-python">age = int(input("quel est votre âge ?"))
+age = age + 1
+print(age)</code></pre>
+
+    <p>qui fournit le résultat escompté, à savoir :</p>
+
+    <pre><code class="language-python">>>> 19</code></pre>
+</div>
+</div>
+
+<p>Il existe en Python un moyen de vérifier qu'une valeur saisie peut être transformée en entier, à l'aide de
+l'instruction <strong>isnumeric()</strong>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>essaie le code ci-dessous pour bien comprendre ce que teste l'instruction <strong>isnumeric()</strong>.</p>
+
+<pre><code class="language-python">print("22".isnumeric()) # affiche True
+print("bonjour".isnumeric()) # affiche False, bonjour est une chaîne de caractères
+print("2.45".isnumeric()) # affiche False, 2.45 est un nombre réel
+print("-3".isnumeric()) # affiche False, -3 est un nombre entier négatif</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='7' %}
+</div>
+<script>
+var questionsData7 = 
+    {
+        question: '<p>Dans le code suivant : </p><pre><code class="language-python">poids = input("combien pèse le vélo ?")</code></pre><p>quel est le type de la variable poids ...</p>',
+        options:["int car le poids est un nombre entier", "float car il s'agit en fait d'un nombre à virgule", "str car il est stocké ainsi"],
+        correctIndex: 2,
+        commentaire: "Toute saisie clavier est stockée par défaut en tant que str."
+    };
+questionnaireUnique(7, questionsData7);
+</script>
+
+{% endblock cours %}

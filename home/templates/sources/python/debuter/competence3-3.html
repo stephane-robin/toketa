@@ -1,118 +1,7 @@
 {% extends '../../../modelePage.html' %}
 {% load static %}
 
-{% block contenu %}
-<ul>
-    <li><a href="#decouvrir">découvrir les conditions</a></li>
-    <li><a href="#pseudo">les pseudo-codes et diagrammes pour représenter les conditions</a></li>
-    <li><a href="#booleen">comprendre l'utilité des booléens</a></li>
-    <li><a href="#indentation">maîtriser l'indentation</a></li>
-    <li><a href="#imbriquer">savoir imbriquer les conditions</a></li>
-    <li><a href="#structure">comprendre la structure d'une condition</a></li>
-    <li><a href="#erreur">comprendre les messages d'erreur</a></li>
-</ul>
-{% endblock contenu %}
-
 {% block cours %}
-
-<!-- A PLACER EN DEBUT DE FICHIER -->
-<!-- script for pyodide python sandbox -->
-<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-<!-- import codemirror stylings -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
-<!-- install codemirror.js version /5.63.3 from cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
-integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- install codemirror python language support -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/python/python.min.js"
-integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- import codemirror dracula theme styles from cdn -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/elegant.css" />
-
-<style>
-    /* set codemirror ide height to 100% of the textarea */
-    .CodeMirror {
-      height: auto;
-      overflow: hidden;
-    }
-  </style>
-
-
-<!-- Common function to initialize a sandbox -->
-<script>
-    var commentInitial = "# type your code here";
-    const sandboxes = {};
-  
-    function initializeSandbox(codeInitial, sandboxId) {
-      const outputElement = document.getElementById(`output${sandboxId}`);
-      const codeElement = document.getElementById(`code${sandboxId}`);
-  
-      const editor = CodeMirror.fromTextArea(codeElement, {
-        mode: {
-          name: "python",
-          version: 3,
-          singleLineStringErrors: false,
-        },
-        theme: "elegant",
-        lineNumbers: true,
-        indentUnit: 4,
-        matchBrackets: true,
-      });
-  
-      editor.setValue(codeInitial);
-      outputElement.value = "Initializing...\n";
-  
-      const sandbox = {
-        pyodide: null,
-        editor,
-        outputElement,
-      };
-  
-      sandboxes[sandboxId] = sandbox;
-  
-      async function main() {
-        sandbox.pyodide = await loadPyodide({
-          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
-        });
-  
-        sandbox.pyodide.runPython(`
-          import sys
-          sys.version
-        `);
-  
-        sandbox.outputElement.value = ">>>\n";
-      }
-  
-      main();
-    }
-  
-    function executePython(sandboxId) {
-      const sandbox = sandboxes[sandboxId];
-  
-      try {
-        sandbox.pyodide.runPython(`
-          import io
-          sys.stdout = io.StringIO()
-        `);
-  
-        const result = sandbox.pyodide.runPython(sandbox.editor.getValue());
-        const stdout = sandbox.pyodide.runPython("sys.stdout.getvalue()");
-        sandbox.outputElement.value += stdout + "\n";
-      } catch (err) {
-        sandbox.outputElement.value += "Error: " + err + "\n";
-      }
-    }
-  
-    /*function clearHistory(sandboxId) {
-      const sandbox = sandboxes[sandboxId];
-      sandbox.outputElement.value = "";
-      console.log(sandboxId);
-    }*/
-</script>
-<!-- fin js sandbox -->
-
 
 <p>Les conditions permettent au programme de prendre des décisions en fonction des situations qu'il rencontre. Elles sont donc
  essentielles à tout programme.</p>
@@ -123,9 +12,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <!-- DECOUVRIR LES CONDITIONS -->
-<p class="invisible" id="decouvrir">ancre</p>
-
-<h3>Découvrir les conditions</h3>
 
 <div class="col-12 col-md-8 my-5">
     <iframe src="https://www.youtube.com/embed/pn8T-kro--k"
@@ -134,8 +20,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <figcaption>Les conditions en Python</figcaption>
 </div>
 
-<p>Dans l'exemple suivant, on donne le nom "Alice" à la variable nom, si le nom de la personne est <em>Alice</em>, 
-    le programme affiche <em>Bonjour Alice</em>, sinon il n'accorde pas l'accès.</p>
+<p>Dans l'exemple suivant, on donne le nom "Alice" à la variable nom, si le nom de la personne est Alice, 
+    le programme affiche <i>Bonjour Alice</i>, sinon il n'accorde pas l'accès.</p>
 
 <pre><code class="language-python">nom = "Alice"
 if nom == "Alice":
@@ -144,34 +30,32 @@ else:
     print("Désolé, accès refusé.")</code></pre>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>exécute le code ci-dessus pour voir ce qui s'affiche,
-        puis modifie la variable <strong>nom</strong> en lui donnant la valeur "Camille".
-        Exécute à nouveau votre code pour constater la différence d'affichage.</p>
+    <p><strong>A vous de jouer : </strong>exécuter le code ci-dessus pour voir ce qui s'affiche,
+        puis modifier la variable <code>nom</code> en lui donnant la valeur "Camille".
+        Exécuter à nouveau votre code pour constater la différence d'affichage.</p>
 
 
-<!-- SANDBOX 1 -->
-{% include '../../../sandbox.html' with nmr='1' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(1);
-</script>
 
-
-<p>Vous avez peut-être découvert la programmation avec Scratch. Dans ce cas, le code Python ci-dessus correspond en Scratch au script suivant :</p>
+<p class="mt-3">Vous avez peut-être découvert la programmation avec Scratch. Dans ce cas, le code Python ci-dessus correspond en Scratch au script suivant :</p>
 
 <img src="{% static 'home/images/python/codeScratchCondition.png' %}" alt="code Scratch" width="250px">
 
-<p>La difficulté en Python réside dans le signe <strong>==</strong>. Il est essentiel de comprendre que la condition <strong>nom == "Alice"</strong> s'exprime par une comparaison entre <strong>nom</strong> et <strong>"Alice"</strong>. On utilise pour cela l'opérateur de comparaison <strong>==</strong>. Il n'a rien à voir avec l'opérateur d'affectation <strong>=</strong> de la 1ère ligne de code, qui donne la valeur <strong>"Alice"</strong> à la variable <strong>nom</strong>.</p>
+<p>La difficulté en Python réside dans le signe <code>==</code>. Il est essentiel de comprendre que la 
+    condition <code>nom == "Alice"</code> s'exprime par une comparaison entre <code>nom</code> et <code>"Alice"</code>. 
+    On utilise pour cela l'opérateur de comparaison <code>==</code>. Il n'a rien à voir avec l'opérateur 
+    d'affectation <code>=</code> de la 1ère ligne de code, qui donne la valeur "Alice" à la variable <code>nom</code>.</p>
 
-<p>A noter que l'instruction <strong>print("Bonjour Alice")</strong> est décalée d'une tabulation (4 espaces) vers la droite.
+<p>A noter que l'instruction <code>print("Bonjour Alice")</code> est décalée d'une tabulation (4 espaces) vers la droite.
 On parle d'indentation. Cette indentation permet de regrouper des blocs de code et indique au programme quand se termine
-le bloc concerné par l'instruction <strong>if</strong>, et quand se termine le bloc concerné par
- l'instruction <strong>else</strong>.</p>
+le bloc concerné par l'instruction <code>if</code>, et quand se termine le bloc concerné par
+ l'instruction <code>else</code>.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong> donne une valeur entière à la variable mois, comprise entre 1 et 12.
-    Le programme devra afficher "1er semestre" si mois est compris entre 1 et 6. Il devra afficher "2ème semestre"
-    sinon.</p>
+    <p><strong>A vous de jouer : </strong> donner une valeur entière à la variable <code>mois</code>, comprise entre 1 et 12.
+    Le programme devra afficher <i>1er semestre</i> si mois est compris entre 1 et 6. Il devra afficher 
+    <i>2ème semestre</i> sinon.</p>
     <pre><code class="language-python">mois = 4
 
 if mois ???
@@ -193,24 +77,21 @@ else:
     print("2ème semestre")</code></pre>
 </div>
 
-<!-- SANDBOX 2 -->
-{% include '../../../sandbox.html' with nmr='2' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(2);
-</script>
-
 
 
 <!-- QESTIONNAIRE -->
-<h4>As-tu bien compris ?</h4>
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='1' %}
+</div>
 
 <script>
 var questionsData1 = 
     {
-        question: '<p>L\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":\n \
+        question: '<p>L\'instruction suivante :</p> <pre><code class="language-python">if prenom == "Antoine":\n \
     print("hello")</code></pre><p>va afficher <em>hello</em> ...</p>',
         options:['si prenom est différent de Antoine', 'si prenom vaut Antoine', 'si les variables prenom et Antoine sont les mêmes'],
         correctIndex: 1,
@@ -221,13 +102,14 @@ questionnaireUnique(1, questionsData1);
 
 
 <!-- PSEUDO CODE ET DIAGRAMMES -->
-<p class="invisible" id="pseudo">ancre</p>
+<h3>Comprendre la structure d'une instruction if</h3>
 
-<h3>Les pseudo-codes et diagrammes pour représenter les conditions</h3>
-
-<p>Pour mieux comprendre la structure d'une condition if, on peut utiliser du pseudo-code (indifférencié d'un 
-    langage de programmation à un autre, ou encore un diagramme. Voyons comment traduire le code Python ci-dessus en
-     pseudo-code :</p>
+<p>L'instruction if s'appelle en fait un branchement conditionnel, car elle permet d'orienter le programme 
+    dans une direction, une fois qu'une condition est vérifiée. Pour mieux comprendre la structure d'une 
+    instruction if, on peut utiliser du pseudo-code (langage naturel généraliste indifférencié d'un 
+    langage de programmation à un autre), ou encore un diagramme.</p>
+    
+<p>On peut traduire le code Python ci-dessus en pseudo-code de la façon suivante :</p>
 
 <pre><code class="language-svg">nom prend la valeur "Alice"
 si nom = "Alice"
@@ -240,9 +122,9 @@ sinon afficher "Désolé, accès refusé"</code></pre>
 
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong> pose la question suivante à un utilisateur "Comment 
-    s'appelle l'auteur de l'Odyssée ?" S'il répond Homère, rajoute deux points à sa note qui valait 10
-auparavant, sinon enleve-lui un point.</p>
+    <p><strong>A vous de jouer : </strong> poser la question suivante à un utilisateur "Comment 
+    s'appelle l'auteur de l'Odyssée ?" S'il répond <i>Homère</i>, rajouter deux points à sa note qui valait 10
+auparavant, sinon enlever-lui un point.</p>
     <pre><code class="language-python">note = 10
 
 reponse = input(???)
@@ -262,23 +144,19 @@ else:
     note = note - 1</code></pre>
 </div>
 
-
-<!-- SANDBOX 3 -->
-{% include '../../../sandbox.html' with nmr='3' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(3);
-</script>
 
-
-<p>Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
+<p class="mt-3">Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
     à respecter pour valider chaque question ...</p>
 
 
 <!-- QESTIONNAIRE -->
-<h4>As-tu bien compris ?</h4>
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
 
 {% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
 
 <script>
 var questionsData2 = 
@@ -292,9 +170,69 @@ questionnaireUnique(2, questionsData2);
 </script>
 
 
-<!-- LES BOOLEENS -->
-<p class="invisible" id="booleen">ancre</p>
+<!-- L'INDENTATION -->
+<h3>L'indentation</h3>
 
+<p>L'indentation est le fait de décaler le code vers la droite (d'une tabulation ou de 4 espaces). C'est essentiel en Python qui n'utilise par d'accolades et choisit de commencer un bloc de code par une indentation et de rester dans ce bloc tant que le code est indenté. Par exemple dans le code suivant :</p>
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice.")
+    print("Comment allez-vous aujourd'hui ?")
+print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
+
+<p><i>Bonjour Alice. Comment allez-vous aujourd'hui ?</i> ne s'affichera que si le <code>nom</code> vaut "Alice".
+     Les deux phrases font partie du même bloc d'instructions. En revanche, <i>Aujourd'hui c'est journée portes 
+        ouvertes.</i> s'affichera tout le temps, même si <code>nom</code> ne vaut pas "Alice", car cette 
+        instruction est indépendante de l'instruction <code>if nom == "Alice":</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécuter le code ci-dessus pour voir ce qui s'affiche, puis 
+        pour bien comprendre le rôle de l'indentation :</p>
+        <ul>
+            <li><p>changez le nom 'Alice' en 'Bob' et exécutez de nouveau le code</p></li>
+            <li><p>indentez la dernière ligne avec la touche de tabulation avant d'exécuter le code pour constater 
+                la différence d'affichage.</p></li>
+        </ul>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-1">
+        <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+    <div class="fieldsetDefinition col-12 col-md-11">
+        <h4>REMARQUABLE ...</h4>         
+        <p>L'indentation est fondamentale en Python. Elle permet de délimiter les blocs de code,
+            et donc de déterminer quand les blocs de code commencent et quand ils se terminent. Sans indentation,
+            le programme est perdu. Il correspond dans d'autres langages à l'utilisation des { et }.</p>
+    </div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
+</div>
+
+<script>
+var questionsData4 = 
+    {
+        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
+print("Bravo")</code></pre>',
+        options:['il s\'affiche Bravo', 'les blocs sont correctement indentés', 'la 2ème ligne est mal indentée'],
+        correctIndex: 2,
+        commentaire: "Le bloc suivant une condition doit être indenté."
+    };
+questionnaireUnique(4, questionsData4);
+</script>
+
+
+<!-- LES BOOLEENS -->
 <h3>Les booléens</h3>
 
 <pre><code class="language-python">nom = "Alice"
@@ -303,77 +241,88 @@ if nom == "Alice":
 else:
     print("Désolé, accès refusé.")</code></pre>
 
-<p>Les conditions sont intimement liées aux booléens (<strong>True</strong> ou <strong>False</strong>).</p>
+<p>Les conditions sont intimement liées aux booléens (<code>True</code> ou <code>False</code>).</p>
 
-<p>En effet, il faut comprendre que dans l'instruction <strong>if nom == "Alice":</strong>, le mot <strong>if</strong>
-permet d'orienter le programme dans une certaine direction lorsque la condition <strong>nom == "Alice"</strong> est vraie, c'est 
-à dire est équivalente à True. Dans ce cas, le programme poursuit son exécution avec le bloc qui suit. Si le nom n'est pas Alice, 
-alors la condition nom == "Alice" est fausse, donc équivalente à False et le programme décide de sauter le bloc relatif au mot if 
-et exécute le bloc relatif au mot <strong>else:</strong>.</p>
-
-<p>Ainsi le script ci-dessus peut se traduire en pseudo-code par :</p>
-
-<pre><code class="language-svg">nom prend la valeur "Alice"
-si nom vaut "Alice" alors{
-    on affiche "Bonjour Alice"
-    }
-sinon{
-    on affiche "Désolé, accès refusé"
-    }</code></pre>
+<p>En effet, il faut comprendre que dans l'instruction <code>if nom == "Alice":</code>, le mot-clé <code>if</code>
+permet d'orienter le programme dans une certaine direction lorsque la condition <code>nom == "Alice"</code> est vraie, c'est 
+à dire vaut <code>True</code>. Dans ce cas, le programme poursuit son exécution avec le bloc qui suit. Si le nom n'est pas Alice, 
+alors la condition <code>nom == "Alice"</code> est fausse, donc équivalente à <code>False</code> et 
+le programme décide de sauter le bloc relatif au mot-clé <code>if</code> 
+et exécute le bloc relatif au mot <code>else:</code>.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, il suffit d'exécuter le code suivant</p>
+    <p><strong>A vous de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, 
+        il suffit d'exécuter le code suivant</p>
     <pre><code class="language-python">nom = "Albert"
 print(nom == "Albert")  # affiche True
 print(nom == "Bob")  # affiche False
 print(12 &lt 5)  # affiche False
 print(7 &lt 10)  # affiche True</code></pre>
 
-
-
-<!-- SANDBOX 4 -->
-{% include '../../../sandbox.html' with nmr='4' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(4);
-</script>
 
 
+<h3>Les opérateurs de comparaison</h3>
 
+<h4>== pour l'égalité de valeur</h4>
+    
+    <p>Attention, le signe <strong>==</strong> sert à comparer 2 valeurs et non pas affecter une valeur à une variable.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x == 17.2</strong></p>
+    <pre><code class="language-python">x = 17.2
+print(x == 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="mt-5">Ce code affiche <code>True</code> car x a été défini avec la valeur 17.2, donc la comparaison de x et de 17.2 renvoie True.</p>
+
+
+<h4>!= pour la différence</h4>
+
+<p>Le signe <strong>!=</strong> sert à tester que deux variables ont des valeurs différentes.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x != 17.2</strong></p>
+    <pre><code class="language-python">x = 10
+print(x != 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
 <h4>Les opérateurs utilisés</h4>
 
-<p>La condition <strong>nom == "Alice"</strong> se traduit par <strong>True</strong> ou <strong>False</strong>, mais il existe
-    d'autres opérateurs de comparaison que <strong>==</strong>. Les principaux opérateurs possibles sont les suivants :</p>
+<p>La condition <code>nom == "Alice"</code> se traduit par <code>True</code> ou <code>False</code>, mais il existe
+    d'autres opérateurs de comparaison que <code>==</code>. Les principaux opérateurs utilisés sont les suivants :</p>
 
 <table>
     <tr><th>opérateur</th><th>signification</th></tr>
-    <tr><td>a == b</td><td>True si a vaut b</td></tr>
-    <tr><td>a != b</td><td>True si a différent de b</td></tr>
-    <tr><td>a &lt b</td><td>True si a inférieur à b</td></tr>
-    <tr><td>a > b</td><td>True si a supérieur à b</td></tr>
-    <tr><td>a &lt= b</td><td>True si a inférieur ou égal à b</td></tr>
-    <tr><td>a >= b</td><td>True si a supérieur ou égal à b</td></tr>
-    <tr><td>a == b and c == d</td><td>True si a vaut b et c vaut d</td></tr>
-    <tr><td>a == b or c == d</td><td>True si a vaut b ou c vaut d</td></tr>
+    <tr><td>a == b</td><td><code>True</code> si a vaut b</td></tr>
+    <tr><td>a != b</td><td><code>True</code> si a différent de b</td></tr>
+    <tr><td>a &lt b</td><td><code>True</code> si a inférieur à b</td></tr>
+    <tr><td>a > b</td><td><code>True</code> si a supérieur à b</td></tr>
+    <tr><td>a &lt= b</td><td><code>True</code> si a inférieur ou égal à b</td></tr>
+    <tr><td>a >= b</td><td><code>True</code> si a supérieur ou égal à b</td></tr>
+    <tr><td>a == b and c == d</td><td><code>True</code> si a vaut b et c vaut d</td></tr>
+    <tr><td>a == b or c == d</td><td><code>True</code> si a vaut b ou c vaut d</td></tr>
 </table>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong> Voyons ensemble comment peut évaluer une comparaison. Essaye le code suivant :</p>
+    <p><strong>A vous de jouer : </strong> Voyons ensemble comment fonctionne les opérateurs de comparaison
+        en exécutant le code suivant :</p>
     <pre><code class="language-python">nom = "Alice"
-print(nom == "Alice")
-print(nom != "Bob")</code></pre>
+print(nom != "Bob")
+print(nom &lt; "Chantal")
+print(nom == "Benoit")</code></pre>
 
-
-<!-- SANDBOX 5 -->
-{% include '../../../sandbox.html' with nmr='5' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(5);
-</script>
 
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong> compléte le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
+    <p><strong>A vous de jouer : </strong> compléter le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
         grand de ces nombres automatiquement :</p>
     <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
 y = float(input("Entrer un deuxième nombre : "))
@@ -410,17 +359,18 @@ print("le maximum est" + maximum)</code></pre>
     </div>
 
 
-<!-- SANDBOX 6 -->
-{% include '../../../sandbox.html' with nmr='6' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(6);
-</script>
 
 
 <h4>Les opérateurs and / or</h4>
 
-<p>Exécuter le code suivant pour bien comprendre le fonctionnement des opérateurs and et or :</p>
+<p>L'opérateur <code>and</code> nécessite que plusieurs conditions soient vraies pour que la condition 
+globale soit vraie.</p>
+<p>L'opérateur <code>or</code> nécessite qu'une au moins des conditions soit vraie pour que la condition 
+globale soit vraie.</p>
+
+<p>Exécuter le code suivant pour bien comprendre le fonctionnement des opérateurs <code>and</code> et <code>or</code> :</p>
 
 <pre><code class="language-python">1 | a = 3
 2 | b = 5
@@ -436,6 +386,26 @@ print("le maximum est" + maximum)</code></pre>
 
 <p>La condition a > 4 or b > 4 nécessite qu'une seule des deux variables a ou b soit supérieure
     à 4. Cette condition est donc vérifiée et le programme entre dans le bloc de la ligne 8.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>il est facile de connaître le comportement de l'opérateur 
+    <code>and</code> en exécutant le code suivant :</p>
+    <pre><code class="language-python">print(True and True)
+print(True and False)
+print(False and True)
+print(False and False)</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p>On peut résumer le travail de l'opérateur <code>and</code> à l'aide de la table logique suivante :</p>
+<table>
+    <tr><td>and</td><td>True</td><td>False</td></tr>
+    <tr><td>True</td><td>True</td><td>False</td></tr>
+    <tr><td>False</td><td>False</td><td>False</td></tr>
+</table>
+
+<p>On rappelle que Python interprète le booléen <code>True</code> comme la valeur 1 et le booléen <code>False</code>
+comme la valeur 0</p>
 
 
 <!-- QESTIONNAIRE -->
@@ -454,63 +424,6 @@ var questionsData3 =
 questionnaireUnique(3, questionsData3);
 </script>
 
-
-<!-- L'INDENTATION -->
-<p class="my-5 invisible" id="indentation">ancre</p>
-
-<h3>L'indentation</h3>
-
-<p>L'indentation est le fait de décaler le code vers la droite (en général d'une tabulation ou de 4 espaces). C'est essentiel en Python qui n'utilise par d'accolades et choisit de commencer un bloc de code par une indentation et de rester dans ce bloc tant que le code est indenté. Par exemple dans le code suivant :</p>
-
-<pre><code class="language-python">nom = "Alice"
-if nom == "Alice":
-    print("Bonjour Alice.")
-    print("Comment allez-vous aujourd'hui ?")
-print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
-
-<p><em>Bonjour Alice. Comment allez-vous aujourd'hui ?</em> ne s'affichera que si le <strong>nom</strong> vaut <strong>Alice</strong>. Les deux phrases font partie du même bloc d'instructions. En revanche, <em>Aujourd'hui c'est journée portes ouvertes.</em> s'affichera tout le temps, même si <strong>nom</strong> ne vaut pas <strong>Alice</strong>, car cette instruction est indépendante de la condition <strong>if nom == "Alice":</strong>.</p>
-
-<div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>exécute le code ci-dessus pour voir ce qui s'affiche, puis 
-        pour bien comprendre le rôle de l'indentation :</p>
-        <ul>
-            <li>changez le nom 'Alice' en 'Bob' et exécutez de nouveau le code</li>
-            <li>indentez la dernière ligne avec la touche de tabulation avant d'exécuter le code pour constater 
-                la différence d'affichage.</li>
-        </ul>
-
-
-<!-- SANDBOX 7 -->
-{% include '../../../sandbox.html' with nmr='7' %}
-</div>
-<script>
-    initializeSandbox(7);
-</script>
-
-<div class=fieldsetDefinition>
-    <h4>A RETENIR ...</h4>
-    <p>L'indentation est fondamentale en Python. Elle permet de délimiter les blocs de code,
-        et donc de déterminer quand les blocs de code commencent et quand ils se terminent. Sans indentation,
-        le programme est perdu. Il correspond dans d'autres langages à l'utilisation des { et }.</p>
-</div>
-
-
-<!-- QESTIONNAIRE -->
-<h4>As-tu bien compris ?</h4>
-
-{% include '../../../questionnaireUnique.html' with nmr='4' %}
-
-<script>
-var questionsData4 = 
-    {
-        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
-print("Bravo")</code></pre>',
-        options:['il s\'affiche Bravo', 'les blocs sont correctement indentés', 'la 2ème ligne est mal indentée'],
-        correctIndex: 2,
-        commentaire: "Le bloc suivant une condition doit être indenté."
-    };
-questionnaireUnique(4, questionsData4);
-</script>
 
 
 <!-- IMBRIQUER LES CONDITIONS -->
@@ -542,7 +455,7 @@ elif temperature > 10:
 
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>écris les instructions suivantes</p>
+    <p><strong>A vous de jouer : </strong>écrire les instructions suivantes</p>
     <ul><li>définir deux variables <strong>a</strong> et <strong>b</strong> en leur donnant les valeurs 3 et 5 respectivement,</li>
         <li>afficher <em>a est plus petit que b</em> si <strong>a</strong> est plus petit que <strong>b</strong>,</li>
         <li>afficher <em>a est plus grand que b</em> si <strong>a</strong> est plus grand que <strong>b</strong>,</li>
@@ -569,12 +482,8 @@ else:
     </div>
 
 
-<!-- SANDBOX 8 -->
-{% include '../../../sandbox.html' with nmr='8' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(8);
-</script>
 
 
 <p>Les conditions imbriquées sont très fréquentes dans les programmes car elles représentent les situations complexes
@@ -583,7 +492,7 @@ l'instruction <strong>match</strong> qui est l'équivalent de l'instruction <str
 de programmation.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong> une séance de cinéma est interdite aux moins de 16 ans.
+    <p><strong>A vous de jouer : </strong> une séance de cinéma est interdite aux moins de 16 ans.
         Le prix du billet dépend de l'âge de l'utilisateur. Les seniors (plus de 65 ans) et les mineurs (moins de 18 ans) paient un tarif réduit, les autres un tarif plein.
         Ecrire un script qui affiche le type de tarif si l'utilisateur a le droit d'assister à une séance, et "accès refusé" dans le cas contraire.</p>
 
@@ -608,13 +517,8 @@ else:
 
 </div>
 
-
-<!-- SANDBOX 9 -->
-{% include '../../../sandbox.html' with nmr='9' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(9);
-</script>
 
 
 <!-- BIEN COMPRENDRE LA STRUCTURE D'UNE CONDITION -->
@@ -649,7 +553,7 @@ Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout". Du coup on 
 9 | print("voilà c'est tout")</code></pre>
 
 <div class="exerciceApplication">
-<p><strong>A toi de jouer : </strong>en revanche le programme suivant exécute tous les blocs. Essaie par toi-même :</p>
+<p><strong>A vous de jouer : </strong>en revanche le programme suivant exécute tous les blocs. Essayez par vous-même :</p>
 
 <pre><code class="language-python">1 | cheveux = "bruns"
 2 | yeux = "bleus"
@@ -666,19 +570,15 @@ Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout". Du coup on 
 exécute la ligne 8. Il reprend ensuite à la ligne 10 pour afficher "voilà c'est tout".</p>
 
 
-<!-- SANDBOX 10 -->
-{% include '../../../sandbox.html' with nmr='10' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(10);
-</script>
 
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>complète le programme suivant qui demande à un élève
+    <p><strong>A vous de jouer : </strong>complèter le programme suivant qui demande à un élève
     sa moyenne au 1er trimestre, au 2ème trimestre puis au 3ème trimestre et affiche la mention
     obtenue par l'élève en fin d'année (examen à repasser en-dessous de 10, mention passable entre 10 et 12,
-    mention assez bien entre 12 et 14, mention bien entre 14 et 16, mention très bien entre 16 et 20.</p>
+    mention assez bien entre 12 et 14, mention bien entre 14 et 16, mention très bien entre 16 et 20).</p>
 
     <pre><code class="language-python">noteSemestre1 = float(input("Moyenne au 1er trimestre : "))
 noteSemestre2 = float(input("Moyenne au 2ème trimestre : "))
@@ -706,19 +606,15 @@ else:
     print("mention très bien")</code></pre>
     </div>
 
-<!-- SANDBOX 11 -->
-{% include '../../../sandbox.html' with nmr='11' %}
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
 </div>
-<script>
-    initializeSandbox(11);
-</script>
 
 
 <p>On va maintenant essayer de comprendre les décisions prises par un programme en suivant les
     valeurs prises par plusieurs variables.</p>
 
 <div class="exerciceApplication">
-    <p><strong>A toi de jouer : </strong>considérons le code suivant</p>
+    <p><strong>A vous de jouer : </strong>considérons le code suivant</p>
 <pre><code class="language-python">1 | x = 3
 2 | y = 2
 3 | t = x - y
@@ -768,7 +664,7 @@ else:
             <tr><td>12</td><td>4</td><td>8</td><td>3</td><td>1</td></tr>
 
         </table>
-    <p>Attention, il ne s'agit pas d'égalité au sens mathématique mais de l'affectation
+    <p><i>Attention</i>, il ne s'agit pas d'égalité au sens mathématique mais de l'affectation
      d'une valeur à une variable.</p></div>
 </div>
 

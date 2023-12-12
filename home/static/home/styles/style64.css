@@ -19,7 +19,7 @@ target: all pages */
   padding:2%;
   font-size:1.7em;
   font-weight:bold;
-  rotate:-40deg;
+  rotate:-5deg;
   color:var(--couleur_retenir);
   width:40%;
 }
@@ -144,15 +144,18 @@ target: toutes les pages */
 
 h1{
   color:black;
+  font-family: Arial, Cambria;
+  font-size: 2em;
+  margin-bottom: 3%;
+  text-align: center;
 }
 
 h2{
-  color: black;
+  color: var(--couleur_retenir);
+  margin-top:3%;
+  margin-bottom:1%;
   font-family: Arial, Cambria;
   font-size: 2em;
-  text-align: center;
-  margin-top: 10%;
-  margin-bottom: 3%;
 }
 
 .toketa{
@@ -168,14 +171,14 @@ h3{
   font-size: 1.5em;
   font-weight:bold;
   margin-top: 5%;
-  /* comptage titre h3 */
+  /* comptage titre h3 
   counter-increment: section;
-  counter-reset: subsection;
+  counter-reset: subsection;*/
 }
 
 h3:before{
-  /* comptage titre h3 */
-  content: counter(section) ". ";
+  /* comptage titre h3
+  content: counter(section) ". ";*/
 }
 
 h4{
@@ -195,45 +198,6 @@ pre{
 code{
   color:slategray;
 }
-
-/* photo qui s'eloigne 
-target: index.php */
-.stage {
-  overflow: hidden;
-  position: relative;
-}
-
-.actor{
-  animation: zoomout 15s linear;
-  background-size: cover;
-  inset: 0;
-  opacity: 1;
-  position: relative; 
-  }
-
-@keyframes zoomout {
-  1%{
-    opacity: .2;
-    scale: 1.2;
-  }
-  25% {
-    opacity: 1;
-    scale: 1.15;
-  }
-  50% {
-    scale: 1.1;
-    
-  }
-  75%{
-    scale: 1.05;
-  }
-  100% {
-    scale: 1;
-  }
-}
-
-/* bootstrap */
-
 
 a{
     color: lightslategray;
@@ -286,9 +250,6 @@ li{
   list-style-type: disc;
 }
 
-
-
-
 /* section 'A vous de jouer'
 target: toutes les pages */
 .exerciceApplication{
@@ -302,10 +263,11 @@ target: toutes les pages */
 /* section exemple type
 target: toutes les pages de maths */
 .exerciceType{
-  background-color: var(--couleur_fond);/*#cee6ec;*/
+  background-color: var(--couleur_fond);
   padding-left:1%;
   margin-top: 1%;
   margin-bottom: 1%;
+  border-radius:10px;
 }
 
 /* section resume a la fin de chaque section

@@ -1,0 +1,108 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %} 
+
+<!-- STRUCTURE D'UNE BOUCLE FOR -->
+<p>Il est possible de personnaliser les répétitions en modifiant le pas ou l'indice de départ.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>essaie les codes suivants pour bien comprendre
+        l'utilisation de la boucle <code>for</code>. Change ensuite les valeurs de départ, 
+    de fin et de pas en devinant le résultat qui doit s'afficher.</p>
+
+<pre><code class="language-python">for i in range(0, 7):  # répétition pour i allant de 0 à 6
+    print("bonjour")
+for i in range(2, 9):  # i varie de 2 à 8
+    print(i, end=" ")  # affiche 2 3 4 5 6 7 8
+print()
+for i in range(0, 11, 2):  # i varie de 0 à 10 en augmentant de 2
+    print(i, end=" ")  # affiche 0 2 4 6 8 10
+print()
+for i in range(7, 3, -1):  # i varie de 7 à 4 en descendant de 1
+    print(i, end=" ")  # affiche 7 6 5 4</code></pre>
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+
+<p> En revanche, on ne peut augmenter le pas que d'un nombre entier. Si on souhaite utiliser un pas décimal,
+    il faut alors utiliser l'instruction <code>arange</code> de la bibliothèque <code>numpy</code>, qu'il faut
+    commencer par importer, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">from numpy import *
+
+for i in numpy.arange(0, 1.1, 0.1):  # i varie de 0 à 1.0 en augmentant de 0.1
+    print(i, end=" ")  # affiche 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>afficher sur une même ligne tous les nombres entiers compris entre 1 et 9
+    avec le symbole | entre chaque terme, mais sans aucun symbole | à la fin de l'affichage.</p>
+
+    <a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+        <pre><code class="language-python">for i in range(1, 10):
+    if i == 9:
+        print(i)
+    else:
+        print(i, end=" | ")</code></pre>
+
+    </div>
+</div>
+
+
+<!-- BOUCLES IMBRIQUEES -->
+<h3>Boucles for imbriquées</h3>
+
+<div class="col-12 col-md-8 my-5">
+        <iframe src="https://www.youtube.com/embed/ZMjF4JcR7Go"
+                title="Boucles imbriquées en Python ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+    gyroscope; picture-in-picture" allowfullscreen> </iframe>
+        <figcaption> Boucles imbriquées en Python, <em>ToKeTa</em> </figcaption>
+</div>
+
+<p>Il est tout à fait possible d'intégrer le bloc d'une boucle <strong>for</strong> dans une autre boucle <strong>for</strong>. Par
+exemple pour afficher :</p>
+
+<pre><code class="language-svg">* * *
+* * *
+* * *</code></pre>
+
+<p>on peut utiliser l'instruction suivante :</p>
+
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        print("*", end=" ")</code></pre>
+
+<p>où on répète 3 fois la répétition de 3 étoiles sur une ligne.</p>
+
+<p>On a déjà écrit la table de multiplication de 16 en utilisant la boucle <strong>for</strong>.
+Cherchons maintenant à afficher les tables de multiplication de 2 jusqu'à la table de 7.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire le code des tables de multiplication de 2 jusqu'à la
+    table de 7, en multipliant par tous les entiers entre 1 et 11 inclus.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">
+for i in range(2, 8): # 2 3 4 5 6 7
+    print(f"table de {i}")
+    for j in range(1, 12): # 1 2 3 4 5 6 7 8 9 10 11
+        print(i, "fois", j, "égal à", i * j)
+    print()</code></pre>
+    </div>
+
+</div>
+
+{% endblock cours %}

@@ -3,58 +3,40 @@
 
 {% block principal %}
 
-<!-- TITRE -->
-
-<section class="py-5 bg-white">
-    <div class="container">
-        <h2 id="hautPage">{% block titre %} {{titre}} {% endblock titre %}</h2>
-    </div>
-</section>
-
-
-<!-- COMPETENCES -->
-
-<section class="py-5 bg-white">
-    <div class="container">
+<section class="mt-5 py-5 me-5">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-8">
-                <p>Contenu :</p>
-                {% block contenu %} {% endblock contenu %} 
+            <!-- SECTIONS DU CHAPITRE -->
+            <div class="col-2">
+                <p style="position:fixed;">{% for elt in listeSections %} 
+                    <a href="{% url 'afficherPage' cours=cours niveau=niveau id_chapitre=id_chapitre id_section=forloop.counter0 %}">{{ elt }}</a><br/>   
+                {% endfor %}</p> 
             </div>
-            <div class="col-12 col-md-4">
-                {% block tampon %} {% endblock tampon %}
+            <div class="col-10">
+                <!-- TITRES -->
+                <h1 id="hautPage">{% block titreChapitre %} {{chapitre}} {% endblock titreChapitre %}</h1>
+                <h2 class="tampon mb-5">{% block titre %} {{section}} {% endblock titre %}</h2>
+                <!-- COURS -->
+                {% block cours %} {% endblock cours %}
+                <img src="{% static 'home/images/general/toketa.gif' %}" width="300px" class="center">
             </div>
         </div>
     </div>
 </section>
-
-
-<!-- COURS -->
-
-<section class="py-5 bg-white">
-    <div class="container">
-        {% block cours %} {% endblock cours %}
-        <img src="{% static 'home/images/general/toketa.gif' %}" width="300px" class="center">
-    </div>
-</section>
-
 
 <!-- PAGES PRECEDENTE SUIVANTE -->
 
 <section class="py-5 bg-white">
     <div class="container">
         <div class="row">
-            {% if id != 0 %}
-            <div class="col-12 col-md-4">
-                <a href="{% url 'afficherPage' niveau=niveau chapitre=chapitre id=i_moins %}" class="bi bi-arrow-left-square-fill"> page précédente</a> 
+            {% if id_section != 0 %}
+            <div class="col-12 col-md-6">
+                <a href="{% url 'afficherPage' cours=cours niveau=niveau id_chapitre=id_chapitre id_section=i_moins %}" class="bi bi-arrow-left-square-fill"> page précédente</a> 
             </div>
             {% endif %}
-            <div class="col-12 col-md-4">
-                <a href="#hautPage" class="bi bi-arrow-up-square-fill"> haut de page</a> 
-            </div>
-            {% if id < i_max %}
-            <div class="col-12 col-md-4">
-                <a href="{% url 'afficherPage' niveau=niveau chapitre=chapitre id=i_plus %}" class="bi bi-arrow-right-square-fill"> page suivante</a> 
+            {% if id_section < i_max %}
+            <div class="col-12 col-md-6">
+                <a href="{% url 'afficherPage' cours=cours niveau=niveau id_chapitre=id_chapitre id_section=i_plus %}" class="bi bi-arrow-right-square-fill"> page suivante</a> 
             </div>
             {% endif %}
         </div>

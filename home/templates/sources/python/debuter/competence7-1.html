@@ -1,0 +1,35 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+
+{% block cours %}  
+
+
+<h3>La bibliothèque time</h3>
+
+<p>Pour connaître le temps écoulé en secondes depuis la création de l'informatique (1er janvier 1970) :</p>
+
+<pre><code class="language-python">import time
+temps = time.time()</code></pre>
+
+<p>Cela permet notamment de connaître le temps d'exécution d'un bloc d'instructions en mesurant le temps 
+    avant l'exécution puis le temps après l'exécution :</p>
+
+<pre><code class="language-python">import time
+debut = time.time()
+i = 0
+while i < 100000:
+    i += 1
+print(i)
+fin = time.time()
+
+duree = fin - debut</code></pre>
+
+<p>Pour mettre en pause l'exécution d'un programme pendant 10 secondes :</p>
+<pre><code class="language-python">import time
+print("Première phrase")
+time.sleep(10)
+print("Deuxième phrase après la pause")</code></pre>
+
+
+{% endblock cours %}

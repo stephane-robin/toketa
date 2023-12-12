@@ -1,0 +1,97 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}  
+
+<p>Il est souvent nécessaire de créer des blocs de codes qu'on appelle à chaque fois qu'on en a besoin. 
+    Cela évite les répétitions inutiles de code. Ces blocs réutilisables sont des fonctions, 
+    qui effectuent un travail à partir de données connues au départ (les paramètres) pour modifier ces données 
+    ou fournir un résultat à l'arrivée. Ainsi, les programmes sont souvent constitués de fonctions 
+    qui s'appellent les unes les autres pour accomplir une tâche. </p>
+
+<p>Il existe une réelle analogie avec les fonctions qu'on étudie en mathématiques, qui prenne x comme paramètre, 
+    lui font subir des calculs pour renvoyer une valeur notée f(x).</p>
+
+<p>Pour utiliser une fonction dans un programme, il faut tout d'abord la définir (pour que le programme la connaisse), puis il faut 
+    l'appeler (pour que le programme l'exécute dans un cas particulier).</p>
+
+<p>Pour reprendre notre analogie avec les mathématiques, on définit d'abord une fonction par f(x) = 2 x + 1, 
+    puis on l'appelle en calculant par exemple la valeur de f(3).</p>
+
+<p>Pour définir une fonction en Python, rien de plus simple, il faut :
+<ul>
+    <li><p>utiliser le mot-clé <code>def</code></p></li>
+    <li><p>choisir les paramètres de la fonction, qui vont faire varier le résultat, et les placer entre parenthèses</p></li>
+    <li><p>penser à indenter les instructions afin de créer un bloc, qui définit pour Python le début et la fin de la fonction</p></li>
+    <li><p>si une valeur est renvoyée à la fin, ne pas oublier le mot clé <code>return</code></p></li>
+</ul></p>
+
+<p>Par exemple la fonction <code>saluer()</code> qui dit bonjour à la personne dont le nom est entré en paramètre se définit de la façon suivante en Python :</p>
+<pre><code class="language-python">def saluer(nom):
+    return "bonjour " + nom</code></pre>
+
+<p>Voici un autre exemple, une fonction qui retire un point au joueur et qu'on appelera uniquement lorsque le joueur perd :</p>
+
+<pre><code class="language-python">def perdreUnPoint(nbrePoints):
+    nbrePoints = nbrePoints - 1
+    print("Vous venez de perdre un point")
+    return nbrePoints</code></pre>
+
+<p>On peut bien évidemment utiliser une fonction Python pour définir une fonction mathématique, comme dans 
+    l'exemple ci-dessous (il faut alors importer la bibliothèque math qui met à disposition certaines 
+    fonctions mathématiques) :</p>
+
+<pre><code class="language-python">from math import *
+
+def f(x):  # on definit la fonction racine carre de x + 1
+    return sqrt(x + 1)</code></pre>
+
+<p>Notons qu'il est tout à fait possible de définir une fonction sans argument, ou une fonction qui ne renvoie pas 
+    de valeur mais se contente d'exécuter une tâche. Dans ce cas, il faut quand même utiliser les () pour que Python 
+    ne confonde pas le nom de la fonction avec le nom d'une variable. On parle alors de procédure. En voici un exemple </p>
+
+<pre><code class="language-python">def annoncer():
+    print("Cet été la météo sera clémente")
+    print("Pensez à acheter de la crème solaire")</code></pre>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire une fonction mathématique f définie par
+    f(x) = 5 x - 2. Calculer ensuite puis afficher la valeur de f(3)</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution3" style="display:none;">
+        <p>Solution : </p>
+    <pre><code class="language-python">def f(x):
+    return 5 * x - 2
+
+print(f(3))</code></pre>
+    </div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
+</div>
+
+<script>
+var questionsData1 = 
+    {
+        question: "Pour définir une fonction, il faut utiliser le mot-clé ...",
+        options:["function", "f", "def"],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(1, questionsData1);
+</script>
+
+{% endblock cours %}

@@ -1,0 +1,240 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">TRAVAIL PRATIQUE</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<a href="{% static 'home/documents/memoVariables.pdf' %}" download class="bi bi-download"> Fiche mémo - variables.pdf</a>
+
+<p class="my-5">Pour découvrir les connaissances de base sur les variables en Python, écoute la vidéo ci-dessous
+    puis complète et exécute les codes des différentes consoles.</p>
+    
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/p2M999meN2Y"
+            title="Les variables en Python - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Les variables</figcaption>
+</div>
+
+<h3>A toi de jouer</h3>
+<div class="exerciceApplication">
+
+<h4 class="font-weight-bold">Qu'est-ce qu'une variable ?</h4>
+
+<p>Une variable est un objet informatique composé d'un nom, d'une valeur, d'une adresse et d'un type.</p>
+<ul>
+    <li><p>le nom doit être explicite, ne peut pas être composé d'une instruction Python, ne peut pas commencer par un chiffre</p></li>
+    <li><p>la valeur d'une variable est amenée à changer au cours de l'exécution d'un programme</p></li>
+    <li><p>l'adresse de la variable permet de la retrouver en mémoire</p></li>
+    <li><p>le type correspond à la famille de cette variable et permet de lui fournir une structure qui répond à ses besoins</p></li>
+</ul>
+
+
+<h4>Comment définir une variable ?</h4>
+
+<p>On définit la valeur d'une variable avec un signe <code>=</code> comme dans l'exemple ci-dessous :</p>
+<pre><code class="language-python">age = "16"</code></pre>
+<p>On pourra par la suite donner de nouvelles valeurs à la variable <code>age</code> autant de fois que nécessaire.</p>
+
+
+<h4>Comment utiliser une variable ?</h4>
+
+<p>On utilise une variable en l'appelant par son nom et le programme remplacera ce nom par sa valeur, 
+    comme dans l'exemple ci-dessous où <code>identite</code> prend la valeur <code>Antoine - Robert</code> :</p>
+<pre><code class="language-python">prenom = "Antoine"
+nom = "Robert"
+identite = nom + " - " + prenom</code></pre>
+
+
+<h4>Comment afficher une variable ?</h4>
+
+<p>On utilise l'instruction print() et le texte à afficher. Par exemple, exécute le code 
+    suivant qui affiche <code>Diane code en Python</code> :</p>
+    
+<pre><code class="language-python">print("Diane code en Python")</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">Trouve comment afficher les valeurs des variables 
+<code>age</code> et <code>prenom</code> en complétant le code ci-dessous :</p>
+    
+<pre><code class="language-python">age = "12"
+prenom = "Diane"
+# ecris ton code ici</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">Le code ci-dessous affiche maintenant <code>Hervé a 17 ans</code> :</p>
+    <pre><code class="language-python">prenom = "Hervé"
+age = "17"
+print(prenom + " a " + age + " ans")</code></pre>
+
+    <p>Ecris un code dans la cellule ci-dessous, qui définit 
+    une variable <code>date</code> en lui donnant la valeur 2023 et une variable <code>pseudo</code> en lui 
+donnant la valeur <code>sharkrunner</code>. Construis ensuite un mot de passe en écrivant bout à 
+    bout les deux variables précédentes.</p>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">On va essayer de comprendre l'utilité des guillemets lorsqu'on définit une variable, 
+    sachant qu'il n'est pas toujours nécessaire de les utiliser.</p>
+
+<p>Exécute le code ci-dessous et trouve dans quel cas on 
+doit mettre les guillemets "</p>
+
+<pre><code class="language-python">age = 6
+nouvel_age = age + 1
+print(nouvel_age)
+age = "6"
+expression = age + " ans"
+print(expression)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">Cherchons maintenant les principaux types de variables en Python.</p>
+
+<p>Exécute la cellule ci-dessous et trouve les 4 principaux 
+types simples de variables :</p>
+
+<pre><code class="language-python">print(type("bonjour"))
+print(type(25))
+print(type(17.5))
+print(type(True))</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+
+<h4>Les principales opérations</h4>
+
+<p>Exécute le code ci-dessous et explique ce que calcule 
+chacune des lignes :</p>
+
+<pre><code class="language-python">print(7 + 2)
+print(4 - 3)
+print(5 * 3)
+print(3 ** 2)
+print(5 / 2)
+print(5 // 2)
+print(5 % 2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">On retiendra donc les opérations suivantes :</p>
+<ul>
+    <li><p>+ pour l'addition</p></li>
+    <li><p>- pour la soustraction</p></li>
+    <li><p>* pour la multiplication</p></li>
+    <li><p>** pour la puissance</p></li>
+    <li><p>/ pour la division</p></li>
+    <li><p>// pour le quotient de division</p></li>
+    <li><p>% pour le reste de division</p></li>
+</ul>
+
+
+<h4>Comment saisir la valeur d'une variable au clavier</h4>
+
+<p>On utilise l'instruction <code>input()</code> et on stocke la valeur saisie dans une variable, comme dans 
+    l'exemple ci-dessous qui affiche <i>Quel est ton nom ?</i> et attend une réponse avant de la stocker 
+    dans la variable <code>nom</code> :</p>
+<pre><code class="language-python">nom = input("Quel est ton nom ? ")</code></pre>
+
+<p>Ecris un code dans la cellule ci-dessous qui demande 
+    son age à l'utilisateur et affiche par exemple <i>Tu as 20 ans</i> lorsque l'âge saisi est 20.</p>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<p class="mt-5">Appliquons maintenant nos connaissance sur un cas concret :</p>
+    <p>Complète le code ci-dessous utilisé dans un jeu vidéo pour 
+    afficher le score d'un joueur avec son pseudo qui a été saisi au clavier par le joueur. Le 
+    code doit par exemple afficher une phrase du type <i>Bravo Skyliner ton score est 340</i> 
+    où <i>Skyliner</i> a été saisi au clavier par le joueur.</p>
+
+<pre><code class="language-python">score = 340
+# ecris ton code ici</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+  
+<p class="mt-5">Il est également possible d'effectuer le travail pratique ci-dessus en téléchargeant puis en complétant 
+    le Jupyter Notebook suivant. Il faut pour cela avoir installé le plug-in Jupyter sur Visual Studio Code 
+    ou avoir installé directement le projet <a href="https://jupyter.org/install">Jupyter Notebook</a>.</p>
+ 
+<a href="{% static 'home/documents/variables.ipynb' %}" download class="bi bi-download"> Notebook - variables.ipynb</a><br/>
+
+
+<!-- L'ESSENTIEL -->
+<h3>Résumé</h3>
+
+<div class="mb-3 mt-5 resume">
+
+<h4 class="font-weight-bold">Qu'est-ce qu'une variable ?</h4>
+
+<p>Une variable est un objet informatique composé d'un nom, d'une valeur, d'une adresse et d'un type.</p>
+<ul>
+    <li>le nom doit être explicite, ne peut pas être composé d'une instruction Python, ne peut pas commencer par un chiffre</li>
+    <li>la valeur d'une variable est amenée à changer au cours de l'exécution d'un programme</li>
+    <li>l'adresse de la variable permet de la retrouver en mémoire</li>
+    <li>le type correspond à la famille de cette variable et permet de lui fournir une structure qui répond à ses besoins</li>
+</ul>
+
+
+<h4>Comment définir une variable ?</h4>
+
+<p>On définit la valeur d'une variable avec un signe = comme dans l'exemple ci-dessous :</p>
+<pre><code class="language-python">age = 16</code></pre>
+
+
+<h4>Comment utiliser une variable ?</h4>
+
+<p>On utilise une variable en l'appelant par son nom et le programme remplacera ce nom par sa valeur, 
+    comme dans l'exemple ci-dessous où <code>identite</code> prend la valeur <code>Antoine - Robert</code> :</p>
+<pre><code class="language-python">prenom = "Antoine"
+nom = "Robert"
+identite = nom + " - " + prenom</code></pre>
+
+
+<h4>Comment afficher une variable ?</h4>
+
+<p>On utilise l'instruction print() et le nom de la variable. Par exemple, le code suivant affiche 
+    <i>Hervé a 17 ans</i> :</p>
+    <pre><code class="language-python">prenom = "Hervé"
+age = "17"
+print(prenom + " a " + age + " ans")</code></pre>
+
+
+<h4>Les principales opérations</h4>
+
+<ul>
+    <li>+ pour l'addition</li>
+    <li>- pour la soustraction</li>
+    <li>* pour la multiplication</li>
+    <li>** pour la puissance</li>
+    <li>/ pour la division</li>
+    <li>// pour le quotient de division</li>
+    <li>% pour le reste de division</li>
+</ul>
+
+
+<h4>Les principaux types de variables</h4>
+
+<ul>
+    <li><code>str</code> pour du texte (chaînes de caractères)</li>
+    <li><code>int</code> pour des nombres entiers</li>
+    <li><code>float</code> pour des nombres réels</li>
+    <li><code>bool</code> pour des booléens (True, False)</li>
+</ul>
+
+
+<h4>Comment saisir la valeur d'une variable au clavier</h4>
+
+<p>On utilise l'instruction <code>input()</code> et on stocke la valeur saisie dans une variable, comme dans 
+    l'exemple ci-dessous qui affiche <i>Quel est ton nom ?</i> et attend une réponse avant de la stocker 
+    dans la variable <code>nom</code> :</p>
+<pre><code class="language-python">nom = input("Quel est ton nom ? ")</code></pre>
+
+<!-- fin exerciceApplication -->
+</div>
+
+{% endblock cours %}

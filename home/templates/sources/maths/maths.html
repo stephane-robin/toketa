@@ -1,123 +1,123 @@
-{% extends '../../modelePresentation.html' %}
+{% extends '../../base.html' %}
 {% load static %}
 
-{% block titre %} Calcul numérique {% endblock %}
+{% block principal %}
       
+<section class="mt-5 pt-5 px-5 bg-white">
+    <div class="container">
+        <h1 id="hautPage">Calculs</h1>
+    </div>
+</section>
+
+
 <!-- STATISTIQUES PROBABILITES -->
 
-{% block img1 %}                     
-<img src="{% static 'home/images/general/index1.jpg' %}" class="card-img-top" alt="statistiques" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img1 %}
-
-{% block titre_partie1 %} Statistiques descriptives {% endblock titre_partie1 %}
-
-{% block partie1 %} 
-Nous chercherons à comprendre l'utilité des indicateurs statistiques et choisirons entre médiane, moyenne, 
-quartiles, étendue, écart-type, écart interquartile pour mieux décrire nos data. Nous verrons comment Python
-peut s'avérer utile en statistiques.
-{% endblock partie1 %}
-
-{% block intro1 %}
-Les statistiques étudient des phénomènes en procédant à la collecte de données, à leur analyse, leur traitement et leur interprétation.
-Extrêmement importants dans le monde du travail, les statistiques se combinent aujourd'hui avec le Big Data et 
-sont un outil précieux dans le trousseau du data scientist.
-{% endblock intro1 %}
-
-{% block commencer1 %}
-<a href="{% url 'afficherPage' niveau='maths' chapitre='statistiques' id=0 %}"><button class="bouton">Commencer...</button></a> 
-{% endblock commencer1 %}
-
-{% block activites1 %}
-    {% for elt in statistiques %}
-    <a href="{% url 'afficherPage' niveau='maths' chapitre='statistiques' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
-    {% endfor %}
-{% endblock activites1 %}
-
-{% block exercices1 %}
-<a href="{% static 'home/documents/quartiles.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Calcul de quartiles</button></a>
-{% endblock exercices1 %}
-
-{% block evaluations1 %} {% endblock evaluations1 %}
+<section class="px-5 pt-2 pb-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Statistiques descriptives </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index1.jpg' %}">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>Les statistiques étudient des phénomènes en procédant à la collecte de données, à leur analyse, leur traitement et leur interprétation.
+                    Extrêmement importants dans le monde du travail, les statistiques se combinent aujourd'hui avec le Big Data et 
+                    sont un outil précieux dans le trousseau du data scientist.</p>
+                <p>Nous chercherons à comprendre l'utilité des indicateurs statistiques et choisirons entre médiane, moyenne, 
+                    quartiles, étendue, écart-type, écart interquartile pour mieux décrire nos data. Nous verrons comment Python
+                    peut s'avérer utile en statistiques.</p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12"> 
+                <p>{% for elt in statistiques %}
+                    &#128215; <a href="{% url 'afficherPage' cours='maths' niveau='statistiques' id_chapitre=forloop.counter0 id_section=0 %}"> {{ elt }}</a><br/>
+                    {% endfor %}</p>           
+                <a href="{% static 'home/documents/ficheMemoPython.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Python </button></a><br/>
+                <a href="{% static 'home/documents/SNT_exercice.pdf' %}" download><button class="bouton2 bi bi-download"> Exercices SNT 2ème </button></a><br/>
+                <a href="{% static 'home/documents/evaluationPython.pdf' %}" download><button class="bouton2 bi bi-download"> Evaluation SNT 2ème </button></a><br/>
+                <a href="{% static 'home/documents/quartiles.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Calcul de quartiles</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- CALCUL -->
 
-{% block img2 %}
-<img src="{% static 'home/images/general/index4.jpg' %}" class="card-img-top" alt="calculs de base" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img2 %}
-
-{% block titre_partie2 %} Calculs de base {% endblock titre_partie2 %}
-
-{% block partie2 %} 
-Nous verrons les bases du calcul mathématiques telles qu'elles sont enseignées au collège et lycée. 
-Nous créerons de petits scripts Python pour nous aider dans nos calculs.
-{% endblock partie2 %}
-
-{% block intro2 %}
-Il est essentiel de savoir effectuer des calculs de bases sans se tromper, de manipuler des fractions, des puissances,
-des racines carrées, et des valeurs absolues avant d'implémenter un programme. Le calcul numérique est souvent lié au calcul effectué par un programme suite à la modélisation 
-d'un phénomène concret. Python est particulièrement utilisé dans les environnements scientifiques.
-{% endblock intro2 %}
-
-{% block commencer2 %}
-<a href="{% url 'afficherPage' niveau='maths' chapitre='calcul' id=0 %}"><button class="bouton">Commencer...</button></a> 
-{% endblock commencer2 %}
-
-{% block activites2 %}
-    {% for elt in calcul %}
-    <a href="{% url 'afficherPage' niveau='maths' chapitre='calcul' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
-    {% endfor %}
-{% endblock activites2 %}
-
-{% block exercices2 %}
-<a href="{% static 'home/documents/fiche_memo_fractions1.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Fractions</button></a>
-<a href="{% static 'home/documents/fiche_memo_puissances.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Puissances</button></a>
-<a href="{% static 'home/documents/valeurAbsolue.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Valeur absolue</button></a>
-{% endblock exercices2 %}
-
-{% block evaluations2 %} {% endblock evaluations2 %}
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Calculs de base </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index4.jpg' %}">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>Il est essentiel de savoir effectuer des calculs de bases sans se tromper, de manipuler des fractions, des puissances,
+                    des racines carrées, et des valeurs absolues avant d'implémenter un programme. Le calcul numérique est souvent lié au calcul effectué par un programme suite à la modélisation 
+                    d'un phénomène concret. Python est particulièrement utilisé dans les environnements scientifiques.</p>
+                <p>Nous verrons les bases du calcul mathématiques telles qu'elles sont enseignées au collège et lycée. 
+                    Nous créerons de petits scripts Python pour nous aider dans nos calculs.</p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12">
+                <p>{% for elt in calcul %}
+                &#128215; <a href="{% url 'afficherPage' cours='maths' niveau='calcul' id_chapitre=forloop.counter0 id_section=0 %}">{{ elt }}</a><br/>
+                    {% endfor %}</p>
+                <a href="{% static 'home/documents/01Prem.pdf' %}" download><button  class="bouton2 bi bi-download"> Ep. pratique Bac 1- NSI </button></a><br/>
+                <a href="{% static 'home/documents/03Prem.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 2 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/04Prem.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 3 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/18Prem.pdf' %}" download><button class="bouton2 bi bi-download"> Ep pratique Bac 4 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/DST_nsi_1ere.pdf' %}" download><button class="bouton2 bi bi-download"> Evaluation 1- NSI 1ère</button></a><br/>
+                <a href="{% static 'home/documents/EC_nsi_1ere.pdf' %}" download><button class="bouton2 bi bi-download"> Evaluation 2- NSI 1ère</button></a><br/>
+                <a href="{% static 'home/documents/fiche_memo_fractions1.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Fractions</button></a><br/>
+                <a href="{% static 'home/documents/fiche_memo_puissances.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Puissances</button></a><br/>
+                <a href="{% static 'home/documents/valeurAbsolue.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Valeur absolue</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- CALCUL LITTERAL -->
 
-{% block img3 %} 
-<img src="{% static 'home/images/general/index5.jpg' %}" class="card-img-top" alt="calcul littéral" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img3 %}
-
-{% block titre_partie3 %} Calcul littéral {% endblock titre_partie3 %}
-
-{% block partie3 %} 
-Nous verrons comment modifier des expressions mathématiques pour effectuer des calculs plus facilement. 
-Nous apprendrons à utiliser des bibliothèques spécifiques pour tracer des courbes ou résoudre des équations.
-{% endblock partie3 %}
-
-{% block intro3 %}
-Le calcul littéral utilise à la fois des nombres et des lettres qui représentent des inconnues. Il est important 
-de savoir factoriser, développer, utiliser des identités remarquables, résoudre des équations de degré 1 ou 2.
-{% endblock intro3 %}
-
-{% block commencer3 %}
-<a href="{% url 'afficherPage' niveau='maths' chapitre='calcul_litteral' id=0 %}"><button class="bouton">Commencer...</button></a> 
-{% endblock commencer3 %}
-
-{% block activites3 %}
-    {% for elt in calcul_litteral %}
-    <a href="{% url 'afficherPage' niveau='maths' chapitre='calcul_litteral' id=forloop.counter0 %}">&#128215; {{ elt }}</a>
-    {% endfor %}
-{% endblock activites3 %}
-
-{% block exercices3 %}
-<a href="{% static 'home/documents/fiche_memo_equations_degre2.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Calcul littéral</button></a>
-{% endblock exercices3 %}
-
-{% block evaluations3 %} {% endblock evaluations3 %}
-
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Calcul littéral </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index5.jpg' %}">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>Le calcul littéral utilise à la fois des nombres et des lettres qui représentent des inconnues. Il est important 
+                    de savoir factoriser, développer, utiliser des identités remarquables, résoudre des équations de degré 1 ou 2.</p>
+                <p>Nous verrons comment modifier des expressions mathématiques pour effectuer des calculs plus facilement. 
+                    Nous apprendrons à utiliser des bibliothèques spécifiques pour tracer des courbes ou résoudre des équations.</p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12">
+                <p>{% for elt in calcul_litteral %}
+                &#128215; <a href="{% url 'afficherPage' cours='maths' niveau='calcul_litteral' id_chapitre=forloop.counter0 id_section=0 %}">{{ elt }}</a><br/>
+                    {% endfor %}</p>
+                <a href="{% static 'home/documents/02Term.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 5 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/05Term.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 6 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/07Term.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 7 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/16Term.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 8 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/37Term.pdf' %}" download><button class="bouton2 bi bi-download"> Ep. pratique Bac 9 - NSI </button></a><br/>
+                <a href="{% static 'home/documents/fiche_memo_equations_degre2.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Calcul littéral</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- le 1er div permet de scinder la ball du reste de la page
 et donc evite que toute la page bouge -->
 <div class="container_ball">
     <div class="ball">
-        <p class="text_ball">ToKeTa</p>
+        <p class="text_ball">ToKeta</p>
     </div>
 </div>
 
+{% endblock principal %}

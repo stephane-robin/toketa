@@ -1,0 +1,401 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<p>On utilise une variable en l'appelant par son nom et le programme remplacera ce nom par sa valeur, 
+    comme dans l'exemple ci-dessous où <code>identite</code> prend la valeur <code>Antoine - Robert</code> :</p>
+<pre><code class="language-python">prenom = "Antoine"
+nom = "Robert"
+identite = nom + " - " + prenom</code></pre>
+
+
+<h3>Effectuer des calculs avec des variables</h3>
+
+<p>On peut calculer la valeur d'une variable en utilisant celle d'autres variables. Par exemple si on veut trouver la hauteur
+d'un muret composé de pots surmontés d'arbustes, on peut effectuer le calcul suivant</p>
+
+<pre><code class="language-python">hauteur_pots = 0.6
+hauteur_arbustes = 1.2
+hauteur_muret = hauteur_pots + hauteur_arbustes</code></pre>
+
+<p>L'avantage d'utiliser des variables plutôt que des valeurs directement est le même que celui du 
+calcul littéral en mathématiques. Cela rend le calcul plus facile lorsqu'on doit changer
+les valeurs initiales.</p>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer : </strong>on écrit le code suivant qui permet de trouver le prix TTC 
+    Toutes Taxes Comprises d'un article connaissant son prix HT Hors Taxe auquel on applique 
+    une TVA de 20% :</p>
+<pre><code class="language-python">prixHT = 85
+prixTTC = 1.2 * prixHT</code></pre>
+<p>Quelle est la valeur de la variable <code>prixTTC</code> lors de l'exécution du code ci-dessus ? (travail sans ordinateur)</p>
+</div>
+
+
+<h4>Les principales opérations</h4>
+
+<p>Il est possible de faire des calculs à l'aide d'opérations qui servent à modifier la valeur 
+    des variables. Les virgules servent de séparateurs en Python et il faut 
+    utiliser un point pour séparer la valeur entière de la valeur décimale dans un nombre réel, exactement comme dans la 
+    langue anglaise. Par exemple, pour affecter la valeur 17,2 à la variable <strong>x</strong>, on écrit</p>
+    
+    <pre><code class="language-python">x = 17.2</code></pre>
+
+    <p>Pour afficher la valeur de x, il suffit maintenant d'utiliser l'instruction :</p>
+    
+    <pre><code class="language-python">print(x)</code></pre>
+    
+    <p>qui affichera <strong>17.2</strong>.</p>
+
+<p>Pour les nombres entiers (<code>int</code>) et les 
+    nombres réels (<code>float</code>), on peut utiliser les opérations suivantes :</p>
+
+    <h4>+ pour l'addition</h4>
+    <p>L'instruction ci-dessous donne la valeur 8 à la variable x.</p>
+    <pre><code class="language-python">x = 5 + 3</code></pre>
+
+    <h4>- pour la soustraction</h4>
+    <p>L'instruction ci-dessous donne la valeur 3 à la variable x.</p>
+<pre><code class="language-python">x = 5 - 2</code></pre>
+
+    <h4>* pour la multiplication</h4>
+    <p>L'instruction ci-dessous donne la valeur 35 à la variable x.</p>
+        <pre><code class="language-python">x = 5 * 7</code></pre>
+
+    <h4>/ pour la division</h4>
+    <p>L'instruction ci-dessous donne la valeur 1.4 à la variable x.</p>
+<pre><code class="language-python">x = 7 / 5</code></pre>
+<p>Le résultat obtenu lors d'une division est un nombre décimal.</p>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer : </strong>écris un script qui calcule la vitesse moyenne d'un cycliste, connaissant la distance de montée de 16 km,
+    la distance de descente de 51 km, le temps de montée de 1,2 heures et le temps de descente de 1,5 heures.<br/> <em>Indication : </em>
+    la vitesse moyenne se calcule en faisant la moyenne de la vitesse de montée et de la vitesse de descente. Une vitesse est le quotient 
+d'une distance par un temps, d'où l'unité km/h.</p>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<div class="mt-5">
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+</div>
+
+<div id="solution5" style="display:none;">
+    
+<p>On peut tout à fait utiliser Python comme une simple calculatrice. Dans ce cas, il suffit d'écrire 
+les lignes suivantes pour notre programme :</p>
+<pre><code class="language-python">vitesse_moyenne = (16 + 51) / (1.2 + 1.5)
+print(vitesse_moyenne)</code></pre>
+
+<p>Toutefois, il est souvent astucieux de créer plusieurs variables et de détailler 
+nos calculs afin de pouvoir réutiliser des portions de code ou les variables dans 
+d'autres parties du programme. On pourrait donc écrire :</p>
+
+<pre><code class="language-python">distance_montee = 16 # en km
+temps_montee = 1.2 # en heures
+distance_descente = 51
+temps_descente = 1.5
+
+vitesse_moyenne = (distance_montee + distance_descente) / (temps_montee + temps_descente)
+print(vitesse_moyenne)</code></pre>
+</div>
+</div>
+
+
+    <h4>** pour la puissance</h4>
+    <p>L'instruction ci-dessous donne la valeur 49 à la variable x.</p>
+<pre><code class="language-python">x = 7 ** 2</code></pre>
+
+    <h4>// pour le quotient d'une division</h4>
+
+<p>Il est également possible d'effectuer une division euclidienne. Par exemple, on sait que 
+    7 = 1 &#x2715; 5 + 2, donc le quotient de cette opération vaut 1 et le reste vaut 2.</p>
+    <p>L'instruction ci-dessous donne la valeur 1 à la variable x.</p>
+    <pre><code class="language-python">x = 7 // 5</code></pre>
+        <p>Attention la division décimale de 7 par 5 donne 1.4, mais la division 
+        euclidienne de 7 par 5 donne 1 fois 5 plus 2. Ainsi le quotient vaut 1 
+        et le reste de division vaut 2, ce qui explique le résultat obtenu.</p>
+
+    <h4>% pour le reste de division</h4>
+    <p>L'instruction ci-dessous donne la valeur 2 à la variable x. On utilise encore une 
+        fois la division euclidienne. Celle-ci permet de mettre en valeur l'opérateur modulo % 
+        pour savoir si un nombre est multiple d'un autre, ou si une séquence de caractères 
+        peut être regroupée en blocs de 8 éléments.</p>
+        <pre><code class="language-python">x = 7 % 5</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>pour bien comprendre ce que calcule l'opérateur %, 
+    exécute le code suivant :</p>
+    <pre><code class="language-python">print(13 % 3)
+print(15 % 4)</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<h4>Les règles de priorité</h4>
+<p>Les parenthèses et les règles de priorité des opérations jouent le même rôle 
+    en Python qu'en mathématiques. Les opérations suivantes fournissent 
+donc des résultats différents : (x + y &#x2715; z) et (x + y) &#x2715; z.</p>
+
+<div class="exerciceApplication">
+<p>On pourra s'en convaincre en exécutant le code suivant :</p>
+
+<pre><code class="language-python">x = 3
+y = 8
+z = 9
+
+print(x + y * z) # affiche 75
+print((x + y) * z) # affiche 99</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p>Il est également possible d'utiliser Python comme une puissante calculatrice.</p>
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>effectue le calcul suivant sans calculatrice :  \( (3 \times 10^{-5} + \frac{17}{2}) \div (\sqrt{5} -1) \).</p> 
+
+<p><i>Indication :</i> pour calculer \(\sqrt{5}\), il faut utiliser les instructions <code>import math</code>, 
+    puis <code>math.sqrt(5)</code></p>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+<div class="mt-5">
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution3');"> Voir la solution </button></p>
+</div>
+
+<div id="solution3" style="display:none;">
+    <pre><code class="language-python">import math 
+print((3 * 10 ** (-5) + 17 / 2) / (math.sqrt(5) -1))</code></pre>
+</div>
+</div>
+
+
+<h4>Bien comprendre les changements successifs de valeurs</h4>
+
+<p>Voici un exemple simple d'opérations :</p>
+
+<pre><code class="language-python">a = 5
+b = 8
+a = b + 3
+b = 2</code></pre>
+
+<p>On peut récapituler les valeurs successives prises par a et b dans le tableau suivant :</p>
+
+<table>
+    <tr><th>instruction</th><th>valeur de a</th><th>valeur de b</th></tr>
+    <tr><td>a = 5</td><td>5</td><td></td></tr>
+    <tr><td>b = 8</td><td>5</td><td>8</td></tr>
+    <tr><td>a = b + 8</td><td>11</td><td>8</td></tr>
+    <tr><td>b = 2</td><td>11</td><td>2</td></tr>
+</table>
+
+<p class="mt-5">On remarque que lorsqu'on change la valeur de a avec l'instruction <code>a = b + 3</code>, b n'aucune raison 
+de changer de valeur. De même lorsqu'on change la valeur de b avec l'instruction <code>b = 2</code>, a n'a 
+aucune raison de changer de valeur. Il n'y a pas d'effect rétroactif. Les lignes sont interprétées les unes 
+à la suite des autres.</p>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+		<p>Une variable ne conserve en mémoire que la dernière valeur enregistrée. Les valeurs précédentes sont perdues.</p>
+	</div>
+</div>
+
+<p>Voici un autre exemple d'opérations :</p>
+
+<pre><code class="language-python">x = 3
+x = 2 * x - 2</code></pre>
+
+<p>Un mathématicien aurait tendance à vouloir résoudre l'équation x = 2x - 2 et trouverait x = 2, ce qui ne correspond pas 
+    à la valeur de x donnée au départ. Attention, il ne s'agit pas d'une égalité et il n'est jamais demandé de la résoudre 
+    en tant que telle. Il faut juste affecter de nouvelles valeurs à la variable x. Ainsi dans ce cas :</p>
+
+<ul>
+    <li><p>x prend la valeur 3</p></li>
+    <li><p>x prend la valeur 2 fois x moins 2, c'est à dire 2 fois 3 moins 2 donc 4</p></li>
+</ul>
+
+<div class="row">
+	<div class="col-12 col-md-1">
+		<img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+	</div>
+	<div class="fieldsetDefinition col-12 col-md-11">
+		<h4>REMARQUABLE ...</h4>
+        <p>Le signe égal = est utilisé pour affecter une valeur à une variable. Il n'exprime pas une équation 
+            qu'il faudrait résoudre.</p>
+    </div>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer :</strong> quel est l'affichage du code suivant ? (travail sans ordinateur)</p>
+    <pre><code class="language-python">a = -3
+b = a + 4
+c = a
+a = b
+print(a)</code></pre>
+</div>
+        
+<p>Certes, on peut additionner et multiplier des nombres, mais en Python on peut également additionner et 
+    multiplier du texte.</p>
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer : </strong>essaie par exemple le code suivant pour comprendre ce qu'il fait :</p>
+
+<pre><code class="language-python">instrument = "guitare"
+orchestre = "Groove"
+groupe = instrument + orchestre
+print(groupe)
+repetition = 3 * instrument
+print(repetition)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p class="mt-5">Dans le cas d'un texte, l'addition s'appelle concaténation et la multiplication s'appelle duplication.</p>
+
+
+<div class="exerciceApplication">
+<p><strong>A toi de jouer :</strong> stocke ton prénom dans une variable appelée <strong>prenom</strong>, puis affiche 3 fois ton prénom sur une
+    même ligne.</p>
+        
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div class="mt-5">
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution9');"> Voir la solution </button></p>
+</div>
+
+<div id="solution9" style="display:none;">
+         
+<pre><code class="language-python">prenom = "Jade"
+print(3 * prenom)</code></pre>
+
+    <p>A noter que dans ce cas, on n'a pas géré l'espace se trouvant entre les prénoms et on obtient l'affichage suivant :</p>
+    <pre><code class="language-python">JadeJadeJade</code></pre>     
+</div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='6' %}
+</div>
+<script>
+var questionsData6 = 
+    {
+        question: "<p>Quelle est la valeur de la variable c lors de l'exécution du code suivant</p> <pre><code>a = 12<br/>b = a + 7<br/>c = a + b</code></pre>",
+        options:["19", "7", "31"],
+        correctIndex: 2,
+        commentaire: "import math oblige à écrire math à chaque appel de la fonction gcd."
+    };
+questionnaireUnique(6, questionsData6);
+</script>
+
+<div class="mt-5 exerciceType">
+    <h4>En résumé</h4>
+    
+    <p>Les principales opérations sont les suivantes :</p>
+    <ul>
+        <li><p>+ pour l'addition</p></li>
+        <li><p>- pour la soustraction</p></li>
+        <li><p>* pour la multiplication</p></li>
+        <li><p>** pour la puissance</p></li>
+        <li><p>/ pour la division</p></li>
+        <li><p>// pour le quotient de division</p></li>
+        <li><p>% pour le reste de division</p></li>
+    </ul>
+</div>
+
+
+
+<h3>Comment inverser les valeurs de deux variables</h3>
+
+<p>Imaginons que la variable A prenne la valeur 3 et la variable B la valeur 7. Comment faire pour 
+    que le programme inverse ces deux valeurs de manière automatisée, sans que le développeur tape manuellement 
+    <code>B = 3</code> puis <code>A = 7</code> ?</p>
+
+<p>On peut imaginer les instructions successives suivantes :</p>
+
+<table>
+    <tr><td><pre><code class="language-python">B = A</code></pre></td><td>la variable B prend la valeur de A c'est à dire 3</td></tr>
+    <tr><td><pre><code class="language-python">A = B</code></pre></td><td>la variable A prend la valeur de B c'est à dire 3</td></tr>
+</table>
+
+<p>On constate qu'avec cette stratégie, les deux variables prennent la valeur 3 et qu'on a perdu en mémoire la valeur 7.</p>
+
+<p>Il s'agit en fait d'un problème simple mais classique en informatique. Pour comprendre la stratégie à aborder, 
+    il suffit d'imaginer deux fichiers Word appelés fichier1.docx et fichier2.docx. Si on veut changer
+    le nom de fichier1.docx en fichier2.docx, le système d'exploitation de la machine refuse cette modification car 
+    on ne peut pas avoir deux fichiers du même nom dans un même dossier.</p>
+
+<p>Si on bouge fichier2.docx dans un autre dossier, puis qu'on renomme fichier1.docx en fichier2.docx, cela va marcher mais on ne 
+    pourra plus faire revenir fichier2.docx dans son dossier initial, puisqu'on aurait dans ce cas deux fichiers 
+    du même nom.</p> 
+    
+<p>Il faut en fait utiliser un nom de fichier temporaire pour fichier1.docx, par exemple l'appeler temp.docx. 
+    On peut ensuite renommer fichier2.docx en l'appelant fichier1.docx. Finalement, il faut renommer temp.docx 
+    en fichier2.docx.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>si le principe vous échappe encore, il suffit de créer deux fichiers 
+        vides qu'on pourra appeler fichier1.docx et fichier2.docx, puis de suivre l'exemple ci-dessus 
+        en manipulant les fichiers proposés.</p>
+
+<p>Tous ces fichiers peuvent également contenir des instructions, mais le but est d'apprendre à interchanger les noms 
+    des fichiers, pas de modifier ce qu'ils contiennent.</p>
+</div>
+
+<p>Le principe est le même pour les noms de variables. On ne peut pas avoir deux noms de variables identiques 
+    dans un même programme. Pour inverser les noms des variables, il faut donc recourir à une variable temporaire, 
+    qui permettra de ne pas perdre la valeur d'une des variables.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>écrire un script qui permet d'inverser les valeurs de deux variables x et y.</p>
+    <pre><code class="language-python">A = 3
+B = 7
+# completer la suite ...</code></pre>
+  
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack mb-5" target="_blank"> Exécuter Python à la console</a>
+
+<div class="mt-5">
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+</div>
+
+<div id="solution4" style="display:none;">
+    <pre><code class="language-python">A = 3
+B = 7
+print("A = ", A)
+print("B = ", B)
+
+temp = A # on conserve la valeur initiale de A en mémoire
+A = B # A prend la valeur de B
+B = temp # B prend la valeur initiale de A
+
+print("A = ", A)
+print("B = ", A)</code></pre>
+    <p>On utilise ici une variable temporaire temp afin de conserver en mémoire la valeur initiale de A.
+     A noter qu'en Python, il existe une méthode plus simple :</p>
+    <pre><code class="language-python">A = 3
+B = 7
+
+A, B = B, A
+
+print("A = ", A)
+print("B = ", B)</code></pre>
+</div>
+</div>
+
+<p><i>Remarque : </i>en Python, on peut définir plusieurs variables sur une même ligne, en les séparant par une virgule. Par exemple :</p>
+<pre><code class="language-python">nom, prenom = "Gulliver", "Cedric"</code></pre>
+
+<!-- script for latex mathjax -->
+{% include '../../../mathjax.html' %} 
+
+{% endblock cours %}

@@ -1,0 +1,200 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<!-- LES BOOLEENS -->
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice")
+else:
+    print("Désolé, accès refusé.")</code></pre>
+
+<p>Les conditions sont intimement liées aux booléens (<code>True</code> ou <code>False</code>).</p>
+
+<p>En effet, il faut comprendre que dans l'instruction <code>if nom == "Alice":</code>, le mot-clé <code>if</code>
+permet d'orienter le programme dans une certaine direction lorsque la condition <code>nom == "Alice"</code> est vraie, c'est 
+à dire vaut <code>True</code>. Dans ce cas, le programme poursuit son exécution avec le bloc qui suit. Si le nom n'est pas Alice, 
+alors la condition <code>nom == "Alice"</code> est fausse, donc équivalente à <code>False</code> et 
+le programme décide de sauter le bloc relatif au mot-clé <code>if</code> 
+et exécute le bloc relatif au mot <code>else:</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, 
+        il suffit d'exécuter le code suivant</p>
+    <pre><code class="language-python">nom = "Albert"
+print(nom == "Albert")  # affiche True
+print(nom == "Bob")  # affiche False
+print(12 &lt 5)  # affiche False
+print(7 &lt 10)  # affiche True</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<!-- OPERATEURS DE COMPARAISON -->
+<h3>Les opérateurs de comparaison</h3>
+
+<h4>== pour l'égalité de valeur</h4>
+    
+    <p>Attention, le signe <strong>==</strong> sert à comparer 2 valeurs et non pas affecter une valeur à une variable.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x == 17.2</strong></p>
+    <pre><code class="language-python">x = 17.2
+print(x == 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="mt-5">Ce code affiche <code>True</code> car x a été défini avec la valeur 17.2, donc la comparaison de x et de 17.2 renvoie True.</p>
+
+
+<h4>!= pour la différence</h4>
+
+<p>Le signe <strong>!=</strong> sert à tester que deux variables ont des valeurs différentes.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x != 17.2</strong></p>
+    <pre><code class="language-python">x = 10
+print(x != 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+<h4>Les opérateurs utilisés</h4>
+
+<p>La condition <code>nom == "Alice"</code> se traduit par <code>True</code> ou <code>False</code>, mais il existe
+    d'autres opérateurs de comparaison que <code>==</code>. Les principaux opérateurs utilisés sont les suivants :</p>
+
+<table>
+    <tr><th>opérateur</th><th>signification</th></tr>
+    <tr><td>a == b</td><td><code>True</code> si a vaut b</td></tr>
+    <tr><td>a != b</td><td><code>True</code> si a différent de b</td></tr>
+    <tr><td>a &lt b</td><td><code>True</code> si a inférieur à b</td></tr>
+    <tr><td>a > b</td><td><code>True</code> si a supérieur à b</td></tr>
+    <tr><td>a &lt= b</td><td><code>True</code> si a inférieur ou égal à b</td></tr>
+    <tr><td>a >= b</td><td><code>True</code> si a supérieur ou égal à b</td></tr>
+    <tr><td>a == b and c == d</td><td><code>True</code> si a vaut b et c vaut d</td></tr>
+    <tr><td>a == b or c == d</td><td><code>True</code> si a vaut b ou c vaut d</td></tr>
+</table>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> Voyons ensemble comment fonctionne les opérateurs de comparaison
+        en exécutant le code suivant :</p>
+    <pre><code class="language-python">nom = "Alice"
+print(nom != "Bob")
+print(nom &lt; "Chantal")
+print(nom == "Benoit")</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> compléter le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
+        grand de ces nombres automatiquement :</p>
+    <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
+y = float(input("Entrer un deuxième nombre : "))
+z = float(input("Entrer un troisième nombre : "))
+
+# on cherche le maximum entre x, y et z
+
+# on affiche le résultat</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+        <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
+y = float(input("Entrer un deuxième nombre : "))
+z = float(input("Entrer un troisième nombre : "))
+
+# on cherche le maximum entre x, y et z
+maximum = x
+if y > maximum:
+    maximum = y
+if z > maximum:
+    maximum = z
+
+# on affiche le résultat
+print("le maximum est" + maximum)</code></pre>
+
+
+        <p>Attention, dans cet exemple l'utilisation de elif plutôt que if serait dangereuse.
+            En effet, si y est plus grand que x, il est possible que z soit également plus grand que x.
+            Or l'utilisation de elif z > x:  ne permet de voir cette condition que si la condition
+            y > x n'est pas vérifiée.</p>
+    </div>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<h4>Les opérateurs and / or</h4>
+
+<p>L'opérateur <code>and</code> nécessite que plusieurs conditions soient vraies pour que la condition 
+globale soit vraie.</p>
+<p>L'opérateur <code>or</code> nécessite qu'une au moins des conditions soit vraie pour que la condition 
+globale soit vraie.</p>
+
+<p>Exécuter le code suivant pour bien comprendre le fonctionnement des opérateurs <code>and</code> et <code>or</code> :</p>
+
+<pre><code class="language-python">1 | a = 3
+2 | b = 5
+3 |
+4 | if a > 4 and b > 4:
+5 |    print("a et b sont tous les deux supérieurs à 4")
+6 |
+7 | if a > 4 or b > 4:
+8 |    print("a ou b est supérieur à 4")</code></pre>
+
+<p>La condition a > 4 and b > 4 nécessite que a et b soient tous les deux supérieurs à 4.
+    Cette condition n'est pas vérifiée et le programme n'entre pas dans le bloc de la ligne 5.</p>
+
+<p>La condition a > 4 or b > 4 nécessite qu'une seule des deux variables a ou b soit supérieure
+    à 4. Cette condition est donc vérifiée et le programme entre dans le bloc de la ligne 8.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>il est facile de connaître le comportement de l'opérateur 
+    <code>and</code> en exécutant le code suivant :</p>
+    <pre><code class="language-python">print(True and True)
+print(True and False)
+print(False and True)
+print(False and False)</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p>On peut résumer le travail de l'opérateur <code>and</code> à l'aide de la table logique suivante :</p>
+<table>
+    <tr><td>and</td><td>True</td><td>False</td></tr>
+    <tr><td>True</td><td>True</td><td>False</td></tr>
+    <tr><td>False</td><td>False</td><td>False</td></tr>
+</table>
+
+<p>On rappelle que Python interprète le booléen <code>True</code> comme la valeur 1 et le booléen <code>False</code>
+comme la valeur 0</p>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
+</div>
+
+<script>
+var questionsData3 = 
+    {
+        question: '<p>Dans l\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":</code></pre>',
+        options:['prenom est un booleen', 'if est un booleen', 'prenom == "Antoine" est un booleen'],
+        correctIndex: 2,
+        commentaire: 'Si prenom == "Antoine" est vérifié (vaut True) alors le bloc suivant est exécuté'
+    };
+questionnaireUnique(3, questionsData3);
+</script>
+
+{% endblock cours %}

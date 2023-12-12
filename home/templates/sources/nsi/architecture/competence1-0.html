@@ -24,12 +24,12 @@
 
 <h3>Rôle d'un système d'exploitation</h3>
 
-<p>Le rôle d'un système d'exploitation est le suivant :
+<p>Le rôle d'un système d'exploitation est de :
 	<ul>
-		<li>communication avec les périphériques (processeur, mémoire, carte graphique, carte réseau, clavier, écran, ...)</li>
-		<li>exécution des programmes</li>
-		<li>gestion des tâches</li>
-		<li>gestion d'accès aux ressources</li>
+		<li><p>communiquer avec les périphériques (processeur, mémoire, carte graphique, carte réseau, clavier, écran, ...)</p></li>
+		<li><p>exécuter les programmes</p></li>
+		<li><p>gérer les tâches à effectuer</p></li>
+		<li><p>gérer l'accès aux ressources</p></li>
 	</ul>
 </p>
 
@@ -68,23 +68,45 @@ du logiciel libre.</p>
 
 <h4>Arborescence</h4>
 
-  <p>La racine est symbolisée par / en Linux.</p>
+  <p>La racine est symbolisée par / en Linux. L'arborescence principale du système est la suivante :</p>
+
+  <pre><code class="language-svg">/
+|_bin
+|_boot
+|_dev
+|_etc
+  |_opt
+|_home
+|_lib
+|_media
+|_opt
+|_root
+|_sbin
+|_tmp
+|_proc
+|_usr
+  |_bin
+  |_lib
+|_var</code></pre>
 
   <ul>
-    <li>bin contient les fichiers exécutables de la machine,</li>
-    <li>dev contient les périphériques,</li>
-    <li>etc contient les fichiers de configuration,</li>
-    <li>home contient les répertoires personnels de chaque utilisateur (d'où le nom de dossier home/stephane),</li>
-    <li>lib contient les bibliothèques partagées par les programmes,</li>
-    <li>media est un répertoire de montage pour les périphériques amovibles,</li>
-    <li>opt est utilisé pour les extensions de programmes,</li>
-    <li>root est le dossier dédié au superutilisateur,</li>
-    <li>sbin contient les programmes système importants,</li>
-    <li>tmp est utilisé par les programmes pour stocker des fichiers,</li>
-    <li>proc contient les informations du système,</li>
-    <li>usr est le dossier dans lequel seront stockés les programmes installés par l'utilisateur</li>
-    <li>site-packages est le dossier dans lequel seront stockés les packages</li>
-    <li>var contient les logs</li>
+    <li><p>/bin contient les exécutables essentiels au système (ls, cp, chmod, ...)</p></li>
+    <li><p>/boot contient les fichiers de démarrage</p></li>
+    <li><p>/dev contient les points d'entrée des périphériques</p></li>
+    <li><p>/etc contient les fichiers de configuration du système</p></li>
+    <li><p>/etc/opt contient les fichiers de configuration des applications installées</p></li>
+    <li><p>/home contient le répertoire personnel de chaque utilisateur (d'où le nom de dossier /home/[nomUtilisateur])</p></li>
+    <li><p>/lib contient les bibliothèques essentielles au système lors du démarrage</p></li>
+    <li><p>/media est un répertoire de montage pour les périphériques amovibles</p></li>
+    <li><p>/opt contient les packages des applications</p></li>
+    <li><p>/root contient le répertoire du superutilisateur</p></li>
+    <li><p>/sbin contient les codes binaires système essentiels</p></li>
+    <li><p>/tmp contient les fichiers temporaires utilisés par les programmes en cours d'exécution</p></li>
+    <li><p>/proc contient les informations du système</p></li>
+    <li><p>/usr contient les applications installées par l'utilisateur</p></li>
+    <li><p>/usr/bin contient les codes binaires des applications installées</p></li>
+    <li><p>/usr/lib contient les bibliothèques partagées du système</p></li>
+    <li><p>/var contient les logs</p></li>
   </ul>
 
 <p>Un point "." devant le nom d'un fichier ou d'un dossier indique qu'il est caché lors de l'affichage. Il n'est pas pour autant introuvable,
@@ -100,10 +122,14 @@ le nom de l'utilisateur tel qu'il a été défini par la machine lors de la conf
   des programmes qui sont écrits dans le langage dans lequel ils ont été créés (Python, C, Java, ...).</p>
 
 
-
   <h4>L'invite de commande</h4>
 
-  <p>Par défaut, le Terminal s'ouvre dans le dossier /home/[nomUtilisateur]. Une fois le Terminal ouvert, le signe $ symbolise l'utilisateur alors que le signe # symbolise le superutilisateur qui travaille 
+  <p>Le Terminal ou invite de commande est une application qui permet à l'utilisateur d'interagir directement 
+    avec son système d'exploitation. Il utilise un langage appelé <i>bash</i> sur Linux, dont la connaissance 
+    facilite largement l'utilisation efficace de l'ordinateur.</p>
+
+  <p>Par défaut, le Terminal s'ouvre dans le dossier <code>/home/[nomUtilisateur]</code> où [nomUtilisateur] est 
+    votre identifiant tel qu'il a été défini pour allumer votre machine Linux. Une fois le Terminal ouvert, le signe $ symbolise l'utilisateur alors que le signe # symbolise le superutilisateur qui travaille 
   en mode root. On voit donc apparaître à l'ouverture du Terminal une invite de commande de la forme :</p>
   
   <pre><code class="language-svg">[nomUtilisateur]@[nomOrdinateur]:~$</code></pre>
@@ -128,8 +154,6 @@ du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
   <p>Le .bashrc est un fichier de configuration du Terminal. Il se situe dans le répertoire personnel /home/[nomUtilisateur]/</p>
 
   
-
-
   <!-- LIGNES DE COMMANDE -->
   <p class="invisible" id="bash">ancre</p>
 
@@ -149,7 +173,10 @@ du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
     <tr> <td> stopper l'exécution d'un code ou d'un serveur </td><td><pre><code class="language-svg">Ctrl+c</code></pre></td></tr>
     <tr> <td> quitter une interface exécutée à partir du terminal </td> <td><pre><code class="language-svg">q</code></pre></td></tr>
     <tr> <td> vider le terminal</td> <td><pre><code class="language-svg">clear</code></pre></td> </tr>
-  </table>
+    <tr> <td> afficher la liste des processus actifs </td> <td> <pre><code class="language-svg">ps</code></pre></td> </tr>
+    <tr> <td> arrêter le processus 1129 dont le PID a été récupéré grâce à l'instruction ps</td> <td> <pre><code class="language-svg">kill 1129</code></pre></td> </tr>
+    <tr> <td> forcer la fermeture du processus 1129 (à n'utiliser que si l'instruction ci-dessus ne fonctionne pas)</td> <td> <pre><code class="language-svg">kill -9 1129</code></pre></td> </tr>
+</table>
 
 
   <h4>Lister, afficher</h4>
@@ -163,9 +190,10 @@ du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
     <tr> <td> afficher la liste des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -a</code></pre></td> </tr>
     <tr> <td> afficher la liste détaillée des éléments du dossier courant avec les éléments cachés </td> <td> <pre><code class="language-svg">ls -la</code></pre></td> </tr>
     <tr> <td> afficher la liste détaillée des éléments du dossier courant en triant par date de dernière modification au lieu de trier par ordre alphabétique</td> <td><pre><code class="language-svg">ls -lt</code></pre></td></tr>
-    <tr> <td> afficher la liste des éléments de MonDossier à partir de son adresse absolue</td> <td><pre><code class="language-svg">ls ~/Documents/MonDossier</code></pre></td></tr>
-    <tr> <td> afficher la liste des éléments actifs du dossier local </td> <td> <pre><code class="language-svg">ps</code></pre></td> </tr>
+    <tr> <td> afficher la liste des éléments de monDossier à partir de son adresse absolue</td> <td><pre><code class="language-svg">ls ~/Documents/monDossier</code></pre></td></tr>
     <tr> <td> afficher le contenu de <em>monFichier</em> (voir détails plus bas)</td> <td> <pre><code class="language-svg">cat monFichier</code></pre></td> </tr>
+    <tr> <td> afficher l'arborescence du répertoire monDossier</td> <td> <pre><code class="language-svg">tree ~/Documents/monDossier</code></pre></td> </tr>
+    <tr> <td> afficher l'arborescence du répertoire monDossier en ne tenant compte que des répertoires présents</td> <td> <pre><code class="language-svg">tree -d ~/Documents/monDossier</code></pre></td> </tr>
   </table>
 
   <h4>Créer, copier, déplacer, supprimer</h4>
@@ -206,12 +234,13 @@ du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
     <tr> <td> connaître la version d'un programme (par exemple Python)</td> <td><pre><code class="language-svg">python3 --version</code></pre></td></tr>
     <tr> <td> lancer l'interpréteur Python </td> <td><pre><code class="language-svg">python3</code></pre></td></tr>
     <tr> <td> exécuter monFichier.py en utilisant Python</td> <td><pre><code class="language-svg">python3 monFichier.py</code></pre></td></tr>
-    <tr> <td> quitter l'interpréteur Python </td> <td><pre><code class="language-svg">exit()</code></pre></td></tr>
+    <tr> <td> quitter l'interpréteur Python </td> <td><pre><code class="language-svg">quit()</code></pre></td></tr>
     <tr> <td> installer un package Python </td> <td><pre><code class="language-svg">pip install monPackage</code></pre></td></tr>
     <tr> <td> désinstaller un package Python </td> <td><pre><code class="language-svg">pip uninstall monPackage</code></pre></td></tr>
     <tr> <td> exécuter monPackage en Python </td> <td><pre><code class="language-svg">python3 -m monPackage</code></pre></td></tr>
   </table>
 
+<p>Les bibliothèques et packages Python sont généralement installés dans <strong>/usr/bin/python3/</strong> </p>
 
 <!-- AFFICHAGE D'UN FICHIER AU TERMINAL -->
 <p class="invisible" id="fichier">ancre</p>
@@ -245,8 +274,8 @@ du mot de passe administrateur, comme dans l'exemple ci-dessous :</p>
 de même que les formats propriétaires comme .DOCX, .XLSX, etc ...</p>
 
 
-
-<h4>Utilisation de nano</h4>
+<!-- MODIFICATION D'UN FICHIER AVEC NANO -->
+<h3>Modification d'un fichier avec nano</h3>
 
 <p>Il est également possible de lire un fichier au Terminal en utilisant un éditeur de texte minimaliste appelé nano, 
   présent par défaut dans les systèmes Linux.</p>
@@ -257,23 +286,30 @@ de même que les formats propriétaires comme .DOCX, .XLSX, etc ...</p>
 <p>Pour installer nano sur les machines Debian ou Ubuntu, exécute la commande suivante au Terminal :</p>
 <pre><code class="language-svg">sudo apt-get install nano</code></pre>
 
-<p>Ensuite, pour ouvrir le fichier monFichier.txt avec nano, il suffit de se rendre dans le dossier contenant monFichier.txt et d'exécuter au Terminal l'instruction :</p>
-<pre><code class="language-svg">nano monFichier.txt</code></pre>
+<p>Ensuite, pour ouvrir le fichier <strong>fichier.txt</strong> avec nano, il suffit de se rendre dans le 
+  dossier contenant <strong>fichier.txt</strong> et d'exécuter au Terminal l'instruction :</p>
+<pre><code class="language-svg">nano fichier.txt</code></pre>
 
-<p>ou alors, rester dans le dossier courant et indiquer l'adresse absolue de monFichier.txt comme dans l'exemple ci-dessous :</p>
-<pre><code class="language-svg">nano ~/Documents/monFichier.txt</code></pre>
+<p>ou alors, on peut rester dans le dossier courant et indiquer l'adresse absolue de <strong>fichier.txt</strong>. 
+  Dans mon cas le fichier se trouve dans le dossier <strong>Documents</strong>. Il me suffit donc d'exécuter :</p>
+<pre><code class="language-svg">nano ~/Documents/fichier.txt</code></pre>
 
 <p>Une fois le fichier ouvert avec nano, il est possible de naviger à l'aide des flèches, de modifier le contenu du 
-  fichier puis d'enregistrer les modifications à l'aide des touches Ctrl+O ou Ctrl+S. Pour quitter nano, il faut appuyer sur les 
-  touches Ctrl+X.</p>
+  fichier puis d'enregistrer les modifications en suivant le menu contextuel proposé.</p>
+  
+<p>Attention, il faut comprendre dans le menu que ^O signifie d'appuyer simultanément sur les touches Ctrl et O, 
+  ce qu'on note en général Ctrl+O. Le menu propose souvent une confirmation de l'action à mener. Il suffit alors
+d'appuyer sur la touche Entrée pour confirmer.</p>
+  
+<p>Pour quitter nano, il faut appuyer sur les touches Ctrl+X, puis valider la sauvegarde avec la touche O et 
+  enfin valider la fermeture du fichier avec la touche Entrée.</p>
 
 
-
-
-
+<!-- RTFM -->
   <h3>RTFM</h3>
 
-  <p> Pour afficher la documentation relative à la commande mkdir dans la console, on utilise </p>
+  <p> Pour afficher au Terminal la documentation relative à une instruction bash, par exemple la commande <code>mkdir</code>, 
+    on utilise l'instruction <code>man</code> comme dans l'exemple ci-dessous :</p>
   <pre><code class="language-svg">man mkdir</code></pre>
 
   <p>La documentation contient les éléments suivants :</p>
@@ -288,10 +324,7 @@ de même que les formats propriétaires comme .DOCX, .XLSX, etc ...</p>
   </ul>
 
 
-
-
   <!-- DROITS UTILISATEUR -->
-
   <h3>Les droits d'utilisateur</h3>
 
   <p>La commande <em>sudo</em> permet de passer temporairement en mode root et d'acquérir les droits du super-utilisateur. Elle signifie
@@ -490,10 +523,7 @@ décompresser ce fichier qui détient les clés de décompression, pour obtenir 
 <pre><code class="language-svg">sudo apt-get autoremove monPaquet</code></pre>
 
 
-
-
-
-
+<!-- SECURITE -->
 <h3>Sécurité sur Linux</h3>
 
 <h4>Nettoyage</h4>
@@ -506,10 +536,6 @@ sudo apt-get clean
 sudo apt-get autoremove</code></pre>
 
 
-
-
-
-  <!-- ANTIVIRUS -->
   <h4>Antivirus</h4>
 
   <p>L'antivirus ClamAv est compatible avec Linux et fonctionne en ligne de commande.</p>
@@ -531,12 +557,7 @@ sudo systemctl start clamav-freshclam</code></pre>
 <p>Le processus de scan est assez long mais peut s'exécuter en toile de fond.</p>
 
 
-
-
-
-
   <!-- mise à niveau système -->
-
   <h3 id="upgrade">Mise à niveau système</h3>
 
   <pre><code class="language-svg">sudo apt-get update
@@ -547,12 +568,7 @@ sudo do-release-upgrade
 sudo apt-get update</code></pre>
 
 
-
-
-
-
   <!-- CREATION CLE BOOTABLE -->
-
   <h3 id="bootable">Création d'une clé bootable et installation de Linux</h3>
 
 <p>La création d'une clé bootable ne nécessite pas nécessairement l'utilisation d'un ordinateur tiers. Toutefois, pour La création d'une clé bootable en ligne de commande il est nécessaire de disposer d'un poste tiers Linux. se fait en 3 étapes :</p>

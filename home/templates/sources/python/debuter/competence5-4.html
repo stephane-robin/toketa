@@ -1,0 +1,63 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+
+<!-- STRUCTURE D'UNE BOUCLE WHILE -->
+
+<p>Une boucle while se construit avec :</p>
+    <ul><li><p>une condition qui renvoie <code>True</code> ou <code>False</code></p></li>
+    <li><p>une indentation pour indiquer le bloc de code à répéter</p></li> 
+    <li><p>une variable dont la valeur change pour modifier la condition au tour suivant</p></li>
+    </ul>
+    <p>Dans l'exemple ci-dessus, la condition <code>nbreVies &gt 0</code> renvoie d'abord 
+        <code>True</code> puisque <code>nbreVies</code> vaut 3,
+        puis cette condition est testée à chaque tour jusqu'à ce que <code>nbreVies</code> soit égal à 0. 
+        Dans ce cas la condition <code>nbreVies &gt 0</code> renvoie <code>False</code>,
+        le programme n'effectue pas de tour supplémentaire et exécute le code placé après la boucle 
+        <code>while</code> (après l'indentation).</p>
+        
+    <p>On renarque que c'est la variable <code>nbreVies</code> qui varie pour modifier la condition à tester.</p>
+
+    
+<!-- PSEUDO CODE ET DIAGRAMME -->
+
+<h3>Pseudo-code et diagramme</h3>
+
+<p>On rappelle que le pseudo-code consiste à écrire en langage <em>humain</em> les actions que réalise le code. 
+    L'exemple de code Python ci-dessus correspond au pseudo-code suivant :</p>
+
+<pre><code class="language-svg">nbreVies prend la valeur 3
+tant que nbreVies est supérieur à 0 
+{
+afficher "continuer de jouer"
+nbreVies perd 1 point
+}
+fin tant que
+afficher "Fin du jeu"</code></pre>
+
+<p>Le diagramme correspondant au code Python ci-dessus est :</p>
+
+<img src="{% static 'home/images/python/diagramme2.png' %}" alt="diagramme" width="40%">
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+
+<script>
+var questionsData2 = 
+    {
+        question: "Il est nécessaire de faire varier une variable dans une boucle while ...",
+        options:["pour que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour éviter que la condition qui déclenche la boucle ne soit plus vérifiée à un moment", "pour afficher une valeur à la fin de la boucle"],
+        correctIndex: 0,
+        commentaire: ""
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+{% endblock cours %}

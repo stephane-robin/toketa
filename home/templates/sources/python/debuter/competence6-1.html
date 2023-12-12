@@ -1,0 +1,182 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}  
+
+<p>Quand on appelle une fonction, on exécute en fait le code qu'elle contient.</p>
+<p>Une fois que la fonction <code>saluer()</code> a été définie, par le code ci-dessous: </p>
+<pre><code class="language-python">def saluer(nom):
+    return "bonjour " + nom</code></pre>
+<p>pour l'appeler avec le nom "Edouard" en paramètre, il suffit d'écrire :</p>
+
+<pre><code class="language-python">saluer("Edouard")</code></pre>
+
+<p>Dans ce cas, le paramètre <code>nom</code> est remplacé par la valeur "Edouard" au moment de son exécution.</p>
+<p>Attention, l'interpréteur exécute bien <code>saluer("Edouard")</code> mais n'affiche rien. Si on 
+    veut que <em>bonjour Edouard</em> s'affiche à l'écran, on doit écrire</p>
+
+<pre><code class="language-python">print(saluer("Edouard"))</code></pre>
+
+<p>et si on veut que <i>bonjour Edouard</i> soit enregistré comme valeur d'une variable <code>accueil</code>, on doit écrire</p>
+
+<pre><code class="language-python">accueil = saluer("Edouard")</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>on considère la fonction f(x) = 2x + 1. Ecrire un
+    code qui affiche la valeur de f(45) calculée par le programme.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+        <p>Solution : </p>
+    <pre><code class="language-python">def f(x):
+    return 2 * x + 1
+
+print(f(45))</code></pre>
+        <p>Dans le code ci-dessus, l'instruction <strong>f(45)</strong> calcule la valeur
+        de f(45) mais ne le stocke dans aucune variable et ne l'affiche pas. On doit rajouter
+        <strong>print</strong> pour que la valeur obtenue s'affiche.</p>
+    </div>
+</div>
+
+<p>Une fonction peut prendre en arguments plusieurs paramètres. C'est même très utile dans certains cas.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire une fonction appelée <code>multiplication()</code>, qui prend 
+        comme arguments x et y et renvoie le produit de x par y. Tester ensuite le résultat obtenu en affichant 
+        le résultat de 41 &times; 12,4.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution8" style="display:none;">
+        <p>Solution : </p>
+    <pre><code class="language-python">def multiplication(x, y):
+    return x * y
+
+print(multiplication(41, 12.4))</code></pre>
+        <p>Attention, si dans le code ci-dessus on remplace 41 par "41" et 12.4 par "12.4", l'interpréteur va devoir multiplier du texte par un nombre à virgule et ne va pas comprendre ce qui est demandé.</p>
+    </div>
+</div>
+
+<p>On va maintenant créer puis utiliser une fonction plus complexe, qui utilise une condition.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>créer une fonction qui prend un mot de passe en paramètre. Si ce 
+        mot de passe est "spiderman", alors renvoyer <i>Accès autorisé</i>, sinon renvoyer <i>Accès refusé</i>.
+     Puis exécuter cette fonction avec le mot de passe "batman" et afficher le résultat.</p>
+
+<pre><code class="language-python">def gestionAcces(passe):
+reponse = ""
+if ???
+# completer le code ...
+else:
+# completer le code ...
+
+print(gestionAcces("batman"))</code></pre>
+    <div>
+
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+<pre><code class="language-python">def gestionAcces(passe):
+    reponse = ""
+    if passe == "spiderman":
+        reponse = "Accès autorisé"
+    else:
+        reponse = "Accès refusé"
+    return reponse
+
+print(gestionAcces("batman"))</code></pre>
+</div>
+</div>
+
+<p>On continue notre travail sur les mots de passe :</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>créer une fonction qui prend un mot de passe en paramètre. Si ce 
+        mot de passe commence par une majuscule, alors renvoyer <i>Mot de passe conforme</i>, sinon renvoyer
+         <i>Mot de passe non conforme</i>.</p>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution1" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">def verification(passe):
+    if passe[0].upper() == passe[0]:
+        return "Mot de passe conforme"
+    else:
+        return "Mot de passe non conforme"</code></pre>
+    </div>
+    <p><i>Attention</i>, si on se contentait de comparer <code>passe.capitalize() == passe</code>, cela ne 
+    marcherait pas dans certains cas. En effet, la fonction <code>capitalize()</code> met la 1ère lettre de 
+la chaîne en majuscule et toutes les autres lettres en minuscule, ce qui modifie l'intérieur du mot de passe.</p>
+</div>
+
+<p>On va ensuite créer une fonction qui va créer un mot de passe renforcé à l'aide de 2 données fournies par l'utilisateur.</p>
+
+<div class="exerciceApplication">
+
+<p><strong>A toi de jouer : </strong>écrire une fonction <code>renforcer_motpasse()</code>, qui prend en argument un nom, une date de naissance au format AAAMMJJ, et qui renvoie le nom avec la première lettre en majuscule, auquel on rajoute la date de naissance saisie.</p>
+
+<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution6" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">def renforcer_motpasse(nom, dateNaissance):
+
+    return nom.capitalize() + dateNaissance</code></pre>
+
+    </div>
+
+<p>Ecrire ensuite le code qui demande à l'utilisateur de saisir son nom puis sa date de naissance, et 
+    affiche le résultat fourni par la fonction <code>renforcer_motpasse()</code> avec les valeurs données 
+    par l'utilisateur.</p>
+
+<div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir une solution </button></p>
+    </div>
+
+    <div id="solution7" style="display:none;">
+        <p>Solution :</p>
+    <pre><code class="language-python">pseudo = input("quel est votre nom ? ")
+date = input("quelle est votre date de naissance ? ")
+
+print(renforcer_motpasse(pseudo, date))</code></pre>
+
+ <p>On remarque que dans ce cas le paramètre <code>nom</code> dans la fonction 
+    <code>renforcer_motpasse()</code> prend la valeur de la variable <code>pseudo</code>, et 
+    le paramètre <code>dateNaissance</code> prend la valeur de la variable <code>date</code>.</p>
+    </div>
+
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+
+<script>
+var questionsData2 = 
+    {
+        question: "Pour appeler la fonction construire, qui prend en paramètre la superficie, il faut écrire ...",
+        options:["(construire, superficie)", "construire(superficie)", "construire.superficie"],
+        correctIndex: 1,
+        commentaire: ""
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+{% endblock cours %}

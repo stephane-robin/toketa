@@ -1,0 +1,195 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+    <p>Une variable est un peu comme un carton de rangement. On a besoin d'un nom pour savoir ce qu'il contient, 
+et bien sûr on doit pouvoir accéder à son contenu quand on en a besoin. On doit même pouvoir retirer une affaire 
+du carton, rajouter une affaire ou en modifier totalement le contenu. Afin d'utiliser la taille de carton la 
+plus appropriée à son contenu, on a besoin de connaître le type de carton nécessaire. Il est 
+également important de connaître son emplacement dans la maison lorsqu'on a besoin d'y accéder. Une variable est 
+construite suivant le même principe qu'un carton, et dispose des mêmes caractéristiques : un nom, une valeur, un type et
+ une adresse mémoire.</p>
+
+<img src="{% static 'home/images/python/carton.png' %}" width="150px" class="my-3">
+
+<p>Une variable permet de stocker une donnée du code. Par exemple dans un jeu, on a besoin de garder en 
+    mémoire le score du joueur, sur un site internet on a besoin de garder en mémoire le pseudo de l'utilisateur 
+    lorsqu'il est identifié. On comprend bien que les variables sont les briques les plus essentielles au 
+    fonctionnement de nos programmes.</p>
+
+<p>En Python, on ne s'occupera que du nom de la variable, de sa valeur et de son type. La gestion de la mémoire n'est 
+    pas du ressort du programmeur, contrairement au langage C. Elle est automatisée en Python par un garbage collector. 
+    Cela facilite le travail du développeur mais n'optimise pas l'utilisation de la mémoire et ralentit l'exécution du code.</p>
+
+
+    <p>Voici un premier exemple où le nom de la variable est <strong>age</strong> :</p>
+
+    <pre><code class="language-python">age = 18</code></pre>
+    
+    <p>On utilise le signe <strong>=</strong> pour donner la valeur <strong>18</strong> à la variable appelée 
+        <strong>age</strong>. On peut maintenant changer la valeur de <strong>age</strong> autant de fois que l'on 
+         souhaite. Celle-ci est stockée en mémoire sous le nom <strong>age</strong>. On parle de variable justement 
+         parce qu'on peut en changer la valeur autant de fois que nécessaire.</p>
+
+
+         <div class="exerciceApplication">
+            <p><strong>A toi de jouer : </strong>dans un jeu vidéo, le niveau peut varier de <em>beginner</em> à 
+                <em>master</em>. Donne la valeur <i>beginner</i> à une variable que tu appeleras
+                <code>niveau</code>, puis la valeur 112 à une variable que tu appeleras <code>score</code>. 
+                Au cours du jeu le score du joueur monte de 40 points. Il atteint maintenant le niveau <i>master</i>. 
+                Modifie la valeur de ces variables dans le programme.</p>
+            
+        <a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+        
+        <div class="mt-5">
+            <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution7');"> Voir la solution </button></p>
+        </div>
+        
+        <div id="solution7" style="display:none;">
+            <p>Solution : </p>
+            <pre><code class="language-python">niveau = "beginner"
+score = 112
+
+score  = 152
+niveau = master</code></pre>
+</div>
+</div>
+         
+<div class="row">
+    <div class="col-12 col-md-1">
+        <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+    <div class="fieldsetDefinition col-12 col-md-11">
+        <h4>REMARQUABLE ...</h4>         
+        <p>En mathématiques le signe <strong>=</strong> est réversible, c'est à
+        dire qu'on peut l'utiliser dans les deux sens et on peut également résoudre une équation pour obtenir la valeur 
+        d'une inconnue x par exemple. En informatique, c'est beaucoup plus simple, le signe <strong>=</strong> signifie 
+        uniquement qu'on donne une valeur à une variable. Il n'y a pas de notion d'égalité. Pour mieux comprendre, analysons le code ci-dessous :</p>
+        
+        <pre><code class="language-python">x = 12
+y = x
+x = 44</code></pre>
+        
+        <p>Un programme se lit et s'exécute ligne par ligne. Dans ce cas,</p>
+        <ul>
+            <li><p>x prend la valeur 12</p></li>
+            <li><p>y prend la valeur de x c'est à dire 12</p></li>
+            <li><p>x prend la valeur 44 et y conserve sa valeur 12. Bien qu'à la ligne précédent il était écrit y = x, les 
+                deux variables n'ont pas la même valeur à la fin du code. IL NE S'AGIT PAS D'UNE EGALITE MAIS DE 
+                L'AFFECTATION DE VALEURS A DES VARIABLES.</p></li>
+        </ul>
+        </div>
+</div> 
+
+
+<!-- QUESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
+</div>
+
+<script>
+var questionsData1 = 
+    {
+        question: "Quelle affirmation est vraie ...",
+        options:["une variable peut prendre plusieurs valeurs en même temps", "une variable ne change pas de valeur", "une variable ne change pas de nom"],
+        correctIndex: 2,
+        commentaire: "Seule le nom d'une variable reste inchangé."
+    };
+questionnaireUnique(1, questionsData1);
+</script>
+
+<div class="mt-5 resume">
+    <h4>En résumé</h4>
+    
+    <ul>
+        <li><p>les variables stockent des données en mémoire durant l'exécution d'un programme</p></li>
+        <li><p>une variable est constituée d'un nom, d'une valeur, d'un type et d'une adresse mémoire</p></li>
+        <li><p>on définit une variable en affectant une valeur à un nom grâce au signe =</p></li>
+        <li><p>le signe = ne symbolise pas une égalité, mais l'affectation d'une valeur à une variable</p></li>
+    </ul>
+</div>
+
+
+<!-- LES CONVENTIONS DE NOTATION -->
+<h3 id="notation">Comment nommer une variable</h3>
+
+<p>Le nom d'une variable ne peut pas commencer par un chiffre, ne peut pas contenir d'espace, ne peut pas contenir  
+certains caractères spéciaux (#!.;()][/\&lt;>+*) et ne peut pas être un mot-clé du langage Python comme par exemple <em>print,
+         if, else, while, def, int, str, float, bool, for, range, and, or, elif, input, match, not, chr, ord, list, ...</em>.</p>
+
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>parmi les noms suivants, choisir ceux qu'on peut utiliser comme noms de variables 
+        (attention, on ne peut pas non plus utiliser de mot-clé Python comme nom de variable):</p>
+        <ul>
+            <li>nA2rt5</li>
+            <li>compteur</li>
+            <li>3noms</li>
+            <li>print</li>
+            <li>_nom</li>
+            <li>nom prenom</li>
+            <li>nom1</li>
+            <li>print4</li>
+        </ul>
+</div>
+
+<p>On vient de voir que les noms de variables ne peuvent pas contenir d'espace. Pour cela, ils s'écrivent 
+    très souvent d'une des deux manières suivantes :</p>
+<pre><code class="language-python">nomUtilisateur = "Antoine"
+nom_utilisateur = "Antoine"</code></pre>
+
+<p>Les noms de variables doivent avoir un sens pour rendre le code plus lisible. Les deux exemples 
+    ci-dessous effectuent le même travail mais le 2ème code est bien plus compréhensible, même pour 
+    celui qui a créé le code lorsqu'il le relit quelques mois plus tard.</p>
+
+<pre><code class="language-python">x = "23"
+y = "7"
+z = "2023"</code></pre>
+
+<pre><code class="language-python">jour = "23"
+mois = "7"
+annee = "2023"</code></pre>
+
+<p>Les constantes (qui ne varient donc pas) portent un nom qui s'écrit en majuscules, et sont considérées en
+    Python comme étant un cas particulier de variables. Par exemple :</p>
+
+<pre><code class="language-python">PI = 3.14</code></pre>
+
+
+<!-- QUESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
+</div>
+<script>
+var questionsData3 = 
+    {
+        question: "3nom_securise est un nom de variable valable ...",
+        options:["vrai", "faux", "peut le devenir si on enlève le underscore _"],
+        correctIndex: 1,
+        commentaire: "Un nom de variable ne peut pas commencer par un chiffre en Python."
+    };
+questionnaireUnique(3, questionsData3);
+</script>
+
+<div class="mt-5 resume">
+    <h4>En résumé</h4>
+    
+    <p>Le nom d'une variable ne doit pas :</p>
+    <ul>
+        <li><p>commencer par un chiffre</p></li>
+        <li><p>contenir d'espace</p></li>
+        <li><p>être un mot-clé du langage Python</p></li>
+        <li><p>contenir certains caractères spéciaux</p></li>
+    </ul>
+</div>
+
+{% endblock cours %}

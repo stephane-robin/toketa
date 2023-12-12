@@ -1,0 +1,88 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+<p>Dès qu'il est question de jeu, le hasard peut intervenir à tout moment, et il est utile pour le programmeur de savoir 
+    utiliser la bibliothèque random et la bibliothèque time.</p>
+
+<p>La bibliothèque random permet de tirer un nombre au hasard ou de choisir un ou plusieurs éléments au hasard dans 
+    une liste.</p>
+
+<p>Pour tirer un nombre au hasard compris entre 1 et 10 :</p>
+<pre><code class="language-python">import random
+nbre = random.randint(1, 10)</code></pre>
+
+<p><i>Attention</i>, contrairement à la fonction <code>range</code> d'une boucle <code>for</code>, la fonction <code>randint</code> tient 
+compte du dernier élément (10 dans l'exemple ci-dessus).</p>
+
+<p>Pour tirer un élément au hasard parmi une liste :</p>
+<pre><code class="language-python">import random
+semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+jour = random.choices(semaine)</code></pre>
+
+<p>Pour tirer 3 éléments au hasard parmi une liste (chacun des éléments choisi peut se répéter) :</p>
+<pre><code class="language-python">import random 
+semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+liste_choix = random.choices(semaine, k=3)</code></pre>
+
+<p><i>Attention</i>, la fonction <code>choices</code> est piégeuse car les éléments choisis PEUVENT SE REPETER, 
+ce qui n'est parfois pas souhaitable dans un programme. Les erreurs engendrées sont dans ce cas difficiles à 
+trouver. Pour s'en convaincre, il suffit d'exécuter le code suivant :</p>
+
+<pre><code class="language-python">import random
+nombres = [1, 2, 3, 4, 5] 
+for _ in range(10):
+    print(random.choices(nombres, k=3))</code></pre>
+
+<p>La fonction <code>choices</code> est capable de choisir dans une liste en tenant compte d'un système 
+de pondération, c'est à dire en donnant plus de poids à certains éléments de la liste par rapport à d'autres. 
+Il faut pour cela utiliser une autre liste de la même taille que celle où sont effectués les tirages, et 
+contenant le poids de chaque élément, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">import random
+nombres = [1, 2, 3, 4, 5]
+poids = [10, 10, 5, 3, 6]
+print(random.choices(nombres, poids, k=3))</code></pre>
+
+<p>Pour éviter que les éléments choisis se répètent, il est possible d'utiliser la fonction 
+    <code>sample</code> qui récupère un échantillonnage de taille 
+    définie parmi une liste donnée au départ, comme dans l'exemple ci-dessous :</p>
+
+<pre><code class="language-python">import random
+nombres = [1, 2, 3, 4, 5]
+print(random.sample(nombres, k=2))
+print(nombres)</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer : </strong>Cette fois, on ne veut pas répéter le nom des personnes tirées au sort, ni au sein 
+    d'une équipe ni entre plusieurs équipes. Que faut-il faire pour créer 3 équipes de 3 personnes au hasard à partir d'une 
+liste de personnes ?</p>
+
+<p>Solution</p>
+<pre><code class="language-python">import random 
+
+deck = ["Antoine", "Hervé", "Chloé", "Yvonne", "Noémie", "Pierre", "Noam", "Aylin", "Audrey"]
+equipe = deck.copy()
+
+def retirerGroupe(groupe):
+    """retire groupe de la liste effectifs"""
+    global equipe
+    for elt in groupe:
+        equipe.remove(elt)
+
+equipe1 = random.sample(deck, k=3)
+retirerGroupe(equipe1)
+
+equipe2 = random.sample(deck, k=3)
+retirerGroupe(equipe2)
+
+equipe3 = equipe
+
+print(equipe1)
+print(equipe2)
+print(equipe3)</code></pre>
+</div>
+
+
+{% endblock cours %}

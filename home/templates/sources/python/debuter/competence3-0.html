@@ -1,0 +1,808 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}
+
+<p>Les conditions permettent au programme de prendre des décisions en fonction des situations qu'il rencontre. Elles sont donc
+ essentielles à tout programme.</p>
+
+ <p>Par exemple, lorsqu'on crée un jeu de rôle, on doit pouvoir proposer au joueur de monter d'un niveau s'il 
+    a trouvé toutes les énigmes du niveau précédent, on doit pouvoir arrêter la partie si le joueur est tombé 
+    dans un piège mortel.</p>
+
+
+<!-- DECOUVRIR LES CONDITIONS -->
+
+<div class="col-12 col-md-8 my-5">
+    <iframe src="https://www.youtube.com/embed/pn8T-kro--k"
+            title="Les conditions en Python - ToKeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Les conditions en Python</figcaption>
+</div>
+
+<p>Dans l'exemple suivant, on donne le nom "Alice" à la variable nom, si le nom de la personne est Alice, 
+    le programme affiche <i>Bonjour Alice</i>, sinon il n'accorde pas l'accès.</p>
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice")
+else:
+    print("Désolé, accès refusé.")</code></pre>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécuter le code ci-dessus pour voir ce qui s'affiche,
+        puis modifier la variable <code>nom</code> en lui donnant la valeur "Camille".
+        Exécuter à nouveau votre code pour constater la différence d'affichage.</p>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p class="mt-3">Vous avez peut-être découvert la programmation avec Scratch. Dans ce cas, le code Python ci-dessus correspond en Scratch au script suivant :</p>
+
+<img src="{% static 'home/images/python/codeScratchCondition.png' %}" alt="code Scratch" width="250px">
+
+<p>La difficulté en Python réside dans le signe <code>==</code>. Il est essentiel de comprendre que la 
+    condition <code>nom == "Alice"</code> s'exprime par une comparaison entre <code>nom</code> et <code>"Alice"</code>. 
+    On utilise pour cela l'opérateur de comparaison <code>==</code>. Il n'a rien à voir avec l'opérateur 
+    d'affectation <code>=</code> de la 1ère ligne de code, qui donne la valeur "Alice" à la variable <code>nom</code>.</p>
+
+<p>A noter que l'instruction <code>print("Bonjour Alice")</code> est décalée d'une tabulation (4 espaces) vers la droite.
+On parle d'indentation. Cette indentation permet de regrouper des blocs de code et indique au programme quand se termine
+le bloc concerné par l'instruction <code>if</code>, et quand se termine le bloc concerné par
+ l'instruction <code>else</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> donner une valeur entière à la variable <code>mois</code>, comprise entre 1 et 12.
+    Le programme devra afficher <i>1er semestre</i> si mois est compris entre 1 et 6. Il devra afficher 
+    <i>2ème semestre</i> sinon.</p>
+    <pre><code class="language-python">mois = 4
+
+if mois ???
+# completer le code ...
+else:
+# completer le code ...</code></pre>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution1');"> Voir la solution </button></p>
+</div>
+
+<div id="solution1" style="display:none;">
+    <p>Solution :</p>
+    <pre><code class="language-python">mois = 4
+
+if mois &lt 7:
+    print("1er semestre")
+else:
+    print("2ème semestre")</code></pre>
+</div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='1' %}
+</div>
+
+<script>
+var questionsData1 = 
+    {
+        question: '<p>L\'instruction suivante :</p> <pre><code class="language-python">if prenom == "Antoine":\n \
+    print("hello")</code></pre><p>va afficher <em>hello</em> ...</p>',
+        options:['si prenom est différent de Antoine', 'si prenom vaut Antoine', 'si les variables prenom et Antoine sont les mêmes'],
+        correctIndex: 1,
+        commentaire: '== signifie est égal à'
+    };
+questionnaireUnique(1, questionsData1);
+</script>
+
+
+<!-- PSEUDO CODE ET DIAGRAMMES -->
+<h3>Comprendre la structure d'une instruction if</h3>
+
+<p>L'instruction if s'appelle en fait un branchement conditionnel, car elle permet d'orienter le programme 
+    dans une direction, une fois qu'une condition est vérifiée. Pour mieux comprendre la structure d'une 
+    instruction if, on peut utiliser du pseudo-code (langage naturel généraliste indifférencié d'un 
+    langage de programmation à un autre), ou encore un diagramme.</p>
+    
+<p>On peut traduire le code Python ci-dessus en pseudo-code de la façon suivante :</p>
+
+<pre><code class="language-svg">nom prend la valeur "Alice"
+si nom = "Alice"
+alors afficher "Bonjour Alice"
+sinon afficher "Désolé, accès refusé"</code></pre>
+
+<p>Voyons maintenant comment traduire le code Python ci-dessus à l'aide d'un diagramme :</p>
+
+<img src="{% static 'home/images/python/diagramme1.png' %}" alt="'diagramme" width="40%" style="margin-bottom:5%;">
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> poser la question suivante à un utilisateur "Comment 
+    s'appelle l'auteur de l'Odyssée ?" S'il répond <i>Homère</i>, rajouter deux points à sa note qui valait 10
+auparavant, sinon enlever-lui un point.</p>
+    <pre><code class="language-python">note = 10
+
+reponse = input(???)
+# completer la suite ...</code></pre>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution8');"> Voir la solution </button></p>
+</div>
+
+<div id="solution8" style="display:none;">
+    <p>Solution :</p>
+    <pre><code class="language-python">note = 10
+reponse = input("Quel est l'auteur de l'Odyssée ? ")
+if reponse == "Homère":
+    note = note + 2
+else:
+    note = note - 1</code></pre>
+</div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p class="mt-3">Vous connaissez maintenant la structure de base pour créer un QCM, qui est basé sur des conditions 
+    à respecter pour valider chaque question ...</p>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='2' %}
+</div>
+
+<script>
+var questionsData2 = 
+    {
+        question: "Un pseudo-code sert à ...",
+        options:['traduire le code dans un langage humain afin de comprendre son fonctionnement', 'traduire le code dans un autre langage de programmation', 'créer un commentaire dans le code'],
+        correctIndex: 0,
+        commentaire: " "
+    };
+questionnaireUnique(2, questionsData2);
+</script>
+
+
+<!-- L'INDENTATION -->
+<h3>L'indentation</h3>
+
+<p>L'indentation est le fait de décaler le code vers la droite (d'une tabulation ou de 4 espaces). C'est essentiel en Python qui n'utilise par d'accolades et choisit de commencer un bloc de code par une indentation et de rester dans ce bloc tant que le code est indenté. Par exemple dans le code suivant :</p>
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice.")
+    print("Comment allez-vous aujourd'hui ?")
+print("Aujourd'hui c'est journée portes ouvertes.")</code></pre>
+
+<p><i>Bonjour Alice. Comment allez-vous aujourd'hui ?</i> ne s'affichera que si le <code>nom</code> vaut "Alice".
+     Les deux phrases font partie du même bloc d'instructions. En revanche, <i>Aujourd'hui c'est journée portes 
+        ouvertes.</i> s'affichera tout le temps, même si <code>nom</code> ne vaut pas "Alice", car cette 
+        instruction est indépendante de l'instruction <code>if nom == "Alice":</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>exécuter le code ci-dessus pour voir ce qui s'affiche, puis 
+        pour bien comprendre le rôle de l'indentation :</p>
+        <ul>
+            <li><p>changez le nom 'Alice' en 'Bob' et exécutez de nouveau le code</p></li>
+            <li><p>indentez la dernière ligne avec la touche de tabulation avant d'exécuter le code pour constater 
+                la différence d'affichage.</p></li>
+        </ul>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-1">
+        <img src="{% static 'home/images/general/aretenir.png' %}" class="w-100"> 
+    </div>
+    <div class="fieldsetDefinition col-12 col-md-11">
+        <h4>REMARQUABLE ...</h4>         
+        <p>L'indentation est fondamentale en Python. Elle permet de délimiter les blocs de code,
+            et donc de déterminer quand les blocs de code commencent et quand ils se terminent. Sans indentation,
+            le programme est perdu. Il correspond dans d'autres langages à l'utilisation des { et }.</p>
+    </div>
+</div>
+
+
+<!-- QESTIONNAIRE -->
+<div class="quizUnique">
+<h4 class="mt-0">As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='4' %}
+</div>
+
+<script>
+var questionsData4 = 
+    {
+        question: '<p>Dans le code suivant</p> <pre><code class="language-python">if score > 10:\n\
+print("Bravo")</code></pre>',
+        options:['il s\'affiche Bravo', 'les blocs sont correctement indentés', 'la 2ème ligne est mal indentée'],
+        correctIndex: 2,
+        commentaire: "Le bloc suivant une condition doit être indenté."
+    };
+questionnaireUnique(4, questionsData4);
+</script>
+
+
+<!-- LES BOOLEENS -->
+<h3>Les booléens</h3>
+
+<pre><code class="language-python">nom = "Alice"
+if nom == "Alice":
+    print("Bonjour Alice")
+else:
+    print("Désolé, accès refusé.")</code></pre>
+
+<p>Les conditions sont intimement liées aux booléens (<code>True</code> ou <code>False</code>).</p>
+
+<p>En effet, il faut comprendre que dans l'instruction <code>if nom == "Alice":</code>, le mot-clé <code>if</code>
+permet d'orienter le programme dans une certaine direction lorsque la condition <code>nom == "Alice"</code> est vraie, c'est 
+à dire vaut <code>True</code>. Dans ce cas, le programme poursuit son exécution avec le bloc qui suit. Si le nom n'est pas Alice, 
+alors la condition <code>nom == "Alice"</code> est fausse, donc équivalente à <code>False</code> et 
+le programme décide de sauter le bloc relatif au mot-clé <code>if</code> 
+et exécute le bloc relatif au mot <code>else:</code>.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>pour se convaincre du rôle des booléens dans les conditions, 
+        il suffit d'exécuter le code suivant</p>
+    <pre><code class="language-python">nom = "Albert"
+print(nom == "Albert")  # affiche True
+print(nom == "Bob")  # affiche False
+print(12 &lt 5)  # affiche False
+print(7 &lt 10)  # affiche True</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<h3>Les opérateurs de comparaison</h3>
+
+<h4>== pour l'égalité de valeur</h4>
+    
+    <p>Attention, le signe <strong>==</strong> sert à comparer 2 valeurs et non pas affecter une valeur à une variable.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x == 17.2</strong></p>
+    <pre><code class="language-python">x = 17.2
+print(x == 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+
+</div>
+
+<p class="mt-5">Ce code affiche <code>True</code> car x a été défini avec la valeur 17.2, donc la comparaison de x et de 17.2 renvoie True.</p>
+
+
+<h4>!= pour la différence</h4>
+
+<p>Le signe <strong>!=</strong> sert à tester que deux variables ont des valeurs différentes.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A toi de jouer</strong> : essaie le code ci-dessous pour mieux comprendre ce que représente x != 17.2</strong></p>
+    <pre><code class="language-python">x = 10
+print(x != 17.2)</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+<h4>Les opérateurs utilisés</h4>
+
+<p>La condition <code>nom == "Alice"</code> se traduit par <code>True</code> ou <code>False</code>, mais il existe
+    d'autres opérateurs de comparaison que <code>==</code>. Les principaux opérateurs utilisés sont les suivants :</p>
+
+<table>
+    <tr><th>opérateur</th><th>signification</th></tr>
+    <tr><td>a == b</td><td><code>True</code> si a vaut b</td></tr>
+    <tr><td>a != b</td><td><code>True</code> si a différent de b</td></tr>
+    <tr><td>a &lt b</td><td><code>True</code> si a inférieur à b</td></tr>
+    <tr><td>a > b</td><td><code>True</code> si a supérieur à b</td></tr>
+    <tr><td>a &lt= b</td><td><code>True</code> si a inférieur ou égal à b</td></tr>
+    <tr><td>a >= b</td><td><code>True</code> si a supérieur ou égal à b</td></tr>
+    <tr><td>a == b and c == d</td><td><code>True</code> si a vaut b et c vaut d</td></tr>
+    <tr><td>a == b or c == d</td><td><code>True</code> si a vaut b ou c vaut d</td></tr>
+</table>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> Voyons ensemble comment fonctionne les opérateurs de comparaison
+        en exécutant le code suivant :</p>
+    <pre><code class="language-python">nom = "Alice"
+print(nom != "Bob")
+print(nom &lt; "Chantal")
+print(nom == "Benoit")</code></pre>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> compléter le code suivant qui demande à l'utilisateur 3 nombres réels et affiche le plus
+        grand de ces nombres automatiquement :</p>
+    <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
+y = float(input("Entrer un deuxième nombre : "))
+z = float(input("Entrer un troisième nombre : "))
+
+# on cherche le maximum entre x, y et z
+
+# on affiche le résultat</code></pre>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution4');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution4" style="display:none;">
+        <pre><code class="language-python">x = float(input("Entrer un premier nombre : "))
+y = float(input("Entrer un deuxième nombre : "))
+z = float(input("Entrer un troisième nombre : "))
+
+# on cherche le maximum entre x, y et z
+maximum = x
+if y > maximum:
+    maximum = y
+if z > maximum:
+    maximum = z
+
+# on affiche le résultat
+print("le maximum est" + maximum)</code></pre>
+
+
+        <p>Attention, dans cet exemple l'utilisation de elif plutôt que if serait dangereuse.
+            En effet, si y est plus grand que x, il est possible que z soit également plus grand que x.
+            Or l'utilisation de elif z > x:  ne permet de voir cette condition que si la condition
+            y > x n'est pas vérifiée.</p>
+    </div>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<h4>Les opérateurs and / or</h4>
+
+<p>L'opérateur <code>and</code> nécessite que plusieurs conditions soient vraies pour que la condition 
+globale soit vraie.</p>
+<p>L'opérateur <code>or</code> nécessite qu'une au moins des conditions soit vraie pour que la condition 
+globale soit vraie.</p>
+
+<p>Exécuter le code suivant pour bien comprendre le fonctionnement des opérateurs <code>and</code> et <code>or</code> :</p>
+
+<pre><code class="language-python">1 | a = 3
+2 | b = 5
+3 |
+4 | if a > 4 and b > 4:
+5 |    print("a et b sont tous les deux supérieurs à 4")
+6 |
+7 | if a > 4 or b > 4:
+8 |    print("a ou b est supérieur à 4")</code></pre>
+
+<p>La condition a > 4 and b > 4 nécessite que a et b soient tous les deux supérieurs à 4.
+    Cette condition n'est pas vérifiée et le programme n'entre pas dans le bloc de la ligne 5.</p>
+
+<p>La condition a > 4 or b > 4 nécessite qu'une seule des deux variables a ou b soit supérieure
+    à 4. Cette condition est donc vérifiée et le programme entre dans le bloc de la ligne 8.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>il est facile de connaître le comportement de l'opérateur 
+    <code>and</code> en exécutant le code suivant :</p>
+    <pre><code class="language-python">print(True and True)
+print(True and False)
+print(False and True)
+print(False and False)</code></pre>
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+<p>On peut résumer le travail de l'opérateur <code>and</code> à l'aide de la table logique suivante :</p>
+<table>
+    <tr><td>and</td><td>True</td><td>False</td></tr>
+    <tr><td>True</td><td>True</td><td>False</td></tr>
+    <tr><td>False</td><td>False</td><td>False</td></tr>
+</table>
+
+<p>On rappelle que Python interprète le booléen <code>True</code> comme la valeur 1 et le booléen <code>False</code>
+comme la valeur 0</p>
+
+
+<!-- QESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='3' %}
+
+<script>
+var questionsData3 = 
+    {
+        question: '<p>Dans l\'instruction</p> <pre><code class="language-python">if prenom == "Antoine":</code></pre>',
+        options:['prenom est un booleen', 'if est un booleen', 'prenom == "Antoine" est un booleen'],
+        correctIndex: 2,
+        commentaire: 'Si prenom == "Antoine" est vérifié (vaut True) alors le bloc suivant est exécuté'
+    };
+questionnaireUnique(3, questionsData3);
+</script>
+
+
+
+<!-- IMBRIQUER LES CONDITIONS -->
+<p class="invisible" id="imbriquer">ancre</p>
+
+<h3>Imbriquer les conditions</h3>
+
+<p>Il est possible de créer une condition dans une condition. Dans l'exemple suivant
+    on donne une valeur à une variable <strong>temperature</strong>, puis on affiche :</p>
+<ul>
+    <li><em>la neige a bien gelé</em> si la variable <strong>temperature</strong> est inférieure à -5,</li>
+    <li><em>la neige est molle</em> si la variable <strong>temperature</strong> est supérieure à +10.</li>
+</ul>
+
+<pre><code class="language-python">if temperature &lt -5:
+    print("la neige a bien gelé")
+else:
+    if temperature > 10:
+        print("la neige est molle")</code></pre>
+
+<p>Le code Python ci-dessus correspond au script Scratch suivant :</p>
+<img src="{% static 'home/images/python/codeScratchConditionImbriquee.png' %}" alt="code Scratch" width="250px">
+
+<p>A noter qu'en Python on peut remplacer l'instruction else if par elif. Dans ce cas, le code ci-dessus devient :</p>
+<pre><code class="language-python">if temperature &lt -5:
+    print("la neige a bien gelé")
+elif temperature > 10:
+    print("la neige est molle")</code></pre>
+
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong>écrire les instructions suivantes</p>
+    <ul><li>définir deux variables <strong>a</strong> et <strong>b</strong> en leur donnant les valeurs 3 et 5 respectivement,</li>
+        <li>afficher <em>a est plus petit que b</em> si <strong>a</strong> est plus petit que <strong>b</strong>,</li>
+        <li>afficher <em>a est plus grand que b</em> si <strong>a</strong> est plus grand que <strong>b</strong>,</li>
+        <li>afficher <em>a est égal à b</em> si a est égal à b.</li>
+    </ul>
+    <p>Attention, ce n'est pas à vous de faire le travail et de décider si a est plus petit que b, c'est à l'ordinateur 
+        de trouver grâce aux instructions de votre programme. Ainsi, si vous donnez maintenant la valeur 10 à la variable a, 
+        l'ordinateur saura quand même trouver le plus grand des nombres sans intervention de votre part.</p>
+
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution2');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution2" style="display:none;">
+        <pre><code class="language-python">a = 3
+b = 5
+
+if a &lt b:
+    print("a est plus petit que b")
+elif a > b:
+    print("a est plus grand que b")
+else:
+    print("a est égal à b")</code></pre>
+    </div>
+
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+<p>Les conditions imbriquées sont très fréquentes dans les programmes car elles représentent les situations complexes
+de la vie de tous les jours ou les structures complexes des applications. A noter qu'en Python il existe 
+l'instruction <strong>match</strong> qui est l'équivalent de l'instruction <strong>switch</strong> des autres langages 
+de programmation.</p>
+
+<div class="exerciceApplication">
+    <p><strong>A vous de jouer : </strong> une séance de cinéma est interdite aux moins de 16 ans.
+        Le prix du billet dépend de l'âge de l'utilisateur. Les seniors (plus de 65 ans) et les mineurs (moins de 18 ans) paient un tarif réduit, les autres un tarif plein.
+        Ecrire un script qui affiche le type de tarif si l'utilisateur a le droit d'assister à une séance, et "accès refusé" dans le cas contraire.</p>
+
+<pre><code class="language-python">age = int(input("quel est votre age ? "))
+
+if age &lt ???
+# completer la suite ...</code></pre>
+
+<div>
+    <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution6');"> Voir la solution </button></p>
+</div>
+
+<div id="solution6" style="display:none;">
+    <pre><code class="language-python">age = int(input("quel est votre age ? "))
+
+if age &lt 16:
+    print("pas de séance")
+elif age &lt 18 or age >= 65:
+    print("tarif réduit")
+else:
+    print("plein tarif")</code></pre>
+
+</div>
+
+<a href="{% url 'afficherSandbox' %}" class="bi bi-slack" target="_blank"> Exécuter Python à la console</a>
+</div>
+
+
+
+
+<!-- COMPRENDRE LES MESSAGES D'ERREUR -->
+<p class="my-5 invisible" id="erreur">ancre</p>
+
+<h3>Comprendre les messages d'erreur</h3>
+
+<p>Il est très important de savoir analyser les messages d'erreur pour corriger les bugs et progresser rapidement, 
+    car l'interpréteur Python fournit une aide précieuse et propose même parfois des correctifs.</p>
+
+    <p>Il existe différents types d'erreur :</p>
+    <ul>
+        <li>les erreurs de syntaxe. Très faciles à corriger, il s'agit en général d'une mauvaise structure de code 
+            qui saute rapidement aux yeux avec l'usage,</li>
+        <li>les erreurs de logique. Elles sont souvent difficiles à trouver et il faut parfois recourir à des fonctions de tests 
+            et de validation pour savoir d'où provient l'erreur.</li>
+    </ul>
+
+<p>Analysons les messages d'erreur les plus fréquents proposés par l'interpréteur. Chaque message d'erreur commence 
+    par :</p>
+
+    <pre><code class="language-python">Traceback (most recent call last):</code></pre>
+
+<p>ce qui signifie qu'à la fin du message apparaît le numéro de la ligne de code où l'erreur a été déclenchée, 
+    et qu'au début du message le numéro de ligne de code à l'origine de l'erreur. C'est donc à cette ligne (ou parfois 
+    la suivante) qu'il faut effectuer les modifications.</p>
+
+    
+<h4>name is not defined</h4>
+
+<pre><code class="language-svg">Traceback (most recent call last):
+    File "<input>", line 4, in <module>
+NameError: name 'prenom' is not defined</code></pre>
+
+<p>Cela signifie que la variable appelée prenom n'est pas définie à la ligne 4. Le code l'utilise comme si elle 
+    existait mais aucune valeur ne lui a été attribuée.</p>
+
+<p><em>Solution</em> : il faut donc donner une valeur à la variable prenom avant la ligne 4.</p>
+
+<h4>SyntaxError</h4>
+
+<pre><code class="language-svg">Traceback (most recent call last):
+    File "<input>", line 2
+if prenom == "Antoine"
+                          ^
+SyntaxError: expected ':'</code></pre>
+
+<p>Cela signifie que la syntaxe est mauvaise, et la petite flèche ^ montre l'endroit exact où manque 
+    le ':' à la ligne 2.</p>
+
+<p><em>Solution</em> : il faut rajouter ':' après "Antoine"</p>
+
+<h4>IndentationError</h4>
+
+<pre><code class="language-svg">Traceback (most recent call last):
+    File "<input>", line 3
+print("hello")
+^^^^^
+IndentationError: expected an indented block after 'if' statement on line 2</code></pre>
+
+<p>Cela signifie qu'après la condition if il est nécessaire de décaler les instructions à exécuter vers la droite.
+    Le décalage est attendu à la ligne 3 au niveau des signes ^^^^^</p>
+
+<p><em>Solution</em> : indenter le print() d'une tabulation vers la droite.</p>
+
+<h4>index out of range</h4>
+
+<pre><code class="language-svg">Traceback (most recent call last):
+    File "<input>", line 3, in <module>
+IndexError: string index out of range</code></pre>
+
+<p>Cela signifie qu'une boucle parcourt un indice qui n'existe pas à la ligne 3. Il faut donc vérifier 
+    le premier et le dernier éléments de la boucle dont l'un des deux n'est sûrement pas défini.</p>
+
+<p><em>Solution</em> : il faut changer l'indice de début de boucle ou l'indice de fin de boucle.</p>
+
+
+<!-- QESTIONNAIRE -->
+<h4>As-tu bien compris ?</h4>
+
+{% include '../../../questionnaireUnique.html' with nmr='5' %}
+
+<script>
+var questionsData5 = 
+    {
+        question: "Si la console affiche le message suivant : line 6 NameError: name 'score' is not defined ...",
+        options:['il faut chercher si la variable score a été définie après la ligne 6', 'il faut chercher si la variable score exite dans le programme', 'il faut chercher si la variable score a été définie avant la ligne 6'],
+        correctIndex: 2,
+        commentaire: ""
+    };
+questionnaireUnique(5, questionsData5);
+</script>
+
+
+<!-- ENTRAINEMENT -->
+
+<h3>Entraînement</h3>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 1 : </strong>écrire un programme qui demande à l'utilisateur de saisir son âge 
+    puis affiche "Vous êtes majeur" si il a 18 ans ou plus, ou affiche "Vous êtes mineur" dans le cas 
+contraire.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+<p><strong>Exercice 2 : </strong>écrire un programme qui teste si une année est bissextile ou non, et affiche 
+le résultat sous la forme "Année bissextile" ou "Année non bissextile".</p>
+<p>Une année est bissextile si elle est divisible par 4 et pas divisible par 100 ou si elle est divisible par 400.</p>
+<p>Par exemple, 800 est divisible par 400 donc c'est une année bissextile. 888 est divisble par 4 et pas par 100 donc 
+    c'est une année bissextile.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 3 : </strong>quelles sont les valeurs de a, b, c à la fin du code ci-dessous ? (travail sans ordinateur)</p>
+    <pre><code class="language-python">a = 7
+b = 8 * a
+c = 5 * a
+a = b - 3
+
+if b &gt c:
+    b = c - a 
+else:
+    b = a * c</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 4 : </strong>écrire un programme qui détermine si une variable appelée x représente un 
+    nombre pair ou impair. Le programme affiche le résultat sous la forme "la variable est paire" ou "la variable 
+est impaire". Indication, on pourra utiliser l'opérateur reste de division %.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 5 : </strong>écrire un programme qui demande à l'utilisateur de saisir deux nombres et affiche 
+    True si les nombres ont des signes différents et False sinon.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 6 : </strong>écrire un programme qui demande à l'utilisateur de saisir un nombre et affiche si 
+        ce nombre est plus petit, plus grand ou égal à 10.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 7 : </strong>le code suivant calcule le discriminant de l'équation 
+    \(ax^2+bx+c\). Corrigez les erreurs de code pour qu'il fournisse les solutions suivantes 
+\((-b-\sqrt{\Delta}/{2a})\) et \((-b+\sqrt{\Delta}/{2a})\) lorsque \(\Delta &gt 0\), \(-b/{2a}\) 
+lorsque \(\Delta = 0\), pas de solution lorsque \(\Delta &lt 0\)</p>
+    <pre><code class="language-python"> from math import *
+a = float(input(Quelle est la valeur de a : ))
+b = float(input('Quelle est la valeur de b : '))
+c = float(input('Quelle est la valeur de c : ''))
+delta = b * 2 - 4 * a
+if delta &lt 0:
+    print((-b - sqrt(delta)) / (2 * a))
+    print((-b + sqrt(delta)) / (2 * a))
+elif delta = 0:
+print(-b / (2 * a))
+else
+    print("pas de solution")
+print(resultat)</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 8 : </strong>une borne automatique de paiement calcule les droits d'entrée dans un 
+    aquaparc. Le prix d'entrée pour un adulte est de 43 €, pour un enfant de moins de 13 ans 12,5 €, pour un 
+adolescent ou un étudiant jusqu'à 25 ans 21 €.</p>
+<p>Vous devrez créer le programme de cette borne automatique qui demande tout d'abord le nombre d'adultes, 
+    le nombre d'enfants et le nombre d'étudiants avant d'afficher le prix à payer.</p>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 9 : </strong>corrigez le code suivant qui devrait afficher si un nombre saisi par l'utilisateur 
+    est positif, négatif ou nul.</p>
+
+    <pre><code class="language-python">a = input("Donnez un nombre réel : ")
+if a > 0
+    print("Le nombre est strictement positif)
+else:
+if a == 0:
+        print("Le nombre est nul")
+    else:
+print("Le nombre est strictement négatif")</code></pre>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication">
+    <p><strong>Exercice 10 : </strong>le club alpin doit proposer à ses adhérents un site Web pour le renouvellement 
+    des cotisations. Pour cela, il utilise un formulaire en ligne à remplir par chaque adhérent qui fournit la catégorie 
+de adhérent en fonction de ce qu'il vient de répondre.</p>
+
+<p>Ecrire un programme Python qui demande à l'utilisateur son âge et son statut marital, puis qui affiche sa catégorie. 
+Les différentes catégories sont les suivantes :</p>
+<ul>
+    <li>célibataire entre 18 et 65 ans - T1</li>
+    <li>marié entre 18 et 65 ans - M1</li>
+    <li>moins de 18 ans - A0</li>
+    <li>célibataire au-delà de 65 ans - T2</li>
+    <li>marié au-delà de 65 ans - M2</li>
+</ul>
+</div>
+
+<p class="separateur"></p>
+
+<div class="exerciceApplication" style="margin-bottom:5%;">
+    <p><strong>Exercice 11 : </strong> écrire un script qui affiche une prime d'assurance automobile, après avoir demandé l’âge du conducteur et le nombre d’accidents dans lequel il a été impliqué dans les 5 dernières années.
+        La prime d’assurance de base est de 500 CHF. La surprime est de 100 CHF si le conducteur a moins de 25 ans, et une surprime supplémentaire s'applique pour les accidents en fonction des règles suivantes :</p>
+    <ul>
+        <li>pour 1 accident déclaré durant les 5 dernières années, la surprime est de 50 CHF</li>
+        <li>pour 2 accidents déclarés durant les 5 dernières années, la surprime est de 125 CHF</li>
+        <li>pour 3 accidents déclarés durant les 5 dernières années, la surprime est de 225 CHF</li>
+        <li>pour 4 accidents déclarés durant les 5 dernières années, la surprime est de 375 CHF</li>
+        <li>pour 5 accidents déclarés durant les 5 dernières années, la surprime est de 575 CHF</li>
+        <li>pour 6 accidents déclarés durant les 5 dernières années, le conducteur ne peut pas être assuré. Il s'affiche "pas
+        d'assurance" et aucun montant de prime d'assurance ne s'affiche.</li>
+    </ul>
+    <div>
+        <p><button class='bouton' type="submit" onclick="affichageConditionnel(this,'solution5');"> Voir la solution </button></p>
+    </div>
+
+    <div id="solution5" style="display:none;">
+        <p>Solution :</p>
+        <pre><code class="language-python">age = int(input("quel est votre âge ? "))
+nbre_accidents = int(input("combien avez-vous eu d'accidents en 5 ans ? "))
+
+prime_assurance = 0
+
+# on rajoute la prime de base
+PRIME_DE_BASE = 500
+prime_assurance = prime_assurance + PRIME_DE_BASE
+
+# on s'assure que le client peut être assuré
+if nbre_accidents > 5:
+    print("Pas d'assurance")
+else:
+    # on compare l'age du client avec 25
+    if age &lt 25:
+        prime_assurance = prime_assurance + 100
+
+    # on rajoute la surprime en fonction de son nombre d'accidents
+    if nbre_accidents == 1:
+        prime_assurance = prime_assurance + 50
+    elif nbre_accidents == 2:
+        prime_assurance = prime_assurance + 125
+    elif nbre_accidents == 3:
+        prime_assurance = prime_assurance + 225
+    elif nbre_accidents == 4:
+        prime_assurance = prime_assurance + 375
+    elif nbre_accidents == 5:
+        prime_assurance = prime_assurance + 575
+
+    # on affiche le montant à payer
+    print(prime_assurance)</code></pre>
+
+    </div>
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="row py-5 gx-md-5 gy-2" style="border:2px solid var(--couleur_titre);border-radius:10px;margin:0%;margin-top:5%;padding-left:2%;">
+    <div class="col-12 col-md-6">
+        <img class="img_ombre" src="{% static 'home/images/general/index14.jpg' %}">  
+    </div>
+    <div class="col-12 col-md-6 my-auto" style="text-align:center;">
+        <a class="blink_me annonce_quiz" href="{% url 'afficherModeleQuiz' niveau='python' chapitre='debuter' id=3 %}">Essaie le Quiz maintenant !</a>
+    </div>
+</div>
+
+{% endblock cours %}

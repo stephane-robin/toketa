@@ -1,0 +1,54 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block tampon %}
+<p class="tampon">COURS ...</p>
+{% endblock tampon %}
+
+{% block cours %}
+
+<!-- LANGAGE INTERPRETE -->
+
+<p>Python est un langage de programmation généraliste qui permet de construire tous types de projets : études et gestion 
+    de bases de données, calculs scientifiques, graphismes, jeux vidéos, applications, sites Web, intelligence artificielle, ...</p>
+
+    <p>Les languages de programmation les plus populaires en juin 2023 sont (source index Tiobe):</p>
+    <ul>
+        <li>Python</li>
+        <li>C</li>
+        <li>C++</li>
+    </ul>
+    
+    <p>Les languages de programmation les plus demandés sur les offres d'emploi en 2023 sont (source devjobscanner.com):</p>
+    <ul>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Java</li>
+    </ul>
+    
+    <p>Tous indices confondus, on constate en fait une large domination de 4 langages : Python, C, C++ et Java.</p>
+    
+    <img src="{% static 'home/images/general/python.jpg' %}" width="100px" style="margin-left:50%;padding-bottom:5%;border-radius:10%;" class="my-5">
+
+    <p>Python n'est donc pas qu'un langage scolaire, mais un véritable langage polyvalent utilisé pour tous types de projets.</p>
+    
+
+<p>Python est un langage de programmation dont la philosophie repose sur la simplicité du code et 
+    l'implémentation de bonnes pratiques. Rien n'est fait pour empêcher le programmeur de mener une action, 
+    même si celle-ci semble inappropriée. La structure du code en blocs indentés permet de meilleure lecture 
+    de code, et impose une structure commune et compréhensible pour tout codeur qui souhaiterait reprendre le programme.</p>
+
+<p>Python est également un langage <em>interprété</em>. Cela signifie que le code source est traduit pas 
+    à pas par un logiciel appelé interpréteur, qui récupère des données d'entrée au fur et à mesure pour fournir des données de 
+    sortie. Le code source n'est pas transformé entièrement en code binaire avant d'être compilé, comme pour un langage compilé.</p>
+<p>Le principal avantage est que le code source d'un langage interprété peut fonctionner sur tout ordinateur. Le principal inconvénient est qu'un langage interprété est plus lent qu'un langage compilé,
+    qui peut réutiliser certaines parties de code préalablement compilées.</p>
+
+<p>Grâce à ses bibliothèques performantes régulièrement mises à jour et ses frameworks 
+    efficaces, Python est particulièrement utilisé dans les environnements scientifiques(<i>matplotlib, numpy, statistics, biopython</i>), pour la manipulation de données (<i>panda</i>) 
+    et pour l'intelligence artificielle (<i>tensorflow</i>). Par ailleurs Python 
+bénéficie d'une communauté active et de nombreux forums permettant de résoudre tous types de problèmes rencontrés.</p>
+
+<p>Ainsi, Python est un excellent choix pour apprendre à programmer, pour créer des programmes à 
+    caractère scientitique ou pour évoluer en intelligence artificielle.</p>
+{% endblock cours %}

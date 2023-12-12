@@ -1,0 +1,33 @@
+{% extends '../../../modelePage.html' %}
+{% load static %}
+
+{% block cours %}  
+
+
+<!-- LE PROBLEME DU PALINDROME -->
+
+        <p>Nous pouvons maintenant compliquer un petit peu les choses. Un palindrome est un mot
+            qui se lit de la même façon à l'endroit qu'à l'envers. Ainsi par exemple <em>kayak</em> est un
+            palindrome alors que <em>bonjour</em> n'en est pas un.</p>
+        
+            <p>Nous avons vu comment inverser un mot saisi par l'utilisateur. Pour tester si un mot est un palindrome, il
+                suffit de comparer le mot inversé avec le mot de départ pour répondre à
+                la question. On peut ne pas utiliser la question précédente et faire varier un
+                booléen qui représente si le mot est un palindrome, comme dans la vidéo suivante :</p>
+        
+
+                <div class="col-12 col-md-8 my-5">
+                    <iframe src="https://www.youtube.com/embed/YcdOxQf16bs"
+                            title="Palindrome en Python - TokeTa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                            gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <figcaption>Palindrome en Python</figcaption>
+                </div>
+                
+        
+        <div class="exerciceApplication">
+            <p><strong>A toi de jouer : </strong>écrire un code différent de celui proposé dans la vidéo, qui détermine si 
+                un mot est un palindrome ou non. Tu pourras par exemple utiliser une boucle <code>while</code>, 
+            ou encore utiliser l'instruction <code>mot[::-1]</code> qui inverse un mot.</p>
+        </div>
+
+{% endblock cours %}

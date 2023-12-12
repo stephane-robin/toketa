@@ -1,120 +1,113 @@
-{% extends '../../modelePresentation.html' %}
+{% extends '../../base.html' %}
 {% load static %}
 
-{% block titre %} Sciences numériques {% endblock %}
+{% block principal %}
 
-<!-- INTERNET -->
+<section class="mt-5 pt-5 px-5 bg-white">
+    <div class="container">
+        <h1 id="hautPage">Sciences numériques</h1>
+    </div>
+</section>
 
-{% block img1 %}                     
-<img src="{% static 'home/images/general/index2.jpg' %}" class="card-img-top" alt="développement web" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img1 %}
 
-{% block titre_partie1 %} Développement Web {% endblock titre_partie1 %}
+<!-- INTERNET --> 
 
-{% block partie1 %} 
-Nous découvrirons le modèle en couches, les protocoles, l'adresse IP, le DNS, mais 
-également la structure de base d'une page HTML et CSS. 
-{% endblock partie1 %}
-
-{% block intro1 %}
-L'environnement d'Internet est particulièrement vaste. il est important de connaître le mode de 
-rémunération des moteurs de recherche et des réseaux sociaux. Nous analyserons les dangers 
-des réseaux sociaux que nous représenterons sous forme de graphes. Nous évoquerons le cas des 
-réseaux peer-to-peer.
-{% endblock intro1 %}
-
-{% block activites1 %}
-    <p>
-    {% for elt in internet %}
-    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='internet' id=forloop.counter0 %}">{{ elt }}</a><br/>
-    {% endfor %}
-    </p>
-{% endblock activites1 %}
-
-{% block exercices1 %}
-<a href="{% static 'home/documents/memo_internet.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Internet</button></a>
-<a href="{% static 'home/documents/memo_web.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Requête Web</button></a>
-<a href="{% static 'home/documents/memo_web2.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Web</button></a>
-<a href="{% static 'home/documents/memo_p2p.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Peer-to-peer</button></a>
-<a href="{% static 'home/documents/memo_reseaux_sociaux.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Réseaux sociaux</button></a>
-{% endblock exercices1 %}
-
-{% block evaluations1 %} {% endblock evaluations1 %}
+<section class="px-5 pt-2 pb-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Développement Web </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index2.jpg' %}" alt="développement web">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>L'environnement d'Internet est particulièrement vaste. il est important de connaître le mode de 
+                    rémunération des moteurs de recherche et des réseaux sociaux. Nous analyserons les dangers 
+                    des réseaux sociaux que nous représenterons sous forme de graphes. Nous évoquerons le cas des 
+                    réseaux peer-to-peer.</p>
+                <p>Nous découvrirons le modèle en couches, les protocoles, l'adresse IP, le DNS, mais 
+                    également la structure de base d'une page HTML et CSS. </p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12">
+                <p>{% for elt in internet %}
+                    &#128215; <a href="{% url 'afficherPage' cours='nsi' niveau='internet' id_chapitre=forloop.counter0 id_section=0 %}">{{ elt }}</a><br/>
+                    {% endfor %}</p>
+                <a href="{% static 'home/documents/memo_internet.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Internet</button></a><br/>
+                <a href="{% static 'home/documents/memo_web.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Requête Web</button></a><br/>
+                <a href="{% static 'home/documents/memo_web2.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Web</button></a><br/>
+                <a href="{% static 'home/documents/memo_p2p.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Peer-to-peer</button></a><br/>
+                <a href="{% static 'home/documents/memo_reseaux_sociaux.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Réseaux sociaux</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- DONNEES STRUCTUREES --> 
 
-{% block img2 %}
-<img src="{% static 'home/images/general/index7.jpg' %}" class="card-img-top" alt="donnée structurées" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img2 %}
-
-{% block titre_partie2 %} Données structurées {% endblock titre_partie2 %}
-
-{% block partie2 %} 
-Nous découvrirons les différents formats de données, les algorithmes de tri les plus classiques,
-et nous apprendrons comment récupérer et manipuler des données à l'aide de scripts Python.
-{% endblock partie2 %}
-
-{% block intro2 %}
-L'apprentissage de Python n'est pas une perte de temps réservée au milieu scolaire. Il ne s'agit pas d'un 
-langage simple utilisé à des fins éducatives, mais bien au contraire, Python est largement utilisé dans 
-les environnements scientifiques, pour la manipulation de données et en intelligence artificielle.
-{% endblock intro2 %}
-
-{% block activites2 %}
-    <p>    
-    {% for elt in donnees_structurees %}
-    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='donnees_structurees' id=forloop.counter0 %}">{{ elt }}</a><br/>
-    {% endfor %}
-    </p>
-{% endblock activites2 %}
-
-{% block exercices2 %} {% endblock exercices2 %}
-
-{% block evaluations2 %} {% endblock evaluations2 %}
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Données structurées </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index7.jpg' %}" alt="données structurées">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>L'apprentissage de Python n'est pas une perte de temps réservée au milieu scolaire. Il ne s'agit pas d'un 
+                    langage simple utilisé à des fins éducatives, mais bien au contraire, Python est largement utilisé dans 
+                    les environnements scientifiques, pour la manipulation de données et en intelligence artificielle.</p>
+                <p>Nous découvrirons les différents formats de données, les algorithmes de tri les plus classiques,
+                    et nous apprendrons comment récupérer et manipuler des données à l'aide de scripts Python.</p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12">
+                <p>{% for elt in donnees_structurees %}
+                    &#128215; <a href="{% url 'afficherPage' cours='nsi' niveau='donnees_structurees' id_chapitre=forloop.counter0 id_section=0 %}">{{ elt }}</a><br/>
+                    {% endfor %}</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- ARCHITECTURE MATERIELLE --> 
 
-{% block img3 %} 
-<img src="{% static 'home/images/general/index13.jpg' %}" class="card-img-top" alt="architecture matérielle" style="border-top-left-radius:5%;border-top-right-radius:5%;">
-{% endblock img3 %}
-
-{% block titre_partie3 %} Architecture matérielle, réseaux {% endblock titre_partie3 %}
-
-{% block partie3 %} 
-Nous découvrirons les principaux éléments composant un ordinateur et apprendrons les lignes commandes de base 
-d'un système d'exploitation Linux.
-{% endblock partie3 %}
-
-{% block intro3 %}
-Il est essentiel de comprendre l'utilité des différents éléments composant un ordinateur ou un smartphone.
-Le fonctionnement d'un réseau, avec la description des tables de routage permettant d'acheminer l'information 
-est également important. Finalement, les objets connectés sont de plus en plus présents dans notre quotidien. Ils nécessitent
-un accès Internet permanent et la programmation d'applications dédiés à leur fonctionnement.
-{% endblock intro3 %}
-
-{% block activites3 %}
-    <p>
-    {% for elt in architecture %}
-    &#128215; <a href="{% url 'afficherPage' niveau='nsi' chapitre='architecture' id=forloop.counter0 %}">{{ elt }}</a><br/>
-    {% endfor %}
-    </p>
-{% endblock activites3 %}
-
-{% block exercices3 %}
-<a href="{% static 'home/documents/memo_objets_connectes.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Objets connectés</button></a>
-<a href="{% static 'home/documents/memo_architecture_materielle.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Architecture matérielle</button></a>
-{% endblock exercices3 %}
-
-{% block evaluations3 %} {% endblock evaluations3 %}
-
+<section class="px-5 py-5 my-1 bg-white">
+    <div class="container">
+        <h2 class="my-5 noir"> Architecture matérielle, réseaux </h2>
+        <div class="row gx-5 gy-4">
+            <div class="col-12 col-md-6">
+                <img class="img_ombre" src="{% static 'home/images/general/index13.jpg' %}" alt="architecture matérielle">
+            </div>
+            <div class="col-12 col-md-5 my-auto">
+                <p>Il est essentiel de comprendre l'utilité des différents éléments composant un ordinateur ou un smartphone.
+                    Le fonctionnement d'un réseau, avec la description des tables de routage permettant d'acheminer l'information 
+                    est également important. Finalement, les objets connectés sont de plus en plus présents dans notre quotidien. Ils nécessitent
+                    un accès Internet permanent et la programmation d'applications dédiés à leur fonctionnement.</p>
+                <p>Nous découvrirons les principaux éléments composant un ordinateur et apprendrons les lignes commandes de base 
+                    d'un système d'exploitation Linux.</p>
+            </div>
+        </div>
+        <div class="row my-2 gx-5 gy-4">
+            <div class="col-12">
+                <p>{% for elt in architecture %}
+                    &#128215; <a href="{% url 'afficherPage' cours='nsi' niveau='architecture' id_chapitre=forloop.counter0 id_section=0 %}">{{ elt }}</a><br/>
+                    {% endfor %}</p>
+                <a href="{% static 'home/documents/memo_objets_connectes.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Objets connectés</button></a><br/>
+                <a href="{% static 'home/documents/memo_architecture_materielle.pdf' %}" download><button class="bouton2 bi bi-download"> Fiche mémo Architecture matérielle</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- le 1er div permet de scinder la ball du reste de la page
 et donc evite que toute la page bouge -->
 <div class="container_ball">
     <div class="ball">
-        <p class="text_ball">ToKeTa</p>
+        <p class="text_ball">ToKeta</p>
     </div>
 </div>
 
+{%endblock principal %}
